@@ -10,5 +10,9 @@
     "minimum-stability": "dev",
     "require": {
 
-    }
+    },
+    "autoload": {
+        "psr-0": { "PHPOrchestra\\ModelBundle": "" }
+    },
+    "target-dir": "PHPOrchestra/ModelBundle"
 }
