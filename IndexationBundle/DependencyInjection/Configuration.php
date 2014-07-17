@@ -21,7 +21,9 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('php_orchestra_indexation');
 
         $rootNode->children()
-            ->arrayNode('indexation')->defaultNull()->end()
+            ->arrayNode('indexation')
+                ->prototype('scalar')->end()
+            ->end()
         ->end();
 
         return $treeBuilder;
