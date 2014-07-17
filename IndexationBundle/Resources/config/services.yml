@@ -17,6 +17,8 @@ services:
             - %php_orchestra_indexation.type%
             - @phporchestra_indexation.indexsolr
             - @mandango
+        tags:
+            - { name: php_orchestra_indexation.strategy }
 
     # IndexCommand service
     phporchestra_indexation.indexsolr:
