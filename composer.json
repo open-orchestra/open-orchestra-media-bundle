@@ -14,5 +14,5 @@
     "autoload": {
         "psr-0": { "PHPOrchestra\\ModelBundle": "" }
     },
-    "target-dir": "PHPOrchestra/ModelBundle"
+    "target-dir": "PHPOrchestra"
 }
