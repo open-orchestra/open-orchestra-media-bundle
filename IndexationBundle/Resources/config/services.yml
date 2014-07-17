@@ -1,7 +1,7 @@
 parameters:
-#    php_orchestra_indexation.example.class: PHPOrchestra\IndexationBundle\Example
+    php_orchestra_indexation.index_helper.class: PHPOrchestra\CMSBundle\Helper\IndexHelper
 
 services:
-#    php_orchestra_indexation.example:
-#        class: %php_orchestra_indexation.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    phporchestra_indexation.index_helper:
+        class: %php_orchestra_indexation.index_helper.class%
+        arguments: [@router, @mandango, @solarium.client]
