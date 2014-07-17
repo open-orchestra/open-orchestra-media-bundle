@@ -3,10 +3,10 @@
 namespace PHPOrchestra\IndexationBundle\IndexationStrategy\Strategies;
 
 use Mandango\Mandango;
-use PHPOrchestra\BlockBundle\IndexCommand\SolrIndexCommand;
 use PHPOrchestra\CMSBundle\Model\Content;
 use PHPOrchestra\CMSBundle\Model\Node;
 use PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerInterface;
+use PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand;
 
 /**
  * Class SolrStrategy

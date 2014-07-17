@@ -29,7 +29,7 @@ class SolrStrategyTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->strategies = array('solr');
-        $this->solrIndexCommand = Phake::mock('PHPOrchestra\BlockBundle\IndexCommand\SolrIndexCommand');
+        $this->solrIndexCommand = Phake::mock('PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand');
         $this->listIndex = Phake::mock('PHPOrchestra\CMSBundle\Model\ListIndex');
         $this->listIndexRepository = Phake::mock('PHPOrchestra\CMSBundle\Model\ListIndexRepository');
 
