@@ -2,6 +2,8 @@ parameters:
     php_orchestra_indexation.index_manager.class: PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerManager
     php_orchestra_indexation.indexer_manager.class: PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerManager
     php_orchestra_indexation.solr.strategy.class: PHPOrchestra\IndexationBundle\IndexationStrategy\Strategies\SolrStrategy
+    php_orchestra_indexation.search_manager.class: PHPOrchestra\IndexationBundle\SearchStrategy\SearchManager
+    php_orchestra_indexation.search.solr.strategy.class: PHPOrchestra\IndexationBundle\SearchStrategy\Strategies\SolrSearchStrategy
     phporchestra_indexation.indexsolr.class: PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand
 
 services:
@@ -10,15 +12,24 @@ services:
         arguments: [@router, @mandango, @solarium.client]
     php_orchestra_indexation.indexer_manager:
         class: %php_orchestra_indexation.indexer_manager.class%
+    php_orchestra_indexation.search_manager:
+        class: %php_orchestra_indexation.search_manager.class%
 
-    php_orchestra_indexation.solr.strategy:
+    php_orchestra_indexation.indexer.solr.strategy:
         class: %php_orchestra_indexation.solr.strategy.class%
         arguments:
             - %php_orchestra_indexation.type%
             - @phporchestra_indexation.indexsolr
             - @mandango
         tags:
-            - { name: php_orchestra_indexation.strategy }
+            - { name: php_orchestra_indexation.indexer.strategy }
+    php_orchestra_indexation.search.solr.strategy:
+        class: %php_orchestra_indexation.search.solr.strategy.class%
+        arguments:
+            - %php_orchestra_indexation.type%
+            - @solarium.client
+        tags:
+            - { name: php_orchestra_indexation.search.strategy }
 
     # IndexCommand service
     phporchestra_indexation.indexsolr:
