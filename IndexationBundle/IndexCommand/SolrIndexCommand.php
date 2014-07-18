@@ -226,7 +226,7 @@ class SolrIndexCommand
     
         // Create a handle with the adapter and get the http response
         $request = $this->solarium->createRequest($ping);
-        $handle = $this->solarium->getAdapter()->createHandle($request, $client->getEndPoint());
+        $handle = $this->solarium->getAdapter()->createHandle($request, $this->solarium->getEndPoint());
         $http = curl_exec($handle);
 
         if ($http === false) {

@@ -17,11 +17,11 @@ class IndexationCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('php_orchestra_indexation.indexation_manager')) {
+        if (!$container->hasDefinition('php_orchestra_indexation.indexer_manager')) {
             return;
         }
 
-        $manager = $container->getDefinition('php_orchestra_indexation.indexation_manager');
+        $manager = $container->getDefinition('php_orchestra_indexation.indexer_manager');
         $strategies = $container->findTaggedServiceIds('php_orchestra_indexation.strategy');
         foreach ($strategies as $id => $attributes) {
             $manager->addMethodCall('addStrategy', array(new Reference($id)));

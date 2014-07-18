@@ -1,6 +1,6 @@
 parameters:
     php_orchestra_indexation.index_manager.class: PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerManager
-    php_orchestra_indexation.indexation_manager.class: PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerManager
+    php_orchestra_indexation.indexer_manager.class: PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerManager
     php_orchestra_indexation.solr.strategy.class: PHPOrchestra\IndexationBundle\IndexationStrategy\Strategies\SolrStrategy
     phporchestra_indexation.indexsolr.class: PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand
 
@@ -8,8 +8,8 @@ services:
     phporchestra_indexation.index_manager:
         class: %php_orchestra_indexation.index_manager.class%
         arguments: [@router, @mandango, @solarium.client]
-    php_orchestra_indexation.indexation_manager:
-        class: %php_orchestra_indexation.indexation_manager.class%
+    php_orchestra_indexation.indexer_manager:
+        class: %php_orchestra_indexation.indexer_manager.class%
 
     php_orchestra_indexation.solr.strategy:
         class: %php_orchestra_indexation.solr.strategy.class%
