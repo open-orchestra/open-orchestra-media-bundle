@@ -82,7 +82,7 @@ class IndexCommand extends ContainerAwareCommand
             $this->removeIndex($client);
 
             $output->writeln(
-                $container->get('translator')->trans('All the documents are removed from the index')
+                $container->get('translator')->trans('php_orchestra_indexation.command.all_removed')
             );
 
         } else {
@@ -93,10 +93,10 @@ class IndexCommand extends ContainerAwareCommand
 
             if (!empty($listIndex) && is_array($listIndex)) {
                 $this->indexList($repositoryNode, $repositoryContent, $listIndex, $repositoryListIndex, $indexManager);
-                $output->writeln($container->get('translator')->trans('The List of documents is indexed'));
+                $output->writeln($container->get('translator')->trans('phporchestra_indexation.command.list_indexed'));
 
             } else {
-                $output->writeln($container->get('translator')->trans('The list of documents is empty!'));
+                $output->writeln($container->get('translator')->trans('phporchestra_indexation.command.list_empty'));
             }
         }
     }

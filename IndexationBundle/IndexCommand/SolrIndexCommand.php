@@ -64,7 +64,7 @@ class SolrIndexCommand
 
         //get an update query instance
         $update = $this->solarium->createUpdate();
-    
+
         if (is_array($docs)) {
             foreach ($docs as $doc) {
                 if (isset($doc) && !empty($doc)) {
@@ -76,18 +76,17 @@ class SolrIndexCommand
             $field = $this->getField($fields, $docs, $docType);
             $documents[] = $docs->toSolrDocument($update->createDocument(), $field);
         }
-        
+
         //add the documents and a commit command to the update query
         $update->addDocuments($documents);
         $update->addCommit();
-        
+
         //this execute the query and return the result
         $result = $this->solarium->update($update);
-        
+
         return $result;
     }
-    
-    
+
     /**
      * Delete an index by id
      * 
