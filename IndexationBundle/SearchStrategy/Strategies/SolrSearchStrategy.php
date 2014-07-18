@@ -173,7 +173,7 @@ class SolrSearchStrategy implements SearchInterface
      */
     public function facetQuery(FacetSet $facetSet, $field, $query)
     {
-        $facet = $facetSet->createFacetQuery($field)->setQuery($query);
+        $facetSet->createFacetQuery($field)->setQuery($query);
     }
 
     /**
