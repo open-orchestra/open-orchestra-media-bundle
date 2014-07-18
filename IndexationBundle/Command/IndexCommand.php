@@ -68,7 +68,7 @@ class IndexCommand extends ContainerAwareCommand
     {
         $container = $this->getContainer();
         $mandango = $container->get('mandango');
-        $indexManager = $container->get('phporchestra_indexation.index_manager');
+        $indexManager = $container->get('php_orchestra_indexation.indexer_manager');
         $repositoryNode = $mandango->getRepository('Model\PHPOrchestraCMSBundle\Node');
         $repositoryContent = $mandango->getRepository('Model\PHPOrchestraCMSBundle\Content');
 

@@ -29,6 +29,7 @@ class PHPOrchestraIndexationExtension extends Extension
         if (array_key_exists('indexation', $config)) {
             $indexationType = $config['indexation'];
         }
+
         $container->setParameter('php_orchestra_indexation.type', $indexationType);
     }
 }
