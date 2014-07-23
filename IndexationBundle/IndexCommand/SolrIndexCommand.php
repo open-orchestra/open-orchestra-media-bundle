@@ -20,6 +20,7 @@ namespace PHPOrchestra\IndexationBundle\IndexCommand;
 use Mandango\Mandango;
 use Solarium\Client;
 use Model\PHPOrchestraCMSBundle\Base\Node;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -50,10 +51,9 @@ class SolrIndexCommand
     /**
      * index one or more nodes in solr
      * 
-     * @param Node(array)|
-     * Content(array) $docs One or many object Node|Content
-     * @param string $docType type of documents
-     * @param array $fields array of Model/PHPOrchestraCMSBundle/FieldIndex
+     * @param Node(array)|Content(array) $docs    One or many object Node|Content
+     * @param string                     $docType type of documents
+     * @param array                      $fields  array of Model/PHPOrchestraCMSBundle/FieldIndex
      * 
      * @return indexation result
      */
@@ -98,69 +98,84 @@ class SolrIndexCommand
     {
         //get an update query instance
         $update = $this->solarium->createUpdate();
-    
+
         $update->addDeleteQuery('id:'.$docId);
         $update->addCommit();
-    
+
         //this execute the query and return the result
         $result = $this->solarium->update($update);
-    
+
         return $result;
     }
-    
-    
+
+
     /**
      * Get the content of a node
      * 
-     * @param Model\PHPOrchestraCMSBundle\Base\Node $node
-     * @param string $field field name
+     * @param Model/PHPOrchestraCMSBundle/Base/Node $node      Node
+     * @param string                                $field     field name
+     * @param string                                $fieldType field type
      * 
      * @return array with the content of a field
      */
-    public function getContentNode($node, $field)
+    public function getContentNode($node, $field, $fieldType)
     {
         $blocks = $node->getBlocks();
+        $isArray = SolrIndexCommand::typeIsArray($fieldType);
         $content = array();
+
         foreach ($blocks as $abstract) {
             $attributes = $abstract->getAttributes();
             foreach ($attributes as $name => $values) {
                 if ($name === $field) {
                     if (isset($values) && !empty($values)) {
-                        $content[] = $values;
+
+                        if ($isArray) {
+                            $content[] = $values;
+                        } else {
+                            return $values;
+                        }
                     }
                 }
             }
         }
+
         return $content;
     }
-    
-    
+
+
     /**
      * Get the content of a Content
      * 
-     * @param Model\PHPOrchestraCMSBundle\Base\Content $content
-     * @param string $field field name
+     * @param Model/PHPOrchestraCMSBundle/Base/Content $content   Content
+     * @param string                                   $field     field name
+     * @param string                                   $fieldType field type
      * 
      * @return array with the content of Content
      */
-    public function getContentContent($content, $field)
+    public function getContentContent($content, $field, $fieldType)
     {
         $contentAttributes = $content->getAttributes();
         $value = array();
-        
+        $isArray = SolrIndexCommand::typeIsArray($fieldType);
+
         foreach ($contentAttributes as $abstract) {
             if ($abstract->getName() === $field) {
-                $value[] = $abstract->getValue();
+                if ($isArray) {
+                    $value[] = $abstract->getValue();
+                } else {
+                    return $abstract->getValue();
+                }
             }
         }
-        
+
         return $value;
     }
 
     /**
      * Get all fields and their contents for doc (Node or Content)
      *
-     * @param mixed  $fields
+     * @param mixed  $fields  array of FieldIndex
      * @param mixed  $doc     Node or Content
      * @param string $docType Node or Content
      *
@@ -173,23 +188,24 @@ class SolrIndexCommand
             foreach ($fields as $field) {
                 $fieldName = $field->getFieldName();
                 $fieldType = $field->getFieldType();
-                $fieldComplete[$fieldName.'_'.$fieldType] = $this->getContentNode($doc, $fieldName);
+
+                $fieldComplete[$fieldName.'_'.$fieldType] = $this->getContentNode($doc, $fieldName, $fieldType);
             }
             // Generate url
-            $fieldComplete['url'] = array($this->router->generate($doc->getNodeId()));
+            $fieldComplete['url'] = $this->router->generate($doc->getNodeId(), array(), UrlGeneratorInterface::ABSOLUTE_URL);
 
             return $fieldComplete;
         } elseif ($docType === 'Content') {
             foreach ($fields as $field) {
                 $fieldName = $field->getFieldName();
                 $fieldType = $field->getFieldType();
-                $fieldComplete[$fieldName.'_'.$fieldType] = $this->getContentContent($doc, $fieldName);
+                $fieldComplete[$fieldName.'_'.$fieldType] = $this->getContentContent($doc, $fieldName, $fieldType);
             }
-            $fieldComplete['url'] = array(
-                $this->generateUrl($doc->getContentId(), $doc->getContentType())
-            );
+            $fieldComplete['url'] = $this->generateUrl($doc->getContentId(), $doc->getContentType());
+
             return $fieldComplete;
         }
+
         return $fieldComplete;
     }
 
@@ -202,7 +218,7 @@ class SolrIndexCommand
     public function splitDoc($docs, $docType)
     {
         $fields = $this->mandango->getRepository('Model\PHPOrchestraCMSBundle\FieldIndex')->getAll();
-        
+
         if (!is_array($docs) || count($docs) < 500) {
             $this->index($docs, $docType, $fields);
         } else {
@@ -222,7 +238,7 @@ class SolrIndexCommand
     {
         // Create a ping query
         $ping = $this->solarium->createPing();
-    
+
         // Create a handle with the adapter and get the http response
         $request = $this->solarium->createRequest($ping);
         $handle = $this->solarium->getAdapter()->createHandle($request, $this->solarium->getEndPoint());
@@ -253,7 +269,7 @@ class SolrIndexCommand
                 $isContent = $this->isContent($node, $contentType);
                 if ($isContent === true) {
                     // Get url of the node
-                    $uri = $this->router->generate($node->getNodeId(), array($contentId));
+                    $uri = $this->router->generate($node->getNodeId(), array($contentId), UrlGeneratorInterface::ABSOLUTE_URL);
                     break;
                 }
             }
@@ -265,7 +281,7 @@ class SolrIndexCommand
     /**
      * Test if a node have a content with the same content type
      *
-     * @param Node   $node
+     * @param Node   $node        Node
      * @param string $contentType content type
      *
      * @return boolean
@@ -285,5 +301,52 @@ class SolrIndexCommand
         }
 
         return false;
+    }
+
+    /**
+     * Test if field type is multiValued
+     *
+     * @param string $type fieldType
+     *
+     * @return bool
+     */
+    public function typeIsArray($type)
+    {
+        switch($type) {
+            case 'is':
+                return true;
+                break;
+            case 'ss':
+                return true;
+                break;
+                break;
+            case 'ls':
+                return true;
+                break;
+            case 'txt':
+                return true;
+                break;
+            case 'en':
+                return true;
+                break;
+            case 'fr':
+                return true;
+                break;
+            case 'bs':
+                return true;
+                break;
+            case 'fs':
+                return true;
+                break;
+            case 'ds':
+                return true;
+                break;
+            case 'dts':
+                return true;
+                break;
+            default:
+                return false;
+                break;
+        }
     }
 }
