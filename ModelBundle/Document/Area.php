@@ -1,86 +1,72 @@
 <?php
 
-/*
- * Business & Decision - Commercial License
- *
- * Copyright 2014 Business & Decision.
- *
- * All rights reserved. You CANNOT use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell this Software or any parts of this
- * Software, without the written authorization of Business & Decision.
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * See LICENSE.txt file for the full LICENSE text.
- */
-
 namespace PHPOrchestra\ModelBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use PHPOrchestra\ModelBundle\Model\AreaInterface;
 
 /**
  * Description of BaseArea
  *
- * @author Nicolas BOUQUET <nicolas.bouquet@businessdecision.com>
- * 
  * @MongoDB\EmbeddedDocument
  */
-abstract class BaseArea
+class Area implements AreaInterface
 {
     /**
      * @var string $htmlId
+     *
      * @MongoDB\Field(type="string")
      */
     protected $htmlId = null;
     
     /**
      * @var string $boDirection
+     *
      * @MongoDB\Field(type="string")
      */
     protected $boDirection = null;
     
     /**
      * @var float $boPercent
+     *
      * @MongoDB\Field(type="float")
      */
     protected $boPercent = null;
     
     /**
-     * @var collection $classes
      * @MongoDB\Field(type="collection")
      */
     protected $classes = array();
     
     /**
-     * @var PHPOrchestraModel\MongoBundle\Document\Area
-     * @MongoDB\EmbedMany(
-     *  targetDocument="PHPOrchestraModel\MongoBundle\Document\Area"
-     * )
+     * @var ArrayCollection
+     *
+     * @MongoDB\EmbedMany(targetDocument="Area")
      */
-    protected $subAreas = array();
+    protected $subAreas;
     
     /**
-     * @var collection $blockReferences
      * @MongoDB\Field(type="collection")
      */
     protected $blockReferences = array();
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->subAreas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->subAreas = new ArrayCollection();
     }
-    
+
     /**
      * Set htmlId
      *
      * @param string $htmlId
-     * @return self
      */
     public function setHtmlId($htmlId)
     {
         $this->htmlId = $htmlId;
-        return $this;
     }
 
     /**
@@ -97,12 +83,10 @@ abstract class BaseArea
      * Set boDirection
      *
      * @param string $boDirection
-     * @return self
      */
     public function setBoDirection($boDirection)
     {
         $this->boDirection = $boDirection;
-        return $this;
     }
 
     /**
@@ -119,12 +103,10 @@ abstract class BaseArea
      * Set boPercent
      *
      * @param float $boPercent
-     * @return self
      */
     public function setBoPercent($boPercent)
     {
         $this->boPercent = $boPercent;
-        return $this;
     }
 
     /**
@@ -140,19 +122,17 @@ abstract class BaseArea
     /**
      * Set classes
      *
-     * @param collection $classes
-     * @return self
+     * @param array $classes
      */
-    public function setClasses($classes)
+    public function setClasses(array $classes)
     {
         $this->classes = $classes;
-        return $this;
     }
 
     /**
      * Get classes
      *
-     * @return collection $classes
+     * @return array $classes
      */
     public function getClasses()
     {
@@ -162,19 +142,19 @@ abstract class BaseArea
     /**
      * Add subArea
      *
-     * @param PHPOrchestraModel\MongoBundle\Document\Area $subArea
+     * @param AreaInterface $subArea
      */
-    public function addSubArea(\PHPOrchestraModel\MongoBundle\Document\Area $subArea)
+    public function addSubArea(AreaInterface $subArea)
     {
-        $this->subAreas[] = $subArea;
+        $this->subAreas->add($subArea);
     }
 
     /**
      * Remove subArea
      *
-     * @param PHPOrchestraModel\MongoBundle\Document\Area $subArea
+     * @param AreaInterface $subArea
      */
-    public function removeSubArea(\PHPOrchestraModel\MongoBundle\Document\Area $subArea)
+    public function removeSubArea(AreaInterface $subArea)
     {
         $this->subAreas->removeElement($subArea);
     }
@@ -182,7 +162,7 @@ abstract class BaseArea
     /**
      * Get subAreas
      *
-     * @return Doctrine\Common\Collections\Collection $subAreas
+     * @return ArrayCollection $subAreas
      */
     public function getSubAreas()
     {
@@ -192,19 +172,17 @@ abstract class BaseArea
     /**
      * Set blockReferences
      *
-     * @param collection $blockReferences
-     * @return self
+     * @param array $blockReferences
      */
-    public function setBlockReferences($blockReferences)
+    public function setBlockReferences(array $blockReferences)
     {
         $this->blockReferences = $blockReferences;
-        return $this;
     }
 
     /**
      * Get blockReferences
      *
-     * @return collection $blockReferences
+     * @return array $blockReferences
      */
     public function getBlockReferences()
     {

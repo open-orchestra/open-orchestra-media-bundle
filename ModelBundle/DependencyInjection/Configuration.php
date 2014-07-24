@@ -22,9 +22,38 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('php_orchestra_model');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode->children()
+            ->arrayNode('content')
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestraModelBundle:Content')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\ContentRepository')->end()
+                ->end()
+            ->end()
+            ->arrayNode('content_type')
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestraModelBundle:ContentType')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\ContentTypeRepository')->end()
+                ->end()
+            ->end()
+            ->arrayNode('node')
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestraModelBundle:Node')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\NodeRepository')->end()
+                ->end()
+            ->end()
+            ->arrayNode('site')
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestraModelBundle:Site')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\SiteRepository')->end()
+                ->end()
+            ->end()
+            ->arrayNode('template')
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestraModelBundle:Template')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\TemplateRepository')->end()
+                ->end()
+            ->end()
+        ->end();
 
         return $treeBuilder;
     }

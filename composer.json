@@ -9,7 +9,9 @@
     ],
     "minimum-stability": "dev",
     "require": {
-
+        "doctrine/mongodb-odm" : "1.0.*@dev",
+        "doctrine/mongodb-odm-bundle" : "3.0.*@dev",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*"
     },
     "autoload": {
         "psr-0": {
