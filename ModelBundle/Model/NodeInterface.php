@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 interface NodeInterface
 {
+    const PUBLISHED = 'published';
     /**
      * Get id
      *
@@ -61,14 +62,14 @@ interface NodeInterface
     /**
      * Set parentId
      *
-     * @param int $parentId
+     * @param string $parentId
      */
     public function setParentId($parentId);
 
     /**
      * Get parentId
      *
-     * @return int $parentId
+     * @return string $parentId
      */
     public function getParentId();
 
@@ -222,12 +223,17 @@ interface NodeInterface
     /**
      * @param AreaInterface $area
      */
-    public function setArea(AreaInterface $area);
+    public function addArea(AreaInterface $area);
 
     /**
-     * @return AreaInterface
+     * @param AreaInterface $area
      */
-    public function getArea();
+    public function removeArea(AreaInterface $area);
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAreas();
 
     /**
      * @param boolean $inFooter

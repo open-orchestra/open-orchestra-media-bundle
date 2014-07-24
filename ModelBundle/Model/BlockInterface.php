@@ -26,11 +26,9 @@ Interface BlockInterface
     /**
      * Set attributes
      *
-     * @param mixed $attributes
-     *
-     * @return self
+     * @param array $attributes
      */
-    public function setAttributes($attributes);
+    public function setAttributes(array $attributes);
 
     /**
      * Get attributes
