@@ -1,27 +1,11 @@
 <?php
 
-/*
- * Business & Decision - Commercial License
-*
-* Copyright 2014 Business & Decision.
-*
-* All rights reserved. You CANNOT use, copy, modify, merge, publish,
-* distribute, sublicense, and/or sell this Software or any parts of this
-* Software, without the written authorization of Business & Decision.
-*
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-*
-* See LICENSE.txt file for the full LICENSE text.
-*/
-
 namespace PHPOrchestra\IndexationBundle\IndexCommand;
 
 use Mandango\Mandango;
 use Solarium\Client;
 use Model\PHPOrchestraCMSBundle\Base\Node;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Index documents in solr
@@ -33,12 +17,12 @@ class SolrIndexCommand
     protected $solarium;
 
     /**
-     * @param RouterInterface $router
-     * @param Mandango        $mandango
-     * @param Client          $solarium
+     * @param UrlGeneratorInterface $router
+     * @param Mandango              $mandango
+     * @param Client                $solarium
      */
     public function __construct(
-        RouterInterface $router,
+        UrlGeneratorInterface $router,
         Mandango $mandango,
         Client $solarium
     )
@@ -108,68 +92,46 @@ class SolrIndexCommand
         return $result;
     }
 
-
     /**
-     * Get the content of a node
-     * 
-     * @param Model/PHPOrchestraCMSBundle/Base/Node $node      Node
-     * @param string                                $field     field name
-     * @param string                                $fieldType field type
-     * 
-     * @return array with the content of a field
+     * Split an array of document if they have more than 500 elements and call index function
+     *
+     * @param array<Node>|array<Content> $docs    One or many object Node|Content
+     * @param string                     $docType type of documents
      */
-    public function getContentNode($node, $field, $fieldType)
+    public function splitDoc($docs, $docType)
     {
-        $blocks = $node->getBlocks();
-        $isArray = SolrIndexCommand::typeIsArray($fieldType);
-        $content = array();
+        $fields = $this->mandango->getRepository('Model\PHPOrchestraCMSBundle\FieldIndex')->getAll();
 
-        foreach ($blocks as $abstract) {
-            $attributes = $abstract->getAttributes();
-            foreach ($attributes as $name => $values) {
-                if ($name === $field) {
-                    if (isset($values) && !empty($values)) {
-
-                        if ($isArray) {
-                            $content[] = $values;
-                        } else {
-                            return $values;
-                        }
-                    }
-                }
+        if (!is_array($docs) || count($docs) < 500) {
+            $this->index($docs, $docType, $fields);
+        } else {
+            $docArray = array_chunk($docs, 500);
+            foreach ($docArray as $doc) {
+                $this->index($doc, $docType, $fields);
             }
         }
-
-        return $content;
     }
 
-
     /**
-     * Get the content of a Content
-     * 
-     * @param Model/PHPOrchestraCMSBundle/Base/Content $content   Content
-     * @param string                                   $field     field name
-     * @param string                                   $fieldType field type
-     * 
-     * @return array with the content of Content
+     * Testing if solr is running
+     *
+     * @return boolean
      */
-    public function getContentContent($content, $field, $fieldType)
+    public function solrIsRunning()
     {
-        $contentAttributes = $content->getAttributes();
-        $value = array();
-        $isArray = SolrIndexCommand::typeIsArray($fieldType);
+        // Create a ping query
+        $ping = $this->solarium->createPing();
 
-        foreach ($contentAttributes as $abstract) {
-            if ($abstract->getName() === $field) {
-                if ($isArray) {
-                    $value[] = $abstract->getValue();
-                } else {
-                    return $abstract->getValue();
-                }
-            }
+        // Create a handle with the adapter and get the http response
+        $request = $this->solarium->createRequest($ping);
+        $handle = $this->solarium->getAdapter()->createHandle($request, $this->solarium->getEndPoint());
+        $http = curl_exec($handle);
+
+        if ($http === false) {
+            return false;
+        } else {
+            return true;
         }
-
-        return $value;
     }
 
     /**
@@ -181,7 +143,7 @@ class SolrIndexCommand
      *
      * @return mixed|NULL
      */
-    public function getField($fields, $doc, $docType)
+    protected function getField($fields, $doc, $docType)
     {
         $fieldComplete = array();
         if ($docType === 'Node') {
@@ -210,45 +172,65 @@ class SolrIndexCommand
     }
 
     /**
-     * Split an array of document if they have more than 500 elements and call index function
+     * Get the content of a node
      * 
-     * @param array<Node>|array<Content> $docs    One or many object Node|Content
-     * @param string                     $docType type of documents
+     * @param Model/PHPOrchestraCMSBundle/Base/Node $node      Node
+     * @param string                                $field     field name
+     * @param string                                $fieldType field type
+     * 
+     * @return array with the content of a field
      */
-    public function splitDoc($docs, $docType)
+    protected function getContentNode($node, $field, $fieldType)
     {
-        $fields = $this->mandango->getRepository('Model\PHPOrchestraCMSBundle\FieldIndex')->getAll();
+        $blocks = $node->getBlocks();
+        $isArray = SolrIndexCommand::typeIsArray($fieldType);
+        $content = array();
 
-        if (!is_array($docs) || count($docs) < 500) {
-            $this->index($docs, $docType, $fields);
-        } else {
-            $docArray = array_chunk($docs, 500);
-            foreach ($docArray as $doc) {
-                $this->index($doc, $docType, $fields);
+        foreach ($blocks as $abstract) {
+            $attributes = $abstract->getAttributes();
+            foreach ($attributes as $name => $values) {
+                if ($name === $field) {
+                    if (isset($values) && !empty($values)) {
+
+                        if ($isArray) {
+                            $content[] = $values;
+                        } else {
+                            return $values;
+                        }
+                    }
+                }
             }
         }
+
+        return $content;
     }
 
     /**
-     * Testing if solr is running
+     * Get the content of a Content
      * 
-     * @return boolean
+     * @param Model/PHPOrchestraCMSBundle/Base/Content $content   Content
+     * @param string                                   $field     field name
+     * @param string                                   $fieldType field type
+     * 
+     * @return array with the content of Content
      */
-    public function solrIsRunning()
+    protected function getContentContent($content, $field, $fieldType)
     {
-        // Create a ping query
-        $ping = $this->solarium->createPing();
+        $contentAttributes = $content->getAttributes();
+        $value = array();
+        $isArray = SolrIndexCommand::typeIsArray($fieldType);
 
-        // Create a handle with the adapter and get the http response
-        $request = $this->solarium->createRequest($ping);
-        $handle = $this->solarium->getAdapter()->createHandle($request, $this->solarium->getEndPoint());
-        $http = curl_exec($handle);
-
-        if ($http === false) {
-            return false;
-        } else {
-            return true;
+        foreach ($contentAttributes as $abstract) {
+            if ($abstract->getName() === $field) {
+                if ($isArray) {
+                    $value[] = $abstract->getValue();
+                } else {
+                    return $abstract->getValue();
+                }
+            }
         }
+
+        return $value;
     }
 
     /**
@@ -259,7 +241,7 @@ class SolrIndexCommand
      *
      * @return string|null
      */
-    public function generateUrl($contentId, $contentType)
+    protected function generateUrl($contentId, $contentType)
     {
         // Get all Nodes and test if they have the contentType
         $nodes = $this->mandango->getRepository('Model\PHPOrchestraCMSBundle\Node')->getAllNodes();
@@ -286,7 +268,7 @@ class SolrIndexCommand
      *
      * @return boolean
      */
-    public function isContent($node, $contentType)
+    protected function isContent($node, $contentType)
     {
         $blocks = $node->getBlocks();
         foreach ($blocks as $block) {
@@ -310,43 +292,16 @@ class SolrIndexCommand
      *
      * @return bool
      */
-    public function typeIsArray($type)
+    protected function typeIsArray($type)
     {
-        switch($type) {
-            case 'is':
+        $typesDynamic = array('is', 'ss', 'ls', 'txt', 'en', 'fr', 'bs', 'fs', 'ds', 'dts');
+
+        foreach ($typesDynamic as $td) {
+            if (strcmp($type, $td) === 0) {
                 return true;
-                break;
-            case 'ss':
-                return true;
-                break;
-                break;
-            case 'ls':
-                return true;
-                break;
-            case 'txt':
-                return true;
-                break;
-            case 'en':
-                return true;
-                break;
-            case 'fr':
-                return true;
-                break;
-            case 'bs':
-                return true;
-                break;
-            case 'fs':
-                return true;
-                break;
-            case 'ds':
-                return true;
-                break;
-            case 'dts':
-                return true;
-                break;
-            default:
-                return false;
-                break;
+            }
         }
+
+        return false;
     }
 }
