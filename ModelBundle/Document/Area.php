@@ -15,18 +15,21 @@ class Area implements AreaInterface
 {
     /**
      * @var string $htmlId
+     *
      * @MongoDB\Field(type="string")
      */
     protected $htmlId = null;
     
     /**
      * @var string $boDirection
+     *
      * @MongoDB\Field(type="string")
      */
     protected $boDirection = null;
     
     /**
      * @var float $boPercent
+     *
      * @MongoDB\Field(type="float")
      */
     protected $boPercent = null;
@@ -37,10 +40,9 @@ class Area implements AreaInterface
     protected $classes = array();
     
     /**
-     * @var Area
-     * @MongoDB\EmbedMany(
-     *  targetDocument="Area"
-     * )
+     * @var ArrayCollection
+     *
+     * @MongoDB\EmbedMany(targetDocument="Area")
      */
     protected $subAreas;
     

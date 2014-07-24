@@ -88,6 +88,8 @@ class Content implements ContentInterface
     protected $deleted;
     
     /**
+     * @var ArrayCollection
+     *
      * @MongoDB\EmbedMany(targetDocument="ContentAttribute")
      */
     protected $attributes;
