@@ -22,6 +22,14 @@ class PHPOrchestraModelExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        foreach ($config as $class => $content) {
+            $container->setParameter('php_orchestra_model.document.' . $class . '.class', $content['class']);
+            $container->register('php_orchestra_model.repository.' . $class, $content['repository'])
+                ->setFactoryService('doctrine.odm.mongodb.document_manager')
+                ->setFactoryMethod('getRepository')
+                ->addArgument($content['class']);
+        }
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

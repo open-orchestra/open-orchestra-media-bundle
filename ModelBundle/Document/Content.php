@@ -4,6 +4,7 @@ namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use PHPOrchestra\ModelBundle\Model\ContentAttributeInterface;
 use PHPOrchestra\ModelBundle\Model\ContentInterface;
 
 /**
@@ -108,17 +109,17 @@ class Content implements ContentInterface
     }
 
     /**
-     * @param ContentAttribute $attribute
+     * @param ContentAttributeInterface $attribute
      */
-    public function addAttribute(ContentAttribute $attribute)
+    public function addAttribute(ContentAttributeInterface $attribute)
     {
         $this->attributes->add($attribute);
     }
 
     /**
-     * @param ContentAttribute $attribute
+     * @param ContentAttributeInterface $attribute
      */
-    public function removeAttribute(ContentAttribute $attribute)
+    public function removeAttribute(ContentAttributeInterface $attribute)
     {
         $this->attributes->removeElement($attribute);
     }
