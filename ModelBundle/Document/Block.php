@@ -1,55 +1,42 @@
 <?php
 
-/*
- * Business & Decision - Commercial License
- *
- * Copyright 2014 Business & Decision.
- *
- * All rights reserved. You CANNOT use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell this Software or any parts of this
- * Software, without the written authorization of Business & Decision.
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * See LICENSE.txt file for the full LICENSE text.
- */
-
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use PHPOrchestra\ModelBundle\Model\BlockInterface;
 
 /**
  * Description of BaseBlock
  *
- * @author Nicolas BOUQUET <nicolas.bouquet@businessdecision.com>
- * 
  * @MongoDB\EmbeddedDocument
  */
-abstract class BaseBlock
+class Block implements BlockInterface
 {
     /**
      * @var string $component
+     *
      * @MongoDB\Field(type="string")
      */
     protected $component;
     
     /**
-     * @var hash $attributes
+     * @var mixed $attributes
+     *
      * @MongoDB\Field(type="hash")
      */
     protected $attributes;
-
 
     /**
      * Set component
      *
      * @param string $component
+     *
      * @return self
      */
     public function setComponent($component)
     {
         $this->component = $component;
+
         return $this;
     }
 
@@ -66,19 +53,21 @@ abstract class BaseBlock
     /**
      * Set attributes
      *
-     * @param hash $attributes
+     * @param mixed $attributes
+     *
      * @return self
      */
     public function setAttributes($attributes)
     {
         $this->attributes = $attributes;
+
         return $this;
     }
 
     /**
      * Get attributes
      *
-     * @return hash $attributes
+     * @return mixed $attributes
      */
     public function getAttributes()
     {
