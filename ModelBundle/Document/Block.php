@@ -20,7 +20,7 @@ class Block implements BlockInterface
     protected $component;
     
     /**
-     * @var mixed $attributes
+     * @var array $attributes
      *
      * @MongoDB\Field(type="hash")
      */
@@ -53,21 +53,17 @@ class Block implements BlockInterface
     /**
      * Set attributes
      *
-     * @param mixed $attributes
-     *
-     * @return self
+     * @param array $attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(array $attributes)
     {
         $this->attributes = $attributes;
-
-        return $this;
     }
 
     /**
      * Get attributes
      *
-     * @return mixed $attributes
+     * @return array
      */
     public function getAttributes()
     {

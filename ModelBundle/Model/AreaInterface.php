@@ -14,14 +14,14 @@ interface AreaInterface
      *
      * @param string $htmlId
      */
-    public function setHtmlId($htmlId);
+    public function setAreaId($htmlId);
 
     /**
      * Get htmlId
      *
      * @return string $htmlId
      */
-    public function getHtmlId();
+    public function getAreaId();
 
     /**
      * Set boDirection
@@ -87,17 +87,17 @@ interface AreaInterface
     public function getSubAreas();
 
     /**
-     * Set blockReferences
+     * Set blocks
      *
-     * @param array $blockReferences
+     * @param array $blocks
      */
-    public function setBlockReferences(array $blockReferences);
+    public function setBlocks(array $blocks);
 
     /**
-     * Get blockReferences
+     * Get blocks
      *
-     * @return array $blockReferences
+     * @return array $blocks
      */
-    public function getBlockReferences();
+    public function getBlocks();
 }
  

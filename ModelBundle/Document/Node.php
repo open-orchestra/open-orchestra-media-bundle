@@ -26,9 +26,9 @@ class Node implements NodeInterface
     protected $id;
     
     /**
-     * @var int $nodeId
+     * @var string $nodeId
      *
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="string")
      */
     protected $nodeId;
     
@@ -47,9 +47,9 @@ class Node implements NodeInterface
     protected $siteId;
     
     /**
-     * @var int $parentId
+     * @var string $parentId
      *
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="string")
      */
     protected $parentId;
     
@@ -131,11 +131,11 @@ class Node implements NodeInterface
     protected $inFooter;
     
     /**
-     * @var AreaInterface
+     * @var ArrayCollection
      *
-     * @MongoDB\EmbedOne(targetDocument="Area")
+     * @MongoDB\EmbedMany(targetDocument="Area")
      */
-    protected $area;
+    protected $areas;
     
     /**
      * @var BlockInterface
@@ -150,6 +150,7 @@ class Node implements NodeInterface
     public function __construct()
     {
         $this->blocks = new ArrayCollection();
+        $this->areas = new ArrayCollection();
     }
 
     /**
@@ -165,7 +166,7 @@ class Node implements NodeInterface
     /**
      * Set nodeId
      *
-     * @param int $nodeId
+     * @param string $nodeId
      */
     public function setNodeId($nodeId)
     {
@@ -175,7 +176,7 @@ class Node implements NodeInterface
     /**
      * Get nodeId
      *
-     * @return int $nodeId
+     * @return string
      */
     public function getNodeId()
     {
@@ -225,7 +226,7 @@ class Node implements NodeInterface
     /**
      * Set parentId
      *
-     * @param int $parentId
+     * @param string $parentId
      */
     public function setParentId($parentId)
     {
@@ -235,7 +236,7 @@ class Node implements NodeInterface
     /**
      * Get parentId
      *
-     * @return int $parentId
+     * @return string $parentId
      */
     public function getParentId()
     {
@@ -455,17 +456,25 @@ class Node implements NodeInterface
     /**
      * @param AreaInterface $area
      */
-    public function setArea(AreaInterface $area)
+    public function addArea(AreaInterface $area)
     {
-        $this->area = $area;
+        $this->areas->add($area);
     }
 
     /**
-     * @return AreaInterface
+     * @param AreaInterface $area
      */
-    public function getArea()
+    public function removeArea(AreaInterface $area)
     {
-        return $this->area;
+        $this->areas->removeElement($area);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAreas()
+    {
+        return $this->areas;
     }
 
     /**

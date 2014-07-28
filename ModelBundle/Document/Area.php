@@ -14,42 +14,42 @@ use PHPOrchestra\ModelBundle\Model\AreaInterface;
 class Area implements AreaInterface
 {
     /**
-     * @var string $htmlId
+     * @var string $areaId
      *
      * @MongoDB\Field(type="string")
      */
-    protected $htmlId = null;
-    
+    protected $areaId;
+
     /**
      * @var string $boDirection
      *
      * @MongoDB\Field(type="string")
      */
-    protected $boDirection = null;
-    
+    protected $boDirection;
+
     /**
      * @var float $boPercent
      *
      * @MongoDB\Field(type="float")
      */
-    protected $boPercent = null;
-    
+    protected $boPercent;
+
     /**
      * @MongoDB\Field(type="collection")
      */
     protected $classes = array();
-    
+
     /**
      * @var ArrayCollection
      *
      * @MongoDB\EmbedMany(targetDocument="Area")
      */
     protected $subAreas;
-    
+
     /**
      * @MongoDB\Field(type="collection")
      */
-    protected $blockReferences = array();
+    protected $blocks = array();
 
     /**
      * Constructor
@@ -60,23 +60,23 @@ class Area implements AreaInterface
     }
 
     /**
-     * Set htmlId
+     * Set areaId
      *
-     * @param string $htmlId
+     * @param string $areaId
      */
-    public function setHtmlId($htmlId)
+    public function setAreaId($areaId)
     {
-        $this->htmlId = $htmlId;
+        $this->areaId = $areaId;
     }
 
     /**
-     * Get htmlId
+     * Get areaId
      *
-     * @return string $htmlId
+     * @return string $areaId
      */
-    public function getHtmlId()
+    public function getAreaId()
     {
-        return $this->htmlId;
+        return $this->areaId;
     }
 
     /**
@@ -170,22 +170,22 @@ class Area implements AreaInterface
     }
 
     /**
-     * Set blockReferences
+     * Set blocks
      *
-     * @param array $blockReferences
+     * @param array $blocks
      */
-    public function setBlockReferences(array $blockReferences)
+    public function setBlocks(array $blocks)
     {
-        $this->blockReferences = $blockReferences;
+        $this->blocks = $blocks;
     }
 
     /**
-     * Get blockReferences
+     * Get blocks
      *
-     * @return array $blockReferences
+     * @return array $blocks
      */
-    public function getBlockReferences()
+    public function getBlocks()
     {
-        return $this->blockReferences;
+        return $this->blocks;
     }
 }
