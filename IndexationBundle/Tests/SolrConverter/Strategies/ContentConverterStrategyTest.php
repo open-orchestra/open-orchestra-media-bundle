@@ -15,8 +15,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Class ContentConverterStrategyTest
- *
- * @package PHPOrchestra\IndexationBundle\Test\SolrConverter\Strategies
  */
 class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
 {
@@ -180,4 +178,4 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
             array(array($node, $node))
         );
     }
-} 
+}

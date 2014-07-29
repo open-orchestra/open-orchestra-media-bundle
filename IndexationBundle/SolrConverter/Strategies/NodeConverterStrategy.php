@@ -12,8 +12,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Class NodeConverterStrategy
- *
- * @package PHPOrchestra\IndexationBundle\SolrConverter\Strategies
  */
 class NodeConverterStrategy implements ConverterInterface
 {
@@ -35,11 +33,7 @@ class NodeConverterStrategy implements ConverterInterface
      */
     public function support($doc)
     {
-        if ($doc instanceof Node) {
-            return true;
-        }
-
-        return false;
+        return $doc instanceof Node;
     }
 
     /**

@@ -7,6 +7,7 @@ use Model\PHPOrchestraCMSBundle\Base\Content;
 use PHPOrchestra\IndexationBundle\SolrConverter\ConverterManager;
 use Solarium\Client;
 use Model\PHPOrchestraCMSBundle\Base\Node;
+use Solarium\QueryType\Update\Result;
 
 /**
  * Index documents in solr
@@ -42,7 +43,7 @@ class SolrIndexCommand
      * @param string                     $docType type of documents
      * @param array                      $fields  array of Model/PHPOrchestraCMSBundle/FieldIndex
      * 
-     * @return \Solarium\QueryType\Update\Result result
+     * @return Result
      */
     public function index($docs, $docType, $fields)
     {

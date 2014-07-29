@@ -15,8 +15,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Class NodeConverterStrategyTest
- *
- * @package PHPOrchestra\IndexationBundle\Test\SolrConverter\Strategies
  */
 class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
 {
@@ -33,7 +31,7 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $this->strategies = array('content');
 
-        $this->mandango = Phake::mock('PHPOrchestra\CMSBundle\Test\Mock\Mandango');
+        $this->mandango = Phake::mock('Mandango\Mandango');
         $this->router = Phake::mock('PHPOrchestra\CMSBundle\Routing\PhpOrchestraUrlGenerator');
 
         $this->strategy = new NodeConverterStrategy($this->router, $this->mandango);
@@ -153,4 +151,4 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
             array('fixture_directory')
         );
     }
-} 
+}

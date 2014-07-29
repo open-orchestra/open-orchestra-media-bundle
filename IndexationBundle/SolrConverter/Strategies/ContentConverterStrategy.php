@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bfouche
- * Date: 28/07/14
- * Time: 12:33
- */
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter\Strategies;
-
 
 use Mandango\Mandango;
 use Model\PHPOrchestraCMSBundle\Content;
@@ -19,8 +12,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Class ContentConverterStrategy
- *
- * @package PHPOrchestra\IndexationBundle\SolrConverter\Strategies
  */
 class ContentConverterStrategy implements ConverterInterface
 {
@@ -45,11 +36,7 @@ class ContentConverterStrategy implements ConverterInterface
      */
     public function support($doc)
     {
-        if ($doc instanceof Content) {
-            return true;
-        }
-
-        return false;
+        return $doc instanceof Content;
     }
 
     /**
@@ -160,4 +147,4 @@ class ContentConverterStrategy implements ConverterInterface
 
         return false;
     }
-} 
+}

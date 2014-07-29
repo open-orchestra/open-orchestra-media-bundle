@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bfouche
- * Date: 28/07/14
- * Time: 15:54
- */
 
 namespace PHPOrchestra\IndexationBundle\DependencyInjection\Compiler;
 
@@ -14,8 +8,6 @@ use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * Class SolrConverterCompilerPass
- *
- * @package PHPOrchestra\IndexationBundle\DependencyInjection\Compiler
  */
 class SolrConverterCompilerPass implements CompilerPassInterface
 {
@@ -39,4 +31,4 @@ class SolrConverterCompilerPass implements CompilerPassInterface
             $manager->addMethodCall('addStrategy', array(new Reference($id)));
         }
     }
-} 
+}

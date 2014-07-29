@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bfouche
- * Date: 28/07/14
- * Time: 11:55
- */
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter;
+
 use Model\PHPOrchestraCMSBundle\Content;
 use Model\PHPOrchestraCMSBundle\Node;
 use Solarium\QueryType\Update\Query\Document\Document;
@@ -14,8 +9,6 @@ use Solarium\QueryType\Update\Query\Query;
 
 /**
  * Interface ConverterInterface
- *
- * @package PHPOrchestra\IndexationBundle\SolrConverter
  */
 interface ConverterInterface
 {

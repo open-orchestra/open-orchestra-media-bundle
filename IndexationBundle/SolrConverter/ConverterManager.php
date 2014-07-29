@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: benjamin fouché <benjamin.fouche@businessdecision.com>
- * Date: 28/07/14
- * Time: 11:53
- */
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter;
 
@@ -15,8 +9,6 @@ use Solarium\QueryType\Update\Query\Query;
 
 /**
  * Class SolrConverterManager
- *
- * @package PHPOrchestra\IndexationBundle\SolrConverter
  */
 class ConverterManager
 {
@@ -91,4 +83,4 @@ class ConverterManager
 
         throw new SolrConvertException('No generate Url for doc of class : ' . get_class($doc));
     }
-} 
+}
