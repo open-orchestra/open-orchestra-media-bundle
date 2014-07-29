@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bfouche
- * Date: 29/07/14
- * Time: 11:00
- */
 
 namespace PHPOrchestra\IndexationBundle\Test\SolrConverter\Strategies;
-
 
 use PHPOrchestra\IndexationBundle\SolrConverter\Strategies\NodeConverterStrategy;
 use Phake;

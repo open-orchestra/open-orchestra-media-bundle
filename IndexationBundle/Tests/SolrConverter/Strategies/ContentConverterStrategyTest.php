@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bfouche
- * Date: 28/07/14
- * Time: 18:05
- */
 
 namespace PHPOrchestra\IndexationBundle\Test\SolrConverter\Strategies;
 
