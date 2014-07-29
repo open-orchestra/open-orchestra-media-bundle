@@ -7,11 +7,8 @@ namespace PHPOrchestra\ModelBundle\Model;
  */
 Interface FieldIndexInterface
 {
-
     /**
      * @param string $fieldName
-     *
-     * @return self
      */
     public function setFieldName($fieldName);
 
@@ -22,8 +19,6 @@ Interface FieldIndexInterface
 
     /**
      * @param string $fieldType
-     *
-     * @return self
      */
     public function setFieldType($fieldType);
 

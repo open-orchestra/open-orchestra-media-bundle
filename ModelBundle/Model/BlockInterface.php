@@ -11,8 +11,6 @@ Interface BlockInterface
      * Set component
      *
      * @param string $component
-     *
-     * @return self
      */
     public function setComponent($component);
 

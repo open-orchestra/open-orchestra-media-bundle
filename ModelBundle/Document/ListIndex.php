@@ -15,7 +15,6 @@ use PHPOrchestra\ModelBundle\Model\ListIndexInterface;
  */
 class ListIndex implements ListIndexInterface
 {
-
     /**
      * @var string $nodeId
      *
@@ -32,14 +31,10 @@ class ListIndex implements ListIndexInterface
 
     /**
      * @param string $nodeId
-     *
-     * @return self
      */
     public function setNodeId($nodeId)
     {
         $this->nodeId = $nodeId;
-
-        return $this;
     }
 
     /**
@@ -52,8 +47,6 @@ class ListIndex implements ListIndexInterface
 
     /**
      * @param string $contentId
-     *
-     * @return self
      */
     public function setContentId($contentId)
     {

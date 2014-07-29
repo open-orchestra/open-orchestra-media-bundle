@@ -15,7 +15,6 @@ use PHPOrchestra\ModelBundle\Model\FieldIndexInterface;
  */
 class FieldIndex implements FieldIndexInterface
 {
-
     /**
      * @var string $fieldName
      *
@@ -32,14 +31,10 @@ class FieldIndex implements FieldIndexInterface
 
     /**
      * @param string $fieldName
-     *
-     * @return self
      */
     public function setFieldName($fieldName)
     {
         $this->fieldName = $fieldName;
-
-        return $this;
     }
 
     /**
@@ -52,14 +47,10 @@ class FieldIndex implements FieldIndexInterface
 
     /**
      * @param string $fieldType
-     *
-     * @return self
      */
     public function setFieldType($fieldType)
     {
         $this->fieldType = $fieldType;
-
-        return $fieldType;
     }
 
     /**

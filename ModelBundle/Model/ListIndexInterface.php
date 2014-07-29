@@ -10,8 +10,6 @@ Interface ListIndexInterface
 
     /**
      * @param string $nodeId
-     *
-     * @return self
      */
     public function setNodeId($nodeId);
 
@@ -22,8 +20,6 @@ Interface ListIndexInterface
 
     /**
      * @param string $contentId
-     *
-     * @return self
      */
     public function setContentId($contentId);
 

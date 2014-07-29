@@ -18,7 +18,7 @@ class Block implements BlockInterface
      * @MongoDB\Field(type="string")
      */
     protected $component;
-    
+
     /**
      * @var array $attributes
      *
@@ -30,14 +30,10 @@ class Block implements BlockInterface
      * Set component
      *
      * @param string $component
-     *
-     * @return self
      */
     public function setComponent($component)
     {
         $this->component = $component;
-
-        return $this;
     }
 
     /**
