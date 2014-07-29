@@ -5,6 +5,9 @@ parameters:
     php_orchestra_indexation.search_manager.class: PHPOrchestra\IndexationBundle\SearchStrategy\SearchManager
     php_orchestra_indexation.search.solr.strategy.class: PHPOrchestra\IndexationBundle\SearchStrategy\Strategies\SolrSearchStrategy
     phporchestra_indexation.indexsolr.class: PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand
+    php_orchestra_indexation.solr_converter_manager.class: PHPOrchestra\IndexationBundle\SolrConverter\ConverterManager
+    php_orchestra_indexation.solr_converter.node.strategy.class: PHPOrchestra\IndexationBundle\SolrConverter\Strategies\NodeConverterStrategy
+    php_orchestra_indexation.solr_converter.content.strategy.class: PHPOrchestra\IndexationBundle\SolrConverter\Strategies\ContentConverterStrategy
 
 services:
     phporchestra_indexation.index_manager:
@@ -14,6 +17,8 @@ services:
         class: %php_orchestra_indexation.indexer_manager.class%
     php_orchestra_indexation.search_manager:
         class: %php_orchestra_indexation.search_manager.class%
+    php_orchestra_indexation.solr_converter_manager:
+        class: %php_orchestra_indexation.solr_converter_manager.class%
 
     php_orchestra_indexation.indexer.solr.strategy:
         class: %php_orchestra_indexation.solr.strategy.class%
@@ -30,8 +35,21 @@ services:
             - @solarium.client
         tags:
             - { name: php_orchestra_indexation.search.strategy }
+    php_orchestra_indexation.solr_converter.node.strategy:
+        class: %php_orchestra_indexation.solr_converter.node.strategy.class%
+        arguments:
+            - @router
+        tags:
+            - { name: php_orchestra_indexation.solr_converter.strategy }
+    php_orchestra_indexation.solr_converter.content.strategy:
+        class: %php_orchestra_indexation.solr_converter.content.strategy.class%
+        arguments:
+            - @router
+            - @mandango
+        tags:
+            - { name: php_orchestra_indexation.solr_converter.strategy }
 
     # IndexCommand service
     phporchestra_indexation.indexsolr:
         class: %phporchestra_indexation.indexsolr.class%
-        arguments: [@router, @mandango, @solarium.client]
+        arguments: [@mandango, @solarium.client, @php_orchestra_indexation.solr_converter_manager]

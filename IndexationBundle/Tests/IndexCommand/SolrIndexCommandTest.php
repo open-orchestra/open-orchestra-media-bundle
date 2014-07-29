@@ -1,27 +1,12 @@
 <?php
 
-/*
- * Business & Decision - Commercial License
- *
- * Copyright 2014 Business & Decision.
- *
- * All rights reserved. You CANNOT use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell this Software or any parts of this
- * Software, without the written authorization of Business & Decision.
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * See LICENSE.txt file for the full LICENSE text.
- */
-
-namespace PHPOrchestra\BlockBundle\Test\IndexCommand;
+namespace PHPOrchestra\IndexationBundle\Test\IndexCommand;
 
 use Model\PHPOrchestraCMSBundle\Node;
 use Model\PHPOrchestraCMSBundle\Content;
-use Model\PHPOrchestraCMSBundle\FieldIndex;
-use PHPOrchestra\CMSBundle\Document\DocumentManager;
+use Phake;
 use PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Unit test of SolrIndexCommand
@@ -31,18 +16,21 @@ use PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand;
  */
 class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * 
      * @var SolrIndexCommand
      */
-    protected $solrIndexCommand = null;
+    protected $solrIndexCommand;
 
-    protected $container = null;
-    protected $mandango = null;
-    protected $client = null;
-    protected $generateUrl = null;
-
+    protected $container;
+    protected $mandango;
+    protected $client;
+    protected $repository;
+    protected $update;
+    protected $ping;
+    protected $curl;
+    protected $document;
+    protected $converter;
 
     /**
      * Initialize unit test
@@ -51,255 +39,217 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->client = $this->getMock('\\Solarium\\Client');
-        
-        $this->mandango = $this->getMock('PHPOrchestra\\CMSBundle\\Test\\Mock\\Mandango');
-        
-        $this->generateUrl = $this->getMockBuilder('\\PHPOrchestra\\CMSBundle\\Routing\\PhpOrchestraUrlGenerator')
-        ->disableOriginalConstructor()
-        ->getMock();
-                
-        $this->solrIndexCommand = new SolrIndexCommand($this->generateUrl, $this->mandango, $this->client);
+        $this->document = Phake::mock('Solarium\QueryType\Update\Query\Document\Document');
+        $this->update = Phake::mock('Solarium\QueryType\Update\Query\Query');
+        Phake::when($this->update)->createDocument()->thenReturn($this->document);
+
+        $this->repository = Phake::mock('PHPOrchestra\CMSBundle\Model\FieldIndexRepository');
+        $this->ping = Phake::mock('Solarium\QueryType\Ping\Query');
+        $this->curl = Phake::mock('Solarium\Core\Client\Adapter\Curl');
+        Phake::when($this->curl)->createHandle(Phake::anyParameters())->thenReturn(curl_init());
+
+        $this->client = Phake::mock('Solarium\Client');
+        Phake::when($this->client)->createUpdate()->thenReturn($this->update);
+        Phake::when($this->client)->createPing()->thenReturn($this->ping);
+        Phake::when($this->client)->getAdapter()->thenReturn($this->curl);
+
+        $this->mandango = Phake::mock('PHPOrchestra\CMSBundle\Test\Mock\Mandango');
+        Phake::when($this->mandango)->getRepository(Phake::anyParameters())->thenReturn($this->repository);
+
+        $this->converter = Phake::mock('PHPOrchestra\IndexationBundle\SolrConverter\ConverterManager');
+        Phake::when($this->converter)->getContent(Phake::anyParameters())->thenReturn('Hello world!!!', 'Hello world!!!');
+        Phake::when($this->converter)->generateUrl(Phake::anyParameters())->thenReturn('app_dev/fixture_full');
+        Phake::when($this->converter)->toSolrDocument(Phake::anyParameters())->thenReturn($this->document);
+
+        $this->solrIndexCommand = new SolrIndexCommand($this->mandango, $this->client, $this->converter);
     }
 
-    
     /**
      * Test the indexation of documents
+     *
+     * @param Node|Content $docs
+     * @param string       $docType
+     *
+     * @dataProvider provideDocs
      */
-    public function testIndex()
+    public function testIndex($docs, $docType)
     {
-        $nodes = $this->getNode();
+        $fieldName = 'title';
+        $fieldType = 's';
+
+        $fieldComplete = SolrIndexCommandTest::getFieldComplete();
         $fields = SolrIndexCommandTest::getFields();
-        
-        $document = $this->getMock('\\Solarium\\QueryType\\Update\\Query\\Document');
-        $update = $this->getMock('\\Solarium\\QueryType\\Update\\Query\\Query');
-        
-        $update->expects($this->any())->method('createDocument')->will($this->returnValue($document));
-        $this->client->expects($this->once())->method('createUpdate')->will($this->returnValue($update));
-        $this->generateUrl->expects($this->any())->method('generate')->will($this->returnValue('/node/nodeId'));
-        
-        $this->container->expects($this->at(0))->method('get')->will($this->returnValue($this->client));
-        $this->container->expects($this->at(1))->method('get')->will($this->returnValue($this->generateUrl));
-        $this->container->expects($this->at(2))->method('get')->will($this->returnValue($this->generateUrl));
-        
-        $result = $this->solrIndexCommand->index($nodes, 'Node', $fields);
-        
-        $this->assertEquals('', $result);
+        $query = Phake::mock('Solarium\QueryType\Update\Result');
+        Phake::when($this->client)->update(Phake::anyParameters())->thenReturn($query);
+
+        foreach ($fields as $field) {
+            Phake::when($field)->getFieldName()->thenReturn($fieldName);
+            Phake::when($field)->getFieldType()->thenReturn($fieldType);
+        }
+
+        /************************************************************/
+
+        $result = $this->solrIndexCommand->index($docs, $docType, $fields);
+
+        $this->assertSame($query, $result);
+
+        Phake::verify($this->client)->createUpdate();
+
+        if (is_array($docs)) {
+            $documents = array();
+            foreach ($docs as $doc) {
+                foreach ($fields as $field) {
+                    Phake::verify($field, Phake::times(4))->getFieldName();
+                    Phake::verify($field, Phake::times(2))->getFieldType();
+                    Phake::verify($this->converter, Phake::times(16))->getContent($doc, $fieldName, false);
+                }
+
+                Phake::verify($this->converter, Phake::times(2))->generateUrl($doc);
+                Phake::verify($this->converter, Phake::times(2))->toSolrDocument($doc, $fieldComplete, $this->update);
+                $documents[] = $this->document;
+            }
+            Phake::verify($this->update)->addDocuments($documents);
+        } else {
+            foreach ($fields as $field) {
+                Phake::verify($field, Phake::times(2))->getFieldName();
+                Phake::verify($field)->getFieldType();
+                Phake::verify($this->converter, Phake::times(8))->getContent($docs, $fieldName, false);
+            }
+
+            Phake::verify($this->converter)->generateUrl($docs);
+            Phake::verify($this->converter)->toSolrDocument($docs, $fieldComplete, $this->update);
+
+            Phake::verify($this->update)->addDocuments(array($this->document));
+        }
+
+        Phake::verify($this->update)->addCommit();
+        Phake::verify($this->client)->update($this->update);
     }
 
+    /**
+     * @return array
+     */
+    public function provideDocs()
+    {
+        $node = Phake::mock('Model\PHPOrchestraCMSBundle\Node');
+        $content = Phake::mock('Model\PHPOrchestraCMSBundle\Content');
+
+        return array(
+            array($node, 'Node'),
+            array(array($node, $node), 'Node'),
+            array($content, 'Content'),
+            array(array($content, $content), 'Content')
+        );
+    }
 
     /**
      * Test the deletion of an index
+     *
+     * @param string $index
+     *
+     * @dataProvider provideIndex
      */
-    public function testDeleteIndex()
+    public function testDeleteIndex($index)
     {
-        $update = $this->getMock('\\Solarium\\QueryType\\Update\\Query\\Query');
-        
-        $this->client->expects($this->once())->method('createUpdate')->will($this->returnValue($update));
-        $this->container->expects($this->once())->method('get')->will($this->returnValue($this->client));
-        $result = $this->solrIndexCommand->deleteIndex('root');
-        $this->assertEquals('', $result);
-    }
+        $query = Phake::mock('Solarium\QueryType\Update\Result');
+        Phake::when($this->client)->update(Phake::anyParameters())->thenReturn($query);
 
-    
-    /**
-     * Test get the content of a Node
-     */
-    public function testGetContentNode()
-    {
-        $node = new Node($this->mandango);
-        $field = '_title';
-        
-        $result = $this->solrIndexCommand->getContentNode($node, $field);
-        
-        $this->assertEquals(array(), $result);
-    }
+        $result = $this->solrIndexCommand->deleteIndex($index);
 
-    
-    /**
-     * Test get the content of a Content
-     */
-    public function testGetContentContent()
-    {
-        $content = new Content($this->mandango);
-        $field = 'title';
-        
-        $result = $this->solrIndexCommand->getContentContent($content, $field);
-        
-        $this->assertEquals(array(), $result);
-    }
+        $this->assertSame($query, $result);
 
+        Phake::verify($this->client)->createUpdate();
+        Phake::verify($this->update)->addDeleteQuery('id:' . $index);
+        Phake::verify($this->update)->addCommit();
+        Phake::verify($this->client)->update($this->update);
+    }
 
     /**
-     * Test get fields with their content
+     * @return array
      */
-    public function testGetField()
+    public function provideIndex()
     {
-        $expected = array(
-            '_title_s' => array(),
-            '_news_t' => array(),
-            '_author_s' => array(),
-            'title_s' => array(),
-            'image_s' => array(),
-            'intro_t' => array(),
-            'text_t' => array(),
-            'description_t' => array(),
-            'url' => array(0 => '/node/nodeId'),
-        );
-
-        $fields = SolrIndexCommandTest::getFields();
-        
-        $docType = 'Node';
-        $doc = new Node($this->mandango);
-        $doc->initializeDefaults();
-        
-        $this->generateUrl->expects($this->any())->method('generate')->will($this->returnValue('/node/nodeId'));
-        $this->container->expects($this->any())->method('get')->will($this->returnValue($this->generateUrl));
-        
-        $result = $this->solrIndexCommand->getField($fields, $doc, $docType);
-        $this->assertEquals($expected, $result);
+        return array(
+                array('fixture_full'),
+                array('fixture_empty'),
+                array('node'),
+                array('test'),
+                array('tour_de_france'),
+            );
     }
-
 
     /**
      * Test splitDoc function
+     *
+     * @param Node|Content $docs
+     *
+     * @dataProvider provideDocs
      */
-    public function testSplitDoc()
+    public function testSplitDoc($docs)
     {
         $fields = SolrIndexCommandTest::getFields();
-        
-        $fieldIndex = $this->getMock(
-            'Model\PHPOrchestraCMSBundle\FieldIndexRepository',
-            array(),
-            array($this->mandango)
-        );
-        $fieldIndex->expects($this->once())->method('getAll')->will($this->returnValue($fields));
-        $this->mandango->expects($this->once())->method('getRepository')->will($this->returnValue($fieldIndex));
-        
-        $this->container->expects($this->at(0))->method('get')->will($this->returnValue($this->mandango));
-        
-        $document = $this->getMock('\\Solarium\\QueryType\\Update\\Query\\Document');
-        $update = $this->getMock('\\Solarium\\QueryType\\Update\\Query\\Query');
-        
-        $update->expects($this->any())->method('createDocument')->will($this->returnValue($document));
-        $this->client->expects($this->once())->method('createUpdate')->will($this->returnValue($update));
-        
-        $this->container->expects($this->at(1))->method('get')->will($this->returnValue($this->client));
-        $this->container->expects($this->at(2))->method('get')->will($this->returnValue($this->generateUrl));
-        
-        $doc = new Node($this->mandango);
-        $result = $this->solrIndexCommand->splitDoc($doc, 'Node');
-        
-        $this->assertEquals('', $result);
-    }
+        Phake::when($this->repository)->getAll()->thenReturn($fields);
 
+        $result = $this->solrIndexCommand->splitDoc($docs, 'Node');
+
+        $this->assertEmpty($result);
+
+        Phake::verify($this->repository)->getAll();
+    }
 
     /**
      * Test testSorlIsRunning function
      */
     public function testSolrIsRunning()
     {
-        $request = $this->getMock('\\Solarium\\Core\\Query\\RequestBuilder');
-        $ping = $this->getMock('\\Solarium\\QueryType\\Ping\\Query');
-        $adapter = $this->getMock('\\Solarium\\Core\\Client\\Adapter\\Curl');
-        $endpoint = $this->getMock('\\Solarium\\Core\\Client\\Endpoint');
-        
-        $this->container->expects($this->once())->method('get')->will($this->returnValue($this->client));
-        $this->client->expects($this->at(0))->method('createPing')->will($this->returnValue($ping));
-        $this->client->expects($this->at(1))->method('createRequest')->will($this->returnValue($request));
-        $adapter->expects($this->once())->method('createHandle')->will($this->returnValue(curl_init()));
-        $this->client->expects($this->at(2))->method('getAdapter')->will($this->returnValue($adapter));
-        $this->client->expects($this->at(3))->method('getEndPoint')->will($this->returnValue($endpoint));
-        
-        $this->assertFalse($this->solrIndexCommand->solrIsRunning());
+        $result = $this->solrIndexCommand->solrIsRunning();
+
+        $this->assertFalse($result);
+
+        Phake::verify($this->client)->createPing();
+        Phake::verify($this->client)->createRequest($this->ping);
+        Phake::verify($this->client)->getAdapter();
+        Phake::verify($this->curl)->createHandle(Phake::anyParameters());
     }
-
-
-    /**
-     * Test generateUrl
-     */
-    public function testGenerateUrl()
-    {
-        $repository = $this->getMock(
-            'PHPOrchestra\\CMSBundle\\Test\\Mock\\MandangoDocumentRepository',
-            array('getAllNodes'),
-            array($this->mandango)
-        );
-        
-        $this->mandango->expects($this->any())->method('getRepository')->will($this->returnValue($repository));
-        $this->container->expects($this->once())->method('get')->will($this->returnValue($this->mandango));
-        
-        $result = $this->solrIndexCommand->generateUrl("1", "news");
-        $this->assertEquals('', $result);
-    }
-
 
     /**
      * Create an array of Node
      * 
-     * @return multitype:\Model\PHPOrchestraCMSBundle\Node
+     * @return array
      */
     public function getNode()
     {
-        $documentServices = $this->getMockBuilder('PHPOrchestra\\CMSBundle\\Test\\Mock\\Mandango')
-                ->enableProxyingToOriginalMethods()
-                ->getMock();
-        
-        $documentManager = new DocumentManager($documentServices);
-        
-        $home = $documentManager->createDocument('Node');
-        $home->setSiteId(1);
-        $home->setLanguage('fr');
-        $home->setParentId('superroot');
-        
-        $full = $documentManager->createDocument('Node');
-        $full->setSiteId(1);
-        $full->setLanguage('fr');
-        $full->setParentId('superroot');
-        
+        $home = Phake::mock('Model\PHPOrchestraCMSBundle\Node');
+
+        $full = new Node($this->mandango);
+        $full->initializeDefaults();
+
         return array($home, $full);
     }
 
-
     /**
      * Create an array of FieldIndex
-     * 
-     * @return multitype:\Model\PHPOrchestraCMSBundle\FieldIndex
+     *
+     * @return array
      */
     public function getFields()
     {
-        $field1 = new FieldIndex($this->mandango);
-        $field1->setFieldName('_title');
-        $field1->setFieldType('s');
-        
-        $field2 = new FieldIndex($this->mandango);
-        $field2->setFieldName('_news');
-        $field2->setFieldType('t');
-        
-        $field3 = new FieldIndex($this->mandango);
-        $field3->setFieldName('_author');
-        $field3->setFieldType('s');
-        
-        $field4 = new FieldIndex($this->mandango);
-        $field4->setFieldName('title');
-        $field4->setFieldType('s');
-        
-        $field5 = new FieldIndex($this->mandango);
-        $field5->setFieldName('image');
-        $field5->setFieldType('s');
-        
-        $field6 = new FieldIndex($this->mandango);
-        $field6->setFieldName('intro');
-        $field6->setFieldType('t');
-        
-        $field7 = new FieldIndex($this->mandango);
-        $field7->setFieldName('text');
-        $field7->setFieldType('t');
-        
-        $field8 = new FieldIndex($this->mandango);
-        $field8->setFieldName('description');
-        $field8->setFieldType('t');
-        
+        $field1 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+
+        $field2 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+
+        $field3 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+
+        $field4 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+
+        $field5 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+
+        $field6 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+
+        $field7 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+
+        $field8 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+
         return array(
             0 => $field1,
             1 => $field2,
@@ -309,6 +259,17 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
             5 => $field6,
             6 => $field7,
             7 => $field8
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getFieldComplete()
+    {
+        return array(
+            'title_s' => 'Hello world!!!',
+            'url' => array('0' => 'app_dev/fixture_full'),
         );
     }
 }
