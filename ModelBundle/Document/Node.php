@@ -434,6 +434,15 @@ class Node implements NodeInterface
     }
 
     /**
+     * @param int $key
+     * @param BlockInterface $block
+     */
+    public function setBlock($key, BlockInterface $block)
+    {
+        $this->blocks->set($key, $block);
+    }
+
+    /**
      * Remove block
      *
      * @param BlockInterface $block
@@ -467,6 +476,14 @@ class Node implements NodeInterface
     public function removeArea(AreaInterface $area)
     {
         $this->areas->removeElement($area);
+    }
+
+    /**
+     * Remove all area
+     */
+    public function removeAllArea()
+    {
+        $this->areas = new ArrayCollection();
     }
 
     /**

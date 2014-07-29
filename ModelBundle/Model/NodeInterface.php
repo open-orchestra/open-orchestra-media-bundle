@@ -207,6 +207,12 @@ interface NodeInterface
     public function addBlock(BlockInterface $block);
 
     /**
+     * @param int            $key
+     * @param BlockInterface $block
+     */
+    public function setBlock($key, BlockInterface $block);
+
+    /**
      * Remove block
      *
      * @param BlockInterface $block
@@ -229,6 +235,11 @@ interface NodeInterface
      * @param AreaInterface $area
      */
     public function removeArea(AreaInterface $area);
+
+    /**
+     * Remove all area
+     */
+    public function removeAllArea();
 
     /**
      * @return ArrayCollection
