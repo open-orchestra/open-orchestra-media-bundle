@@ -180,6 +180,14 @@ class Area implements AreaInterface
     }
 
     /**
+     * @param array $blockDescription
+     */
+    public function addBlock(array $blockDescription)
+    {
+        $this->blocks[] = $blockDescription;
+    }
+
+    /**
      * Get blocks
      *
      * @return array $blocks
