@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\IndexationBundle\Tests\IndexationStrategy\Strategies;
+namespace PHPOrchestra\IndexationBundle\Test\IndexationStrategy\Strategies;
 
 use Phake;
 use PHPOrchestra\IndexationBundle\IndexationStrategy\Strategies\SolrStrategy;
