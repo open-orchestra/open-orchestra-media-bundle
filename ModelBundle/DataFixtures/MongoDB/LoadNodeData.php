@@ -495,7 +495,7 @@ class LoadNodeData implements FixtureInterface
             'nodeId' => 'fixture_search',
             'nbdoc' => '5',
             'fielddisplayed' => array(
-                "title_s", "news_t", "author_s", "title_t", "intro_t", "text_t", "description_t",
+                "title_s", "news_t", "author_ss", "title_txt", "intro_t", "text_t", "description_t",
             ),
             "facets" => array(
                 "facetField" => array(

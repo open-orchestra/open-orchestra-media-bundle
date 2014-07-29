@@ -24,91 +24,91 @@ class Node implements NodeInterface
      * @MongoDB\Id
      */
     protected $id;
-    
+
     /**
      * @var string $nodeId
      *
      * @MongoDB\Field(type="string")
      */
     protected $nodeId;
-    
+
     /**
      * @var string $nodeType
      *
      * @MongoDB\Field(type="string")
      */
     protected $nodeType;
-    
+
     /**
      * @var int $siteId
      *
      * @MongoDB\Field(type="int")
      */
     protected $siteId;
-    
+
     /**
      * @var string $parentId
      *
      * @MongoDB\Field(type="string")
      */
     protected $parentId;
-    
+
     /**
      * @var string $path
      *
      * @MongoDB\Field(type="string")
      */
     protected $path;
-    
+
     /**
      * @var string $alias
      *
      * @MongoDB\Field(type="string")
      */
     protected $alias;
-    
+
     /**
      * @var string $name
      *
      * @MongoDB\Field(type="string")
      */
     protected $name;
-    
+
     /**
      * @var int $version
      *
      * @MongoDB\Field(type="int")
      */
     protected $version;
-    
+
     /**
      * @var string $language
      *
      * @MongoDB\Field(type="string")
      */
     protected $language;
-    
+
     /**
      * @var string $status
      *
      * @MongoDB\Field(type="string")
      */
     protected $status;
-    
+
     /**
      * @var boolean
      *
      * @MongoDB\Field(type="boolean")
      */
     protected $deleted;
-    
+
     /**
      * @var string
      *
      * @MongoDB\Field(type="string")
      */
     protected $templateId;
-    
+
     /**
      * @var string
      *
@@ -129,14 +129,14 @@ class Node implements NodeInterface
      * @MongoDB\Field(type="boolean")
      */
     protected $inFooter;
-    
+
     /**
      * @var ArrayCollection
      *
      * @MongoDB\EmbedMany(targetDocument="Area")
      */
     protected $areas;
-    
+
     /**
      * @var BlockInterface
      *
@@ -434,7 +434,7 @@ class Node implements NodeInterface
     }
 
     /**
-     * @param int $key
+     * @param int            $key
      * @param BlockInterface $block
      */
     public function setBlock($key, BlockInterface $block)
