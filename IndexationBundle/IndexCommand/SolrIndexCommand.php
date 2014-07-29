@@ -3,33 +3,36 @@
 namespace PHPOrchestra\IndexationBundle\IndexCommand;
 
 use Mandango\Mandango;
+use Model\PHPOrchestraCMSBundle\Base\Content;
+use PHPOrchestra\IndexationBundle\SolrConverter\ConverterManager;
 use Solarium\Client;
 use Model\PHPOrchestraCMSBundle\Base\Node;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Index documents in solr
  */
 class SolrIndexCommand
 {
-    protected $router;
     protected $mandango;
     protected $solarium;
+    protected $converter;
+    protected $typeArray;
 
     /**
-     * @param UrlGeneratorInterface $router
      * @param Mandango              $mandango
      * @param Client                $solarium
+     * @param ConverterManager      $converter
      */
     public function __construct(
-        UrlGeneratorInterface $router,
         Mandango $mandango,
-        Client $solarium
+        Client $solarium,
+        ConverterManager $converter
     )
     {
-        $this->router = $router;
         $this->mandango = $mandango;
         $this->solarium = $solarium;
+        $this->converter = $converter;
+        $this->typeArray = array('is', 'ss', 'ls', 'txt', 'en', 'fr', 'bs', 'fs', 'ds', 'dts');
     }
 
     /**
@@ -39,36 +42,29 @@ class SolrIndexCommand
      * @param string                     $docType type of documents
      * @param array                      $fields  array of Model/PHPOrchestraCMSBundle/FieldIndex
      * 
-     * @return indexation result
+     * @return \Solarium\QueryType\Update\Result result
      */
     public function index($docs, $docType, $fields)
     {
-        //create Documents
         $documents = array();
-
-        //get an update query instance
         $update = $this->solarium->createUpdate();
 
         if (is_array($docs)) {
             foreach ($docs as $doc) {
-                if (isset($doc) && !empty($doc)) {
-                    $field = $this->getField($fields, $doc, $docType);
-                    $documents[] = $doc->toSolrDocument($update->createDocument(), $field);
-                }
+                $fieldContent = $this->getContentField($fields, $doc, $docType);
+
+                $documents[] = $this->converter->toSolrDocument($doc, $fieldContent, $update);
             }
         } else {
-            $field = $this->getField($fields, $docs, $docType);
-            $documents[] = $docs->toSolrDocument($update->createDocument(), $field);
+            $fieldContent = $this->getContentField($fields, $docs, $docType);
+
+            $documents[] = $this->converter->toSolrDocument($docs, $fieldContent, $update);
         }
 
-        //add the documents and a commit command to the update query
         $update->addDocuments($documents);
         $update->addCommit();
 
-        //this execute the query and return the result
-        $result = $this->solarium->update($update);
-
-        return $result;
+        return $this->solarium->update($update);
     }
 
     /**
@@ -76,20 +72,16 @@ class SolrIndexCommand
      * 
      * @param string $docId
      * 
-     * @return indexation result
+     * @return \Solarium\QueryType\Update\Result
      */
     public function deleteIndex($docId)
     {
-        //get an update query instance
         $update = $this->solarium->createUpdate();
 
-        $update->addDeleteQuery('id:'.$docId);
+        $update->addDeleteQuery('id:' . $docId);
         $update->addCommit();
 
-        //this execute the query and return the result
-        $result = $this->solarium->update($update);
-
-        return $result;
+        return $this->solarium->update($update);
     }
 
     /**
@@ -102,12 +94,12 @@ class SolrIndexCommand
     {
         $fields = $this->mandango->getRepository('Model\PHPOrchestraCMSBundle\FieldIndex')->getAll();
 
-        if (!is_array($docs) || count($docs) < 500) {
+        if (!is_array($docs) || count($docs) <= 500) {
             $this->index($docs, $docType, $fields);
         } else {
-            $docArray = array_chunk($docs, 500);
-            foreach ($docArray as $doc) {
-                $this->index($doc, $docType, $fields);
+            $arrayDoc = array_chunk($docs, 500);
+            foreach ($arrayDoc as $documents) {
+                $this->index($documents, $docType, $fields);
             }
         }
     }
@@ -119,15 +111,12 @@ class SolrIndexCommand
      */
     public function solrIsRunning()
     {
-        // Create a ping query
-        $ping = $this->solarium->createPing();
-
-        // Create a handle with the adapter and get the http response
+        $ping =$this->solarium->createPing();
         $request = $this->solarium->createRequest($ping);
-        $handle = $this->solarium->getAdapter()->createHandle($request, $this->solarium->getEndPoint());
-        $http = curl_exec($handle);
+        $handle = $this->solarium->getAdapter()->createHandle($request, $this->solarium->getEndpoint());
+        $response = curl_exec($handle);
 
-        if ($http === false) {
+        if ($response === false) {
             return false;
         } else {
             return true;
@@ -135,169 +124,44 @@ class SolrIndexCommand
     }
 
     /**
-     * Get all fields and their contents for doc (Node or Content)
+     * Get the content for all the fields
      *
-     * @param mixed  $fields  array of FieldIndex
-     * @param mixed  $doc     Node or Content
-     * @param string $docType Node or Content
+     * @param array  $fields  array of FieldIndex
+     * @param mixed  $doc     a document node or content
+     * @param string $docType type of the document
      *
-     * @return mixed|NULL
+     * @return array
      */
-    protected function getField($fields, $doc, $docType)
+    protected function getContentField($fields, $doc, $docType)
     {
         $fieldComplete = array();
-        if ($docType === 'Node') {
-            foreach ($fields as $field) {
-                $fieldName = $field->getFieldName();
-                $fieldType = $field->getFieldType();
 
-                $fieldComplete[$fieldName.'_'.$fieldType] = $this->getContentNode($doc, $fieldName, $fieldType);
-            }
-            // Generate url
-            $fieldComplete['url'] = $this->router->generate($doc->getNodeId(), array(), UrlGeneratorInterface::ABSOLUTE_URL);
-
-            return $fieldComplete;
-        } elseif ($docType === 'Content') {
-            foreach ($fields as $field) {
-                $fieldName = $field->getFieldName();
-                $fieldType = $field->getFieldType();
-                $fieldComplete[$fieldName.'_'.$fieldType] = $this->getContentContent($doc, $fieldName, $fieldType);
-            }
-            $fieldComplete['url'] = $this->generateUrl($doc->getContentId(), $doc->getContentType());
-
-            return $fieldComplete;
+        foreach ($fields as $field) {
+            $fieldName = $field->getFieldName();
+            $fieldType = $field->getFieldType();
+            $isArray = $this->typeIsArray($fieldType);
+            $fieldComplete[$fieldName.'_'.$fieldType] = $this->converter->getContent(
+                $doc,
+                $field->getFieldName(),
+                $isArray
+            );
         }
+        $fieldComplete['url'] = array($this->converter->generateUrl($doc));
 
         return $fieldComplete;
     }
 
     /**
-     * Get the content of a node
-     * 
-     * @param Model/PHPOrchestraCMSBundle/Base/Node $node      Node
-     * @param string                                $field     field name
-     * @param string                                $fieldType field type
-     * 
-     * @return array with the content of a field
-     */
-    protected function getContentNode($node, $field, $fieldType)
-    {
-        $blocks = $node->getBlocks();
-        $isArray = SolrIndexCommand::typeIsArray($fieldType);
-        $content = array();
-
-        foreach ($blocks as $abstract) {
-            $attributes = $abstract->getAttributes();
-            foreach ($attributes as $name => $values) {
-                if ($name === $field) {
-                    if (isset($values) && !empty($values)) {
-
-                        if ($isArray) {
-                            $content[] = $values;
-                        } else {
-                            return $values;
-                        }
-                    }
-                }
-            }
-        }
-
-        return $content;
-    }
-
-    /**
-     * Get the content of a Content
-     * 
-     * @param Model/PHPOrchestraCMSBundle/Base/Content $content   Content
-     * @param string                                   $field     field name
-     * @param string                                   $fieldType field type
-     * 
-     * @return array with the content of Content
-     */
-    protected function getContentContent($content, $field, $fieldType)
-    {
-        $contentAttributes = $content->getAttributes();
-        $value = array();
-        $isArray = SolrIndexCommand::typeIsArray($fieldType);
-
-        foreach ($contentAttributes as $abstract) {
-            if ($abstract->getName() === $field) {
-                if ($isArray) {
-                    $value[] = $abstract->getValue();
-                } else {
-                    return $abstract->getValue();
-                }
-            }
-        }
-
-        return $value;
-    }
-
-    /**
-     * Generate the url of a content
+     * Test if field is a solr's multivalued type
      *
-     * @param string $contentId
-     * @param string $contentType
-     *
-     * @return string|null
-     */
-    protected function generateUrl($contentId, $contentType)
-    {
-        // Get all Nodes and test if they have the contentType
-        $nodes = $this->mandango->getRepository('Model\PHPOrchestraCMSBundle\Node')->getAllNodes();
-        $uri = null;
-        if (is_array($nodes)) {
-            foreach ($nodes as $node) {
-                $isContent = $this->isContent($node, $contentType);
-                if ($isContent === true) {
-                    // Get url of the node
-                    $uri = $this->router->generate($node->getNodeId(), array($contentId), UrlGeneratorInterface::ABSOLUTE_URL);
-                    break;
-                }
-            }
-        }
-
-        return $uri;
-    }
-
-    /**
-     * Test if a node have a content with the same content type
-     *
-     * @param Node   $node        Node
-     * @param string $contentType content type
-     *
-     * @return boolean
-     */
-    protected function isContent($node, $contentType)
-    {
-        $blocks = $node->getBlocks();
-        foreach ($blocks as $block) {
-            $attributes = $block->getAttributes();
-            foreach ($attributes as $name => $value) {
-                if (strcmp($name, 'contentType') === 0) {
-                    if (strcmp($value, $contentType) === 0) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Test if field type is multiValued
-     *
-     * @param string $type fieldType
+     * @param string $type
      *
      * @return bool
      */
     protected function typeIsArray($type)
     {
-        $typesDynamic = array('is', 'ss', 'ls', 'txt', 'en', 'fr', 'bs', 'fs', 'ds', 'dts');
-
-        foreach ($typesDynamic as $td) {
-            if (strcmp($type, $td) === 0) {
+        foreach ($this->typeArray as $multitype) {
+            if (0 === strcmp($type, $multitype)) {
                 return true;
             }
         }
