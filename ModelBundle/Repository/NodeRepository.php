@@ -23,4 +23,18 @@ class NodeRepository extends DocumentRepository
 
         return $qb->getQuery()->execute();
     }
+
+    /**
+     * @return Cursor
+     */
+    public function getMenuTree()
+    {
+        $qb = $this->createQueryBuilder('n');
+
+        $qb->field('status')->equals('published')
+            ->field('deleted')->equals(false)
+            ->field('inMenu')->equals(true);
+
+        return $qb->getQuery()->execute();
+    }
 }
