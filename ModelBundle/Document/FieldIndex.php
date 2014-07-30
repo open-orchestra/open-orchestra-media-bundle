@@ -16,6 +16,13 @@ use PHPOrchestra\ModelBundle\Model\FieldIndexInterface;
 class FieldIndex implements FieldIndexInterface
 {
     /**
+     * @var string $id
+     *
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
      * @var string $fieldName
      *
      * @MongoDB\Field(type="string")
