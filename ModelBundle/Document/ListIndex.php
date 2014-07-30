@@ -16,6 +16,13 @@ use PHPOrchestra\ModelBundle\Model\ListIndexInterface;
 class ListIndex implements ListIndexInterface
 {
     /**
+     * @var string $id
+     *
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
      * @var string $nodeId
      *
      * @MongoDB\Field(type="string")
