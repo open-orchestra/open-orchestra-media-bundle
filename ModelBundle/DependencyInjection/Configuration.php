@@ -59,7 +59,7 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\FieldIndexRepository')->end()
                 ->end()
             ->end()
-            ->arrayNode('field_index')
+            ->arrayNode('list_index')
                 ->children()
                     ->scalarNode('class')->defaultValue('PHPOrchestra\ModelBundle\Document\ListIndex')->end()
                     ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\ListIndexRepository')->end()
