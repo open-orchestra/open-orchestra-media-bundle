@@ -2,10 +2,11 @@
 
 namespace PHPOrchestra\IndexationBundle\Test\IndexCommand;
 
-use Model\PHPOrchestraCMSBundle\Node;
-use Model\PHPOrchestraCMSBundle\Content;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Phake;
 use PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand;
+use PHPOrchestra\ModelBundle\Document\Content;
+use PHPOrchestra\ModelBundle\Document\Node;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -23,7 +24,6 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
     protected $solrIndexCommand;
 
     protected $container;
-    protected $mandango;
     protected $client;
     protected $repository;
     protected $update;
@@ -31,6 +31,7 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
     protected $curl;
     protected $document;
     protected $converter;
+    protected $docManager;
 
     /**
      * Initialize unit test
@@ -43,7 +44,7 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
         $this->update = Phake::mock('Solarium\QueryType\Update\Query\Query');
         Phake::when($this->update)->createDocument()->thenReturn($this->document);
 
-        $this->repository = Phake::mock('PHPOrchestra\CMSBundle\Model\FieldIndexRepository');
+        $this->repository = Phake::mock('PHPOrchestra\ModelBundle\Repository\FieldIndexRepository');
         $this->ping = Phake::mock('Solarium\QueryType\Ping\Query');
         $this->curl = Phake::mock('Solarium\Core\Client\Adapter\Curl');
         Phake::when($this->curl)->createHandle(Phake::anyParameters())->thenReturn(curl_init());
@@ -53,15 +54,15 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->client)->createPing()->thenReturn($this->ping);
         Phake::when($this->client)->getAdapter()->thenReturn($this->curl);
 
-        $this->mandango = Phake::mock('PHPOrchestra\CMSBundle\Test\Mock\Mandango');
-        Phake::when($this->mandango)->getRepository(Phake::anyParameters())->thenReturn($this->repository);
+        $this->docManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
+        Phake::when($this->docManager)->getRepository(Phake::anyParameters())->thenReturn($this->repository);
 
         $this->converter = Phake::mock('PHPOrchestra\IndexationBundle\SolrConverter\ConverterManager');
         Phake::when($this->converter)->getContent(Phake::anyParameters())->thenReturn('Hello world!!!', 'Hello world!!!');
         Phake::when($this->converter)->generateUrl(Phake::anyParameters())->thenReturn('app_dev/fixture_full');
         Phake::when($this->converter)->toSolrDocument(Phake::anyParameters())->thenReturn($this->document);
 
-        $this->solrIndexCommand = new SolrIndexCommand($this->mandango, $this->client, $this->converter);
+        $this->solrIndexCommand = new SolrIndexCommand($this->docManager, $this->client, $this->converter);
     }
 
     /**
@@ -131,8 +132,8 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function provideDocs()
     {
-        $node = Phake::mock('Model\PHPOrchestraCMSBundle\Node');
-        $content = Phake::mock('Model\PHPOrchestraCMSBundle\Content');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
+        $content = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
 
         return array(
             array($node, 'Node'),
@@ -182,19 +183,18 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
      * Test splitDoc function
      *
      * @param Node|Content $docs
+     * @param string       $docType
      *
      * @dataProvider provideDocs
      */
-    public function testSplitDoc($docs)
+    public function testSplitDoc($docs, $docType)
     {
         $fields = SolrIndexCommandTest::getFields();
-        Phake::when($this->repository)->getAll()->thenReturn($fields);
+        Phake::when($this->repository)->findAll()->thenReturn($fields);
 
-        $result = $this->solrIndexCommand->splitDoc($docs, 'Node');
+        $this->assertEmpty($this->solrIndexCommand->splitDoc($docs, $docType));
 
-        $this->assertEmpty($result);
-
-        Phake::verify($this->repository)->getAll();
+        Phake::verify($this->repository)->findAll();
     }
 
     /**
@@ -219,7 +219,7 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function getNode()
     {
-        $home = Phake::mock('Model\PHPOrchestraCMSBundle\Node');
+        $home = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
 
         $full = new Node($this->mandango);
         $full->initializeDefaults();
@@ -234,21 +234,21 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function getFields()
     {
-        $field1 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+        $field1 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
 
-        $field2 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+        $field2 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
 
-        $field3 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+        $field3 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
 
-        $field4 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+        $field4 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
 
-        $field5 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+        $field5 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
 
-        $field6 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+        $field6 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
 
-        $field7 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+        $field7 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
 
-        $field8 = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+        $field8 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
 
         return array(
             0 => $field1,

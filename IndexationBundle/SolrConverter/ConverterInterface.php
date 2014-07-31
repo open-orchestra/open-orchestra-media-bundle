@@ -2,8 +2,8 @@
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter;
 
-use Model\PHPOrchestraCMSBundle\Content;
-use Model\PHPOrchestraCMSBundle\Node;
+use PHPOrchestra\ModelBundle\Document\Content;
+use PHPOrchestra\ModelBundle\Document\Node;
 use Solarium\QueryType\Update\Query\Document\Document;
 use Solarium\QueryType\Update\Query\Query;
 

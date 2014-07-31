@@ -2,10 +2,10 @@
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter\Strategies;
 
-use Mandango\Mandango;
-use Model\PHPOrchestraCMSBundle\Content;
-use Model\PHPOrchestraCMSBundle\Node;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use PHPOrchestra\IndexationBundle\SolrConverter\ConverterInterface;
+use PHPOrchestra\ModelBundle\Document\Content;
+use PHPOrchestra\ModelBundle\Document\Node;
 use Solarium\QueryType\Update\Query\Document\Document;
 use Solarium\QueryType\Update\Query\Query;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -17,16 +17,16 @@ class ContentConverterStrategy implements ConverterInterface
 {
 
     protected $router;
-    protected $mandango;
+    protected $documentManager;
 
     /**
      * @param UrlGeneratorInterface $router
-     * @param Mandango              $mandango
+     * @param DocumentManager       $documentManager
      */
-    public function __construct(UrlGeneratorInterface $router, Mandango $mandango)
+    public function __construct(UrlGeneratorInterface $router, DocumentManager $documentManager)
     {
         $this->router = $router;
-        $this->mandango = $mandango;
+        $this->documentManager = $documentManager;
     }
 
     /**
@@ -59,7 +59,7 @@ class ContentConverterStrategy implements ConverterInterface
         $solrDoc = $update->createDocument();
 
         $solrDoc->id = $doc->getContentId();
-        $solrDoc->name = $doc->getShortName();
+        $solrDoc->name = $doc->getName();
         $solrDoc->version = $doc->getVersion();
         $solrDoc->language = $doc->getLanguage();
         $solrDoc->type = $doc->getContentType();
@@ -106,7 +106,9 @@ class ContentConverterStrategy implements ConverterInterface
      */
     public function generateUrl($doc)
     {
-        $nodes = $this->mandango->getRepository('Model\PHPOrchestraCMSBundle\Node')->getAllNodes();
+        $nodes = $this->documentManager
+            ->getRepository('PHPOrchestra\ModelBundle\Document\Node')
+            ->findAll();
 
         if (is_array($nodes)) {
             foreach ($nodes as $node) {

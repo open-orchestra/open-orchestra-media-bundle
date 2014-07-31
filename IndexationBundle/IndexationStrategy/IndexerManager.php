@@ -2,8 +2,9 @@
 
 namespace PHPOrchestra\IndexationBundle\IndexationStrategy;
 
-use PHPOrchestra\CMSBundle\Model\Content;
-use PHPOrchestra\CMSBundle\Model\Node;
+use PHPOrchestra\ModelBundle\Document\Content;
+use PHPOrchestra\ModelBundle\Document\Node;
+
 
 /**
  * Class IndexerManager
@@ -23,8 +24,8 @@ class IndexerManager
     /**
      * call indexation
      *
-     * @param Node|Content $docs
-     * @param string $docType Node or Content
+     * @param Node|Content $docs    documents
+     * @param string       $docType Node or Content
      */
     public function index($docs, $docType)
     {

@@ -14,7 +14,6 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
 
     protected $strategies;
     protected $strategy;
-    protected $mandango;
     protected $router;
 
     /**
@@ -24,10 +23,9 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $this->strategies = array('content');
 
-        $this->mandango = Phake::mock('Mandango\Mandango');
         $this->router = Phake::mock('PHPOrchestra\CMSBundle\Routing\PhpOrchestraUrlGenerator');
 
-        $this->strategy = new NodeConverterStrategy($this->router, $this->mandango);
+        $this->strategy = new NodeConverterStrategy($this->router);
     }
 
     /**
@@ -35,7 +33,7 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testSupport()
     {
-        $node = Phake::mock('Model\PHPOrchestraCMSBundle\Node');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
         $this->assertTrue($this->strategy->support($node));
     }
 
@@ -44,7 +42,7 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testDoesNotSupport()
     {
-        $fieldIndex = Phake::mock('Model\PHPOrchestraCMSBundle\Content');
+        $fieldIndex = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
         $this->assertFalse($this->strategy->support($fieldIndex));
     }
 

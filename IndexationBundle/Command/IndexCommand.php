@@ -17,10 +17,11 @@
 
 namespace PHPOrchestra\IndexationBundle\Command;
 
-use PHPOrchestra\CMSBundle\Model\ContentRepository;
-use PHPOrchestra\CMSBundle\Model\ListIndexRepository;
-use PHPOrchestra\CMSBundle\Model\NodeRepository;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerManager;
+use PHPOrchestra\ModelBundle\Repository\ContentRepository;
+use PHPOrchestra\ModelBundle\Repository\NodeRepository;
+use Solarium\Client;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -67,10 +68,10 @@ class IndexCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
-        $mandango = $container->get('mandango');
         $indexManager = $container->get('php_orchestra_indexation.indexer_manager');
-        $repositoryNode = $mandango->getRepository('Model\PHPOrchestraCMSBundle\Node');
-        $repositoryContent = $mandango->getRepository('Model\PHPOrchestraCMSBundle\Content');
+        $repositoryNode = $container->get('php_orchestra_model.repository.node');
+        $repositoryContent = $container->get('php_orchestra_model.repository.content');
+        $documentManager = $container->get('doctrine_mongodb.odm.document_manager');
 
         if ($input->getOption('all')) {
             // indexation of all documents
@@ -87,12 +88,12 @@ class IndexCommand extends ContainerAwareCommand
 
         } else {
             // Take a list of identifiant to index it
-            $repositoryListIndex = $mandango->getRepository('Model\PHPOrchestraCMSBundle\ListIndex');
+            $repositoryListIndex = $container->get('php_orchestra_model.repository.list_index');
 
-            $listIndex = $repositoryListIndex->getAll();
+            $listIndex = $repositoryListIndex->findAll();
 
             if (!empty($listIndex) && is_array($listIndex)) {
-                $this->indexList($repositoryNode, $repositoryContent, $listIndex, $repositoryListIndex, $indexManager);
+                $this->indexList($repositoryNode, $repositoryContent, $listIndex, $indexManager, $documentManager);
                 $output->writeln($container->get('translator')->trans('phporchestra_indexation.command.list_indexed'));
 
             } else {
@@ -112,9 +113,9 @@ class IndexCommand extends ContainerAwareCommand
         IndexerManager $indexManager
     )
     {
-        $nodes = $repositoryNode->getAllNodes();
-        $contents = $repositoryContent->getAllToIndex();
-        
+        $nodes = $repositoryNode->findAll();
+        $contents = $repositoryContent->findAll();
+
         $indexManager->index($nodes, 'Node');
         $indexManager->index($contents, 'Content');
     }
@@ -123,32 +124,33 @@ class IndexCommand extends ContainerAwareCommand
      * @param NodeRepository      $repositoryNode
      * @param ContentRepository   $repositoryContent
      * @param array               $listIndex
-     * @param ListIndexRepository $repositoryListIndex
      * @param IndexerManager      $indexManager
+     * @param DocumentManager     $documentManager
      */
     public function indexList(
         NodeRepository $repositoryNode,
         ContentRepository $repositoryContent,
         $listIndex,
-        ListIndexRepository $repositoryListIndex,
-        IndexerManager $indexManager
+        IndexerManager $indexManager,
+        DocumentManager $documentManager
     )
     {
         $nodes = array();
         $contents = array();
-        
+
         foreach ($listIndex as $index) {
             if ($nodeId = $index->getNodeId()) {
-                $nodes[] = $repositoryNode->getOne($nodeId);
-                // Remove from mandango
-                $repositoryListIndex->delete($index);
+                $nodes[] = $repositoryNode->findOneByNodeId($nodeId);
+                // Remove from mongoDB
+                $documentManager->remove($index);
             } elseif ($contentId = $index->getContentId()) {
-                $contents[] = $repositoryContent->getOne($contentId);
-                //Remove from mandango
-                $repositoryListIndex->delete($index);
+                $contents[] = $repositoryContent->findOneByContentId($contentId);
+
+                //Remove from mongoDB
+                $documentManager->remove($index);
             }
         }
-        
+
         if (is_array($nodes) && !empty($nodes)) {
             $indexManager->index($nodes, 'Node');
         }
@@ -156,22 +158,24 @@ class IndexCommand extends ContainerAwareCommand
         if (is_array($contents) && !empty($contents)) {
             $indexManager->index($contents, 'Content');
         }
+
+        $documentManager->flush();
     }
 
 
     /**
      * Remove the solr index
      * 
-     * @param Solarium/Client $client
+     * @param Client $client
      */
     public function removeIndex($client)
     {
         //get an update query instance
         $update = $client->createUpdate();
-        
+
         $update->addDeleteQuery('*:*');
         $update->addCommit();
-        
+
         //this execute the query and return the result
         $result = $client->update($update);
     }

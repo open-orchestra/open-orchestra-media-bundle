@@ -2,9 +2,9 @@
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter;
 
-use Model\PHPOrchestraCMSBundle\Content;
-use Model\PHPOrchestraCMSBundle\Node;
 use PHPOrchestra\IndexationBundle\Exception\SolrConvertException;
+use PHPOrchestra\ModelBundle\Document\Content;
+use PHPOrchestra\ModelBundle\Document\Node;
 use Solarium\QueryType\Update\Query\Query;
 
 /**
@@ -62,7 +62,7 @@ class ConverterManager
             }
         }
 
-        throw new SolrConvertException('No get Content for doc of class : ' . get_class($doc));
+        throw new SolrConvertException('No get Content strategy for doc of class : ' . get_class($doc));
     }
 
     /**

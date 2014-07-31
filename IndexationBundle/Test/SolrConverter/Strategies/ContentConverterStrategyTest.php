@@ -2,7 +2,8 @@
 
 namespace PHPOrchestra\IndexationBundle\Test\SolrConverter\Strategies;
 
-use Model\PHPOrchestraCMSBundle\Node;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use PHPOrchestra\ModelBundle\Document\Node;
 use Phake;
 use PHPOrchestra\IndexationBundle\SolrConverter\Strategies\ContentConverterStrategy;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -15,9 +16,9 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
 
     protected $strategies;
     protected $strategy;
-    protected $mandango;
     protected $router;
     protected $url;
+    protected $docManager;
 
     /**
      * Set up the test
@@ -27,11 +28,12 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
         $this->strategies = array('content');
         $this->url = 'http://phporchestra.dev/app_dev/fixture_full';
 
-        $this->mandango = Phake::mock('PHPOrchestra\CMSBundle\Test\Mock\Mandango');
+        $this->docManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
+
         $this->router = Phake::mock('PHPOrchestra\CMSBundle\Routing\PhpOrchestraUrlGenerator');
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->url);
 
-        $this->strategy = new ContentConverterStrategy($this->router, $this->mandango);
+        $this->strategy = new ContentConverterStrategy($this->router, $this->docManager);
     }
 
     /**
@@ -39,7 +41,7 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testSupport()
     {
-        $content = Phake::mock('Model\PHPOrchestraCMSBundle\Content');
+        $content = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
         $this->assertTrue($this->strategy->support($content));
     }
 
@@ -48,7 +50,7 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testDoesNotSupport()
     {
-        $fieldIndex = Phake::mock('Model\PHPOrchestraCMSBundle\FieldIndex');
+        $fieldIndex = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
         $this->assertFalse($this->strategy->support($fieldIndex));
     }
 
@@ -60,7 +62,7 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
     public function testToSolrDocument($fields)
     {
         $document = Phake::mock('Solarium\QueryType\Update\Query\Document\Document');
-        $content = Phake::mock('Model\PHPOrchestraCMSBundle\Content');
+        $content = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
         $update = Phake::mock('Solarium\QueryType\Update\Query\Query');
         Phake::when($update)->createDocument()->thenReturn($document);
 
@@ -68,7 +70,7 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
 
         Phake::verify($update)->createDocument();
         Phake::verify($content)->getContentId();
-        Phake::verify($content)->getShortName();
+        Phake::verify($content)->getName();
         Phake::verify($content)->getVersion();
         Phake::verify($content)->getLanguage();
         Phake::verify($content)->getContentType();
@@ -105,11 +107,11 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $fieldName = 'title';
         $value = 'Hello wolrd';
-        $contentAttributes = Phake::mock('Model\PHPOrchestraCMSBundle\ContentAttribute');
+        $contentAttributes = Phake::mock('PHPOrchestra\ModelBundle\Document\ContentAttribute');
         Phake::when($contentAttributes)->getName()->thenReturn($fieldName);
         Phake::when($contentAttributes)->getValue()->thenReturn($value);
 
-        $content = Phake::mock('Model\PHPOrchestraCMSBundle\Content');
+        $content = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
         Phake::when($content)->getAttributes()->thenReturn(array($contentAttributes, $contentAttributes));
 
         $result = $this->strategy->getContent($content, $fieldName, false);
@@ -130,12 +132,12 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
         $type = 'news';
         $nodeId = 'fixture_full';
         $contentId = '3';
-        $content = Phake::mock('Model\PHPOrchestraCMSBundle\Content');
-        $nodeRepository = Phake::mock('Model\PHPOrchestraCMSBundle\NodeRepository');
-        $block = Phake::mock('Model\PHPOrchestraCMSBundle\Block');
+        $content = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
+        $nodeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\NodeRepository');
+        $block = Phake::mock('PHPOrchestra\ModelBundle\Document\Block');
 
-        Phake::when($this->mandango)->getRepository(Phake::anyParameters())->thenReturn($nodeRepository);
-        Phake::when($nodeRepository)->getAllNodes()->thenReturn($nodes);
+        Phake::when($this->docManager)->getRepository(Phake::anyParameters())->thenReturn($nodeRepository);
+        Phake::when($nodeRepository)->findAll()->thenReturn($nodes);
         Phake::when($content)->getContentType()->thenReturn($type);
 
         foreach ($nodes as $node) {
@@ -147,8 +149,8 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($this->url, $this->strategy->generateUrl($content));
 
-        Phake::verify($this->mandango)->getRepository('Model\PHPOrchestraCMSBundle\Node');
-        Phake::verify($nodeRepository)->getAllNodes();
+        Phake::verify($this->docManager)->getRepository('PHPOrchestra\ModelBundle\Document\Node');
+        Phake::verify($nodeRepository)->findAll();
         Phake::verify($content)->getContentType();
 
         foreach ($nodes as $node) {
@@ -165,7 +167,7 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function provideNodes()
     {
-        $node = Phake::mock('Model\PHPOrchestraCMSBundle\Node');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
 
         return array(
             array(array($node)),

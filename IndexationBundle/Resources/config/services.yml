@@ -25,7 +25,8 @@ services:
         arguments:
             - %php_orchestra_indexation.type%
             - @phporchestra_indexation.indexsolr
-            - @mandango
+            - @doctrine_mongodb.odm.document_manager
+            - %php_orchestra_model.document.list_index.class%
         tags:
             - { name: php_orchestra_indexation.indexer.strategy }
     php_orchestra_indexation.search.solr.strategy:
@@ -45,11 +46,11 @@ services:
         class: %php_orchestra_indexation.solr_converter.content.strategy.class%
         arguments:
             - @router
-            - @mandango
+            - @doctrine_mongodb.odm.document_manager
         tags:
             - { name: php_orchestra_indexation.solr_converter.strategy }
 
     # IndexCommand service
     phporchestra_indexation.indexsolr:
         class: %phporchestra_indexation.indexsolr.class%
-        arguments: [@mandango, @solarium.client, @php_orchestra_indexation.solr_converter_manager]
+        arguments: [@doctrine_mongodb.odm.document_manager, @solarium.client, @php_orchestra_indexation.solr_converter_manager]
