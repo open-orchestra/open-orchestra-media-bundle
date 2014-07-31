@@ -62,17 +62,9 @@ class Site implements SiteInterface
     /**
      * @var ArrayCollection
      *
-     * @MongoDB\EmbedMany(targetDocument="Block")
+     * @MongoDB\Field(type="hash")
      */
     protected $blocks;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->blocks = new ArrayCollection();
-    }
 
     /**
      * @param string $alias
@@ -93,20 +85,13 @@ class Site implements SiteInterface
     /**
      * @param BlockInterface $block
      */
-    public function addBlock(BlockInterface $block)
+    public function addBlock($block)
     {
-        $this->blocks->add($block);
+        $this->blocks[] = $block;
     }
 
     /**
-     * @param BlockInterface $block
-     */
-    public function removeBlock(BlockInterface $block)
-    {
-        $this->blocks->removeElement($block);
-    }
-    /**
-     * @return ArrayCollection
+     * @return array
      */
     public function getBlocks()
     {
