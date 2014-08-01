@@ -20,16 +20,12 @@ interface SiteInterface
     public function getAlias();
 
     /**
-     * @param BlockInterface $block
+     * @param string $block
      */
-    public function addBlock(BlockInterface $block);
+    public function addBlock($block);
 
     /**
-     * @param BlockInterface $block
-     */
-    public function removeBlock(BlockInterface $block);
-    /**
-     * @return ArrayCollection
+     * @return array
      */
     public function getBlocks();
 
