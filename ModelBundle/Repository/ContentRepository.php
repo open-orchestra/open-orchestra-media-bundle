@@ -9,5 +9,18 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
  */
 class ContentRepository extends DocumentRepository
 {
+    /**
+     * Get all content if the contentType is "news"
 
+     * @return array list of news
+     */
+    public function findAllNews()
+    {
+        $criteria = array(
+            'contentType'=> "news",
+            'status'=> "published"
+        );
+
+        return $this->findBy($criteria);
+    }
 }
