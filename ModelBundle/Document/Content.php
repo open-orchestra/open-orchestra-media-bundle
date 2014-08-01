@@ -23,70 +23,70 @@ class Content implements ContentInterface
      * @MongoDB\Id
      */
     protected $id;
-    
+
     /**
      * @var int $contentId
      *
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="string")
      */
     protected $contentId;
-    
+
     /**
      * @var string $contentType
      *
      * @MongoDB\Field(type="string")
      */
     protected $contentType;
-    
+
     /**
      * @var int $siteId
      *
      * @MongoDB\Field(type="int")
      */
     protected $siteId;
-    
+
     /**
      * @var string $name
      *
      * @MongoDB\Field(type="string")
      */
     protected $name;
-    
+
     /**
      * @var int $version
      *
      * @MongoDB\Field(type="int")
      */
     protected $version;
-    
+
     /**
      * @var int $contentTypeVersion
      *
      * @MongoDB\Field(type="int")
      */
     protected $contentTypeVersion;
-    
+
     /**
      * @var string $language
      *
      * @MongoDB\Field(type="string")
      */
     protected $language;
-    
+
     /**
      * @var string $status
      *
      * @MongoDB\Field(type="string")
      */
     protected $status;
-    
+
     /**
      * @var boolean
      *
      * @MongoDB\Field(type="boolean")
      */
     protected $deleted;
-    
+
     /**
      * @var ArrayCollection
      *
@@ -127,7 +127,7 @@ class Content implements ContentInterface
     }
 
     /**
-     * @param int $contentId
+     * @param string $contentId
      */
     public function setContentId($contentId)
     {
@@ -135,7 +135,7 @@ class Content implements ContentInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getContentId()
     {

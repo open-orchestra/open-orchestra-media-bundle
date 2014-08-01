@@ -2,35 +2,44 @@
 
 namespace PHPOrchestra\IndexationBundle\IndexationStrategy\Strategies;
 
-use Mandango\Mandango;
-use PHPOrchestra\CMSBundle\Model\Content;
-use PHPOrchestra\CMSBundle\Model\Node;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerInterface;
 use PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand;
+use PHPOrchestra\ModelBundle\Repository\ListIndexRepository;
 
 /**
  * Class SolrStrategy
  */
 class SolrStrategy implements IndexerInterface
 {
-    protected $mandango;
     protected $indexationType;
     protected $solrIndexCommand;
+    protected $documentManager;
+    protected $listIndex;
+    protected $listIndexRepository;
 
     /**
-     * @param array            $indexationType
-     * @param SolrIndexCommand $solrIndexCommand
-     * @param Mandango         $mandango
+     * @param array               $indexationType
+     * @param SolrIndexCommand    $solrIndexCommand
+     * @param DocumentManager     $documentManager
+     * @param string              $listIndex
+     * @param ListIndexRepository $listIndexRepository
      */
     public function __construct(
         array $indexationType,
         SolrIndexCommand $solrIndexCommand,
-        Mandango $mandango
+        DocumentManager $documentManager,
+        $listIndex,
+        ListIndexRepository $listIndexRepository
     )
     {
-        $this->mandango = $mandango;
         $this->indexationType = $indexationType;
         $this->solrIndexCommand = $solrIndexCommand;
+        $this->documentManager = $documentManager;
+        $this->listIndex = $listIndex;
+        $this->listIndexRepository = $listIndexRepository;
     }
 
     /**
@@ -52,8 +61,8 @@ class SolrStrategy implements IndexerInterface
     /**
      * call indexation
      *
-     * @param Node|Content $docs
-     * @param string $docType Node or Content
+     * @param NodeInterface|ContentInterface $docs    documents
+     * @param string                         $docType Node or Content
      */
     public function index($docs, $docType)
     {
@@ -67,7 +76,7 @@ class SolrStrategy implements IndexerInterface
     /**
      * Create a ListIndex document and save it
      *
-     * @param array|object $docs
+     * @param array|object $docs    array of documents
      * @param string       $docType Node or Content
      */
     protected function addListIndex($docs, $docType)
@@ -79,13 +88,13 @@ class SolrStrategy implements IndexerInterface
         }
 
         foreach ($docArray as $doc) {
-            $listindex = $this->mandango->create('Model\PHPOrchestraCMSBundle\ListIndex');
+            $listIndex = new $this->listIndex();
             if ($docType === 'Node') {
-                $listindex->setNodeId($doc->getNodeId());
+                $listIndex->setNodeId($doc->getNodeId());
             } elseif ($docType === 'Content') {
-                $listindex->setContentId($doc->getContentId());
+                $listIndex->setContentId($doc->getContentId());
             }
-            $listindex->save();
+            $this->documentManager->persist($listIndex);
         }
     }
 
@@ -98,9 +107,7 @@ class SolrStrategy implements IndexerInterface
     {
         if ($this->solrIndexCommand->solrIsRunning()) {
             $this->solrIndexCommand->deleteIndex($docId);
-            $this->mandango
-                ->getRepository('Model\PHPOrchestraCMSBundle\ListIndex')
-                ->removeByDocId($docId);
+            $this->listIndexRepository->removeByDocId($docId);
         }
     }
 

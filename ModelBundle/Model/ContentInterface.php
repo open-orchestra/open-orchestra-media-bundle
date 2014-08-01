@@ -26,12 +26,12 @@ interface ContentInterface
     public function removeAttribute(ContentAttributeInterface $attribute);
 
     /**
-     * @param int $contentId
+     * @param string $contentId
      */
     public function setContentId($contentId);
 
     /**
-     * @return int
+     * @return string
      */
     public function getContentId();
 

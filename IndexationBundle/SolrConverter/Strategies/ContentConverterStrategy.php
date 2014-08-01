@@ -2,10 +2,10 @@
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter\Strategies;
 
-use Mandango\Mandango;
-use Model\PHPOrchestraCMSBundle\Content;
-use Model\PHPOrchestraCMSBundle\Node;
 use PHPOrchestra\IndexationBundle\SolrConverter\ConverterInterface;
+use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelBundle\Repository\NodeRepository;
 use Solarium\QueryType\Update\Query\Document\Document;
 use Solarium\QueryType\Update\Query\Query;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -15,28 +15,33 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class ContentConverterStrategy implements ConverterInterface
 {
-
+    /**
+     * @var UrlGeneratorInterface
+     */
     protected $router;
-    protected $mandango;
+    /**
+     * @var NodeRepository
+     */
+    protected $nodeRepository;
 
     /**
      * @param UrlGeneratorInterface $router
-     * @param Mandango              $mandango
+     * @param NodeRepository        $nodeRepository
      */
-    public function __construct(UrlGeneratorInterface $router, Mandango $mandango)
+    public function __construct(UrlGeneratorInterface $router, NodeRepository $nodeRepository)
     {
         $this->router = $router;
-        $this->mandango = $mandango;
+        $this->nodeRepository = $nodeRepository;
     }
 
     /**
-     * @param Node|Content $doc
+     * @param NodeInterface|ContentInterface $doc
      *
      * @return boolean
      */
     public function support($doc)
     {
-        return $doc instanceof Content;
+        return $doc instanceof ContentInterface;
     }
 
     /**
@@ -48,9 +53,9 @@ class ContentConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Content $doc
-     * @param array   $fields
-     * @param Query   $update
+     * @param ContentInterface $doc
+     * @param array            $fields
+     * @param Query            $update
      *
      * @return Document
      */
@@ -59,7 +64,7 @@ class ContentConverterStrategy implements ConverterInterface
         $solrDoc = $update->createDocument();
 
         $solrDoc->id = $doc->getContentId();
-        $solrDoc->name = $doc->getShortName();
+        $solrDoc->name = $doc->getName();
         $solrDoc->version = $doc->getVersion();
         $solrDoc->language = $doc->getLanguage();
         $solrDoc->type = $doc->getContentType();
@@ -75,9 +80,9 @@ class ContentConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Content $doc
-     * @param string  $fieldName
-     * @param bool    $isArray
+     * @param ContentInterface $doc
+     * @param string           $fieldName
+     * @param bool             $isArray
      *
      * @return array
      */
@@ -100,13 +105,13 @@ class ContentConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Content $doc
+     * @param ContentInterface $doc
      *
      * @return string
      */
     public function generateUrl($doc)
     {
-        $nodes = $this->mandango->getRepository('Model\PHPOrchestraCMSBundle\Node')->getAllNodes();
+        $nodes = $this->nodeRepository->findAll();
 
         if (is_array($nodes)) {
             foreach ($nodes as $node) {
@@ -126,8 +131,8 @@ class ContentConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Node   $node
-     * @param string $contentType
+     * @param NodeInterface $node
+     * @param string        $contentType
      *
      * @return bool
      */

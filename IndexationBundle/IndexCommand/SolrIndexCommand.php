@@ -2,11 +2,11 @@
 
 namespace PHPOrchestra\IndexationBundle\IndexCommand;
 
-use Mandango\Mandango;
-use Model\PHPOrchestraCMSBundle\Base\Content;
 use PHPOrchestra\IndexationBundle\SolrConverter\ConverterManager;
+use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelBundle\Repository\FieldIndexRepository;
 use Solarium\Client;
-use Model\PHPOrchestraCMSBundle\Base\Node;
 use Solarium\QueryType\Update\Result;
 
 /**
@@ -14,23 +14,23 @@ use Solarium\QueryType\Update\Result;
  */
 class SolrIndexCommand
 {
-    protected $mandango;
+    protected $fieldIndexRepository;
     protected $solarium;
     protected $converter;
     protected $typeArray;
 
     /**
-     * @param Mandango              $mandango
+     * @param FieldIndexRepository  $fieldIndexRepository
      * @param Client                $solarium
      * @param ConverterManager      $converter
      */
     public function __construct(
-        Mandango $mandango,
+        FieldIndexRepository $fieldIndexRepository,
         Client $solarium,
         ConverterManager $converter
     )
     {
-        $this->mandango = $mandango;
+        $this->fieldIndexRepository = $fieldIndexRepository;
         $this->solarium = $solarium;
         $this->converter = $converter;
         $this->typeArray = array('is', 'ss', 'ls', 'txt', 'en', 'fr', 'bs', 'fs', 'ds', 'dts');
@@ -38,10 +38,10 @@ class SolrIndexCommand
 
     /**
      * index one or more nodes in solr
-     * 
-     * @param Node(array)|Content(array) $docs    One or many object Node|Content
-     * @param string                     $docType type of documents
-     * @param array                      $fields  array of Model/PHPOrchestraCMSBundle/FieldIndex
+     *
+     * @param NodeInterface(array)|ContentInterface(array) $docs    One or many object Node|Content
+     * @param string                                       $docType type of documents
+     * @param array                                        $fields  array of Model/PHPOrchestraCMSBundle/FieldIndex
      * 
      * @return Result
      */
@@ -93,7 +93,7 @@ class SolrIndexCommand
      */
     public function splitDoc($docs, $docType)
     {
-        $fields = $this->mandango->getRepository('Model\PHPOrchestraCMSBundle\FieldIndex')->getAll();
+        $fields = $this->fieldIndexRepository->findAll();
 
         if (!is_array($docs) || count($docs) <= 500) {
             $this->index($docs, $docType, $fields);
@@ -127,13 +127,12 @@ class SolrIndexCommand
     /**
      * Get the content for all the fields
      *
-     * @param array  $fields  array of FieldIndex
-     * @param mixed  $doc     a document node or content
-     * @param string $docType type of the document
+     * @param array                          $fields array of FieldIndex
+     * @param NodeInterface|ContentInterface $doc    a document node or content
      *
      * @return array
      */
-    protected function getContentField($fields, $doc, $docType)
+    protected function getContentField(array $fields, $doc)
     {
         $fieldComplete = array();
 
@@ -141,6 +140,7 @@ class SolrIndexCommand
             $fieldName = $field->getFieldName();
             $fieldType = $field->getFieldType();
             $isArray = $this->typeIsArray($fieldType);
+
             $fieldComplete[$fieldName.'_'.$fieldType] = $this->converter->getContent(
                 $doc,
                 $field->getFieldName(),

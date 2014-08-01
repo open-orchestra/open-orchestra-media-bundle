@@ -15,13 +15,13 @@ class SolrStrategyTest extends \PHPUnit_Framework_TestCase
      */
     protected $strategy;
 
-    protected $mandango;
     protected $listIndex;
     protected $strategies;
-    protected $nodeId = 1;
-    protected $contentId = 2;
+    protected $nodeId = "fixture_full";
+    protected $contentId = "2";
     protected $solrIndexCommand;
     protected $listIndexRepository;
+    protected $docManager;
 
     /**
      * set up the test
@@ -30,14 +30,18 @@ class SolrStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $this->strategies = array('solr');
         $this->solrIndexCommand = Phake::mock('PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand');
-        $this->listIndex = Phake::mock('PHPOrchestra\CMSBundle\Model\ListIndex');
-        $this->listIndexRepository = Phake::mock('PHPOrchestra\CMSBundle\Model\ListIndexRepository');
+        $this->listIndex = 'PHPOrchestra\ModelBundle\Document\ListIndex';
+        $this->listIndexRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\ListIndexRepository');
 
-        $this->mandango = Phake::mock('Mandango\Mandango');
-        Phake::when($this->mandango)->create(Phake::anyParameters())->thenReturn($this->listIndex);
-        Phake::when($this->mandango)->getRepository(Phake::anyParameters())->thenReturn($this->listIndexRepository);
+        $this->docManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
 
-        $this->strategy = new SolrStrategy($this->strategies, $this->solrIndexCommand, $this->mandango);
+        $this->strategy = new SolrStrategy(
+            $this->strategies,
+            $this->solrIndexCommand,
+            $this->docManager,
+            $this->listIndex,
+            $this->listIndexRepository
+        );
     }
 
     /**
@@ -55,7 +59,13 @@ class SolrStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testDoesNotSupport($strategies)
     {
-        $strategy = new SolrStrategy($strategies, $this->solrIndexCommand, $this->mandango);
+        $strategy = new SolrStrategy(
+            $strategies,
+            $this->solrIndexCommand,
+            $this->docManager,
+            $this->listIndex,
+            $this->listIndexRepository
+        );
 
         $this->assertFalse($strategy->supportIndexation());
     }
@@ -105,10 +115,7 @@ class SolrStrategyTest extends \PHPUnit_Framework_TestCase
 
         Phake::verify($this->solrIndexCommand, Phake::never())->splitDoc($docs, $docType);
 
-        $nodeOrContent = 'Node' === $docType? 1: 0;
-        Phake::verify($this->listIndex, Phake::times($count * (1 - $nodeOrContent)))->setContentId($this->contentId);
-        Phake::verify($this->listIndex, Phake::times($count * $nodeOrContent))->setNodeId($this->nodeId);
-        Phake::verify($this->listIndex, Phake::times($count))->save();
+        Phake::verify($this->docManager, Phake::times($count))->persist(Phake::anyParameters());
     }
 
     /**
@@ -116,8 +123,8 @@ class SolrStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function provideDocsAndDocType()
     {
-        $node = Phake::mock('PHPOrchestra\CMSBundle\Model\Node');
-        $content = Phake::mock('PHPOrchestra\CMSBundle\Model\Content');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $content = Phake::mock('PHPOrchestra\ModelBundle\Model\ContentInterface');
 
         Phake::when($node)->getNodeId()->thenReturn($this->nodeId);
         Phake::when($content)->getContentId()->thenReturn($this->contentId);

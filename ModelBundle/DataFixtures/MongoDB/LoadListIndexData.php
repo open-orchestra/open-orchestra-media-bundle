@@ -9,7 +9,7 @@ use PHPOrchestra\ModelBundle\Document\ListIndex;
 /**
  * Class LoadListIndex
  */
-class LoadListIndex implements FixtureInterface
+class LoadListIndexData implements FixtureInterface
 {
     /**
      * Load data fixture
@@ -32,6 +32,8 @@ class LoadListIndex implements FixtureInterface
 
         $list5 = $this->generateListIndex5();
         $manager->persist($list5);
+
+        $manager->flush();
     }
 
     /**

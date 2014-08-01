@@ -2,10 +2,9 @@
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter\Strategies;
 
-use Model\PHPOrchestraCMSBundle\Content;
-use Model\PHPOrchestraCMSBundle\Node;
 use PHPOrchestra\IndexationBundle\SolrConverter\ConverterInterface;
-use Solarium\Client;
+use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use Solarium\QueryType\Update\Query\Document\Document;
 use Solarium\QueryType\Update\Query\Query;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -27,13 +26,13 @@ class NodeConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Node|Content $doc
+     * @param NodeInterface|ContentInterface $doc
      *
      * @return boolean
      */
     public function support($doc)
     {
-        return $doc instanceof Node;
+        return $doc instanceof NodeInterface;
     }
 
     /**
@@ -45,9 +44,9 @@ class NodeConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Node  $doc
-     * @param array $fields
-     * @param Query $update
+     * @param NodeInterface  $doc
+     * @param array          $fields
+     * @param Query          $update
      *
      * @return Document
      */
@@ -76,9 +75,9 @@ class NodeConverterStrategy implements ConverterInterface
 
 
     /**
-     * @param Node   $doc
-     * @param string $fieldName
-     * @param bool   $isArray
+     * @param NodeInterface $doc
+     * @param string        $fieldName
+     * @param bool          $isArray
      *
      * @return array
      */
@@ -106,7 +105,7 @@ class NodeConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Node $doc
+     * @param NodeInterface $doc
      *
      * @return string
      */
