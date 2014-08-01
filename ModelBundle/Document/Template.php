@@ -52,6 +52,13 @@ class Template implements TemplateInterface
      * @MongoDB\Field(type="int")
      */
     protected $version;
+
+    /**
+     * @var string
+     *
+     * @MongoDB\Field(type="string")
+     */
+    protected $language;
     
     /**
      * @var string $status
@@ -70,9 +77,9 @@ class Template implements TemplateInterface
     /**
      * @var AreaInterface
      *
-     * @MongoDB\EmbedOne(targetDocument="Area")
+     * @MongoDB\EmbedMany(targetDocument="Area")
      */
-    protected $area;
+    protected $areas;
     
     /**
      * @var string $boDirection
@@ -94,22 +101,31 @@ class Template implements TemplateInterface
     public function __construct()
     {
         $this->blocks = new ArrayCollection();
+        $this->areas = new ArrayCollection();
     }
 
     /**
      * @param AreaInterface $area
      */
-    public function setArea(AreaInterface $area)
+    public function addArea(AreaInterface $area)
     {
-        $this->area = $area;
+        $this->areas->add($area);
+    }
+
+    /**
+     * @param AreaInterface $area
+     */
+    public function removeArea(AreaInterface $area)
+    {
+        $this->areas->removeElement($area);
     }
 
     /**
      * @return AreaInterface
      */
-    public function getArea()
+    public function getAreas()
     {
-        return $this->area;
+        return $this->areas;
     }
 
     /**
@@ -254,5 +270,21 @@ class Template implements TemplateInterface
     public function getVersion()
     {
         return $this->version;
+    }
+
+    /**
+     * @param string $language
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
 }

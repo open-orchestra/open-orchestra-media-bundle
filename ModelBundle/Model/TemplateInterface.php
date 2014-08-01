@@ -12,12 +12,17 @@ interface TemplateInterface
     /**
      * @param AreaInterface $area
      */
-    public function setArea(AreaInterface $area);
+    public function addArea(AreaInterface $area);
 
     /**
-     * @return AreaInterface
+     * @param AreaInterface $area
      */
-    public function getArea();
+    public function removeArea(AreaInterface $area);
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAreas();
 
     /**
      * @param BlockInterface $block
@@ -108,4 +113,14 @@ interface TemplateInterface
      * @return int
      */
     public function getVersion();
+
+    /**
+     * @param string $language
+     */
+    public function setLanguage($language);
+
+    /**
+     * @return string
+     */
+    public function getLanguage();
 }
