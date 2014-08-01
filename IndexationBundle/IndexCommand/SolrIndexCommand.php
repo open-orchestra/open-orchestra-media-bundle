@@ -2,10 +2,10 @@
 
 namespace PHPOrchestra\IndexationBundle\IndexCommand;
 
-use Doctrine\ODM\MongoDB\DocumentManager;
 use PHPOrchestra\IndexationBundle\SolrConverter\ConverterManager;
 use PHPOrchestra\ModelBundle\Document\Content;
 use PHPOrchestra\ModelBundle\Document\Node;
+use PHPOrchestra\ModelBundle\Repository\FieldIndexRepository;
 use Solarium\Client;
 use Solarium\QueryType\Update\Result;
 
@@ -14,23 +14,23 @@ use Solarium\QueryType\Update\Result;
  */
 class SolrIndexCommand
 {
-    protected $manager;
+    protected $fieldIndexRepository;
     protected $solarium;
     protected $converter;
     protected $typeArray;
 
     /**
-     * @param DocumentManager  $manager
-     * @param Client           $solarium
-     * @param ConverterManager $converter
+     * @param FieldIndexRepository  $fieldIndexRepository
+     * @param Client                $solarium
+     * @param ConverterManager      $converter
      */
     public function __construct(
-        DocumentManager $manager,
+        FieldIndexRepository $fieldIndexRepository,
         Client $solarium,
         ConverterManager $converter
     )
     {
-        $this->manager = $manager;
+        $this->fieldIndexRepository = $fieldIndexRepository;
         $this->solarium = $solarium;
         $this->converter = $converter;
         $this->typeArray = array('is', 'ss', 'ls', 'txt', 'en', 'fr', 'bs', 'fs', 'ds', 'dts');
@@ -93,9 +93,7 @@ class SolrIndexCommand
      */
     public function splitDoc($docs, $docType)
     {
-        $fields = $this->manager
-            ->getRepository('PHPOrchestra\ModelBundle\Document\FieldIndex')
-            ->findAll();
+        $fields = $this->fieldIndexRepository->findAll();
 
         if (!is_array($docs) || count($docs) <= 500) {
             $this->index($docs, $docType, $fields);

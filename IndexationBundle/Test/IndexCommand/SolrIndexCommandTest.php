@@ -2,7 +2,6 @@
 
 namespace PHPOrchestra\IndexationBundle\Test\IndexCommand;
 
-use Doctrine\ODM\MongoDB\DocumentManager;
 use Phake;
 use PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand;
 use PHPOrchestra\ModelBundle\Document\Content;
@@ -31,7 +30,6 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
     protected $curl;
     protected $document;
     protected $converter;
-    protected $docManager;
 
     /**
      * Initialize unit test
@@ -54,15 +52,12 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->client)->createPing()->thenReturn($this->ping);
         Phake::when($this->client)->getAdapter()->thenReturn($this->curl);
 
-        $this->docManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
-        Phake::when($this->docManager)->getRepository(Phake::anyParameters())->thenReturn($this->repository);
-
         $this->converter = Phake::mock('PHPOrchestra\IndexationBundle\SolrConverter\ConverterManager');
         Phake::when($this->converter)->getContent(Phake::anyParameters())->thenReturn('Hello world!!!', 'Hello world!!!');
         Phake::when($this->converter)->generateUrl(Phake::anyParameters())->thenReturn('app_dev/fixture_full');
         Phake::when($this->converter)->toSolrDocument(Phake::anyParameters())->thenReturn($this->document);
 
-        $this->solrIndexCommand = new SolrIndexCommand($this->docManager, $this->client, $this->converter);
+        $this->solrIndexCommand = new SolrIndexCommand($this->repository, $this->client, $this->converter);
     }
 
     /**

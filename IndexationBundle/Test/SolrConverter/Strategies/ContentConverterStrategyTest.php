@@ -18,7 +18,7 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
     protected $strategy;
     protected $router;
     protected $url;
-    protected $docManager;
+    protected $nodeRepository;
 
     /**
      * Set up the test
@@ -27,13 +27,11 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $this->strategies = array('content');
         $this->url = 'http://phporchestra.dev/app_dev/fixture_full';
-
-        $this->docManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
-
+        $this->nodeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\NodeRepository');
         $this->router = Phake::mock('PHPOrchestra\CMSBundle\Routing\PhpOrchestraUrlGenerator');
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->url);
 
-        $this->strategy = new ContentConverterStrategy($this->router, $this->docManager);
+        $this->strategy = new ContentConverterStrategy($this->router, $this->nodeRepository);
     }
 
     /**
@@ -133,11 +131,9 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
         $nodeId = 'fixture_full';
         $contentId = '3';
         $content = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
-        $nodeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\NodeRepository');
         $block = Phake::mock('PHPOrchestra\ModelBundle\Document\Block');
 
-        Phake::when($this->docManager)->getRepository(Phake::anyParameters())->thenReturn($nodeRepository);
-        Phake::when($nodeRepository)->findAll()->thenReturn($nodes);
+        Phake::when($this->nodeRepository)->findAll()->thenReturn($nodes);
         Phake::when($content)->getContentType()->thenReturn($type);
 
         foreach ($nodes as $node) {
@@ -149,8 +145,7 @@ class ContentConverterStrategyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($this->url, $this->strategy->generateUrl($content));
 
-        Phake::verify($this->docManager)->getRepository('PHPOrchestra\ModelBundle\Document\Node');
-        Phake::verify($nodeRepository)->findAll();
+        Phake::verify($this->nodeRepository)->findAll();
         Phake::verify($content)->getContentType();
 
         foreach ($nodes as $node) {

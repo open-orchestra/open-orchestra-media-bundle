@@ -7,6 +7,7 @@ use PHPOrchestra\CMSBundle\Model\Content;
 use PHPOrchestra\CMSBundle\Model\Node;
 use PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerInterface;
 use PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand;
+use PHPOrchestra\ModelBundle\Repository\ListIndexRepository;
 
 /**
  * Class SolrStrategy
@@ -17,24 +18,28 @@ class SolrStrategy implements IndexerInterface
     protected $solrIndexCommand;
     protected $documentManager;
     protected $listIndex;
+    protected $listIndexRepository;
 
     /**
-     * @param array            $indexationType
-     * @param SolrIndexCommand $solrIndexCommand
-     * @param DocumentManager  $documentManager
-     * @param string           $listIndex
+     * @param array               $indexationType
+     * @param SolrIndexCommand    $solrIndexCommand
+     * @param DocumentManager     $documentManager
+     * @param string              $listIndex
+     * @param ListIndexRepository $listIndexRepository
      */
     public function __construct(
         array $indexationType,
         SolrIndexCommand $solrIndexCommand,
         DocumentManager $documentManager,
-        $listIndex
+        $listIndex,
+        ListIndexRepository $listIndexRepository
     )
     {
         $this->indexationType = $indexationType;
         $this->solrIndexCommand = $solrIndexCommand;
         $this->documentManager = $documentManager;
         $this->listIndex = $listIndex;
+        $this->listIndexRepository = $listIndexRepository;
     }
 
     /**
@@ -102,9 +107,7 @@ class SolrStrategy implements IndexerInterface
     {
         if ($this->solrIndexCommand->solrIsRunning()) {
             $this->solrIndexCommand->deleteIndex($docId);
-            $this->documentManager
-                ->getRepository('PHPOrchestra\ModelBundle\Repository\ListIndexRepository')
-                ->removeByDocId($docId);
+            $this->listIndexRepository->removeByDocId($docId);
         }
     }
 

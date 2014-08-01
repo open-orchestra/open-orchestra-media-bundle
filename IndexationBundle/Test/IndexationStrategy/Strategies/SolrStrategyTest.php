@@ -35,9 +35,13 @@ class SolrStrategyTest extends \PHPUnit_Framework_TestCase
 
         $this->docManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
 
-        Phake::when($this->docManager)->getRepository(Phake::anyParameters())->thenReturn($this->listIndexRepository);
-
-        $this->strategy = new SolrStrategy($this->strategies, $this->solrIndexCommand, $this->docManager, $this->listIndex);
+        $this->strategy = new SolrStrategy(
+            $this->strategies,
+            $this->solrIndexCommand,
+            $this->docManager,
+            $this->listIndex,
+            $this->listIndexRepository
+        );
     }
 
     /**
@@ -55,7 +59,13 @@ class SolrStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testDoesNotSupport($strategies)
     {
-        $strategy = new SolrStrategy($strategies, $this->solrIndexCommand, $this->docManager, $this->listIndex);
+        $strategy = new SolrStrategy(
+            $strategies,
+            $this->solrIndexCommand,
+            $this->docManager,
+            $this->listIndex,
+            $this->listIndexRepository
+        );
 
         $this->assertFalse($strategy->supportIndexation());
     }

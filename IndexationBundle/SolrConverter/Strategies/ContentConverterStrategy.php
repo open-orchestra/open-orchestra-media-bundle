@@ -2,10 +2,10 @@
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter\Strategies;
 
-use Doctrine\ODM\MongoDB\DocumentManager;
 use PHPOrchestra\IndexationBundle\SolrConverter\ConverterInterface;
 use PHPOrchestra\ModelBundle\Document\Content;
 use PHPOrchestra\ModelBundle\Document\Node;
+use PHPOrchestra\ModelBundle\Repository\NodeRepository;
 use Solarium\QueryType\Update\Query\Document\Document;
 use Solarium\QueryType\Update\Query\Query;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -15,18 +15,23 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class ContentConverterStrategy implements ConverterInterface
 {
-
+    /**
+     * @var UrlGeneratorInterface
+     */
     protected $router;
-    protected $documentManager;
+    /**
+     * @var NodeRepository
+     */
+    protected $nodeRepository;
 
     /**
      * @param UrlGeneratorInterface $router
-     * @param DocumentManager       $documentManager
+     * @param NodeRepository        $nodeRepository
      */
-    public function __construct(UrlGeneratorInterface $router, DocumentManager $documentManager)
+    public function __construct(UrlGeneratorInterface $router, NodeRepository $nodeRepository)
     {
         $this->router = $router;
-        $this->documentManager = $documentManager;
+        $this->nodeRepository = $nodeRepository;
     }
 
     /**
@@ -106,9 +111,7 @@ class ContentConverterStrategy implements ConverterInterface
      */
     public function generateUrl($doc)
     {
-        $nodes = $this->documentManager
-            ->getRepository('PHPOrchestra\ModelBundle\Document\Node')
-            ->findAll();
+        $nodes = $this->nodeRepository->findAll();
 
         if (is_array($nodes)) {
             foreach ($nodes as $node) {
