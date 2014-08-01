@@ -51,10 +51,10 @@ class IndexCommandTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->update = Phake::mock('Solarium\QueryType\Update\Query\Query');
-        $this->content = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
+        $this->content = Phake::mock('PHPOrchestra\ModelBundle\Model\ContentInterface');
         $this->node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
-        $this->listIndexNode = Phake::mock('PHPOrchestra\ModelBundle\Document\ListIndex');
-        $this->listIndexContent = Phake::mock('PHPOrchestra\ModelBundle\Document\ListIndex');
+        $this->listIndexNode = Phake::mock('PHPOrchestra\ModelBundle\Model\ListIndexInterface');
+        $this->listIndexContent = Phake::mock('PHPOrchestra\ModelBundle\Model\ListIndexInterface');
         $this->listRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\ListIndexRepository');
         $this->nodeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\NodeRepository');
         $this->contentRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\ContentRepository');

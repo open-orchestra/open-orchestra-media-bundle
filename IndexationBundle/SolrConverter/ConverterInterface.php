@@ -2,8 +2,8 @@
 
 namespace PHPOrchestra\IndexationBundle\SolrConverter;
 
-use PHPOrchestra\ModelBundle\Document\Content;
-use PHPOrchestra\ModelBundle\Document\Node;
+use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use Solarium\QueryType\Update\Query\Document\Document;
 use Solarium\QueryType\Update\Query\Query;
 
@@ -14,7 +14,7 @@ interface ConverterInterface
 {
 
     /**
-     * @param Node|Content $doc
+     * @param NodeInterface|ContentInterface $doc
      *
      * @return boolean
      */
@@ -26,25 +26,25 @@ interface ConverterInterface
     public function getName();
 
     /**
-     * @param Node|Content $doc
-     * @param array        $fields
-     * @param Query        $update
+     * @param NodeInterface|ContentInterface $doc
+     * @param array                          $fields
+     * @param Query                          $update
      *
      * @return Document
      */
     public function toSolrDocument($doc, $fields, Query $update);
 
     /**
-     * @param Node|Content $doc
-     * @param string       $fieldName
-     * @param bool         $isArray
+     * @param NodeInterface|ContentInterface $doc
+     * @param string                         $fieldName
+     * @param bool                           $isArray
      *
      * @return array
      */
     public function getContent($doc, $fieldName, $isArray);
 
     /**
-     * @param Node|Content $doc
+     * @param NodeInterface|ContentInterface $doc
      *
      * @return string
      */

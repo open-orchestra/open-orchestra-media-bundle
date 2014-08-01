@@ -33,7 +33,7 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testSupport()
     {
-        $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
         $this->assertTrue($this->strategy->support($node));
     }
 
@@ -42,7 +42,7 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testDoesNotSupport()
     {
-        $fieldIndex = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
+        $fieldIndex = Phake::mock('PHPOrchestra\ModelBundle\Model\ContentInterface');
         $this->assertFalse($this->strategy->support($fieldIndex));
     }
 
@@ -54,7 +54,7 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
     public function testToSolrDocument($fields)
     {
         $document = Phake::mock('Solarium\QueryType\Update\Query\Document\Document');
-        $node = Phake::mock('Model\PHPOrchestraCMSBundle\Node');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
         $update = Phake::mock('Solarium\QueryType\Update\Query\Query');
         Phake::when($update)->createDocument()->thenReturn($document);
 
@@ -101,8 +101,8 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
     public function testGetContent()
     {
         $fieldName = 'title';
-        $node = Phake::mock('Model\PHPOrchestraCMSBundle\Node');
-        $block = Phake::mock('Model\PHPOrchestraCMSBundle\Block');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $block = Phake::mock('PHPOrchestra\ModelBundle\Model\BlockInterface');
 
         Phake::when($node)->getBlocks()->thenReturn(array($block, $block));
         Phake::when($block)->getAttributes()->thenReturn(array($fieldName => 'test', 'author' => 'moi'));
@@ -121,7 +121,7 @@ class NodeConverterStrategyTest extends \PHPUnit_Framework_TestCase
     public function testGenerateUrl($nodeId)
     {
         $absoluteUrl = 'http://phporchestra.dev/app_dev/'.$nodeId;
-        $node = Phake::mock('Model\PHPOrchestraCMSBundle\Node');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
         Phake::when($node)->getNodeId()->thenReturn($nodeId);
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($absoluteUrl);
 

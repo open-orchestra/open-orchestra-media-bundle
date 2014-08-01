@@ -6,7 +6,6 @@ use Phake;
 use PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand;
 use PHPOrchestra\ModelBundle\Document\Content;
 use PHPOrchestra\ModelBundle\Document\Node;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Unit test of SolrIndexCommand
@@ -127,8 +126,8 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function provideDocs()
     {
-        $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
-        $content = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $content = Phake::mock('PHPOrchestra\ModelBundle\Model\ContentInterface');
 
         return array(
             array($node, 'Node'),
@@ -214,7 +213,7 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function getNode()
     {
-        $home = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
+        $home = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
 
         $full = new Node($this->mandango);
         $full->initializeDefaults();
@@ -229,21 +228,21 @@ class SolrIndexCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function getFields()
     {
-        $field1 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
+        $field1 = Phake::mock('PHPOrchestra\ModelBundle\Model\FieldIndexInterface');
 
-        $field2 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
+        $field2 = Phake::mock('PHPOrchestra\ModelBundle\Model\FieldIndexInterface');
 
-        $field3 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
+        $field3 = Phake::mock('PHPOrchestra\ModelBundle\Model\FieldIndexInterface');
 
-        $field4 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
+        $field4 = Phake::mock('PHPOrchestra\ModelBundle\Model\FieldIndexInterface');
 
-        $field5 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
+        $field5 = Phake::mock('PHPOrchestra\ModelBundle\Model\FieldIndexInterface');
 
-        $field6 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
+        $field6 = Phake::mock('PHPOrchestra\ModelBundle\Model\FieldIndexInterface');
 
-        $field7 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
+        $field7 = Phake::mock('PHPOrchestra\ModelBundle\Model\FieldIndexInterface');
 
-        $field8 = Phake::mock('PHPOrchestra\ModelBundle\Document\FieldIndex');
+        $field8 = Phake::mock('PHPOrchestra\ModelBundle\Model\FieldIndexInterface');
 
         return array(
             0 => $field1,

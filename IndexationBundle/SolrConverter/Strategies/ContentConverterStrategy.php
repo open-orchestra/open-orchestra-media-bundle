@@ -3,8 +3,8 @@
 namespace PHPOrchestra\IndexationBundle\SolrConverter\Strategies;
 
 use PHPOrchestra\IndexationBundle\SolrConverter\ConverterInterface;
-use PHPOrchestra\ModelBundle\Document\Content;
-use PHPOrchestra\ModelBundle\Document\Node;
+use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use PHPOrchestra\ModelBundle\Repository\NodeRepository;
 use Solarium\QueryType\Update\Query\Document\Document;
 use Solarium\QueryType\Update\Query\Query;
@@ -35,13 +35,13 @@ class ContentConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Node|Content $doc
+     * @param NodeInterface|ContentInterface $doc
      *
      * @return boolean
      */
     public function support($doc)
     {
-        return $doc instanceof Content;
+        return $doc instanceof ContentInterface;
     }
 
     /**
@@ -53,9 +53,9 @@ class ContentConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Content $doc
-     * @param array   $fields
-     * @param Query   $update
+     * @param ContentInterface $doc
+     * @param array            $fields
+     * @param Query            $update
      *
      * @return Document
      */
@@ -80,9 +80,9 @@ class ContentConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Content $doc
-     * @param string  $fieldName
-     * @param bool    $isArray
+     * @param ContentInterface $doc
+     * @param string           $fieldName
+     * @param bool             $isArray
      *
      * @return array
      */
@@ -105,7 +105,7 @@ class ContentConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Content $doc
+     * @param ContentInterface $doc
      *
      * @return string
      */
@@ -131,8 +131,8 @@ class ContentConverterStrategy implements ConverterInterface
     }
 
     /**
-     * @param Node   $node
-     * @param string $contentType
+     * @param NodeInterface $node
+     * @param string        $contentType
      *
      * @return bool
      */

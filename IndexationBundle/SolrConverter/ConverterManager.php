@@ -3,8 +3,9 @@
 namespace PHPOrchestra\IndexationBundle\SolrConverter;
 
 use PHPOrchestra\IndexationBundle\Exception\SolrConvertException;
-use PHPOrchestra\ModelBundle\Document\Content;
-use PHPOrchestra\ModelBundle\Document\Node;
+use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use Solarium\QueryType\Update\Query\Document\Document;
 use Solarium\QueryType\Update\Query\Query;
 
 /**
@@ -24,13 +25,13 @@ class ConverterManager
     }
 
     /**
-     * @param Node|Content $doc
-     * @param array        $fields
-     * @param Query        $update
+     * @param NodeInterface|ContentInterface $doc
+     * @param array                          $fields
+     * @param Query                          $update
      *
      * @throws SolrConvertException
      *
-     * @return \Solarium\QueryType\Update\Query\Document\Document
+     * @return Document
      */
     public function toSolrDocument($doc, $fields, $update)
     {
@@ -45,9 +46,9 @@ class ConverterManager
     }
 
     /**
-     * @param Node|Content $doc
-     * @param string       $fieldName
-     * @param bool         $isArray
+     * @param NodeInterface|ContentInterface $doc
+     * @param string                         $fieldName
+     * @param bool                           $isArray
      *
      * @throws SolrConvertException
      *
@@ -66,7 +67,7 @@ class ConverterManager
     }
 
     /**
-     * @param Node|Content $doc
+     * @param NodeInterface|ContentInterface $doc
      *
      * @throws SolrConvertException
      *

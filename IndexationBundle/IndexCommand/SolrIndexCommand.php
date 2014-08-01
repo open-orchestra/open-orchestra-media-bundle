@@ -3,8 +3,8 @@
 namespace PHPOrchestra\IndexationBundle\IndexCommand;
 
 use PHPOrchestra\IndexationBundle\SolrConverter\ConverterManager;
-use PHPOrchestra\ModelBundle\Document\Content;
-use PHPOrchestra\ModelBundle\Document\Node;
+use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use PHPOrchestra\ModelBundle\Repository\FieldIndexRepository;
 use Solarium\Client;
 use Solarium\QueryType\Update\Result;
@@ -39,9 +39,9 @@ class SolrIndexCommand
     /**
      * index one or more nodes in solr
      *
-     * @param Node(array)|Content(array) $docs    One or many object Node|Content
-     * @param string                     $docType type of documents
-     * @param array                      $fields  array of Model/PHPOrchestraCMSBundle/FieldIndex
+     * @param NodeInterface(array)|ContentInterface(array) $docs    One or many object Node|Content
+     * @param string                                       $docType type of documents
+     * @param array                                        $fields  array of Model/PHPOrchestraCMSBundle/FieldIndex
      * 
      * @return Result
      */

@@ -3,8 +3,8 @@
 namespace PHPOrchestra\IndexationBundle\IndexationStrategy\Strategies;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
-use PHPOrchestra\CMSBundle\Model\Content;
-use PHPOrchestra\CMSBundle\Model\Node;
+use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use PHPOrchestra\IndexationBundle\IndexationStrategy\IndexerInterface;
 use PHPOrchestra\IndexationBundle\IndexCommand\SolrIndexCommand;
 use PHPOrchestra\ModelBundle\Repository\ListIndexRepository;
@@ -61,8 +61,8 @@ class SolrStrategy implements IndexerInterface
     /**
      * call indexation
      *
-     * @param Node|Content $docs    documents
-     * @param string       $docType Node or Content
+     * @param NodeInterface|ContentInterface $docs    documents
+     * @param string                         $docType Node or Content
      */
     public function index($docs, $docType)
     {

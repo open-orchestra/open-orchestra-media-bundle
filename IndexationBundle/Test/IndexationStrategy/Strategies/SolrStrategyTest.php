@@ -123,8 +123,8 @@ class SolrStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function provideDocsAndDocType()
     {
-        $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
-        $content = Phake::mock('PHPOrchestra\ModelBundle\Document\Content');
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $content = Phake::mock('PHPOrchestra\ModelBundle\Model\ContentInterface');
 
         Phake::when($node)->getNodeId()->thenReturn($this->nodeId);
         Phake::when($content)->getContentId()->thenReturn($this->contentId);
