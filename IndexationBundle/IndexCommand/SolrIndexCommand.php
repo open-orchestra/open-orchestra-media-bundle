@@ -127,12 +127,12 @@ class SolrIndexCommand
     /**
      * Get the content for all the fields
      *
-     * @param array $fields array of FieldIndex
-     * @param mixed $doc    a document node or content
+     * @param array                          $fields array of FieldIndex
+     * @param NodeInterface|ContentInterface $doc    a document node or content
      *
      * @return array
      */
-    protected function getContentField($fields, $doc)
+    protected function getContentField(array $fields, $doc)
     {
         $fieldComplete = array();
 

@@ -80,7 +80,6 @@ class IndexCommandTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->kernel)->getContainer()->thenReturn($this->container);
     }
 
-
     /**
      * Execute IndexCommand
      */
