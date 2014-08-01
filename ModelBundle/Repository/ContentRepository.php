@@ -20,8 +20,7 @@ class ContentRepository extends DocumentRepository
             'contentType'=> "news",
             'status'=> "published"
         );
-        $allNews = $this->findBy($criteria);
 
-        return $allNews;
+        return $this->findBy($criteria);
     }
 }
