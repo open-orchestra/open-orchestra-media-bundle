@@ -13,7 +13,7 @@ use PHPOrchestra\ModelBundle\Model\TemplateInterface;
  *
  * @MongoDB\Document(
  *   collection="site",
- *   repositoryClass="PHPOrchestra\ModelBundle\Repository\TmeplateRepository"
+ *   repositoryClass="PHPOrchestra\ModelBundle\Repository\TemplateRepository"
  * )
  */
 class Template implements TemplateInterface
