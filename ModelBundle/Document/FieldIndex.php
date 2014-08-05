@@ -37,6 +37,13 @@ class FieldIndex implements FieldIndexInterface
     protected $fieldType;
 
     /**
+     * @var boolean
+     *
+     * @MongoDB\Field(type="boolean")
+     */
+    protected $isLink;
+
+    /**
      * @param string $fieldName
      */
     public function setFieldName($fieldName)
@@ -66,5 +73,21 @@ class FieldIndex implements FieldIndexInterface
     public function getFieldType()
     {
         return $this->fieldType;
+    }
+
+    /**
+     * @param boolean $isLink
+     */
+    public function setIsLink($isLink)
+    {
+        $this->isLink = $isLink;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIsLink()
+    {
+        return $this->isLink;
     }
 }

@@ -9,4 +9,13 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
  */
 class FieldIndexRepository extends DocumentRepository
 {
+    /**
+     * Get All field that will be a link
+     *
+     * @return array
+     */
+    public function findAllLink()
+    {
+        return $this->findBy(array('isLink' => true));
+    }
 }

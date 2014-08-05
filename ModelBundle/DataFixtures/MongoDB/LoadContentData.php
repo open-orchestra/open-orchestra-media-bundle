@@ -45,7 +45,7 @@ class LoadContentData implements FixtureInterface
 
         $attribute2 = new ContentAttribute();
         $attribute2->setName('image');
-        $attribute2->setValue("web/bvef.jpg");
+        $attribute2->setValue("/apple-touch-icon.png");
 
         $attribute3 = new ContentAttribute();
         $attribute3->setName("intro");
