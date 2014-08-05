@@ -141,9 +141,10 @@ class LoadNodeData implements FixtureInterface
         $block5 = new Block();
         $block5->setComponent('Sample');
         $block5->setAttributes(array(
-            'title' => 'mapub.jpg',
+            'title' => '/apple-touch-icon.png',
             'author' => 'bépo',
-            'news' => ''
+            'news' => '',
+            'image' => '/apple-touch-icon.png'
         ));
 
         $block6 = new Block();
@@ -495,7 +496,7 @@ class LoadNodeData implements FixtureInterface
             'nodeId' => 'fixture_search',
             'nbdoc' => '5',
             'fielddisplayed' => array(
-                "title_s", "news_t", "author_ss", "title_txt", "intro_t", "text_t", "description_t",
+                "news_t", "author_ss", "title_txt", "intro_t", "text_t", "description_t", "image_img"
             ),
             "facets" => array(
                 "facetField" => array(

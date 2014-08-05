@@ -26,4 +26,14 @@ Interface FieldIndexInterface
      * @return string
      */
     public function getFieldType();
+
+    /**
+     * @param boolean $isLink
+     */
+    public function setIsLink($isLink);
+
+    /**
+     * @return boolean
+     */
+    public function getIsLink();
 }

@@ -54,6 +54,7 @@ class LoadFieldIndexData implements FixtureInterface
 
         $fieldIndex->setFieldName('title');
         $fieldIndex->setFieldType('s');
+        $fieldIndex->setIsLink(true);
 
         return $fieldIndex;
     }
@@ -67,6 +68,7 @@ class LoadFieldIndexData implements FixtureInterface
 
         $fieldIndex->setFieldName('news');
         $fieldIndex->setFieldType('t');
+        $fieldIndex->setIsLink(false);
 
         return $fieldIndex;
     }
@@ -80,6 +82,7 @@ class LoadFieldIndexData implements FixtureInterface
 
         $fieldIndex->setFieldName('author');
         $fieldIndex->setFieldType('ss');
+        $fieldIndex->setIsLink(false);
 
         return $fieldIndex;
     }
@@ -93,6 +96,7 @@ class LoadFieldIndexData implements FixtureInterface
 
         $fieldIndex->setFieldName('title');
         $fieldIndex->setFieldType('txt');
+        $fieldIndex->setIsLink(false);
 
         return $fieldIndex;
     }
@@ -105,7 +109,8 @@ class LoadFieldIndexData implements FixtureInterface
         $fieldIndex = new FieldIndex();
 
         $fieldIndex->setFieldName('image');
-        $fieldIndex->setFieldType('s');
+        $fieldIndex->setFieldType('img');
+        $fieldIndex->setIsLink(false);
 
         return $fieldIndex;
     }
@@ -119,6 +124,7 @@ class LoadFieldIndexData implements FixtureInterface
 
         $fieldIndex->setFieldName('intro');
         $fieldIndex->setFieldType('t');
+        $fieldIndex->setIsLink(false);
 
         return $fieldIndex;
     }
@@ -132,6 +138,7 @@ class LoadFieldIndexData implements FixtureInterface
 
         $fieldIndex->setFieldName('text');
         $fieldIndex->setFieldType('t');
+        $fieldIndex->setIsLink(false);
 
         return $fieldIndex;
     }
@@ -145,6 +152,7 @@ class LoadFieldIndexData implements FixtureInterface
 
         $fieldIndex->setFieldName('description');
         $fieldIndex->setFieldType('t');
+        $fieldIndex->setIsLink(false);
 
         return $fieldIndex;
     }
