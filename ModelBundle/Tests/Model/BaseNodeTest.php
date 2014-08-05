@@ -17,8 +17,6 @@
 
 namespace PHPOrchestra\ModelBundle\Tests\Model;
 
-require_once __DIR__.'/../../../../../../../app/AppKernel.php';
-
 /**
  * Description of BaseNodeTest
  *
@@ -26,23 +24,8 @@ require_once __DIR__.'/../../../../../../../app/AppKernel.php';
  */
 class BaseNodeTest extends \PHPUnit_Framework_TestCase
 {
-    /*
-    public function testNodeCreation()
-    {   $kernel = new \AppKernel('dev', true);
-        $kernel->boot();
-
-        $container = $kernel->getContainer();
-        
-        $node = new \PHPOrchestraModel\MongoBundle\Document\Node;
-        $node
-            ->setName('Test')
-            ->setAlias('test')
-            ->setPath('/1/2/3')
-            ->setStatus('published');
-        
-        $dm = $container->get('doctrine_mongodb')->getManager();
-        $dm->persist($node);
-        $dm->flush();
+    public function testDummy()
+    {
+        $this->assertTrue(true);
     }
-     */
 }

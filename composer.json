@@ -9,13 +9,20 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "doctrine/mongodb-odm" : "1.0.*@dev",
-        "doctrine/mongodb-odm-bundle" : "3.0.*@dev"
+        "doctrine/data-fixtures":"1.0.0",
+        "doctrine/mongodb-odm" : "~1.0",
+        "doctrine/mongodb-odm-bundle" : "~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.0.14",
+        "phake/phake": "*"
+    },
+    "config" : {
+        "bin-dir" : "bin"
     },
     "autoload": {
         "psr-0": {
-            "PHPOrchestra\\ModelBundle": "",
-            "PHPOrchestra\\IndexationBundle": ""
+            "PHPOrchestra\\ModelBundle": ""
         }
     },
     "target-dir": "PHPOrchestra"
