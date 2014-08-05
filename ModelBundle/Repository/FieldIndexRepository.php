@@ -16,13 +16,6 @@ class FieldIndexRepository extends DocumentRepository
      */
     public function findAllLink()
     {
-        $fields = $this->findBy(array('isLink' => true));
-        $completeFields = array();
-
-        foreach ($fields as $field) {
-            $completeFields[] = $field->getFieldName().'_'.$field->getFieldType();
-        }
-
-        return $completeFields;
+        return $this->findBy(array('isLink' => true));
     }
 }
