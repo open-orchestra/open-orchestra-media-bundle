@@ -5,12 +5,11 @@ source_key: "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQ0KTUlJRW93SUJBQUtDQVFFQXV
 
 php:
   - 5.3.3
-  - 5.3
   - 5.4
 
 before_script: 
   - phpenv config-add .travis.php.ini
   - composer install
 
-script: phpunit ModelBundle
+script: ./bin/phpunit ModelBundle
 
