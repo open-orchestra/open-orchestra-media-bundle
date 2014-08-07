@@ -10,6 +10,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 interface NodeInterface
 {
     const PUBLISHED = 'published';
+    const STATUS_DRAFT = 'draft';
+    const STATUS_PENDING = 'pending';
+    const STATUS_PUBLISHED = 'published';
+
+    const TYPE_DEFAULT = 'page';
+
+    const ROOT_NODE_ID = 'root';
     /**
      * Get id
      *
