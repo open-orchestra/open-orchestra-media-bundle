@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Interface NodeInterface
  */
-interface NodeInterface
+interface NodeInterface extends AreaContainerInterface
 {
     const PUBLISHED = 'published';
     const STATUS_DRAFT = 'draft';
@@ -232,33 +232,6 @@ interface NodeInterface
      * @param BlockInterface $block
      */
     public function removeBlock(BlockInterface $block);
-
-    /**
-     * Get blocks
-     *
-     * @return ArrayCollection $blocks
-     */
-    public function getBlocks();
-
-    /**
-     * @param AreaInterface $area
-     */
-    public function addArea(AreaInterface $area);
-
-    /**
-     * @param AreaInterface $area
-     */
-    public function removeArea(AreaInterface $area);
-
-    /**
-     * Remove all area
-     */
-    public function removeAllArea();
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getAreas();
 
     /**
      * @param boolean $inFooter

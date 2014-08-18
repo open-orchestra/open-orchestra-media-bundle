@@ -489,14 +489,6 @@ class Node implements NodeInterface
     }
 
     /**
-     * Remove all area
-     */
-    public function removeAllArea()
-    {
-        $this->areas = new ArrayCollection();
-    }
-
-    /**
      * @return ArrayCollection
      */
     public function getAreas()

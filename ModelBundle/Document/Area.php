@@ -144,7 +144,7 @@ class Area implements AreaInterface
      *
      * @param AreaInterface $subArea
      */
-    public function addSubArea(AreaInterface $subArea)
+    public function addArea(AreaInterface $subArea)
     {
         $this->subAreas->add($subArea);
     }
@@ -154,7 +154,7 @@ class Area implements AreaInterface
      *
      * @param AreaInterface $subArea
      */
-    public function removeSubArea(AreaInterface $subArea)
+    public function removeArea(AreaInterface $subArea)
     {
         $this->subAreas->removeElement($subArea);
     }
@@ -164,7 +164,7 @@ class Area implements AreaInterface
      *
      * @return ArrayCollection $subAreas
      */
-    public function getSubAreas()
+    public function getAreas()
     {
         return $this->subAreas;
     }

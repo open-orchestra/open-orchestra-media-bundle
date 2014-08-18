@@ -70,7 +70,7 @@ class NodeRepository extends DocumentRepository
      */
     protected function findAreaByAreaId(AreaInterface $area, $areaId)
     {
-        foreach ($area->getSubAreas() as $subArea) {
+        foreach ($area->getAreas() as $subArea) {
             if ($areaId == $subArea->getAreaId()) {
                 return $subArea;
             }

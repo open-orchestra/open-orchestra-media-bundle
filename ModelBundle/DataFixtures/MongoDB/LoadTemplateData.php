@@ -70,9 +70,9 @@ class LoadTemplateData implements FixtureInterface
         $main = new Area();
         $main->setAreaId('main');
         $main->setBoDirection('v');
-        $main->addSubArea($leftMenu);
-        $main->addSubArea($content);
-        $main->addSubArea($skycrapper);
+        $main->addArea($leftMenu);
+        $main->addArea($content);
+        $main->addArea($skycrapper);
 
         $footer = new Area();
         $footer->setAreaId('footer');
