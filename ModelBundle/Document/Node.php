@@ -430,7 +430,17 @@ class Node implements NodeInterface
      */
     public function addBlock(BlockInterface $block)
     {
-        $this->blocks[] = $block;
+        $this->blocks->add($block);
+    }
+
+    /**
+     * @param BlockInterface $block
+     *
+     * @return bool|int|mixed|string
+     */
+    public function getBlockIndex(BlockInterface $block)
+    {
+        return $this->blocks->indexOf($block);
     }
 
     /**

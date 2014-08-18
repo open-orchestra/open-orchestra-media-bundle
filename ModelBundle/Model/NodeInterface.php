@@ -214,6 +214,13 @@ interface NodeInterface
     public function addBlock(BlockInterface $block);
 
     /**
+     * @param BlockInterface $block
+     *
+     * @return bool|int|mixed|string
+     */
+    public function getBlockIndex(BlockInterface $block);
+
+    /**
      * @param int            $key
      * @param BlockInterface $block
      */

@@ -94,6 +94,11 @@ interface AreaInterface
     public function setBlocks(array $blocks);
 
     /**
+     * @param array $block
+     */
+    public function addBlock(array $block);
+
+    /**
      * Get blocks
      *
      * @return array $blocks
