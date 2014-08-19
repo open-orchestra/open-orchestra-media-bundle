@@ -7,38 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Interface TemplateInterface
  */
-interface TemplateInterface
+interface TemplateInterface extends AreaContainerInterface, BlockContainerInterface
 {
-    /**
-     * @param AreaInterface $area
-     */
-    public function addArea(AreaInterface $area);
-
-    /**
-     * @param AreaInterface $area
-     */
-    public function removeArea(AreaInterface $area);
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getAreas();
-
-    /**
-     * @param BlockInterface $block
-     */
-    public function addBlock(BlockInterface $block);
-
-    /**
-     * @param BlockInterface $block
-     */
-    public function removeBlock(BlockInterface $block);
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getBlocks();
-
     /**
      * @param string $boDirection
      */
