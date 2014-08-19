@@ -12,7 +12,7 @@ use PHPOrchestra\ModelBundle\Model\TemplateInterface;
  * Description of Template
  *
  * @MongoDB\Document(
- *   collection="site",
+ *   collection="template",
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\TemplateRepository"
  * )
  */
@@ -286,5 +286,13 @@ class Template implements TemplateInterface
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getName();
     }
 }

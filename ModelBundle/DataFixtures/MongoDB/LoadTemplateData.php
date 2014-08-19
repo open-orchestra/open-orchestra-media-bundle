@@ -46,6 +46,7 @@ class LoadTemplateData implements FixtureInterface
         $generic->setStatus('published');
         $generic->setBoDirection('h');
         $generic->addArea($genericArea);
+
         return $generic;
     }
 
@@ -87,6 +88,7 @@ class LoadTemplateData implements FixtureInterface
         $full->addArea($header);
         $full->addArea($main);
         $full->addArea($footer);
+
         return $full;
     }
 
@@ -107,6 +109,7 @@ class LoadTemplateData implements FixtureInterface
         $template->setStatus('published');
         $template->setBoDirection('h');
         $template->addArea($main);
+
         return $template;
     }
 
