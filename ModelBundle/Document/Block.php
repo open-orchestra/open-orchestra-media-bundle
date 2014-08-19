@@ -24,7 +24,7 @@ class Block implements BlockInterface
      *
      * @MongoDB\Field(type="hash")
      */
-    protected $attributes;
+    protected $attributes = array();
 
     /**
      * Set component

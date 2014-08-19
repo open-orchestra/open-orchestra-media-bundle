@@ -2,12 +2,10 @@
 
 namespace PHPOrchestra\ModelBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * interface AreaInterface
  */
-interface AreaInterface
+interface AreaInterface extends AreaContainerInterface
 {
     /**
      * Set htmlId
@@ -66,27 +64,6 @@ interface AreaInterface
     public function getClasses();
 
     /**
-     * Add subArea
-     *
-     * @param AreaInterface $subArea
-     */
-    public function addSubArea(AreaInterface $subArea);
-
-    /**
-     * Remove subArea
-     *
-     * @param AreaInterface $subArea
-     */
-    public function removeSubArea(AreaInterface $subArea);
-
-    /**
-     * Get subAreas
-     *
-     * @return ArrayCollection $subAreas
-     */
-    public function getSubAreas();
-
-    /**
      * Set blocks
      *
      * @param array $blocks
@@ -94,10 +71,9 @@ interface AreaInterface
     public function setBlocks(array $blocks);
 
     /**
-     * Get blocks
-     *
-     * @return array $blocks
+     * @param array $block
      */
-    public function getBlocks();
+    public function addBlock(array $block);
+
 }
  

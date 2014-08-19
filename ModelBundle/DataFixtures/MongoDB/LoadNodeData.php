@@ -190,9 +190,9 @@ class LoadNodeData implements FixtureInterface
         $mainArea = new Area();
         $mainArea->setAreaId('main');
         $mainArea->setBoDirection('v');
-        $mainArea->addSubArea($leftMenuArea);
-        $mainArea->addSubArea($contentArea);
-        $mainArea->addSubArea($skycrapperArea);
+        $mainArea->addArea($leftMenuArea);
+        $mainArea->addArea($contentArea);
+        $mainArea->addArea($skycrapperArea);
 
         $footerArea = new Area();
         $footerArea->setAreaId('footer');
@@ -546,8 +546,8 @@ class LoadNodeData implements FixtureInterface
         $searchArea1 = new Area();
         $searchArea1->setAreaId('main');
         $searchArea1->setBoDirection('v');
-        $searchArea1->addSubArea($leftMenuArea);
-        $searchArea1->addSubArea($contentArea);
+        $searchArea1->addArea($leftMenuArea);
+        $searchArea1->addArea($contentArea);
 
 
         $searchArea2 = new Area();

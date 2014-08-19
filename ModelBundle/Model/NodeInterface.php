@@ -1,13 +1,13 @@
 <?php
 
-
 namespace PHPOrchestra\ModelBundle\Model;
+
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Interface NodeInterface
  */
-interface NodeInterface
+interface NodeInterface extends AreaContainerInterface, BlockContainerInterface
 {
     const PUBLISHED = 'published';
     const STATUS_DRAFT = 'draft';
@@ -207,51 +207,17 @@ interface NodeInterface
     public function getTheme();
 
     /**
-     * Add block
-     *
      * @param BlockInterface $block
+     *
+     * @return bool|int|mixed|string
      */
-    public function addBlock(BlockInterface $block);
+    public function getBlockIndex(BlockInterface $block);
 
     /**
      * @param int            $key
      * @param BlockInterface $block
      */
     public function setBlock($key, BlockInterface $block);
-
-    /**
-     * Remove block
-     *
-     * @param BlockInterface $block
-     */
-    public function removeBlock(BlockInterface $block);
-
-    /**
-     * Get blocks
-     *
-     * @return ArrayCollection $blocks
-     */
-    public function getBlocks();
-
-    /**
-     * @param AreaInterface $area
-     */
-    public function addArea(AreaInterface $area);
-
-    /**
-     * @param AreaInterface $area
-     */
-    public function removeArea(AreaInterface $area);
-
-    /**
-     * Remove all area
-     */
-    public function removeAllArea();
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getAreas();
 
     /**
      * @param boolean $inFooter
