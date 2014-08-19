@@ -44,6 +44,7 @@ class LoadTemplateData implements FixtureInterface
         $generic->setName('Generic Template');
         $generic->setLanguage('fr');
         $generic->setStatus('published');
+        $generic->setDeleted(false);
         $generic->setBoDirection('h');
         $generic->addArea($genericArea);
 
@@ -85,6 +86,7 @@ class LoadTemplateData implements FixtureInterface
         $full->setLanguage('fr');
         $full->setStatus('published');
         $full->setBoDirection('h');
+        $full->setDeleted(false);
         $full->addArea($header);
         $full->addArea($main);
         $full->addArea($footer);
@@ -108,6 +110,7 @@ class LoadTemplateData implements FixtureInterface
         $template->setLanguage('fr');
         $template->setStatus('published');
         $template->setBoDirection('h');
+        $template->setDeleted(false);
         $template->addArea($main);
 
         return $template;
