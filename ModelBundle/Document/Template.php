@@ -26,9 +26,9 @@ class Template implements TemplateInterface
     protected $id;
     
     /**
-     * @var int $templateId
+     * @var string $templateId
      *
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="string")
      */
     protected $templateId;
     
@@ -72,7 +72,7 @@ class Template implements TemplateInterface
      *
      * @MongoDB\Field(type="boolean")
      */
-    protected $deleted;
+    protected $deleted = false;
     
     /**
      * @var AreaInterface
@@ -249,7 +249,7 @@ class Template implements TemplateInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getTemplateId()
     {
