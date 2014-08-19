@@ -33,4 +33,5 @@ interface BlockContainerInterface
      */
     public function getBlocks();
 }
+
  
