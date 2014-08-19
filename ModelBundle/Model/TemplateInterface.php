@@ -70,7 +70,7 @@ interface TemplateInterface extends AreaContainerInterface, BlockContainerInterf
     public function setTemplateId($templateId);
 
     /**
-     * @return int
+     * @return string
      */
     public function getTemplateId();
 
