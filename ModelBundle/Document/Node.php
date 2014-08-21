@@ -100,7 +100,7 @@ class Node implements NodeInterface
      *
      * @MongoDB\Field(type="boolean")
      */
-    protected $deleted;
+    protected $deleted = false;
 
     /**
      * @var string
