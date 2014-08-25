@@ -73,6 +73,7 @@ class ContentType implements ContentTypeInterface
     {
         $this->fields = new ArrayCollection();
     }
+
     /**
      * @param int $contentTypeId
      */
@@ -114,22 +115,11 @@ class ContentType implements ContentTypeInterface
     }
 
     /**
-     * @param int                $key
-     * @param FieldTypeInterface $field
+     * @param FieldTypeInterface $fields
      */
-    public function setField($key, FieldTypeInterface $field)
+    public function setFields(FieldTypeInterface $fields)
     {
-        $this->fields->set($key, $field);
-    }
-
-    /**
-     * @param FieldTypeInterface $field
-     *
-     * @return FieldTypeInterface
-     */
-    public function getFieldIndex(FieldTypeInterface $field)
-    {
-        return $this->$fields->indexOf($field);
+        $this->fields = $fields;
     }
 
     /**

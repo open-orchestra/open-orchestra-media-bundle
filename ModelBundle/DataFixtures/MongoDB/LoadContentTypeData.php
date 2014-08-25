@@ -14,7 +14,7 @@ class LoadContentTypeData implements FixtureInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
-     * 
+     *
      * @param ObjectManager $manager
      */
     function load(ObjectManager $manager)

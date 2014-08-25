@@ -28,17 +28,9 @@ interface ContentTypeInterface extends FieldTypeContainerInterface
     public function getDeleted();
 
     /**
-     * @param int                $key
-     * @param FieldTypeInterface $field
+     * @param FieldTypeInterface $fields
      */
-    public function setField($key, FieldTypeInterface $field);
-
-    /**
-     * @param FieldTypeInterface $field
-     *
-     * @return FieldTypeInterface
-     */
-    public function getFieldIndex(FieldTypeInterface $field);
+    public function setFields(FieldTypeInterface $fields);
 
     /**
      * @return string

@@ -60,6 +60,7 @@ class FieldType implements FieldTypeInterface
      * @MongoDB\Field(type="hash")
      */
     protected $options = array();
+
     /**
      * Set FieldId
      *
@@ -195,5 +196,4 @@ class FieldType implements FieldTypeInterface
     {
         return $this->options;
     }
-
 }
