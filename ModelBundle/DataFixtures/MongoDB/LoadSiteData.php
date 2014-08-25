@@ -16,6 +16,26 @@ class LoadSiteData implements FixtureInterface
      */
     function load(ObjectManager $manager)
     {
+        $site1 = $this->getSite1();
+        $manager->persist($site1);
+
+        $site2 = $this->getSite2();
+        $manager->persist($site2);
+
+        $site3 = $this->getSite3();
+        $manager->persist($site3);
+
+        $site4 = $this->getSite4();
+        $manager->persist($site4);
+
+        $manager->flush();
+    }
+
+    /**
+     * @return Site
+     */
+    protected function getSite1()
+    {
         $site1 = new Site();
         $site1->setSiteId(1);
         $site1->setDomain('www.aphpOrchestra.fr');
@@ -23,10 +43,55 @@ class LoadSiteData implements FixtureInterface
         $site1->setDefaultLanguage('fr');
         $site1->setLanguages(array('en', 'fr'));
         $site1->addBlock('Sample');
+        return $site1;
+    }
 
-        $manager->persist($site1);
+    /**
+     * @return Site
+     */
+    protected function getSite2()
+    {
+        $site2 = new Site();
+        $site2->setSiteId(2);
+        $site2->setDomain('www.bphpOrchestra.fr');
+        $site2->setAlias('www.nphp-orchestra.fr');
+        $site2->setDefaultLanguage('fr');
+        $site2->setLanguages(array('en', 'fr'));
+        $site2->addBlock('Sample');
 
-        $manager->flush();
+        return $site2;
+    }
+
+    /**
+     * @return Site
+     */
+    protected function getSite3()
+    {
+        $site3 = new Site();
+        $site3->setSiteId(3);
+        $site3->setDomain('www.cphpOrchestra.fr');
+        $site3->setAlias('www.mphp-orchestra.fr');
+        $site3->setDefaultLanguage('fr');
+        $site3->setLanguages(array('en', 'fr'));
+        $site3->addBlock('Sample');
+
+        return $site3;
+    }
+
+    /**
+     * @return Site
+     */
+    protected function getSite4()
+    {
+        $site4 = new Site();
+        $site4->setSiteId(4);
+        $site4->setDomain('www.dphpOrchestra.fr');
+        $site4->setAlias('www.lphp-orchestra.fr');
+        $site4->setDefaultLanguage('fr');
+        $site4->setLanguages(array('en', 'fr'));
+        $site4->addBlock('Sample');
+
+        return $site4;
     }
 
 }
