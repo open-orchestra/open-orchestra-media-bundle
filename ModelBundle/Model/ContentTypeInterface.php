@@ -5,7 +5,7 @@ namespace PHPOrchestra\ModelBundle\Model;
 /**
  * Interface ContentTypeInterface
  */
-interface ContentTypeInterface
+interface ContentTypeInterface extends FieldTypeContainerInterface
 {
     /**
      * @param int $contentTypeId
@@ -28,14 +28,17 @@ interface ContentTypeInterface
     public function getDeleted();
 
     /**
-     * @param array $fields
+     * @param int                $key
+     * @param FieldTypeInterface $field
      */
-    public function setFields($fields);
+    public function setField($key, FieldTypeInterface $field);
 
     /**
-     * @return array
+     * @param FieldTypeInterface $field
+     *
+     * @return FieldTypeInterface
      */
-    public function getFields();
+    public function getFieldIndex(FieldTypeInterface $field);
 
     /**
      * @return string
