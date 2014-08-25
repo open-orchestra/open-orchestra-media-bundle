@@ -4,6 +4,8 @@ namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelBundle\Model\ContentTypeInterface;
+use PHPOrchestra\ModelBundle\Model\FieldTypeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Description of ContentType
@@ -21,48 +23,56 @@ class ContentType implements ContentTypeInterface
      * @MongoDB\Id
      */
     protected $id;
-    
+
     /**
      * @var int $contentTypeId
      *
      * @MongoDB\Field(type="int")
      */
     protected $contentTypeId;
-    
+
     /**
      * @var string $name
      *
      * @MongoDB\Field(type="string")
      */
     protected $name;
-    
+
     /**
      * @var int $version
      *
      * @MongoDB\Field(type="int")
      */
     protected $version;
-    
+
     /**
      * @var string $status
      *
      * @MongoDB\Field(type="string")
      */
     protected $status;
-    
+
     /**
      * @var boolean $deleted
      *
      * @MongoDB\Field(type="boolean")
      */
     protected $deleted;
-    
+
     /**
-     * @var array $fields
+     * @var ArrayCollection $fields
      *
-     * @MongoDB\Field(type="hash")
+     * @MongoDB\EmbedMany(targetDocument="FieldType")
      */
     protected $fields;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fields = new ArrayCollection();
+    }
 
     /**
      * @param int $contentTypeId
@@ -97,11 +107,27 @@ class ContentType implements ContentTypeInterface
     }
 
     /**
-     * @param array $fields
+     * @param FieldTypeInterface $field
      */
-    public function setFields($fields)
+    public function addFieldType(FieldTypeInterface $field)
+    {
+        $this->fields->add($field);
+    }
+
+    /**
+     * @param FieldTypeInterface $fields
+     */
+    public function setFields(FieldTypeInterface $fields)
     {
         $this->fields = $fields;
+    }
+
+    /**
+     * @param FieldTypeInterface $field
+     */
+    public function removeFieldType(FieldTypeInterface $field)
+    {
+        $this->fields->removeElement($field);
     }
 
     /**
