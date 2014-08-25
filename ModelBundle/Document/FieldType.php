@@ -36,7 +36,7 @@ class FieldType implements FieldTypeInterface
     /**
      * @var boolean $searchable
      *
-     * @MongoDB\Field(type="bool")
+     * @MongoDB\Field(type="boolean")
      */
     protected $searchable;
 

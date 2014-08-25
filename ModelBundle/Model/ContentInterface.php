@@ -2,8 +2,8 @@
 
 
 namespace PHPOrchestra\ModelBundle\Model;
-use Doctrine\Common\Collections\ArrayCollection;
 
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Interface ContentInterface

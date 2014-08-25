@@ -103,7 +103,7 @@ class Content implements ContentInterface
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
     public function getAttributes()
     {
