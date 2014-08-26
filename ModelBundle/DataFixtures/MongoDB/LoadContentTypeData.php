@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\ContentType;
 use PHPOrchestra\ModelBundle\Document\FieldType;
+use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
  * Class LoadContentTypeData
@@ -79,7 +80,7 @@ class LoadContentTypeData implements FixtureInterface
         $news->setContentTypeId('news');
         $news->setName('News');
         $news->setDeleted(false);
-        $news->setStatus('published');
+        $news->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $news->setVersion(1);
 
         $news->addFieldType($newsTitle);
@@ -122,7 +123,7 @@ class LoadContentTypeData implements FixtureInterface
         $car->setContentTypeId('car');
         $car->setName('Car');
         $car->setDeleted(false);
-        $car->setStatus('published');
+        $car->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $car->setVersion(2);
 
         $car->addFieldType($carName);
@@ -164,7 +165,7 @@ class LoadContentTypeData implements FixtureInterface
         $car->setContentTypeId('car');
         $car->setName('Car');
         $car->setDeleted(false);
-        $car->setStatus('draft');
+        $car->setStatus(StatusableInterface::STATUS_DRAFT);
         $car->setVersion(3);
 
         $car->addFieldType($carName);
@@ -219,7 +220,7 @@ class LoadContentTypeData implements FixtureInterface
         $customer->setContentTypeId('customer');
         $customer->setName('Customer');
         $customer->setDeleted(false);
-        $customer->setStatus('published');
+        $customer->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $customer->setVersion(1);
 
         $customer->addFieldType($customerFirstName);

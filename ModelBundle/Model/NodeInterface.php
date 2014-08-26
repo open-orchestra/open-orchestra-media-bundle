@@ -7,12 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Interface NodeInterface
  */
-interface NodeInterface extends AreaContainerInterface, BlockContainerInterface
+interface NodeInterface extends AreaContainerInterface, BlockContainerInterface, StatusableInterface
 {
     const PUBLISHED = 'published';
-    const STATUS_DRAFT = 'draft';
-    const STATUS_PENDING = 'pending';
-    const STATUS_PUBLISHED = 'published';
 
     const TYPE_DEFAULT = 'page';
 

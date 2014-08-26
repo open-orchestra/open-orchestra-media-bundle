@@ -5,7 +5,7 @@ namespace PHPOrchestra\ModelBundle\Model;
 /**
  * Interface ContentTypeInterface
  */
-interface ContentTypeInterface extends FieldTypeContainerInterface
+interface ContentTypeInterface extends FieldTypeContainerInterface, StatusableInterface
 {
     /**
      * @param int $contentTypeId

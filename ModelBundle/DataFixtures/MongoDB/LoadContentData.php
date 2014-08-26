@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Content;
 use PHPOrchestra\ModelBundle\Document\ContentAttribute;
+use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
  * Class LoadContentData
@@ -61,7 +62,7 @@ class LoadContentData implements FixtureInterface
         $content->setDeleted(false);
         $content->setName("Bien vivre en France");
         $content->setLanguage("fr");
-        $content->setStatus("published");
+        $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $content->setVersion(1);
 
         $content->addAttribute($attribute1);
@@ -101,7 +102,7 @@ class LoadContentData implements FixtureInterface
         $content->setDeleted(true);
         $content->setName("Lorem ipsum");
         $content->setLanguage("fr");
-        $content->setStatus("published");
+        $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $content->setVersion(1);
 
         $content->addAttribute($attribute1);
@@ -137,7 +138,7 @@ class LoadContentData implements FixtureInterface
         $content->setDeleted(true);
         $content->setName("R5 3 portes");
         $content->setLanguage("en");
-        $content->setStatus("published");
+        $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $content->setVersion(2);
 
         $content->addAttribute($attribute1);
@@ -172,7 +173,7 @@ class LoadContentData implements FixtureInterface
         $content->setDeleted(false);
         $content->setName("Jean-Paul");
         $content->setLanguage("fr");
-        $content->setStatus("published");
+        $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $content->setVersion(2);
 
         $content->addAttribute($attribute1);

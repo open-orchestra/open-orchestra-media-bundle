@@ -27,7 +27,7 @@ class ContentType implements ContentTypeInterface
     /**
      * @var int $contentTypeId
      *
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="string")
      */
     protected $contentTypeId;
 
@@ -57,7 +57,7 @@ class ContentType implements ContentTypeInterface
      *
      * @MongoDB\Field(type="boolean")
      */
-    protected $deleted;
+    protected $deleted = false;
 
     /**
      * @var ArrayCollection $fields
