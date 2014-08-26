@@ -16,6 +16,13 @@ interface ContentInterface extends StatusableInterface
     public function getAttributes();
 
     /**
+     * @param string $name
+     *
+     * @return ContentAttributeInterface|null
+     */
+    public function getAttributeByName($name);
+
+    /**
      * @param ContentAttributeInterface $attribute
      */
     public function addAttribute(ContentAttributeInterface $attribute);

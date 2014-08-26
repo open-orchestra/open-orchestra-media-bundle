@@ -85,7 +85,7 @@ class Content implements ContentInterface
      *
      * @MongoDB\Field(type="boolean")
      */
-    protected $deleted;
+    protected $deleted = false;
 
     /**
      * @var ArrayCollection
@@ -108,6 +108,22 @@ class Content implements ContentInterface
     public function getAttributes()
     {
         return $this->attributes;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return ContentAttributeInterface|null
+     */
+    public function getAttributeByName($name)
+    {
+        foreach ($this->attributes as $attribute) {
+            if ($name == $attribute->getName()) {
+                return $attribute;
+            }
+        }
+
+        return null;
     }
 
     /**
