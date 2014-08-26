@@ -8,6 +8,7 @@ use PHPOrchestra\ModelBundle\Document\Area;
 use PHPOrchestra\ModelBundle\Document\Block;
 use PHPOrchestra\ModelBundle\Document\Node;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
  * Class LoadNodeData
@@ -78,7 +79,7 @@ class LoadNodeData implements FixtureInterface
         $home->setName('Fixuter Home');
         $home->setVersion(1);
         $home->setLanguage('fr');
-        $home->setStatus('published');
+        $home->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $home->setDeleted(false);
         $home->setTemplateId('template_main');
         $home->setTheme('theme1');
@@ -212,7 +213,7 @@ class LoadNodeData implements FixtureInterface
         $full->setName('Fixture full sample');
         $full->setVersion(1);
         $full->setLanguage('fr');
-        $full->setStatus(NodeInterface::PUBLISHED);
+        $full->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $full->setDeleted(false);
         $full->setTemplateId('template_full');
         $full->setTheme('mixed');
@@ -252,7 +253,7 @@ class LoadNodeData implements FixtureInterface
         $generic->setName('Generic Node');
         $generic->setVersion(1);
         $generic->setLanguage('fr');
-        $generic->setStatus('published');
+        $generic->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $generic->setTemplateId('template_generic');
         $generic->setDeleted(true);
         $generic->setInMenu(true);
@@ -288,7 +289,7 @@ class LoadNodeData implements FixtureInterface
         $aboutUs->setAlias('qui-sommes-nous');
         $aboutUs->setVersion(1);
         $aboutUs->setLanguage('fr');
-        $aboutUs->setStatus('published');
+        $aboutUs->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $aboutUs->setDeleted(false);
         $aboutUs->setTemplateId('template_main');
         $aboutUs->setTheme('theme2');
@@ -296,6 +297,7 @@ class LoadNodeData implements FixtureInterface
         $aboutUs->setInMenu(true);
         $aboutUs->addArea($aboutUsArea);
         $aboutUs->addBlock($aboutUsBlock);
+
         return $aboutUs;
     }
 
@@ -326,7 +328,7 @@ class LoadNodeData implements FixtureInterface
         $bd->setAlias('b-et-d');
         $bd->setVersion(1);
         $bd->setLanguage('fr');
-        $bd->setStatus('published');
+        $bd->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $bd->setDeleted(false);
         $bd->setTemplateId('template_main');
         $bd->setTheme('theme2');
@@ -365,7 +367,7 @@ class LoadNodeData implements FixtureInterface
         $interakting->setAlias('interakting');
         $interakting->setVersion(1);
         $interakting->setLanguage('fr');
-        $interakting->setStatus('published');
+        $interakting->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $interakting->setDeleted(false);
         $interakting->setTemplateId('template_main');
         $interakting->setTheme('sample');
@@ -405,7 +407,7 @@ class LoadNodeData implements FixtureInterface
         $contactUs->setAlias('nous-contacter');
         $contactUs->setVersion(1);
         $contactUs->setLanguage('fr');
-        $contactUs->setStatus('published');
+        $contactUs->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $contactUs->setDeleted(false);
         $contactUs->setTemplateId('template_main');
         $contactUs->setTheme('theme1');
@@ -445,7 +447,7 @@ class LoadNodeData implements FixtureInterface
         $directory->setAlias('nous-contacter');
         $directory->setVersion(1);
         $directory->setLanguage('fr');
-        $directory->setStatus('published');
+        $directory->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $directory->setDeleted(false);
         $directory->setTemplateId('template_main');
         $directory->setTheme('fromApp');
@@ -564,7 +566,7 @@ class LoadNodeData implements FixtureInterface
         $search->setAlias('nous-contacter');
         $search->setVersion(1);
         $search->setLanguage('fr');
-        $search->setStatus('published');
+        $search->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $search->setDeleted(false);
         $search->setTemplateId('template_main');
         $search->setTheme('fromApp');

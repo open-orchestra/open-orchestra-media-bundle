@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Interface TemplateInterface
  */
-interface TemplateInterface extends AreaContainerInterface, BlockContainerInterface
+interface TemplateInterface extends AreaContainerInterface, BlockContainerInterface, StatusableInterface
 {
     /**
      * @param string $boDirection

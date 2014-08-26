@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Area;
 use PHPOrchestra\ModelBundle\Document\Template;
+use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
  * Class LoadTemplateData
@@ -43,7 +44,7 @@ class LoadTemplateData implements FixtureInterface
         $generic->setVersion(1);
         $generic->setName('Generic Template');
         $generic->setLanguage('fr');
-        $generic->setStatus('published');
+        $generic->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $generic->setDeleted(false);
         $generic->setBoDirection('h');
         $generic->addArea($genericArea);
@@ -84,7 +85,7 @@ class LoadTemplateData implements FixtureInterface
         $full->setVersion(1);
         $full->setName('Full Template');
         $full->setLanguage('fr');
-        $full->setStatus('published');
+        $full->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $full->setBoDirection('h');
         $full->setDeleted(false);
         $full->addArea($header);
@@ -108,7 +109,7 @@ class LoadTemplateData implements FixtureInterface
         $template->setVersion(1);
         $template->setName('Generic Main');
         $template->setLanguage('fr');
-        $template->setStatus('published');
+        $template->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $template->setBoDirection('h');
         $template->setDeleted(false);
         $template->addArea($main);

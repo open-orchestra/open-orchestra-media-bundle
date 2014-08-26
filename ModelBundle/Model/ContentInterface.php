@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Interface ContentInterface
  */
-interface ContentInterface
+interface ContentInterface extends StatusableInterface
 {
     /**
      * @return ArrayCollection
