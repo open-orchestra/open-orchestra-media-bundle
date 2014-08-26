@@ -85,7 +85,7 @@ class Content implements ContentInterface
      *
      * @MongoDB\Field(type="boolean")
      */
-    protected $deleted;
+    protected $deleted = false;
 
     /**
      * @var ArrayCollection
