@@ -8,12 +8,12 @@ namespace PHPOrchestra\ModelBundle\Model;
 interface ContentTypeInterface extends FieldTypeContainerInterface, StatusableInterface
 {
     /**
-     * @param int $contentTypeId
+     * @param string $contentTypeId
      */
     public function setContentTypeId($contentTypeId);
 
     /**
-     * @return int
+     * @return string
      */
     public function getContentTypeId();
 

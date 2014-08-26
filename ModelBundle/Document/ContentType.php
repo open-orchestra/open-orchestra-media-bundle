@@ -25,7 +25,7 @@ class ContentType implements ContentTypeInterface
     protected $id;
 
     /**
-     * @var int $contentTypeId
+     * @var string $contentTypeId
      *
      * @MongoDB\Field(type="string")
      */
@@ -75,7 +75,7 @@ class ContentType implements ContentTypeInterface
     }
 
     /**
-     * @param int $contentTypeId
+     * @param string $contentTypeId
      */
     public function setContentTypeId($contentTypeId)
     {
@@ -83,7 +83,7 @@ class ContentType implements ContentTypeInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getContentTypeId()
     {
@@ -192,5 +192,13 @@ class ContentType implements ContentTypeInterface
     public function getVersion()
     {
         return $this->version;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getContentTypeId();
     }
 }

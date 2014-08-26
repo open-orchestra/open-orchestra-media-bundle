@@ -111,6 +111,22 @@ class Content implements ContentInterface
     }
 
     /**
+     * @param string $name
+     *
+     * @return ContentAttributeInterface|null
+     */
+    public function getAttributeByName($name)
+    {
+        foreach ($this->attributes as $attribute) {
+            if ($name == $attribute->getName()) {
+                return $attribute;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @param ContentAttributeInterface $attribute
      */
     public function addAttribute(ContentAttributeInterface $attribute)

@@ -99,7 +99,7 @@ class LoadContentData implements FixtureInterface
         $content->setContentId("2");
         $content->setContentType("news");
         $content->setContentTypeVersion(1);
-        $content->setDeleted(true);
+        $content->setDeleted(false);
         $content->setName("Lorem ipsum");
         $content->setLanguage("fr");
         $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
@@ -135,7 +135,7 @@ class LoadContentData implements FixtureInterface
         $content->setContentId("3");
         $content->setContentType("car");
         $content->setContentTypeVersion(1);
-        $content->setDeleted(true);
+        $content->setDeleted(false);
         $content->setName("R5 3 portes");
         $content->setLanguage("en");
         $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
