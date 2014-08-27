@@ -159,26 +159,6 @@ class FieldType implements FieldTypeInterface
     }
 
     /**
-     * Set Symfony type
-     *
-     * @param string $type
-     */
-    public function setSymfonyType($type)
-    {
-        $this->symfonyType = $type;
-    }
-
-    /**
-     * Get Symfony type
-     *
-     * @return string
-     */
-    public function getSymfonyType()
-    {
-        return $this->symfonyType;
-    }
-
-    /**
      * Set Options
      *
      * @param array $options

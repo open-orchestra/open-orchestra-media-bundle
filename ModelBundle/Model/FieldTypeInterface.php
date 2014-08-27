@@ -75,20 +75,6 @@ Interface FieldTypeInterface
     public function getType();
 
     /**
-     * Set Symfony type
-     *
-     * @param string $type
-     */
-    public function setSymfonyType($type);
-
-    /**
-     * Get Symfony type
-     *
-     * @return string
-     */
-    public function getSymfonyType();
-
-    /**
      * Set Options
      *
      * @param array $options
