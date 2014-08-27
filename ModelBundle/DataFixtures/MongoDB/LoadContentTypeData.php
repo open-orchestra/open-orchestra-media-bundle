@@ -45,8 +45,7 @@ class LoadContentTypeData implements FixtureInterface
         $newsTitle->setLabel('Title');
         $newsTitle->setDefaultValue('');
         $newsTitle->setSearchable(true);
-        $newsTitle->setType('orchestra_text');
-        $newsTitle->setSymfonyType('text');
+        $newsTitle->setType('text');
         $newsTitle->setOptions(array(
             'max_length' => 25,
             'required' => true
@@ -57,8 +56,7 @@ class LoadContentTypeData implements FixtureInterface
         $newsIntro->setLabel('Introduction');
         $newsIntro->setDefaultValue('');
         $newsIntro->setSearchable(true);
-        $newsIntro->setType('orchestra_text');
-        $newsIntro->setSymfonyType('text');
+        $newsIntro->setType('text');
         $newsIntro->setOptions(array(
             'max_length' => 25,
             'required' => true
@@ -69,8 +67,7 @@ class LoadContentTypeData implements FixtureInterface
         $newsText->setLabel('Text');
         $newsText->setDefaultValue('');
         $newsText->setSearchable(true);
-        $newsText->setType('orchestra_text');
-        $newsText->setSymfonyType('text');
+        $newsText->setType('text');
         $newsText->setOptions(array(
             'max_length' => 25,
             'required' => true
@@ -100,8 +97,7 @@ class LoadContentTypeData implements FixtureInterface
         $carName->setLabel('Name');
         $carName->setDefaultValue('');
         $carName->setSearchable(true);
-        $carName->setType('orchestra_text');
-        $carName->setSymfonyType('text');
+        $carName->setType('text');
         $carName->setOptions(array(
             'max_length' => 25,
             'required' => true
@@ -112,8 +108,7 @@ class LoadContentTypeData implements FixtureInterface
         $carDescription->setLabel('Description');
         $carDescription->setDefaultValue('');
         $carDescription->setSearchable(true);
-        $carDescription->setType('orchestra_text');
-        $carDescription->setSymfonyType('text');
+        $carDescription->setType('text');
         $carDescription->setOptions(array(
             'max_length' => 25,
             'required' => true
@@ -142,8 +137,7 @@ class LoadContentTypeData implements FixtureInterface
         $carName->setLabel('Name');
         $carName->setDefaultValue('Entrez le nom de la voiture ici');
         $carName->setSearchable(true);
-        $carName->setType('orchestra_text');
-        $carName->setSymfonyType('text');
+        $carName->setType('text');
         $carName->setOptions(array(
             'max_length' => 25,
             'required' => true
@@ -154,8 +148,7 @@ class LoadContentTypeData implements FixtureInterface
         $carDescription->setLabel('Description');
         $carDescription->setDefaultValue('Et ici une courte description');
         $carDescription->setSearchable(true);
-        $carDescription->setType('orchestra_text');
-        $carDescription->setSymfonyType('text');
+        $carDescription->setType('text');
         $carDescription->setOptions(array(
             'max_length' => 25,
             'required' => true
@@ -184,8 +177,7 @@ class LoadContentTypeData implements FixtureInterface
         $customerFirstName->setLabel('Firstname');
         $customerFirstName->setDefaultValue('');
         $customerFirstName->setSearchable(true);
-        $customerFirstName->setType('orchestra_text');
-        $customerFirstName->setSymfonyType('text');
+        $customerFirstName->setType('text');
         $customerFirstName->setOptions(array(
             'max_length' => 25,
             'required' => true
@@ -196,8 +188,7 @@ class LoadContentTypeData implements FixtureInterface
         $customerLastName->setLabel('Lastname');
         $customerLastName->setDefaultValue('');
         $customerLastName->setSearchable(true);
-        $customerLastName->setType('orchestra_text');
-        $customerLastName->setSymfonyType('text');
+        $customerLastName->setType('text');
         $customerLastName->setOptions(array(
             'max_length' => 25,
             'required' => true
@@ -208,8 +199,7 @@ class LoadContentTypeData implements FixtureInterface
         $customerIdentifier->setLabel('Identifier');
         $customerIdentifier->setDefaultValue(0);
         $customerIdentifier->setSearchable(false);
-        $customerIdentifier->setType('orchestra_integer');
-        $customerIdentifier->setSymfonyType('integer');
+        $customerIdentifier->setType('integer');
         $customerIdentifier->setOptions(array(
             'rounding_mode' => 1,
             'grouping' => 2,
