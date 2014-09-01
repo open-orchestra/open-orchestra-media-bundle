@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\ContentType;
 use PHPOrchestra\ModelBundle\Document\FieldType;
+use PHPOrchestra\ModelBundle\Document\FieldOption;
 use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
@@ -40,16 +41,22 @@ class LoadContentTypeData implements FixtureInterface
      */
     protected function generateContentTypeNews()
     {
+        $maxLengthOption = new FieldOption();
+        $maxLengthOption->setKey('max_length');
+        $maxLengthOption->setValue(25);
+
+        $required = new FieldOption();
+        $required->setKey('required');
+        $required->setValue('1');
+
         $newsTitle = new FieldType();
         $newsTitle->setFieldId('title');
         $newsTitle->setLabel('Title');
         $newsTitle->setDefaultValue('');
         $newsTitle->setSearchable(true);
         $newsTitle->setType('text');
-        $newsTitle->setOptions(array(
-            'max_length' => 25,
-            'required' => true
-        ));
+        $newsTitle->addOption($maxLengthOption);
+        $newsTitle->addOption($required);
 
         $newsIntro = new FieldType();
         $newsIntro->setFieldId('intro');
@@ -57,10 +64,8 @@ class LoadContentTypeData implements FixtureInterface
         $newsIntro->setDefaultValue('');
         $newsIntro->setSearchable(true);
         $newsIntro->setType('text');
-        $newsIntro->setOptions(array(
-            'max_length' => 25,
-            'required' => true
-        ));
+        $newsIntro->addOption($maxLengthOption);
+        $newsIntro->addOption($required);
 
         $newsText = new FieldType();
         $newsText->setFieldId('text');
@@ -68,10 +73,8 @@ class LoadContentTypeData implements FixtureInterface
         $newsText->setDefaultValue('');
         $newsText->setSearchable(true);
         $newsText->setType('text');
-        $newsText->setOptions(array(
-            'max_length' => 25,
-            'required' => true
-        ));
+        $newsText->addOption($maxLengthOption);
+        $newsText->addOption($required);
 
         $news = new ContentType();
         $news->setContentTypeId('news');
@@ -92,16 +95,22 @@ class LoadContentTypeData implements FixtureInterface
      */
     protected function generateContentTypeCar()
     {
+        $maxLengthOption = new FieldOption();
+        $maxLengthOption->setKey('max_length');
+        $maxLengthOption->setValue(25);
+
+        $required = new FieldOption();
+        $required->setKey('required');
+        $required->setValue('1');
+
         $carName = new FieldType();
         $carName->setFieldId('name');
         $carName->setLabel('Name');
         $carName->setDefaultValue('');
         $carName->setSearchable(true);
         $carName->setType('text');
-        $carName->setOptions(array(
-            'max_length' => 25,
-            'required' => true
-        ));
+        $carName->addOption($maxLengthOption);
+        $carName->addOption($required);
 
         $carDescription = new FieldType();
         $carDescription->setFieldId('description');
@@ -109,10 +118,8 @@ class LoadContentTypeData implements FixtureInterface
         $carDescription->setDefaultValue('');
         $carDescription->setSearchable(true);
         $carDescription->setType('text');
-        $carDescription->setOptions(array(
-            'max_length' => 25,
-            'required' => true
-        ));
+        $carDescription->addOption($maxLengthOption);
+        $carDescription->addOption($required);
 
         $car = new ContentType();
         $car->setContentTypeId('car');
@@ -132,16 +139,22 @@ class LoadContentTypeData implements FixtureInterface
      */
     protected function generateContentTypeCarV2()
     {
+        $maxLengthOption = new FieldOption();
+        $maxLengthOption->setKey('max_length');
+        $maxLengthOption->setValue(25);
+
+        $required = new FieldOption();
+        $required->setKey('required');
+        $required->setValue('1');
+
         $carName = new FieldType();
         $carName->setFieldId('name');
         $carName->setLabel('Name');
         $carName->setDefaultValue('Entrez le nom de la voiture ici');
         $carName->setSearchable(true);
         $carName->setType('text');
-        $carName->setOptions(array(
-            'max_length' => 25,
-            'required' => true
-        ));
+        $carName->addOption($maxLengthOption);
+        $carName->addOption($required);
 
         $carDescription = new FieldType();
         $carDescription->setFieldId('description');
@@ -149,10 +162,8 @@ class LoadContentTypeData implements FixtureInterface
         $carDescription->setDefaultValue('Et ici une courte description');
         $carDescription->setSearchable(true);
         $carDescription->setType('text');
-        $carDescription->setOptions(array(
-            'max_length' => 25,
-            'required' => true
-        ));
+        $carDescription->addOption($maxLengthOption);
+        $carDescription->addOption($required);
 
         $car = new ContentType();
         $car->setContentTypeId('car');
@@ -172,16 +183,22 @@ class LoadContentTypeData implements FixtureInterface
      */
     protected function generateContentTypeCustomer()
     {
+        $maxLengthOption = new FieldOption();
+        $maxLengthOption->setKey('max_length');
+        $maxLengthOption->setValue(25);
+
+        $required = new FieldOption();
+        $required->setKey('required');
+        $required->setValue('1');
+
         $customerFirstName = new FieldType();
         $customerFirstName->setFieldId('firstname');
         $customerFirstName->setLabel('Firstname');
         $customerFirstName->setDefaultValue('');
         $customerFirstName->setSearchable(true);
         $customerFirstName->setType('text');
-        $customerFirstName->setOptions(array(
-            'max_length' => 25,
-            'required' => true
-        ));
+        $customerFirstName->addOption($maxLengthOption);
+        $customerFirstName->addOption($required);
 
         $customerLastName = new FieldType();
         $customerLastName->setFieldId('lastname');
@@ -189,10 +206,8 @@ class LoadContentTypeData implements FixtureInterface
         $customerLastName->setDefaultValue('');
         $customerLastName->setSearchable(true);
         $customerLastName->setType('text');
-        $customerLastName->setOptions(array(
-            'max_length' => 25,
-            'required' => true
-        ));
+        $customerLastName->addOption($maxLengthOption);
+        $customerLastName->addOption($required);
 
         $customerIdentifier = new FieldType();
         $customerIdentifier->setFieldId('identifier');
@@ -200,11 +215,8 @@ class LoadContentTypeData implements FixtureInterface
         $customerIdentifier->setDefaultValue(0);
         $customerIdentifier->setSearchable(false);
         $customerIdentifier->setType('integer');
-        $customerIdentifier->setOptions(array(
-            'rounding_mode' => 1,
-            'grouping' => 2,
-            'required' => false
-        ));
+        $customerIdentifier->addOption($maxLengthOption);
+        $customerIdentifier->addOption($required);
 
         $customer = new ContentType();
         $customer->setContentTypeId('customer');
