@@ -1,6 +1,7 @@
 <?php
 
 namespace PHPOrchestra\ModelBundle\Model;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Interface FieldTypeInterface
@@ -75,15 +76,22 @@ Interface FieldTypeInterface
     public function getType();
 
     /**
-     * Set Options
-     *
-     * @param array $options
+     * @param FieldOptionInterface $option
      */
-    public function setOptions(array $options);
+    public function addOption(FieldOptionInterface $option);
 
     /**
-     * Get Options
-     * @return array
+     * @param FieldOptionInterface $option
+     */
+    public function removeOption(FieldOptionInterface $option);
+
+    /**
+     * @return ArrayCollection
      */
     public function getOptions();
+
+    /**
+     * @return array
+     */
+    public function getFormOptions();
 }

@@ -2,7 +2,10 @@
 
 namespace PHPOrchestra\ModelBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Inflector\Inflector;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use PHPOrchestra\ModelBundle\Model\FieldOptionInterface;
 use PHPOrchestra\ModelBundle\Model\FieldTypeInterface;
 
 /**
@@ -55,12 +58,19 @@ class FieldType implements FieldTypeInterface
     protected $symfonyType;
 
     /**
-     * @var array $options
+     * @var ArrayCollection $options
      *
-     * @MongoDB\Field(type="hash")
+     * @MongoDB\EmbedMany(targetDocument="FieldOption")
      */
-    protected $options = array();
+    protected $options;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->options = new ArrayCollection();
+    }
     /**
      * Set FieldId
      *
@@ -159,21 +169,40 @@ class FieldType implements FieldTypeInterface
     }
 
     /**
-     * Set Options
-     *
-     * @param array $options
+     * @param FieldOptionInterface $option
      */
-    public function setOptions(array $options)
+    public function addOption(FieldOptionInterface $option)
     {
-        $this->options = $options;
+        $this->options->add($option);
     }
 
     /**
-     * Get Options
-     * @return array
+     * @param FieldOptionInterface $option
+     */
+    public function removeOption(FieldOptionInterface $option)
+    {
+        $this->options->removeElement($option);
+    }
+
+    /**
+     * @return ArrayCollection
      */
     public function getOptions()
     {
         return $this->options;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFormOptions()
+    {
+        $formOptions = array();
+
+        foreach ($this->getOptions() as $option) {
+            $formOptions[Inflector::tableize($option->getKey())] = $option->getValue();
+        }
+
+        return $formOptions;
     }
 }
