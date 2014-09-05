@@ -6,6 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelBundle\Model\ContentTypeInterface;
 use PHPOrchestra\ModelBundle\Model\FieldTypeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use PHPOrchestra\ModelBundle\Model\TranslatedValueInterface;
 
 /**
  * Description of ContentType
@@ -32,11 +33,9 @@ class ContentType implements ContentTypeInterface
     protected $contentTypeId;
 
     /**
-     * @var string $name
-     *
-     * @MongoDB\Field(type="string")
+     * @MongoDB\EmbedMany(targetDocument="TranslatedValue")
      */
-    protected $name;
+    protected $names;
 
     /**
      * @var int $version
@@ -72,6 +71,7 @@ class ContentType implements ContentTypeInterface
     public function __construct()
     {
         $this->fields = new ArrayCollection();
+        $this->names = new ArrayCollection();
     }
 
     /**
@@ -131,7 +131,7 @@ class ContentType implements ContentTypeInterface
     }
 
     /**
-     * @return array
+     * @return ArrayCollection
      */
     public function getFields()
     {
@@ -147,19 +147,41 @@ class ContentType implements ContentTypeInterface
     }
 
     /**
-     * @param string $name
+     * @param TranslatedValueInterface $name
      */
-    public function setName($name)
+    public function addName(TranslatedValueInterface $name)
     {
-        $this->name = $name;
+        $this->names->add($name);
     }
 
     /**
+     * @param TranslatedValueInterface $name
+     */
+    public function removeName(TranslatedValueInterface $name)
+    {
+        $this->names->removeElement($name);
+    }
+
+    /**
+     * @param string $language
+     *
      * @return string
      */
-    public function getName()
+    public function getName($language = 'en')
     {
-        return $this->name;
+        $choosenLanguage = $this->names->filter(function($translatedValue) use ($language) {
+            return $language == $translatedValue->getLanguage();
+        });
+
+        return $choosenLanguage->first()->getValue();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getNames()
+    {
+        return $this->names;
     }
 
     /**
@@ -200,5 +222,15 @@ class ContentType implements ContentTypeInterface
     public function __toString()
     {
         return (string) $this->getContentTypeId();
+    }
+
+    /**
+     * @return array
+     */
+    public function getTranslatedProperties()
+    {
+        return array(
+            'getNames'
+        );
     }
 }

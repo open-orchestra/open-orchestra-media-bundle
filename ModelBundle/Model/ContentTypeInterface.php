@@ -2,10 +2,12 @@
 
 namespace PHPOrchestra\ModelBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Interface ContentTypeInterface
  */
-interface ContentTypeInterface extends FieldTypeContainerInterface, StatusableInterface
+interface ContentTypeInterface extends FieldTypeContainerInterface, StatusableInterface, TranslatedValueContainerInterface
 {
     /**
      * @param string $contentTypeId
@@ -38,14 +40,26 @@ interface ContentTypeInterface extends FieldTypeContainerInterface, StatusableIn
     public function getId();
 
     /**
-     * @param string $name
+     * @param TranslatedValueInterface $name
      */
-    public function setName($name);
+    public function addName(TranslatedValueInterface $name);
 
     /**
+     * @param TranslatedValueInterface $name
+     */
+    public function removeName(TranslatedValueInterface $name);
+
+    /**
+     * @param string $language
+     *
      * @return string
      */
-    public function getName();
+    public function getName($language = 'en');
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getNames();
 
     /**
      * @param string $status

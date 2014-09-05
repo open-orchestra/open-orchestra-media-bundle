@@ -7,6 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\ContentType;
 use PHPOrchestra\ModelBundle\Document\FieldType;
 use PHPOrchestra\ModelBundle\Document\FieldOption;
+use PHPOrchestra\ModelBundle\Document\TranslatedValue;
 use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
@@ -49,36 +50,69 @@ class LoadContentTypeData implements FixtureInterface
         $required->setKey('required');
         $required->setValue('1');
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $enLabel->setValue('Title');
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $frLabel->setValue('Titre');
+
         $newsTitle = new FieldType();
         $newsTitle->setFieldId('title');
-        $newsTitle->setLabel('Title');
+        $newsTitle->addLabel($enLabel);
+        $newsTitle->addLabel($frLabel);
         $newsTitle->setDefaultValue('');
         $newsTitle->setSearchable(true);
         $newsTitle->setType('text');
         $newsTitle->addOption($maxLengthOption);
         $newsTitle->addOption($required);
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $enLabel->setValue('Introduction');
+        $frLabel->setValue('Introduction');
+
         $newsIntro = new FieldType();
         $newsIntro->setFieldId('intro');
-        $newsIntro->setLabel('Introduction');
+        $newsIntro->addLabel($enLabel);
+        $newsIntro->addLabel($frLabel);
         $newsIntro->setDefaultValue('');
         $newsIntro->setSearchable(true);
         $newsIntro->setType('text');
         $newsIntro->addOption($maxLengthOption);
         $newsIntro->addOption($required);
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $enLabel->setValue('Text');
+        $frLabel->setValue('Texte');
+
         $newsText = new FieldType();
         $newsText->setFieldId('text');
-        $newsText->setLabel('Text');
+        $newsText->addLabel($enLabel);
+        $newsText->addLabel($frLabel);
         $newsText->setDefaultValue('');
         $newsText->setSearchable(true);
         $newsText->setType('text');
         $newsText->addOption($maxLengthOption);
         $newsText->addOption($required);
 
+        $en = new TranslatedValue();
+        $en->setLanguage('en');
+        $en->setValue('News');
+
+        $fr = new TranslatedValue();
+        $fr->setLanguage('fr');
+        $fr->setValue('Actualité');
+
         $news = new ContentType();
         $news->setContentTypeId('news');
-        $news->setName('News');
+        $news->addName($en);
+        $news->addName($fr);
         $news->setDeleted(false);
         $news->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $news->setVersion(1);
@@ -103,27 +137,53 @@ class LoadContentTypeData implements FixtureInterface
         $required->setKey('required');
         $required->setValue('1');
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $enLabel->setValue('Name');
+
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $frLabel->setValue('Nom');
+
         $carName = new FieldType();
         $carName->setFieldId('name');
-        $carName->setLabel('Name');
+        $carName->addLabel($enLabel);
+        $carName->addLabel($frLabel);
         $carName->setDefaultValue('');
         $carName->setSearchable(true);
         $carName->setType('text');
         $carName->addOption($maxLengthOption);
         $carName->addOption($required);
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $enLabel->setValue('Description');
+        $frLabel->setValue('Description');
+
         $carDescription = new FieldType();
         $carDescription->setFieldId('description');
-        $carDescription->setLabel('Description');
+        $carDescription->addLabel($enLabel);
+        $carDescription->addLabel($frLabel);
         $carDescription->setDefaultValue('');
         $carDescription->setSearchable(true);
         $carDescription->setType('text');
         $carDescription->addOption($maxLengthOption);
         $carDescription->addOption($required);
 
+        $en = new TranslatedValue();
+        $en->setLanguage('en');
+        $en->setValue('Car');
+
+        $fr = new TranslatedValue();
+        $fr->setLanguage('fr');
+        $fr->setValue('Voiture');
+
         $car = new ContentType();
         $car->setContentTypeId('car');
-        $car->setName('Car');
+        $car->addName($en);
+        $car->addName($fr);
         $car->setDeleted(false);
         $car->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $car->setVersion(2);
@@ -147,27 +207,52 @@ class LoadContentTypeData implements FixtureInterface
         $required->setKey('required');
         $required->setValue('1');
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $enLabel->setValue('Name');
+        $frLabel->setValue('Nom');
+
         $carName = new FieldType();
         $carName->setFieldId('name');
-        $carName->setLabel('Name');
+        $carName->addLabel($enLabel);
+        $carName->addLabel($frLabel);
         $carName->setDefaultValue('Entrez le nom de la voiture ici');
         $carName->setSearchable(true);
         $carName->setType('text');
         $carName->addOption($maxLengthOption);
         $carName->addOption($required);
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $enLabel->setValue('Description');
+        $frLabel->setValue('Description');
+
         $carDescription = new FieldType();
         $carDescription->setFieldId('description');
-        $carDescription->setLabel('Description');
+        $carDescription->addLabel($enLabel);
+        $carDescription->addLabel($frLabel);
         $carDescription->setDefaultValue('Et ici une courte description');
         $carDescription->setSearchable(true);
         $carDescription->setType('text');
         $carDescription->addOption($maxLengthOption);
         $carDescription->addOption($required);
 
+        $en = new TranslatedValue();
+        $en->setLanguage('en');
+        $en->setValue('Car');
+
+        $fr = new TranslatedValue();
+        $fr->setLanguage('fr');
+        $fr->setValue('Voiture');
+
         $car = new ContentType();
         $car->setContentTypeId('car');
-        $car->setName('Car');
+        $car->addName($en);
+        $car->addName($fr);
         $car->setDeleted(false);
         $car->setStatus(StatusableInterface::STATUS_DRAFT);
         $car->setVersion(3);
@@ -191,36 +276,69 @@ class LoadContentTypeData implements FixtureInterface
         $required->setKey('required');
         $required->setValue('1');
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $enLabel->setValue('Firstname');
+        $frLabel->setValue('Prénom');
+
         $customerFirstName = new FieldType();
         $customerFirstName->setFieldId('firstname');
-        $customerFirstName->setLabel('Firstname');
+        $customerFirstName->addLabel($enLabel);
+        $customerFirstName->addLabel($frLabel);
         $customerFirstName->setDefaultValue('');
         $customerFirstName->setSearchable(true);
         $customerFirstName->setType('text');
         $customerFirstName->addOption($maxLengthOption);
         $customerFirstName->addOption($required);
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $enLabel->setValue('Lastname');
+        $frLabel->setValue('Nom de famille');
+
         $customerLastName = new FieldType();
         $customerLastName->setFieldId('lastname');
-        $customerLastName->setLabel('Lastname');
+        $customerLastName->addLabel($enLabel);
+        $customerLastName->addLabel($frLabel);
         $customerLastName->setDefaultValue('');
         $customerLastName->setSearchable(true);
         $customerLastName->setType('text');
         $customerLastName->addOption($maxLengthOption);
         $customerLastName->addOption($required);
 
+        $enLabel = new TranslatedValue();
+        $enLabel->setLanguage('en');
+        $frLabel = new TranslatedValue();
+        $frLabel->setLanguage('fr');
+        $enLabel->setValue('Identifier');
+        $frLabel->setValue('Identifiant');
+
         $customerIdentifier = new FieldType();
         $customerIdentifier->setFieldId('identifier');
-        $customerIdentifier->setLabel('Identifier');
+        $customerIdentifier->addLabel($enLabel);
+        $customerIdentifier->addLabel($frLabel);
         $customerIdentifier->setDefaultValue(0);
         $customerIdentifier->setSearchable(false);
         $customerIdentifier->setType('integer');
         $customerIdentifier->addOption($maxLengthOption);
         $customerIdentifier->addOption($required);
 
+        $en = new TranslatedValue();
+        $en->setLanguage('en');
+        $en->setValue('Customer');
+
+        $fr = new TranslatedValue();
+        $fr->setLanguage('fr');
+        $fr->setValue('Client');
+
         $customer = new ContentType();
         $customer->setContentTypeId('customer');
-        $customer->setName('Customer');
+        $customer->addName($en);
+        $customer->addName($fr);
         $customer->setDeleted(false);
         $customer->setStatus(StatusableInterface::STATUS_PUBLISHED);
         $customer->setVersion(1);
