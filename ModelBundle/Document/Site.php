@@ -83,11 +83,19 @@ class Site implements SiteInterface
     }
 
     /**
-     * @param BlockInterface $block
+     * @param string $block
      */
     public function addBlock($block)
     {
         $this->blocks[] = $block;
+    }
+
+    /**
+     * @param string $block
+     */
+    public function removeBlock($block)
+    {
+        null;
     }
 
     /**

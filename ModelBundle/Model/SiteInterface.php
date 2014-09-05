@@ -25,6 +25,11 @@ interface SiteInterface
     public function addBlock($block);
 
     /**
+     * @param string $block
+     */
+    public function removeBlock($block);
+
+    /**
      * @return array
      */
     public function getBlocks();
