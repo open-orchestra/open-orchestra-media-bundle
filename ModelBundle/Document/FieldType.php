@@ -23,11 +23,11 @@ class FieldType implements FieldTypeInterface
     protected $fieldId;
 
     /**
-     * @var string $label
+     * @var ArrayCollection $labels
      *
-     * @MongoDB\Field(type="string")
+     * @MongoDB\EmbedMany(targetDocument="TranslatedValue")
      */
-    protected $label;
+    protected $labels;
 
     /**
      * @var string $defaultValue
@@ -70,6 +70,7 @@ class FieldType implements FieldTypeInterface
     public function __construct()
     {
         $this->options = new ArrayCollection();
+        $this->labels = new ArrayCollection();
     }
     /**
      * Set FieldId
@@ -92,22 +93,27 @@ class FieldType implements FieldTypeInterface
     }
 
     /**
-     * Set Label
-     * @param string $label
+     * @param TranslatedValue $label
      */
-    public function setLabel($label)
+    public function addLabel(TranslatedValue $label)
     {
-        $this->label = $label;
+        $this->labels->add($label);
     }
 
     /**
-     * Get Label
-     *
-     * @return string
+     * @param TranslatedValue $label
      */
-    public function getLabel()
+    public function removeLabel(TranslatedValue $label)
     {
-        return $this->label;
+        $this->labels->removeElement($label);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLabels()
+    {
+        return $this->labels;
     }
 
     /**
@@ -204,5 +210,15 @@ class FieldType implements FieldTypeInterface
         }
 
         return $formOptions;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTranslatedProperties()
+    {
+        return array(
+            'getLabels'
+        );
     }
 }

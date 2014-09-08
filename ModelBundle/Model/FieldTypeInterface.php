@@ -1,12 +1,14 @@
 <?php
 
 namespace PHPOrchestra\ModelBundle\Model;
+
 use Doctrine\Common\Collections\ArrayCollection;
+use PHPOrchestra\ModelBundle\Document\TranslatedValue;
 
 /**
  * Interface FieldTypeInterface
  */
-Interface FieldTypeInterface
+Interface FieldTypeInterface extends TranslatedValueContainerInterface
 {
     /**
      * Set FieldId
@@ -23,17 +25,21 @@ Interface FieldTypeInterface
     public function getFieldId();
 
     /**
-     * Set Label
-     * @param string $label
+     * @param TranslatedValue $label
      */
-    public function setLabel($label);
+    public function addLabel(TranslatedValue $label);
+
+    /**
+     * @param TranslatedValue $label
+     */
+    public function removeLabel(TranslatedValue $label);
 
     /**
      * Get Label
      *
-     * @return string
+     * @return ArrayCollection
      */
-    public function getLabel();
+    public function getLabels();
 
     /**
      * Set Default Value
