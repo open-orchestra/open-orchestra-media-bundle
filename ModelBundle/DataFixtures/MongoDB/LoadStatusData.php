@@ -120,6 +120,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
 
         $published = new Status();
         $published->setName('published');
+        $published->setPublished(true);
         $published->addLabel($publishedEn);
         $published->addLabel($publishedFr);
         $published->addLabel($publishedDe);

@@ -17,10 +17,16 @@ class NodeRepository extends DocumentRepository
      */
     public function getFooterTree()
     {
+        $dm = $this->getDocumentManager();
+        $statuses = $dm->getRepository('PHPOrchestra\ModelBundle\Document\Status')->findBy(array('published' => true));
+
         $qb = $this->createQueryBuilder('n');
 
-        $qb->field('status')->equals('published')
-            ->field('deleted')->equals(false)
+        foreach ($statuses as $status) {
+            $qb->field('status')->references($status);
+        }
+
+        $qb->field('deleted')->equals(false)
             ->field('inFooter')->equals(true);
 
         return $qb->getQuery()->execute();
@@ -31,10 +37,16 @@ class NodeRepository extends DocumentRepository
      */
     public function getMenuTree()
     {
+        $dm = $this->getDocumentManager();
+        $statuses = $dm->getRepository('PHPOrchestra\ModelBundle\Document\Status')->findBy(array('published' => true));
+
         $qb = $this->createQueryBuilder('n');
 
-        $qb->field('status')->equals('published')
-            ->field('deleted')->equals(false)
+        foreach ($statuses as $status) {
+            $qb->field('status')->references($status);
+        }
+
+        $qb->field('deleted')->equals(false)
             ->field('inMenu')->equals(true);
 
         return $qb->getQuery()->execute();
