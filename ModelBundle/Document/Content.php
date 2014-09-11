@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelBundle\Model\ContentAttributeInterface;
 use PHPOrchestra\ModelBundle\Model\ContentInterface;
+use PHPOrchestra\ModelBundle\Model\StatusInterface;
 
 /**
  * Description of Content
@@ -74,9 +75,9 @@ class Content implements ContentInterface
     protected $language;
 
     /**
-     * @var string $status
+     * @var StatusInterface $status
      *
-     * @MongoDB\Field(type="string")
+     * @MongoDB\ReferenceOne(targetDocument="Status")
      */
     protected $status;
 
@@ -263,15 +264,19 @@ class Content implements ContentInterface
     }
 
     /**
-     * @param string $status
+     * Set status
+     *
+     * @param StatusInterface $status
      */
-    public function setStatus($status)
+    public function setStatus(StatusInterface $status)
     {
         $this->status = $status;
     }
 
     /**
-     * @return string
+     * Get status
+     *
+     * @return StatusInterface $status
      */
     public function getStatus()
     {

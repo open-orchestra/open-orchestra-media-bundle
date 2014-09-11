@@ -2,16 +2,16 @@
 
 namespace PHPOrchestra\ModelBundle\DataFixtures\MongoDB;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Content;
 use PHPOrchestra\ModelBundle\Document\ContentAttribute;
-use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
  * Class LoadContentData
  */
-class LoadContentData implements FixtureInterface
+class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * @param ObjectManager $objectManager
@@ -31,6 +31,16 @@ class LoadContentData implements FixtureInterface
         $objectManager->persist($content4);
 
         $objectManager->flush();
+    }
+
+    /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    function getOrder()
+    {
+        return 70;
     }
 
     /**
@@ -62,7 +72,7 @@ class LoadContentData implements FixtureInterface
         $content->setDeleted(false);
         $content->setName("Bien vivre en France");
         $content->setLanguage("fr");
-        $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $content->setStatus($this->getReference('status-published'));
         $content->setVersion(1);
 
         $content->addAttribute($attribute1);
@@ -102,7 +112,7 @@ class LoadContentData implements FixtureInterface
         $content->setDeleted(false);
         $content->setName("Lorem ipsum");
         $content->setLanguage("fr");
-        $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $content->setStatus($this->getReference('status-published'));
         $content->setVersion(1);
 
         $content->addAttribute($attribute1);
@@ -138,7 +148,7 @@ class LoadContentData implements FixtureInterface
         $content->setDeleted(false);
         $content->setName("R5 3 portes");
         $content->setLanguage("en");
-        $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $content->setStatus($this->getReference('status-published'));
         $content->setVersion(2);
 
         $content->addAttribute($attribute1);
@@ -173,7 +183,7 @@ class LoadContentData implements FixtureInterface
         $content->setDeleted(false);
         $content->setName("Jean-Paul");
         $content->setLanguage("fr");
-        $content->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $content->setStatus($this->getReference('status-published'));
         $content->setVersion(2);
 
         $content->addAttribute($attribute1);

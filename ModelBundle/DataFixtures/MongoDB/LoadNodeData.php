@@ -2,18 +2,17 @@
 
 namespace PHPOrchestra\ModelBundle\DataFixtures\MongoDB;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Area;
 use PHPOrchestra\ModelBundle\Document\Block;
 use PHPOrchestra\ModelBundle\Document\Node;
-use PHPOrchestra\ModelBundle\Model\NodeInterface;
-use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
  * Class LoadNodeData
  */
-class LoadNodeData implements FixtureInterface
+class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -53,6 +52,16 @@ class LoadNodeData implements FixtureInterface
     }
 
     /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    function getOrder()
+    {
+        return 50;
+    }
+
+    /**
      * @return Node
      */
     protected function generateNodeHome()
@@ -79,7 +88,7 @@ class LoadNodeData implements FixtureInterface
         $home->setName('Fixuter Home');
         $home->setVersion(1);
         $home->setLanguage('fr');
-        $home->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $home->setStatus($this->getReference('status-published'));
         $home->setDeleted(false);
         $home->setTemplateId('template_main');
         $home->setTheme('theme1');
@@ -213,7 +222,7 @@ class LoadNodeData implements FixtureInterface
         $full->setName('Fixture full sample');
         $full->setVersion(1);
         $full->setLanguage('fr');
-        $full->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $full->setStatus($this->getReference('status-published'));
         $full->setDeleted(false);
         $full->setTemplateId('template_full');
         $full->setTheme('mixed');
@@ -253,7 +262,7 @@ class LoadNodeData implements FixtureInterface
         $generic->setName('Generic Node');
         $generic->setVersion(1);
         $generic->setLanguage('fr');
-        $generic->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $generic->setStatus($this->getReference('status-published'));
         $generic->setTemplateId('template_generic');
         $generic->setDeleted(true);
         $generic->setInMenu(true);
@@ -289,7 +298,7 @@ class LoadNodeData implements FixtureInterface
         $aboutUs->setAlias('qui-sommes-nous');
         $aboutUs->setVersion(1);
         $aboutUs->setLanguage('fr');
-        $aboutUs->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $aboutUs->setStatus($this->getReference('status-published'));
         $aboutUs->setDeleted(false);
         $aboutUs->setTemplateId('template_main');
         $aboutUs->setTheme('theme2');
@@ -328,7 +337,7 @@ class LoadNodeData implements FixtureInterface
         $bd->setAlias('b-et-d');
         $bd->setVersion(1);
         $bd->setLanguage('fr');
-        $bd->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $bd->setStatus($this->getReference('status-published'));
         $bd->setDeleted(false);
         $bd->setTemplateId('template_main');
         $bd->setTheme('theme2');
@@ -367,7 +376,7 @@ class LoadNodeData implements FixtureInterface
         $interakting->setAlias('interakting');
         $interakting->setVersion(1);
         $interakting->setLanguage('fr');
-        $interakting->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $interakting->setStatus($this->getReference('status-published'));
         $interakting->setDeleted(false);
         $interakting->setTemplateId('template_main');
         $interakting->setTheme('sample');
@@ -407,7 +416,7 @@ class LoadNodeData implements FixtureInterface
         $contactUs->setAlias('nous-contacter');
         $contactUs->setVersion(1);
         $contactUs->setLanguage('fr');
-        $contactUs->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $contactUs->setStatus($this->getReference('status-published'));
         $contactUs->setDeleted(false);
         $contactUs->setTemplateId('template_main');
         $contactUs->setTheme('theme1');
@@ -447,7 +456,7 @@ class LoadNodeData implements FixtureInterface
         $directory->setAlias('nous-contacter');
         $directory->setVersion(1);
         $directory->setLanguage('fr');
-        $directory->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $directory->setStatus($this->getReference('status-published'));
         $directory->setDeleted(false);
         $directory->setTemplateId('template_main');
         $directory->setTheme('fromApp');
@@ -566,7 +575,7 @@ class LoadNodeData implements FixtureInterface
         $search->setAlias('nous-contacter');
         $search->setVersion(1);
         $search->setLanguage('fr');
-        $search->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $search->setStatus($this->getReference('status-published'));
         $search->setDeleted(false);
         $search->setTemplateId('template_main');
         $search->setTheme('fromApp');

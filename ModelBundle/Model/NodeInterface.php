@@ -148,20 +148,6 @@ interface NodeInterface extends AreaContainerInterface, BlockContainerInterface,
     public function getLanguage();
 
     /**
-     * Set status
-     *
-     * @param string $status
-     */
-    public function setStatus($status);
-
-    /**
-     * Get status
-     *
-     * @return string $status
-     */
-    public function getStatus();
-
-    /**
      * Set deleted
      *
      * @param boolean $deleted

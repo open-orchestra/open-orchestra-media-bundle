@@ -4,7 +4,6 @@ namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use PHPOrchestra\ModelBundle\Model\BlockInterface;
 use PHPOrchestra\ModelBundle\Model\SiteInterface;
 
 /**
@@ -23,42 +22,42 @@ class Site implements SiteInterface
      * @MongoDB\Id
      */
     protected $id;
-    
+
     /**
      * @var int $siteId
      *
      * @MongoDB\Field(type="int")
      */
     protected $siteId;
-    
+
     /**
      * @var string $domain
      *
      * @MongoDB\Field(type="string")
      */
     protected $domain;
-    
+
     /**
      * @var string $alias
      *
      * @MongoDB\Field(type="string")
      */
     protected $alias;
-    
+
     /**
      * @var string $defaultLanguage
      *
      * @MongoDB\Field(type="string")
      */
     protected $defaultLanguage;
-    
+
     /**
      * @var array $languages
      *
      * @MongoDB\Field(type="collection")
      */
     protected $languages = array();
-    
+
     /**
      * @var ArrayCollection
      *

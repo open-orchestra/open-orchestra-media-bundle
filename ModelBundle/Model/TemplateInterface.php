@@ -55,16 +55,6 @@ interface TemplateInterface extends AreaContainerInterface, BlockContainerInterf
     public function getSiteId();
 
     /**
-     * @param string $status
-     */
-    public function setStatus($status);
-
-    /**
-     * @return string
-     */
-    public function getStatus();
-
-    /**
      * @param int $templateId
      */
     public function setTemplateId($templateId);

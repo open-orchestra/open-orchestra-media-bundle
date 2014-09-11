@@ -7,6 +7,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\BlockInterface;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelBundle\Model\StatusInterface;
 
 /**
  * Description of Node
@@ -89,9 +90,9 @@ class Node implements NodeInterface
     protected $language;
 
     /**
-     * @var string $status
+     * @var StatusInterface $status
      *
-     * @MongoDB\Field(type="string")
+     * @MongoDB\ReferenceOne(targetDocument="Status")
      */
     protected $status;
 
@@ -346,9 +347,9 @@ class Node implements NodeInterface
     /**
      * Set status
      *
-     * @param string $status
+     * @param StatusInterface $status
      */
-    public function setStatus($status)
+    public function setStatus(StatusInterface $status)
     {
         $this->status = $status;
     }
@@ -356,7 +357,7 @@ class Node implements NodeInterface
     /**
      * Get status
      *
-     * @return string $status
+     * @return StatusInterface $status
      */
     public function getStatus()
     {
