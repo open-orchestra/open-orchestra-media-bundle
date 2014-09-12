@@ -3,6 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ODM\MongoDB\PersistentCollection;
 
 /**
  * Interface NodeInterface
@@ -216,6 +217,21 @@ interface NodeInterface extends AreaContainerInterface, BlockContainerInterface,
      */
     public function setBlock($key, BlockInterface $block);
 
+    /**
+     * Set blocks
+     *
+     * @param PersistentCollection $blocks
+     */
+    public function setBlocks(PersistentCollection $blocks);
+    
+    
+    /**
+     * Set areas
+     *
+     * @param PersistentCollection $areas
+     */
+    public function setAreas(PersistentCollection $areas);
+    
     /**
      * @param boolean $inFooter
      */
