@@ -1,13 +1,19 @@
 <?php
 
 namespace PHPOrchestra\ModelBundle\Model;
+
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * interface StatusInterface
  */
-interface StatusInterface
+interface StatusInterface extends TranslatedValueContainerInterface
 {
+    /**
+     * @return string
+     */
+    public function getId();
+
     /**
      * @return string
      */

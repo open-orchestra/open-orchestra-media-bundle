@@ -114,4 +114,14 @@ class Status implements StatusInterface
     {
         return $this->published;
     }
+
+    /**
+     * @return array
+     */
+    public function getTranslatedProperties()
+    {
+        return array(
+            'getLabels'
+        );
+    }
 }
