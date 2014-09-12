@@ -3,7 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ODM\MongoDB\PersistentCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\BlockInterface;
@@ -437,14 +437,11 @@ class Node implements NodeInterface
     /**
      * Set blocks
      *
-     * @param PersistentCollection $block
+     * @param Collection $block
      */
-    public function setBlocks(PersistentCollection $blocks)
+    public function setBlocks(Collection $blocks)
     {
-    	$this->blocks->clear();
-    	foreach($blocks as $block){
-    		$this->blocks->add($block);
-    	}
+        $this->blocks = $blocks;
     }
     
     /**
@@ -497,12 +494,9 @@ class Node implements NodeInterface
     /**
      * @param AreaInterface $area
      */
-    public function setAreas(PersistentCollection $areas)
+    public function setAreas(Collection $areas)
     {
-    	$this->areas->clear();
-    	foreach($areas as $area){
-        	$this->areas->add($area);
-    	}
+        $this->areas = $areas;
     }
     
     /**
