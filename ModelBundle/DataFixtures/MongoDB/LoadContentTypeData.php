@@ -113,7 +113,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
 
         $en = new TranslatedValue();
         $en->setLanguage('en');
-        $en->setValue('News');
+        $en->setValue('news');
 
         $fr = new TranslatedValue();
         $fr->setLanguage('fr');

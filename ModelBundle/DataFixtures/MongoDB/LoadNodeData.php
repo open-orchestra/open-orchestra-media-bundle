@@ -67,7 +67,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     protected function generateNodeHome()
     {
         $homeBlock = new Block();
-        $homeBlock->setComponent('Sample');
+        $homeBlock->setComponent('sample');
         $homeBlock->setAttributes(array(
             'title' => 'Accueil',
             'news' => "Bienvenu sur le site de démo issu des fixtures.",
@@ -106,7 +106,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     protected function genereFullFixture()
     {
         $block0 = new Block();
-        $block0->setComponent('Sample');
+        $block0->setComponent('sample');
         $block0->setAttributes(array(
             'title' => 'Qui sommes-nous?',
             'author' => 'Pourquoi nous choisir ?',
@@ -114,7 +114,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $block1 = new Block();
-        $block1->setComponent('Menu');
+        $block1->setComponent('menu');
         $block1->setAttributes(array(
             'class' => array(
                 'div' => 'divclass',
@@ -125,7 +125,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $block2 = new Block();
-        $block2->setComponent('Sample');
+        $block2->setComponent('sample');
         $block2->setAttributes(array(
             "title" => "News 1",
             "author" => "Donec bibendum at nibh eget imperdiet. Mauris eget justo augue. Fusce fermentum iaculis erat, sollicitudin elementum enim sodales eu. Donec a ante tortor. Suspendisse a.",
@@ -133,7 +133,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $block3 = new Block();
-        $block3->setComponent('Sample');
+        $block3->setComponent('sample');
         $block3->setAttributes(array(
             "title" => "News #2",
             "author" => "Aliquam convallis facilisis nulla, id ultricies ipsum cursus eu. Proin augue quam, iaculis id nisi ac, rutrum blandit leo. In leo ante, scelerisque tempus lacinia in, sollicitudin quis justo. Vestibulum.",
@@ -141,7 +141,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $block4 = new Block();
-        $block4->setComponent('Sample');
+        $block4->setComponent('sample');
         $block4->setAttributes(array(
             "title" => "News #3",
             "author" => "Phasellus condimentum diam placerat varius iaculis. Aenean dictum, libero in sollicitudin hendrerit, nulla mi elementum massa, eget mattis lorem enim vel magna. Fusce suscipit orci vitae vestibulum.",
@@ -149,7 +149,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $block5 = new Block();
-        $block5->setComponent('Sample');
+        $block5->setComponent('sample');
         $block5->setAttributes(array(
             'title' => '/apple-touch-icon.png',
             'author' => 'bépo',
@@ -158,7 +158,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $block6 = new Block();
-        $block6->setComponent('Footer');
+        $block6->setComponent('footer');
         $block6->setAttributes(array(
             'id' => 'idFooter',
             'class' => array(
@@ -169,7 +169,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $block7 = new Block();
-        $block7->setComponent('Search');
+        $block7->setComponent('search');
         $block7->setAttributes(array(
             'value' => 'Rechercher',
             'class' => 'classbouton',
@@ -277,7 +277,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     protected function generateAboutUsNode()
     {
         $aboutUsBlock = new Block();
-        $aboutUsBlock->setComponent('Sample');
+        $aboutUsBlock->setComponent('sample');
         $aboutUsBlock->setAttributes(array(
             'title' => 'Qui sommes-nous?',
             'author' => 'Pour tout savoir sur notre entreprise.',
@@ -316,7 +316,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     protected function generateBdNode()
     {
         $bdBlock = new Block();
-        $bdBlock->setComponent('Sample');
+        $bdBlock->setComponent('sample');
         $bdBlock->setAttributes(array(
             'title' => 'B&D',
             'author' => 'Tout sur B&D',
@@ -355,7 +355,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     protected function generateInteraktingNode()
     {
         $interaktingBlock = new Block();
-        $interaktingBlock->setComponent('Sample');
+        $interaktingBlock->setComponent('sample');
         $interaktingBlock->setAttributes(array(
             'title' => 'Interakting',
             'author' => '',
@@ -394,7 +394,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     protected function generateContactUsNode()
     {
         $contactUsBlock = new Block();
-        $contactUsBlock->setComponent('Sample');
+        $contactUsBlock->setComponent('sample');
         $contactUsBlock->setAttributes(array(
             'title' => 'Nous contacter',
             'author' => 'Comment nous contacter',
@@ -434,7 +434,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     protected function generateDirectoryNode()
     {
         $directoryBlock = new Block();
-        $directoryBlock->setComponent('Sample');
+        $directoryBlock->setComponent('sample');
         $directoryBlock->setAttributes(array(
             'title' => 'Annuaire',
             'author' => 'Le bottin mondain',
@@ -474,7 +474,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     protected function generateSearchNode()
     {
         $searchBlock0 = new Block();
-        $searchBlock0->setComponent('Sample');
+        $searchBlock0->setComponent('sample');
         $searchBlock0->setAttributes(array(
             'title' => 'Qui somme-nous?',
             'author' => 'Pourquoi nous choisir ?',
@@ -482,7 +482,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $searchBlock1 = new Block();
-        $searchBlock1->setComponent('Menu');
+        $searchBlock1->setComponent('menu');
         $searchBlock1->setAttributes(array(
             'class' => array(
                 'div' => 'divclass',
@@ -493,7 +493,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $searchBlock2 = new Block();
-        $searchBlock2->setComponent('Search');
+        $searchBlock2->setComponent('search');
         $searchBlock2->setAttributes(array(
             'value' => 'Rechercher',
             'name' => "btnSearch",
@@ -502,7 +502,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $searchBlock3 = new Block();
-        $searchBlock3->setComponent('SearchResult');
+        $searchBlock3->setComponent('search_result');
         $searchBlock3->setAttributes(array(
             'nodeId' => 'fixture_search',
             'nbdoc' => '5',
@@ -531,7 +531,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $searchBlock4 = new Block();
-        $searchBlock4->setComponent('Footer');
+        $searchBlock4->setComponent('footer');
         $searchBlock4->setAttributes(array(
             'id' => 'idFooter',
             'class' => array(

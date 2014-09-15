@@ -42,7 +42,7 @@ class LoadSiteData implements FixtureInterface
         $site1->setAlias('www.ophp-orchestra.fr');
         $site1->setDefaultLanguage('fr');
         $site1->setLanguages(array('en', 'fr'));
-        $site1->addBlock('Sample');
+        $site1->addBlock('sample');
         return $site1;
     }
 
@@ -57,7 +57,7 @@ class LoadSiteData implements FixtureInterface
         $site2->setAlias('www.nphp-orchestra.fr');
         $site2->setDefaultLanguage('fr');
         $site2->setLanguages(array('en', 'fr'));
-        $site2->addBlock('Sample');
+        $site2->addBlock('sample');
 
         return $site2;
     }
@@ -73,7 +73,7 @@ class LoadSiteData implements FixtureInterface
         $site3->setAlias('www.mphp-orchestra.fr');
         $site3->setDefaultLanguage('fr');
         $site3->setLanguages(array('en', 'fr'));
-        $site3->addBlock('Sample');
+        $site3->addBlock('sample');
 
         return $site3;
     }
@@ -89,7 +89,7 @@ class LoadSiteData implements FixtureInterface
         $site4->setAlias('www.lphp-orchestra.fr');
         $site4->setDefaultLanguage('fr');
         $site4->setLanguages(array('en', 'fr'));
-        $site4->addBlock('Sample');
+        $site4->addBlock('sample');
 
         return $site4;
     }
