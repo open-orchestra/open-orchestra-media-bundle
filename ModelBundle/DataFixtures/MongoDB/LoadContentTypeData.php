@@ -2,18 +2,18 @@
 
 namespace PHPOrchestra\ModelBundle\DataFixtures\MongoDB;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\ContentType;
 use PHPOrchestra\ModelBundle\Document\FieldType;
 use PHPOrchestra\ModelBundle\Document\FieldOption;
 use PHPOrchestra\ModelBundle\Document\TranslatedValue;
-use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
  * Class LoadContentTypeData
  */
-class LoadContentTypeData implements FixtureInterface
+class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -35,6 +35,16 @@ class LoadContentTypeData implements FixtureInterface
         $manager->persist($customer);
 
         $manager->flush();
+    }
+
+    /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    function getOrder()
+    {
+        return 60;
     }
 
     /**
@@ -114,7 +124,7 @@ class LoadContentTypeData implements FixtureInterface
         $news->addName($en);
         $news->addName($fr);
         $news->setDeleted(false);
-        $news->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $news->setStatus($this->getReference('status-published'));
         $news->setVersion(1);
 
         $news->addFieldType($newsTitle);
@@ -185,7 +195,7 @@ class LoadContentTypeData implements FixtureInterface
         $car->addName($en);
         $car->addName($fr);
         $car->setDeleted(false);
-        $car->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $car->setStatus($this->getReference('status-published'));
         $car->setVersion(2);
 
         $car->addFieldType($carName);
@@ -254,7 +264,7 @@ class LoadContentTypeData implements FixtureInterface
         $car->addName($en);
         $car->addName($fr);
         $car->setDeleted(false);
-        $car->setStatus(StatusableInterface::STATUS_DRAFT);
+        $car->setStatus($this->getReference('status-draft'));
         $car->setVersion(3);
 
         $car->addFieldType($carName);
@@ -340,7 +350,7 @@ class LoadContentTypeData implements FixtureInterface
         $customer->addName($en);
         $customer->addName($fr);
         $customer->setDeleted(false);
-        $customer->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $customer->setStatus($this->getReference('status-published'));
         $customer->setVersion(1);
 
         $customer->addFieldType($customerFirstName);

@@ -62,16 +62,6 @@ interface ContentTypeInterface extends FieldTypeContainerInterface, StatusableIn
     public function getNames();
 
     /**
-     * @param string $status
-     */
-    public function setStatus($status);
-
-    /**
-     * @return string
-     */
-    public function getStatus();
-
-    /**
      * @param int $version
      */
     public function setVersion($version);

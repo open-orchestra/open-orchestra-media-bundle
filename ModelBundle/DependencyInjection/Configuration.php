@@ -65,6 +65,12 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\ListIndexRepository')->end()
                 ->end()
             ->end()
+            ->arrayNode('status')
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestra\ModelBundle\Document\Status')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\StatusRepository')->end()
+                ->end()
+            ->end()
         ->end();
 
         return $treeBuilder;

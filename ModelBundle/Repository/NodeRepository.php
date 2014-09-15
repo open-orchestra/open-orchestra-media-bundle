@@ -17,11 +17,8 @@ class NodeRepository extends DocumentRepository
      */
     public function getFooterTree()
     {
-        $qb = $this->createQueryBuilder('n');
-
-        $qb->field('status')->equals('published')
-            ->field('deleted')->equals(false)
-            ->field('inFooter')->equals(true);
+        $qb = $this->buildTreeRequest();
+        $qb->field('inFooter')->equals(true);
 
         return $qb->getQuery()->execute();
     }
@@ -31,11 +28,8 @@ class NodeRepository extends DocumentRepository
      */
     public function getMenuTree()
     {
-        $qb = $this->createQueryBuilder('n');
-
-        $qb->field('status')->equals('published')
-            ->field('deleted')->equals(false)
-            ->field('inMenu')->equals(true);
+        $qb = $this->buildTreeRequest();
+        $qb->field('inMenu')->equals(true);
 
         return $qb->getQuery()->execute();
     }
@@ -80,5 +74,24 @@ class NodeRepository extends DocumentRepository
         }
 
         return null;
+    }
+
+    /**
+     * @return \Doctrine\ODM\MongoDB\Query\Builder
+     */
+    protected function buildTreeRequest()
+    {
+        $dm = $this->getDocumentManager();
+        $statuses = $dm->getRepository('PHPOrchestra\ModelBundle\Document\Status')->findBy(array('published' => true));
+
+        $qb = $this->createQueryBuilder('n');
+
+        foreach ($statuses as $status) {
+            $qb->addOr($qb->expr()->field('status')->references($status));
+        }
+
+        $qb->field('deleted')->equals(false);
+
+        return $qb;
     }
 }

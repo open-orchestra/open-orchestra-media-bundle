@@ -2,16 +2,16 @@
 
 namespace PHPOrchestra\ModelBundle\DataFixtures\MongoDB;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Area;
 use PHPOrchestra\ModelBundle\Document\Template;
-use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
  * Class LoadTemplateData
  */
-class LoadTemplateData implements FixtureInterface
+class LoadTemplateData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * @param ObjectManager $manager
@@ -31,6 +31,16 @@ class LoadTemplateData implements FixtureInterface
     }
 
     /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    function getOrder()
+    {
+        return 40;
+    }
+
+    /**
      * @return Template
      */
     protected function genericTemplate()
@@ -44,7 +54,7 @@ class LoadTemplateData implements FixtureInterface
         $generic->setVersion(1);
         $generic->setName('Generic Template');
         $generic->setLanguage('fr');
-        $generic->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $generic->setStatus($this->getReference('status-published'));
         $generic->setDeleted(false);
         $generic->setBoDirection('h');
         $generic->addArea($genericArea);
@@ -85,7 +95,7 @@ class LoadTemplateData implements FixtureInterface
         $full->setVersion(1);
         $full->setName('Full Template');
         $full->setLanguage('fr');
-        $full->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $full->setStatus($this->getReference('status-published'));
         $full->setBoDirection('h');
         $full->setDeleted(false);
         $full->addArea($header);
@@ -109,7 +119,7 @@ class LoadTemplateData implements FixtureInterface
         $template->setVersion(1);
         $template->setName('Generic Main');
         $template->setLanguage('fr');
-        $template->setStatus(StatusableInterface::STATUS_PUBLISHED);
+        $template->setStatus($this->getReference('status-published'));
         $template->setBoDirection('h');
         $template->setDeleted(false);
         $template->addArea($main);
