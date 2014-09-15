@@ -91,6 +91,7 @@ class NodeRepository extends DocumentRepository
         }
 
         $qb->field('deleted')->equals(false);
+
         return $qb;
     }
 }
