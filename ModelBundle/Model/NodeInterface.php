@@ -3,6 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Interface NodeInterface
@@ -202,6 +203,20 @@ interface NodeInterface extends AreaContainerInterface, BlockContainerInterface,
      */
     public function setBlock($key, BlockInterface $block);
 
+    /**
+     * Set blocks
+     *
+     * @param Collection $blocks
+     */
+    public function setBlocks(Collection $blocks);
+    
+    /**
+     * Set areas
+     *
+     * @param Collection $areas
+     */
+    public function setAreas(Collection $areas);
+    
     /**
      * @param boolean $inFooter
      */

@@ -3,6 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\BlockInterface;
@@ -435,6 +436,16 @@ class Node implements NodeInterface
     }
 
     /**
+     * Set blocks
+     *
+     * @param Collection $block
+     */
+    public function setBlocks(Collection $blocks)
+    {
+        $this->blocks = $blocks;
+    }
+    
+    /**
      * @param BlockInterface $block
      *
      * @return bool|int|mixed|string
@@ -481,6 +492,14 @@ class Node implements NodeInterface
         $this->areas->add($area);
     }
 
+    /**
+     * @param AreaInterface $area
+     */
+    public function setAreas(Collection $areas)
+    {
+        $this->areas = $areas;
+    }
+    
     /**
      * @param AreaInterface $area
      */
