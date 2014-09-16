@@ -442,7 +442,10 @@ class Node implements NodeInterface
      */
     public function setBlocks(Collection $blocks)
     {
-        $this->blocks = $blocks;
+        $this->blocks->clear();
+        foreach($blocks as $block){
+            $this->blocks->add($block);
+        }
     }
     
     /**
@@ -497,7 +500,10 @@ class Node implements NodeInterface
      */
     public function setAreas(Collection $areas)
     {
-        $this->areas = $areas;
+        $this->areas->clear();
+        foreach($areas as $area){
+            $this->areas->add($area);
+        }
     }
     
     /**
