@@ -93,7 +93,7 @@ class Node implements NodeInterface
     /**
      * @var StatusInterface $status
      *
-     * @MongoDB\EmbedOne(targetDocument="Status")
+     * @MongoDB\EmbedOne(targetDocument="EmbedStatus")
      */
     protected $status;
 

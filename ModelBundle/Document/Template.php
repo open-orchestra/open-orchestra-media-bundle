@@ -64,10 +64,10 @@ class Template implements TemplateInterface
     /**
      * @var StatusInterface $status
      *
-     * @MongoDB\ReferenceOne(targetDocument="Status")
+     * @MongoDB\EmbedOne(targetDocument="EmbedStatus")
      */
     protected $status;
-    
+
     /**
      * @var boolean
      *
@@ -232,7 +232,7 @@ class Template implements TemplateInterface
      */
     public function setStatus(StatusInterface $status)
     {
-        $this->status = $status;
+        $this->status = EmbedStatus::createFromStatus($status);
     }
 
     /**
