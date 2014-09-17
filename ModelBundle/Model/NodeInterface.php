@@ -10,8 +10,6 @@ use Doctrine\Common\Collections\Collection;
  */
 interface NodeInterface extends AreaContainerInterface, BlockContainerInterface, StatusableInterface
 {
-    const PUBLISHED = 'published';
-
     const TYPE_DEFAULT = 'page';
 
     const ROOT_NODE_ID = 'root';
