@@ -77,7 +77,7 @@ class Content implements ContentInterface
     /**
      * @var StatusInterface $status
      *
-     * @MongoDB\ReferenceOne(targetDocument="Status")
+     * @MongoDB\EmbedOne(targetDocument="EmbedStatus")
      */
     protected $status;
 
@@ -270,7 +270,7 @@ class Content implements ContentInterface
      */
     public function setStatus(StatusInterface $status)
     {
-        $this->status = $status;
+        $this->status = EmbedStatus::createFromStatus($status);
     }
 
     /**

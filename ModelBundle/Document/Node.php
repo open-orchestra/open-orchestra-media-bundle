@@ -93,7 +93,7 @@ class Node implements NodeInterface
     /**
      * @var StatusInterface $status
      *
-     * @MongoDB\ReferenceOne(targetDocument="Status")
+     * @MongoDB\EmbedOne(targetDocument="EmbedStatus")
      */
     protected $status;
 
@@ -352,7 +352,7 @@ class Node implements NodeInterface
      */
     public function setStatus(StatusInterface $status)
     {
-        $this->status = $status;
+        $this->status = EmbedStatus::createFromStatus($status);
     }
 
     /**

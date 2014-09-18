@@ -12,11 +12,6 @@ interface StatusInterface extends TranslatedValueContainerInterface
     /**
      * @return string
      */
-    public function getId();
-
-    /**
-     * @return string
-     */
     public function getName();
 
     /**

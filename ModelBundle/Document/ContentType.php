@@ -48,7 +48,7 @@ class ContentType implements ContentTypeInterface
     /**
      * @var StatusInterface $status
      *
-     * @MongoDB\ReferenceOne(targetDocument="Status")
+     * @MongoDB\EmbedOne(targetDocument="EmbedStatus")
      */
     protected $status;
 
@@ -192,7 +192,7 @@ class ContentType implements ContentTypeInterface
      */
     public function setStatus(StatusInterface $status)
     {
-        $this->status = $status;
+        $this->status = EmbedStatus::createFromStatus($status);
     }
 
     /**
