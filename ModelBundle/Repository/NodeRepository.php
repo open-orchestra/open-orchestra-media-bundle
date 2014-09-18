@@ -81,14 +81,9 @@ class NodeRepository extends DocumentRepository
      */
     protected function buildTreeRequest()
     {
-        $dm = $this->getDocumentManager();
-        $statuses = $dm->getRepository('PHPOrchestra\ModelBundle\Document\Status')->findBy(array('published' => true));
-
         $qb = $this->createQueryBuilder('n');
 
-        foreach ($statuses as $status) {
-            $qb->addOr($qb->expr()->field('status')->references($status));
-        }
+        $qb->field('status.published')->equals(true);
 
         $qb->field('deleted')->equals(false);
 
