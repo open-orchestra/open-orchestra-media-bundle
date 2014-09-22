@@ -19,6 +19,7 @@ class NodeRepository extends DocumentRepository
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inFooter')->equals(true);
+        $qb->field('deleted')->equals(false);
 
         return $qb->getQuery()->execute();
     }
@@ -30,6 +31,7 @@ class NodeRepository extends DocumentRepository
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inMenu')->equals(true);
+        $qb->field('deleted')->equals(false);
 
         return $qb->getQuery()->execute();
     }
