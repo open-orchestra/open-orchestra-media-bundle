@@ -638,22 +638,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeBlock0->setComponent('tiny_mce_wysiwyg');
         $siteHomeBlock0->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteHomeBlock1 = new Block();
         $siteHomeBlock1->setComponent('tiny_mce_wysiwyg');
         $siteHomeBlock1->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteHomeBlockMenu = new Block();
-//        $siteHomeBlockMenu->setComponent('tiny_mce_wysiwyg');
-//        $siteHomeBlockMenu->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteHomeBlockMenu = new Block();
         $siteHomeBlockMenu->setComponent('menu');
@@ -682,15 +673,15 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeBlock4 = new Block();
         $siteHomeBlock4->setComponent('tiny_mce_wysiwyg');
         $siteHomeBlock4->setAttributes(array(
-            "_htmlContent" => "<div id='area2.2' class='content'><p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate. Cras at urna sem. Nullam sed risus porta, placerat metus bibendum, commodo metus. Donec blandit leo eros, sed convallis odio sollicitudin at.Morbi ut pulvinar lorem. Duis venenatis interdum hendrerit. Curabitur sit amet eleifend sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse volutpat nulla sed eleifend malesuada. Suspendisse fringilla, est et dapibus molestie, orci leo pretium nulla, vitae consectetur ipsum enim ut magna. Duis sagittis auctor sollicitudin. Nunc interdum, quam id varius interdum, nulla felis blandit sapien, ac egestas lectus turpis in urna. Sed id ullamcorper nulla, quis tempor libero. Donec aliquet neque vitae rhoncus vestibulum. Aliquam id nunc ut justo sagittis bibendum sit amet non metus.Mauris aliquam mattis sem, in tempus eros feugiat non. Aenean vitae odio sapien. Curabitur ut luctus purus, nec vehicula nunc. Sed massa odio, sagittis a odio eget, posuere imperdiet eros. Sed sit amet neque tempus urna rutrum egestas. Maecenas dignissim justo orci, vitae aliquet mi gravida feugiat. Quisque ullamcorper non dui eget fringilla. convallis condimentum placerat. Mauris bibendum libero ac neque tempus, et pharetra enim cursus. In nec porta mi. Duis feugiat, enim nec ornare malesuada, ligula metus </p></div>",
-            "_page_parameters" => array(),
+            "_htmlContent" => "<div id='area2.2' class='content'><p>
+            Business & Decision est un Groupe international de services numériques,  leader de la Business Intelligence (BI) et du CRM, acteur majeur de l'e-Business.  Le Groupe contribue à la réussite des projets à forte valeur ajoutée des entreprises et accompagne ses clients dans des domaines d’innovation tels que le Big Data et le Digital. Il est reconnu pour son expertise fonctionnelle et technologique par les plus grands éditeurs de logiciels du marché avec lesquels il a noué des partenariats. Fort d’une expertise unique dans ses domaines de spécialisation, Business & Decision offre des solutions adaptées à des secteurs d’activité ainsi qu’à des directions métiers.
+            </p></div>",
         ));
 
         $siteHomeBlock5 = new Block();
         $siteHomeBlock5->setComponent('tiny_mce_wysiwyg');
         $siteHomeBlock5->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com </a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteHomeArea1 = new Area();
@@ -718,7 +709,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeArea6 = new Area();
         $siteHomeArea6->setAreaId('mainContentArea2');
         $siteHomeArea6->addBlock(array('nodeId' => 0, 'blockId' => 4));
-        //$siteHomeArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
 
         $siteHomeArea4 = new Area();
         $siteHomeArea4->setAreaId('myMain');
@@ -771,29 +761,19 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteWhatBlock0->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock0->setAttributes(array(
             "_htmlContent" => "",
-            "_page_parameters" => array(),
         ));
 
         $siteWhatBlock1 = new Block();
         $siteWhatBlock1->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteWhatBlock2 = new Block();
         $siteWhatBlock2->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteWhatBlock3 = new Block();
-//        $siteWhatBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteWhatBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteWhatBlockMenu = new Block();
         $siteWhatBlockMenu->setComponent('menu');
@@ -809,59 +789,19 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteWhatBlock4 = new Block();
         $siteWhatBlock4->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'> <h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Morbi lacinia neque sed consequat dapibus.
-            Nulla hendrerit mollis nisi vitae vehicula.
-            Maecenas viverra lacus neque, quis viverra ligula dignissim vel.
-            Nulla interdum pulvinar vulputate. Cras at urna sem.
-            Nullam sed risus porta, placerat metus bibendum, commodo metus.
-            Donec blandit leo eros, sed convallis odio sollicitudin at.
-            Morbi ut pulvinar lorem.
-            Duis venenatis interdum hendrerit. Curabitur sit amet eleifend sapien.
-            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-            Suspendisse volutpat nulla sed eleifend malesuada. Suspendisse fringilla, est et dapibus molestie, orci leo pretium nulla, vitae consectetur ipsum enim ut magna.
-            Duis sagittis auctor sollicitudin. Nunc interdum, quam id varius interdum, nulla felis blandit sapien, ac egestas lectus turpis in urna.
-            Sed id ullamcorper nulla, quis tempor libero.
-            Donec aliquet neque vitae rhoncus vestibulum.
-            Aliquam id nunc ut justo sagittis bibendum sit amet non metus.Mauris aliquam mattis sem, in tempus eros feugiat non.
-            Aenean vitae odio sapien.
-            Curabitur ut luctus purus, nec vehicula nunc.
-            Sed massa odio, sagittis a odio eget, posuere imperdiet eros.
-            Sed sit amet neque tempus urna rutrum egestas.
-            Maecenas dignissim justo orci, vitae aliquet mi gravida feugiat.
-            Quisque ullamcorper non dui eget fringilla. convallis condimentum placerat.
-            Mauris bibendum libero ac neque tempus, et pharetra enim cursus.
-            In nec porta mi.
-            Duis feugiat, enim nec ornare malesuada, ligula metus iaculis quam, dapibus fermentum lacus lorem ut diam.
-            Pellentesque condimentum ante sed augue pretium placerat.
-            Ut venenatis, lacus vel imperdiet aliquam, enim risus rhoncus mi, eget consequat tellus ante nec felis.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Curabitur in erat eget leo tincidunt euismod.
-            Sed hendrerit malesuada magna commodo porta.
-            Suspendisse diam urna, pretium ut mi vel, vulputate ultricies dolor.
-            Nam eleifend accumsan nibh. Duis hendrerit ornare urna, sit amet commodo eros imperdiet nec.
-            Donec tristique est sit amet justo fringilla, a hendrerit ligula ultricies.
-            Phasellus dignissim mi sit amet nibh gravida, vitae lobortis lorem imperdiet.
-            Praesent dolor quam, luctus sed dui eu, eleifend mattis tortor.
-            Curabitur varius lacus at sapien eleifend, vitae feugiat lectus mattis.
-            In malesuada molestie turpis, et mattis ante euismod sed.
-            Integer interdum adipiscing purus vitae vestibulum.
-            Proin aliquam egestas nunc, ut dictum justo lacinia quis.
-            Phasellus tincidunt mauris fringilla mauris hendrerit euismod.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula.
-            Maecenas viverra lacus neque, quis viverra ligula dignissim vel.
-            Nulla interdum pulvinar vulputate.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula.
-            Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.</p></h1></div>",
-            "_page_parameters" => array(),
+            "_htmlContent" => "<div class='content2'> <h1><p>
+PHP Factory est une plateforme développée conjointement par Interakting et Zend Technologies. Cette offre, dédiée au marketing est destinée aux grands projets de nouvelle génération en digital marketing et entreprise 2.0.
+
+L’objectif de PHP Factory est de répondre aux exigences les plus élevées des grands comptes en termes de haute disponibilité, de performance et d'industrialisation des processus de création et de diffusion de contenus vers le Web et les mobiles.
+
+Elle a été développé  autour des standards PHP de Zend. Elle est constituée d’une bibliothèque de composants : gestion de contenu web et multi-média, d’e-commerce, d’animation de réseaux sociaux, de Portail et de Mobilité.
+               </p></h1></div>",
         ));
 
         $siteWhatBlock5 = new Block();
         $siteWhatBlock5->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteWhatBlock6 = new Block();
@@ -875,12 +815,10 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteWhatBlock7->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock7->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com</a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteWhatArea1 = new Area();
         $siteWhatArea1->setAreaId('logo');
-        //$siteWhatArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
         $siteWhatArea1->addBlock(array('nodeId' => 0, 'blockId' => 1));
 
         $siteWhatArea2 = new Area();
@@ -899,7 +837,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $siteWhatArea5 = new Area();
         $siteWhatArea5->setAreaId('mainContentArea1');
-//        $siteWhatArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
         $siteWhatArea5->addBlock(array('nodeId' => 0, 'blockId' => 4));
 
         $siteWhatArea6 = new Area();
@@ -960,22 +897,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteStartBlock1->setComponent('tiny_mce_wysiwyg');
         $siteStartBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteStartBlock2 = new Block();
         $siteStartBlock2->setComponent('tiny_mce_wysiwyg');
         $siteStartBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteStartBlock3 = new Block();
-//        $siteStartBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteStartBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteStartBlockMenu = new Block();
         $siteStartBlockMenu->setComponent('menu');
@@ -992,14 +920,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteStartBlock4->setComponent('tiny_mce_wysiwyg');
         $siteStartBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteStartBlock5 = new Block();
         $siteStartBlock5->setComponent('tiny_mce_wysiwyg');
         $siteStartBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteStartBlock6 = new Block();
@@ -1013,7 +939,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteStartBlock7->setComponent('tiny_mce_wysiwyg');
         $siteStartBlock7->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com</a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteStartArea1 = new Area();
@@ -1095,22 +1020,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteDocBlock1->setComponent('tiny_mce_wysiwyg');
         $siteDocBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteDocBlock2 = new Block();
         $siteDocBlock2->setComponent('tiny_mce_wysiwyg');
         $siteDocBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteDocBlock3 = new Block();
-//        $siteDocBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteDocBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteDocBlockMenu = new Block();
         $siteDocBlockMenu->setComponent('menu');
@@ -1127,14 +1043,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteDocBlock4->setComponent('tiny_mce_wysiwyg');
         $siteDocBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteDocBlock5 = new Block();
         $siteDocBlock5->setComponent('tiny_mce_wysiwyg');
         $siteDocBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteDocBlock6 = new Block();
@@ -1148,7 +1062,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteDocBlock7->setComponent('tiny_mce_wysiwyg');
         $siteDocBlock7->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com</a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteDocArea1 = new Area();
@@ -1230,22 +1143,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteComBlock1->setComponent('tiny_mce_wysiwyg');
         $siteComBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteComBlock2 = new Block();
         $siteComBlock2->setComponent('tiny_mce_wysiwyg');
         $siteComBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteComBlock3 = new Block();
-//        $siteComBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteComBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteComBlockMenu = new Block();
         $siteComBlockMenu->setComponent('menu');
@@ -1262,14 +1166,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteComBlock4->setComponent('tiny_mce_wysiwyg');
         $siteComBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteComBlock5 = new Block();
         $siteComBlock5->setComponent('tiny_mce_wysiwyg');
         $siteComBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteComBlock6 = new Block();
@@ -1283,7 +1185,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteComBlock7->setComponent('tiny_mce_wysiwyg');
         $siteComBlock7->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com</a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteComArea1 = new Area();
@@ -1365,22 +1266,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteAboutUsBlock1->setComponent('tiny_mce_wysiwyg');
         $siteAboutUsBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteAboutUsBlock2 = new Block();
         $siteAboutUsBlock2->setComponent('tiny_mce_wysiwyg');
         $siteAboutUsBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteAboutUsBlock3 = new Block();
-//        $siteAboutUsBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteAboutUsBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteAboutUsBlockMenu = new Block();
         $siteAboutUsBlockMenu->setComponent('menu');
@@ -1397,14 +1289,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteAboutUsBlock4->setComponent('tiny_mce_wysiwyg');
         $siteAboutUsBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteAboutUsBlock5 = new Block();
         $siteAboutUsBlock5->setComponent('tiny_mce_wysiwyg');
         $siteAboutUsBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteAboutUsBlock6 = new Block();
@@ -1418,7 +1308,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteAboutUsBlock7->setComponent('tiny_mce_wysiwyg');
         $siteAboutUsBlock7->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.AboutUs/'>http://www.interakting.AboutUs/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.AboutUs</a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteAboutUsArea1 = new Area();
@@ -1500,22 +1389,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteOurTeamBlock1->setComponent('tiny_mce_wysiwyg');
         $siteOurTeamBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteOurTeamBlock2 = new Block();
         $siteOurTeamBlock2->setComponent('tiny_mce_wysiwyg');
         $siteOurTeamBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteOurTeamBlock3 = new Block();
-//        $siteOurTeamBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteOurTeamBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteOurTeamBlockMenu = new Block();
         $siteOurTeamBlockMenu->setComponent('menu');
@@ -1532,14 +1412,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteOurTeamBlock4->setComponent('tiny_mce_wysiwyg');
         $siteOurTeamBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteOurTeamBlock5 = new Block();
         $siteOurTeamBlock5->setComponent('tiny_mce_wysiwyg');
         $siteOurTeamBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteOurTeamBlock6 = new Block();
@@ -1553,7 +1431,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteOurTeamBlock7->setComponent('tiny_mce_wysiwyg');
         $siteOurTeamBlock7->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.OurTeam/'>http://www.interakting.OurTeam/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.OurTeam</a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteOurTeamArea1 = new Area();
@@ -1635,22 +1512,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteNewsBlock1->setComponent('tiny_mce_wysiwyg');
         $siteNewsBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteNewsBlock2 = new Block();
         $siteNewsBlock2->setComponent('tiny_mce_wysiwyg');
         $siteNewsBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteNewsBlock3 = new Block();
-//        $siteNewsBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteNewsBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteNewsBlockMenu = new Block();
         $siteNewsBlockMenu->setComponent('menu');
@@ -1667,14 +1535,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteNewsBlock4->setComponent('tiny_mce_wysiwyg');
         $siteNewsBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteNewsBlock5 = new Block();
         $siteNewsBlock5->setComponent('tiny_mce_wysiwyg');
         $siteNewsBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteNewsBlock6 = new Block();
@@ -1688,7 +1554,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteNewsBlock7->setComponent('tiny_mce_wysiwyg');
         $siteNewsBlock7->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.News/'>http://www.interakting.News/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.News</a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteNewsArea1 = new Area();
@@ -1770,22 +1635,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteJoinUsBlock1->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteJoinUsBlock2 = new Block();
         $siteJoinUsBlock2->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteJoinUsBlock3 = new Block();
-//        $siteJoinUsBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteJoinUsBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteJoinUsBlockMenu = new Block();
         $siteJoinUsBlockMenu->setComponent('menu');
@@ -1802,28 +1658,24 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteJoinUsBlock4->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'><div id='annonce'><h1>Nous rejoindre</h1> <p>Vous êtes un passionné d’Internet en général et du Web en particulier?</p> <p>Vous avez une expérience significative dans les domaines suivants: Développement web le framwork Symfony 2 Votre profil est susceptible de nous intéresser </div> <div id='form'><table border='0'><tbody><tr><td valign='top'> Nom   </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société   </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr> <td valign='top'> Email   </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/> </td></tr><tr> <td valign='top'> Message   </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr><tr> <td valign='top'> CV   </td><td><input type='file' /> </td></tr> <tr> <td> <input type='submit' value='OK'/></td>  </tr> </tbody></table></div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteJoinUsBlock5 = new Block();
         $siteJoinUsBlock5->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteJoinUsBlock6 = new Block();
         $siteJoinUsBlock6->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock6->setAttributes(array(
             "_htmlContent" => "<div class='content3'><h3 class='blocTitle'><p class='titleModule'> Nous rejoindre </p> </h3><div class='blockContent'>Nos annonces </div> </div> ",
-            "_page_parameters" => array(),
         ));
 
         $siteJoinUsBlock8 = new Block();
         $siteJoinUsBlock8->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock8->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.JoinUs/'>http://www.interakting.JoinUs/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.JoinUs</a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteJoinUsArea1 = new Area();
@@ -1905,22 +1757,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteNetworkBlock1->setComponent('tiny_mce_wysiwyg');
         $siteNetworkBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteNetworkBlock2 = new Block();
         $siteNetworkBlock2->setComponent('tiny_mce_wysiwyg');
         $siteNetworkBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteNetworkBlock3 = new Block();
-//        $siteNetworkBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteNetworkBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteNetworkBlockMenu = new Block();
         $siteNetworkBlockMenu->setComponent('menu');
@@ -1937,14 +1780,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteNetworkBlock4->setComponent('tiny_mce_wysiwyg');
         $siteNetworkBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1><p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate. Cras at urna sem. Nullam sed risus porta, placerat metus bibendum, commodo metus. Donec blandit leo eros, sed convallis odio sollicitudin at.Morbi ut pulvinar lorem. Duis venenatis interdum hendrerit. Curabitur sit amet eleifend sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse volutpat nulla sed eleifend malesuada. Suspendisse fringilla, est et dapibus molestie, orci leo pretium nulla, vitae consectetur ipsum enim ut magna. Duis sagittis auctor sollicitudin. Nunc interdum, quam id varius interdum, nulla felis blandit sapien, ac egestas lectus turpis in urna. Sed id ullamcorper nulla, quis tempor libero. Donec aliquet neque vitae rhoncus vestibulum. Aliquam id nunc ut justo sagittis bibendum sit amet non metus.Mauris aliquam mattis sem, in tempus eros feugiat non. Aenean vitae odio sapien. Curabitur ut luctus purus, nec vehicula nunc. Sed massa odio, sagittis a odio eget, posuere imperdiet eros. Sed sit amet neque tempus urna rutrum egestas. Maecenas dignissim justo orci, vitae aliquet mi gravida feugiat. Quisque ullamcorper non dui eget fringilla. convallis condimentum placerat. Mauris bibendum libero ac neque tempus, et pharetra enim cursus. In nec porta mi. Duis feugiat, enim nec ornare malesuada, ligula metus iaculis quam, dapibus fermentum lacus lorem ut diam. Pellentesque condimentum ante sed augue pretium placerat. Ut venenatis, lacus vel imperdiet aliquam, enim risus rhoncus mi, eget consequat tellus ante nec felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in erat eget leo tincidunt euismod. Sed hendrerit malesuada magna commodo porta. Suspendisse diam urna, pretium ut mi vel, vulputate ultricies dolor. Nam eleifend accumsan nibh. Duis hendrerit ornare urna, sit amet commodo eros imperdiet nec.Donec tristique est sit amet justo fringilla, a hendrerit ligula ultricies. Phasellus dignissim mi sit amet nibh gravida, vitae lobortis lorem imperdiet. Praesent dolor quam, luctus sed dui eu, eleifend mattis tortor. Curabitur varius lacus at sapien eleifend, vitae feugiat lectus mattis. In malesuada molestie turpis, et mattis ante euismod sed. Integer interdum adipiscing purus vitae vestibulum. Proin aliquam egestas nunc, ut dictum justo lacinia quis. Phasellus tincidunt mauris fringilla mauris hendrerit euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.</p></h1></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteNetworkBlock5 = new Block();
         $siteNetworkBlock5->setComponent('tiny_mce_wysiwyg');
         $siteNetworkBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
+
         ));
 
         $siteNetworkBlock6 = new Block();
@@ -1958,7 +1800,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteNetworkBlock7->setComponent('tiny_mce_wysiwyg');
         $siteNetworkBlock7->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.Network/'>http://www.interakting.Network/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.Network</a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteNetworkArea1 = new Area();
@@ -2040,22 +1881,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteContactBlock1->setComponent('tiny_mce_wysiwyg');
         $siteContactBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteContactBlock2 = new Block();
         $siteContactBlock2->setComponent('tiny_mce_wysiwyg');
         $siteContactBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteContactBlock3 = new Block();
-//        $siteContactBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteContactBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteContactBlockMenu = new Block();
         $siteContactBlockMenu->setComponent('menu');
@@ -2072,14 +1904,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteContactBlock4->setComponent('tiny_mce_wysiwyg');
         $siteContactBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2' id='contactArea' ><div id='contactInformation'><h3>Contactez-nous</h3><img src='/bundles/phporchestrasite/images/logoOrchestra.png' /><div id='infoInterakting'><p><b>Interakting</b> <br>Groupe Business & Decision<br>153 Rue de Courcelles<br>75017 PARIS FRANCE<br><span class='fontOrange'>Tél:</span> +33 1 56 21 21 21<br> <span class='fontOrange'>Fax:</span> +33 1 56 21 21 22</p></div><div id='accessInterakting'><h3>Accès:</h3> <p><span class='fontOrange'>Metro ligne 3</span> arrêt Pereire<br><span class='fontOrange'>RER ligne C</span> arrêt Pereire-Levallois</p> </div><div id='googleMapsInterakting'><iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14&amp;output=embed'></iframe><br /><small><a href='https://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14' style='color:#0000FF;text-align:left'>Agrandir le plan</a></small></div></div><div id='contactForm'><h3>Une Demande ?<table border='0'><tbody><tr><td valign='top'> Nom </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr><td valign='top'> Email  </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/></tr><tr><td valign='top'> Sujet   </td><td> <input type='text' placeholder='Votre sujet' required/> </td></tr><tr> <td valign='top'> Type de demande   </td><td> <select><option> Orchestra </option><option> Presse </option><option> Information </option><option> Emploi </option></select></td></tr><tr><td valign='top'> Message </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr> <tr> <td> <input type='submit' value='OK' /></td> </tr> </tbody></table></div></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteContactBlock5 = new Block();
         $siteContactBlock5->setComponent('tiny_mce_wysiwyg');
         $siteContactBlock5->setAttributes(array(
             "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com </a> </li></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteContactArea1 = new Area();
@@ -2153,22 +1983,13 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteLegalBlock1->setComponent('tiny_mce_wysiwyg');
         $siteLegalBlock1->setAttributes(array(
             "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
-            "_page_parameters" => array(),
         ));
 
         $siteLegalBlock2 = new Block();
         $siteLegalBlock2->setComponent('tiny_mce_wysiwyg');
         $siteLegalBlock2->setAttributes(array(
             "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-            "_page_parameters" => array(),
         ));
-
-//        $siteLegalBlock3 = new Block();
-//        $siteLegalBlock3->setComponent('tiny_mce_wysiwyg');
-//        $siteLegalBlock3->setAttributes(array(
-//            "_htmlContent" => "<ul id='myMainMenu'><li><a href=''>Home</a></li><li><a href=''>Orchestra ?</a><ul><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li><li><a href='#'>SubItems1</a></li></ul></li><li><a href=''>GET STARTED !</a></li><li><a href=''>Documentation</a></li><li><a href=''>Communauté</a></li><li><a href=''>Contact</a></li></ul>",
-//            "_page_parameters" => array(),
-//        ));
 
         $siteLegalBlockMenu = new Block();
         $siteLegalBlockMenu->setComponent('menu');
@@ -2185,14 +2006,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteLegalBlock4->setComponent('tiny_mce_wysiwyg');
         $siteLegalBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1><p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate. Cras at urna sem. Nullam sed risus porta, placerat metus bibendum, commodo metus. Donec blandit leo eros, sed convallis odio sollicitudin at.Morbi ut pulvinar lorem. Duis venenatis interdum hendrerit. Curabitur sit amet eleifend sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse volutpat nulla sed eleifend malesuada. Suspendisse fringilla, est et dapibus molestie, orci leo pretium nulla, vitae consectetur ipsum enim ut magna. Duis sagittis auctor sollicitudin. Nunc interdum, quam id varius interdum, nulla felis blandit sapien, ac egestas lectus turpis in urna. Sed id ullamcorper nulla, quis tempor libero. Donec aliquet neque vitae rhoncus vestibulum. Aliquam id nunc ut justo sagittis bibendum sit amet non metus.Mauris aliquam mattis sem, in tempus eros feugiat non. Aenean vitae odio sapien. Curabitur ut luctus purus, nec vehicula nunc. Sed massa odio, sagittis a odio eget, posuere imperdiet eros. Sed sit amet neque tempus urna rutrum egestas. Maecenas dignissim justo orci, vitae aliquet mi gravida feugiat. Quisque ullamcorper non dui eget fringilla. convallis condimentum placerat. Mauris bibendum libero ac neque tempus, et pharetra enim cursus. In nec porta mi. Duis feugiat, enim nec ornare malesuada, ligula metus iaculis quam, dapibus fermentum lacus lorem ut diam. Pellentesque condimentum ante sed augue pretium placerat. Ut venenatis, lacus vel imperdiet aliquam, enim risus rhoncus mi, eget consequat tellus ante nec felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in erat eget leo tincidunt euismod. Sed hendrerit malesuada magna commodo porta. Suspendisse diam urna, pretium ut mi vel, vulputate ultricies dolor. Nam eleifend accumsan nibh. Duis hendrerit ornare urna, sit amet commodo eros imperdiet nec.Donec tristique est sit amet justo fringilla, a hendrerit ligula ultricies. Phasellus dignissim mi sit amet nibh gravida, vitae lobortis lorem imperdiet. Praesent dolor quam, luctus sed dui eu, eleifend mattis tortor. Curabitur varius lacus at sapien eleifend, vitae feugiat lectus mattis. In malesuada molestie turpis, et mattis ante euismod sed. Integer interdum adipiscing purus vitae vestibulum. Proin aliquam egestas nunc, ut dictum justo lacinia quis. Phasellus tincidunt mauris fringilla mauris hendrerit euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.</p></h1></div>",
-            "_page_parameters" => array(),
         ));
 
         $siteLegalBlock5 = new Block();
         $siteLegalBlock5->setComponent('tiny_mce_wysiwyg');
         $siteLegalBlock5->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-            "_page_parameters" => array(),
         ));
 
         $siteLegalArea1 = new Area();
