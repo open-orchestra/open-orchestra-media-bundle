@@ -637,7 +637,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeBlock0 = new Block();
         $siteHomeBlock0->setComponent('tiny_mce_wysiwyg');
         $siteHomeBlock0->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteHomeBlock1 = new Block();
@@ -661,10 +661,10 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeCarrousel->setComponent('carrousel');
         $siteHomeCarrousel->setAttributes(array(
             'pictures' => array(
-                array('src' => "/bundles/fakeapptheme/themes/themeAyman/img/carroussel/02.jpg"),
-                array('src' => "/bundles/fakeapptheme/themes/themeAyman/img/carroussel/03.jpg"),
-                array('src' => "/bundles/fakeapptheme/themes/themeAyman/img/carroussel/04.jpg"),
-                array('src' => "/bundles/fakeapptheme/themes/themeAyman/img/carroussel/05.jpg"),
+                array('src' => "/bundles/fakeapptheme/themes/themePresentation/img/carroussel/02.jpg"),
+                array('src' => "/bundles/fakeapptheme/themes/themePresentation/img/carroussel/03.jpg"),
+                array('src' => "/bundles/fakeapptheme/themes/themePresentation/img/carroussel/04.jpg"),
+                array('src' => "/bundles/fakeapptheme/themes/themePresentation/img/carroussel/05.jpg"),
             ),
             'width' => "600px",
             'height' => "300px",
@@ -736,7 +736,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHome->setStatus($this->getReference('status-published'));
         $siteHome->setDeleted(false);
         $siteHome->setTemplateId('');
-        $siteHome->setTheme('themeAyman');
+        $siteHome->setTheme('themePresentation');
         $siteHome->setInFooter(false);
         $siteHome->setInMenu(true);
         $siteHome->addArea($siteHomeArea0);
@@ -766,7 +766,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteWhatBlock1 = new Block();
         $siteWhatBlock1->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteWhatBlock2 = new Block();
@@ -870,7 +870,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteWhat->setStatus($this->getReference('status-published'));
         $siteWhat->setDeleted(false);
         $siteWhat->setTemplateId('');
-        $siteWhat->setTheme('themeAyman');
+        $siteWhat->setTheme('themePresentation');
         $siteWhat->setInFooter(false);
         $siteWhat->setInMenu(true);
         $siteWhat->addArea($siteWhatArea0);
@@ -896,7 +896,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteStartBlock1 = new Block();
         $siteStartBlock1->setComponent('tiny_mce_wysiwyg');
         $siteStartBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteStartBlock2 = new Block();
@@ -994,7 +994,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteStart->setStatus($this->getReference('status-published'));
         $siteStart->setDeleted(false);
         $siteStart->setTemplateId('');
-        $siteStart->setTheme('themeAyman');
+        $siteStart->setTheme('themePresentation');
         $siteStart->setInFooter(false);
         $siteStart->setInMenu(true);
         $siteStart->addArea($siteStartArea0);
@@ -1019,7 +1019,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteDocBlock1 = new Block();
         $siteDocBlock1->setComponent('tiny_mce_wysiwyg');
         $siteDocBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteDocBlock2 = new Block();
@@ -1117,7 +1117,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteDoc->setStatus($this->getReference('status-published'));
         $siteDoc->setDeleted(false);
         $siteDoc->setTemplateId('');
-        $siteDoc->setTheme('themeAyman');
+        $siteDoc->setTheme('themePresentation');
         $siteDoc->setInFooter(false);
         $siteDoc->setInMenu(true);
         $siteDoc->addArea($siteDocArea0);
@@ -1142,7 +1142,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteComBlock1 = new Block();
         $siteComBlock1->setComponent('tiny_mce_wysiwyg');
         $siteComBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteComBlock2 = new Block();
@@ -1240,7 +1240,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteCom->setStatus($this->getReference('status-published'));
         $siteCom->setDeleted(false);
         $siteCom->setTemplateId('');
-        $siteCom->setTheme('themeAyman');
+        $siteCom->setTheme('themePresentation');
         $siteCom->setInFooter(false);
         $siteCom->setInMenu(true);
         $siteCom->addArea($siteComArea0);
@@ -1265,7 +1265,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteAboutUsBlock1 = new Block();
         $siteAboutUsBlock1->setComponent('tiny_mce_wysiwyg');
         $siteAboutUsBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteAboutUsBlock2 = new Block();
@@ -1363,7 +1363,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteAboutUs->setStatus($this->getReference('status-published'));
         $siteAboutUs->setDeleted(false);
         $siteAboutUs->setTemplateId('');
-        $siteAboutUs->setTheme('themeAyman');
+        $siteAboutUs->setTheme('themePresentation');
         $siteAboutUs->setInFooter(false);
         $siteAboutUs->setInMenu(false);
         $siteAboutUs->addArea($siteAboutUsArea0);
@@ -1388,7 +1388,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteOurTeamBlock1 = new Block();
         $siteOurTeamBlock1->setComponent('tiny_mce_wysiwyg');
         $siteOurTeamBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteOurTeamBlock2 = new Block();
@@ -1486,7 +1486,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteOurTeam->setStatus($this->getReference('status-published'));
         $siteOurTeam->setDeleted(false);
         $siteOurTeam->setTemplateId('');
-        $siteOurTeam->setTheme('themeAyman');
+        $siteOurTeam->setTheme('themePresentation');
         $siteOurTeam->setInFooter(false);
         $siteOurTeam->setInMenu(false);
         $siteOurTeam->addArea($siteOurTeamArea0);
@@ -1511,7 +1511,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteNewsBlock1 = new Block();
         $siteNewsBlock1->setComponent('tiny_mce_wysiwyg');
         $siteNewsBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteNewsBlock2 = new Block();
@@ -1609,7 +1609,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteNews->setStatus($this->getReference('status-published'));
         $siteNews->setDeleted(false);
         $siteNews->setTemplateId('');
-        $siteNews->setTheme('themeAyman');
+        $siteNews->setTheme('themePresentation');
         $siteNews->setInFooter(false);
         $siteNews->setInMenu(false);
         $siteNews->addArea($siteNewsArea0);
@@ -1634,7 +1634,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteJoinUsBlock1 = new Block();
         $siteJoinUsBlock1->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteJoinUsBlock2 = new Block();
@@ -1731,7 +1731,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteJoinUs->setStatus($this->getReference('status-published'));
         $siteJoinUs->setDeleted(false);
         $siteJoinUs->setTemplateId('');
-        $siteJoinUs->setTheme('themeAyman');
+        $siteJoinUs->setTheme('themePresentation');
         $siteJoinUs->setInFooter(false);
         $siteJoinUs->setInMenu(false);
         $siteJoinUs->addArea($siteJoinUsArea0);
@@ -1756,7 +1756,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteNetworkBlock1 = new Block();
         $siteNetworkBlock1->setComponent('tiny_mce_wysiwyg');
         $siteNetworkBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteNetworkBlock2 = new Block();
@@ -1855,7 +1855,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteNetwork->setStatus($this->getReference('status-published'));
         $siteNetwork->setDeleted(false);
         $siteNetwork->setTemplateId('');
-        $siteNetwork->setTheme('themeAyman');
+        $siteNetwork->setTheme('themePresentation');
         $siteNetwork->setInFooter(false);
         $siteNetwork->setInMenu(false);
         $siteNetwork->addArea($siteNetworkArea0);
@@ -1880,7 +1880,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteContactBlock1 = new Block();
         $siteContactBlock1->setComponent('tiny_mce_wysiwyg');
         $siteContactBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteContactBlock2 = new Block();
@@ -1959,7 +1959,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteContact->setStatus($this->getReference('status-published'));
         $siteContact->setDeleted(false);
         $siteContact->setTemplateId('');
-        $siteContact->setTheme('themeAyman');
+        $siteContact->setTheme('themePresentation');
         $siteContact->setInFooter(false);
         $siteContact->setInMenu(true);
         $siteContact->addArea($siteContactArea0);
@@ -1982,7 +1982,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteLegalBlock1 = new Block();
         $siteLegalBlock1->setComponent('tiny_mce_wysiwyg');
         $siteLegalBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themeAyman/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
         ));
 
         $siteLegalBlock2 = new Block();
@@ -2058,7 +2058,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteLegal->setStatus($this->getReference('status-published'));
         $siteLegal->setDeleted(false);
         $siteLegal->setTemplateId('');
-        $siteLegal->setTheme('themeAyman');
+        $siteLegal->setTheme('themePresentation');
         $siteLegal->setInFooter(false);
         $siteLegal->setInMenu(false);
         $siteLegal->addArea($siteLegalArea0);
