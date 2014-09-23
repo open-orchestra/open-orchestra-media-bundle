@@ -43,4 +43,14 @@ interface StatusInterface extends TranslatedValueContainerInterface
      * @return boolean
      */
     public function isPublished();
+
+    /**
+     * @return string
+     */
+    public function getRole();
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role);
 }

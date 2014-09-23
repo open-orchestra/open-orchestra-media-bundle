@@ -7,10 +7,6 @@ namespace PHPOrchestra\ModelBundle\Model;
  */
 interface StatusableInterface
 {
-    const STATUS_DRAFT = 'draft';
-    const STATUS_PENDING = 'pending';
-    const STATUS_PUBLISHED = 'published';
-
     /**
      * Set status
      *

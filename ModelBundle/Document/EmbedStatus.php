@@ -20,6 +20,7 @@ class EmbedStatus extends AbstractStatus
         $this->setPublished($status->isPublished());
         $this->setName($status->getName());
         $this->labels = $status->getLabels();
+        $this->role = $status->getRole();
     }
 
     /**
