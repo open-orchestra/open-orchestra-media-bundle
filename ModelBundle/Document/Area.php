@@ -160,6 +160,21 @@ class Area implements AreaInterface
     }
 
     /**
+     * Remove subArea by areaId
+     *
+     * @param string $areaId
+     */
+    public function removeAreaByAreaId($areaId)
+    {
+        foreach ($this->getAreas() as $key => $area) {
+            if ($areaId == $area->getAreaId()) {
+                $this->getAreas()->remove($key);
+                break;
+            }
+        }
+    }
+
+    /**
      * Get subAreas
      *
      * @return ArrayCollection $subAreas

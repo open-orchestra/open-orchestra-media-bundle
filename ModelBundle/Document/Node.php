@@ -515,6 +515,22 @@ class Node implements NodeInterface
     }
 
     /**
+     * Remove subArea by areaId
+     *
+     * @param string $areaId
+     */
+    public function removeAreaByAreaId($areaId)
+    {
+        foreach ($this->getAreas() as $key => $area) {
+            if ($areaId == $area->getAreaId()) {
+                $this->getAreas()->remove($key);
+                break;
+            }
+        }
+        
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getAreas()

@@ -24,6 +24,13 @@ interface AreaContainerInterface
     public function removeArea(AreaInterface $subArea);
 
     /**
+     * Remove subArea by areaId
+     *
+     * @param string $areaId
+     */
+    public function removeAreaByAreaId($areaId);
+
+    /**
      * Get subAreas
      *
      * @return ArrayCollection $subAreas
