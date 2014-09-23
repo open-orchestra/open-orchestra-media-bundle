@@ -527,7 +527,6 @@ class Node implements NodeInterface
                 break;
             }
         }
-        
     }
 
     /**
