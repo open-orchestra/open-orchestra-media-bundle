@@ -11,7 +11,8 @@
     "require": {
         "doctrine/data-fixtures":"1.0.0",
         "doctrine/mongodb-odm" : "~1.0",
-        "doctrine/mongodb-odm-bundle" : "~3.0"
+        "doctrine/mongodb-odm-bundle" : "~3.0",
+        "symfony/validator": "~2"
     },
     "require-dev": {
         "phpunit/phpunit" : "4.0.14",
