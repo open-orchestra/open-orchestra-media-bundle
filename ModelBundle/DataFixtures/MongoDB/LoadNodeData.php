@@ -789,8 +789,8 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteWhatBlock4 = new Block();
         $siteWhatBlock4->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'><h1>PHPFactory</h1><p>
-PHP Factory est une plateforme développée conjointement par Interakting et Zend Technologies. Cette offre, dédiée au marketing est destinée aux grands projets de nouvelle génération en digital marketing et entreprise 2.0.
+            "_htmlContent" => "<div class='content2'><h1>PHPOrchestra</h1><p>
+PHP Orchestra est une plateforme développée conjointement par Interakting et Zend Technologies. Cette offre, dédiée au marketing est destinée aux grands projets de nouvelle génération en digital marketing et entreprise 2.0.
 
 L’objectif de PHP Factory est de répondre aux exigences les plus élevées des grands comptes en termes de haute disponibilité, de performance et d'industrialisation des processus de création et de diffusion de contenus vers le Web et les mobiles.
 
