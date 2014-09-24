@@ -19,7 +19,6 @@ class NodeRepository extends DocumentRepository
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inFooter')->equals(true);
-        $qb->field('deleted')->equals(false);
 
         return $qb->getQuery()->execute();
     }
@@ -90,5 +89,20 @@ class NodeRepository extends DocumentRepository
         $qb->field('deleted')->equals(false);
 
         return $qb;
+    }
+
+    /**
+     * @param string $nodeId
+     * 
+     * @return mixed
+     */
+    public function findOneByStatusAndVersion($nodeId)
+    {
+        $qb = $this->buildTreeRequest();
+
+        $qb->field('nodeId')->equals($nodeId);
+        $qb->sort('version', 'desc');
+
+        return $qb->getQuery()->execute();
     }
 }
