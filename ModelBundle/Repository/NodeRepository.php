@@ -96,7 +96,7 @@ class NodeRepository extends DocumentRepository
      * 
      * @return mixed
      */
-    public function findOneByStatusAndVersion($nodeId)
+    public function findWithPublishedAndLastVersion($nodeId)
     {
         $qb = $this->buildTreeRequest();
 
