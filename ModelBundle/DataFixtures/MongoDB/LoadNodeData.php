@@ -681,7 +681,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeBlock5 = new Block();
         $siteHomeBlock5->setComponent('tiny_mce_wysiwyg');
         $siteHomeBlock5->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com </a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteHomeArea1 = new Area();
@@ -789,13 +789,26 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteWhatBlock4 = new Block();
         $siteWhatBlock4->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'> <h1><p>
+            "_htmlContent" => "<div class='content2'><h1>PHPFactory</h1><p>
 PHP Factory est une plateforme développée conjointement par Interakting et Zend Technologies. Cette offre, dédiée au marketing est destinée aux grands projets de nouvelle génération en digital marketing et entreprise 2.0.
 
 L’objectif de PHP Factory est de répondre aux exigences les plus élevées des grands comptes en termes de haute disponibilité, de performance et d'industrialisation des processus de création et de diffusion de contenus vers le Web et les mobiles.
 
 Elle a été développé  autour des standards PHP de Zend. Elle est constituée d’une bibliothèque de composants : gestion de contenu web et multi-média, d’e-commerce, d’animation de réseaux sociaux, de Portail et de Mobilité.
-               </p></h1></div>",
+PHP FACTORY est la solution omnicanal qui accélère la construction de votre écosysteme digital.
+
+Quelles que soient les interactions entre une marque et ses clients, quel que soit l’écran, quel que soit le terminal, l’expérience se construit à chaque point de contact.
+
+Notre promesse : « Economies d’échelle et mutualisation des investissements pour une expérience web cohérente sur tous les canaux fixe mobile, tablette, TV, bornes… »
+<br>
+Une solution ciblée : <br>
+
+Projet où «l’expérience», qu’elle soit clients, collaborateurs, partenaires ou distributeurs est au cœur de la problématique.<br>
+Projet à dimension internationale nécessitant des économies d’échelles.<br>
+Projet avec des équations complexes à résoudre et où les systèmes d’informations internes et partenaires sont fortement sollicités.<br>
+Projet dont l’objectif est de bâtir des écosystèmes digitaux (e-commerce, communication, référentiel, selfcare, mobilité, distribution, …) cohérents avec des synergies fonctionnelles et technologiques.<br>
+Nativement, multi-sites multi support, facile d’intégration au SI, ouvert vers l’extérieur, taillé pour les fortes charges et la sécurité, modulaire (tout est composant, modèle HMVC), 100% Zend.<br>
+               </p></div>",
         ));
 
         $siteWhatBlock5 = new Block();
@@ -814,7 +827,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteWhatBlock7 = new Block();
         $siteWhatBlock7->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com</a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteWhatArea1 = new Area();
@@ -919,7 +932,11 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteStartBlock4 = new Block();
         $siteStartBlock4->setComponent('tiny_mce_wysiwyg');
         $siteStartBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
+            "_htmlContent" => "<div class='content2'> <h1>Le tour rapide</h1>
+            <p>
+            Quoi de mieux pour se faire un avis que d'essayer Symfony par vous même ? À part un peu de temps, cela ne vous coûtera rien. Pas à pas vous allez explorer l'univers de Symfony. Attention, Symfony peut vite devenir addictif dès la première rencontre.
+            </p>
+            </div>",
         ));
 
         $siteStartBlock5 = new Block();
@@ -938,7 +955,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteStartBlock7 = new Block();
         $siteStartBlock7->setComponent('tiny_mce_wysiwyg');
         $siteStartBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com</a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteStartArea1 = new Area();
@@ -1042,7 +1059,13 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteDocBlock4 = new Block();
         $siteDocBlock4->setComponent('tiny_mce_wysiwyg');
         $siteDocBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
+            "_htmlContent" => "<div class='content2'> <h1>PHP Documentation</h1>
+                <p>The PHP Manual is available online in a selection of languages. Please pick a language from the list below.
+
+More information about php.net URL shortcuts by visiting our URL howto page.
+
+Note, that many languages are just under translation, and the untranslated parts are still in English. Also some translated parts might be outdated. The translation teams are open to contributions.</p>
+            </div>",
         ));
 
         $siteDocBlock5 = new Block();
@@ -1061,7 +1084,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteDocBlock7 = new Block();
         $siteDocBlock7->setComponent('tiny_mce_wysiwyg');
         $siteDocBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com</a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteDocArea1 = new Area();
@@ -1165,7 +1188,19 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteComBlock4 = new Block();
         $siteComBlock4->setComponent('tiny_mce_wysiwyg');
         $siteComBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
+            "_htmlContent" => "<div class='content2'> <h1>ENTREPRISE DIGITALE : LES LEVIERS DE LA PERFORMANCE</h1>
+                <p>
+                    L’Entreprise Digitale n’est plus un concept abstrait mais bien un formidable levier de la performance.
+
+Pour interakting, l’entreprise digitale regroupe toutes les initatives autour des relations collaborateurs, partenaires, distributeurs, l’amélioration des processus avec des applications métiers repensées et l’industrialisation de la communication institutionnelle. Agilité, rapidité, fluidité et interactions sont les maîtres mots.
+
+Pour les collaborateurs, l’accent est mis sur les réseaux sociaux d’entreprise, les plateformes collaboratives et le social business.
+Pour les partenaires et distributeurs, c’est le commerce B2B, les espaces clients (selfcare) de nouvelles générations, le feedback management et la cocréation qui sont au devant de la scène.
+Pour la communication institutionnelle, être capable de gérer une communication de crise, une empreinte digitale et sa réputation au niveau international est une préoccupation principale.
+
+Enfin, la digitalisation des applications et les stratégies mobiles de l’entreprise (équipement des vendeurs et des intermédiaires), les dispositifs relations B2B2C, sont aujourd’hui les nouveaux challenges.
+                </p>
+            </div>",
         ));
 
         $siteComBlock5 = new Block();
@@ -1184,7 +1219,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteComBlock7 = new Block();
         $siteComBlock7->setComponent('tiny_mce_wysiwyg');
         $siteComBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com</a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteComArea1 = new Area();
@@ -1288,7 +1323,13 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteAboutUsBlock4 = new Block();
         $siteAboutUsBlock4->setComponent('tiny_mce_wysiwyg');
         $siteAboutUsBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
+            "_htmlContent" => "<div class='content2'> <h1>Interakting</h1>
+                <p>
+                Une agence digitale nouvelle génération classée par le Forrester parmi les 12 plus grandes agences européennes, avec un positionnement conseil et technologies.
+                Une division du groupe Business&Decision
+                Business & Decision est un Groupe international de services numériques,  leader de la Business Intelligence (BI) et du CRM, acteur majeur de l'e-Business.  Le Groupe contribue à la réussite des projets à forte valeur ajoutée des entreprises et accompagne ses clients dans des domaines d’innovation tels que le Big Data et le Digital. Il est reconnu pour son expertise fonctionnelle et technologique par les plus grands éditeurs de logiciels du marché avec lesquels il a noué des partenariats. Fort d’une expertise unique dans ses domaines de spécialisation, Business & Decision offre des solutions adaptées à des secteurs d’activité ainsi qu’à des directions métiers.
+                </p>
+            </div>",
         ));
 
         $siteAboutUsBlock5 = new Block();
@@ -1307,7 +1348,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteAboutUsBlock7 = new Block();
         $siteAboutUsBlock7->setComponent('tiny_mce_wysiwyg');
         $siteAboutUsBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.AboutUs/'>http://www.interakting.AboutUs/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.AboutUs</a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteAboutUsArea1 = new Area();
@@ -1411,7 +1452,15 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteOurTeamBlock4 = new Block();
         $siteOurTeamBlock4->setComponent('tiny_mce_wysiwyg');
         $siteOurTeamBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
+            "_htmlContent" => "<div class='content2'> <h1>Our Team</h1>
+            <br>
+            <p>
+            Une agence digitale nouvelle génération classée par le Forrester parmi les 12 plus grandes agences européennes, avec un positionnement conseil et technologies.<br>
+            Une présence internationale, un modèle de delivery industriel, une organisation en centre de services, des plateformes near shore et off shore.<br>
+            pour les grands projets de transformation « digital » et pour adresser les marchés du « customer experience management), entreprise digitale et secteur public.<br>
+            Partenaire stratégique des grands projets, nos interventions s’inscrivent dans la durée.
+            </p>
+            </div>",
         ));
 
         $siteOurTeamBlock5 = new Block();
@@ -1430,7 +1479,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteOurTeamBlock7 = new Block();
         $siteOurTeamBlock7->setComponent('tiny_mce_wysiwyg');
         $siteOurTeamBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.OurTeam/'>http://www.interakting.OurTeam/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.OurTeam</a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteOurTeamArea1 = new Area();
@@ -1534,7 +1583,16 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteNewsBlock4 = new Block();
         $siteNewsBlock4->setComponent('tiny_mce_wysiwyg');
         $siteNewsBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'> <h1>Area1</h1></div>",
+            "_htmlContent" => "<div class='content2'> <h1>Actu</h1>
+            <br>
+            <p>
+            <h2>ZADIG & VOLTAIRE PUBLIE SES MAGAZINES SUR IPAD AVEC INTERAKTING</h2><br>
+            Zadig & Voltaire étend et enrichit ses activités commerciales à travers des sites web marchands, les réseaux sociaux et des applications mobiles. L’équipe Marketing Digital de Zadig & Voltaire a opté d’une part pour le développement d’un site mobile, dupliqué du site marchand internet, et d’autre part d’une application iPad pour publier des magazines dérivés de ses catalogues papier. L’objectif de l’application iPad consiste à allier graphisme, ergonomie, interactivité, géolocalisation et e-Commerce pour ainsi développer la visibilité de la marque tout en créant une approche inédite du e-shopping.<br>
+            <h2>FUN DISTINGUÉ PAR LE GRAND PRIX DES LECTEURS D’ACTEURS PUBLICS COMME LA MEILLEURE INITIATIVE PUBLIQUE DE L’ANNÉE!</h2><br>
+            Le site du Ministère de l’Enseignement supérieur et de la Recherche, <a href='http://businessdecision.us3.list-manage2.com/track/click?u=cf8b0e95565b3f0a524bea0a6&id=b321193023&e=3ec73c652f'>http://www.france-universite-numerique.fr</a>, pour lequel Interakting a réalisé l’ensemble de l’intégration HTML, a remporté le prix des meilleurs initiatives de l’année 2013 par le magazine Acteurs Publics.
+Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour assurer le meilleur du service au public.
+            </p>
+            </div>",
         ));
 
         $siteNewsBlock5 = new Block();
@@ -1553,7 +1611,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteNewsBlock7 = new Block();
         $siteNewsBlock7->setComponent('tiny_mce_wysiwyg');
         $siteNewsBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.News/'>http://www.interakting.News/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.News</a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteNewsArea1 = new Area();
@@ -1675,7 +1733,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteJoinUsBlock8 = new Block();
         $siteJoinUsBlock8->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock8->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.JoinUs/'>http://www.interakting.JoinUs/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.JoinUs</a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteJoinUsArea1 = new Area();
@@ -1779,7 +1837,11 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteNetworkBlock4 = new Block();
         $siteNetworkBlock4->setComponent('tiny_mce_wysiwyg');
         $siteNetworkBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'> <h1><p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate. Cras at urna sem. Nullam sed risus porta, placerat metus bibendum, commodo metus. Donec blandit leo eros, sed convallis odio sollicitudin at.Morbi ut pulvinar lorem. Duis venenatis interdum hendrerit. Curabitur sit amet eleifend sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse volutpat nulla sed eleifend malesuada. Suspendisse fringilla, est et dapibus molestie, orci leo pretium nulla, vitae consectetur ipsum enim ut magna. Duis sagittis auctor sollicitudin. Nunc interdum, quam id varius interdum, nulla felis blandit sapien, ac egestas lectus turpis in urna. Sed id ullamcorper nulla, quis tempor libero. Donec aliquet neque vitae rhoncus vestibulum. Aliquam id nunc ut justo sagittis bibendum sit amet non metus.Mauris aliquam mattis sem, in tempus eros feugiat non. Aenean vitae odio sapien. Curabitur ut luctus purus, nec vehicula nunc. Sed massa odio, sagittis a odio eget, posuere imperdiet eros. Sed sit amet neque tempus urna rutrum egestas. Maecenas dignissim justo orci, vitae aliquet mi gravida feugiat. Quisque ullamcorper non dui eget fringilla. convallis condimentum placerat. Mauris bibendum libero ac neque tempus, et pharetra enim cursus. In nec porta mi. Duis feugiat, enim nec ornare malesuada, ligula metus iaculis quam, dapibus fermentum lacus lorem ut diam. Pellentesque condimentum ante sed augue pretium placerat. Ut venenatis, lacus vel imperdiet aliquam, enim risus rhoncus mi, eget consequat tellus ante nec felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in erat eget leo tincidunt euismod. Sed hendrerit malesuada magna commodo porta. Suspendisse diam urna, pretium ut mi vel, vulputate ultricies dolor. Nam eleifend accumsan nibh. Duis hendrerit ornare urna, sit amet commodo eros imperdiet nec.Donec tristique est sit amet justo fringilla, a hendrerit ligula ultricies. Phasellus dignissim mi sit amet nibh gravida, vitae lobortis lorem imperdiet. Praesent dolor quam, luctus sed dui eu, eleifend mattis tortor. Curabitur varius lacus at sapien eleifend, vitae feugiat lectus mattis. In malesuada molestie turpis, et mattis ante euismod sed. Integer interdum adipiscing purus vitae vestibulum. Proin aliquam egestas nunc, ut dictum justo lacinia quis. Phasellus tincidunt mauris fringilla mauris hendrerit euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.</p></h1></div>",
+            "_htmlContent" => "<div class='content2'> <h1>Smart Eolas</h1><p>
+            Smart.eolas allie le meilleur du e-commerce et de la gestion de contenus. Jusqu’alors, il n’existait aucune plateforme sur le marché mêlant avec succès des fonctions avancées de gestion de contenus et de catalogue produits. Il y a plus de deux ans, Eolas s’est lancé dans ce vaste chantier : construire une nouvelle plateforme e-Commerce et de gestion de contenus innovante et à l’état de l’art.
+
+Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spécialiste du e-Commerce, du Digital Marketing et en tant qu’opérateur de solutions SaaS. Ce projet a ainsi fait appel aux compétences de toutes les équipes d’Eolas, notamment celles des experts en e-Tailing, issues du rachat du fonds de commerce de Proxi-Business, il y a un an.
+            </p></div>",
         ));
 
         $siteNetworkBlock5 = new Block();
@@ -1799,7 +1861,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteNetworkBlock7 = new Block();
         $siteNetworkBlock7->setComponent('tiny_mce_wysiwyg');
         $siteNetworkBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.Network/'>http://www.interakting.Network/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.Network</a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteNetworkArea1 = new Area();
@@ -1909,7 +1971,7 @@ Elle a été développé  autour des standards PHP de Zend. Elle est constituée
         $siteContactBlock5 = new Block();
         $siteContactBlock5->setComponent('tiny_mce_wysiwyg');
         $siteContactBlock5->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href=''>Qui sommes nous ?</a> </li><li> <a href=''>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href=''>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='#'>contact@interakting.com </a> </li></div>",
+            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteContactArea1 = new Area();
