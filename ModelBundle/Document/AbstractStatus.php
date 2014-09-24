@@ -39,6 +39,13 @@ abstract class AbstractStatus implements StatusInterface
     protected $published = false;
 
     /**
+     * @var string
+     *
+     * @MongoDB\Field(type="string")
+     */
+    protected $role;
+
+    /**
      * Class constructor
      */
     public function __construct()
@@ -118,5 +125,21 @@ abstract class AbstractStatus implements StatusInterface
         return array(
             'getLabels'
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 }

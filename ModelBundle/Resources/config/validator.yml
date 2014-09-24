@@ -1,0 +1,11 @@
+parameters:
+    php_orchestra_model.validator.status_change.class: PHPOrchestra\ModelBundle\Validator\Constraints\StatusChangeValidator
+
+services:
+    php_orchestra_model.validator.status_change:
+        class: %php_orchestra_model.validator.status_change.class%
+        arguments:
+            - @security.context
+            - @translator
+        tags:
+            - { name: validator.constraint_validator, alias: status_change}

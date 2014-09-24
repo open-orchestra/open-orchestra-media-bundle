@@ -1,0 +1,3 @@
+php_orchestra_model:
+    status:
+        impossible_change: Vous n'avez pas les droits pour modifier le status

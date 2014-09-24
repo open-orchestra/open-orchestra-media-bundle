@@ -1,0 +1,4 @@
+PHPOrchestra\ModelBundle\Document\Node:
+    properties:
+        status:
+            - PHPOrchestra\ModelBundle\Validator\Constraints\StatusChange: ~
