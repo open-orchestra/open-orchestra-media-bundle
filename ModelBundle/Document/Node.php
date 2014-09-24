@@ -568,4 +568,12 @@ class Node implements NodeInterface
     {
         return $this->inMenu;
     }
+
+    /**
+     * Clone method
+     */
+    public function __clone()
+    {
+        $this->id = null;
+    }
 }
