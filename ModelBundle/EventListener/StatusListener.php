@@ -10,9 +10,9 @@ use PHPOrchestra\ModelBundle\Document\Status;
 class StatusListener 
 {
 
-    public function prePersist(LifecycleEventArgs $eventArgs)
+    public function preFlush(LifecycleEventArgs $eventArgs)
     {
-        var_dump($eventArgs);
+        var_dump('Done');
         
         /*$document = $eventArgs->getDocument();
         
