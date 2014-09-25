@@ -16,8 +16,6 @@ class StatusListener
         
         /*$document = $eventArgs->getDocument();
         
-        var_dump('Mon cul sur la commode');
-        
         if($document instanceof Status){
             $document->setPublished(true);
             $dm = $eventArgs->getDocumentManager();
