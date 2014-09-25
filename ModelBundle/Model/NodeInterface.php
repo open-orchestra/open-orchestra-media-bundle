@@ -8,11 +8,11 @@ use Doctrine\Common\Collections\Collection;
 /**
  * Interface NodeInterface
  */
-interface NodeInterface extends AreaContainerInterface, BlockContainerInterface, StatusableInterface
+interface NodeInterface extends AreaContainerInterface, BlockContainerInterface, StatusableInterface, BlameableInterface, TimestampableInterface
 {
     const TYPE_DEFAULT = 'page';
-
     const ROOT_NODE_ID = 'root';
+
     /**
      * Get id
      *
