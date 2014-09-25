@@ -4,145 +4,151 @@ namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Gedmo\Blameable\Traits\BlameableDocument;
+use Gedmo\Timestampable\Traits\TimestampableDocument;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\BlockInterface;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use PHPOrchestra\ModelBundle\Model\StatusInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Description of Node
  *
- * @MongoDB\Document(
+ * @ODM\Document(
  *   collection="node",
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\NodeRepository"
  * )
  */
 class Node implements NodeInterface
 {
+    use BlameableDocument;
+    use TimestampableDocument;
+
     /**
      * @var string $id
      *
-     * @MongoDB\Id
+     * @ODM\Id
      */
     protected $id;
 
     /**
      * @var string $nodeId
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $nodeId;
 
     /**
      * @var string $nodeType
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $nodeType;
 
     /**
      * @var int $siteId
      *
-     * @MongoDB\Field(type="int")
+     * @ODM\Field(type="int")
      */
     protected $siteId;
 
     /**
      * @var string $parentId
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $parentId;
 
     /**
      * @var string $path
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $path;
 
     /**
      * @var string $alias
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $alias;
 
     /**
      * @var string $name
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $name;
 
     /**
      * @var int $version
      *
-     * @MongoDB\Field(type="int")
+     * @ODM\Field(type="int")
      */
     protected $version;
 
     /**
      * @var string $language
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $language;
 
     /**
      * @var StatusInterface $status
      *
-     * @MongoDB\EmbedOne(targetDocument="EmbedStatus")
+     * @ODM\EmbedOne(targetDocument="EmbedStatus")
      */
     protected $status;
 
     /**
      * @var boolean
      *
-     * @MongoDB\Field(type="boolean")
+     * @ODM\Field(type="boolean")
      */
     protected $deleted = false;
 
     /**
      * @var string
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $templateId;
 
     /**
      * @var string
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $theme;
 
     /**
      * @var boolean
      *
-     * @MongoDB\Field(type="boolean")
+     * @ODM\Field(type="boolean")
      */
     protected $inMenu;
 
     /**
      * @var boolean
      *
-     * @MongoDB\Field(type="boolean")
+     * @ODM\Field(type="boolean")
      */
     protected $inFooter;
 
     /**
      * @var ArrayCollection
      *
-     * @MongoDB\EmbedMany(targetDocument="Area")
+     * @ODM\EmbedMany(targetDocument="Area")
      */
     protected $areas;
 
     /**
      * @var BlockInterface
      *
-     * @MongoDB\EmbedMany(targetDocument="Block")
+     * @ODM\EmbedMany(targetDocument="Block")
      */
     protected $blocks;
 
