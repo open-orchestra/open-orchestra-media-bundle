@@ -574,6 +574,10 @@ class Node implements NodeInterface
      */
     public function __clone()
     {
-        $this->id = null;
+        if (!is_null($this->id)) {
+            $this->id = null;
+            $this->areas = new ArrayCollection();
+            $this->blocks = new ArrayCollection();
+        }
     }
 }
