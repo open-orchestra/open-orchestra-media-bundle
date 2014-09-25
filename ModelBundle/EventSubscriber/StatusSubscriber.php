@@ -22,8 +22,8 @@ class StatusSubscriber implements EventSubscriber
     public function preUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        $entityManager = $args->getObjectManager();
         if($entity instanceof Status){
+            echo 'Done';
         }
     }
 }

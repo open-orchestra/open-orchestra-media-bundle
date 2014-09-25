@@ -55,12 +55,12 @@ interface StatusInterface extends TranslatedValueContainerInterface
     public function setRole($role);
 
     /**
-     * @param boolean $initial
+     * @param array $initial
      */
-    public function setInitial($initial);
+    public function setInitial(array $initial);
 
     /**
-     * @return boolean
+     * @return array
      */
-    public function isInitial();
+    public function getInitial();
 }
