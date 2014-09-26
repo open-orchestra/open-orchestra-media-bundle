@@ -105,4 +105,27 @@ class NodeRepository extends DocumentRepository
 
         return $qb->getQuery()->execute();
     }
+
+    /**
+     * @return array
+     */
+    public function findLastVersion()
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->field('deleted')->equals(false);
+        $list = $qb->getQuery()->execute();
+        $nodes = array();
+
+        foreach ($list as $node) {
+            if (!empty($nodes[$node->getNodeId()])) {
+                if ($nodes[$node->getNodeId()]->getVersion() < $node->getVersion()) {
+                    $nodes[$node->getNodeId()] = $node;
+                }
+            } else {
+                $nodes[$node->getNodeId()] = $node;
+            }
+        }
+
+        return $nodes;
+    }
 }
