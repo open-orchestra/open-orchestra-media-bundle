@@ -5,13 +5,14 @@ namespace PHPOrchestra\ModelBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
+use PHPOrchestra\ModelBundle\Model\HtmlClassContainerInterface;
 
 /**
  * Description of BaseArea
  *
  * @MongoDB\EmbeddedDocument
  */
-class Area implements AreaInterface
+class Area implements AreaInterface, HtmlClassContainerInterface
 {
     /**
      * @var string $areaId
@@ -19,6 +20,13 @@ class Area implements AreaInterface
      * @MongoDB\Field(type="string")
      */
     protected $areaId;
+
+    /**
+     * @var string $htmlClass
+     *
+     * @MongoDB\Field(type="string")
+     */
+    protected $htmlClass;
 
     /**
      * @var string $boDirection
@@ -77,6 +85,26 @@ class Area implements AreaInterface
     public function getAreaId()
     {
         return $this->areaId;
+    }
+
+    /**
+     * Set htmlClass
+     *
+     * @param string $htmlClass
+     */
+    public function setHtmlClass($htmlClass)
+    {
+        $this->htmlClass = $htmlClass;
+    }
+
+    /**
+     * Get htmlClass
+     *
+     * @return string $htmlClass
+     */
+    public function getHtmlClass()
+    {
+        return $this->htmlClass;
     }
 
     /**
