@@ -22,6 +22,20 @@ interface AreaInterface extends AreaContainerInterface
     public function getAreaId();
 
     /**
+     * Set htmlClass
+     *
+     * @param string $htmlClass
+     */
+    public function setAreaHtmlClass($htmlClass);
+
+    /**
+     * Get htmlCLass
+     *
+     * @return string $htmlClass
+     */
+    public function getAreaHtmlClass();
+
+    /**
      * Set boDirection
      *
      * @param string $boDirection

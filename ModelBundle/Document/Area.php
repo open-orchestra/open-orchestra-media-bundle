@@ -21,6 +21,13 @@ class Area implements AreaInterface
     protected $areaId;
 
     /**
+     * @var string $areaHtmlClass
+     *
+     * @MongoDB\Field(type="string")
+     */
+    protected $areaHtmlClass;
+
+    /**
      * @var string $boDirection
      *
      * @MongoDB\Field(type="string")
@@ -77,6 +84,26 @@ class Area implements AreaInterface
     public function getAreaId()
     {
         return $this->areaId;
+    }
+
+    /**
+     * Set areaHtmlClass
+     *
+     * @param string $areaHtmlClass
+     */
+    public function setAreaHtmlClass($areaHtmlClass)
+    {
+        $this->areaHtmlClass = $areaHtmlClass;
+    }
+
+    /**
+     * Get areaHtmlClass
+     *
+     * @return string $areaHtmlClass
+     */
+    public function getAreaHtmlClass()
+    {
+        return $this->areaHtmlClass;
     }
 
     /**
