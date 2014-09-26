@@ -23,7 +23,7 @@ class StatusListener
         $document = $eventArgs->getDocument();
         $documentManager = $eventArgs->getDocumentManager();
         if($document instanceof Status && $document->isPublished() && is_array($document->getInitial()) && count($document->getInitial()) > 0){
-            $queryBuilder = $documentManager->createQueryBuilder('PHPOrchestra\ModelBundle\Document\Status');
+            $queryBuilder = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->createQueryBuilder();
             $queryBuilder
                 ->field('name')->notEqual($document->getName())
                 ->field('initial')->in(
