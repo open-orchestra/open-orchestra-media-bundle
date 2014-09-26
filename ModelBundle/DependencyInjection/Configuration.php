@@ -79,6 +79,13 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\StatusRepository')->end()
                 ->end()
             ->end()
+            ->arrayNode('theme')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestra\ModelBundle\Document\Theme')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\ThemeRepository')->end()
+                ->end()
+            ->end()
         ->end();
 
         return $treeBuilder;
