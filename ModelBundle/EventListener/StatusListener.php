@@ -13,7 +13,11 @@ class StatusListener
 {
 
     protected $statuses = [];
-    
+
+    /**
+     * @param LifecycleEventArgs $eventArgs
+     *
+     */
     public function preUpdate(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
@@ -32,7 +36,11 @@ class StatusListener
             }
         }
     }
-    
+
+    /**
+     * @param PostFlushEventArgs $eventArgs
+     *
+     */
     public function postFlush(PostFlushEventArgs $eventArgs)
     {
         if(!empty($this->statuses)) {
@@ -44,5 +52,5 @@ class StatusListener
             $documentManager->flush();
         }
     }
-    
+
 }
