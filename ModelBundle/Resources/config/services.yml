@@ -8,4 +8,5 @@ services:
     status_listener:
         class: PHPOrchestra\ModelBundle\EventListener\StatusListener
         tags:
-            -  { name: doctrine_mongodb.odm.event_listener, event: preFlush , method: preFlush }
+            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate, method: preUpdate }
+            -  { name: doctrine_mongodb.odm.event_listener, event: postFlush, method: postFlush }

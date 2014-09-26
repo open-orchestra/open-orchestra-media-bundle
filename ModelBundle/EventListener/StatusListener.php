@@ -2,25 +2,47 @@
 
 namespace PHPOrchestra\ModelBundle\EventListener;
 
-use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
+use Doctrine\ODM\MongoDB\Event\PostFlushEventArgs;
 use PHPOrchestra\ModelBundle\Document\Status;
+use PHPOrchestra\ModelBundle\Repository\StatusRepository;
 /**
  * Class StatusListener
  */
 class StatusListener 
 {
 
-    public function preFlush(LifecycleEventArgs $eventArgs)
+    protected $statuses = [];
+    
+    public function preUpdate(LifecycleEventArgs $eventArgs)
     {
-        var_dump('Done');
-        
-        /*$document = $eventArgs->getDocument();
-        
-        if($document instanceof Status){
-            $document->setPublished(true);
-            $dm = $eventArgs->getDocumentManager();
-            $class = $dm->getClassMetadata(get_class($document));
-            $dm->getUnitOfWork()->recomputeSingleDocumentChangeSet($class, $document);
-        }*/
+        $document = $eventArgs->getDocument();
+        $documentManager = $eventArgs->getDocumentManager();
+        if($document instanceof Status && $document->isPublished() && is_array($document->getInitial()) && count($document->getInitial()) > 0){
+            $queryBuilder = $documentManager->createQueryBuilder('PHPOrchestra\ModelBundle\Document\Status');
+            $queryBuilder
+                ->field('name')->notEqual($document->getName())
+                ->field('initial')->in(
+                    $document->getInitial()
+                 );
+            $statuses = $queryBuilder->getQuery()->execute();
+            foreach($statuses as $status){
+                $status->setInitial(array_diff($status->getInitial(), $document->getInitial()));
+                $this->statuses[] = $status;
+            }
+        }
     }
+    
+    public function postFlush(PostFlushEventArgs $eventArgs)
+    {
+        if(!empty($this->statuses)) {
+            $documentManager = $eventArgs->getDocumentManager();
+            foreach ($this->statuses as $status) {
+                $documentManager->persist($status);
+            }
+            $this->statuses = [];
+            $documentManager->flush();
+        }
+    }
+    
 }
