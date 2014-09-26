@@ -103,7 +103,44 @@ class NodeRepository extends DocumentRepository
         $qb->field('nodeId')->equals($nodeId);
         $qb->sort('version', 'desc');
 
-        return $qb->getQuery()->execute();
+        return $qb->getQuery()->getSingleResult();
+    }
+
+    /**
+     * @param string   $nodeId
+     * @param int|null $version
+     *
+     * @return mixed
+     */
+    public function findOneByNodeIdAndVersion($nodeId, $version = null)
+    {
+        if (!empty($version)) {
+            $qb = $this->createQueryBuilder('n');
+            $qb->field('nodeId')->equals($nodeId);
+            $qb->field('deleted')->equals(false);
+            $qb->field('version')->equals($version);
+
+            return $qb->getQuery()->getSingleResult();
+        } else {
+            return $this->findOneByNodeIdAndLastVersion($nodeId);
+        }
+    }
+
+    /**
+     * @param string $nodeId
+     *
+     * @return mixed
+     */
+    public function findOneByNodeIdAndLastVersion($nodeId)
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->field('nodeId')->equals($nodeId);
+        $qb->field('deleted')->equals(false);
+        $qb->sort('version', 'desc');
+
+        $node = $qb->getQuery()->getSingleResult();
+
+        return $node;
     }
 
     /**
