@@ -584,6 +584,8 @@ class Node implements NodeInterface
             $this->id = null;
             $this->areas = new ArrayCollection();
             $this->blocks = new ArrayCollection();
+            $this->setCreatedAt(new \DateTime());
+            $this->setUpdatedAt(new \DateTime());
         }
     }
 }
