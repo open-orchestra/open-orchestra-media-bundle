@@ -1427,7 +1427,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteNews->setSiteId(2);
         $siteNews->setParentId('fixture_page_home');
         $siteNews->setPath('-');
-        $siteNews->setAlias('page our news');
+        $siteNews->setAlias('page-our-news');
         $siteNews->setVersion(1);
         $siteNews->setLanguage('fr');
         $siteNews->setStatus($this->getReference('status-published'));
