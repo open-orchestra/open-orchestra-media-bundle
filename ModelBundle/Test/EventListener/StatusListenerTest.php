@@ -46,8 +46,18 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
 
         $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $queryBuilder = Phake::mock('Doctrine\ODM\MongoDB\Query\Builder');
-        Phake::when($queryBuilder)->getQuery()->execute()->thenReturn($documents);
-        Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Status')->createQueryBuilder()->thenReturn($queryBuilder);
+        $query = Phake::mock('Doctrine\ODM\MongoDB\Query\Query');
+        $statusRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\StatusRepository');
+
+        Phake::when($queryBuilder)->getQuery()->thenReturn($query);
+        Phake::when($queryBuilder)->field(Phake::anyParameters())->thenReturn($queryBuilder);
+        Phake::when($queryBuilder)->notEqual(Phake::anyParameters())->thenReturn($queryBuilder);
+        Phake::when($queryBuilder)->in(Phake::anyParameters())->thenReturn($queryBuilder);
+
+        Phake::when($query)->execute()->thenReturn($documents);
+
+        Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Status')->thenReturn($statusRepository);
+        Phake::when($statusRepository)->createQueryBuilder()->thenReturn($queryBuilder);
 
         Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($status);
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
@@ -76,10 +86,10 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($status)->getInitial()->thenReturn($initials);
 
         $document0 = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
-        Phake::when($status)->getInitial()->thenReturn($initialsDocument0);
+        Phake::when($document0)->getInitial()->thenReturn($initialsDocument0);
 
         $document1 = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
-        Phake::when($status)->getInitial()->thenReturn($initialsDocument1);
+        Phake::when($document1)->getInitial()->thenReturn($initialsDocument1);
 
         return array(
             array(
