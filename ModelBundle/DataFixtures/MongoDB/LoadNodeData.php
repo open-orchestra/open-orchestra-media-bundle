@@ -760,35 +760,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteWhatBlock0 = new Block();
         $siteWhatBlock0->setComponent('tiny_mce_wysiwyg');
         $siteWhatBlock0->setAttributes(array(
-            "_htmlContent" => "",
-        ));
-
-        $siteWhatBlock1 = new Block();
-        $siteWhatBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteWhatBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteWhatBlock2 = new Block();
-        $siteWhatBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteWhatBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteWhatBlockMenu = new Block();
-        $siteWhatBlockMenu->setComponent('menu');
-        $siteWhatBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteWhatBlock4 = new Block();
-        $siteWhatBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteWhatBlock4->setAttributes(array(
             "_htmlContent" => "<div class='content2'><h1>PHPOrchestra</h1><p>
 PHP Orchestra est une plateforme développée conjointement par Interakting et Zend Technologies. Cette offre, dédiée au marketing est destinée aux grands projets de nouvelle génération en digital marketing et entreprise 2.0.
 
@@ -811,36 +782,30 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
                </p></div>",
         ));
 
-        $siteWhatBlock5 = new Block();
-        $siteWhatBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteWhatBlock5->setAttributes(array(
+        $siteWhatBlock1 = new Block();
+        $siteWhatBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteWhatBlock1->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
 
-        $siteWhatBlock6 = new Block();
-        $siteWhatBlock6->setComponent('contact');
-        $siteWhatBlock6->setAttributes(array(
+        $siteWhatBlock2 = new Block();
+        $siteWhatBlock2->setComponent('contact');
+        $siteWhatBlock2->setAttributes(array(
             "id" => "myFormContact",
             "class" => "myFormContact",
         ));
 
-        $siteWhatBlock7 = new Block();
-        $siteWhatBlock7->setComponent('tiny_mce_wysiwyg');
-        $siteWhatBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
-        ));
-
         $siteWhatArea1 = new Area();
         $siteWhatArea1->setAreaId('logo');
-        $siteWhatArea1->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteWhatArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteWhatArea2 = new Area();
         $siteWhatArea2->setAreaId('sub_menu');
-        $siteWhatArea2->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteWhatArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteWhatArea3 = new Area();
         $siteWhatArea3->setAreaId('main_menu');
-        $siteWhatArea3->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteWhatArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteWhatArea0 = new Area();
         $siteWhatArea0->setAreaId('header');
@@ -850,12 +815,12 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
 
         $siteWhatArea5 = new Area();
         $siteWhatArea5->setAreaId('mainContentArea1');
-        $siteWhatArea5->addBlock(array('nodeId' => 0, 'blockId' => 4));
+        $siteWhatArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteWhatArea6 = new Area();
         $siteWhatArea6->setAreaId('moduleArea');
-        $siteWhatArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
-        $siteWhatArea6->addBlock(array('nodeId' => 0, 'blockId' => 6));
+        $siteWhatArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteWhatArea6->addBlock(array('nodeId' => 0, 'blockId' => 2));
 
         $siteWhatArea4 = new Area();
         $siteWhatArea4->setAreaId('myMain');
@@ -864,7 +829,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
 
         $siteWhatArea8 = new Area();
         $siteWhatArea8->setAreaId('containeFooter');
-        $siteWhatArea8->addBlock(array('nodeId' => 0, 'blockId' => 7));
+        $siteWhatArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteWhatArea7 = new Area();
         $siteWhatArea7->setAreaId('footer');
@@ -892,11 +857,6 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteWhat->addBlock($siteWhatBlock0);
         $siteWhat->addBlock($siteWhatBlock1);
         $siteWhat->addBlock($siteWhatBlock2);
-        $siteWhat->addBlock($siteWhatBlockMenu);
-        $siteWhat->addBlock($siteWhatBlock4);
-        $siteWhat->addBlock($siteWhatBlock5);
-        $siteWhat->addBlock($siteWhatBlock6);
-        $siteWhat->addBlock($siteWhatBlock7);
 
         return $siteWhat;
     }
@@ -906,32 +866,9 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
      */
     public function generateNodeSiteStartOrchestra()
     {
-        $siteStartBlock1 = new Block();
-        $siteStartBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteStartBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteStartBlock2 = new Block();
-        $siteStartBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteStartBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteStartBlockMenu = new Block();
-        $siteStartBlockMenu->setComponent('menu');
-        $siteStartBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteStartBlock4 = new Block();
-        $siteStartBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteStartBlock4->setAttributes(array(
+        $siteStartBlock0 = new Block();
+        $siteStartBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteStartBlock0->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Le tour rapide</h1>
             <p>
             Quoi de mieux pour se faire un avis que d'essayer Symfony par vous même ? À part un peu de temps, cela ne vous coûtera rien. Pas à pas vous allez explorer l'univers de Symfony. Attention, Symfony peut vite devenir addictif dès la première rencontre.
@@ -939,36 +876,30 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
             </div>",
         ));
 
-        $siteStartBlock5 = new Block();
-        $siteStartBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteStartBlock5->setAttributes(array(
+        $siteStartBlock1 = new Block();
+        $siteStartBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteStartBlock1->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
 
-        $siteStartBlock6 = new Block();
-        $siteStartBlock6->setComponent('contact');
-        $siteStartBlock6->setAttributes(array(
+        $siteStartBlock2 = new Block();
+        $siteStartBlock2->setComponent('contact');
+        $siteStartBlock2->setAttributes(array(
             "id" => "myFormContact",
             "class" => "myFormContact",
         ));
 
-        $siteStartBlock7 = new Block();
-        $siteStartBlock7->setComponent('tiny_mce_wysiwyg');
-        $siteStartBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
-        ));
-
         $siteStartArea1 = new Area();
         $siteStartArea1->setAreaId('logo');
-        $siteStartArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteStartArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteStartArea2 = new Area();
         $siteStartArea2->setAreaId('sub_menu');
-        $siteStartArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteStartArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteStartArea3 = new Area();
         $siteStartArea3->setAreaId('main_menu');
-        $siteStartArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteStartArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteStartArea0 = new Area();
         $siteStartArea0->setAreaId('header');
@@ -978,12 +909,12 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
 
         $siteStartArea5 = new Area();
         $siteStartArea5->setAreaId('mainContentArea1');
-        $siteStartArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteStartArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteStartArea6 = new Area();
         $siteStartArea6->setAreaId('moduleArea');
-        $siteStartArea6->addBlock(array('nodeId' => 0, 'blockId' => 4));
-        $siteStartArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
+        $siteStartArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteStartArea6->addBlock(array('nodeId' => 0, 'blockId' => 2));
 
         $siteStartArea4 = new Area();
         $siteStartArea4->setAreaId('myMain');
@@ -992,7 +923,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
 
         $siteStartArea8 = new Area();
         $siteStartArea8->setAreaId('containeFooter');
-        $siteStartArea8->addBlock(array('nodeId' => 0, 'blockId' => 6));
+        $siteStartArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteStartArea7 = new Area();
         $siteStartArea7->setAreaId('footer');
@@ -1017,13 +948,9 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteStart->addArea($siteStartArea0);
         $siteStart->addArea($siteStartArea4);
         $siteStart->addArea($siteStartArea7);
+        $siteStart->addBlock($siteStartBlock0);
         $siteStart->addBlock($siteStartBlock1);
         $siteStart->addBlock($siteStartBlock2);
-        $siteStart->addBlock($siteStartBlockMenu);
-        $siteStart->addBlock($siteStartBlock4);
-        $siteStart->addBlock($siteStartBlock5);
-        $siteStart->addBlock($siteStartBlock6);
-        $siteStart->addBlock($siteStartBlock7);
 
         return $siteStart;
     }
@@ -1033,32 +960,9 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
      */
     public function generateNodeSiteDocumentation()
     {
-        $siteDocBlock1 = new Block();
-        $siteDocBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteDocBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteDocBlock2 = new Block();
-        $siteDocBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteDocBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteDocBlockMenu = new Block();
-        $siteDocBlockMenu->setComponent('menu');
-        $siteDocBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteDocBlock4 = new Block();
-        $siteDocBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteDocBlock4->setAttributes(array(
+        $siteDocBlock0 = new Block();
+        $siteDocBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteDocBlock0->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>PHP Documentation</h1>
                 <p>The PHP Manual is available online in a selection of languages. Please pick a language from the list below.
 
@@ -1068,36 +972,30 @@ Note, that many languages are just under translation, and the untranslated parts
             </div>",
         ));
 
-        $siteDocBlock5 = new Block();
-        $siteDocBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteDocBlock5->setAttributes(array(
+        $siteDocBlock1 = new Block();
+        $siteDocBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteDocBlock1->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
 
-        $siteDocBlock6 = new Block();
-        $siteDocBlock6->setComponent('contact');
-        $siteDocBlock6->setAttributes(array(
+        $siteDocBlock2 = new Block();
+        $siteDocBlock2->setComponent('contact');
+        $siteDocBlock2->setAttributes(array(
             "id" => "myFormContact",
             "class" => "myFormContact",
         ));
 
-        $siteDocBlock7 = new Block();
-        $siteDocBlock7->setComponent('tiny_mce_wysiwyg');
-        $siteDocBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
-        ));
-
         $siteDocArea1 = new Area();
         $siteDocArea1->setAreaId('logo');
-        $siteDocArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteDocArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteDocArea2 = new Area();
         $siteDocArea2->setAreaId('sub_menu');
-        $siteDocArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteDocArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteDocArea3 = new Area();
         $siteDocArea3->setAreaId('main_menu');
-        $siteDocArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteDocArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteDocArea0 = new Area();
         $siteDocArea0->setAreaId('header');
@@ -1107,12 +1005,12 @@ Note, that many languages are just under translation, and the untranslated parts
 
         $siteDocArea5 = new Area();
         $siteDocArea5->setAreaId('mainContentArea1');
-        $siteDocArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteDocArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteDocArea6 = new Area();
         $siteDocArea6->setAreaId('moduleArea');
-        $siteDocArea6->addBlock(array('nodeId' => 0, 'blockId' => 4));
-        $siteDocArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
+        $siteDocArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteDocArea6->addBlock(array('nodeId' => 0, 'blockId' => 2));
 
         $siteDocArea4 = new Area();
         $siteDocArea4->setAreaId('myMain');
@@ -1121,7 +1019,7 @@ Note, that many languages are just under translation, and the untranslated parts
 
         $siteDocArea8 = new Area();
         $siteDocArea8->setAreaId('containeFooter');
-        $siteDocArea8->addBlock(array('nodeId' => 0, 'blockId' => 6));
+        $siteDocArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteDocArea7 = new Area();
         $siteDocArea7->setAreaId('footer');
@@ -1146,13 +1044,9 @@ Note, that many languages are just under translation, and the untranslated parts
         $siteDoc->addArea($siteDocArea0);
         $siteDoc->addArea($siteDocArea4);
         $siteDoc->addArea($siteDocArea7);
+        $siteDoc->addBlock($siteDocBlock0);
         $siteDoc->addBlock($siteDocBlock1);
         $siteDoc->addBlock($siteDocBlock2);
-        $siteDoc->addBlock($siteDocBlockMenu);
-        $siteDoc->addBlock($siteDocBlock4);
-        $siteDoc->addBlock($siteDocBlock5);
-        $siteDoc->addBlock($siteDocBlock6);
-        $siteDoc->addBlock($siteDocBlock7);
 
         return $siteDoc;
     }
@@ -1162,32 +1056,9 @@ Note, that many languages are just under translation, and the untranslated parts
      */
     public function generateNodeSiteCommunity()
     {
-        $siteComBlock1 = new Block();
-        $siteComBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteComBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteComBlock2 = new Block();
-        $siteComBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteComBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteComBlockMenu = new Block();
-        $siteComBlockMenu->setComponent('menu');
-        $siteComBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteComBlock4 = new Block();
-        $siteComBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteComBlock4->setAttributes(array(
+        $siteComBlock0 = new Block();
+        $siteComBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteComBlock0->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>ENTREPRISE DIGITALE : LES LEVIERS DE LA PERFORMANCE</h1>
                 <p>
                     L’Entreprise Digitale n’est plus un concept abstrait mais bien un formidable levier de la performance.
@@ -1203,36 +1074,30 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
             </div>",
         ));
 
-        $siteComBlock5 = new Block();
-        $siteComBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteComBlock5->setAttributes(array(
+        $siteComBlock1 = new Block();
+        $siteComBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteComBlock1->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
 
-        $siteComBlock6 = new Block();
-        $siteComBlock6->setComponent('contact');
-        $siteComBlock6->setAttributes(array(
+        $siteComBlock2 = new Block();
+        $siteComBlock2->setComponent('contact');
+        $siteComBlock2->setAttributes(array(
             "id" => "myFormContact",
             "class" => "myFormContact",
         ));
 
-        $siteComBlock7 = new Block();
-        $siteComBlock7->setComponent('tiny_mce_wysiwyg');
-        $siteComBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
-        ));
-
         $siteComArea1 = new Area();
         $siteComArea1->setAreaId('logo');
-        $siteComArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteComArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteComArea2 = new Area();
         $siteComArea2->setAreaId('sub_menu');
-        $siteComArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteComArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteComArea3 = new Area();
         $siteComArea3->setAreaId('main_menu');
-        $siteComArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteComArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteComArea0 = new Area();
         $siteComArea0->setAreaId('header');
@@ -1242,12 +1107,12 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
 
         $siteComArea5 = new Area();
         $siteComArea5->setAreaId('mainContentArea1');
-        $siteComArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteComArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteComArea6 = new Area();
         $siteComArea6->setAreaId('moduleArea');
-        $siteComArea6->addBlock(array('nodeId' => 0, 'blockId' => 4));
-        $siteComArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
+        $siteComArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteComArea6->addBlock(array('nodeId' => 0, 'blockId' => 2));
 
         $siteComArea4 = new Area();
         $siteComArea4->setAreaId('myMain');
@@ -1256,7 +1121,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
 
         $siteComArea8 = new Area();
         $siteComArea8->setAreaId('containeFooter');
-        $siteComArea8->addBlock(array('nodeId' => 0, 'blockId' => 6));
+        $siteComArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteComArea7 = new Area();
         $siteComArea7->setAreaId('footer');
@@ -1281,13 +1146,9 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteCom->addArea($siteComArea0);
         $siteCom->addArea($siteComArea4);
         $siteCom->addArea($siteComArea7);
+        $siteCom->addBlock($siteComBlock0);
         $siteCom->addBlock($siteComBlock1);
         $siteCom->addBlock($siteComBlock2);
-        $siteCom->addBlock($siteComBlockMenu);
-        $siteCom->addBlock($siteComBlock4);
-        $siteCom->addBlock($siteComBlock5);
-        $siteCom->addBlock($siteComBlock6);
-        $siteCom->addBlock($siteComBlock7);
 
         return $siteCom;
     }
@@ -1297,32 +1158,9 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
      */
     public function generateNodeSiteAboutUs()
     {
-        $siteAboutUsBlock1 = new Block();
-        $siteAboutUsBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteAboutUsBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteAboutUsBlock2 = new Block();
-        $siteAboutUsBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteAboutUsBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteAboutUsBlockMenu = new Block();
-        $siteAboutUsBlockMenu->setComponent('menu');
-        $siteAboutUsBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteAboutUsBlock4 = new Block();
-        $siteAboutUsBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteAboutUsBlock4->setAttributes(array(
+        $siteAboutUsBlock0 = new Block();
+        $siteAboutUsBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteAboutUsBlock0->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Interakting</h1>
                 <p>
                 Une agence digitale nouvelle génération classée par le Forrester parmi les 12 plus grandes agences européennes, avec un positionnement conseil et technologies.
@@ -1332,36 +1170,30 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
             </div>",
         ));
 
-        $siteAboutUsBlock5 = new Block();
-        $siteAboutUsBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteAboutUsBlock5->setAttributes(array(
+        $siteAboutUsBlock1 = new Block();
+        $siteAboutUsBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteAboutUsBlock1->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
 
-        $siteAboutUsBlock6 = new Block();
-        $siteAboutUsBlock6->setComponent('contact');
-        $siteAboutUsBlock6->setAttributes(array(
+        $siteAboutUsBlock2 = new Block();
+        $siteAboutUsBlock2->setComponent('contact');
+        $siteAboutUsBlock2->setAttributes(array(
             "id" => "myFormContact",
             "class" => "myFormContact",
         ));
 
-        $siteAboutUsBlock7 = new Block();
-        $siteAboutUsBlock7->setComponent('tiny_mce_wysiwyg');
-        $siteAboutUsBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
-        ));
-
         $siteAboutUsArea1 = new Area();
         $siteAboutUsArea1->setAreaId('logo');
-        $siteAboutUsArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteAboutUsArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteAboutUsArea2 = new Area();
         $siteAboutUsArea2->setAreaId('sub_menu');
-        $siteAboutUsArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteAboutUsArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteAboutUsArea3 = new Area();
         $siteAboutUsArea3->setAreaId('main_menu');
-        $siteAboutUsArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteAboutUsArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteAboutUsArea0 = new Area();
         $siteAboutUsArea0->setAreaId('header');
@@ -1371,12 +1203,12 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
 
         $siteAboutUsArea5 = new Area();
         $siteAboutUsArea5->setAreaId('mainContentArea1');
-        $siteAboutUsArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteAboutUsArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteAboutUsArea6 = new Area();
         $siteAboutUsArea6->setAreaId('moduleArea');
-        $siteAboutUsArea6->addBlock(array('nodeId' => 0, 'blockId' => 4));
-        $siteAboutUsArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
+        $siteAboutUsArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteAboutUsArea6->addBlock(array('nodeId' => 0, 'blockId' => 2));
 
         $siteAboutUsArea4 = new Area();
         $siteAboutUsArea4->setAreaId('myMain');
@@ -1385,7 +1217,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
 
         $siteAboutUsArea8 = new Area();
         $siteAboutUsArea8->setAreaId('containeFooter');
-        $siteAboutUsArea8->addBlock(array('nodeId' => 0, 'blockId' => 6));
+        $siteAboutUsArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteAboutUsArea7 = new Area();
         $siteAboutUsArea7->setAreaId('footer');
@@ -1410,13 +1242,9 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteAboutUs->addArea($siteAboutUsArea0);
         $siteAboutUs->addArea($siteAboutUsArea4);
         $siteAboutUs->addArea($siteAboutUsArea7);
+        $siteAboutUs->addBlock($siteAboutUsBlock0);
         $siteAboutUs->addBlock($siteAboutUsBlock1);
         $siteAboutUs->addBlock($siteAboutUsBlock2);
-        $siteAboutUs->addBlock($siteAboutUsBlockMenu);
-        $siteAboutUs->addBlock($siteAboutUsBlock4);
-        $siteAboutUs->addBlock($siteAboutUsBlock5);
-        $siteAboutUs->addBlock($siteAboutUsBlock6);
-        $siteAboutUs->addBlock($siteAboutUsBlock7);
 
         return $siteAboutUs;
     }
@@ -1426,32 +1254,9 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
      */
     public function generateNodeSiteOurTeam()
     {
-        $siteOurTeamBlock1 = new Block();
-        $siteOurTeamBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteOurTeamBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteOurTeamBlock2 = new Block();
-        $siteOurTeamBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteOurTeamBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteOurTeamBlockMenu = new Block();
-        $siteOurTeamBlockMenu->setComponent('menu');
-        $siteOurTeamBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteOurTeamBlock4 = new Block();
-        $siteOurTeamBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteOurTeamBlock4->setAttributes(array(
+        $siteOurTeamBlock0 = new Block();
+        $siteOurTeamBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteOurTeamBlock0->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Our Team</h1>
             <br>
             <p>
@@ -1463,36 +1268,30 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
             </div>",
         ));
 
-        $siteOurTeamBlock5 = new Block();
-        $siteOurTeamBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteOurTeamBlock5->setAttributes(array(
+        $siteOurTeamBlock1 = new Block();
+        $siteOurTeamBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteOurTeamBlock1->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
 
-        $siteOurTeamBlock6 = new Block();
-        $siteOurTeamBlock6->setComponent('contact');
-        $siteOurTeamBlock6->setAttributes(array(
+        $siteOurTeamBlock2 = new Block();
+        $siteOurTeamBlock2->setComponent('contact');
+        $siteOurTeamBlock2->setAttributes(array(
             "id" => "myFormContact",
             "class" => "myFormContact",
         ));
 
-        $siteOurTeamBlock7 = new Block();
-        $siteOurTeamBlock7->setComponent('tiny_mce_wysiwyg');
-        $siteOurTeamBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
-        ));
-
         $siteOurTeamArea1 = new Area();
         $siteOurTeamArea1->setAreaId('logo');
-        $siteOurTeamArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteOurTeamArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteOurTeamArea2 = new Area();
         $siteOurTeamArea2->setAreaId('sub_menu');
-        $siteOurTeamArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteOurTeamArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteOurTeamArea3 = new Area();
         $siteOurTeamArea3->setAreaId('main_menu');
-        $siteOurTeamArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteOurTeamArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteOurTeamArea0 = new Area();
         $siteOurTeamArea0->setAreaId('header');
@@ -1502,12 +1301,12 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
 
         $siteOurTeamArea5 = new Area();
         $siteOurTeamArea5->setAreaId('mainContentArea1');
-        $siteOurTeamArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteOurTeamArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteOurTeamArea6 = new Area();
         $siteOurTeamArea6->setAreaId('moduleArea');
-        $siteOurTeamArea6->addBlock(array('nodeId' => 0, 'blockId' => 4));
-        $siteOurTeamArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
+        $siteOurTeamArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteOurTeamArea6->addBlock(array('nodeId' => 0, 'blockId' => 2));
 
         $siteOurTeamArea4 = new Area();
         $siteOurTeamArea4->setAreaId('myMain');
@@ -1516,7 +1315,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
 
         $siteOurTeamArea8 = new Area();
         $siteOurTeamArea8->setAreaId('containeFooter');
-        $siteOurTeamArea8->addBlock(array('nodeId' => 0, 'blockId' => 6));
+        $siteOurTeamArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteOurTeamArea7 = new Area();
         $siteOurTeamArea7->setAreaId('footer');
@@ -1541,13 +1340,9 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteOurTeam->addArea($siteOurTeamArea0);
         $siteOurTeam->addArea($siteOurTeamArea4);
         $siteOurTeam->addArea($siteOurTeamArea7);
+        $siteOurTeam->addBlock($siteOurTeamBlock0);
         $siteOurTeam->addBlock($siteOurTeamBlock1);
         $siteOurTeam->addBlock($siteOurTeamBlock2);
-        $siteOurTeam->addBlock($siteOurTeamBlockMenu);
-        $siteOurTeam->addBlock($siteOurTeamBlock4);
-        $siteOurTeam->addBlock($siteOurTeamBlock5);
-        $siteOurTeam->addBlock($siteOurTeamBlock6);
-        $siteOurTeam->addBlock($siteOurTeamBlock7);
 
         return $siteOurTeam;
     }
@@ -1557,32 +1352,9 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
      */
     public function generateNodeSiteNews()
     {
-        $siteNewsBlock1 = new Block();
-        $siteNewsBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteNewsBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteNewsBlock2 = new Block();
-        $siteNewsBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteNewsBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteNewsBlockMenu = new Block();
-        $siteNewsBlockMenu->setComponent('menu');
-        $siteNewsBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteNewsBlock4 = new Block();
-        $siteNewsBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteNewsBlock4->setAttributes(array(
+        $siteNewsBlock0 = new Block();
+        $siteNewsBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteNewsBlock0->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Actu</h1>
             <br>
             <p>
@@ -1595,36 +1367,30 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
             </div>",
         ));
 
-        $siteNewsBlock5 = new Block();
-        $siteNewsBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteNewsBlock5->setAttributes(array(
+        $siteNewsBlock1 = new Block();
+        $siteNewsBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteNewsBlock1->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
 
-        $siteNewsBlock6 = new Block();
-        $siteNewsBlock6->setComponent('contact');
-        $siteNewsBlock6->setAttributes(array(
+        $siteNewsBlock2 = new Block();
+        $siteNewsBlock2->setComponent('contact');
+        $siteNewsBlock2->setAttributes(array(
             "id" => "myFormContact",
             "class" => "myFormContact",
         ));
 
-        $siteNewsBlock7 = new Block();
-        $siteNewsBlock7->setComponent('tiny_mce_wysiwyg');
-        $siteNewsBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
-        ));
-
         $siteNewsArea1 = new Area();
         $siteNewsArea1->setAreaId('logo');
-        $siteNewsArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteNewsArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteNewsArea2 = new Area();
         $siteNewsArea2->setAreaId('sub_menu');
-        $siteNewsArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteNewsArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteNewsArea3 = new Area();
         $siteNewsArea3->setAreaId('main_menu');
-        $siteNewsArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteNewsArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteNewsArea0 = new Area();
         $siteNewsArea0->setAreaId('header');
@@ -1634,12 +1400,12 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
 
         $siteNewsArea5 = new Area();
         $siteNewsArea5->setAreaId('mainContentArea1');
-        $siteNewsArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteNewsArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteNewsArea6 = new Area();
         $siteNewsArea6->setAreaId('moduleArea');
-        $siteNewsArea6->addBlock(array('nodeId' => 0, 'blockId' => 4));
-        $siteNewsArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
+        $siteNewsArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteNewsArea6->addBlock(array('nodeId' => 0, 'blockId' => 2));
 
         $siteNewsArea4 = new Area();
         $siteNewsArea4->setAreaId('myMain');
@@ -1648,7 +1414,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
 
         $siteNewsArea8 = new Area();
         $siteNewsArea8->setAreaId('containeFooter');
-        $siteNewsArea8->addBlock(array('nodeId' => 0, 'blockId' => 6));
+        $siteNewsArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteNewsArea7 = new Area();
         $siteNewsArea7->setAreaId('footer');
@@ -1673,13 +1439,9 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteNews->addArea($siteNewsArea0);
         $siteNews->addArea($siteNewsArea4);
         $siteNews->addArea($siteNewsArea7);
+        $siteNews->addBlock($siteNewsBlock0);
         $siteNews->addBlock($siteNewsBlock1);
         $siteNews->addBlock($siteNewsBlock2);
-        $siteNews->addBlock($siteNewsBlockMenu);
-        $siteNews->addBlock($siteNewsBlock4);
-        $siteNews->addBlock($siteNewsBlock5);
-        $siteNews->addBlock($siteNewsBlock6);
-        $siteNews->addBlock($siteNewsBlock7);
 
         return $siteNews;
     }
@@ -1689,64 +1451,35 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
      */
     public function generateNodeSiteJoinUs()
     {
+        $siteJoinUsBlock0 = new Block();
+        $siteJoinUsBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteJoinUsBlock0->setAttributes(array(
+            "_htmlContent" => "<div class='content2'><div id='annonce'><h1>Nous rejoindre</h1> <p>Vous êtes un passionné d’Internet en général et du Web en particulier?</p> <p>Vous avez une expérience significative dans les domaines suivants: Développement web le framwork Symfony 2 Votre profil est susceptible de nous intéresser </div> <div id='form'><table border='0'><tbody><tr><td valign='top'> Nom   </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société   </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr> <td valign='top'> Email   </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/> </td></tr><tr> <td valign='top'> Message   </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr><tr> <td valign='top'> CV   </td><td><input type='file' /> </td></tr> <tr> <td> <input type='submit' value='OK'/></td>  </tr> </tbody></table></div> </div>",
+        ));
+
         $siteJoinUsBlock1 = new Block();
         $siteJoinUsBlock1->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
+            "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
 
         $siteJoinUsBlock2 = new Block();
         $siteJoinUsBlock2->setComponent('tiny_mce_wysiwyg');
         $siteJoinUsBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteJoinUsBlockMenu = new Block();
-        $siteJoinUsBlockMenu->setComponent('menu');
-        $siteJoinUsBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteJoinUsBlock4 = new Block();
-        $siteJoinUsBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteJoinUsBlock4->setAttributes(array(
-            "_htmlContent" => "<div class='content2'><div id='annonce'><h1>Nous rejoindre</h1> <p>Vous êtes un passionné d’Internet en général et du Web en particulier?</p> <p>Vous avez une expérience significative dans les domaines suivants: Développement web le framwork Symfony 2 Votre profil est susceptible de nous intéresser </div> <div id='form'><table border='0'><tbody><tr><td valign='top'> Nom   </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société   </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr> <td valign='top'> Email   </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/> </td></tr><tr> <td valign='top'> Message   </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr><tr> <td valign='top'> CV   </td><td><input type='file' /> </td></tr> <tr> <td> <input type='submit' value='OK'/></td>  </tr> </tbody></table></div> </div>",
-        ));
-
-        $siteJoinUsBlock5 = new Block();
-        $siteJoinUsBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteJoinUsBlock5->setAttributes(array(
-            "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
-        ));
-
-        $siteJoinUsBlock6 = new Block();
-        $siteJoinUsBlock6->setComponent('tiny_mce_wysiwyg');
-        $siteJoinUsBlock6->setAttributes(array(
             "_htmlContent" => "<div class='content3'><h3 class='blocTitle'><p class='titleModule'> Nous rejoindre </p> </h3><div class='blockContent'>Nos annonces </div> </div> ",
-        ));
-
-        $siteJoinUsBlock8 = new Block();
-        $siteJoinUsBlock8->setComponent('tiny_mce_wysiwyg');
-        $siteJoinUsBlock8->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteJoinUsArea1 = new Area();
         $siteJoinUsArea1->setAreaId('logo');
-        $siteJoinUsArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteJoinUsArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteJoinUsArea2 = new Area();
         $siteJoinUsArea2->setAreaId('sub_menu');
-        $siteJoinUsArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteJoinUsArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteJoinUsArea3 = new Area();
         $siteJoinUsArea3->setAreaId('main_menu');
-        $siteJoinUsArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteJoinUsArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteJoinUsArea0 = new Area();
         $siteJoinUsArea0->setAreaId('header');
@@ -1756,12 +1489,12 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
 
         $siteJoinUsArea5 = new Area();
         $siteJoinUsArea5->setAreaId('mainContentArea1');
-        $siteJoinUsArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteJoinUsArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteJoinUsArea6 = new Area();
         $siteJoinUsArea6->setAreaId('moduleArea');
-        $siteJoinUsArea6->addBlock(array('nodeId' => 0, 'blockId' => 4));
-        $siteJoinUsArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
+        $siteJoinUsArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteJoinUsArea6->addBlock(array('nodeId' => 0, 'blockId' => 2));
 
         $siteJoinUsArea4 = new Area();
         $siteJoinUsArea4->setAreaId('myMain');
@@ -1770,7 +1503,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
 
         $siteJoinUsArea8 = new Area();
         $siteJoinUsArea8->setAreaId('containeFooter');
-        $siteJoinUsArea8->addBlock(array('nodeId' => 0, 'blockId' => 6));
+        $siteJoinUsArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteJoinUsArea7 = new Area();
         $siteJoinUsArea7->setAreaId('footer');
@@ -1795,13 +1528,9 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteJoinUs->addArea($siteJoinUsArea0);
         $siteJoinUs->addArea($siteJoinUsArea4);
         $siteJoinUs->addArea($siteJoinUsArea7);
+        $siteJoinUs->addBlock($siteJoinUsBlock0);
         $siteJoinUs->addBlock($siteJoinUsBlock1);
         $siteJoinUs->addBlock($siteJoinUsBlock2);
-        $siteJoinUs->addBlock($siteJoinUsBlockMenu);
-        $siteJoinUs->addBlock($siteJoinUsBlock4);
-        $siteJoinUs->addBlock($siteJoinUsBlock5);
-        $siteJoinUs->addBlock($siteJoinUsBlock6);
-        $siteJoinUs->addBlock($siteJoinUsBlock8);
 
         return $siteJoinUs;
     }
@@ -1811,32 +1540,9 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
      */
     public function generateNodeSiteNetwork()
     {
-        $siteNetworkBlock1 = new Block();
-        $siteNetworkBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteNetworkBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteNetworkBlock2 = new Block();
-        $siteNetworkBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteNetworkBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteNetworkBlockMenu = new Block();
-        $siteNetworkBlockMenu->setComponent('menu');
-        $siteNetworkBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteNetworkBlock4 = new Block();
-        $siteNetworkBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteNetworkBlock4->setAttributes(array(
+        $siteNetworkBlock0 = new Block();
+        $siteNetworkBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteNetworkBlock0->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1>Smart Eolas</h1><p>
             Smart.eolas allie le meilleur du e-commerce et de la gestion de contenus. Jusqu’alors, il n’existait aucune plateforme sur le marché mêlant avec succès des fonctions avancées de gestion de contenus et de catalogue produits. Il y a plus de deux ans, Eolas s’est lancé dans ce vaste chantier : construire une nouvelle plateforme e-Commerce et de gestion de contenus innovante et à l’état de l’art.
 
@@ -1844,37 +1550,31 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
             </p></div>",
         ));
 
-        $siteNetworkBlock5 = new Block();
-        $siteNetworkBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteNetworkBlock5->setAttributes(array(
+        $siteNetworkBlock1 = new Block();
+        $siteNetworkBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteNetworkBlock1->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
 
         ));
 
-        $siteNetworkBlock6 = new Block();
-        $siteNetworkBlock6->setComponent('contact');
-        $siteNetworkBlock6->setAttributes(array(
+        $siteNetworkBlock2 = new Block();
+        $siteNetworkBlock2->setComponent('contact');
+        $siteNetworkBlock2->setAttributes(array(
             "id" => "myFormContact",
             "class" => "myFormContact",
         ));
 
-        $siteNetworkBlock7 = new Block();
-        $siteNetworkBlock7->setComponent('tiny_mce_wysiwyg');
-        $siteNetworkBlock7->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
-        ));
-
         $siteNetworkArea1 = new Area();
         $siteNetworkArea1->setAreaId('logo');
-        $siteNetworkArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteNetworkArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteNetworkArea2 = new Area();
         $siteNetworkArea2->setAreaId('sub_menu');
-        $siteNetworkArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteNetworkArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteNetworkArea3 = new Area();
         $siteNetworkArea3->setAreaId('main_menu');
-        $siteNetworkArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteNetworkArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteNetworkArea0 = new Area();
         $siteNetworkArea0->setAreaId('header');
@@ -1884,12 +1584,12 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
 
         $siteNetworkArea5 = new Area();
         $siteNetworkArea5->setAreaId('mainContentArea1');
-        $siteNetworkArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteNetworkArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteNetworkArea6 = new Area();
         $siteNetworkArea6->setAreaId('moduleArea');
-        $siteNetworkArea6->addBlock(array('nodeId' => 0, 'blockId' => 4), array('nodeId' => 0, 'blockId' => 5));
-        $siteNetworkArea6->addBlock(array('nodeId' => 0, 'blockId' => 5));
+        $siteNetworkArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteNetworkArea6->addBlock(array('nodeId' => 0, 'blockId' => 2));
 
         $siteNetworkArea4 = new Area();
         $siteNetworkArea4->setAreaId('myMain');
@@ -1898,7 +1598,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
 
         $siteNetworkArea8 = new Area();
         $siteNetworkArea8->setAreaId('containeFooter');
-        $siteNetworkArea8->addBlock(array('nodeId' => 0, 'blockId' => 6));
+        $siteNetworkArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteNetworkArea7 = new Area();
         $siteNetworkArea7->setAreaId('footer');
@@ -1923,14 +1623,9 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteNetwork->addArea($siteNetworkArea0);
         $siteNetwork->addArea($siteNetworkArea4);
         $siteNetwork->addArea($siteNetworkArea7);
+        $siteNetwork->addBlock($siteNetworkBlock0);
         $siteNetwork->addBlock($siteNetworkBlock1);
         $siteNetwork->addBlock($siteNetworkBlock2);
-        $siteNetwork->addBlock($siteNetworkBlockMenu);
-        $siteNetwork->addBlock($siteNetworkBlock4);
-        $siteNetwork->addBlock($siteNetworkBlock5);
-        $siteNetwork->addBlock($siteNetworkBlock6);
-        $siteNetwork->addBlock($siteNetworkBlock7);
-
         return $siteNetwork;
     }
 
@@ -1939,52 +1634,23 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
      */
     public function generateNodeSiteContact()
     {
-        $siteContactBlock1 = new Block();
-        $siteContactBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteContactBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteContactBlock2 = new Block();
-        $siteContactBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteContactBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteContactBlockMenu = new Block();
-        $siteContactBlockMenu->setComponent('menu');
-        $siteContactBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteContactBlock4 = new Block();
-        $siteContactBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteContactBlock4->setAttributes(array(
+        $siteContactBlock0 = new Block();
+        $siteContactBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteContactBlock0->setAttributes(array(
             "_htmlContent" => "<div class='content2' id='contactArea' ><div id='contactInformation'><h3>Contactez-nous</h3><img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /><div id='infoInterakting'><p><b>Interakting</b> <br>Groupe Business & Decision<br>153 Rue de Courcelles<br>75017 PARIS FRANCE<br><span class='fontOrange'>Tél:</span> +33 1 56 21 21 21<br> <span class='fontOrange'>Fax:</span> +33 1 56 21 21 22</p></div><div id='accessInterakting'><h3>Accès:</h3> <p><span class='fontOrange'>Metro ligne 3</span> arrêt Pereire<br><span class='fontOrange'>RER ligne C</span> arrêt Pereire-Levallois</p> </div><div id='googleMapsInterakting'><iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14&amp;output=embed'></iframe><br /><small><a href='https://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14' style='color:#0000FF;text-align:left'>Agrandir le plan</a></small></div></div><div id='contactForm'><h3>Une Demande ?<table border='0'><tbody><tr><td valign='top'> Nom </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr><td valign='top'> Email  </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/></tr><tr><td valign='top'> Sujet   </td><td> <input type='text' placeholder='Votre sujet' required/> </td></tr><tr> <td valign='top'> Type de demande   </td><td> <select><option> Orchestra </option><option> Presse </option><option> Information </option><option> Emploi </option></select></td></tr><tr><td valign='top'> Message </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr> <tr> <td> <input type='submit' value='OK' /></td> </tr> </tbody></table></div></div>",
-        ));
-
-        $siteContactBlock5 = new Block();
-        $siteContactBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteContactBlock5->setAttributes(array(
-            "_htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
 
         $siteContactArea1 = new Area();
         $siteContactArea1->setAreaId('logo');
-        $siteContactArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteContactArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteContactArea2 = new Area();
         $siteContactArea2->setAreaId('sub_menu');
-        $siteContactArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteContactArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteContactArea3 = new Area();
         $siteContactArea3->setAreaId('main_menu');
-        $siteContactArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteContactArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteContactArea0 = new Area();
         $siteContactArea0->setAreaId('header');
@@ -1994,7 +1660,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
 
         $siteContactArea5 = new Area();
         $siteContactArea5->setAreaId('mainContentArea1');
-        $siteContactArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteContactArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteContactArea4 = new Area();
         $siteContactArea4->setAreaId('myMain');
@@ -2002,7 +1668,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
 
         $siteContactArea8 = new Area();
         $siteContactArea8->setAreaId('containeFooter');
-        $siteContactArea8->addBlock(array('nodeId' => 0, 'blockId' => 4));
+        $siteContactArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
 
         $siteContactArea7 = new Area();
         $siteContactArea7->setAreaId('footer');
@@ -2027,11 +1693,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteContact->addArea($siteContactArea0);
         $siteContact->addArea($siteContactArea4);
         $siteContact->addArea($siteContactArea7);
-        $siteContact->addBlock($siteContactBlock1);
-        $siteContact->addBlock($siteContactBlock2);
-        $siteContact->addBlock($siteContactBlockMenu);
-        $siteContact->addBlock($siteContactBlock4);
-        $siteContact->addBlock($siteContactBlock5);
+        $siteContact->addBlock($siteContactBlock0);
 
         return $siteContact;
     }
@@ -2041,52 +1703,29 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
      */
     public function generateNodeSiteLegalMentions()
     {
-        $siteLegalBlock1 = new Block();
-        $siteLegalBlock1->setComponent('tiny_mce_wysiwyg');
-        $siteLegalBlock1->setAttributes(array(
-            "_htmlContent" => "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/themePresentation/img/logoOrchestra.png' /> </a>",
-        ));
-
-        $siteLegalBlock2 = new Block();
-        $siteLegalBlock2->setComponent('tiny_mce_wysiwyg');
-        $siteLegalBlock2->setAttributes(array(
-            "_htmlContent" => "<ul id='mySubMenu'> <li><a href='/app_dev.php/node/fixture_page_about_us'> A PROPOS </a></li> <li><a href='/app_dev.php/node/fixture_page_our_team'> NOTRE EQUIPE </a></li><li><a href='/app_dev.php/node/fixture_page_news'> NOTRE ACTU </a></li><li><a href='/app_dev.php/node/fixture_page_join_us'>  NOUS REJOINDRE</a></li> <li><a href='/app_dev.php/node/fixture_page_networks'> NETWORKS </a></li> </ul>",
-        ));
-
-        $siteLegalBlockMenu = new Block();
-        $siteLegalBlockMenu->setComponent('menu');
-        $siteLegalBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
-            'id' => 'myMainMenu',
-        ));
-
-        $siteLegalBlock4 = new Block();
-        $siteLegalBlock4->setComponent('tiny_mce_wysiwyg');
-        $siteLegalBlock4->setAttributes(array(
+        $siteLegalBlock0 = new Block();
+        $siteLegalBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteLegalBlock0->setAttributes(array(
             "_htmlContent" => "<div class='content2'> <h1><p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate. Cras at urna sem. Nullam sed risus porta, placerat metus bibendum, commodo metus. Donec blandit leo eros, sed convallis odio sollicitudin at.Morbi ut pulvinar lorem. Duis venenatis interdum hendrerit. Curabitur sit amet eleifend sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse volutpat nulla sed eleifend malesuada. Suspendisse fringilla, est et dapibus molestie, orci leo pretium nulla, vitae consectetur ipsum enim ut magna. Duis sagittis auctor sollicitudin. Nunc interdum, quam id varius interdum, nulla felis blandit sapien, ac egestas lectus turpis in urna. Sed id ullamcorper nulla, quis tempor libero. Donec aliquet neque vitae rhoncus vestibulum. Aliquam id nunc ut justo sagittis bibendum sit amet non metus.Mauris aliquam mattis sem, in tempus eros feugiat non. Aenean vitae odio sapien. Curabitur ut luctus purus, nec vehicula nunc. Sed massa odio, sagittis a odio eget, posuere imperdiet eros. Sed sit amet neque tempus urna rutrum egestas. Maecenas dignissim justo orci, vitae aliquet mi gravida feugiat. Quisque ullamcorper non dui eget fringilla. convallis condimentum placerat. Mauris bibendum libero ac neque tempus, et pharetra enim cursus. In nec porta mi. Duis feugiat, enim nec ornare malesuada, ligula metus iaculis quam, dapibus fermentum lacus lorem ut diam. Pellentesque condimentum ante sed augue pretium placerat. Ut venenatis, lacus vel imperdiet aliquam, enim risus rhoncus mi, eget consequat tellus ante nec felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in erat eget leo tincidunt euismod. Sed hendrerit malesuada magna commodo porta. Suspendisse diam urna, pretium ut mi vel, vulputate ultricies dolor. Nam eleifend accumsan nibh. Duis hendrerit ornare urna, sit amet commodo eros imperdiet nec.Donec tristique est sit amet justo fringilla, a hendrerit ligula ultricies. Phasellus dignissim mi sit amet nibh gravida, vitae lobortis lorem imperdiet. Praesent dolor quam, luctus sed dui eu, eleifend mattis tortor. Curabitur varius lacus at sapien eleifend, vitae feugiat lectus mattis. In malesuada molestie turpis, et mattis ante euismod sed. Integer interdum adipiscing purus vitae vestibulum. Proin aliquam egestas nunc, ut dictum justo lacinia quis. Phasellus tincidunt mauris fringilla mauris hendrerit euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.</p></h1></div>",
         ));
 
-        $siteLegalBlock5 = new Block();
-        $siteLegalBlock5->setComponent('tiny_mce_wysiwyg');
-        $siteLegalBlock5->setAttributes(array(
+        $siteLegalBlock1 = new Block();
+        $siteLegalBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteLegalBlock1->setAttributes(array(
             "_htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
 
         $siteLegalArea1 = new Area();
         $siteLegalArea1->setAreaId('logo');
-        $siteLegalArea1->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $siteLegalArea1->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 0));
 
         $siteLegalArea2 = new Area();
         $siteLegalArea2->setAreaId('sub_menu');
-        $siteLegalArea2->addBlock(array('nodeId' => 0, 'blockId' => 1));
+        $siteLegalArea2->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 1));
 
         $siteLegalArea3 = new Area();
         $siteLegalArea3->setAreaId('main_menu');
-        $siteLegalArea3->addBlock(array('nodeId' => 0, 'blockId' => 2));
+        $siteLegalArea3->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 2));
 
         $siteLegalArea0 = new Area();
         $siteLegalArea0->setAreaId('header');
@@ -2096,16 +1735,24 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
 
         $siteLegalArea5 = new Area();
         $siteLegalArea5->setAreaId('mainContentArea1');
-        $siteLegalArea5->addBlock(array('nodeId' => 0, 'blockId' => 3));
+        $siteLegalArea5->addBlock(array('nodeId' => 0, 'blockId' => 0));
 
         $siteLegalArea6 = new Area();
         $siteLegalArea6->setAreaId('moduleArea');
-        $siteLegalArea6->addBlock(array('nodeId' => 0, 'blockId' => 4), array('nodeId' => 0, 'blockId' => 5));
+        $siteLegalArea6->addBlock(array('nodeId' => 0, 'blockId' => 1));
 
         $siteLegalArea4 = new Area();
         $siteLegalArea4->setAreaId('myMain');
         $siteLegalArea4->addArea($siteLegalArea5);
         $siteLegalArea4->addArea($siteLegalArea6);
+
+        $siteLegalArea8 = new Area();
+        $siteLegalArea8->setAreaId('containeFooter');
+        $siteLegalArea8->addBlock(array('nodeId' => 'fixture_page_home', 'blockId' => 5));
+
+        $siteLegalArea7 = new Area();
+        $siteLegalArea7->setAreaId('footer');
+        $siteLegalArea7->addArea($siteLegalArea8);
 
         $siteLegal = new Node();
         $siteLegal->setNodeId('fixture_page_legal_mentions');
@@ -2125,11 +1772,9 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteLegal->setInMenu(false);
         $siteLegal->addArea($siteLegalArea0);
         $siteLegal->addArea($siteLegalArea4);
+        $siteLegal->addArea($siteLegalArea7);
+        $siteLegal->addBlock($siteLegalBlock0);
         $siteLegal->addBlock($siteLegalBlock1);
-        $siteLegal->addBlock($siteLegalBlock2);
-        $siteLegal->addBlock($siteLegalBlockMenu);
-        $siteLegal->addBlock($siteLegalBlock4);
-        $siteLegal->addBlock($siteLegalBlock5);
 
         return $siteLegal;
     }
