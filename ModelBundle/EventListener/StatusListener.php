@@ -6,12 +6,12 @@ use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ODM\MongoDB\Event\PostFlushEventArgs;
 use PHPOrchestra\ModelBundle\Document\Status;
 use PHPOrchestra\ModelBundle\Repository\StatusRepository;
+
 /**
  * Class StatusListener
  */
 class StatusListener 
 {
-
     protected $statuses = [];
 
     /**

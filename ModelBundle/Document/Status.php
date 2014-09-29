@@ -1,4 +1,5 @@
 <?php
+
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
