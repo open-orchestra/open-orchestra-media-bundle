@@ -52,5 +52,4 @@ class StatusListener
             $documentManager->flush();
         }
     }
-
 }

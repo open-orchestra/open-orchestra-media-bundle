@@ -42,7 +42,6 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testpreUpdate(Status $status, $documents, $expectedValues)
     {
-
         $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $queryBuilder = Phake::mock('Doctrine\ODM\MongoDB\Query\Builder');
         $query = Phake::mock('Doctrine\ODM\MongoDB\Query\Query');
