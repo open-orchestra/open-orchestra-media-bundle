@@ -7,7 +7,6 @@ use PHPOrchestra\ModelBundle\EventListener\StatusListener;
 use PHPOrchestra\ModelBundle\Document\Status;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Query\Builder;
-use GeoJson\Geometry\Geometry;
 
 /**
  * Class StatusListenerTest
