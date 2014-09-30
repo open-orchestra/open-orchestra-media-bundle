@@ -3,7 +3,11 @@
 namespace PHPOrchestra\ModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\Cursor;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use Doctrine\ODM\MongoDB\Mapping;
+use Doctrine\ODM\MongoDB\UnitOfWork;
+use PHPOrchestra\Backoffice\Context\ContextManager;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
 
@@ -144,12 +148,16 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
+     * @param string $siteId
+     *
      * @return array
      */
-    public function findLastVersion()
+    public function findLastVersionBySiteId($siteId)
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('deleted')->equals(false);
+        $qb->field('siteId')->equals($siteId);
+
         $list = $qb->getQuery()->execute();
         $nodes = array();
 
