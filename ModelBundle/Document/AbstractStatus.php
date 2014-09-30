@@ -46,7 +46,7 @@ abstract class AbstractStatus implements StatusInterface
     protected $role;
 
     /**
-     * @MongoDB\Field(type="collection")
+     * @MongoDB\Field(type="boolean")
      */
     protected $initial = array();
 
@@ -123,17 +123,17 @@ abstract class AbstractStatus implements StatusInterface
     }
 
     /**
-     * @param array $published
+     * @param boolean $initial
      */
-    public function setInitial(array $initial)
+    public function setInitial($initial)
     {
         $this->initial = $initial;
     }
 
     /**
-     * @return array
+     * @return boolean
      */
-    public function getInitial()
+    public function isInitial()
     {
         return $this->initial;
     }

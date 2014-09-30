@@ -22,16 +22,14 @@ class StatusListener
     {
         $document = $eventArgs->getDocument();
         $documentManager = $eventArgs->getDocumentManager();
-        if($document instanceof Status && $document->isPublished() && is_array($document->getInitial()) && count($document->getInitial()) > 0){
+        if($document instanceof Status && $document->isPublished() && $document->isInitial()){
             $queryBuilder = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->createQueryBuilder();
             $queryBuilder
                 ->field('name')->notEqual($document->getName())
-                ->field('initial')->in(
-                    $document->getInitial()
-                 );
+                ->field('initial')->equals(true);
             $statuses = $queryBuilder->getQuery()->execute();
             foreach($statuses as $status){
-                $status->setInitial(array_diff($status->getInitial(), $document->getInitial()));
+                $status->setInitial(false);
                 $this->statuses[] = $status;
             }
         }

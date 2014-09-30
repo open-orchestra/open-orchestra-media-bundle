@@ -40,7 +40,7 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideStatus
      */
-    public function testpreUpdate(Status $status, $documents, $expectedValues)
+    public function testpreUpdate(Status $status, $documents)
     {
         $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $queryBuilder = Phake::mock('Doctrine\ODM\MongoDB\Query\Builder');
@@ -63,10 +63,8 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
         $listener = new StatusListener();
         $listener->preUpdate($this->lifecycleEventArgs);
 
-        $count = 0;
         foreach($documents as $document){
-            Phake::verify($document, Phake::times(1))->setInitial($expectedValues[$count]);
-            $count++;
+            Phake::verify($document, Phake::times(1))->setInitial(false);
         }
     }
 
@@ -75,23 +73,16 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function provideStatus()
     {
-        $initials = array('fakeValue0', 'fakeValue1', 'fakeValue2');
-        $initialsDocument0 = array('fakeValue0', 'fakeValue1', 'fakeValue2');
-        $initialsDocument1 = array('fakeValue3', 'fakeValue4', 'fakeValue5');
-
         $status = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
         Phake::when($status)->isPublished()->thenReturn(true);
-        Phake::when($status)->getInitial()->thenReturn($initials);
+        Phake::when($status)->isInitial()->thenReturn(true);
 
         $document0 = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
-        Phake::when($document0)->getInitial()->thenReturn($initialsDocument0);
-
-        $document1 = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
-        Phake::when($document1)->getInitial()->thenReturn($initialsDocument1);
+        Phake::when($document0)->isInitial()->thenReturn(true);
 
         return array(
             array(
-                $status, array($document0, $document1), array(array(), $initialsDocument1) 
+                $status, array($document0) 
             )
         );
     }
