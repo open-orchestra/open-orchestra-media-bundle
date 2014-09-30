@@ -47,16 +47,10 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
         $query = Phake::mock('Doctrine\ODM\MongoDB\Query\Query');
         $statusRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\StatusRepository');
 
-        Phake::when($queryBuilder)->getQuery()->thenReturn($query);
-        Phake::when($queryBuilder)->field(Phake::anyParameters())->thenReturn($queryBuilder);
-        Phake::when($queryBuilder)->notEqual(Phake::anyParameters())->thenReturn($queryBuilder);
-        Phake::when($queryBuilder)->in(Phake::anyParameters())->thenReturn($queryBuilder);
-
+        Phake::when($statusRepository)->getStatusWithInitial(Phake::anyParameters())->thenReturn($documents);
         Phake::when($query)->execute()->thenReturn($documents);
-
         Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Status')->thenReturn($statusRepository);
         Phake::when($statusRepository)->createQueryBuilder()->thenReturn($queryBuilder);
-
         Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($status);
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
 
