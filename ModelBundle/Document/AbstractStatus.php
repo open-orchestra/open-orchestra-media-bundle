@@ -46,6 +46,11 @@ abstract class AbstractStatus implements StatusInterface
     protected $role;
 
     /**
+     * @MongoDB\Field(type="boolean")
+     */
+    protected $initial = false;
+
+    /**
      * Class constructor
      */
     public function __construct()
@@ -115,6 +120,22 @@ abstract class AbstractStatus implements StatusInterface
     public function isPublished()
     {
         return $this->published;
+    }
+
+    /**
+     * @param boolean $initial
+     */
+    public function setInitial($initial)
+    {
+        $this->initial = $initial;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isInitial()
+    {
+        return $this->initial;
     }
 
     /**

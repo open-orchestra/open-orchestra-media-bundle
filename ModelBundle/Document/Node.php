@@ -502,7 +502,7 @@ class Node implements NodeInterface
     }
 
     /**
-     * @param AreaInterface $area
+     * @param Collection $areas
      */
     public function setAreas(Collection $areas)
     {
