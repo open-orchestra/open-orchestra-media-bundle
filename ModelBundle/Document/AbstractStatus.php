@@ -48,7 +48,7 @@ abstract class AbstractStatus implements StatusInterface
     /**
      * @MongoDB\Field(type="boolean")
      */
-    protected $initial = array();
+    protected $initial = false;
 
     /**
      * Class constructor
