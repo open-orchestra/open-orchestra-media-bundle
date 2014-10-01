@@ -32,7 +32,7 @@ class StatusRepository extends DocumentRepository
         $qb = $this->createQueryBuilder();
         $qb->field('name')->notEqual($name);
         $qb->field('initial')->equals(true);
-    
+
         return $qb->getQuery()->execute();
     }
 }

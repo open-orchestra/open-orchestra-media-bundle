@@ -61,7 +61,7 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
         $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
         $cursor = Phake::mock('Doctrine\ODM\MongoDB\Cursor');
         $status = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
-        
+
         Phake::when($cursor)->count()->thenReturn(1);
         Phake::when($cursor)->getSingleResult()->thenReturn($status);
 
