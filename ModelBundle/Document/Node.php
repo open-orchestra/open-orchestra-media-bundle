@@ -50,7 +50,7 @@ class Node implements NodeInterface
     /**
      * @var int $siteId
      *
-     * @ODM\Field(type="int")
+     * @ODM\Field(type="string")
      */
     protected $siteId;
 
