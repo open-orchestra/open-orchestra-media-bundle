@@ -21,8 +21,8 @@ class StatusListener
     public function preUpdate(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        $documentManager = $eventArgs->getDocumentManager();
         if($document instanceof Status && $document->isPublished() && $document->isInitial()){
+            $documentManager = $eventArgs->getDocumentManager();
             $statuses = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->getStatusWithInitial($document->getName());
             foreach($statuses as $status){
                 $status->setInitial(false);

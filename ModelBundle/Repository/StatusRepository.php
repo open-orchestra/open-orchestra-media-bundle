@@ -14,10 +14,12 @@ class StatusRepository extends DocumentRepository
      * 
      * @return Cursor
      */
-    public function getStatusWithInitial($name)
+    public function getStatusWithInitial($name = null)
     {
         $qb = $this->createQueryBuilder();
-        $qb->field('name')->notEqual($name);
+        if($name !== null){
+            $qb->field('name')->notEqual($name);
+        }
         $qb->field('initial')->equals(true);
 
         return $qb->getQuery()->execute();
