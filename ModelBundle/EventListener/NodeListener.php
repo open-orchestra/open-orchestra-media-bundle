@@ -5,13 +5,12 @@ namespace PHPOrchestra\ModelBundle\EventListener;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use PHPOrchestra\ModelBundle\Document\Node;
 use PHPOrchestra\ModelBundle\Repository\StatusRepository;
-use Doctrine\ODM\MongoDB\Cursor;
+
 /**
  * Class NodeListener
  */
 class NodeListener 
 {
-
     /**
      * @param LifecycleEventArgs $eventArgs
      *
@@ -21,7 +20,7 @@ class NodeListener
         $document = $eventArgs->getDocument();
         if($document instanceof Node){
             $documentManager = $eventArgs->getDocumentManager();
-            $status = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->getStatusWithInitial();
+            $status = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->getInitialStatus();
             if($status->count() > 0){
                 $document->setStatus($status->getSingleResult());
             }

@@ -14,7 +14,7 @@ class StatusRepository extends DocumentRepository
      * 
      * @return Cursor
      */
-    public function getStatusWithInitial($name = null)
+    public function getInitialStatus($name = null)
     {
         $qb = $this->createQueryBuilder();
         if($name !== null){
