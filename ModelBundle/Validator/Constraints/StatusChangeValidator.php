@@ -2,6 +2,7 @@
 
 namespace PHPOrchestra\ModelBundle\Validator\Constraints;
 
+use PHPOrchestra\ModelBundle\Repository\NodeRepository;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Constraint;
@@ -13,15 +14,22 @@ use Symfony\Component\Validator\ConstraintValidator;
 class StatusChangeValidator extends ConstraintValidator
 {
     protected $securityContext;
+    protected $nodeRepository;
     protected $translator;
 
     /**
      * @param SecurityContextInterface $securityContext
      * @param Translator               $translator
+     * @param NodeRepository           $nodeRepository
      */
-    public function __construct(SecurityContextInterface $securityContext, Translator $translator)
+    public function __construct(
+        SecurityContextInterface $securityContext,
+        Translator $translator,
+        NodeRepository $nodeRepository
+    )
     {
         $this->securityContext = $securityContext;
+        $this->nodeRepository = $nodeRepository;
         $this->translator = $translator;
     }
 
@@ -33,8 +41,14 @@ class StatusChangeValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if (!is_null($value->getRole()) && !$this->securityContext->isGranted($value->getRole())) {
-            $this->context->addViolation($this->translator->trans($constraint->message));
+        $oldNode = $this->nodeRepository->find($value->getId());
+        $oldStatus = $oldNode->getStatus();
+
+        $status = $value->getStatus();
+        if ((!is_null($status->getToRole()) && !$this->securityContext->isGranted($status->getToRole()))
+            || (!is_null($oldStatus->getFromRole()) && !$this->securityContext->isGranted($oldStatus->getFromRole()))
+        ) {
+            $this->context->addViolationAt('status', $this->translator->trans($constraint->message));
         }
     }
 }

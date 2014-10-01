@@ -47,12 +47,22 @@ interface StatusInterface extends TranslatedValueContainerInterface
     /**
      * @return string
      */
-    public function getRole();
+    public function getFromRole();
 
     /**
-     * @param string $role
+     * @param string $fromRole
      */
-    public function setRole($role);
+    public function setFromRole($fromRole);
+
+    /**
+     * @return string
+     */
+    public function getToRole();
+
+    /**
+     * @param string $toRole
+     */
+    public function setToRole($toRole);
 
     /**
      * @param boolean $initial
