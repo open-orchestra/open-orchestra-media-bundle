@@ -21,7 +21,8 @@ class EmbedStatus extends AbstractStatus
         $this->setInitial($status->isInitial());
         $this->setName($status->getName());
         $this->labels = $status->getLabels();
-        $this->role = $status->getRole();
+        $this->toRole = $status->getToRole();
+        $this->fromRole = $status->getFromRole();
     }
 
     /**

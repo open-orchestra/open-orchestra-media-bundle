@@ -43,7 +43,14 @@ abstract class AbstractStatus implements StatusInterface
      *
      * @MongoDB\Field(type="string")
      */
-    protected $role;
+    protected $fromRole;
+
+    /**
+     * @var string
+     *
+     * @MongoDB\Field(type="string")
+     */
+    protected $toRole;
 
     /**
      * @MongoDB\Field(type="boolean")
@@ -151,16 +158,32 @@ abstract class AbstractStatus implements StatusInterface
     /**
      * @return string
      */
-    public function getRole()
+    public function getFromRole()
     {
-        return $this->role;
+        return $this->fromRole;
     }
 
     /**
-     * @param string $role
+     * @param string $fromRole
      */
-    public function setRole($role)
+    public function setFromRole($fromRole)
     {
-        $this->role = $role;
+        $this->fromRole = $fromRole;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToRole()
+    {
+        return $this->toRole;
+    }
+
+    /**
+     * @param string $toRole
+     */
+    public function setToRole($toRole)
+    {
+        $this->toRole = $toRole;
     }
 }

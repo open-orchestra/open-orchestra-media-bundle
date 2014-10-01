@@ -64,7 +64,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
         $draft->addLabel($draftFr);
         $draft->addLabel($draftDe);
         $draft->addLabel($draftEs);
-        $draft->setRole('ROLE_DRAFT');
+        $draft->setFromRole('ROLE_FROM_DRAFT');
 
         $this->addReference('status-draft', $draft);
 
@@ -95,7 +95,8 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
         $pending->addLabel($pendingFr);
         $pending->addLabel($pendingDe);
         $pending->addLabel($pendingEs);
-        $pending->setRole('ROLE_PENDING');
+        $pending->setFromRole('ROLE_FROM_PENDING');
+        $pending->setToRole('ROLE_TO_PENDING');
 
         $this->addReference('status-pending', $pending);
 
@@ -127,7 +128,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
         $published->addLabel($publishedFr);
         $published->addLabel($publishedDe);
         $published->addLabel($publishedEs);
-        $published->setRole('ROLE_PUBLISHED');
+        $published->setToRole('ROLE_TO_PUBLISHED');
 
         $this->addReference('status-published', $published);
 

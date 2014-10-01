@@ -45,6 +45,14 @@ class StatusChangeTest extends \PHPUnit_Framework_TestCase
      */
     public function testTarget()
     {
-        $this->assertSame(Constraint::PROPERTY_CONSTRAINT, $this->constraint->getTargets());
+        $this->assertSame(Constraint::CLASS_CONSTRAINT, $this->constraint->getTargets());
+    }
+
+    /**
+     * test message
+     */
+    public function testMessages()
+    {
+        $this->assertSame('php_orchestra_model.status.impossible_change', $this->constraint->message);
     }
 }
