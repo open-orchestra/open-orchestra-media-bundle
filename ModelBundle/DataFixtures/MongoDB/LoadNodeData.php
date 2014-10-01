@@ -117,7 +117,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home = new Node();
         $home->setNodeId('root');
         $home->setNodeType('page');
-        $home->setSiteId(1);
+        $home->setSiteId('1');
         $home->setParentId('-');
         $home->setAlias('-');
         $home->setPath('-');
@@ -251,7 +251,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $full = new Node();
         $full->setNodeId('fixture_full');
         $full->setNodeType('page');
-        $full->setSiteId(1);
+        $full->setSiteId('1');
         $full->setParentId('root');
         $full->setPath('-');
         $full->setAlias('fixture-full');
@@ -291,7 +291,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $generic = new Node();
         $generic->setNodeId('fixutre_generic');
         $generic->setNodeType('page');
-        $generic->setSiteId(1);
+        $generic->setSiteId('1');
         $generic->setParentId('root');
         $generic->setPath('-');
         $generic->setAlias('fixture-generic');
@@ -328,7 +328,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $aboutUs->setNodeId('fixture_about_us');
         $aboutUs->setNodeType('page');
         $aboutUs->setName('Fixture About Us');
-        $aboutUs->setSiteId(1);
+        $aboutUs->setSiteId('1');
         $aboutUs->setParentId('root');
         $aboutUs->setPath('-');
         $aboutUs->setAlias('qui-sommes-nous');
@@ -367,7 +367,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $bd->setNodeId('fixture_bd');
         $bd->setNodeType('page');
         $bd->setName('Fixture B&D');
-        $bd->setSiteId(1);
+        $bd->setSiteId('1');
         $bd->setParentId('fixture_about_us');
         $bd->setPath('-');
         $bd->setAlias('b-et-d');
@@ -406,7 +406,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $interakting->setNodeId('fixture_interakting');
         $interakting->setNodeType('page');
         $interakting->setName('Fixture Interakting');
-        $interakting->setSiteId(1);
+        $interakting->setSiteId('1');
         $interakting->setParentId('fixture_about_us');
         $interakting->setPath('-');
         $interakting->setAlias('interakting');
@@ -446,7 +446,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $contactUs->setNodeId('fixture_contact_us');
         $contactUs->setNodeType('page');
         $contactUs->setName('Fixture Contact Us');
-        $contactUs->setSiteId(1);
+        $contactUs->setSiteId('1');
         $contactUs->setParentId('root');
         $contactUs->setPath('-');
         $contactUs->setAlias('nous-contacter');
@@ -486,7 +486,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $directory->setNodeId('fixture_directory');
         $directory->setNodeType('directory');
         $directory->setName('Fixture Directory');
-        $directory->setSiteId(1);
+        $directory->setSiteId('1');
         $directory->setParentId('root');
         $directory->setPath('-');
         $directory->setAlias('nous-contacter');
@@ -605,7 +605,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $search->setNodeId('fixture_search');
         $search->setNodeType('search');
         $search->setName('Fixture Search');
-        $search->setSiteId(1);
+        $search->setSiteId('1');
         $search->setParentId('root');
         $search->setPath('-');
         $search->setAlias('nous-contacter');
@@ -727,7 +727,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHome->setNodeId('fixture_page_home');
         $siteHome->setNodeType('page');
         $siteHome->setName('Home');
-        $siteHome->setSiteId(2);
+        $siteHome->setSiteId('2');
         $siteHome->setParentId('root');
         $siteHome->setPath('-');
         $siteHome->setAlias('page-home');
@@ -839,7 +839,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteWhat->setNodeId('fixture_page_what_is_orchestra');
         $siteWhat->setNodeType('page');
         $siteWhat->setName('Orchestra ?');
-        $siteWhat->setSiteId(2);
+        $siteWhat->setSiteId('2');
         $siteWhat->setParentId('fixture_page_home');
         $siteWhat->setPath('-');
         $siteWhat->setAlias('page-what-is-orchestra');
@@ -933,7 +933,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteStart->setNodeId('fixture_page_start_orchestra');
         $siteStart->setNodeType('page');
         $siteStart->setName('Get Started');
-        $siteStart->setSiteId(2);
+        $siteStart->setSiteId('2');
         $siteStart->setParentId('fixture_page_home');
         $siteStart->setPath('-');
         $siteStart->setAlias('page-start-orchestra');
@@ -1029,7 +1029,7 @@ Note, that many languages are just under translation, and the untranslated parts
         $siteDoc->setNodeId('fixture_page_documentation');
         $siteDoc->setNodeType('page');
         $siteDoc->setName('Documentation');
-        $siteDoc->setSiteId(2);
+        $siteDoc->setSiteId('2');
         $siteDoc->setParentId('fixture_page_home');
         $siteDoc->setPath('-');
         $siteDoc->setAlias('page-documentation');
@@ -1131,7 +1131,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteCom->setNodeId('fixture_page_community');
         $siteCom->setNodeType('page');
         $siteCom->setName('Communauté');
-        $siteCom->setSiteId(2);
+        $siteCom->setSiteId('2');
         $siteCom->setParentId('fixture_page_home');
         $siteCom->setPath('-');
         $siteCom->setAlias('page-community');
@@ -1227,7 +1227,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteAboutUs->setNodeId('fixture_page_about_us');
         $siteAboutUs->setNodeType('page');
         $siteAboutUs->setName('A propos');
-        $siteAboutUs->setSiteId(2);
+        $siteAboutUs->setSiteId('2');
         $siteAboutUs->setParentId('fixture_page_home');
         $siteAboutUs->setPath('-');
         $siteAboutUs->setAlias('page-about-us');
@@ -1325,7 +1325,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteOurTeam->setNodeId('fixture_page_our_team');
         $siteOurTeam->setNodeType('page');
         $siteOurTeam->setName('Fixture page our team');
-        $siteOurTeam->setSiteId(2);
+        $siteOurTeam->setSiteId('2');
         $siteOurTeam->setParentId('fixture_page_home');
         $siteOurTeam->setPath('-');
         $siteOurTeam->setAlias('page-our-team');
@@ -1424,7 +1424,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteNews->setNodeId('fixture_page_news');
         $siteNews->setNodeType('page');
         $siteNews->setName('Fixture page news');
-        $siteNews->setSiteId(2);
+        $siteNews->setSiteId('2');
         $siteNews->setParentId('fixture_page_home');
         $siteNews->setPath('-');
         $siteNews->setAlias('page-our-news');
@@ -1513,7 +1513,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteJoinUs->setNodeId('fixture_page_join_us');
         $siteJoinUs->setNodeType('page');
         $siteJoinUs->setName('Fixture page join us');
-        $siteJoinUs->setSiteId(2);
+        $siteJoinUs->setSiteId('2');
         $siteJoinUs->setParentId('fixture_page_home');
         $siteJoinUs->setPath('-');
         $siteJoinUs->setAlias('page-nous-rejoindre');
@@ -1608,7 +1608,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteNetwork->setNodeId('fixture_page_networks');
         $siteNetwork->setNodeType('page');
         $siteNetwork->setName('Fixture page networks');
-        $siteNetwork->setSiteId(2);
+        $siteNetwork->setSiteId('2');
         $siteNetwork->setParentId('fixture_page_home');
         $siteNetwork->setPath('-');
         $siteNetwork->setAlias('page-networks');
@@ -1678,7 +1678,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteContact->setNodeId('fixture_page_contact');
         $siteContact->setNodeType('page');
         $siteContact->setName('Contact');
-        $siteContact->setSiteId(2);
+        $siteContact->setSiteId('2');
         $siteContact->setParentId('fixture_page_home');
         $siteContact->setPath('-');
         $siteContact->setAlias('page-contact');
@@ -1758,7 +1758,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteLegal->setNodeId('fixture_page_legal_mentions');
         $siteLegal->setNodeType('page');
         $siteLegal->setName('Fixture page legal mentions');
-        $siteLegal->setSiteId(2);
+        $siteLegal->setSiteId('2');
         $siteLegal->setParentId('fixture_page_home');
         $siteLegal->setPath('-');
         $siteLegal->setAlias('page legal mentions');
