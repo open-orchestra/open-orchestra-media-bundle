@@ -86,6 +86,20 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\ThemeRepository')->end()
                 ->end()
             ->end()
+            ->arrayNode('media')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestra\ModelBundle\Document\Media')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\MediaRepository')->end()
+                ->end()
+            ->end()
+            ->arrayNode('folder')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestra\ModelBundle\Document\Folder')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\FolderRepository')->end()
+                ->end()
+            ->end()
         ->end();
 
         return $treeBuilder;
