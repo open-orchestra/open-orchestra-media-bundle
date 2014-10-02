@@ -86,10 +86,7 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
 
         return array(
             array(
-                $status,
-                array(
-                    $document0
-                )
+                $status, array($document0)
             )
         );
     }
