@@ -1,5 +1,6 @@
 <?php
-namespace PHPOrchestra\BackofficeBundle\Test\EventListener;
+
+namespace PHPOrchestra\ModelBundle\Test\EventListener;
 
 use Phake;
 use PHPOrchestra\ModelBundle\EventListener\StatusListener;
