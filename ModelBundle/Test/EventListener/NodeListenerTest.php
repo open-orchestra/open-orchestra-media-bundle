@@ -16,6 +16,9 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
     protected $listener;
     protected $lifecycleEventArgs;
 
+    /**
+     * setUp
+     */
     public function setUp()
     {
         $this->lifecycleEventArgs = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
@@ -31,7 +34,7 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param Node $document
+     * @param Node   $document
      * @param array  $documents
      * @param array  $expectedValues
      *
