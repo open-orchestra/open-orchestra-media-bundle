@@ -1,5 +1,4 @@
 <?php
-
 namespace PHPOrchestra\BackofficeBundle\Test\EventListener;
 
 use Phake;
@@ -17,6 +16,9 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
     protected $lifecycleEventArgs;
     protected $postFlushEventArgs;
 
+    /**
+     * setUp
+     */
     public function setUp()
     {
         $this->lifecycleEventArgs = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
@@ -29,11 +31,18 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCallable()
     {
-        $this->assertTrue(is_callable(array($this->listener, 'preUpdate')));
-        $this->assertTrue(is_callable(array($this->listener, 'postFlush')));
+        $this->assertTrue(is_callable(array(
+            $this->listener,
+            'preUpdate'
+        )));
+        $this->assertTrue(is_callable(array(
+            $this->listener,
+            'postFlush'
+        )));
     }
 
     /**
+     *
      * @param Status $document
      * @param array  $documents
      * @param array  $expectedValues
@@ -47,7 +56,7 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
         $query = Phake::mock('Doctrine\ODM\MongoDB\Query\Query');
         $statusRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\StatusRepository');
 
-        Phake::when($statusRepository)->getStatusWithInitial(Phake::anyParameters())->thenReturn($documents);
+        Phake::when($statusRepository)->findOtherByInitial(Phake::anyParameters())->thenReturn($documents);
         Phake::when($query)->execute()->thenReturn($documents);
         Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Status')->thenReturn($statusRepository);
         Phake::when($statusRepository)->createQueryBuilder()->thenReturn($queryBuilder);
@@ -57,12 +66,13 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
         $listener = new StatusListener();
         $listener->preUpdate($this->lifecycleEventArgs);
 
-        foreach($documents as $document){
+        foreach ($documents as $document) {
             Phake::verify($document, Phake::times(1))->setInitial(false);
         }
     }
 
     /**
+     *
      * @return array
      */
     public function provideStatus()
@@ -76,7 +86,7 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
 
         return array(
             array(
-                $status, array($document0) 
+                $status, array($document0)
             )
         );
     }

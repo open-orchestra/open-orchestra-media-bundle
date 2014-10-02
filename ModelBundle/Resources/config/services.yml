@@ -10,3 +10,7 @@ services:
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate, method: preUpdate }
             -  { name: doctrine_mongodb.odm.event_listener, event: postFlush, method: postFlush }
+    node_listener:
+        class: PHPOrchestra\ModelBundle\EventListener\NodeListener
+        tags:
+            -  { name: doctrine_mongodb.odm.event_listener, event: prePersist, method: prePersist }

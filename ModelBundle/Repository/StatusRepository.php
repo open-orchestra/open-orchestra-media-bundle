@@ -12,9 +12,22 @@ class StatusRepository extends DocumentRepository
     /**
      * @param string $name
      * 
+     * @return Status
+     */
+    public function findOneByInitial()
+    {
+        $qb = $this->createQueryBuilder();
+        $qb->field('initial')->equals(true);
+
+        return $qb->getQuery()->execute()->getSingleResult();
+    }
+
+    /**
+     * @param string $name
+     *
      * @return Cursor
      */
-    public function getStatusWithInitial($name)
+    public function findOtherByInitial($name)
     {
         $qb = $this->createQueryBuilder();
         $qb->field('name')->notEqual($name);
@@ -22,5 +35,4 @@ class StatusRepository extends DocumentRepository
 
         return $qb->getQuery()->execute();
     }
-    
 }
