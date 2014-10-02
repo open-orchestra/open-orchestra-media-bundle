@@ -21,10 +21,10 @@ class StatusListener
     public function preUpdate(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if($document instanceof Status && $document->isPublished() && $document->isInitial()){
+        if ($document instanceof Status && $document->isPublished() && $document->isInitial()){
             $documentManager = $eventArgs->getDocumentManager();
             $statuses = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->getOtherInitialStatus($document->getName());
-            foreach($statuses as $status){
+            foreach ($statuses as $status){
                 $status->setInitial(false);
                 $this->statuses[] = $status;
             }
@@ -37,7 +37,7 @@ class StatusListener
      */
     public function postFlush(PostFlushEventArgs $eventArgs)
     {
-        if(!empty($this->statuses)) {
+        if (!empty($this->statuses)) {
             $documentManager = $eventArgs->getDocumentManager();
             foreach ($this->statuses as $status) {
                 $documentManager->persist($status);

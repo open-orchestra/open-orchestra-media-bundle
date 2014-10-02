@@ -57,7 +57,7 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
         $listener = new StatusListener();
         $listener->preUpdate($this->lifecycleEventArgs);
 
-        foreach($documents as $document){
+        foreach ($documents as $document){
             Phake::verify($document, Phake::times(1))->setInitial(false);
         }
     }

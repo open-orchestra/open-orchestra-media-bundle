@@ -18,10 +18,10 @@ class NodeListener
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if($document instanceof Node){
+        if ($document instanceof Node){
             $documentManager = $eventArgs->getDocumentManager();
             $status = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->getInitialStatus();
-            if($status->count() > 0){
+            if ($status->count() > 0){
                 $document->setStatus($status->getSingleResult());
             }
         }
