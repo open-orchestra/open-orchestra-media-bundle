@@ -128,7 +128,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->setDeleted(false);
         $home->setTemplateId('template_main');
         $home->setTheme('theme1');
-        $home->setInMenu(false);
+        $home->setInMenu(true);
         $home->setInFooter(false);
         $home->addArea($homeArea);
         $home->addBlock($homeBlock);
@@ -262,7 +262,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $full->setDeleted(false);
         $full->setTemplateId('template_full');
         $full->setTheme('mixed');
-        $full->setInMenu(false);
+        $full->setInMenu(true);
         $full->setInFooter(false);
         $full->addArea($headerArea);
         $full->addArea($mainArea);
@@ -339,7 +339,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $aboutUs->setTemplateId('template_main');
         $aboutUs->setTheme('theme2');
         $aboutUs->setInFooter(true);
-        $aboutUs->setInMenu(false);
+        $aboutUs->setInMenu(true);
         $aboutUs->addArea($aboutUsArea);
         $aboutUs->addBlock($aboutUsBlock);
 
@@ -378,7 +378,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $bd->setTemplateId('template_main');
         $bd->setTheme('theme2');
         $bd->setInFooter(true);
-        $bd->setInMenu(false);
+        $bd->setInMenu(true);
         $bd->addArea($bdArea);
         $bd->addBlock($bdBlock);
 
@@ -417,7 +417,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $interakting->setTemplateId('template_main');
         $interakting->setTheme('sample');
         $interakting->setInFooter(true);
-        $interakting->setInMenu(false);
+        $interakting->setInMenu(true);
         $interakting->addArea($interaktingArea);
         $interakting->addBlock($interaktingBlock);
 
@@ -457,7 +457,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $contactUs->setTemplateId('template_main');
         $contactUs->setTheme('theme1');
         $contactUs->setInFooter(true);
-        $contactUs->setInMenu(false);
+        $contactUs->setInMenu(true);
         $contactUs->addArea($contactUsArea);
         $contactUs->addBlock($contactUsBlock);
 
@@ -497,7 +497,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $directory->setTemplateId('template_main');
         $directory->setTheme('fromApp');
         $directory->setInFooter(true);
-        $directory->setInMenu(false);
+        $directory->setInMenu(true);
         $directory->addArea($directoryArea);
         $directory->addBlock($directoryBlock);
 
@@ -616,7 +616,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $search->setTemplateId('template_main');
         $search->setTheme('fromApp');
         $search->setInFooter(true);
-        $search->setInMenu(false);
+        $search->setInMenu(true);
         $search->addArea($searchArea0);
         $search->addArea($searchArea1);
         $search->addArea($searchArea2);

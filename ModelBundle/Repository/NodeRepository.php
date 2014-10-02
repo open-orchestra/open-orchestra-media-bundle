@@ -7,7 +7,6 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Doctrine\ODM\MongoDB\Mapping;
 use Doctrine\ODM\MongoDB\UnitOfWork;
-use PHPOrchestra\Backoffice\Context\ContextManager;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
 
@@ -17,24 +16,29 @@ use PHPOrchestra\ModelBundle\Model\NodeInterface;
 class NodeRepository extends DocumentRepository
 {
     /**
+     * @param string $siteId
+     *
      * @return Cursor
      */
-    public function getFooterTree()
+    public function getFooterTree($siteId)
     {
-        $qb = $this->buildTreeRequest();
+        $qb = $this->buildTreeRequest($siteId);
+        $qb->field('siteId')->equals($siteId);
         $qb->field('inFooter')->equals(true);
 
         return $qb->getQuery()->execute();
     }
 
     /**
+     * @param string $siteId
+     *
      * @return Cursor
      */
-    public function getMenuTree()
+    public function getMenuTree($siteId)
     {
-        $qb = $this->buildTreeRequest();
+        $qb = $this->buildTreeRequest($siteId);
+        $qb->field('siteId')->equals($siteId);
         $qb->field('inMenu')->equals(true);
-        $qb->field('deleted')->equals(false);
 
         return $qb->getQuery()->execute();
     }
