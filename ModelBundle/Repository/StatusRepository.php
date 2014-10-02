@@ -14,7 +14,7 @@ class StatusRepository extends DocumentRepository
      * 
      * @return Status
      */
-    public function getInitialStatus()
+    public function findOneByInitial()
     {
         $qb = $this->createQueryBuilder();
         $qb->field('initial')->equals(true);
@@ -27,7 +27,7 @@ class StatusRepository extends DocumentRepository
      *
      * @return Cursor
      */
-    public function getOtherInitialStatus($name)
+    public function findOtherByInitial($name)
     {
         $qb = $this->createQueryBuilder();
         $qb->field('name')->notEqual($name);

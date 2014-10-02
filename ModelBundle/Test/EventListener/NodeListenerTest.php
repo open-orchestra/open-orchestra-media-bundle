@@ -5,8 +5,8 @@ namespace PHPOrchestra\BackofficeBundle\Test\EventListener;
 use Phake;
 use PHPOrchestra\ModelBundle\EventListener\NodeListener;
 use PHPOrchestra\ModelBundle\Document\Node;
+use PHPOrchestra\ModelBundle\Document\Status;
 use Doctrine\ODM\MongoDB\DocumentManager;
-use Doctrine\ODM\MongoDB\Cursor;
 
 /**
  * Class NodeListenerTest
@@ -37,11 +37,11 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideNode
      */
-    public function testprePersist(Node $node, Cursor $status)
+    public function testprePersist(Node $node, Status $status)
     {
         $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $statusRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\StatusRepository');
-        Phake::when($statusRepository)->getInitialStatus()->thenReturn($status);
+        Phake::when($statusRepository)->findOneByInitial()->thenReturn($status);
         Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Status')->thenReturn($statusRepository);
         Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($node);
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
@@ -49,7 +49,7 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
         $listener = new NodeListener();
         $listener->prePersist($this->lifecycleEventArgs);
 
-        Phake::verify($node, Phake::times(1))->setStatus($status->getSingleResult());
+        Phake::verify($node, Phake::times(1))->setStatus($status);
 
     }
 
@@ -59,15 +59,11 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
     public function provideNode()
     {
         $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
-        $cursor = Phake::mock('Doctrine\ODM\MongoDB\Cursor');
         $status = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
-
-        Phake::when($cursor)->count()->thenReturn(1);
-        Phake::when($cursor)->getSingleResult()->thenReturn($status);
 
         return array(
             array(
-                $node, $cursor 
+                $node, $status
             )
         );
     }

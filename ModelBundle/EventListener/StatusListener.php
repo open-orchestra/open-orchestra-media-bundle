@@ -23,7 +23,7 @@ class StatusListener
         $document = $eventArgs->getDocument();
         if ($document instanceof Status && $document->isPublished() && $document->isInitial()){
             $documentManager = $eventArgs->getDocumentManager();
-            $statuses = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->getOtherInitialStatus($document->getName());
+            $statuses = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->findOtherByInitial($document->getName());
             foreach ($statuses as $status){
                 $status->setInitial(false);
                 $this->statuses[] = $status;
