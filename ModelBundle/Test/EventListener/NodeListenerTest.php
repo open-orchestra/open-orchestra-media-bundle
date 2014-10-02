@@ -33,15 +33,19 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
             $this->listener,
             'prePersist'
         )));
+        $this->assertTrue(is_callable(array(
+            $this->listener,
+            'preUpdate'
+        )));
     }
 
     /**
      *
-     * @param Node  $document
+     * @param Node $document
      * @param array $documents
      * @param array $expectedValues
      *
-     * @dataProvider provideNode
+     * @dataProvider provideNodeForPersist
      */
     public function testprePersist(Node $node, Status $status)
     {
@@ -60,18 +64,61 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
 
     /**
      *
+     * @param Node $document
+     * @param array $documents
+     * @param array $expectedValues
+     *
+     * @dataProvider provideNodeForUpdate
+     */
+    public function testpreUpdate(Node $node, Node $parentNode)
+    {
+        $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
+        $unitOfWork = Phake::mock('Doctrine\ODM\MongoDB\UnitOfWork');
+        $nodeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\NodeRepository');
+        $classMetaData = Phake::mock('Doctrine\ODM\MongoDB\Mapping\ClassMetadata');
+
+        Phake::when($nodeRepository)->findOneByNodeIdAndLastVersion(Phake::anyParameters())->thenReturn($parentNode);
+        Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Node')->thenReturn($nodeRepository);
+        Phake::when($documentManager)->getClassMetadata(Phake::anyParameters())->thenReturn($classMetaData);
+        Phake::when($unitOfWork)->recomputeSingleDocumentChangeSet(Phake::anyParameters())->thenReturn('test');
+        Phake::when($documentManager)->getUnitOfWork()->thenReturn($unitOfWork);
+        Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($node);
+        Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
+
+        $listener = new NodeListener();
+        $listener->preUpdate($this->lifecycleEventArgs);
+
+        Phake::verify($node, Phake::times(1))->setNodeId($document->getId());
+        Phake::verify($node, Phake::times(1))->setPath($parentNode->getPath() . '/' . $document->getId());
+    }
+
+    /**
+     *
      * @return array
      */
-    public function provideNode()
+    public function provideNodeForPersist()
     {
         $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
         $status = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
 
         return array(
-            array(
-                $node,
-                $status
-            )
+            array( $node, $status)
+        );
+    }
+    /**
+     *
+     * @return array
+     */
+    public function provideNodeForUpdate()
+    {
+        $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
+        Phake::when($node)->getId()->thenReturn('fakeId');
+
+        $parentNode = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
+        Phake::when($parentNode)->getPath()->thenReturn('fakePath');
+
+        return array(
+            array($node, $parentNode)
         );
     }
 }

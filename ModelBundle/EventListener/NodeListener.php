@@ -44,7 +44,7 @@ class NodeListener
             if ($parentNode instanceof Node) {
                 $path = $parentNode->getPath() . '/';
             }
-            $document->setPath($path . $document->getNodeId());
+            $document->setPath($path . $document->getId());
             $class = $documentManager->getClassMetadata(get_class($document));
             $documentManager->getUnitOfWork()->recomputeSingleDocumentChangeSet($class, $document);
         }
