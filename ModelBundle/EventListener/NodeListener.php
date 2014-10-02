@@ -37,10 +37,14 @@ class NodeListener
     {
         $document = $eventArgs->getDocument();
         if ($document instanceof Node) {
+            $document->setNodeId($document->getId());
+            $path = '';
             $documentManager = $eventArgs->getDocumentManager();
             $parentNode = $documentManager->getRepository('PHPOrchestraModelBundle:Node')->findOneByNodeIdAndLastVersion($document->getParentId());
-            $document->setNodeId($document->getId());
-            $document->setPath($parentNode->getPath() . '/' . $document->getNodeId());
+            if ($parentNode instanceof Node) {
+                $path = $parentNode->getPath() . '/';
+            }
+            $document->setPath($path . $document->getNodeId());
             $class = $documentManager->getClassMetadata(get_class($document));
             $documentManager->getUnitOfWork()->recomputeSingleDocumentChangeSet($class, $document);
         }

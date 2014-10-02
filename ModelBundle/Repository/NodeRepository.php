@@ -101,7 +101,7 @@ class NodeRepository extends DocumentRepository
 
     /**
      * @param string $nodeId
-     * 
+     *
      * @return mixed
      */
     public function findWithPublishedAndLastVersion($nodeId)
