@@ -12,11 +12,8 @@ use Doctrine\ODM\MongoDB\Query\Builder;
  */
 class StatusListenerTest extends \PHPUnit_Framework_TestCase
 {
-
     protected $listener;
-
     protected $lifecycleEventArgs;
-
     protected $postFlushEventArgs;
 
     /**

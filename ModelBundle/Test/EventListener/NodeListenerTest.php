@@ -1,5 +1,4 @@
 <?php
-
 namespace PHPOrchestra\BackofficeBundle\Test\EventListener;
 
 use Phake;
@@ -30,13 +29,17 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCallable()
     {
-        $this->assertTrue(is_callable(array($this->listener, 'prePersist')));
+        $this->assertTrue(is_callable(array(
+            $this->listener,
+            'prePersist'
+        )));
     }
 
     /**
-     * @param Node   $document
-     * @param array  $documents
-     * @param array  $expectedValues
+     *
+     * @param Node  $document
+     * @param array $documents
+     * @param array $expectedValues
      *
      * @dataProvider provideNode
      */
@@ -53,10 +56,10 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
         $listener->prePersist($this->lifecycleEventArgs);
 
         Phake::verify($node, Phake::times(1))->setStatus($status);
-
     }
 
     /**
+     *
      * @return array
      */
     public function provideNode()
@@ -66,7 +69,8 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
 
         return array(
             array(
-                $node, $status
+                $node,
+                $status
             )
         );
     }
