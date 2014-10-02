@@ -46,9 +46,9 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
 
     /**
      *
-     * @param Status $document            
-     * @param array $documents            
-     * @param array $expectedValues
+     * @param Status $document
+     * @param array  $documents
+     * @param array  $expectedValues
      *
      * @dataProvider provideStatus
      */
