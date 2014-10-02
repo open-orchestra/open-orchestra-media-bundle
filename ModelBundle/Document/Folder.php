@@ -16,7 +16,7 @@ use PHPOrchestra\ModelBundle\Model\MediaInterface;
  *
  * @ODM\Document(
  *   collection="folder",
- *   repositoryClass="PHPOrchestra\ModelBundle\Repository\MediaRepository"
+ *   repositoryClass="PHPOrchestra\ModelBundle\Repository\FolderRepository"
  * )
  */
 class Folder implements FolderInterface
