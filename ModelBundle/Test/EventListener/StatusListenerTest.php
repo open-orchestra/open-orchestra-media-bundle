@@ -58,17 +58,17 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
         $queryBuilder = Phake::mock('Doctrine\ODM\MongoDB\Query\Builder');
         $query = Phake::mock('Doctrine\ODM\MongoDB\Query\Query');
         $statusRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\StatusRepository');
-        
+
         Phake::when($statusRepository)->findOtherByInitial(Phake::anyParameters())->thenReturn($documents);
         Phake::when($query)->execute()->thenReturn($documents);
         Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Status')->thenReturn($statusRepository);
         Phake::when($statusRepository)->createQueryBuilder()->thenReturn($queryBuilder);
         Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($status);
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
-        
+
         $listener = new StatusListener();
         $listener->preUpdate($this->lifecycleEventArgs);
-        
+
         foreach ($documents as $document) {
             Phake::verify($document, Phake::times(1))->setInitial(false);
         }
@@ -83,10 +83,10 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
         $status = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
         Phake::when($status)->isPublished()->thenReturn(true);
         Phake::when($status)->isInitial()->thenReturn(true);
-        
+
         $document0 = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
         Phake::when($document0)->isInitial()->thenReturn(true);
-        
+
         return array(
             array(
                 $status,
