@@ -9,7 +9,6 @@ use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use PHPOrchestra\ModelBundle\Model\FolderInterface;
-use PHPOrchestra\ModelBundle\Model\MediaInterface;
 
 /**
  * Class Folder
@@ -18,8 +17,11 @@ use PHPOrchestra\ModelBundle\Model\MediaInterface;
  *   collection="folder",
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\FolderRepository"
  * )
+ * @ODM\InheritanceType("SINGLE_COLLECTION")
+ * @ODM\DiscriminatorField("type")
+ * @ODM\DiscriminatorMap({"media_folder"="MediaFolder"})
  */
-class Folder implements FolderInterface
+abstract class Folder implements FolderInterface
 {
     use BlameableDocument;
     use TimestampableDocument;
@@ -41,7 +43,7 @@ class Folder implements FolderInterface
     /**
      * @var FolderInterface
      *
-     * @ODM\ReferenceOne(targetDocument="PHPOrchestra\ModelBundle\Document\Folder", inversedBy="sons")
+     * @ODM\ReferenceOne(targetDocument="PHPOrchestra\ModelBundle\Document\Folder", inversedBy="subFolders")
      */
     protected $parent;
 
@@ -50,22 +52,14 @@ class Folder implements FolderInterface
      *
      * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Folder", mappedBy="parent")
      */
-    protected $sons;
-
-    /**
-     * @var Collection
-     *
-     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Media", mappedBy="folder")
-     */
-    protected $medias;
+    protected $subFolders;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->sons = new ArrayCollection();
-        $this->medias = new ArrayCollection();
+        $this->subFolders = new ArrayCollection();
     }
 
     /**
@@ -106,54 +100,30 @@ class Folder implements FolderInterface
     public function setParent(FolderInterface $parent)
     {
         $this->parent = $parent;
-        $parent->addSon($this);
+        $parent->addSubFolder($this);
     }
 
     /**
      * @return Collection
      */
-    public function getSons()
+    public function getSubFolders()
     {
-        return $this->sons;
+        return $this->subFolders;
     }
 
     /**
-     * @param FolderInterface $son
+     * @param FolderInterface $subFolder
      */
-    public function addSon(FolderInterface $son)
+    public function addSubFolder(FolderInterface $subFolder)
     {
-        $this->sons->add($son);
+        $this->subFolders->add($subFolder);
     }
 
     /**
-     * @param FolderInterface $son
+     * @param FolderInterface $subFolder
      */
-    public function removeSon(FolderInterface $son)
+    public function removeSubFolder(FolderInterface $subFolder)
     {
-        $this->sons->removeElement($son);
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
-    }
-
-    /**
-     * @param MediaInterface $media
-     */
-    public function addMedia(MediaInterface $media)
-    {
-        $this->medias->add($media);
-    }
-
-    /**
-     * @param MediaInterface $media
-     */
-    public function removeMedia(MediaInterface $media)
-    {
-        $this->medias->removeElement($media);
+        $this->subFolders->removeElement($subFolder);
     }
 }

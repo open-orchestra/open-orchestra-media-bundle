@@ -33,12 +33,12 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface
     public function setName($name);
 
     /**
-     * @return FolderInterface
+     * @return MediaFolderInterface
      */
-    public function getFolder();
+    public function getMediaFolder();
 
     /**
-     * @param FolderInterface $folder
+     * @param MediaFolderInterface $folder
      */
-    public function setFolder(FolderInterface $folder);
+    public function setMediaFolder(MediaFolderInterface $folder);
 }

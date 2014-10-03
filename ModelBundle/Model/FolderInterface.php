@@ -37,30 +37,15 @@ interface FolderInterface extends TimestampableInterface, BlameableInterface
     /**
      * @return Collection
      */
-    public function getSons();
+    public function getSubFolders();
 
     /**
-     * @param FolderInterface $son
+     * @param FolderInterface $subFolder
      */
-    public function addSon(FolderInterface $son);
+    public function addSubFolder(FolderInterface $subFolder);
 
     /**
-     * @param FolderInterface $son
+     * @param FolderInterface $subFolder
      */
-    public function removeSon(FolderInterface $son);
-
-    /**
-     * @return Collection
-     */
-    public function getMedias();
-
-    /**
-     * @param MediaInterface $media
-     */
-    public function addMedia(MediaInterface $media);
-
-    /**
-     * @param MediaInterface $media
-     */
-    public function removeMedia(MediaInterface $media);
+    public function removeSubFolder(FolderInterface $subFolder);
 }

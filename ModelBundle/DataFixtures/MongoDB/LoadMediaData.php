@@ -19,22 +19,22 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
     {
         $rootImage = new Media();
         $rootImage->setName('Root image');
-        $rootImage->setFolder($this->getReference('folder-rootImages'));
+        $rootImage->setMediaFolder($this->getReference('mediaFolder-rootImages'));
         $manager->persist($rootImage);
 
         $firstImage = new Media();
         $firstImage->setName('First image');
-        $firstImage->setFolder($this->getReference('folder-firstImages'));
+        $firstImage->setMediaFolder($this->getReference('mediaFolder-firstImages'));
         $manager->persist($firstImage);
 
         $secondImage = new Media();
         $secondImage->setName('Second image');
-        $secondImage->setFolder($this->getReference('folder-secondImages'));
+        $secondImage->setMediaFolder($this->getReference('mediaFolder-secondImages'));
         $manager->persist($secondImage);
 
         $firstFile = new Media();
         $firstFile->setName('First file');
-        $firstFile->setFolder($this->getReference('folder-firstFiles'));
+        $firstFile->setMediaFolder($this->getReference('mediaFolder-firstFiles'));
         $manager->persist($firstFile);
 
         $manager->flush();

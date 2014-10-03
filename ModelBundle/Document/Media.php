@@ -6,7 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
-use PHPOrchestra\ModelBundle\Model\FolderInterface;
+use PHPOrchestra\ModelBundle\Model\MediaFolderInterface;
 use PHPOrchestra\ModelBundle\Model\MediaInterface;
 
 /**
@@ -44,11 +44,11 @@ class Media implements MediaInterface
     protected $filesystemName;
 
     /**
-     * @var FolderInterface
+     * @var MediaFolderInterface
      *
-     * @ODM\ReferenceOne(targetDocument="PHPOrchestra\ModelBundle\Document\Folder", inversedBy="medias")
+     * @ODM\ReferenceOne(targetDocument="PHPOrchestra\ModelBundle\Document\MediaFolder", inversedBy="medias")
      */
-    protected $folder;
+    protected $mediaFolder;
 
     /**
      * @return string
@@ -91,19 +91,19 @@ class Media implements MediaInterface
     }
 
     /**
-     * @return FolderInterface
+     * @return MediaFolderInterface
      */
-    public function getFolder()
+    public function getMediaFolder()
     {
-        return $this->folder;
+        return $this->mediaFolder;
     }
 
     /**
-     * @param FolderInterface $folder
+     * @param MediaFolderInterface $mediaFolder
      */
-    public function setFolder(FolderInterface $folder)
+    public function setMediaFolder(MediaFolderInterface $mediaFolder)
     {
-        $this->folder = $folder;
-        $folder->addMedia($this);
+        $this->mediaFolder = $mediaFolder;
+        $mediaFolder->addMedia($this);
     }
 }
