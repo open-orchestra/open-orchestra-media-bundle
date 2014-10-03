@@ -38,7 +38,7 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
         )));
         $this->assertTrue(is_callable(array(
             $this->listener,
-            'postPersist'
+            'preUpdate'
         )));
     }
 
@@ -72,7 +72,7 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideNodeForUpdate
      */
-    public function testpostPersist(Node $node, Node $parentNode, $expectedPath)
+    public function testpreUpdate(Node $node, Node $parentNode, $expectedPath)
     {
         $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $unitOfWork = Phake::mock('Doctrine\ODM\MongoDB\UnitOfWork');
@@ -88,7 +88,7 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
 
         $listener = new NodeListener();
-        $listener->postPersist($this->lifecycleEventArgs);
+        $listener->preUpdate($this->lifecycleEventArgs);
 
         Phake::verify($node, Phake::times(1))->setNodeId($node->getId());
         Phake::verify($node, Phake::times(1))->setPath($expectedPath);

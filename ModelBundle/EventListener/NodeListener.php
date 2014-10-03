@@ -35,19 +35,20 @@ class NodeListener
      * @param LifecycleEventArgs $eventArgs
      *
      */
-    public function postPersist(LifecycleEventArgs $eventArgs)
+    public function preUpdate(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if ($document instanceof Node && $document->getNodeId() == null) {
+        if ($document instanceof Node) {
+            if ($document->getNodeId() == null) {
+                $document->setNodeId($document->getId());
+            }
             $documentManager = $eventArgs->getDocumentManager();
-            $document->setNodeId($document->getId());
             $path = '';
-            $documentManager = $eventArgs->getDocumentManager();
             $parentNode = $documentManager->getRepository('PHPOrchestraModelBundle:Node')->findOneByNodeIdAndLastVersion($document->getParentId());
             if ($parentNode instanceof Node) {
                 $path = $parentNode->getPath() . '/';
             }
-            $path .= $document->getId();
+            $path .= $document->getNodeId();
             $document->setPath($path);
 
             $class = $documentManager->getClassMetadata(get_class($document));
