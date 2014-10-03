@@ -19,7 +19,7 @@ class MediaRepository extends DocumentRepository
     {
         $qb = $this->createQueryBuilder('m');
 
-        $qb->field('folder.id')->equals($folderId);
+        $qb->field('mediaFolder.id')->equals($folderId);
 
         return $qb->getQuery()->execute();
     }

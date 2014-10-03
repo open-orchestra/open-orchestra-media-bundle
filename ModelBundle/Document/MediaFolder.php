@@ -11,7 +11,9 @@ use PHPOrchestra\ModelBundle\Model\MediaInterface;
 /**
  * Class MediaFolder
  *
- * @ODM\Document
+ * @ODM\Document(
+ *   repositoryClass="PHPOrchestra\ModelBundle\Repository\FolderRepository"
+ * )
  */
 class MediaFolder extends Folder implements MediaFolderInterface
 {
