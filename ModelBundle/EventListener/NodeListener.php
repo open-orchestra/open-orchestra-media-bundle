@@ -39,8 +39,10 @@ class NodeListener
     {
         $document = $eventArgs->getDocument();
         if ($document instanceof Node) {
+            $nodeId = $document->getNodeId();
             if ($document->getNodeId() == null) {
                 $document->setNodeId($document->getId());
+                $nodeId = $document->getId();
             }
             $documentManager = $eventArgs->getDocumentManager();
             $path = '';
@@ -48,7 +50,7 @@ class NodeListener
             if ($parentNode instanceof Node) {
                 $path = $parentNode->getPath() . '/';
             }
-            $path .= $document->getNodeId();
+            $path .= $nodeId;
             $document->setPath($path);
 
             $class = $documentManager->getClassMetadata(get_class($document));
