@@ -14,3 +14,4 @@ services:
         class: PHPOrchestra\ModelBundle\EventListener\NodeListener
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: prePersist, method: prePersist }
+            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate, method: preUpdate }

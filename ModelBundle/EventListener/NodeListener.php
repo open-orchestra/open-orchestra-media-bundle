@@ -10,21 +10,51 @@ use PHPOrchestra\ModelBundle\Repository\StatusRepository;
 /**
  * Class NodeListener
  */
-class NodeListener 
+class NodeListener
 {
+
     /**
+     *
      * @param LifecycleEventArgs $eventArgs
      *
      */
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if ($document instanceof Node){
+        if ($document instanceof Node && $document->getStatus() == null) {
             $documentManager = $eventArgs->getDocumentManager();
             $status = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->findOneByInitial();
-            if ($status instanceof Status){
+            if ($status instanceof Status) {
                 $document->setStatus($status);
             }
+        }
+    }
+
+    /**
+     *
+     * @param LifecycleEventArgs $eventArgs
+     *
+     */
+    public function preUpdate(LifecycleEventArgs $eventArgs)
+    {
+        $document = $eventArgs->getDocument();
+        if ($document instanceof Node) {
+            $nodeId = $document->getNodeId();
+            if ($document->getNodeId() == null) {
+                $document->setNodeId($document->getId());
+                $nodeId = $document->getId();
+            }
+            $documentManager = $eventArgs->getDocumentManager();
+            $path = '';
+            $parentNode = $documentManager->getRepository('PHPOrchestraModelBundle:Node')->findOneByNodeIdAndLastVersion($document->getParentId());
+            if ($parentNode instanceof Node) {
+                $path = $parentNode->getPath() . '/';
+            }
+            $path .= $nodeId;
+            $document->setPath($path);
+
+            $class = $documentManager->getClassMetadata(get_class($document));
+            $documentManager->getUnitOfWork()->recomputeSingleDocumentChangeSet($class, $document);
         }
     }
 }
