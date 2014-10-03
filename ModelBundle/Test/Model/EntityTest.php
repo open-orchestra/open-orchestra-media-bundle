@@ -54,9 +54,16 @@ class EntityTest extends \PHPUnit_Framework_TestCase
             array('Template',         'TemplateInterface'),
             array('TranslatedValue',  'TranslatedValueInterface'),
             array('Node',             'BlameableInterface'),
+            array('Media',            'BlameableInterface'),
+            array('MediaFolder',      'BlameableInterface'),
             array('Node',             'TimestampableInterface'),
-           	array('Theme',            'ThemeInterface'),
+            array('Media',            'TimestampableInterface'),
+            array('MediaFolder',      'TimestampableInterface'),
+            array('Theme',            'ThemeInterface'),
             array('Area',             'HtmlClassContainerInterface'),
+            array('Media',            'MediaInterface'),
+            array('MediaFolder',      'FolderInterface'),
+            array('MediaFolder',      'MediaFolderInterface'),
         );
     }
 }
