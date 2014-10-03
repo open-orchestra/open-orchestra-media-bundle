@@ -12,6 +12,7 @@ use PHPOrchestra\ModelBundle\Repository\StatusRepository;
  */
 class NodeListener
 {
+
     /**
      *
      * @param LifecycleEventArgs $eventArgs
@@ -20,7 +21,7 @@ class NodeListener
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if ($document instanceof Node) {
+        if ($document instanceof Node && $document->getStatus() == null) {
             $documentManager = $eventArgs->getDocumentManager();
             $status = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->findOneByInitial();
             if ($status instanceof Status) {
@@ -34,10 +35,11 @@ class NodeListener
      * @param LifecycleEventArgs $eventArgs
      *
      */
-    public function preUpdate(LifecycleEventArgs $eventArgs)
+    public function postPersist(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if ($document instanceof Node) {
+        if ($document instanceof Node && $document->getNodeId() == null) {
+            $documentManager = $eventArgs->getDocumentManager();
             $document->setNodeId($document->getId());
             $path = '';
             $documentManager = $eventArgs->getDocumentManager();
@@ -46,11 +48,6 @@ class NodeListener
                 $path = $parentNode->getPath() . '/';
             }
             $path .= $document->getId();
-            $childNodes = $documentManager->getRepository('PHPOrchestraModelBundle:Node')->findChildsByPath($document->getPath());
-
-            foreach($childNodes as $childNode){
-                $childNode->setPath(preg_replace('/'.preg_quote($document->getPath(), '/').'(.*)/', $path.'$1', $childNode->getPath()));
-            }
             $document->setPath($path);
 
             $class = $documentManager->getClassMetadata(get_class($document));
