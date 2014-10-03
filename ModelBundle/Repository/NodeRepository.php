@@ -177,4 +177,16 @@ class NodeRepository extends DocumentRepository
 
         return $nodes;
     }
+    /**
+     * @param string $path
+     *
+     * @return Cursor
+     */
+    public function findChildsByPath($path)
+    {
+        $qb = $this->buildTreeRequest();
+        $qb->field('path')->equals(new \MongoRegex('/'.preg_quote($path).'.+/'));
+
+        return $qb->getQuery()->execute();
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace PHPOrchestra\ModelBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
@@ -44,7 +45,14 @@ class NodeListener
             if ($parentNode instanceof Node) {
                 $path = $parentNode->getPath() . '/';
             }
-            $document->setPath($path . $document->getId());
+            $path .= $document->getId();
+            $childNodes = $documentManager->getRepository('PHPOrchestraModelBundle:Node')->findChildsByPath($document->getPath());
+
+            foreach($childNodes as $childNode){
+                $childNode->setPath(preg_replace('/'.preg_quote($document->getPath(), '/').'(.*)/', $path.'$1', $childNode->getPath()));
+            }
+            $document->setPath($path);
+
             $class = $documentManager->getClassMetadata(get_class($document));
             $documentManager->getUnitOfWork()->recomputeSingleDocumentChangeSet($class, $document);
         }
