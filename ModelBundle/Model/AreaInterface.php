@@ -8,6 +8,20 @@ namespace PHPOrchestra\ModelBundle\Model;
 interface AreaInterface extends AreaContainerInterface
 {
     /**
+     * Set label
+     *
+     * @param string $label
+     */
+    public function setLabel($label);
+
+    /**
+     * Get label
+     *
+     * @return string $label
+     */
+    public function getLabel();
+
+    /**
      * Set htmlId
      *
      * @param string $htmlId

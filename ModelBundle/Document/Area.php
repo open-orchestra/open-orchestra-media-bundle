@@ -15,6 +15,13 @@ use PHPOrchestra\ModelBundle\Model\HtmlClassContainerInterface;
 class Area implements AreaInterface, HtmlClassContainerInterface
 {
     /**
+     * @var string $label
+     *
+     * @MongoDB\Field(type="string")
+     */
+    protected $label;
+
+    /**
      * @var string $areaId
      *
      * @MongoDB\Field(type="string")
@@ -68,6 +75,26 @@ class Area implements AreaInterface, HtmlClassContainerInterface
     }
 
     /**
+     * Set label
+     *
+     * @param string $label
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string $label
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+    
+    /**
      * Set areaId
      *
      * @param string $areaId
@@ -86,7 +113,7 @@ class Area implements AreaInterface, HtmlClassContainerInterface
     {
         return $this->areaId;
     }
-
+    
     /**
      * Set htmlClass
      *
