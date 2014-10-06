@@ -51,14 +51,14 @@ interface NodeInterface extends AreaContainerInterface, BlockContainerInterface,
     /**
      * Set siteId
      *
-     * @param int $siteId
+     * @param String $siteId
      */
     public function setSiteId($siteId);
 
     /**
      * Get siteId
      *
-     * @return int $siteId
+     * @return string $siteId
      */
     public function getSiteId();
 

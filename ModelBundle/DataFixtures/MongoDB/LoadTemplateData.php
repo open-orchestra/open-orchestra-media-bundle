@@ -50,7 +50,7 @@ class LoadTemplateData extends AbstractFixture implements OrderedFixtureInterfac
 
         $generic = new Template();
         $generic->setTemplateId('template_generic');
-        $generic->setSiteId(1);
+        $generic->setSiteId('1');
         $generic->setVersion(1);
         $generic->setName('Generic Template');
         $generic->setLanguage('fr');
@@ -91,7 +91,7 @@ class LoadTemplateData extends AbstractFixture implements OrderedFixtureInterfac
 
         $full = new Template();
         $full->setTemplateId('template_full');
-        $full->setSiteId(1);
+        $full->setSiteId('1');
         $full->setVersion(1);
         $full->setName('Full Template');
         $full->setLanguage('fr');
@@ -115,7 +115,7 @@ class LoadTemplateData extends AbstractFixture implements OrderedFixtureInterfac
 
         $template = new Template();
         $template->setTemplateId('template_main');
-        $template->setSiteId(1);
+        $template->setSiteId('1');
         $template->setVersion(1);
         $template->setName('Generic Main');
         $template->setLanguage('fr');

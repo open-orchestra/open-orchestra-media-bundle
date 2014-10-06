@@ -37,12 +37,13 @@ class LoadSiteData implements FixtureInterface
     protected function getSite1()
     {
         $site1 = new Site();
-        $site1->setSiteId(1);
+        $site1->setSiteId('1');
         $site1->setDomain('www.aphpOrchestra.fr');
         $site1->setAlias('www.ophp-orchestra.fr');
         $site1->setDefaultLanguage('fr');
         $site1->setLanguages(array('en', 'fr'));
         $site1->addBlock('sample');
+
         return $site1;
     }
 
@@ -52,7 +53,7 @@ class LoadSiteData implements FixtureInterface
     protected function getSite2()
     {
         $site2 = new Site();
-        $site2->setSiteId(2);
+        $site2->setSiteId('2');
         $site2->setDomain('www.bphpOrchestra.fr');
         $site2->setAlias('www.nphp-orchestra.fr');
         $site2->setDefaultLanguage('fr');
@@ -68,7 +69,7 @@ class LoadSiteData implements FixtureInterface
     protected function getSite3()
     {
         $site3 = new Site();
-        $site3->setSiteId(3);
+        $site3->setSiteId('3');
         $site3->setDomain('www.cphpOrchestra.fr');
         $site3->setAlias('www.mphp-orchestra.fr');
         $site3->setDefaultLanguage('fr');
@@ -84,7 +85,7 @@ class LoadSiteData implements FixtureInterface
     protected function getSite4()
     {
         $site4 = new Site();
-        $site4->setSiteId(4);
+        $site4->setSiteId('4');
         $site4->setDomain('www.dphpOrchestra.fr');
         $site4->setAlias('www.lphp-orchestra.fr');
         $site4->setDefaultLanguage('fr');

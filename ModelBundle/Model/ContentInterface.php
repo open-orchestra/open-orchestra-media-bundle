@@ -98,12 +98,12 @@ interface ContentInterface extends StatusableInterface
     public function getName();
 
     /**
-     * @param int $siteId
+     * @param string $siteId
      */
     public function setSiteId($siteId);
 
     /**
-     * @return int
+     * @return string
      */
     public function getSiteId();
 

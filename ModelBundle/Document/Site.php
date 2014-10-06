@@ -24,9 +24,9 @@ class Site implements SiteInterface
     protected $id;
 
     /**
-     * @var int $siteId
+     * @var string $siteId
      *
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="string")
      */
     protected $siteId;
 
@@ -162,7 +162,7 @@ class Site implements SiteInterface
     }
 
     /**
-     * @param int $siteId
+     * @param string $siteId
      */
     public function setSiteId($siteId)
     {
@@ -170,7 +170,7 @@ class Site implements SiteInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getSiteId()
     {
