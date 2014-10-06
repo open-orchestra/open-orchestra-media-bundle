@@ -48,7 +48,7 @@ class Node implements NodeInterface
     protected $nodeType;
 
     /**
-     * @var int $siteId
+     * @var string $siteId
      *
      * @ODM\Field(type="string")
      */
@@ -214,7 +214,7 @@ class Node implements NodeInterface
     /**
      * Set siteId
      *
-     * @param int $siteId
+     * @param string $siteId
      */
     public function setSiteId($siteId)
     {
@@ -224,7 +224,7 @@ class Node implements NodeInterface
     /**
      * Get siteId
      *
-     * @return int $siteId
+     * @return string $siteId
      */
     public function getSiteId()
     {

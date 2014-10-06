@@ -32,14 +32,14 @@ class Template implements TemplateInterface
      * @MongoDB\Field(type="string")
      */
     protected $templateId;
-    
+
     /**
-     * @var int $siteId
+     * @var string $siteId
      *
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="string")
      */
     protected $siteId;
-    
+
     /**
      * @var string $name
      *
@@ -225,7 +225,7 @@ class Template implements TemplateInterface
     }
 
     /**
-     * @param int $siteId
+     * @param string $siteId
      */
     public function setSiteId($siteId)
     {
@@ -233,7 +233,7 @@ class Template implements TemplateInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getSiteId()
     {

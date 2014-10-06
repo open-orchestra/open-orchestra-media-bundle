@@ -70,12 +70,12 @@ interface SiteInterface
     public function getLanguages();
 
     /**
-     * @param int $siteId
+     * @param string $siteId
      */
     public function setSiteId($siteId);
 
     /**
-     * @return int
+     * @return string
      */
     public function getSiteId();
 }

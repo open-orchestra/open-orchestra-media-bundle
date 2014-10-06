@@ -40,9 +40,9 @@ class Content implements ContentInterface
     protected $contentType;
 
     /**
-     * @var int $siteId
+     * @var string $siteId
      *
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="string")
      */
     protected $siteId;
 
@@ -248,7 +248,7 @@ class Content implements ContentInterface
     }
 
     /**
-     * @param int $siteId
+     * @param string $siteId
      */
     public function setSiteId($siteId)
     {
@@ -256,7 +256,7 @@ class Content implements ContentInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getSiteId()
     {
