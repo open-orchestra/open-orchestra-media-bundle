@@ -124,4 +124,16 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
             array(false, 1)
         );
     }
+
+    /**
+     * Test on node creation
+     */
+    public function testWhenNoOldNode()
+    {
+        Phake::when($this->nodeRepository)->find(Phake::anyParameters())->thenReturn(null);
+
+        $this->validator->validate($this->node, $this->constraint);
+
+        Phake::verify($this->context, Phake::never())->addViolationAt(Phake::anyParameters());
+    }
 }

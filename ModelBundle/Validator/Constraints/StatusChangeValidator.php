@@ -41,7 +41,10 @@ class StatusChangeValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        $oldNode = $this->nodeRepository->find($value->getId());
+        if (is_null($oldNode = $this->nodeRepository->find($value->getId()))) {
+            return;
+        }
+
         $oldStatus = $oldNode->getStatus();
 
         $status = $value->getStatus();
