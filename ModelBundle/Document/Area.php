@@ -113,7 +113,7 @@ class Area implements AreaInterface, HtmlClassContainerInterface
     {
         return $this->areaId;
     }
-    
+
     /**
      * Set htmlClass
      *
