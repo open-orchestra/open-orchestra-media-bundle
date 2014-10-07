@@ -51,7 +51,13 @@ class NodeListener
                 $path = $parentNode->getPath() . '/';
             }
             $path .= $nodeId;
-            $document->setPath($path);
+            if ($path != $document->getPath()) {
+                $document->setPath($path);
+                $childNodes = $documentManager->getRepository('PHPOrchestraModelBundle:Node')->findChildsByPath($document->getPath());
+                foreach($childNodes as $childNode){
+                    $childNode->setPath(preg_replace('/'.preg_quote($document->getPath(), '/').'(.*)/', $path.'$1', $childNode->getPath()));
+                }
+            }
 
             $class = $documentManager->getClassMetadata(get_class($document));
             $documentManager->getUnitOfWork()->recomputeSingleDocumentChangeSet($class, $document);

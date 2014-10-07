@@ -68,11 +68,12 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
      *
      * @param Node            $node
      * @param Node            $parentNode
-     * @param string           $expectedPath
+     * @param ArrayCollection $childs
+     * @param array           $expectedPath
      *
      * @dataProvider provideNodeForUpdate
      */
-    public function testpreUpdate(Node $node, Node $parentNode, $expectedPath)
+    public function testpreUpdate(Node $node, Node $parentNode, ArrayCollection $childs, $expectedPath)
     {
         $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $unitOfWork = Phake::mock('Doctrine\ODM\MongoDB\UnitOfWork');
@@ -83,15 +84,20 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Node')->thenReturn($nodeRepository);
         Phake::when($documentManager)->getClassMetadata(Phake::anyParameters())->thenReturn(new ClassMetadata('PHPOrchestra\ModelBundle\Document\Node'));
         Phake::when($documentManager)->getUnitOfWork()->thenReturn($unitOfWork);
-
         Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($node);
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
+        Phake::when($nodeRepository)->findChildsByPath(Phake::anyParameters())->thenReturn($childs);
 
         $listener = new NodeListener();
         $listener->preUpdate($this->lifecycleEventArgs);
 
         Phake::verify($node, Phake::times(1))->setNodeId($node->getId());
-        Phake::verify($node, Phake::times(1))->setPath($expectedPath);
+        Phake::verify($node, Phake::times(1))->setPath($expectedPath[0]);
+        $count = 1;
+        foreach ($childs as $child) {
+            Phake::verify($child, Phake::times(1))->setPath($expectedPath[$count]);
+            $count ++;
+        }
     }
 
     /**
@@ -116,14 +122,19 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
     {
         $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
         Phake::when($node)->getId()->thenReturn('fakeId');
-        Phake::when($node)->getNodeId()->thenReturn(null);
         Phake::when($node)->getPath()->thenReturn('fakeParentPath/fakePastId');
-
         $parentNode = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
+        Phake::when($parentNode)->getPath()->thenReturn('fakePath');
         Phake::when($parentNode)->getPath()->thenReturn('fakeParentPath');
 
+        $child0 = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
+        Phake::when($child0)->getPath()->thenReturn('fakeParentPath/fakePastId/fakeChild0Id');
+
+        $childs = new ArrayCollection();
+        $childs->add($child0);
+
         return array(
-            array($node, $parentNode, 'fakeParentPath/fakeId')
+            array($node, $parentNode, $childs, array('fakeParentPath/fakeId', 'fakeParentPath/fakeId/fakeChild0Id'))
         );
     }
 }
