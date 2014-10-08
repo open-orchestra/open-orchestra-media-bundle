@@ -20,6 +20,13 @@ class Block implements BlockInterface
     protected $component;
 
     /**
+     * @var string $label
+     *
+     * @MongoDB\Field(type="string")
+     */
+    protected $label;
+
+    /**
      * @var array $attributes
      *
      * @MongoDB\Field(type="hash")
@@ -44,6 +51,26 @@ class Block implements BlockInterface
     public function getComponent()
     {
         return $this->component;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string $label
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 
     /**
