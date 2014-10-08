@@ -1,14 +1,16 @@
 parameters:
     php_orchestra_model.doctrine_listener.generate_node_id.class: PHPOrchestra\ModelBundle\EventListener\GenerateNodeIdListener
+    php_orchestra_model.doctrine_listener.status.class: PHPOrchestra\ModelBundle\EventListener\StatusListener
+    php_orchestra_model.doctrine_listener.node.class: PHPOrchestra\ModelBundle\EventListener\NodeListener
 
 services:
     php_orchestra_model.doctrine_listener.status:
-        class: PHPOrchestra\ModelBundle\EventListener\StatusListener
+        class: %php_orchestra_model.doctrine_listener.status.class%
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate, method: preUpdate }
             -  { name: doctrine_mongodb.odm.event_listener, event: postFlush, method: postFlush }
     php_orchestra_model.doctrine_listener.node:
-        class: PHPOrchestra\ModelBundle\EventListener\NodeListener
+        class: %php_orchestra_model.doctrine_listener.node.class%
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: prePersist, method: prePersist }
             -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate, method: preUpdate }
