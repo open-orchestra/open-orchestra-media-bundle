@@ -3,42 +3,36 @@
 namespace PHPOrchestra\ModelBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
-use PHPOrchestra\ModelBundle\Document\Node;
-use PHPOrchestra\ModelBundle\Document\Status;
-use PHPOrchestra\ModelBundle\Repository\StatusRepository;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelBundle\Model\StatusInterface;
 
 /**
  * Class NodeListener
  */
 class NodeListener
 {
-
     /**
-     *
      * @param LifecycleEventArgs $eventArgs
-     *
      */
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if ($document instanceof Node && $document->getStatus() == null) {
+        if ($document instanceof NodeInterface && $document->getStatus() == null) {
             $documentManager = $eventArgs->getDocumentManager();
             $status = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->findOneByInitial();
-            if ($status instanceof Status) {
+            if ($status instanceof StatusInterface) {
                 $document->setStatus($status);
             }
         }
     }
 
     /**
-     *
      * @param LifecycleEventArgs $eventArgs
-     *
      */
     public function preUpdate(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if ($document instanceof Node) {
+        if ($document instanceof NodeInterface) {
             $nodeId = $document->getNodeId();
             if ($document->getNodeId() == null) {
                 $document->setNodeId($document->getId());
@@ -47,7 +41,7 @@ class NodeListener
             $documentManager = $eventArgs->getDocumentManager();
             $path = '';
             $parentNode = $documentManager->getRepository('PHPOrchestraModelBundle:Node')->findOneByNodeIdAndLastVersion($document->getParentId());
-            if ($parentNode instanceof Node) {
+            if ($parentNode instanceof NodeInterface) {
                 $path = $parentNode->getPath() . '/';
             }
             $path .= $nodeId;
