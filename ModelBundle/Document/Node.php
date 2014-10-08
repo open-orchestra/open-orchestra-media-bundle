@@ -87,7 +87,7 @@ class Node implements NodeInterface
      *
      * @ODM\Field(type="int")
      */
-    protected $version;
+    protected $version = 1;
 
     /**
      * @var string $language

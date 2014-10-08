@@ -3,6 +3,7 @@
 namespace PHPOrchestra\BackofficeBundle\Test\EventListener;
 
 use Phake;
+use PHPOrchestra\ModelBundle\EventListener\GeneratePathListener;
 use PHPOrchestra\ModelBundle\EventListener\NodeListener;
 use PHPOrchestra\ModelBundle\Document\Node;
 use PHPOrchestra\ModelBundle\Document\Status;
@@ -11,9 +12,9 @@ use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class NodeListenerTest
+ * Class GeneratePathListenerTest
  */
-class NodeListenerTest extends \PHPUnit_Framework_TestCase
+class GeneratePathListenerTest extends \PHPUnit_Framework_TestCase
 {
     protected $listener;
     protected $lifecycleEventArgs;
@@ -24,7 +25,7 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->lifecycleEventArgs = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
-        $this->listener = new NodeListener();
+        $this->listener = new GeneratePathListener();
     }
 
     /**
@@ -34,34 +35,8 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(is_callable(array(
             $this->listener,
-            'prePersist'
-        )));
-        $this->assertTrue(is_callable(array(
-            $this->listener,
             'preUpdate'
         )));
-    }
-
-    /**
-     *
-     * @param Node $document
-     * @param array $documents
-     * @param array $expectedValues
-     *        @dataProvider provideNodeForPersist
-     */
-    public function testprePersist(Node $node, Status $status)
-    {
-        $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
-        $statusRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\StatusRepository');
-        Phake::when($statusRepository)->findOneByInitial()->thenReturn($status);
-        Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Status')->thenReturn($statusRepository);
-        Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($node);
-        Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
-
-        $listener = new NodeListener();
-        $listener->prePersist($this->lifecycleEventArgs);
-
-        Phake::verify($node, Phake::times(1))->setStatus($status);
     }
 
     /**
@@ -88,30 +63,15 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
         Phake::when($nodeRepository)->findChildsByPath(Phake::anyParameters())->thenReturn($childs);
 
-        $listener = new NodeListener();
-        $listener->preUpdate($this->lifecycleEventArgs);
+        $this->listener->preUpdate($this->lifecycleEventArgs);
 
-        Phake::verify($node, Phake::times(1))->setNodeId($node->getId());
-        Phake::verify($node, Phake::times(1))->setPath($expectedPath[0]);
+        Phake::verify($node)->setNodeId($node->getId());
+        Phake::verify($node)->setPath($expectedPath[0]);
         $count = 1;
         foreach ($childs as $child) {
-            Phake::verify($child, Phake::times(1))->setPath($expectedPath[$count]);
+            Phake::verify($child)->setPath($expectedPath[$count]);
             $count ++;
         }
-    }
-
-    /**
-     *
-     * @return array
-     */
-    public function provideNodeForPersist()
-    {
-        $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
-        $status = Phake::mock('PHPOrchestra\ModelBundle\Document\Status');
-
-        return array(
-            array($node, $status)
-        );
     }
 
     /**
@@ -123,6 +83,7 @@ class NodeListenerTest extends \PHPUnit_Framework_TestCase
         $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
         Phake::when($node)->getId()->thenReturn('fakeId');
         Phake::when($node)->getPath()->thenReturn('fakeParentPath/fakePastId');
+
         $parentNode = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
         Phake::when($parentNode)->getPath()->thenReturn('fakePath');
         Phake::when($parentNode)->getPath()->thenReturn('fakeParentPath');
