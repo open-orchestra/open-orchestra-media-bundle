@@ -305,7 +305,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $genericArea = new Area();
         $genericArea->setLabel('Generic Area');
         $genericArea->setAreaId('Generic Area');
-        
+
         $generic = new Node();
         $generic->setNodeId('fixutre_generic');
         $generic->setNodeType('page');
