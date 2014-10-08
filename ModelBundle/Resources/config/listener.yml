@@ -1,12 +1,12 @@
 parameters:
     php_orchestra_model.doctrine_listener.generate_node_id.class: PHPOrchestra\ModelBundle\EventListener\GenerateNodeIdListener
-    php_orchestra_model.doctrine_listener.status.class: PHPOrchestra\ModelBundle\EventListener\StatusListener
+    php_orchestra_model.doctrine_listener.initial_status.class: PHPOrchestra\ModelBundle\EventListener\InitialStatusListener
     php_orchestra_model.doctrine_listener.generate_path.class: PHPOrchestra\ModelBundle\EventListener\GeneratePathListener
     php_orchestra_model.doctrine_listener.set_initial_status.class: PHPOrchestra\ModelBundle\EventListener\SetInitialStatusListener
 
 services:
-    php_orchestra_model.doctrine_listener.status:
-        class: %php_orchestra_model.doctrine_listener.status.class%
+    php_orchestra_model.doctrine_listener.initial_status:
+        class: %php_orchestra_model.doctrine_listener.initial_status.class%
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate, method: preUpdate }
             -  { name: doctrine_mongodb.odm.event_listener, event: postFlush, method: postFlush }

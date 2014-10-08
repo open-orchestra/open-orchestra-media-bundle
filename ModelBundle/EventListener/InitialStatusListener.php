@@ -3,25 +3,22 @@ namespace PHPOrchestra\ModelBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ODM\MongoDB\Event\PostFlushEventArgs;
-use PHPOrchestra\ModelBundle\Document\Status;
-use PHPOrchestra\ModelBundle\Repository\StatusRepository;
+use PHPOrchestra\ModelBundle\Model\StatusInterface;
 
 /**
- * Class StatusListener
+ * Class InitialStatusListener
  */
-class StatusListener
+class InitialStatusListener
 {
     protected $statuses = [];
 
     /**
-     *
      * @param LifecycleEventArgs $eventArgs
-     *
      */
     public function preUpdate(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if ($document instanceof Status && $document->isPublished() && $document->isInitial()) {
+        if ($document instanceof StatusInterface && $document->isPublished() && $document->isInitial()) {
             $documentManager = $eventArgs->getDocumentManager();
             $statuses = $documentManager->getRepository('PHPOrchestraModelBundle:Status')->findOtherByInitial($document->getName());
             foreach ($statuses as $status) {
@@ -32,9 +29,7 @@ class StatusListener
     }
 
     /**
-     *
      * @param PostFlushEventArgs $eventArgs
-     *
      */
     public function postFlush(PostFlushEventArgs $eventArgs)
     {

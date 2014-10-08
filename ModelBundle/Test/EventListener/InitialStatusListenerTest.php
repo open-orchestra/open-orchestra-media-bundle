@@ -3,15 +3,15 @@
 namespace PHPOrchestra\ModelBundle\Test\EventListener;
 
 use Phake;
-use PHPOrchestra\ModelBundle\EventListener\StatusListener;
+use PHPOrchestra\ModelBundle\EventListener\InitialStatusListener;
 use PHPOrchestra\ModelBundle\Document\Status;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Query\Builder;
 
 /**
- * Class StatusListenerTest
+ * Class InitialStatusListenerTest
  */
-class StatusListenerTest extends \PHPUnit_Framework_TestCase
+class InitialStatusListenerTest extends \PHPUnit_Framework_TestCase
 {
     protected $listener;
     protected $lifecycleEventArgs;
@@ -24,7 +24,7 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
     {
         $this->lifecycleEventArgs = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
         $this->postFlushEventArgs = Phake::mock('Doctrine\ODM\MongoDB\Event\PostFlushEventArgs');
-        $this->listener = new StatusListener();
+        $this->listener = new InitialStatusListener();
     }
 
     /**
@@ -44,9 +44,8 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
 
     /**
      *
-     * @param Status $document
+     * @param Status $status
      * @param array  $documents
-     * @param array  $expectedValues
      *
      * @dataProvider provideStatus
      */
@@ -64,11 +63,10 @@ class StatusListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($status);
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
 
-        $listener = new StatusListener();
-        $listener->preUpdate($this->lifecycleEventArgs);
+        $this->listener->preUpdate($this->lifecycleEventArgs);
 
         foreach ($documents as $document) {
-            Phake::verify($document, Phake::times(1))->setInitial(false);
+            Phake::verify($document)->setInitial(false);
         }
     }
 
