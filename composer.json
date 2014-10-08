@@ -13,7 +13,8 @@
         "doctrine/mongodb-odm" : "~1",
         "doctrine/mongodb-odm-bundle" : "~3",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
-        "symfony/validator": "~2"
+        "symfony/validator": "~2",
+        "doctrine/mongodb": "1.1.5"
     },
     "require-dev": {
         "jmikola/geojson": "~1.0",
