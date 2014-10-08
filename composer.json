@@ -10,11 +10,10 @@
     "minimum-stability": "dev",
     "require": {
         "doctrine/data-fixtures":"1.0.0",
-        "doctrine/mongodb-odm" : "~1",
-        "doctrine/mongodb-odm-bundle" : "~3",
+        "doctrine/mongodb-odm" : "~1.0",
+        "doctrine/mongodb-odm-bundle" : "~3.0",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
-        "symfony/validator": "~2",
-        "doctrine/mongodb": "1.1.5"
+        "symfony/validator": "~2"
     },
     "require-dev": {
         "jmikola/geojson": "~1.0",
