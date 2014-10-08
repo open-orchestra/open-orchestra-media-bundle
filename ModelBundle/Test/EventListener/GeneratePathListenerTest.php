@@ -65,7 +65,7 @@ class GeneratePathListenerTest extends \PHPUnit_Framework_TestCase
 
         $this->listener->preUpdate($this->lifecycleEventArgs);
 
-        Phake::verify($node)->setNodeId($node->getId());
+        Phake::verify($node, Phake::never())->setNodeId(Phake::anyParameters());
         Phake::verify($node)->setPath($expectedPath[0]);
         $count = 1;
         foreach ($childs as $child) {
@@ -81,7 +81,7 @@ class GeneratePathListenerTest extends \PHPUnit_Framework_TestCase
     public function provideNodeForUpdate()
     {
         $node = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');
-        Phake::when($node)->getId()->thenReturn('fakeId');
+        Phake::when($node)->getNodeId()->thenReturn('fakeId');
         Phake::when($node)->getPath()->thenReturn('fakeParentPath/fakePastId');
 
         $parentNode = Phake::mock('PHPOrchestra\ModelBundle\Document\Node');

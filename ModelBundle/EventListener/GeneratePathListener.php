@@ -18,10 +18,6 @@ class GeneratePathListener
         $document = $eventArgs->getDocument();
         if ($document instanceof NodeInterface) {
             $nodeId = $document->getNodeId();
-            if ($document->getNodeId() == null) {
-                $document->setNodeId($document->getId());
-                $nodeId = $document->getId();
-            }
             $documentManager = $eventArgs->getDocumentManager();
             $path = '';
             $parentNode = $documentManager->getRepository('PHPOrchestraModelBundle:Node')->findOneByNodeIdAndLastVersion($document->getParentId());
