@@ -23,12 +23,22 @@ class PHPOrchestraModelExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         foreach ($config as $class => $content) {
-            $container->setParameter('php_orchestra_model.document.' . $class . '.class', $content['class']);
-            $container->register('php_orchestra_model.repository.' . $class, $content['repository'])
-                ->setFactoryService('doctrine.odm.mongodb.document_manager')
-                ->setFactoryMethod('getRepository')
-                ->addArgument($content['class']);
+            if (is_array($content)) {
+                $container->setParameter('php_orchestra_model.document.' . $class . '.class', $content['class']);
+                $container->register('php_orchestra_model.repository.' . $class, $content['repository'])
+                    ->setFactoryService('doctrine.odm.mongodb.document_manager')
+                    ->setFactoryMethod('getRepository')
+                    ->addArgument($content['class']);
+            }
         }
+
+        if (!is_null($config['upload_dir'])) {
+            $uploadDir = $config['upload_dir'];
+        } else {
+            $uploadDir = 'upload';
+        }
+        $dir = $container->getParameter('kernel.root_dir') . '/../web/' . $uploadDir;
+        $container->setParameter('php_orchestra_model.upload_dir', $dir);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('listener.yml');

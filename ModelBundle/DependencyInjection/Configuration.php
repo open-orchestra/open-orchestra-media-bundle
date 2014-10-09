@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('php_orchestra_model');
 
         $rootNode->children()
+            ->scalarNode('upload_dir')->defaultNull()->end()
             ->arrayNode('content')
                 ->addDefaultsIfNotSet()
                 ->children()

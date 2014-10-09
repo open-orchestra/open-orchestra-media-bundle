@@ -1,6 +1,7 @@
 <?php
 
 namespace PHPOrchestra\ModelBundle\Model;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Interface MediaInterface
@@ -41,4 +42,14 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface
      * @param MediaFolderInterface $folder
      */
     public function setMediaFolder(MediaFolderInterface $folder);
+
+    /**
+     * @return UploadedFile
+     */
+    public function getFile();
+
+    /**
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file);
 }
