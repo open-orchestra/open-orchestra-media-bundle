@@ -22,6 +22,20 @@ Interface BlockInterface
     public function getComponent();
 
     /**
+     * Set label
+     *
+     * @param string $label
+     */
+    public function setLabel($label);
+
+    /**
+     * Get label
+     *
+     * @return string $label
+     */
+    public function getLabel();
+
+    /**
      * Set attributes
      *
      * @param array $attributes
