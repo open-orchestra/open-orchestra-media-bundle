@@ -3,22 +3,32 @@ parameters:
     php_orchestra_model.doctrine_listener.initial_status.class: PHPOrchestra\ModelBundle\EventListener\InitialStatusListener
     php_orchestra_model.doctrine_listener.generate_path.class: PHPOrchestra\ModelBundle\EventListener\GeneratePathListener
     php_orchestra_model.doctrine_listener.set_initial_status.class: PHPOrchestra\ModelBundle\EventListener\SetInitialStatusListener
+    php_orchestra_model.doctrine_listener.move_uploaded_file.class: PHPOrchestra\ModelBundle\EventListener\MoveUploadedFileListener
 
 services:
     php_orchestra_model.doctrine_listener.initial_status:
         class: %php_orchestra_model.doctrine_listener.initial_status.class%
         tags:
-            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate, method: preUpdate }
-            -  { name: doctrine_mongodb.odm.event_listener, event: postFlush, method: postFlush }
+            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
+            -  { name: doctrine_mongodb.odm.event_listener, event: postFlush }
     php_orchestra_model.doctrine_listener.set_initial_status:
         class: %php_orchestra_model.doctrine_listener.set_initial_status.class%
         tags:
-            -  { name: doctrine_mongodb.odm.event_listener, event: prePersist, method: prePersist }
+            -  { name: doctrine_mongodb.odm.event_listener, event: prePersist }
     php_orchestra_model.doctrine_listener.generate_path:
         class: %php_orchestra_model.doctrine_listener.generate_path.class%
         tags:
-            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate, method: preUpdate }
+            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
     php_orchestra_model.doctrine_listener.generate_node_id:
         class: %php_orchestra_model.doctrine_listener.generate_node_id.class%
         tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: prePersist, method: prePersist }
+            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+    php_orchestra_model.doctrine_listener.move_uploaded_file:
+        class: %php_orchestra_model.doctrine_listener.move_uploaded_file.class%
+        arguments:
+            - %php_orchestra_model.upload_dir%
+        tags:
+            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+            - { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
+            - { name: doctrine_mongodb.odm.event_listener, event: postPersist }
+            - { name: doctrine_mongodb.odm.event_listener, event: postUpdate }

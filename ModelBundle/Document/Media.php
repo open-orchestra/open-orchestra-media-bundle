@@ -8,6 +8,7 @@ use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use PHPOrchestra\ModelBundle\Model\MediaFolderInterface;
 use PHPOrchestra\ModelBundle\Model\MediaInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class Media
@@ -49,6 +50,11 @@ class Media implements MediaInterface
      * @ODM\ReferenceOne(targetDocument="PHPOrchestra\ModelBundle\Document\MediaFolder", inversedBy="medias")
      */
     protected $mediaFolder;
+
+    /**
+     * @var UploadedFile
+     */
+    protected $file;
 
     /**
      * @return string
@@ -105,5 +111,21 @@ class Media implements MediaInterface
     {
         $this->mediaFolder = $mediaFolder;
         $mediaFolder->addMedia($this);
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file)
+    {
+        $this->file = $file;
     }
 }
