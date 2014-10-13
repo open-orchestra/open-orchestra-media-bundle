@@ -2,6 +2,7 @@
 
 namespace PHPOrchestra\ModelBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
@@ -21,8 +22,9 @@ class EmbedStatus extends AbstractStatus
         $this->setInitial($status->isInitial());
         $this->setName($status->getName());
         $this->labels = $status->getLabels();
-        $this->toRole = $status->getToRole();
-        $this->fromRole = $status->getFromRole();
+
+        $this->toRoles = $status->getToRoles();
+        $this->fromRoles = $status->getFromRoles();
     }
 
     /**

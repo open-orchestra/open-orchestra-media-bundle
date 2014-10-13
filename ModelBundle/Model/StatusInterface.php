@@ -3,6 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use PHPOrchestra\UserBundle\Document\Role;
 
 /**
  * interface StatusInterface
@@ -45,26 +46,6 @@ interface StatusInterface extends TranslatedValueContainerInterface
     public function isPublished();
 
     /**
-     * @return string
-     */
-    public function getFromRole();
-
-    /**
-     * @param string $fromRole
-     */
-    public function setFromRole($fromRole);
-
-    /**
-     * @return string
-     */
-    public function getToRole();
-
-    /**
-     * @param string $toRole
-     */
-    public function setToRole($toRole);
-
-    /**
      * @param boolean $initial
      */
     public function setInitial($initial);
@@ -73,4 +54,34 @@ interface StatusInterface extends TranslatedValueContainerInterface
      * @return boolean
      */
     public function isInitial();
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getFromRoles();
+
+    /**
+     * @param Role $role
+     */
+    public function addFromRole(Role $role);
+
+    /**
+     * @param Role $role
+     */
+    public function removeFromRole(Role $role);
+
+    /**
+     * @param Role $role
+     */
+    public function addToRole(Role $role);
+
+    /**
+     * @param Role $role
+     */
+    public function removeToRole(Role $role);
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getToRoles();
 }
