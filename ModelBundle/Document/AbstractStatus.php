@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use PHPOrchestra\ModelBundle\Model\StatusInterface;
 use PHPOrchestra\ModelBundle\Model\TranslatedValueInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use PHPOrchestra\UserBundle\Document\Role;
+use PHPOrchestra\ModelBundle\Document\Role;
 
 /**
  * Class AbstractStatus
@@ -42,14 +42,14 @@ abstract class AbstractStatus implements StatusInterface
     /**
      * @var ArrayCollection
      *
-     * @MongoDB\ReferenceMany(targetDocument="PHPOrchestra\UserBundle\Document\Role", mappedBy="fromStatus")
+     * @MongoDB\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Role", mappedBy="fromStatus")
      */
     protected $fromRoles;
 
     /**
      * @var string
      *
-     * @MongoDB\ReferenceMany(targetDocument="PHPOrchestra\UserBundle\Document\Role", mappedBy="toStatus")
+     * @MongoDB\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Role", mappedBy="toStatus")
      */
     protected $toRoles;
 

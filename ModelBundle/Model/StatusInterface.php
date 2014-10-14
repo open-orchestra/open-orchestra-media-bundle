@@ -3,7 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use PHPOrchestra\UserBundle\Document\Role;
+use PHPOrchestra\ModelBundle\Document\Role;
 
 /**
  * interface StatusInterface
