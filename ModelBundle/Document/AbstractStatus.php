@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use PHPOrchestra\ModelBundle\Model\StatusInterface;
 use PHPOrchestra\ModelBundle\Model\TranslatedValueInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use PHPOrchestra\ModelBundle\Document\Role;
 
 /**
  * Class AbstractStatus
