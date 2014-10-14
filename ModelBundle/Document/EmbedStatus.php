@@ -23,8 +23,15 @@ class EmbedStatus extends AbstractStatus
         $this->setName($status->getName());
         $this->labels = $status->getLabels();
 
-        $this->toRoles = $status->getToRoles();
-        $this->fromRoles = $status->getFromRoles();
+        $this->toRoles = new ArrayCollection();
+        foreach ($status->getToRoles() as $toRole) {
+            $this->addToRole($toRole);
+        }
+
+        $this->fromRoles = new ArrayCollection();
+        foreach ($status->getFromRoles() as $fromRole) {
+            $this->addFromRole($fromRole);
+        }
     }
 
     /**

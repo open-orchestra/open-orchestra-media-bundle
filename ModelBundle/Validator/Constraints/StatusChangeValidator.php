@@ -58,7 +58,6 @@ class StatusChangeValidator extends ConstraintValidator
             $fromRoles[] = $fromRole->getName();
         }
 
-
         if ((!empty($toRoles) && !$this->securityContext->isGranted($toRoles))
             || (!empty($fromRoles) && !$this->securityContext->isGranted($fromRoles))
         ) {
