@@ -39,18 +39,18 @@ abstract class AbstractStatus implements StatusInterface
     protected $published = false;
 
     /**
-     * @var string
+     * @var ArrayCollection
      *
-     * @MongoDB\Field(type="string")
+     * @MongoDB\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Role", mappedBy="fromStatus")
      */
-    protected $fromRole;
+    protected $fromRoles;
 
     /**
      * @var string
      *
-     * @MongoDB\Field(type="string")
+     * @MongoDB\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Role", mappedBy="toStatus")
      */
-    protected $toRole;
+    protected $toRoles;
 
     /**
      * @MongoDB\Field(type="boolean")
@@ -63,6 +63,8 @@ abstract class AbstractStatus implements StatusInterface
     public function __construct()
     {
         $this->labels = new ArrayCollection();
+        $this->fromRoles = new ArrayCollection();
+        $this->toRoles = new ArrayCollection();
     }
 
     /**
@@ -156,34 +158,50 @@ abstract class AbstractStatus implements StatusInterface
     }
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getFromRole()
+    public function getFromRoles()
     {
-        return $this->fromRole;
+        return $this->fromRoles;
     }
 
     /**
-     * @param string $fromRole
+     * @param Role $role
      */
-    public function setFromRole($fromRole)
+    public function addFromRole(Role $role)
     {
-        $this->fromRole = $fromRole;
+        $this->fromRoles->add($role);
     }
 
     /**
-     * @return string
+     * @param Role $role
      */
-    public function getToRole()
+    public function removeFromRole(Role $role)
     {
-        return $this->toRole;
+        $this->fromRoles->removeElement($role);
     }
 
     /**
-     * @param string $toRole
+     * @param Role $role
      */
-    public function setToRole($toRole)
+    public function addToRole(Role $role)
     {
-        $this->toRole = $toRole;
+        $this->toRoles->add($role);
+    }
+
+    /**
+     * @param Role $role
+     */
+    public function removeToRole(Role $role)
+    {
+        $this->toRoles->removeElement($role);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getToRoles()
+    {
+        return $this->toRoles;
     }
 }

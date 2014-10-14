@@ -46,10 +46,20 @@ class StatusChangeValidator extends ConstraintValidator
         }
 
         $oldStatus = $oldNode->getStatus();
-
         $status = $value->getStatus();
-        if ((!is_null($status->getToRole()) && !$this->securityContext->isGranted($status->getToRole()))
-            || (!is_null($oldStatus->getFromRole()) && !$this->securityContext->isGranted($oldStatus->getFromRole()))
+
+        $toRoles = array();
+        foreach ($status->getToRoles() as $toRole) {
+            $toRoles[] = $toRole->getName();
+        }
+
+        $fromRoles = array();
+        foreach ($oldStatus->getFromRoles() as $fromRole) {
+            $fromRoles[] = $fromRole->getName();
+        }
+
+        if ((!empty($toRoles) && !$this->securityContext->isGranted($toRoles))
+            || (!empty($fromRoles) && !$this->securityContext->isGranted($fromRoles))
         ) {
             $this->context->addViolationAt('status', $this->translator->trans($constraint->message));
         }

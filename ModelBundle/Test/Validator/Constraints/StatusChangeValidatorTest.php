@@ -2,6 +2,7 @@
 
 namespace PHPOrchestra\ModelBundle\Test\Validator\Constraints;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
 use PHPOrchestra\ModelBundle\Validator\Constraints\StatusChange;
 use PHPOrchestra\ModelBundle\Validator\Constraints\StatusChangeValidator;
@@ -20,13 +21,17 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
     protected $statusRepository;
     protected $securityContext;
     protected $nodeRepository;
+    protected $oldRoleName;
     protected $translator;
     protected $constraint;
     protected $oldStatus;
+    protected $roleName;
+    protected $oldRoles;
     protected $oldRole;
     protected $oldNode;
     protected $context;
     protected $status;
+    protected $roles;
     protected $role;
     protected $node;
 
@@ -41,16 +46,24 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
         $this->constraint = new StatusChange();
         $this->context = Phake::mock('Symfony\Component\Validator\Context\ExecutionContext');
 
-        $this->role = 'ROLE';
+        $this->roleName = 'ROLE';
+        $this->role = Phake::mock('PHPOrchestra\ModelBundle\Document\Role');
+        Phake::when($this->role)->getName()->thenReturn($this->roleName);
+        $this->roles = new ArrayCollection();
+        $this->roles->add($this->role);
         $this->status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        Phake::when($this->status)->getToRole()->thenReturn($this->role);
+        Phake::when($this->status)->getToRoles()->thenReturn($this->roles);
 
         $this->node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
         Phake::when($this->node)->getStatus()->thenReturn($this->status);
 
-        $this->oldRole = 'OLD_ROLE';
+        $this->oldRoleName = 'OLD_ROLE';
+        $this->oldRole = Phake::mock('PHPOrchestra\ModelBundle\Document\Role');
+        Phake::when($this->oldRole)->getName()->thenReturn($this->oldRoleName);
+        $this->oldRoles = new ArrayCollection();
+        $this->oldRoles->add($this->oldRole);
         $this->oldStatus = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        Phake::when($this->oldStatus)->getFromRole()->thenReturn($this->oldRole);
+        Phake::when($this->oldStatus)->getFromRoles()->thenReturn($this->oldRoles);
 
         $this->oldNode = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
         Phake::when($this->oldNode)->getStatus()->thenReturn($this->oldStatus);
@@ -73,14 +86,15 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddViolationOrNot($isGrantedNew, $isGrantedOld, $numberOfViolation)
     {
-        Phake::when($this->securityContext)->isGranted($this->role)->thenReturn($isGrantedNew);
-        Phake::when($this->securityContext)->isGranted($this->oldRole)->thenReturn($isGrantedOld);
+        Phake::when($this->securityContext)->isGranted(array($this->roleName))->thenReturn($isGrantedNew);
+        Phake::when($this->securityContext)->isGranted(array($this->oldRoleName))->thenReturn($isGrantedOld);
 
         $this->validator->validate($this->node, $this->constraint);
 
+        Phake::verify($this->securityContext, Phake::atMost(1))->isGranted(array($this->roleName));
+        Phake::verify($this->securityContext, Phake::atMost(1))->isGranted(array($this->oldRoleName));
         Phake::verify($this->context, Phake::times($numberOfViolation))->addViolationAt('status', $this->message);
         Phake::verify($this->translator, Phake::times($numberOfViolation))->trans($this->constraint->message);
-        Phake::verify($this->securityContext, Phake::atMost(2))->isGranted(Phake::anyParameters());
     }
 
     /**
@@ -104,12 +118,13 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testWhenStatusHasNoRole($isGrantedOld, $violationTimes)
     {
-        Phake::when($this->status)->getToRole()->thenReturn(null);
-        Phake::when($this->securityContext)->isGranted($this->oldRole)->thenReturn($isGrantedOld);
+        $roles = new ArrayCollection();
+        Phake::when($this->status)->getToRoles()->thenReturn($roles);
+        Phake::when($this->securityContext)->isGranted(array($this->oldRoleName))->thenReturn($isGrantedOld);
 
         $this->validator->validate($this->node, $this->constraint);
 
-        Phake::verify($this->securityContext)->isGranted($this->oldRole);
+        Phake::verify($this->securityContext)->isGranted(array($this->oldRoleName));
         Phake::verify($this->context, Phake::times($violationTimes))->addViolationAt('status', $this->message);
         Phake::verify($this->translator, Phake::times($violationTimes))->trans($this->constraint->message);
     }
