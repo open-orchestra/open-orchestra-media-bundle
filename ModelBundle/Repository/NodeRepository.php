@@ -126,7 +126,7 @@ class NodeRepository extends DocumentRepository
             $qb = $this->createQueryBuilder('n');
             $qb->field('nodeId')->equals($nodeId);
             $qb->field('deleted')->equals(false);
-            $qb->field('version')->equals($version);
+            $qb->field('version')->equals((int) $version);
 
             return $qb->getQuery()->getSingleResult();
         } else {
