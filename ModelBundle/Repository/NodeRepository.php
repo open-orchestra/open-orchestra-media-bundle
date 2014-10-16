@@ -101,49 +101,61 @@ class NodeRepository extends DocumentRepository
 
     /**
      * @param string $nodeId
+     * @param string $siteId
      *
      * @return mixed
      */
-    public function findWithPublishedAndLastVersion($nodeId)
+    public function findWithPublishedAndLastVersionAndSiteId($nodeId, $siteId = null)
     {
         $qb = $this->buildTreeRequest();
 
         $qb->field('nodeId')->equals($nodeId);
+        if ($siteId) {
+            $qb->field('siteId')->equals($siteId);
+        }
         $qb->sort('version', 'desc');
 
         return $qb->getQuery()->getSingleResult();
     }
 
     /**
-     * @param string   $nodeId
-     * @param int|null $version
+     * @param string      $nodeId
+     * @param string|null $siteId
+     * @param int|null    $version
      *
      * @return mixed
      */
-    public function findOneByNodeIdAndVersion($nodeId, $version = null)
+    public function findOneByNodeIdAndSiteIdAndVersion($nodeId, $siteId = null, $version = null)
     {
         if (!empty($version)) {
             $qb = $this->createQueryBuilder('n');
             $qb->field('nodeId')->equals($nodeId);
+            if ($siteId) {
+                $qb->field('siteId')->equals($siteId);
+            }
             $qb->field('deleted')->equals(false);
             $qb->field('version')->equals((int) $version);
 
             return $qb->getQuery()->getSingleResult();
         } else {
-            return $this->findOneByNodeIdAndLastVersion($nodeId);
+            return $this->findOneByNodeIdAndLastVersion($nodeId, $siteId);
         }
     }
 
     /**
-     * @param string $nodeId
+     * @param string      $nodeId
+     * @param string|null $siteId
      *
      * @return mixed
      */
-    public function findOneByNodeIdAndLastVersion($nodeId)
+    public function findOneByNodeIdAndSiteIdAndLastVersion($nodeId, $siteId = null)
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('nodeId')->equals($nodeId);
         $qb->field('deleted')->equals(false);
+        if ($siteId) {
+            $qb->field('siteId')->equals($siteId);
+        }
         $qb->sort('version', 'desc');
 
         $node = $qb->getQuery()->getSingleResult();
