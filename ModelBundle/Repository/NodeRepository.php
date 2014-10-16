@@ -141,6 +141,23 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
+     * @param string $nodeId
+     * @param string $siteId
+     *
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     * 
+     * @return mixed
+     */
+    public function findByNodeIdAndSiteId($nodeId, $siteId)
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->field('nodeId')->equals($nodeId);
+        $qb->field('siteId')->equals($siteId);
+
+        return $qb->getQuery()->execute();
+    }
+
+    /**
      * @param string      $nodeId
      * @param string|null $siteId
      *
