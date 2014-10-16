@@ -44,15 +44,13 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
-     * @param string $nodeId
-     * @param string $areaId
+     * @param NodeInterface $node
+     * @param string        $areaId
      *
      * @return AreaInterface|null
      */
-    public function findAreaByNodeIdAndAreaId($nodeId, $areaId)
+    public function findAreaFromNodeAndAreaId(NodeInterface $node, $areaId)
     {
-        $node = $this->findOneByNodeId($nodeId);
-
         foreach ($node->getAreas() as $area) {
             if ($areaId == $area->getAreaId()) {
                 return $area;
