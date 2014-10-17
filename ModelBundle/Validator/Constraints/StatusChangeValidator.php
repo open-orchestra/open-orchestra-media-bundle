@@ -41,11 +41,11 @@ class StatusChangeValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if (is_null($oldNode = $this->documentManager->getUnitOfWork()->getOriginalDocumentData($value))) {
+        if (empty($oldNode = $this->documentManager->getUnitOfWork()->getOriginalDocumentData($value))) {
             return;
         }
 
-        $oldStatus = $oldNode->getStatus();
+        $oldStatus = $oldNode['status'];
         $status = $value->getStatus();
 
         if ($oldStatus == $status) {
