@@ -4,6 +4,7 @@ namespace PHPOrchestra\ModelBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -25,10 +26,20 @@ class PHPOrchestraModelExtension extends Extension
         foreach ($config as $class => $content) {
             if (is_array($content)) {
                 $container->setParameter('php_orchestra_model.document.' . $class . '.class', $content['class']);
-                $container->register('php_orchestra_model.repository.' . $class, $content['repository'])
-                    ->setFactoryService('doctrine.odm.mongodb.document_manager')
-                    ->setFactoryMethod('getRepository')
-                    ->addArgument($content['class']);
+                if (array_key_exists('current_site', $content) && $content['current_site']) {
+                    $container->register('php_orchestra_model.repository.' . $class, $content['repository'])
+                        ->setFactoryService('doctrine.odm.mongodb.document_manager')
+                        ->setFactoryMethod('getRepository')
+                        ->addArgument($content['class'])
+                        ->addMethodCall('setCurrentSiteManager', array(
+                            new Reference('php_orchestra.manager.current_site')
+                        ));
+                } else {
+                    $container->register('php_orchestra_model.repository.' . $class, $content['repository'])
+                        ->setFactoryService('doctrine.odm.mongodb.document_manager')
+                        ->setFactoryMethod('getRepository')
+                        ->addArgument($content['class']);
+                }
             }
         }
 

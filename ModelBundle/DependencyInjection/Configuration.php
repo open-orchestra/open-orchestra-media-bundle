@@ -43,6 +43,7 @@ class Configuration implements ConfigurationInterface
                 ->children()
                     ->scalarNode('class')->defaultValue('PHPOrchestra\ModelBundle\Document\Node')->end()
                     ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\NodeRepository')->end()
+                    ->booleanNode('current_site')->defaultTrue()->end()
                 ->end()
             ->end()
             ->arrayNode('site')

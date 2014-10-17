@@ -17,6 +17,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 class GeneratePathListenerTest extends \PHPUnit_Framework_TestCase
 {
     protected $listener;
+    protected $container;
+    protected $nodeRepository;
     protected $lifecycleEventArgs;
 
     /**
@@ -25,7 +27,12 @@ class GeneratePathListenerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->lifecycleEventArgs = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
-        $this->listener = new GeneratePathListener();
+
+        $this->nodeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\NodeRepository');
+        $this->container = Phake::mock('Symfony\Component\DependencyInjection\Container');
+        Phake::when($this->container)->get(Phake::anyParameters())->thenReturn($this->nodeRepository);
+
+        $this->listener = new GeneratePathListener($this->container);
     }
 
     /**
@@ -52,21 +59,20 @@ class GeneratePathListenerTest extends \PHPUnit_Framework_TestCase
     {
         $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $unitOfWork = Phake::mock('Doctrine\ODM\MongoDB\UnitOfWork');
-        $nodeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\NodeRepository');
 
-        Phake::when($nodeRepository)->findOneByNodeIdAndLastVersion(Phake::anyParameters())->thenReturn($parentNode);
+        Phake::when($this->nodeRepository)->findOneByNodeIdAndSiteIdAndLastVersion(Phake::anyParameters())->thenReturn($parentNode);
         Phake::when($unitOfWork)->recomputeSingleDocumentChangeSet(Phake::anyParameters())->thenReturn('test');
-        Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Node')->thenReturn($nodeRepository);
         Phake::when($documentManager)->getClassMetadata(Phake::anyParameters())->thenReturn(new ClassMetadata('PHPOrchestra\ModelBundle\Document\Node'));
         Phake::when($documentManager)->getUnitOfWork()->thenReturn($unitOfWork);
         Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($node);
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
-        Phake::when($nodeRepository)->findChildsByPath(Phake::anyParameters())->thenReturn($childs);
+        Phake::when($this->nodeRepository)->findChildsByPath(Phake::anyParameters())->thenReturn($childs);
 
         $this->listener->preUpdate($this->lifecycleEventArgs);
 
         Phake::verify($node, Phake::never())->setNodeId(Phake::anyParameters());
         Phake::verify($node)->setPath($expectedPath[0]);
+        Phake::verify($documentManager, Phake::never())->getRepository(Phake::anyParameters());
         $count = 1;
         foreach ($childs as $child) {
             Phake::verify($child)->setPath($expectedPath[$count]);

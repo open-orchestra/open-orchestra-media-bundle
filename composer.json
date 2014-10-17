@@ -7,8 +7,15 @@
             "email": "nico.th4l@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/itkg/phporchestra-base-bundle"
+        }
+    ],
     "minimum-stability": "dev",
     "require": {
+        "itkg/phporchestra-base-bundle": "dev-master",
         "doctrine/data-fixtures":"1.0.0",
         "doctrine/mongodb-odm" : "~1.0",
         "doctrine/mongodb-odm-bundle" : "~3.0",

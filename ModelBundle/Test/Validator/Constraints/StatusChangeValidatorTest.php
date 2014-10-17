@@ -54,6 +54,7 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
         $this->roles->add($this->role);
         $this->status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
         Phake::when($this->status)->getToRoles()->thenReturn($this->roles);
+        Phake::when($this->status)->getId()->thenReturn('newId');
 
         $this->node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
         Phake::when($this->node)->getStatus()->thenReturn($this->status);
@@ -65,6 +66,7 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
         $this->oldRoles->add($this->oldRole);
         $this->oldStatus = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
         Phake::when($this->oldStatus)->getFromRoles()->thenReturn($this->oldRoles);
+        Phake::when($this->oldStatus)->getId()->thenReturn('oldId');
 
         $this->oldNode = array('status' => $this->oldStatus);
 
@@ -148,6 +150,19 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
     public function testWhenNoOldNode()
     {
         Phake::when($this->unitOfWork)->getOriginalDocumentData(Phake::anyParameters())->thenReturn(array());
+
+        $this->validator->validate($this->node, $this->constraint);
+
+        Phake::verify($this->context, Phake::never())->addViolationAt(Phake::anyParameters());
+    }
+
+    /**
+     * Test on node creation
+     */
+    public function testWhenStatusTheSame()
+    {
+        Phake::when($this->status)->getId()->thenReturn('newId');
+        Phake::when($this->oldStatus)->getId()->thenReturn('newId');
 
         $this->validator->validate($this->node, $this->constraint);
 

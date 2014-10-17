@@ -17,6 +17,8 @@ services:
             -  { name: doctrine_mongodb.odm.event_listener, event: prePersist }
     php_orchestra_model.doctrine_listener.generate_path:
         class: %php_orchestra_model.doctrine_listener.generate_path.class%
+        arguments:
+            - @service_container
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
     php_orchestra_model.doctrine_listener.generate_node_id:
