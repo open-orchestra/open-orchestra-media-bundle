@@ -7,6 +7,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Doctrine\ODM\MongoDB\Mapping;
 use Doctrine\ODM\MongoDB\UnitOfWork;
+use PHPOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
 
@@ -16,28 +17,37 @@ use PHPOrchestra\ModelBundle\Model\NodeInterface;
 class NodeRepository extends DocumentRepository
 {
     /**
-     * @param string $siteId
-     *
+     * @var CurrentSiteIdInterface
+     */
+    protected $currentSiteManager;
+
+    /**
+     * @param CurrentSiteIdInterface $currentSiteManager
+     */
+    public function setCurrentSiteManager(CurrentSiteIdInterface $currentSiteManager)
+    {
+        $this->currentSiteManager = $currentSiteManager;
+    }
+
+    /**
      * @return Cursor
      */
-    public function getFooterTree($siteId)
+    public function getFooterTree()
     {
-        $qb = $this->buildTreeRequest($siteId);
-        $qb->field('siteId')->equals($siteId);
+        $qb = $this->buildTreeRequest();
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
         $qb->field('inFooter')->equals(true);
 
         return $qb->getQuery()->execute();
     }
 
     /**
-     * @param string $siteId
-     *
      * @return Cursor
      */
-    public function getMenuTree($siteId)
+    public function getMenuTree()
     {
-        $qb = $this->buildTreeRequest($siteId);
-        $qb->field('siteId')->equals($siteId);
+        $qb = $this->buildTreeRequest();
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
         $qb->field('inMenu')->equals(true);
 
         return $qb->getQuery()->execute();
@@ -99,18 +109,15 @@ class NodeRepository extends DocumentRepository
 
     /**
      * @param string $nodeId
-     * @param string $siteId
      *
      * @return mixed
      */
-    public function findWithPublishedAndLastVersionAndSiteId($nodeId, $siteId = null)
+    public function findWithPublishedAndLastVersionAndSiteId($nodeId)
     {
         $qb = $this->buildTreeRequest();
 
         $qb->field('nodeId')->equals($nodeId);
-        if ($siteId) {
-            $qb->field('siteId')->equals($siteId);
-        }
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
         $qb->sort('version', 'desc');
 
         return $qb->getQuery()->getSingleResult();
@@ -118,59 +125,52 @@ class NodeRepository extends DocumentRepository
 
     /**
      * @param string      $nodeId
-     * @param string|null $siteId
      * @param int|null    $version
      *
      * @return mixed
      */
-    public function findOneByNodeIdAndSiteIdAndVersion($nodeId, $siteId = null, $version = null)
+    public function findOneByNodeIdAndVersionAndSiteId($nodeId, $version = null)
     {
         if (!empty($version)) {
             $qb = $this->createQueryBuilder('n');
             $qb->field('nodeId')->equals($nodeId);
-            if ($siteId) {
-                $qb->field('siteId')->equals($siteId);
-            }
+            $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
             $qb->field('deleted')->equals(false);
             $qb->field('version')->equals((int) $version);
 
             return $qb->getQuery()->getSingleResult();
         } else {
-            return $this->findOneByNodeIdAndLastVersion($nodeId, $siteId);
+            return $this->findWithPublishedAndLastVersionAndSiteId($nodeId);
         }
     }
 
     /**
      * @param string $nodeId
-     * @param string $siteId
      *
      * @throws \Doctrine\ODM\MongoDB\MongoDBException
-     * 
+     *
      * @return mixed
      */
-    public function findByNodeIdAndSiteId($nodeId, $siteId)
+    public function findByNodeIdAndSiteId($nodeId)
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('nodeId')->equals($nodeId);
-        $qb->field('siteId')->equals($siteId);
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         return $qb->getQuery()->execute();
     }
 
     /**
      * @param string      $nodeId
-     * @param string|null $siteId
      *
      * @return mixed
      */
-    public function findOneByNodeIdAndSiteIdAndLastVersion($nodeId, $siteId = null)
+    public function findOneByNodeIdAndSiteIdAndLastVersion($nodeId)
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('nodeId')->equals($nodeId);
         $qb->field('deleted')->equals(false);
-        if ($siteId) {
-            $qb->field('siteId')->equals($siteId);
-        }
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
         $qb->sort('version', 'desc');
 
         $node = $qb->getQuery()->getSingleResult();
@@ -179,15 +179,13 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
-     * @param string $siteId
-     *
      * @return array
      */
-    public function findLastVersionBySiteId($siteId)
+    public function findLastVersionBySiteId()
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('deleted')->equals(false);
-        $qb->field('siteId')->equals($siteId);
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         $list = $qb->getQuery()->execute();
         $nodes = array();
@@ -204,6 +202,7 @@ class NodeRepository extends DocumentRepository
 
         return $nodes;
     }
+
     /**
      * @param string $path
      *
