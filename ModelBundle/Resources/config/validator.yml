@@ -7,6 +7,6 @@ services:
         arguments:
             - @security.context
             - @translator
-            - @php_orchestra_model.repository.node
+            - @doctrine_mongodb.odm.default_document_manager
         tags:
             - { name: validator.constraint_validator, alias: status_change}
