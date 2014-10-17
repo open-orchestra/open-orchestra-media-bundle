@@ -66,8 +66,7 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
         $this->oldStatus = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
         Phake::when($this->oldStatus)->getFromRoles()->thenReturn($this->oldRoles);
 
-        $this->oldNode = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
-        Phake::when($this->oldNode)->getStatus()->thenReturn($this->oldStatus);
+        $this->oldNode = array('status' => $this->oldStatus);
 
         $this->unitOfWork = Phake::mock('Doctrine\ODM\MongoDB\UnitOfWork');
         Phake::when($this->unitOfWork)->getOriginalDocumentData(Phake::anyParameters())->thenReturn($this->oldNode);
@@ -148,7 +147,7 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testWhenNoOldNode()
     {
-        Phake::when($this->unitOfWork)->getOriginalDocumentData(Phake::anyParameters())->thenReturn(null);
+        Phake::when($this->unitOfWork)->getOriginalDocumentData(Phake::anyParameters())->thenReturn(array());
 
         $this->validator->validate($this->node, $this->constraint);
 
