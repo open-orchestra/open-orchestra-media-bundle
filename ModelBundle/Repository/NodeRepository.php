@@ -161,7 +161,7 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
-     * @param string      $nodeId
+     * @param string $nodeId
      *
      * @return mixed
      */

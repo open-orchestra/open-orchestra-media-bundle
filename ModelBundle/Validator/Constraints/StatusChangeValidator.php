@@ -49,7 +49,7 @@ class StatusChangeValidator extends ConstraintValidator
         $oldStatus = $oldNode['status'];
         $status = $value->getStatus();
 
-        if ($oldStatus == $status) {
+        if ($oldStatus->getId() == $status->getId()) {
             return;
         }
 
