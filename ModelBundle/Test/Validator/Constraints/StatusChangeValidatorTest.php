@@ -20,10 +20,11 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
     protected $message = 'message';
     protected $statusRepository;
     protected $securityContext;
-    protected $nodeRepository;
+    protected $documentManager;
     protected $oldRoleName;
     protected $translator;
     protected $constraint;
+    protected $unitOfWork;
     protected $oldStatus;
     protected $roleName;
     protected $oldRoles;
@@ -68,10 +69,12 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
         $this->oldNode = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
         Phake::when($this->oldNode)->getStatus()->thenReturn($this->oldStatus);
 
-        $this->nodeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\NodeRepository');
-        Phake::when($this->nodeRepository)->find(Phake::anyParameters())->thenReturn($this->oldNode);
+        $this->unitOfWork = Phake::mock('Doctrine\ODM\MongoDB\UnitOfWork');
+        Phake::when($this->unitOfWork)->getOriginalDocumentData(Phake::anyParameters())->thenReturn($this->oldNode);
+        $this->documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
+        Phake::when($this->documentManager)->getUnitOfWork()->thenReturn($this->unitOfWork);
 
-        $this->validator = new StatusChangeValidator($this->securityContext, $this->translator, $this->nodeRepository);
+        $this->validator = new StatusChangeValidator($this->securityContext, $this->translator, $this->documentManager);
         $this->validator->initialize($this->context);
     }
 
@@ -145,7 +148,7 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testWhenNoOldNode()
     {
-        Phake::when($this->nodeRepository)->find(Phake::anyParameters())->thenReturn(null);
+        Phake::when($this->unitOfWork)->getOriginalDocumentData(Phake::anyParameters())->thenReturn(null);
 
         $this->validator->validate($this->node, $this->constraint);
 

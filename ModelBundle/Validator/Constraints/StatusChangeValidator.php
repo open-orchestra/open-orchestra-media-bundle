@@ -2,11 +2,11 @@
 
 namespace PHPOrchestra\ModelBundle\Validator\Constraints;
 
-use PHPOrchestra\ModelBundle\Repository\NodeRepository;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Doctrine\ODM\MongoDB\DocumentManager;
 
 /**
  * Class StatusChangeValidator
@@ -14,22 +14,22 @@ use Symfony\Component\Validator\ConstraintValidator;
 class StatusChangeValidator extends ConstraintValidator
 {
     protected $securityContext;
-    protected $nodeRepository;
+    protected $documentManager;
     protected $translator;
 
     /**
      * @param SecurityContextInterface $securityContext
      * @param Translator               $translator
-     * @param NodeRepository           $nodeRepository
+     * @param DocumentManager          $documentManager
      */
     public function __construct(
         SecurityContextInterface $securityContext,
         Translator $translator,
-        NodeRepository $nodeRepository
+        DocumentManager $documentManager
     )
     {
         $this->securityContext = $securityContext;
-        $this->nodeRepository = $nodeRepository;
+        $this->documentManager = $documentManager;
         $this->translator = $translator;
     }
 
@@ -41,12 +41,16 @@ class StatusChangeValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if (is_null($oldNode = $this->nodeRepository->find($value->getId()))) {
+        if (is_null($oldNode = $this->documentManager->getUnitOfWork()->getOriginalDocumentData($value))) {
             return;
         }
 
         $oldStatus = $oldNode->getStatus();
         $status = $value->getStatus();
+
+        if ($oldStatus == $status) {
+            return;
+        }
 
         $toRoles = array();
         foreach ($status->getToRoles() as $toRole) {
