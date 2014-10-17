@@ -41,7 +41,8 @@ class StatusChangeValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if (empty($oldNode = $this->documentManager->getUnitOfWork()->getOriginalDocumentData($value))) {
+        $oldNode = $this->documentManager->getUnitOfWork()->getOriginalDocumentData($value);
+        if (empty($oldNode)) {
             return;
         }
 
