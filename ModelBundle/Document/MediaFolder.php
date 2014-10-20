@@ -47,7 +47,6 @@ class MediaFolder extends Folder implements MediaFolderInterface
     public function addMedia(MediaInterface $media)
     {
         $this->medias->add($media);
-        $media->setMedialFolder($this);
     }
 
     /**
