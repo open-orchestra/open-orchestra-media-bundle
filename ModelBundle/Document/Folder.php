@@ -9,6 +9,7 @@ use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use PHPOrchestra\ModelBundle\Model\FolderInterface;
+use PHPOrchestra\ModelBundle\Model\SiteInterface;
 
 /**
  * Class Folder
@@ -53,6 +54,13 @@ abstract class Folder implements FolderInterface
      * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Folder", mappedBy="parent")
      */
     protected $subFolders;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Site", mappedBy="site")
+     */
+    protected $sites;
 
     /**
      * Constructor
@@ -125,5 +133,29 @@ abstract class Folder implements FolderInterface
     public function removeSubFolder(FolderInterface $subFolder)
     {
         $this->subFolders->removeElement($subFolder);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSite()
+    {
+        return $this->sites;
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function addSite(SiteInterface $site)
+    {
+        $this->sites->add($site);
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function removeSite(SiteInterface $site)
+    {
+        $this->sites->remove($site);
     }
 }
