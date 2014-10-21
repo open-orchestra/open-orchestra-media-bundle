@@ -31,6 +31,7 @@ class MoveUploadedFileListener
                 $document->setName($file->getClientOriginalName());
                 $this->path = sha1(uniqid(mt_rand(), true)) . $file->getClientOriginalName() . '.' . $file->guessClientExtension();
                 $document->setFilesystemName($this->path);
+                $document->setMimeType($file->getClientMimeType());
             }
         }
     }

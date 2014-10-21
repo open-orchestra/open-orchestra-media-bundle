@@ -38,11 +38,18 @@ class Media implements MediaInterface
     protected $name;
 
     /**
-     * @var string $name
+     * @var string $filesystemName
      *
      * @ODM\Field(type="string")
      */
     protected $filesystemName;
+
+    /**
+     * @var string $mimeType
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $mimeType;
 
     /**
      * @var MediaFolderInterface
@@ -127,5 +134,21 @@ class Media implements MediaInterface
     public function setFile(UploadedFile $file)
     {
         $this->file = $file;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
+    }
+
+    /**
+     * @param string $mimeType
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
     }
 }
