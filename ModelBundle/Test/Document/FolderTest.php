@@ -21,8 +21,8 @@ class FolderTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->folder1 = Phake::mock('PHPOrchestra\ModelBundle\Document\Folder');
-        $this->folder2 = Phake::mock('PHPOrchestra\ModelBundle\Document\Folder');
+        $this->folder1 = Phake::mock('PHPOrchestra\ModelBundle\Model\FolderInterface');
+        $this->folder2 = Phake::mock('PHPOrchestra\ModelBundle\Model\FolderInterface');
 
         $this->mediaFolder = new MediaFolder();
         $this->mediaFolder->addSubFolder($this->folder1);
