@@ -129,7 +129,7 @@ abstract class Folder implements FolderInterface
     {
         return $this->subFolders->filter(function ($folder) use ($siteId)
         {
-            foreach ($folder->getSite() as $site) {
+            foreach ($folder->getSites() as $site) {
                 if ($site->getSiteId() === $siteId) {
                     return true;
                 }
@@ -158,7 +158,7 @@ abstract class Folder implements FolderInterface
     /**
      * @return ArrayCollection
      */
-    public function getSite()
+    public function getSites()
     {
         return $this->sites;
     }
