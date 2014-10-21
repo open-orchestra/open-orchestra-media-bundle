@@ -58,7 +58,7 @@ abstract class Folder implements FolderInterface
     /**
      * @var ArrayCollection
      *
-     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Site", mappedBy="site")
+     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Site")
      */
     protected $sites;
 
@@ -68,6 +68,7 @@ abstract class Folder implements FolderInterface
     public function __construct()
     {
         $this->subFolders = new ArrayCollection();
+        $this->sites = new ArrayCollection();
     }
 
     /**
@@ -117,6 +118,27 @@ abstract class Folder implements FolderInterface
     public function getSubFolders()
     {
         return $this->subFolders;
+    }
+
+    /**
+     * @param string $siteId
+     *
+     * @return Collection
+     */
+    public function getSubFoldersBySiteId($siteId)
+    {
+        $folders = array();
+
+        foreach ($this->subFolders as $folder) {
+            $sites = $folder->getSite();
+            foreach ($sites as $site) {
+                if ($site->getSiteId() === $siteId) {
+                    $folders[] = $folder;
+                }
+            }
+        }
+
+        return $folders;
     }
 
     /**

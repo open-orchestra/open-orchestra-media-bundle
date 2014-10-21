@@ -2,14 +2,15 @@
 
 namespace PHPOrchestra\ModelBundle\DataFixtures\MongoDB;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Site;
 
 /**
  * Class LoadSiteData
  */
-class LoadSiteData implements FixtureInterface
+class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * @param ObjectManager $manager
@@ -18,15 +19,19 @@ class LoadSiteData implements FixtureInterface
     {
         $site1 = $this->getSite1();
         $manager->persist($site1);
+        $this->addReference('site1', $site1);
 
         $site2 = $this->getSite2();
         $manager->persist($site2);
+        $this->addReference('site2', $site2);
 
         $site3 = $this->getSite3();
         $manager->persist($site3);
+        $this->addReference('site3', $site3);
 
         $site4 = $this->getSite4();
         $manager->persist($site4);
+        $this->addReference('site4', $site4);
 
         $manager->flush();
     }
@@ -95,4 +100,13 @@ class LoadSiteData implements FixtureInterface
         return $site4;
     }
 
+    /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    function getOrder()
+    {
+        return 25;
+    }
 }

@@ -100,6 +100,7 @@ class Configuration implements ConfigurationInterface
                 ->children()
                     ->scalarNode('class')->defaultValue('PHPOrchestra\ModelBundle\Document\MediaFolder')->end()
                     ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\FolderRepository')->end()
+                    ->booleanNode('current_site')->defaultTrue()->end()
                 ->end()
             ->end()
             ->arrayNode('role')
