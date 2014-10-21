@@ -55,6 +55,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
     public function testPreUpload($fileName, $fileExtension)
     {
         Phake::when($this->file)->guessClientExtension()->thenReturn($fileExtension);
+        Phake::when($this->file)->getClientMimeType()->thenReturn($fileExtension);
         Phake::when($this->file)->getClientOriginalName()->thenReturn($fileName);
 
         $this->listener->prePersist($this->event);
@@ -62,6 +63,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
         Phake::verify($this->media)->setFilesystemName(Phake::anyParameters());
         $this->assertRegExp('/'.$fileName .'.'. $fileExtension.'/', $this->listener->path);
         Phake::verify($this->media)->setName($fileName);
+        Phake::verify($this->media)->setMimeType($fileExtension);
     }
 
     /**

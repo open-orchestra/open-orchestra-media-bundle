@@ -52,4 +52,14 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface
      * @param UploadedFile $file
      */
     public function setFile(UploadedFile $file);
+
+    /**
+     * @return string
+     */
+    public function getMimeType();
+
+    /**
+     * @param string $mimeType
+     */
+    public function setMimeType($mimeType);
 }
