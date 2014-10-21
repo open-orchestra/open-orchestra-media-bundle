@@ -9,6 +9,7 @@ use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use PHPOrchestra\ModelBundle\Model\FolderInterface;
+use PHPOrchestra\ModelBundle\Model\SiteInterface;
 
 /**
  * Class Folder
@@ -55,11 +56,19 @@ abstract class Folder implements FolderInterface
     protected $subFolders;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Site")
+     */
+    protected $sites;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->subFolders = new ArrayCollection();
+        $this->sites = new ArrayCollection();
     }
 
     /**
@@ -112,6 +121,25 @@ abstract class Folder implements FolderInterface
     }
 
     /**
+     * @param string $siteId
+     *
+     * @return Collection
+     */
+    public function getSubFoldersBySiteId($siteId)
+    {
+        return $this->subFolders->filter(function ($folder) use ($siteId)
+        {
+            foreach ($folder->getSites() as $site) {
+                if ($site->getSiteId() === $siteId) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+    }
+
+    /**
      * @param FolderInterface $subFolder
      */
     public function addSubFolder(FolderInterface $subFolder)
@@ -125,5 +153,29 @@ abstract class Folder implements FolderInterface
     public function removeSubFolder(FolderInterface $subFolder)
     {
         $this->subFolders->removeElement($subFolder);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSites()
+    {
+        return $this->sites;
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function addSite(SiteInterface $site)
+    {
+        $this->sites->add($site);
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function removeSite(SiteInterface $site)
+    {
+        $this->sites->remove($site);
     }
 }
