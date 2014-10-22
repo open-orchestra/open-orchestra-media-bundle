@@ -20,7 +20,7 @@ class MediaFolder extends Folder implements MediaFolderInterface
     /**
      * @var Collection
      *
-     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Media", mappedBy="folder")
+     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Media", mappedBy="mediaFolder")
      */
     protected $medias;
 
@@ -30,7 +30,6 @@ class MediaFolder extends Folder implements MediaFolderInterface
     public function __construct()
     {
         parent::__construct();
-        $this->medias = new ArrayCollection();
     }
 
     /**
