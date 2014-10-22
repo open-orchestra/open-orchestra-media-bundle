@@ -117,7 +117,6 @@ class Media implements MediaInterface
     public function setMediaFolder(MediaFolderInterface $mediaFolder)
     {
         $this->mediaFolder = $mediaFolder;
-        $mediaFolder->addMedia($this);
     }
 
     /**
