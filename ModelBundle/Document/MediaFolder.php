@@ -30,6 +30,7 @@ class MediaFolder extends Folder implements MediaFolderInterface
     public function __construct()
     {
         parent::__construct();
+        $this->medias = new ArrayCollection();
     }
 
     /**
