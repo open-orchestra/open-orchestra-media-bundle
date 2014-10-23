@@ -9,9 +9,11 @@ cache:
 php:
   - 5.4
 
-before_script: 
+before_install:
   - phpenv config-add .travis.php.ini
-  - composer install
+
+install:
+  - composer install --prefer-dist
 
 script: ./bin/phpunit
 
