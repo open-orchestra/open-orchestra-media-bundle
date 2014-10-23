@@ -25,7 +25,7 @@ class Template implements TemplateInterface
      * @MongoDB\Id
      */
     protected $id;
-    
+
     /**
      * @var string $templateId
      *
@@ -46,7 +46,7 @@ class Template implements TemplateInterface
      * @MongoDB\Field(type="string")
      */
     protected $name;
-    
+
     /**
      * @var int $version
      *
@@ -74,21 +74,21 @@ class Template implements TemplateInterface
      * @MongoDB\Field(type="boolean")
      */
     protected $deleted = false;
-    
+
     /**
      * @var AreaInterface
      *
      * @MongoDB\EmbedMany(targetDocument="Area")
      */
     protected $areas;
-    
+
     /**
      * @var string $boDirection
      *
      * @MongoDB\Field(type="string")
      */
     protected $boDirection;
-    
+
     /**
      * @var ArrayCollection
      *

@@ -14,7 +14,7 @@ class LoadThemeData implements FixtureInterface
     /**
      * @param ObjectManager $manager
      */
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $theme = new Theme();
         $theme->setName('theme1');

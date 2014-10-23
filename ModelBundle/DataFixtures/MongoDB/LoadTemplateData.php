@@ -16,7 +16,7 @@ class LoadTemplateData extends AbstractFixture implements OrderedFixtureInterfac
     /**
      * @param ObjectManager $manager
      */
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $generic = $this->genericTemplate();
         $manager->persist($generic);
@@ -35,7 +35,7 @@ class LoadTemplateData extends AbstractFixture implements OrderedFixtureInterfac
      *
      * @return integer
      */
-    function getOrder()
+    public function getOrder()
     {
         return 40;
     }

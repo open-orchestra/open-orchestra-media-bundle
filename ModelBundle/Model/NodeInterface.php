@@ -207,14 +207,14 @@ interface NodeInterface extends AreaContainerInterface, BlockContainerInterface,
      * @param Collection $blocks
      */
     public function setBlocks(Collection $blocks);
-    
+
     /**
      * Set areas
      *
      * @param Collection $areas
      */
     public function setAreas(Collection $areas);
-    
+
     /**
      * @param boolean $inFooter
      */

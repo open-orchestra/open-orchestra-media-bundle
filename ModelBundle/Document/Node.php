@@ -453,7 +453,7 @@ class Node implements NodeInterface
             $this->blocks->add($block);
         }
     }
-    
+
     /**
      * @param BlockInterface $block
      *
@@ -511,7 +511,7 @@ class Node implements NodeInterface
             $this->areas->add($area);
         }
     }
-    
+
     /**
      * @param AreaInterface $area
      */

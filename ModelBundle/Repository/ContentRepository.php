@@ -11,7 +11,7 @@ class ContentRepository extends DocumentRepository
 {
     /**
      * Get all content if the contentType is "news"
-     * 
+     *
      * @return array list of news
      */
     public function findAllNews()

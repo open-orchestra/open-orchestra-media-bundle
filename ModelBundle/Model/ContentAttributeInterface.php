@@ -26,4 +26,4 @@ interface ContentAttributeInterface
      * @return string
      */
     public function getValue();
-} 
+}

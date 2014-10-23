@@ -127,8 +127,7 @@ abstract class Folder implements FolderInterface
      */
     public function getSubFoldersBySiteId($siteId)
     {
-        return $this->subFolders->filter(function ($folder) use ($siteId)
-        {
+        return $this->subFolders->filter(function ($folder) use ($siteId) {
             foreach ($folder->getSites() as $site) {
                 if ($site->getSiteId() === $siteId) {
                     return true;

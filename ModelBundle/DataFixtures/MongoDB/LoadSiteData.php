@@ -15,7 +15,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * @param ObjectManager $manager
      */
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $site1 = $this->getSite1();
         $manager->persist($site1);
@@ -105,7 +105,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
      *
      * @return integer
      */
-    function getOrder()
+    public function getOrder()
     {
         return 25;
     }

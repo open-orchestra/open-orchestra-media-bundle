@@ -20,7 +20,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
      *
      * @param ObjectManager $manager
      */
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $new = $this->generateContentTypeNews();
         $manager->persist($new);
@@ -42,7 +42,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
      *
      * @return integer
      */
-    function getOrder()
+    public function getOrder()
     {
         return 60;
     }

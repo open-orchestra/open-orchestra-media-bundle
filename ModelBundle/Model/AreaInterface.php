@@ -90,4 +90,3 @@ interface AreaInterface extends AreaContainerInterface
     public function addBlock(array $block);
 
 }
- 

@@ -11,7 +11,7 @@ class StatusRepository extends DocumentRepository
 {
     /**
      * @param string $name
-     * 
+     *
      * @return Status
      */
     public function findOneByInitial()

@@ -15,7 +15,7 @@ class LoadFolderData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * @param ObjectManager $manager
      */
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
         $rootImages = new MediaFolder();
         $rootImages->setName('Images folder');
@@ -73,7 +73,7 @@ class LoadFolderData extends AbstractFixture implements OrderedFixtureInterface
      *
      * @return integer
      */
-    function getOrder()
+    public function getOrder()
     {
         return 35;
     }

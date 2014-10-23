@@ -170,7 +170,7 @@ class ContentType implements ContentTypeInterface
      */
     public function getName($language = 'en')
     {
-        $choosenLanguage = $this->names->filter(function($translatedValue) use ($language) {
+        $choosenLanguage = $this->names->filter(function ($translatedValue) use ($language) {
             return $language == $translatedValue->getLanguage();
         });
 
