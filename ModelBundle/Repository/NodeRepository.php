@@ -140,7 +140,7 @@ class NodeRepository extends DocumentRepository
 
             return $qb->getQuery()->getSingleResult();
         } else {
-            return $this->findWithPublishedAndLastVersionAndSiteId($nodeId);
+            return $this->findOneByNodeIdAndSiteIdAndLastVersion($nodeId);
         }
     }
 
