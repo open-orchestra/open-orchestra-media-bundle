@@ -4,6 +4,7 @@ namespace PHPOrchestra\ModelBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use PHPOrchestra\ModelBundle\Model\MediaInterface;
+use PHPOrchestra\ModelBundle\Thumbnail\ThumbnailManager;
 
 /**
  * Class MoveUploadedFileListener
@@ -12,13 +13,15 @@ class MoveUploadedFileListener
 {
     public $path;
     protected $uploadDir;
+    protected $thumbnailManager;
 
     /**
      * @param string $uploadDir
      */
-    public function __construct($uploadDir)
+    public function __construct($uploadDir, ThumbnailManager $thumbnailManager)
     {
         $this->uploadDir = $uploadDir;
+        $this->thumbnailManager = $thumbnailManager;
     }
 
     /**
@@ -32,6 +35,7 @@ class MoveUploadedFileListener
                 $this->path = sha1(uniqid(mt_rand(), true)) . $file->getClientOriginalName() . '.' . $file->guessClientExtension();
                 $document->setFilesystemName($this->path);
                 $document->setMimeType($file->getClientMimeType());
+                $document = $this->thumbnailManager->generateThumbnailName($document);
             }
         }
     }
@@ -44,6 +48,7 @@ class MoveUploadedFileListener
         if ( ($document = $event->getDocument()) instanceof MediaInterface) {
             if (null !== ($file = $document->getFile())) {
                 $file->move($this->uploadDir, $this->path);
+                $document = $this->thumbnailManager->generateThumbnail($document);
             }
         }
     }

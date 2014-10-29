@@ -16,6 +16,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
     protected $listener;
 
     protected $uploadDir = 'uploadDir';
+    protected $thumbnailManager;
     protected $event;
     protected $media;
     protected $file;
@@ -30,11 +31,14 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
         $this->media = Phake::mock('PHPOrchestra\ModelBundle\Model\MediaInterface');
         Phake::when($this->media)->getFile()->thenReturn($this->file);
 
+        $this->thumbnailManager = Phake::mock('PHPOrchestra\ModelBundle\Thumbnail\ThumbnailManager');
+
         $this->event = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
         Phake::when($this->event)->getDocument()->thenReturn($this->media);
 
-        $this->listener = new MoveUploadedFileListener($this->uploadDir);
+        $this->listener = new MoveUploadedFileListener($this->uploadDir, $this->thumbnailManager);
     }
+
     /**
      * Test if the methods exists
      */
@@ -64,6 +68,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
         $this->assertRegExp('/'.$fileName .'.'. $fileExtension.'/', $this->listener->path);
         Phake::verify($this->media)->setName($fileName);
         Phake::verify($this->media)->setMimeType($fileExtension);
+        Phake::verify($this->thumbnailManager)->generateThumbnailName($this->media);
     }
 
     /**
@@ -102,6 +107,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
         $this->listener->postPersist($this->event);
 
         Phake::verify($this->file)->move($this->uploadDir, $fileName);
+        Phake::verify($this->thumbnailManager)->generateThumbnail($this->media);
     }
 
     /**

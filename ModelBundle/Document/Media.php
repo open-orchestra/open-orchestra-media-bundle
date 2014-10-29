@@ -64,6 +64,13 @@ class Media implements MediaInterface
     protected $file;
 
     /**
+     * @var string $thumbnail
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $thumbnail;
+
+    /**
      * @return string
      */
     public function getFilesystemName()
@@ -149,5 +156,21 @@ class Media implements MediaInterface
     public function setMimeType($mimeType)
     {
         $this->mimeType = $mimeType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param string $thumbnail
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
     }
 }
