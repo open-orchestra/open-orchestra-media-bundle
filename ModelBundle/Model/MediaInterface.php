@@ -62,4 +62,14 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface
      * @param string $mimeType
      */
     public function setMimeType($mimeType);
+
+    /**
+     * @return string
+     */
+    public function getThumbnail();
+
+    /**
+     * @param string $thumbnail
+     */
+    public function setThumbnail($thumbnail);
 }

@@ -29,6 +29,7 @@ services:
         class: %php_orchestra_model.doctrine_listener.move_uploaded_file.class%
         arguments:
             - %php_orchestra_model.upload_dir%
+            - @php_orchestra_model.thumbnail_manager
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
             - { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
