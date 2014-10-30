@@ -58,6 +58,6 @@ class ImageToThumbnailManager implements ThumbnailInterface
      */
     public function getName()
     {
-        return 'image';
+        return 'image_to_thumbnail';
     }
 }
