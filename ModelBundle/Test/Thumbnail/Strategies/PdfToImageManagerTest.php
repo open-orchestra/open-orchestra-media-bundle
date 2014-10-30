@@ -16,6 +16,7 @@ class PdfToImageManagerTest extends \PHPUnit_Framework_TestCase
     protected $manager;
 
     protected $uploadDir;
+    protected $media;
 
     /**
      * Set up the test
@@ -23,14 +24,45 @@ class PdfToImageManagerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->uploadDir = __DIR__.'/upload';
+        $this->media = Phake::mock('PHPOrchestra\ModelBundle\Model\MediaInterface');
 
         $this->manager = new PdfToImageManager($this->uploadDir);
     }
 
     /**
+     * @param string $mimeType
+     * @param bool   $result
+     *
+     * @dataProvider provideMimeType
+     */
+    public function testSupport($mimeType, $result)
+    {
+        Phake::when($this->media)->getMimeType()->thenReturn($mimeType);
+
+        $this->assertSame($result, $this->manager->support($this->media));
+    }
+
+    /**
+     * @return array
+     */
+    public function provideMimeType()
+    {
+        return array(
+            array('application/x-authorware-map', false),
+            array('application/pdf', true),
+            array('text/plain', false),
+            array('audio/it', false),
+            array('music/crescendo', false),
+            array('image/naplps', false),
+            array('video/vnd.vivo', false),
+            array('video/x-fli', false),
+        );
+    }
+
+    /**
      * test thumbnail creation
      */
-    public function testCreateThumbnail()
+    public function testGenerateThumbnail()
     {
         $fileName = 'BarometreAFUP-Agence-e-2014';
 
@@ -39,11 +71,10 @@ class PdfToImageManagerTest extends \PHPUnit_Framework_TestCase
         }
         $this->assertFalse(file_exists($this->uploadDir .'/'. $fileName .'.jpg'));
 
-        $document = Phake::mock('PHPOrchestra\ModelBundle\Model\MediaInterface');
-        Phake::when($document)->getFilesystemName()->thenReturn($fileName. '.pdf');
-        Phake::when($document)->getThumbnail()->thenReturn($fileName. '.jpg');
+        Phake::when($this->media)->getFilesystemName()->thenReturn($fileName. '.pdf');
+        Phake::when($this->media)->getThumbnail()->thenReturn($fileName. '.jpg');
 
-        $this->manager->generateThumbnail($document);
+        $this->manager->generateThumbnail($this->media);
 
         $this->assertTrue(file_exists($this->uploadDir .'/'. $fileName .'.jpg'));
     }
@@ -55,12 +86,11 @@ class PdfToImageManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGenerateThumbnailName($fileName)
     {
-        $document = Phake::mock('PHPOrchestra\ModelBundle\Model\MediaInterface');
-        Phake::when($document)->getFilesystemName()->thenReturn($fileName. '.pdf');
+        Phake::when($this->media)->getFilesystemName()->thenReturn($fileName. '.pdf');
 
-        $this->manager->generateThumbnailName($document);
+        $this->manager->generateThumbnailName($this->media);
 
-        Phake::verify($document)->setThumbnail($fileName. '.jpg');
+        Phake::verify($this->media)->setThumbnail($fileName. '.jpg');
     }
 
     /**
