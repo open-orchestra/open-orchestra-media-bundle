@@ -77,6 +77,9 @@ class ImageToThumbnailManagerTest extends \PHPUnit_Framework_TestCase
         Phake::verify($this->media)->setThumbnail($fileName);
     }
 
+    /**
+     * @return array
+     */
     public function provideFileName()
     {
         return array(
