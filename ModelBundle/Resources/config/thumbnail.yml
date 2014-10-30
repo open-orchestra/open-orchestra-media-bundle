@@ -1,12 +1,19 @@
 parameters:
     php_orchestra_model.thumbnail_manager.class: PHPOrchestra\ModelBundle\Thumbnail\ThumbnailManager
     php_orchestra_model.thumbnail.pdf_to_image.class: PHPOrchestra\ModelBundle\Thumbnail\Strategies\PdfToImageManager
+    php_orchestra_model.thumbnail.video_to_image.class: PHPOrchestra\ModelBundle\Thumbnail\Strategies\VideoToImageManager
 
 services:
     php_orchestra_model.thumbnail_manager:
         class: %php_orchestra_model.thumbnail_manager.class%
     php_orchestra_model.thumbnail.pdf_to_image:
         class: %php_orchestra_model.thumbnail.pdf_to_image.class%
+        arguments:
+            - %php_orchestra_model.upload_dir%
+        tags:
+            - { name: php_orchestra_model.thumbnail.strategy }
+    php_orchestra_model.thumbnail.video_to_image:
+        class: %php_orchestra_model.thumbnail.video_to_image.class%
         arguments:
             - %php_orchestra_model.upload_dir%
         tags:
