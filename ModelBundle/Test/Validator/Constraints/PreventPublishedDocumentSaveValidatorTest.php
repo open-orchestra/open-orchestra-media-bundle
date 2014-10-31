@@ -32,7 +32,7 @@ class PreventPublishedDocumentSaveValidatorTest extends \PHPUnit_Framework_TestC
         $this->context = Phake::mock('Symfony\Component\Validator\Context\ExecutionContext');
         $this->constraint = new PreventPublishedDocumentSave();
 
-        $this->validator = new PreventPublishedDocumentSaveValidator($this->securityContext, $this->translator, $this->documentManager);
+        $this->validator = new PreventPublishedDocumentSaveValidator($this->translator);
         $this->validator->initialize($this->context);
     }
 
