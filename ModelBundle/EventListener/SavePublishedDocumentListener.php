@@ -13,7 +13,6 @@ use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 class SavePublishedDocumentListener
 {
     /**
-     *
      * @param LifecycleEventArgs $eventArgs
      */
     public function preUpdate(LifecycleEventArgs $eventArgs)

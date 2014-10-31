@@ -40,4 +40,3 @@ services:
         class: %php_orchestra_model.doctrine_listener.save_published_document.class%
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
-            
