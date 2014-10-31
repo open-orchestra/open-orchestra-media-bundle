@@ -22,7 +22,8 @@ class SavePublishedDocumentListener
             $status = $document->getStatus();
             if (! empty($status)
                  && $status->isPublished()
-                 && (! method_exists($document, 'isDeleted') || ! $document->isDeleted())) {
+                 && (!method_exists($document, 'isDeleted') || ! $document->isDeleted())
+            ) {
                      $documentManager = $eventArgs->getDocumentManager();
                      $documentManager->getUnitOfWork()->detach($document);
             }
