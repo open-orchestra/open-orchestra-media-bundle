@@ -6,6 +6,7 @@ use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Doctrine\ODM\MongoDB\DocumentManager;
+use PHPOrchestra\ModelBundle\Model\StatusableInterface;
 
 /**
  * Class PreventPublishedDocumentSaveValidator
@@ -13,11 +14,9 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 class PreventPublishedDocumentSaveValidator extends ConstraintValidator
 {
     protected $translator;
-
     /**
      *
      * @param Translator $translator
-     * @param DocumentManager $documentManager
      */
     public function __construct(Translator $translator)
     {
@@ -32,13 +31,11 @@ class PreventPublishedDocumentSaveValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if (array_key_exists('PHPOrchestra\ModelBundle\Model\StatusableInterface', class_implements($value))) {
+        if ($value instanceof StatusableInterface) {
             $status = $value->getStatus();
             if (! empty($status) && $status->isPublished()) {
                 $this->context->addViolation($this->translator->trans($constraint->message));
             }
         }
-
-        return;
     }
 }

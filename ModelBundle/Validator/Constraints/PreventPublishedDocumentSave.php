@@ -12,7 +12,7 @@ class PreventPublishedDocumentSave extends Constraint
     public $message = 'php_orchestra_model.document.impossible_save';
 
     /**
-     * @return string|void
+     * @return string
      */
     public function validatedBy()
     {
