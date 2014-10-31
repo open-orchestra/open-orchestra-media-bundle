@@ -4,6 +4,7 @@ parameters:
     php_orchestra_model.doctrine_listener.generate_path.class: PHPOrchestra\ModelBundle\EventListener\GeneratePathListener
     php_orchestra_model.doctrine_listener.set_initial_status.class: PHPOrchestra\ModelBundle\EventListener\SetInitialStatusListener
     php_orchestra_model.doctrine_listener.move_uploaded_file.class: PHPOrchestra\ModelBundle\EventListener\MoveUploadedFileListener
+    php_orchestra_model.doctrine_listener.save_published_document.class: PHPOrchestra\ModelBundle\EventListener\SavePublishedDocumentListener
 
 services:
     php_orchestra_model.doctrine_listener.initial_status:
@@ -35,3 +36,8 @@ services:
             - { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
             - { name: doctrine_mongodb.odm.event_listener, event: postPersist }
             - { name: doctrine_mongodb.odm.event_listener, event: postUpdate }
+    php_orchestra_model.doctrine_listener.save_published_document:
+        class: %php_orchestra_model.doctrine_listener.save_published_document.class%
+        tags:
+            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
+            
