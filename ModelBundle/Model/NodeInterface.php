@@ -202,6 +202,13 @@ interface NodeInterface extends AreaContainerInterface, BlockContainerInterface,
     public function setBlock($key, BlockInterface $block);
 
     /**
+     * @param int $key
+     *
+     * @return BlockInterface
+     */
+    public function getBlock($key);
+
+    /**
      * Set blocks
      *
      * @param Collection $blocks

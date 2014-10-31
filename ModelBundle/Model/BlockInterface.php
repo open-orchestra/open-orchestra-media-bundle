@@ -48,4 +48,19 @@ Interface BlockInterface
      * @return mixed $attributes
      */
     public function getAttributes();
+
+    /**
+     * @return array
+     */
+    public function getAreas();
+
+    /**
+     * @param array $areas
+     */
+    public function setAreas(array $areas);
+
+    /**
+     * @param array $area
+     */
+    public function addArea(array $area);
 }

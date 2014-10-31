@@ -34,6 +34,11 @@ class Block implements BlockInterface
     protected $attributes = array();
 
     /**
+     * @MongoDB\Field(type="collection")
+     */
+    protected $areas = array();
+
+    /**
      * Set component
      *
      * @param string $component
@@ -91,5 +96,29 @@ class Block implements BlockInterface
     public function getAttributes()
     {
         return $this->attributes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAreas()
+    {
+        return $this->areas;
+    }
+
+    /**
+     * @param array $areas
+     */
+    public function setAreas(array $areas)
+    {
+        $this->areas = $areas;
+    }
+
+    /**
+     * @param array $area
+     */
+    public function addArea(array $area)
+    {
+        $this->areas[] = $area;
     }
 }
