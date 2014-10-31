@@ -20,7 +20,7 @@ class SavePublishedDocumentListener
         $document = $eventArgs->getDocument();
         if ($document instanceof StatusableInterface) {
             $status = $document->getStatus();
-            if (! empty($status)
+            if (!empty($status)
                  && $status->isPublished()
                  && (!method_exists($document, 'isDeleted') || ! $document->isDeleted())
             ) {
