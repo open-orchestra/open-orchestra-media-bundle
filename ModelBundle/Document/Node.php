@@ -444,7 +444,7 @@ class Node implements NodeInterface
     /**
      * Set blocks
      *
-     * @param Collection $block
+     * @param Collection $blocks
      */
     public function setBlocks(Collection $blocks)
     {
@@ -471,6 +471,16 @@ class Node implements NodeInterface
     public function setBlock($key, BlockInterface $block)
     {
         $this->blocks->set($key, $block);
+    }
+
+    /**
+     * @param int $key
+     *
+     * @return BlockInterface
+     */
+    public function getBlock($key)
+    {
+        return $this->blocks->get($key);
     }
 
     /**
