@@ -4,16 +4,16 @@ namespace PHPOrchestra\ModelBundle\Test\Validator\Constraints;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
-use PHPOrchestra\ModelBundle\Validator\Constraints\StatusChange;
-use PHPOrchestra\ModelBundle\Validator\Constraints\StatusChangeValidator;
+use PHPOrchestra\ModelBundle\Validator\Constraints\PreventProhibitedStatusChange;
+use PHPOrchestra\ModelBundle\Validator\Constraints\PreventProhibitedStatusChangeValidator;
 
 /**
- * Class StatusChangeValidatorTest
+ * Class PreventProhibitedStatusChangeValidatorTest
  */
-class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
+class PreventProhibitedStatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var StatusChangeValidator
+     * @var PreventProhibitedStatusChangeValidator
      */
     protected $validator;
 
@@ -44,7 +44,7 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
         $this->translator = Phake::mock('Symfony\Component\Translation\Translator');
         Phake::when($this->translator)->trans(Phake::anyParameters())->thenReturn($this->message);
         $this->securityContext = Phake::mock('Symfony\Component\Security\Core\SecurityContextInterface');
-        $this->constraint = new StatusChange();
+        $this->constraint = new PreventProhibitedStatusChange();
         $this->context = Phake::mock('Symfony\Component\Validator\Context\ExecutionContext');
 
         $this->roleName = 'ROLE';
@@ -75,7 +75,7 @@ class StatusChangeValidatorTest extends \PHPUnit_Framework_TestCase
         $this->documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         Phake::when($this->documentManager)->getUnitOfWork()->thenReturn($this->unitOfWork);
 
-        $this->validator = new StatusChangeValidator($this->securityContext, $this->translator, $this->documentManager);
+        $this->validator = new PreventProhibitedStatusChangeValidator($this->securityContext, $this->translator, $this->documentManager);
         $this->validator->initialize($this->context);
     }
 

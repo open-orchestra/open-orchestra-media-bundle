@@ -9,9 +9,9 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Doctrine\ODM\MongoDB\DocumentManager;
 
 /**
- * Class StatusChangeValidator
+ * Class PreventProhibitedStatusChangeValidator
  */
-class StatusChangeValidator extends ConstraintValidator
+class PreventProhibitedStatusChangeValidator extends ConstraintValidator
 {
     protected $securityContext;
     protected $documentManager;

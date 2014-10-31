@@ -1,12 +1,19 @@
 parameters:
-    php_orchestra_model.validator.status_change.class: PHPOrchestra\ModelBundle\Validator\Constraints\StatusChangeValidator
+    php_orchestra_model.validator.prevent_prohibited_status_change.class: PHPOrchestra\ModelBundle\Validator\Constraints\PreventProhibitedStatusChangeValidator
+    php_orchestra_model.validator.prevent_published_document_save.class: PHPOrchestra\ModelBundle\Validator\Constraints\PreventPublishedDocumentSaveValidator
 
 services:
-    php_orchestra_model.validator.status_change:
-        class: %php_orchestra_model.validator.status_change.class%
+    php_orchestra_model.validator.prevent_prohibited_status_change:
+        class: %php_orchestra_model.validator.prevent_prohibited_status_change.class%
         arguments:
             - @security.context
             - @translator
             - @doctrine_mongodb.odm.default_document_manager
         tags:
-            - { name: validator.constraint_validator, alias: status_change}
+            - { name: validator.constraint_validator, alias: prevent_prohibited_status_change}
+    php_orchestra_model.validator.prevent_published_document_save:
+        class: %php_orchestra_model.validator.prevent_published_document_save.class%
+        arguments:
+            - @translator
+        tags:
+            - { name: validator.constraint_validator, alias: prevent_published_document_save}
