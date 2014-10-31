@@ -3,16 +3,16 @@
 namespace PHPOrchestra\ModelBundle\Test\Validator\Constraints;
 
 use Phake;
-use PHPOrchestra\ModelBundle\Validator\Constraints\StatusChange;
+use PHPOrchestra\ModelBundle\Validator\Constraints\PreventProhibitedStatusChange;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * Class StatusChangeTest
+ * Class PreventProhibitedStatusChangeTest
  */
-class StatusChangeTest extends \PHPUnit_Framework_TestCase
+class PreventProhibitedStatusChangeTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var StatusChange
+     * @var PreventProhibitedStatusChange
      */
     protected $constraint;
 
@@ -21,7 +21,7 @@ class StatusChangeTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->constraint = new StatusChange();
+        $this->constraint = new PreventProhibitedStatusChange();
     }
 
     /**
@@ -37,7 +37,7 @@ class StatusChangeTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateBy()
     {
-        $this->assertSame('status_change', $this->constraint->validatedBy());
+        $this->assertSame('prevent_prohibited_status_change', $this->constraint->validatedBy());
     }
 
     /**

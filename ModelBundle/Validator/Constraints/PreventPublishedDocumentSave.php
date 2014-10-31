@@ -5,18 +5,18 @@ namespace PHPOrchestra\ModelBundle\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * Class StatusChange
+ * Class PreventPublishedDocumentSave
  */
-class StatusChange extends Constraint
+class PreventPublishedDocumentSave extends Constraint
 {
-    public $message = 'php_orchestra_model.status.impossible_change';
+    public $message = 'php_orchestra_model.document.impossible_save';
 
     /**
      * @return string|void
      */
     public function validatedBy()
     {
-        return 'status_change';
+        return 'prevent_published_document_save';
     }
 
     /**

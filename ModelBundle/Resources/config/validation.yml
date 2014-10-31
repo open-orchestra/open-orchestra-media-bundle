@@ -1,3 +1,4 @@
 PHPOrchestra\ModelBundle\Document\Node:
     constraints:
-          - PHPOrchestra\ModelBundle\Validator\Constraints\StatusChange: ~
+          - PHPOrchestra\ModelBundle\Validator\Constraints\PreventProhibitedStatusChange: ~
+          - PHPOrchestra\ModelBundle\Validator\Constraints\PreventPublishedDocumentSave: ~
