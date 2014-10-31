@@ -33,7 +33,7 @@ class PreventPublishedDocumentSaveValidator extends ConstraintValidator
     {
         if ($value instanceof StatusableInterface) {
             $status = $value->getStatus();
-            if (! empty($status) && $status->isPublished()) {
+            if (!empty($status) && $status->isPublished()) {
                 $this->context->addViolation($this->translator->trans($constraint->message));
             }
         }
