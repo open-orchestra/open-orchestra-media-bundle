@@ -10,9 +10,9 @@ interface StatusableInterface
     /**
      * Set status
      *
-     * @param StatusInterface $status
+     * @param StatusInterface|null $status
      */
-    public function setStatus(StatusInterface $status);
+    public function setStatus(StatusInterface $status = null);
 
     /**
      * Get status
