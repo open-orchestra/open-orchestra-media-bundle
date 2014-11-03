@@ -64,6 +64,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
         $draft->addLabel($draftFr);
         $draft->addLabel($draftDe);
         $draft->addLabel($draftEs);
+        $draft->setInitial(true);
 
         $this->addReference('status-draft', $draft);
 
