@@ -119,6 +119,21 @@ class Block implements BlockInterface
      */
     public function addArea(array $area)
     {
-        $this->areas[] = $area;
+        if (!in_array($area, $this->areas)) {
+            $this->areas[] = $area;
+        }
+    }
+
+    /**
+     * @param string $areaId
+     * @param string $nodeId
+     */
+    public function removeAreaByAreaIdAndNodeId($areaId, $nodeId)
+    {
+        foreach ($this->getAreas() as $key => $area) {
+            if ($areaId === $area['areaId'] && $nodeId === $area['nodeId']) {
+                $this->areas[$key] = null;
+            }
+        }
     }
 }
