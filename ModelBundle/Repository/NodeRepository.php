@@ -43,7 +43,7 @@ class NodeRepository extends DocumentRepository
 
         $list = array();
         $list[] = $node;
-        $list[] = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel, 'inFooter');
+        $list = array_merge($list, $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel-1, 'inFooter'));
 
         return $list;
     }
@@ -64,7 +64,7 @@ class NodeRepository extends DocumentRepository
 
         $list = array();
         $list[] = $node;
-        $list[] = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel, 'inMenu');
+        $list = array_merge($list, $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel-1, 'inMenu'));
 
         return $list;
     }
@@ -251,11 +251,12 @@ class NodeRepository extends DocumentRepository
             $qb->field('parentId')->equals($parentId);
 
             $nodes = $qb->getQuery()->execute();
-            $result[] = $nodes->toArray();
+            $result = $nodes->toArray();
 
             if (is_array($nodes->toArray())) {
                 foreach ($nodes as $node) {
-                    $result[] = $this->getTreeParentIdAndLevel($node->getNodeId, $nbLevel-1, $flag);
+                    $temp = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel-1, $flag);
+                    $result = array_merge($result, $temp);
                 }
             }
         }

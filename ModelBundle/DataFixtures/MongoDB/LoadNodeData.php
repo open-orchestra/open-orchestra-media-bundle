@@ -173,7 +173,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
                 'link' => 'linkclass'
             ),
             'id' => 'idmenu',
-            'nbLevel' => 4,
+            'nbLevel' => 2,
             'node' => 'root'
         ));
         $block1->addArea(array('nodeId' => 0, 'areaId' => 'left_menu'));
