@@ -139,6 +139,13 @@ class Node implements NodeInterface
     protected $inFooter;
 
     /**
+     * @var string
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $role;
+
+    /**
      * @var ArrayCollection
      *
      * @ODM\EmbedMany(targetDocument="Area")
@@ -587,6 +594,22 @@ class Node implements NodeInterface
     public function getInMenu()
     {
         return $this->inMenu;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
     /**

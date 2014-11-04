@@ -241,4 +241,14 @@ interface NodeInterface extends AreaContainerInterface, BlockContainerInterface,
      * @return boolean
      */
     public function getInMenu();
+
+    /**
+     * @return string
+     */
+    public function getRole();
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role);
 }
