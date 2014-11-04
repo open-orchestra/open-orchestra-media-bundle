@@ -3,10 +3,8 @@
 namespace PHPOrchestra\ModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\Cursor;
-use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Doctrine\ODM\MongoDB\Mapping;
-use Doctrine\ODM\MongoDB\UnitOfWork;
 use PHPOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
@@ -30,27 +28,45 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
-     * @return Cursor
+     * @param string $nodeId
+     * @param int    $nbLevel
+     *
+     * @return array
      */
-    public function getFooterTree()
+    public function getFooterTree($nodeId, $nbLevel)
     {
         $qb = $this->buildTreeRequest();
-        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
         $qb->field('inFooter')->equals(true);
+        $qb->field('nodeId')->equals($nodeId);
 
-        return $qb->getQuery()->execute();
+        $node = $qb->getQuery()->getSingleResult();
+
+        $list = array();
+        $list[] = $node;
+        $list[] = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel, 'inFooter');
+
+        return $list;
     }
 
     /**
-     * @return Cursor
+     * @param string $nodeId
+     * @param int    $nbLevel
+     *
+     * @return array
      */
-    public function getMenuTree()
+    public function getMenuTree($nodeId, $nbLevel)
     {
         $qb = $this->buildTreeRequest();
-        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
         $qb->field('inMenu')->equals(true);
+        $qb->field('nodeId')->equals($nodeId);
 
-        return $qb->getQuery()->execute();
+        $node = $qb->getQuery()->getSingleResult();
+
+        $list = array();
+        $list[] = $node;
+        $list[] = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel, 'inMenu');
+
+        return $list;
     }
 
     /**
@@ -103,6 +119,8 @@ class NodeRepository extends DocumentRepository
         $qb->field('status.published')->equals(true);
 
         $qb->field('deleted')->equals(false);
+
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         return $qb;
     }
@@ -214,5 +232,34 @@ class NodeRepository extends DocumentRepository
         $qb->field('path')->equals(new \MongoRegex('/'.preg_quote($path).'.+/'));
 
         return $qb->getQuery()->execute();
+    }
+
+    /**
+     * @param string $parentId
+     * @param int    $nbLevel
+     * @param string $flag
+     *
+     * @return array
+     */
+    public function getTreeParentIdAndLevel($parentId, $nbLevel, $flag)
+    {
+        $result = array();
+
+        if ($nbLevel >= 0) {
+            $qb = $this->buildTreeRequest();;
+            $qb->field($flag)->equals(true);
+            $qb->field('parentId')->equals($parentId);
+
+            $nodes = $qb->getQuery()->execute();
+            $result[] = $nodes->toArray();
+
+            if (is_array($nodes->toArray())) {
+                foreach ($nodes as $node) {
+                    $result[] = $this->getTreeParentIdAndLevel($node->getNodeId, $nbLevel-1, $flag);
+                }
+            }
+        }
+
+        return $result;
     }
 }
