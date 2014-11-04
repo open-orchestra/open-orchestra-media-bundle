@@ -43,8 +43,8 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
     {
         $site1 = new Site();
         $site1->setSiteId('1');
-        $site1->setDomain('www.aphpOrchestra.fr');
-        $site1->setAlias('www.ophp-orchestra.fr');
+        $site1->setDomain('front-phporchestra.dev');
+        $site1->setAlias('front-phporchestra-front.inte');
         $site1->setDefaultLanguage('fr');
         $site1->setLanguages(array('en', 'fr'));
         $site1->addBlock('sample');
@@ -59,8 +59,8 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
     {
         $site2 = new Site();
         $site2->setSiteId('2');
-        $site2->setDomain('www.bphpOrchestra.fr');
-        $site2->setAlias('www.nphp-orchestra.fr');
+        $site2->setDomain('demo-phporchestra.dev');
+        $site2->setAlias('demo-phporchestra-front.inte');
         $site2->setDefaultLanguage('fr');
         $site2->setLanguages(array('en', 'fr'));
         $site2->addBlock('sample');
@@ -75,8 +75,8 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
     {
         $site3 = new Site();
         $site3->setSiteId('3');
-        $site3->setDomain('www.cphpOrchestra.fr');
-        $site3->setAlias('www.mphp-orchestra.fr');
+        $site3->setDomain('echonext-phporchestra.dev');
+        $site3->setAlias('echonext-phporchestra.inte');
         $site3->setDefaultLanguage('fr');
         $site3->setLanguages(array('en', 'fr'));
         $site3->addBlock('sample');
@@ -91,8 +91,8 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
     {
         $site4 = new Site();
         $site4->setSiteId('4');
-        $site4->setDomain('www.dphpOrchestra.fr');
-        $site4->setAlias('www.lphp-orchestra.fr');
+        $site4->setDomain('empty-orchestra.dev');
+        $site4->setAlias('empty-php-orchestra.inte');
         $site4->setDefaultLanguage('fr');
         $site4->setLanguages(array('en', 'fr'));
         $site4->addBlock('sample');
