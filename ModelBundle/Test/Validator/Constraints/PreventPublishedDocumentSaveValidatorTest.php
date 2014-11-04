@@ -18,6 +18,8 @@ class PreventPublishedDocumentSaveValidatorTest extends \PHPUnit_Framework_TestC
     protected $validator;
 
     protected $message = 'message';
+    protected $documentManager;
+    protected $unitOfWork;
     protected $translator;
     protected $constraint;
     protected $context;
@@ -32,7 +34,11 @@ class PreventPublishedDocumentSaveValidatorTest extends \PHPUnit_Framework_TestC
         $this->context = Phake::mock('Symfony\Component\Validator\Context\ExecutionContext');
         $this->constraint = new PreventPublishedDocumentSave();
 
-        $this->validator = new PreventPublishedDocumentSaveValidator($this->translator);
+        $this->unitOfWork = Phake::mock('Doctrine\ODM\MongoDB\UnitOfWork');
+        $this->documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
+        Phake::when($this->documentManager)->getUnitOfWork()->thenReturn($this->unitOfWork);
+
+        $this->validator = new PreventPublishedDocumentSaveValidator($this->translator, $this->documentManager);
         $this->validator->initialize($this->context);
     }
 
@@ -78,5 +84,27 @@ class PreventPublishedDocumentSaveValidatorTest extends \PHPUnit_Framework_TestC
             array($statusableInterface2, 0),
             array($notStatusableInterface, 0),
         );
+    }
+
+    /**
+     * Test if old node not yet published
+     */
+    public function testWithDocumentNotYetPublished()
+    {
+        $oldStatus = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        Phake::when($oldStatus)->isPublished()->thenReturn(false);
+
+        $status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        $statusable = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusableInterface');
+        Phake::when($status)->isPublished()->thenReturn(true);
+        Phake::when($statusable)->getStatus()->thenReturn($status);
+
+        Phake::when($this->unitOfWork)->getOriginalDocumentData(Phake::anyParameters())->thenReturn(array(
+            'status' => $oldStatus
+        ));
+
+        $this->validator->validate($statusable, $this->constraint);
+
+        Phake::verify($this->context, Phake::never())->addViolation($this->message);
     }
 }

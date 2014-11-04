@@ -15,5 +15,6 @@ services:
         class: %php_orchestra_model.validator.prevent_published_document_save.class%
         arguments:
             - @translator
+            - @doctrine.odm.mongodb.document_manager
         tags:
             - { name: validator.constraint_validator, alias: prevent_published_document_save}
