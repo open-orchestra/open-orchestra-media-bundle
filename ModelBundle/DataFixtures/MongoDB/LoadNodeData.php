@@ -112,10 +112,18 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
         $homeBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
+        $loginBlock = new Block();
+        $loginBlock->setLabel('Login');
+        $loginBlock->setComponent('login');
+        $loginBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
         $homeArea = new Area();
         $homeArea->setLabel('Main');
         $homeArea->setAreaId('main');
-        $homeArea->setBlocks(array(array('nodeId' => 0, 'blockId' => 0)));
+        $homeArea->setBlocks(array(
+            array('nodeId' => 0, 'blockId' => 0),
+            array('nodeId' => 0, 'blockId' => 1),
+        ));
 
         $home = new Node();
         $home->setNodeId('root');
@@ -135,6 +143,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->setInFooter(false);
         $home->addArea($homeArea);
         $home->addBlock($homeBlock);
+        $home->addBlock($loginBlock);
 
         return $home;
     }
@@ -302,6 +311,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $full->addBlock($block5);
         $full->addBlock($block6);
         $full->addBlock($block7);
+        $full->setRole('ROLE_ADMIN');
 
         return $full;
     }
