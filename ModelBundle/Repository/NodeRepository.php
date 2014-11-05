@@ -65,7 +65,7 @@ class NodeRepository extends DocumentRepository
 
         $list = array();
         $list[] = $node;
-        $list[] = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel);
+        $list = array_merge($list, $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel));
 
         return $list;
     }
