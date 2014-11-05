@@ -34,7 +34,6 @@ class NodeRepository extends DocumentRepository
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inFooter')->equals(true);
-        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         return $qb->getQuery()->execute();
     }
@@ -46,7 +45,6 @@ class NodeRepository extends DocumentRepository
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inMenu')->equals(true);
-        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         return $qb->getQuery()->execute();
     }
@@ -119,6 +117,8 @@ class NodeRepository extends DocumentRepository
 
         $qb->field('deleted')->equals(false);
 
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
+
         return $qb;
     }
 
@@ -132,7 +132,6 @@ class NodeRepository extends DocumentRepository
         $qb = $this->buildTreeRequest();
 
         $qb->field('nodeId')->equals($nodeId);
-        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
         $qb->sort('version', 'desc');
 
         return $qb->getQuery()->getSingleResult();
