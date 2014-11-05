@@ -117,12 +117,28 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $loginBlock->setComponent('login');
         $loginBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
+        $blocksubmenu = new Block();
+        $blocksubmenu->setLabel('subMenu');
+        $blocksubmenu->setComponent('sub_menu');
+        $blocksubmenu->setAttributes(array(
+            'class' => array(
+                'div' => 'divclass',
+                'ul' => 'ulclass',
+                'link' => 'linkclass'
+            ),
+            'id' => 'idmenu',
+            'nbLevel' => 2,
+            'node' => 'fixture_about_us',
+        ));
+        $blocksubmenu->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
         $homeArea = new Area();
         $homeArea->setLabel('Main');
         $homeArea->setAreaId('main');
         $homeArea->setBlocks(array(
             array('nodeId' => 0, 'blockId' => 0),
             array('nodeId' => 0, 'blockId' => 1),
+            array('nodeId' => 0, 'blockId' => 2),
         ));
 
         $home = new Node();
@@ -144,6 +160,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->addArea($homeArea);
         $home->addBlock($homeBlock);
         $home->addBlock($loginBlock);
+        $home->addBlock($blocksubmenu);
 
         return $home;
     }

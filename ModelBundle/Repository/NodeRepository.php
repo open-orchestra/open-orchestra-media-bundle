@@ -57,11 +57,7 @@ class NodeRepository extends DocumentRepository
      */
     public function getSubMenu($nodeId, $nbLevel)
     {
-        $qb = $this->buildTreeRequest();
-        $qb->field('inMenu')->equals(true);
-        $qb->field('nodeId')->equals($nodeId);
-
-        $node = $qb->getQuery()->getSingleResult();
+        $node = $this->findWithPublishedAndLastVersionAndSiteId($nodeId);
 
         $list = array();
         $list[] = $node;
@@ -136,7 +132,6 @@ class NodeRepository extends DocumentRepository
         $qb = $this->buildTreeRequest();
 
         $qb->field('nodeId')->equals($nodeId);
-        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
         $qb->sort('version', 'desc');
 
         return $qb->getQuery()->getSingleResult();
