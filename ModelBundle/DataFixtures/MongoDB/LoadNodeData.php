@@ -377,10 +377,19 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
         $aboutUsBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
+        $contentListBlock = new Block();
+        $contentListBlock->setLabel('Content list');
+        $contentListBlock->setComponent('content_list');
+        $contentListBlock->setAttributes(array(
+            'contentType' => 'news'
+        ));
+        $contentListBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
         $aboutUsArea = new Area();
         $aboutUsArea->setLabel('Main');
         $aboutUsArea->setAreaId('main');
         $aboutUsArea->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $aboutUsArea->addBlock(array('nodeId' => 0, 'blockId' => 1));
 
         $aboutUs = new Node();
         $aboutUs->setNodeId('fixture_about_us');
@@ -400,6 +409,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $aboutUs->setInMenu(true);
         $aboutUs->addArea($aboutUsArea);
         $aboutUs->addBlock($aboutUsBlock);
+        $aboutUs->addBlock($contentListBlock);
 
         return $aboutUs;
     }
