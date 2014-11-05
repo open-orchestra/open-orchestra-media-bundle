@@ -158,7 +158,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         $node = $this->generateNode(array(
-            'nodeId' => 'root_echonext',
+            'nodeId' => 'root',
             'parentId' => '-',
             'path' => '-',
             'name' => 'Home'
@@ -188,7 +188,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node = $this->generateNode(array(
             'nodeId' => 'espace_BDDF',
-            'parentId' => 'root_echonext',
+            'parentId' => 'root',
             'path' => 'espace-bddf',
             'name' => 'Espace BDDF'
         ));
@@ -216,7 +216,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node = $this->generateNode(array(
             'nodeId' => 'espace_Cardif',
-            'parentId' => 'root_echonext',
+            'parentId' => 'root',
             'path' => 'espace-cardif',
             'name' => 'Espace Cardif'
         ));
@@ -244,7 +244,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node = $this->generateNode(array(
             'nodeId' => 'espace_Arval',
-            'parentId' => 'root_echonext',
+            'parentId' => 'root',
             'path' => 'espace-arval',
             'name' => 'Espace Arval'
         ));
@@ -272,7 +272,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node = $this->generateNode(array(
             'nodeId' => 'espace_XXX',
-            'parentId' => 'root_echonext',
+            'parentId' => 'root',
             'path' => 'espace-xxx',
             'name' => 'Espace XXX'
         ));
