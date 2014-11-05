@@ -8,6 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Area;
 use PHPOrchestra\ModelBundle\Document\Block;
 use PHPOrchestra\ModelBundle\Document\Node;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
 
 /**
  * Class LoadNodeEchonextData
@@ -158,7 +159,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         $node = $this->generateNode(array(
-            'nodeId' => 'root',
+            'nodeId' => NodeInterface::ROOT_NODE_ID,
             'parentId' => '-',
             'path' => '-',
             'name' => 'Home'
@@ -188,7 +189,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node = $this->generateNode(array(
             'nodeId' => 'espace_BDDF',
-            'parentId' => 'root',
+            'parentId' => NodeInterface::ROOT_NODE_ID,
             'path' => 'espace-bddf',
             'name' => 'Espace BDDF'
         ));
@@ -216,7 +217,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node = $this->generateNode(array(
             'nodeId' => 'espace_Cardif',
-            'parentId' => 'root',
+            'parentId' => NodeInterface::ROOT_NODE_ID,
             'path' => 'espace-cardif',
             'name' => 'Espace Cardif'
         ));
@@ -244,7 +245,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node = $this->generateNode(array(
             'nodeId' => 'espace_Arval',
-            'parentId' => 'root',
+            'parentId' => NodeInterface::ROOT_NODE_ID,
             'path' => 'espace-arval',
             'name' => 'Espace Arval'
         ));
@@ -272,7 +273,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node = $this->generateNode(array(
             'nodeId' => 'espace_XXX',
-            'parentId' => 'root',
+            'parentId' => NodeInterface::ROOT_NODE_ID,
             'path' => 'espace-xxx',
             'name' => 'Espace XXX'
         ));
