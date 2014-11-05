@@ -173,8 +173,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
                 'link' => 'linkclass'
             ),
             'id' => 'idmenu',
-            'nbLevel' => 4,
-            'node' => 'root'
         ));
         $block1->addArea(array('nodeId' => 0, 'areaId' => 'left_menu'));
 
@@ -229,8 +227,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
                 'ul' => 'ulclass',
                 'link' => 'linkclass'
             ),
-            'nbLevel' => 2,
-            'node' => 'fixture_about_us'
         ));
         $block6->addArea(array('nodeId' => 0, 'areaId' => 'footer'));
 
@@ -586,8 +582,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
                 'link' => 'linkclass'
             ),
             'id' => 'idmenu',
-            'nbLevel' => 4,
-            'node' => 'root'
         ));
         $searchBlock1->addArea(array('nodeId' => 0, 'areaId' => 'left_menu'));
 
@@ -643,8 +637,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
                 'ul' => 'ulclass',
                 'link' => 'linkclass'
             ),
-            'nbLevel' => 2,
-            'node' => 'fixture_about_us'
         ));
         $searchBlock4->addArea(array('nodeId' => 0, 'areaId' => 'footer'));
 
@@ -758,8 +750,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
                 'link' => 'linkclass'
             ),
             'id' => 'myMainMenu',
-            'nbLevel' => 4,
-            'node' => 'root'
         ));
         $siteHomeBlockMenu->addArea(array('nodeId' => 0, 'areaId' => 'main_menu'));
         $siteHomeBlockMenu->addArea(array('nodeId' => 'fixture_page_what_is_orchestra', 'areaId' => 'main_menu'));

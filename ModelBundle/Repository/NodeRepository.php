@@ -28,24 +28,25 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
-     * @param string $nodeId
-     * @param int    $nbLevel
-     *
      * @return array
      */
-    public function getFooterTree($nodeId, $nbLevel)
+    public function getFooterTree()
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inFooter')->equals(true);
-        $qb->field('nodeId')->equals($nodeId);
 
-        $node = $qb->getQuery()->getSingleResult();
+        return $qb->getQuery()->execute();
+    }
 
-        $list = array();
-        $list[] = $node;
-        $list[] = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel, 'inFooter');
+    /**
+     * @return array
+     */
+    public function getMenuTree()
+    {
+        $qb = $this->buildTreeRequest();
+        $qb->field('inMenu')->equals(true);
 
-        return $list;
+        return $qb->getQuery()->execute();
     }
 
     /**
@@ -54,7 +55,7 @@ class NodeRepository extends DocumentRepository
      *
      * @return array
      */
-    public function getMenuTree($nodeId, $nbLevel)
+    public function getSubMenu($nodeId, $nbLevel)
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inMenu')->equals(true);
@@ -64,7 +65,7 @@ class NodeRepository extends DocumentRepository
 
         $list = array();
         $list[] = $node;
-        $list[] = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel, 'inMenu');
+        $list = array_merge($list, $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel));
 
         return $list;
     }
@@ -237,25 +238,24 @@ class NodeRepository extends DocumentRepository
     /**
      * @param string $parentId
      * @param int    $nbLevel
-     * @param string $flag
      *
      * @return array
      */
-    public function getTreeParentIdAndLevel($parentId, $nbLevel, $flag)
+    protected function getTreeParentIdAndLevel($parentId, $nbLevel)
     {
         $result = array();
 
         if ($nbLevel >= 0) {
             $qb = $this->buildTreeRequest();;
-            $qb->field($flag)->equals(true);
             $qb->field('parentId')->equals($parentId);
 
             $nodes = $qb->getQuery()->execute();
-            $result[] = $nodes->toArray();
+            $result = $nodes->toArray();
 
             if (is_array($nodes->toArray())) {
                 foreach ($nodes as $node) {
-                    $result[] = $this->getTreeParentIdAndLevel($node->getNodeId, $nbLevel-1, $flag);
+                    $temp = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel-1);
+                    $result = array_merge($result, $temp);
                 }
             }
         }
