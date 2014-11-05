@@ -60,7 +60,7 @@ class NodeRepository extends DocumentRepository
     public function getSubMenu($nodeId, $nbLevel)
     {
         $node = $this->findWithPublishedAndLastVersionAndSiteId($nodeId);
-//var_dump($node);
+
         $list = array();
         $list[] = $node;
         $list = array_merge($list, $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel));
