@@ -44,11 +44,10 @@ class PHPOrchestraModelExtension extends Extension
         }
 
         if (!is_null($config['upload_dir'])) {
-            $uploadDir = $config['upload_dir'];
+            $dir = $config['upload_dir'];
         } else {
-            $uploadDir = 'upload';
+            $dir = '/var/www/mediatheque-phporchestra';
         }
-        $dir = $container->getParameter('kernel.root_dir') . '/../web/' . $uploadDir;
         $container->setParameter('php_orchestra_model.upload_dir', $dir);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
