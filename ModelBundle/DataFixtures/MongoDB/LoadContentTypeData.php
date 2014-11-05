@@ -48,6 +48,46 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
     }
 
     /**
+     * Generate a translatedValue
+     * 
+     * @param string $language
+     * @param string $value
+     * 
+     * @return TranslatedValue
+     */
+    protected function generateTranslatedValue($language, $value)
+    {
+        $label = new TranslatedValue();
+        $label->setLanguage($language);
+        $label->setValue($value);
+
+        return $label;
+    }
+
+    /**
+     * Generate a field type
+     * 
+     * @param string $fieldType
+     * @param string $fieldId
+     * @param array $labels
+     * 
+     * @return FieldType
+     */
+    protected function generateField($fieldType, $fieldId, $labels)
+    {
+        $field = new FieldType();
+        $field->setType($fieldType);
+        $field->setFieldId($fieldId);
+        $field->setDefaultValue('');
+        $field->setSearchable(true);
+        foreach ($labels as $label) {
+            $field->addLabel($label);
+        }
+
+        return $field;
+    }
+
+    /**
      * @return ContentType
      */
     protected function generateContentTypeNews()
@@ -60,74 +100,76 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
         $required->setKey('required');
         $required->setValue('1');
 
-        $enLabel = new TranslatedValue();
-        $enLabel->setLanguage('en');
-        $enLabel->setValue('Title');
-        $frLabel = new TranslatedValue();
-        $frLabel->setLanguage('fr');
-        $frLabel->setValue('Titre');
+        $dateWidgetOption = new FieldOption();
+        $dateWidgetOption->setKey('widget');
+        $dateWidgetOption->setValue('choice');
 
-        $newsTitle = new FieldType();
-        $newsTitle->setFieldId('title');
-        $newsTitle->addLabel($enLabel);
-        $newsTitle->addLabel($frLabel);
-        $newsTitle->setDefaultValue('');
-        $newsTitle->setSearchable(true);
-        $newsTitle->setType('text');
+        /* TITLE */
+
+        $enLabel = $this->generateTranslatedValue('en', 'Title');
+        $frLabel = $this->generateTranslatedValue('fr', 'Titre');
+
+        $newsTitle = $this->generateField('text', 'title', array($enLabel, $frLabel));
         $newsTitle->addOption($maxLengthOption);
         $newsTitle->addOption($required);
 
-        $enLabel = new TranslatedValue();
-        $enLabel->setLanguage('en');
-        $frLabel = new TranslatedValue();
-        $frLabel->setLanguage('fr');
-        $enLabel->setValue('Introduction');
-        $frLabel->setValue('Introduction');
+        /* BEGINING DATE */
 
-        $newsIntro = new FieldType();
-        $newsIntro->setFieldId('intro');
-        $newsIntro->addLabel($enLabel);
-        $newsIntro->addLabel($frLabel);
-        $newsIntro->setDefaultValue('');
-        $newsIntro->setSearchable(true);
-        $newsIntro->setType('text');
+        $enLabel = $this->generateTranslatedValue('en', 'Publicated from');
+        $frLabel = $this->generateTranslatedValue('fr', 'Publié du');
+
+        $newBeginning = $this->generateField('date', 'publish_start', array($enLabel, $frLabel));
+        $newBeginning->addOption($required);
+        $newBeginning->addOption($dateWidgetOption);
+
+        /* ENDING DATE */
+
+        $enLabel = $this->generateTranslatedValue('en', 'till');
+        $frLabel = $this->generateTranslatedValue('fr', 'au');
+
+        $newEnding = $this->generateField('date', 'publish_end', array($enLabel, $frLabel));
+        $newEnding->addOption($required);
+        $newEnding->addOption($dateWidgetOption);
+
+        /* IMAGE */
+
+        $enLabel = $this->generateTranslatedValue('en', 'Image');
+        $frLabel = $this->generateTranslatedValue('fr', 'Image');
+
+        /* INTRODUCTION */
+
+        $enLabel = $this->generateTranslatedValue('en', 'Introduction');
+        $frLabel = $this->generateTranslatedValue('fr', 'Introduction');
+
+        $newsIntro = $this->generateField('text', 'intro', array($enLabel, $frLabel));
         $newsIntro->addOption($maxLengthOption);
         $newsIntro->addOption($required);
 
-        $enLabel = new TranslatedValue();
-        $enLabel->setLanguage('en');
-        $frLabel = new TranslatedValue();
-        $frLabel->setLanguage('fr');
-        $enLabel->setValue('Text');
-        $frLabel->setValue('Texte');
+        /* TEXT */
 
-        $newsText = new FieldType();
-        $newsText->setFieldId('text');
-        $newsText->addLabel($enLabel);
-        $newsText->addLabel($frLabel);
-        $newsText->setDefaultValue('');
-        $newsText->setSearchable(true);
-        $newsText->setType('text');
+        $enLabel = $this->generateTranslatedValue('en', 'Text');
+        $frLabel = $this->generateTranslatedValue('fr', 'Texte');
+
+        $newsText = $this->generateField('text', 'text', array($enLabel, $frLabel));
         $newsText->addOption($maxLengthOption);
         $newsText->addOption($required);
 
-        $en = new TranslatedValue();
-        $en->setLanguage('en');
-        $en->setValue('News');
+        /* CONTENT TYPE */
 
-        $fr = new TranslatedValue();
-        $fr->setLanguage('fr');
-        $fr->setValue('Actualité');
+        $enLabel = $this->generateTranslatedValue('en', 'News');
+        $frLabel = $this->generateTranslatedValue('fr', 'Actualité');
 
         $news = new ContentType();
         $news->setContentTypeId('news');
-        $news->addName($en);
-        $news->addName($fr);
+        $news->addName($enLabel);
+        $news->addName($frLabel);
         $news->setDeleted(false);
         $news->setStatus($this->getReference('status-published'));
         $news->setVersion(1);
 
         $news->addFieldType($newsTitle);
+        $news->addFieldType($newBeginning);
+        $news->addFieldType($newEnding);
         $news->addFieldType($newsIntro);
         $news->addFieldType($newsText);
 
