@@ -34,6 +34,7 @@ class NodeRepository extends DocumentRepository
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inFooter')->equals(true);
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         return $qb->getQuery()->execute();
     }
@@ -45,6 +46,7 @@ class NodeRepository extends DocumentRepository
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inMenu')->equals(true);
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         return $qb->getQuery()->execute();
     }
@@ -57,12 +59,8 @@ class NodeRepository extends DocumentRepository
      */
     public function getSubMenu($nodeId, $nbLevel)
     {
-        $qb = $this->buildTreeRequest();
-        $qb->field('inMenu')->equals(true);
-        $qb->field('nodeId')->equals($nodeId);
-
-        $node = $qb->getQuery()->getSingleResult();
-
+        $node = $this->findWithPublishedAndLastVersionAndSiteId($nodeId);
+//var_dump($node);
         $list = array();
         $list[] = $node;
         $list = array_merge($list, $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel));
@@ -120,8 +118,6 @@ class NodeRepository extends DocumentRepository
         $qb->field('status.published')->equals(true);
 
         $qb->field('deleted')->equals(false);
-
-        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         return $qb;
     }
