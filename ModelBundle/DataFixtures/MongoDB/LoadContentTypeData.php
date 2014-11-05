@@ -88,21 +88,31 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
     }
 
     /**
+     * Generate a field option
+     * 
+     * @param string $key
+     * @param string|int $value
+     * 
+     * @return FieldOption
+     */
+    protected function generateOption($key, $value)
+    {
+        $option = new FieldOption();
+        $option->setKey($key);
+        $option->setValue($value);
+
+        return $option;
+    }
+
+    /**
      * @return ContentType
      */
     protected function generateContentTypeNews()
     {
-        $maxLengthOption = new FieldOption();
-        $maxLengthOption->setKey('max_length');
-        $maxLengthOption->setValue(25);
-
-        $required = new FieldOption();
-        $required->setKey('required');
-        $required->setValue('1');
-
-        $dateWidgetOption = new FieldOption();
-        $dateWidgetOption->setKey('widget');
-        $dateWidgetOption->setValue('choice');
+        $maxLengthOption = $this->generateOption('max_length', 25);
+        $required = $this->generateOption('required', 1);
+        $dateWidgetOption = $this->generateOption('widget', 'choice');
+        $dateInputOption = $this->generateOption('input', 'string');
 
         /* TITLE */
 
@@ -121,6 +131,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
         $newBeginning = $this->generateField('date', 'publish_start', array($enLabel, $frLabel));
         $newBeginning->addOption($required);
         $newBeginning->addOption($dateWidgetOption);
+        $newBeginning->addOption($dateInputOption);
 
         /* ENDING DATE */
 
@@ -130,6 +141,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
         $newEnding = $this->generateField('date', 'publish_end', array($enLabel, $frLabel));
         $newEnding->addOption($required);
         $newEnding->addOption($dateWidgetOption);
+        $newEnding->addOption($dateInputOption);
 
         /* IMAGE */
 

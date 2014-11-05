@@ -68,13 +68,13 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
         $attribute4->setName("text");
         $attribute4->setValue("Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.<br /><br />Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla, non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.");
 
-//        $attribute5 = new ContentAttribute();
-//        $attribute5->setName("publish_start");
-//        $attribute5->setValue((string)\DateTime::createFromFormat('j/n/Y', '25/07/2014'));
-//
-//        $attribute6 = new ContentAttribute();
-//        $attribute6->setName("publish_end");
-//        $attribute6->setValue((string)\DateTime::createFromFormat('j/n/Y', '19/10/2014'));
+        $attribute5 = new ContentAttribute();
+        $attribute5->setName("publish_start");
+        $attribute5->setValue("2014-07-25");
+
+        $attribute6 = new ContentAttribute();
+        $attribute6->setName("publish_end");
+        $attribute6->setValue("2014-10-19");
 
         $content->setContentId("1");
         $content->setContentType("news");
@@ -89,8 +89,8 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
         $content->addAttribute($attribute2);
         $content->addAttribute($attribute3);
         $content->addAttribute($attribute4);
-//        $content->addAttribute($attribute5);
-//        $content->addAttribute($attribute6);
+        $content->addAttribute($attribute5);
+        $content->addAttribute($attribute6);
         
         return $content;
     }
