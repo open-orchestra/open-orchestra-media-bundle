@@ -46,7 +46,7 @@ class PHPOrchestraModelExtension extends Extension
         if (!is_null($config['upload_dir'])) {
             $dir = $config['upload_dir'];
         } else {
-            $dir = '/var/www/mediatheque-phporchestra';
+            $dir = '/var/www/media-phporchestra';
         }
         $container->setParameter('php_orchestra_model.upload_dir', $dir);
 
