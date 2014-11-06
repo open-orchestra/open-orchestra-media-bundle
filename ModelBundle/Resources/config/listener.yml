@@ -38,5 +38,5 @@ services:
             - { name: doctrine_mongodb.odm.event_listener, event: postUpdate }
     php_orchestra_model.doctrine_listener.save_published_document:
         class: %php_orchestra_model.doctrine_listener.save_published_document.class%
-        tags:
-            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
+#        tags:
+#            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
