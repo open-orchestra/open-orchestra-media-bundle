@@ -111,7 +111,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
     {
         $maxLengthOption = $this->generateOption('max_length', 25);
         $required = $this->generateOption('required', 1);
-        $dateWidgetOption = $this->generateOption('widget', 'choice');
+        $dateWidgetOption = $this->generateOption('widget', 'single_text');
         $dateInputOption = $this->generateOption('input', 'string');
 
         /* TITLE */
@@ -125,8 +125,8 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
 
         /* BEGINING DATE */
 
-        $enLabel = $this->generateTranslatedValue('en', 'Publicated from');
-        $frLabel = $this->generateTranslatedValue('fr', 'Publié du');
+        $enLabel = $this->generateTranslatedValue('en', 'Publicated from (YYYY-MM-DD)');
+        $frLabel = $this->generateTranslatedValue('fr', 'Publié du (AAAA-MM-JJ)');
 
         $newBeginning = $this->generateField('date', 'publish_start', array($enLabel, $frLabel));
         $newBeginning->addOption($required);
@@ -135,8 +135,8 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
 
         /* ENDING DATE */
 
-        $enLabel = $this->generateTranslatedValue('en', 'till');
-        $frLabel = $this->generateTranslatedValue('fr', 'au');
+        $enLabel = $this->generateTranslatedValue('en', 'till (YYYY-MM-DD)');
+        $frLabel = $this->generateTranslatedValue('fr', 'au (AAAA-MM-JJ)');
 
         $newEnding = $this->generateField('date', 'publish_end', array($enLabel, $frLabel));
         $newEnding->addOption($required);
