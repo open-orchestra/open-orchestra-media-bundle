@@ -147,6 +147,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
 
         $enLabel = $this->generateTranslatedValue('en', 'Image');
         $frLabel = $this->generateTranslatedValue('fr', 'Image');
+        $newImage = $this->generateField('orchestra_media', 'image', array($enLabel, $frLabel));
 
         /* INTRODUCTION */
 
@@ -182,6 +183,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
         $news->addFieldType($newsTitle);
         $news->addFieldType($newBeginning);
         $news->addFieldType($newEnding);
+        $news->addFieldType($newImage);
         $news->addFieldType($newsIntro);
         $news->addFieldType($newsText);
 
