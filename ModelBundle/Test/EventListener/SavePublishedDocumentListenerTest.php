@@ -15,6 +15,8 @@ use PHPOrchestra\ModelBundle\EventListener\SavePublishedDocumentListener;
 class SavePublishedDocumentListenerTest extends \PHPUnit_Framework_TestCase
 {
     protected $listener;
+    protected $unitOfWork;
+    protected $documentManager;
     protected $lifecycleEventArgs;
 
     /**
@@ -22,7 +24,12 @@ class SavePublishedDocumentListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
+        $this->unitOfWork = Phake::mock('Doctrine\ODM\MongoDB\UnitOfWork');
+        Phake::when($this->unitOfWork)->getOriginalDocumentData(Phake::anyParameters())->thenReturn(array());
+        $this->documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
+        Phake::when($this->documentManager)->getUnitOfWork()->thenReturn($this->unitOfWork);
         $this->lifecycleEventArgs = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
+        Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($this->documentManager);
 
         $this->listener = new SavePublishedDocumentListener();
     }
@@ -39,63 +46,99 @@ class SavePublishedDocumentListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test validate
+     * @param bool $published
+     * @param bool $deleted
+     * @param int  $numberOfDetach
      *
-     * @param Document $document
-     * @param int      $numberOfDetach
-     *
-     * @dataProvider provideDocument
+     * @dataProvider provideNodeStatus
      */
-    public function testpreUpdate($document, $numberOfDetach)
+    public function testPreUpdateWithNoPreviousData($published, $deleted, $numberOfDetach)
     {
-        $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
-        $unitOfWork = Phake::mock('Doctrine\ODM\MongoDB\UnitOfWork');
+        $status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        Phake::when($status)->isPublished()->thenReturn($published);
 
-        Phake::when($documentManager)->getUnitOfWork()->thenReturn($unitOfWork);
-        Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
-        Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($document);
+        $nodeInterface = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        Phake::when($nodeInterface)->getStatus()->thenReturn($status);
+        Phake::when($nodeInterface)->isDeleted()->thenReturn($deleted);
+
+        Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($nodeInterface);
 
         $this->listener->preUpdate($this->lifecycleEventArgs);
 
-        Phake::verify($unitOfWork, Phake::times($numberOfDetach))->detach($document);
+        Phake::verify($this->unitOfWork, Phake::times($numberOfDetach))->detach($nodeInterface);
     }
 
     /**
      * @return array
      */
-    public function provideDocument()
+    public function provideNodeStatus()
     {
-
-        $status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        $nodeInterface0 = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
-        Phake::when($status)->isPublished()->thenReturn(true);
-        Phake::when($nodeInterface0)->getStatus()->thenReturn($status);
-        Phake::when($nodeInterface0)->isDeleted()->thenReturn(false);
-
-        $status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        $nodeInterface1 = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
-        Phake::when($status)->isPublished()->thenReturn(false);
-        Phake::when($nodeInterface1)->getStatus()->thenReturn($status);
-        Phake::when($nodeInterface1)->isDeleted()->thenReturn(false);
-
-        $status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        $nodeInterface2 = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
-        Phake::when($status)->isPublished()->thenReturn(true);
-        Phake::when($nodeInterface2)->getStatus()->thenReturn($status);
-        Phake::when($nodeInterface2)->isDeleted()->thenReturn(true);
-
-        $statusableInterface = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusableInterface');
-        Phake::when($status)->isPublished()->thenReturn(false);
-        Phake::when($statusableInterface)->getStatus()->thenReturn($status);
-
-        $notStatusableInterface = Phake::mock('\stdClass');
-
         return array(
-            array($nodeInterface0, 1),
-            array($nodeInterface1, 0),
-            array($nodeInterface2, 0),
-            array($statusableInterface, 0),
-            array($notStatusableInterface, 0),
+            array(true, false, 1),
+            array(false, false, 0),
+            array(false, true, 0),
+            array(true, true, 1),
+        );
+    }
+
+    /**
+     * Test with a different class
+     */
+    public function testPreUpdateWithDifferentClass()
+    {
+        $class = Phake::mock('\stdClass');
+
+        Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($class);
+
+        $this->listener->preUpdate($this->lifecycleEventArgs);
+
+        Phake::verify($this->unitOfWork, Phake::never())->detach($class);
+    }
+
+    /**
+     * @param bool $published
+     * @param bool $oldPublished
+     * @param bool $deleted
+     * @param int  $numberOfDetach
+     *
+     * @dataProvider provideOldNodeInformation
+     */
+    public function testWithPreUpdateOldClass($published, $oldPublished, $deleted, $numberOfDetach)
+    {
+        $status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        Phake::when($status)->isPublished()->thenReturn($published);
+
+        $oldStatus = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        Phake::when($oldStatus)->isPublished()->thenReturn($oldPublished);
+
+        $nodeInterface = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        Phake::when($nodeInterface)->getStatus()->thenReturn($status);
+        Phake::when($nodeInterface)->isDeleted()->thenReturn($deleted);
+
+        Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($nodeInterface);
+        Phake::when($this->unitOfWork)->getOriginalDocumentData(Phake::anyParameters())->thenReturn(array(
+            'status' => $oldStatus
+        ));
+
+        $this->listener->preUpdate($this->lifecycleEventArgs);
+
+        Phake::verify($this->unitOfWork, Phake::times($numberOfDetach))->detach($nodeInterface);
+    }
+
+    /**
+     * @return array
+     */
+    public function provideOldNodeInformation()
+    {
+        return array(
+            array(true, true, false, 1),
+            array(true, false, false, 0),
+            array(false, false, false, 0),
+            array(false, true, false, 0),
+            array(true, true, true, 1),
+            array(true, false, true, 0),
+            array(false, false, true, 0),
+            array(false, true, true, 0),
         );
     }
 }

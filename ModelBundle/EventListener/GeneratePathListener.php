@@ -29,8 +29,7 @@ class GeneratePathListener
     {
         $document = $eventArgs->getDocument();
         if ($document instanceof NodeInterface) {
-            $nodeRepository = $this->container
-                ->get('php_orchestra_model.repository.node');
+            $nodeRepository = $this->container->get('php_orchestra_model.repository.node');
             $nodeId = $document->getNodeId();
             $documentManager = $eventArgs->getDocumentManager();
             $path = '';
