@@ -47,7 +47,7 @@ class FieldOption implements FieldOptionInterface
      */
     public function setValue($value)
     {
-        $this->value = $value;
+        $this->value = serialize($value);
     }
 
     /**
@@ -55,6 +55,6 @@ class FieldOption implements FieldOptionInterface
      */
     public function getValue()
     {
-        return $this->value;
+        return unserialize($this->value);
     }
 }
