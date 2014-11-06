@@ -91,7 +91,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
      * Generate a field option
      * 
      * @param string $key
-     * @param string|int $value
+     * @param string|int|array $value
      * 
      * @return FieldOption
      */
@@ -113,6 +113,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
         $required = $this->generateOption('required', 1);
         $dateWidgetOption = $this->generateOption('widget', 'single_text');
         $dateInputOption = $this->generateOption('input', 'string');
+        $tinyMceOption = $this->generateOption('attr', array('class' => 'tinymce'));
 
         /* TITLE */
 
@@ -147,6 +148,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
 
         $enLabel = $this->generateTranslatedValue('en', 'Image');
         $frLabel = $this->generateTranslatedValue('fr', 'Image');
+
         $newImage = $this->generateField('orchestra_media', 'image', array($enLabel, $frLabel));
 
         /* INTRODUCTION */
@@ -163,9 +165,9 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
         $enLabel = $this->generateTranslatedValue('en', 'Text');
         $frLabel = $this->generateTranslatedValue('fr', 'Texte');
 
-        $newsText = $this->generateField('text', 'text', array($enLabel, $frLabel));
-        $newsText->addOption($maxLengthOption);
-        $newsText->addOption($required);
+        $newsText = $this->generateField('textarea', 'text', array($enLabel, $frLabel));
+        $newsText->addOption($tinyMceOption);
+//        $newsText->addOption($required);
 
         /* CONTENT TYPE */
 
