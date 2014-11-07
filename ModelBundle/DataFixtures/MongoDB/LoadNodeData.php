@@ -897,6 +897,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             ),
             'width' => "600px",
             'height' => "300px",
+            "carrousel_id" => 'slider1_container',
         ));
         $siteHomeCarrousel->addArea(array('nodeId' => 0, 'areaId' => 'mainContentCarrousel'));
 
