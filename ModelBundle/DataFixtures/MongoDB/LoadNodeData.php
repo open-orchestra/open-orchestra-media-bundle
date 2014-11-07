@@ -24,6 +24,9 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home = $this->generateNodeHome();
         $manager->persist($home);
 
+        $homeEn = $this->generateNodeHomeEn();
+        $manager->persist($homeEn);
+
         $full = $this->genereFullFixture();
         $manager->persist($full);
 
@@ -151,6 +154,74 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->setName('Fixture Home');
         $home->setVersion(1);
         $home->setLanguage('fr');
+        $home->setStatus($this->getReference('status-published'));
+        $home->setDeleted(false);
+        $home->setTemplateId('template_main');
+        $home->setTheme('theme1');
+        $home->setInMenu(true);
+        $home->setInFooter(false);
+        $home->addArea($homeArea);
+        $home->addBlock($homeBlock);
+        $home->addBlock($loginBlock);
+        $home->addBlock($blocksubmenu);
+
+        return $home;
+    }
+
+    /**
+     * @return Node
+     */
+    protected function generateNodeHomeEn()
+    {
+        $homeBlock = new Block();
+        $homeBlock->setLabel('Home');
+        $homeBlock->setComponent('sample');
+        $homeBlock->setAttributes(array(
+            'title' => 'Accueil',
+            'news' => "Bienvenu sur le site de démo issu des fixtures.",
+            'author' => ''
+        ));
+        $homeBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
+        $loginBlock = new Block();
+        $loginBlock->setLabel('Login');
+        $loginBlock->setComponent('login');
+        $loginBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
+        $blocksubmenu = new Block();
+        $blocksubmenu->setLabel('subMenu');
+        $blocksubmenu->setComponent('sub_menu');
+        $blocksubmenu->setAttributes(array(
+            'class' => array(
+                'div' => 'divclass',
+                'ul' => 'ulclass',
+                'link' => 'linkclass'
+            ),
+            'id' => 'idmenu',
+            'nbLevel' => 2,
+            'node' => 'fixture_about_us',
+        ));
+        $blocksubmenu->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
+        $homeArea = new Area();
+        $homeArea->setLabel('Main');
+        $homeArea->setAreaId('main');
+        $homeArea->setBlocks(array(
+            array('nodeId' => 0, 'blockId' => 0),
+            array('nodeId' => 0, 'blockId' => 1),
+            array('nodeId' => 0, 'blockId' => 2),
+        ));
+
+        $home = new Node();
+        $home->setNodeId('root');
+        $home->setNodeType('page');
+        $home->setSiteId('1');
+        $home->setParentId('-');
+        $home->setAlias('-');
+        $home->setPath('-');
+        $home->setName('Fixture Home');
+        $home->setVersion(1);
+        $home->setLanguage('en');
         $home->setStatus($this->getReference('status-published'));
         $home->setDeleted(false);
         $home->setTemplateId('template_main');
