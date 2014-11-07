@@ -139,36 +139,48 @@ class NodeRepository extends DocumentRepository
 
     /**
      * @param string      $nodeId
+     * @param string|null $language
      * @param int|null    $version
      *
      * @return mixed
      */
-    public function findOneByNodeIdAndVersionAndSiteId($nodeId, $version = null)
+    public function findOneByNodeIdAndLanguageAndVersionAndSiteId($nodeId, $language = null, $version = null)
     {
-        if (!empty($version)) {
+        if (!is_null($version)) {
             $qb = $this->createQueryBuilder('n');
             $qb->field('nodeId')->equals($nodeId);
+            if (is_null($language)) {
+                $qb->field('language')->equals($this->currentSiteManager->getCurrentSiteDefaultLanguage());
+            } else {
+                $qb->field('language')->equals($language);
+            }
             $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
             $qb->field('deleted')->equals(false);
             $qb->field('version')->equals((int) $version);
 
             return $qb->getQuery()->getSingleResult();
         } else {
-            return $this->findOneByNodeIdAndSiteIdAndLastVersion($nodeId);
+            return $this->findOneByNodeIdAndLanguageAndSiteIdAndLastVersion($nodeId, $language);
         }
     }
 
     /**
-     * @param string $nodeId
+     * @param string      $nodeId
+     * @param string|null $language
      *
      * @throws \Doctrine\ODM\MongoDB\MongoDBException
      *
      * @return mixed
      */
-    public function findByNodeIdAndSiteId($nodeId)
+    public function findByNodeIdAndLanguageAndSiteId($nodeId, $language = null)
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('nodeId')->equals($nodeId);
+        if (is_null($language)) {
+            $qb->field('language')->equals($this->currentSiteManager->getCurrentSiteDefaultLanguage());
+        } else {
+            $qb->field('language')->equals($language);
+        }
         $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         return $qb->getQuery()->execute();
@@ -183,6 +195,30 @@ class NodeRepository extends DocumentRepository
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('nodeId')->equals($nodeId);
+        $qb->field('deleted')->equals(false);
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
+        $qb->sort('version', 'desc');
+
+        $node = $qb->getQuery()->getSingleResult();
+
+        return $node;
+    }
+
+    /**
+     * @param string      $nodeId
+     * @param string|null $language
+     *
+     * @return mixed
+     */
+    public function findOneByNodeIdAndLanguageAndSiteIdAndLastVersion($nodeId, $language = null)
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->field('nodeId')->equals($nodeId);
+        if (is_null($language)) {
+            $qb->field('language')->equals($this->currentSiteManager->getCurrentSiteDefaultLanguage());
+        } else {
+            $qb->field('language')->equals($language);
+        }
         $qb->field('deleted')->equals(false);
         $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
         $qb->sort('version', 'desc');
