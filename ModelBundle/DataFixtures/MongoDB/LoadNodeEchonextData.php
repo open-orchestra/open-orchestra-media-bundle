@@ -67,7 +67,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->setStatus($this->getReference('status-published'));
         $node->setDeleted(false);
         $node->setTemplateId('template_main');
-        $node->setTheme('themePresentation');
+        $node->setTheme('echonext');
         $node->setInMenu(true);
         $node->setInFooter(true);
 
@@ -96,16 +96,68 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
     /**
      * Generate a login block
-     * 
+     *
      * @param sting $blockLabel
      * @param int| string $nodeId
      * @param string $areaId
-     * 
+     *
      * @return Block
      */
     protected function generateBlockLogin($blockLabel, $areaId, $nodeId = 0)
     {
-        return $this->generateBlock('login', $blockLabel, $nodeId, $areaId);
+        $blockLogin = $this->generateBlock('login', $blockLabel, $nodeId, $areaId);
+
+        return $blockLogin;
+    }
+
+    /**
+     * Generate Menu Block
+     *
+     * @param $blockLabel
+     * @param $areaId
+     * @param int $nodeId
+     *
+     * @return Block
+     */
+    protected function generateBlockMenu($blockLabel, $areaId, $nodeId = 0)
+    {
+        $menuBlock = $this->generateBlock('menu', $blockLabel, $nodeId, $areaId);
+        $menuBlock->setAttributes(array(
+            'class' => array(
+                'div' => 'menu',
+                'ul' => 'menu_ul',
+                'link' => 'menu_link'
+            ),
+            'id' => 'menu',
+        ));
+
+        return $menuBlock;
+    }
+
+    /**
+     * Generate a Carrousel
+     *
+     * @param $blockLabel
+     * @param $areaId
+     * @param int $nodeId
+     *
+     * @return Block
+     */
+    protected function generateBlockCarrousel($blockLabel, $areaId, $nodeId = 0)
+    {
+        $carrouselBlock = $this->generateBlock('carrousel', $blockLabel, $areaId, $nodeId);
+        $carrouselBlock->setAttributes(array(
+            'pictures' => array(
+                array('src' => "/bundles/fakeapptheme/themes/echonext/img/carroussel/01.jpg"),
+                array('src' => "/bundles/fakeapptheme/themes/echonext/img/carroussel/02.jpg"),
+                array('src' => "/bundles/fakeapptheme/themes/echonext/img/carroussel/03.jpg"),
+                array('src' => "/bundles/fakeapptheme/themes/echonext/img/carroussel/04.jpg"),
+            ),
+            'width' => "978px",
+            'height' => "300px",
+        ));
+
+        return $carrouselBlock;
     }
 
     /**
@@ -132,6 +184,8 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      * @param string $areaLabel
      * @param string $areaId
      * @param array $blocks
+     *
+     * @return Area
      */
     protected function generateArea($areaLabel, $areaId, $blocks)
     {
@@ -143,31 +197,97 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         return $area;
     }
 
+    protected function generateFooterBlock($blockLabel, $areaId, $nodeId = 0)
+    {
+        $footerBlock = $this->generateBlock('footer', $blockLabel, $nodeId, $areaId);
+        $footerBlock->setAttributes(array(
+            'id' => 'idFooter',
+            'class' => array(
+                'div' => 'footer',
+                'ul' => 'ul_footer',
+                'link' => 'ul_link'
+            )
+        ));
+
+        return $footerBlock;
+    }
+
+
     /**
      * @return Node
      */
     protected function generateNodeHome()
     {
-        $descBlock = $this->generateBlockWysiwyg('Home', '<h1>Bienvenue sur le site de demo Echonext.</h1>', 'main');
-        $loginBlock = $this->generateBlockLogin('Login', 'main');
+        // Header
+        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
+        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
+        $loginBlock = $this->generateBlockLogin('Login', 'header');
+        $menuBlock = $this->generateBlockMenu('Menu', 'header');
 
-        $mainArea = $this->generateArea('Main', 'main',
+        $headerArea = $this->generateArea('Header', 'header',
             array(
                 array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1)
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
+                array('nodeId' => 0, 'blockId' => 3),
             )
         );
 
+        // Main
+        $descBlock = $this->generateBlockWysiwyg('Home', '<h1>Bienvenue sur le site de demo Echonext.</h1>', 'main');
+        $carrouselBlock = $this->generateBlockCarrousel('Carrousel', 'main');
+        $newsBlock1 = $this->generateBlockWysiwyg('News1', '<div class=news><h1>First News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
+        $newsBlock2 = $this->generateBlockWysiwyg('News2', '<div class=news><h1>second News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
+        $newsBlock3 = $this->generateBlockWysiwyg('News3', '<div class=news><h1>Third News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
+        $newsBlock4 = $this->generateBlockWysiwyg('News4', '<div class="news right0"><h1>Fourth News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
+        $newsBlock5 = $this->generateBlockWysiwyg('News5', '<div class=news><h1>Fifth News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
+
+        $mainArea = $this->generateArea('Main', 'main',
+            array(
+                array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 6),
+                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => 0, 'blockId' => 8),
+                array('nodeId' => 0, 'blockId' => 9),
+                array('nodeId' => 0, 'blockId' => 10),
+            )
+        );
+
+
+        // Footer
+        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
+        $footerArea = $this->generateArea('Footer', 'footer',
+            array(
+                array('nodeId' => 0, 'blockId' => 11)
+            )
+        );
+
+        // Generation of the home node
         $node = $this->generateNode(array(
             'nodeId' => NodeInterface::ROOT_NODE_ID,
             'parentId' => '-',
             'path' => '-',
             'name' => 'Home'
         ));
+
+        $node->addArea($headerArea);
+        $node->addBlock($loginBlock);
+        $node->addBlock($logoBlock);
+        $node->addBlock($search);
+        $node->addBlock($menuBlock);
+
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
-        $node->addBlock($loginBlock);
+        $node->addBlock($carrouselBlock);
+        $node->addBlock($newsBlock1);
+        $node->addBlock($newsBlock2);
+        $node->addBlock($newsBlock3);
+        $node->addBlock($newsBlock4);
+        $node->addBlock($newsBlock5);
 
+        $node->addArea($footerArea);
+        $node->addBlock($footerBlock);
         return $node;
     }
 
