@@ -58,6 +58,13 @@ abstract class AbstractStatus implements StatusInterface
     protected $initial = false;
 
     /**
+     * @var string
+     *
+     * @MongoDB\Field(type="string")
+     */
+    protected $displayColor;
+
+    /**
      * Class constructor
      */
     public function __construct()
@@ -203,5 +210,21 @@ abstract class AbstractStatus implements StatusInterface
     public function getToRoles()
     {
         return $this->toRoles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDisplayColor()
+    {
+        return $this->displayColor;
+    }
+
+    /**
+     * @param mixed $displayColor
+     */
+    public function setDisplayColor($displayColor)
+    {
+        $this->displayColor = $displayColor;
     }
 }

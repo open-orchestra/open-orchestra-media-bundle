@@ -89,4 +89,14 @@ interface StatusInterface extends TranslatedValueContainerInterface
      * @return ArrayCollection
      */
     public function getToRoles();
+
+    /**
+     * @return mixed
+     */
+    public function getDisplayColor();
+
+    /**
+     * @param mixed $displayColor
+     */
+    public function setDisplayColor($displayColor);
 }

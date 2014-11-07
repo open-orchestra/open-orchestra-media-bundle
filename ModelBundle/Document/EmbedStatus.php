@@ -22,6 +22,7 @@ class EmbedStatus extends AbstractStatus
         $this->setInitial($status->isInitial());
         $this->setName($status->getName());
         $this->labels = $status->getLabels();
+        $this->displayColor = $status->getDisplayColor();
 
         $this->toRoles = new ArrayCollection();
         foreach ($status->getToRoles() as $toRole) {
