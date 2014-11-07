@@ -381,7 +381,14 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $contentListBlock->setLabel('Content list');
         $contentListBlock->setComponent('content_list');
         $contentListBlock->setAttributes(array(
-            'contentType' => 'news'
+            'contentType' => 'news',
+            'id' => 'contentNewsList',
+            'class' => array(
+                'div' => 'divclass',
+                'ul' => 'ulclass',
+                'title' => 'titleclass'
+            ),
+            'url' => 'fixture_bd'
         ));
         $contentListBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
@@ -429,10 +436,25 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
         $bdBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
+        $contentBlock = new Block();
+        $contentBlock->setLabel('content news');
+        $contentBlock->setComponent('content');
+        $contentBlock->setAttributes(array(
+            'id' => 'contentNews',
+            'class' => array(
+                'div' => 'divclass',
+                'ul' => 'ulclass',
+                'title' => 'titleclass',
+                'content' => 'contentclass'
+            ),
+        ));
+        $contentBlock->addArea(array('nodeId' => 1, 'areaId' => 'main'));
+
         $bdArea = new Area();
         $bdArea->setLabel('Main');
         $bdArea->setAreaId('main');
         $bdArea->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $bdArea->addBlock(array('nodeId' => 0, 'blockId' => 1));
 
         $bd = new Node();
         $bd->setNodeId('fixture_bd');
@@ -452,6 +474,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $bd->setInMenu(true);
         $bd->addArea($bdArea);
         $bd->addBlock($bdBlock);
+        $bd->addBlock($contentBlock);
 
         return $bd;
     }
