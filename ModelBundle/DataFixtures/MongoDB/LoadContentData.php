@@ -20,12 +20,6 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $objectManager)
     {
-        $content1 = $this->generateContent1();
-        $objectManager->persist($content1);
-
-        $content2 = $this->generateContent2();
-        $objectManager->persist($content2);
-
         $content3 = $this->generateContent3();
         $objectManager->persist($content3);
 
@@ -42,99 +36,8 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 70;
+        return 71;
     }
-
-    /**
-     * @return Content
-     */
-    public function generateContent1()
-    {
-        $content = new Content();
-
-        $attribute1 = new ContentAttribute();
-        $attribute1->setName('title');
-        $attribute1->setValue("Bien vivre en France");
-
-        $attribute2 = new ContentAttribute();
-        $attribute2->setName('image');
-        $attribute2->setValue("/apple-touch-icon.png");
-
-        $attribute3 = new ContentAttribute();
-        $attribute3->setName("intro");
-        $attribute3->setValue("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non feugiat sem. Aliquam a mauris tellus. In hac habitasse platea dictumst. Nunc eget interdum ante, id mollis diam. Suspendisse sed magna lectus. Aenean fringilla elementum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non feugiat sem. Aliquam a mauris tellus. In hac habitasse platea dictumst. Nunc eget interdum ante, id mollis diam. Suspendisse sed magna lectus. Aenean fringilla elementum lorem id suscipit. Phasellus feugiat tellus sapien, id tempus nisi ultrices ut.");
-
-        $attribute4 = new ContentAttribute();
-        $attribute4->setName("text");
-        $attribute4->setValue("Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.<br /><br />Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla, non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.");
-
-        $attribute5 = new ContentAttribute();
-        $attribute5->setName("publish_start");
-        $attribute5->setValue("2014-07-25");
-
-        $attribute6 = new ContentAttribute();
-        $attribute6->setName("publish_end");
-        $attribute6->setValue("2014-10-19");
-
-        $content->setContentId("1");
-        $content->setContentType("news");
-        $content->setContentTypeVersion(1);
-        $content->setDeleted(false);
-        $content->setName("Bien vivre en France");
-        $content->setLanguage("fr");
-        $content->setStatus($this->getReference('status-published'));
-        $content->setVersion(1);
-
-        $content->addAttribute($attribute1);
-        $content->addAttribute($attribute2);
-        $content->addAttribute($attribute3);
-        $content->addAttribute($attribute4);
-        $content->addAttribute($attribute5);
-        $content->addAttribute($attribute6);
-        
-        return $content;
-    }
-
-    /**
-     * @return Content
-     */
-    public function generateContent2()
-    {
-        $content = new Content();
-
-        $attribute1 = new ContentAttribute();
-        $attribute1->setName("title");
-        $attribute1->setValue("lorem Ipsum");
-
-        $attribute2 = new ContentAttribute();
-        $attribute2->setName("image");
-        $attribute2->setValue("");
-
-        $attribute3 = new ContentAttribute();
-        $attribute3->setName("intro");
-        $attribute3->setValue("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non feugiat sem. Aliquam a mauris tellus. In hac habitasse platea dictumst. Nunc eget interdum ante, id mollis diam. Suspendisse sed magna lectus. Aenean fringilla elementum lorem id suscipit. Phasellus feugiat tellus sapien, id tempus nisi ultrices ut.");
-
-        $attribute4 = new ContentAttribute();
-        $attribute4->setName("text");
-        $attribute4->setValue("Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.<br /><br />Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla, non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.");
-
-        $content->setContentId("2");
-        $content->setContentType("news");
-        $content->setContentTypeVersion(1);
-        $content->setDeleted(false);
-        $content->setName("Lorem ipsum");
-        $content->setLanguage("fr");
-        $content->setStatus($this->getReference('status-published'));
-        $content->setVersion(1);
-
-        $content->addAttribute($attribute1);
-        $content->addAttribute($attribute2);
-        $content->addAttribute($attribute3);
-        $content->addAttribute($attribute4);
-
-        return $content;
-    }
-
     /**
      * @return Content
      */
