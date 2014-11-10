@@ -47,6 +47,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
         $site1->setAlias('front-phporchestra-front.inte');
         $site1->setDefaultLanguage('fr');
         $site1->setLanguages(array('en', 'fr'));
+        $site1->setDeleted(true);
         $site1->addBlock('sample');
 
         return $site1;
@@ -63,6 +64,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
         $site2->setAlias('demo-phporchestra-front.inte');
         $site2->setDefaultLanguage('fr');
         $site2->setLanguages(array('en', 'fr'));
+        $site2->setDeleted(false);
         $site2->addBlock('sample');
 
         return $site2;
@@ -79,6 +81,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
         $site3->setAlias('echonext-phporchestra.inte');
         $site3->setDefaultLanguage('fr');
         $site3->setLanguages(array('en', 'fr'));
+        $site3->setDeleted(false);
         $site3->addBlock('sample');
 
         return $site3;
@@ -95,6 +98,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
         $site4->setAlias('empty-php-orchestra.inte');
         $site4->setDefaultLanguage('fr');
         $site4->setLanguages(array('en', 'fr'));
+        $site4->setDeleted(true);
         $site4->addBlock('sample');
 
         return $site4;

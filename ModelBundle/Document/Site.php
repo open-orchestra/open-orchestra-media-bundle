@@ -59,6 +59,13 @@ class Site implements SiteInterface
     protected $languages = array();
 
     /**
+     * @var boolean
+     *
+     * @MongoDB\Field(type="boolean")
+     */
+    protected $deleted = false;
+
+    /**
      * @var ArrayCollection
      *
      * @MongoDB\Field(type="hash")
@@ -175,5 +182,25 @@ class Site implements SiteInterface
     public function getSiteId()
     {
         return $this->siteId;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param boolean $deleted
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return boolean $deleted
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
     }
 }

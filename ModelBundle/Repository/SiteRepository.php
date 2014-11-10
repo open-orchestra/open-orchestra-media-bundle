@@ -9,5 +9,14 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
  */
 class SiteRepository extends DocumentRepository
 {
+    /**
+     * @return array
+     */
+    public function findAllSite()
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->field('deleted')->equals(false);
 
+        return $qb->getQuery()->execute();
+    }
 }
