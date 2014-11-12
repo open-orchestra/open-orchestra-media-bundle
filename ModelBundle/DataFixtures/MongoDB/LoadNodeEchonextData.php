@@ -31,6 +31,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $manager->persist($this->generateCardifActualite());
         $manager->persist($this->generateCardifMissions());
         $manager->persist($this->generateCardifRemun());
+        $manager->persist($this->generateNewsList());
 
         $manager->flush();
     }
@@ -185,13 +186,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      * @param $areaId
      * @param int $nodeId
      * @param $divClass
-     * @param $ulClass
+     * @param $each
      * @param $titleClass
      * @param $url
      *
      * @return Block
      */
-    protected function generateBlockContentList($divClass, $ulClass, $titleClass, $url, $blockLabel, $areaId, $nodeId = 0)
+    protected function generateBlockContentList($divClass, $each, $titleClass, $url, $blockLabel, $areaId, $nodeId = 0)
     {
         $contentList = $this->generateBlock('content_list', $blockLabel, $nodeId, $areaId);
         $contentList->setAttributes(array(
@@ -199,12 +200,21 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'id' => 'contentNewsList',
             'class' => array(
                 'div' => $divClass,
-                'ul' => $ulClass,
+                'ul' => $each,
                 'title' => $titleClass
-            )
+            ),
+            'url' => $url,
         ));
 
         return $contentList;
+    }
+
+    protected function generateBlockNews($blockLabel, $areaId, $nodeId = 0)
+    {
+        $content = $this->generateBlock('content', $blockLabel, $areaId, $nodeId);
+        $content->setAttributes(array(
+            'class' => 'news',
+        ));
     }
 
     /**
@@ -315,12 +325,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Main
         $descBlock = $this->generateBlockWysiwyg('Home', '<h1>Bienvenue sur le site de demo Echonext.</h1>', 'main');
         $carrouselBlock = $this->generateBlockCarrousel('slider1_container', 'Carrousel', 'main');
-        $newsBlock1 = $this->generateBlockWysiwyg('News1', '<div class=news><h1>First News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
-        $newsBlock2 = $this->generateBlockWysiwyg('News2', '<div class=news><h1>second News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
-        $newsBlock3 = $this->generateBlockWysiwyg('News3', '<div class=news><h1>Third News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
-        $newsBlock4 = $this->generateBlockWysiwyg('News4', '<div class="news right0"><h1>Fourth News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
-        $newsBlock5 = $this->generateBlockWysiwyg('News5', '<div class=news><h1>Fifth News</h1><h2>Sub Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. earum eligendi explicabo hic illum ipsa</p><a href="#"></a></div>', 'main');
-        $newsBlock6 = $this->generateBlockContentList('news', 'ul_news', 'title_news', 'newsurl', 'News 6', 'main');
+        $newsList = $this->generateBlockContentList('content-list', 'each_news', 'title_news', 'news', 'News 6', 'main');
         $clearMain = $this->generateClearBlock('main');
 
         $mainArea = $this->generateArea('Main', 'main',
@@ -329,11 +334,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => 0, 'blockId' => 6),
                 array('nodeId' => 0, 'blockId' => 7),
                 array('nodeId' => 0, 'blockId' => 8),
-                array('nodeId' => 0, 'blockId' => 9),
-                array('nodeId' => 0, 'blockId' => 10),
-                array('nodeId' => 0, 'blockId' => 11),
-                array('nodeId' => 0, 'blockId' => 12),
-                array('nodeId' => 0, 'blockId' => 13),
             )
         );
 
@@ -344,8 +344,8 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 14),
-                array('nodeId' => 0, 'blockId' => 15),
+                array('nodeId' => 0, 'blockId' => 9),
+                array('nodeId' => 0, 'blockId' => 10),
             )
         );
 
@@ -355,7 +355,8 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'parentId' => '-',
             'path' => '-',
             'name' => 'Home',
-            'alias' => 'home'
+            'alias' => 'home',
+            'url' => 'home',
         ));
 
         $node->addArea($headerArea);
@@ -368,12 +369,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
         $node->addBlock($carrouselBlock);
-        $node->addBlock($newsBlock1);
-        $node->addBlock($newsBlock2);
-        $node->addBlock($newsBlock3);
-        $node->addBlock($newsBlock4);
-        $node->addBlock($newsBlock5);
-        $node->addBlock($newsBlock6);
+        $node->addBlock($newsList);
         $node->addBlock($clearMain);
 
         $node->addArea($footerArea);
@@ -382,6 +378,36 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         return $node;
     }
 
+
+    /**
+     * @return Node
+     */
+    protected function generateNewsList()
+    {
+        $descBlock = $this->generateBlockWysiwyg('Actualité', '<h1>Actualité de l\'espace Cardif</h1>', 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
+
+        $mainArea = $this->generateArea('Main', 'main',
+            array(
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1)
+            )
+        );
+
+        $node = $this->generateNode(array(
+            'nodeId' => 'news',
+            'parentId' => 'espace_Cardif',
+            'path' => 'news',
+            'name' => 'News',
+            'alias' => 'news',
+            'url' => 'news',
+        ));
+        $node->addArea($mainArea);
+        $node->addBlock($descBlock);
+        $node->addBlock($loginBlock);
+
+        return $node;
+    }
     
     /**
      * @return Node
@@ -404,6 +430,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'path' => 'espace-bddf',
             'name' => 'Espace BDDF',
             'alias' => 'espace-bddf',
+            'url' => 'espace-bddf',
         ));
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
@@ -433,6 +460,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'path' => 'espace-cardif',
             'name' => 'Espace Cardif',
             'alias' => 'espace-cardif',
+            'url' => 'espace-cardif',
         ));
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
@@ -462,6 +490,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'path' => 'espace-arval',
             'name' => 'Espace Arval',
             'alias' => 'espace-arval',
+            'url' => 'espace-arval',
         ));
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
@@ -491,6 +520,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'path' => 'espace-xxx',
             'name' => 'Espace XXX',
             'alias' => 'espace-xxx',
+            'url' => 'espace-xxx',
         ));
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
@@ -520,6 +550,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'path' => 'bienvenu',
             'name' => 'Bienvenu',
             'alias' => 'bienvenu',
+            'url' => 'bienvenu',
         ));
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
@@ -549,35 +580,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'path' => 'actualite',
             'name' => 'Actualité',
             'alias' => 'actualite',
-        ));
-        $node->addArea($mainArea);
-        $node->addBlock($descBlock);
-        $node->addBlock($loginBlock);
-
-        return $node;
-    }
-
-    /**
-     * @return Node
-     */
-    protected function generateCardifActualiteNews6()
-    {
-        $descBlock = $this->generateBlockWysiwyg('Actualité', '<h1>Actualité de l\'espace Cardif</h1>', 'main');
-        $loginBlock = $this->generateBlockLogin('Login', 'main');
-
-        $mainArea = $this->generateArea('Main', 'main',
-            array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1)
-            )
-        );
-
-        $node = $this->generateNode(array(
-            'nodeId' => 'newsurl',
-            'parentId' => 'espace_Cardif',
-            'path' => 'news-url',
-            'name' => 'Actualité',
-            'alias' => 'newsurl'
+            'url' => 'actualite',
         ));
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
@@ -607,6 +610,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'path' => 'missions',
             'name' => 'Mission',
             'alias' => 'missions',
+            'url' => 'missions',
         ));
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
@@ -636,6 +640,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'path' => 'remunarations-variables',
             'name' => 'Remunerations',
             'alias' => 'remunarations-variables',
+            'url' => 'remunarations-variables',
         ));
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
@@ -643,5 +648,4 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         return $node;
     }
-
 }
