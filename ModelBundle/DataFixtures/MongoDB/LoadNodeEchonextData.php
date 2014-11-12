@@ -200,7 +200,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'id' => 'contentNewsList',
             'class' => array(
                 'div' => $divClass,
-                'ul' => $each,
+                'each' => $each,
                 'title' => $titleClass
             ),
             'url' => $url,
