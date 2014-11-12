@@ -78,4 +78,18 @@ interface SiteInterface
      * @return string
      */
     public function getSiteId();
+
+    /**
+     * Set deleted
+     *
+     * @param boolean $deleted
+     */
+    public function setDeleted($deleted);
+
+    /**
+     * Get deleted
+     *
+     * @return boolean $deleted
+     */
+    public function getDeleted();
 }
