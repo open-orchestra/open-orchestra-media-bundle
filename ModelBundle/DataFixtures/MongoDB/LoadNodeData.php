@@ -135,6 +135,15 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
         $blocksubmenu->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
+        $blockLanguage = new Block();
+        $blockLanguage->setLabel('languages');
+        $blockLanguage->getComponent('language_list');
+        $blockLanguage->setAttributes(array(
+            'languages' => array('fr', 'en'),
+            'default' => 'fr'
+        ));
+        $blockLanguage->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
         $homeArea = new Area();
         $homeArea->setLabel('Main');
         $homeArea->setAreaId('main');
@@ -163,6 +172,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->addArea($homeArea);
         $home->addBlock($homeBlock);
         $home->addBlock($loginBlock);
+        $home->addBlock($blockLanguage);
         $home->addBlock($blocksubmenu);
 
         return $home;
