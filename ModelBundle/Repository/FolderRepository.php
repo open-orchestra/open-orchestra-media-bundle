@@ -46,7 +46,9 @@ class FolderRepository extends DocumentRepository
 
         $qb = $this->createQueryBuilder('f');
         $qb->field('parent')->equals(null);
-        $qb->field('sites.id')->equals($site->getId());
+        if ($site) {
+            $qb->field('sites.id')->equals($site->getId());
+        }
 
         return $qb->getQuery()->execute();
     }
