@@ -31,7 +31,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $manager->persist($this->generateCardifActualite());
         $manager->persist($this->generateCardifMissions());
         $manager->persist($this->generateCardifRemun());
-        $manager->persist($this->generateNewsList());
+        $manager->persist($this->generateNodeNews());
 
         $manager->flush();
     }
@@ -221,14 +221,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      *
      * @return Block
      */
-    protected function generateBlockContent($divClass, $ulClass, $titleClass, $contentClass, $blockLabel, $areaId, $nodeId = 0)
+    protected function generateBlockContent($divClass, $titleClass, $contentClass, $blockLabel, $areaId, $nodeId = 0)
     {
         $contentBlock = $this->generateBlock('content', $blockLabel, $nodeId, $areaId);
         $contentBlock->setAttributes(array(
            'id' => 'contentNews',
             'class' => array(
                 'div' => $divClass,
-                'ul' => $ulClass,
                 'title' => $titleClass,
                 'content' => $contentClass
             )
@@ -370,19 +369,47 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         return $node;
     }
 
-
     /**
      * @return Node
      */
-    protected function generateNewsList()
+    protected function generateNodeNews()
     {
-        $descBlock = $this->generateBlockWysiwyg('Actualité', '<h1>Actualité de l\'espace Cardif</h1>', 'main');
-        $loginBlock = $this->generateBlockLogin('Login', 'main');
+        // Header
+        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
+        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
+        $loginBlock = $this->generateBlockLogin('Login', 'header');
+        $menuBlock = $this->generateBlockMenu('Menu', 'header');
+        $clearHeader = $this->generateClearBlock('header');
+
+        $headerArea = $this->generateArea('Header', 'header',
+            array(
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
+                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => 0, 'blockId' => 4),
+            )
+        );
+
+        // Main
+        $newsList = $this->generateBlockContent('news', 'title_news', 'section', 'News 6', 'main');
+        $clearMain = $this->generateClearBlock('main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1)
+                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 6),
+            )
+        );
+
+        // Footer
+        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
+        $clearFooter = $this->generateClearBlock('footer');
+
+        $footerArea = $this->generateArea('Footer', 'footer',
+            array(
+                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => 0, 'blockId' => 8),
             )
         );
 
@@ -394,9 +421,21 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'alias' => 'news',
             'url' => 'news',
         ));
-        $node->addArea($mainArea);
-        $node->addBlock($descBlock);
+
+        $node->addArea($headerArea);
         $node->addBlock($loginBlock);
+        $node->addBlock($logoBlock);
+        $node->addBlock($search);
+        $node->addBlock($menuBlock);
+        $node->addBlock($clearHeader);
+
+        $node->addArea($mainArea);
+        $node->addBlock($newsList);
+        $node->addBlock($clearMain);
+
+        $node->addArea($footerArea);
+        $node->addBlock($footerBlock);
+        $node->addBlock($clearFooter);
 
         return $node;
     }
