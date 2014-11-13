@@ -296,6 +296,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => 0, 'blockId' => 1),
                 array('nodeId' => 0, 'blockId' => 2),
                 array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => 0, 'blockId' => 3),
             )
         );
 
