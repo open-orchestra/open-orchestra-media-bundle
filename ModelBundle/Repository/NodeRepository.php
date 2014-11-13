@@ -57,7 +57,7 @@ class NodeRepository extends DocumentRepository
      */
     public function getSubMenu($nodeId, $nbLevel)
     {
-        $node = $this->findWithPublishedAndLastVersionAndSiteId($nodeId);
+        $node = $this->findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeId);
 
         $list = array();
         $list[] = $node;
@@ -123,15 +123,18 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
-     * @param string $nodeId
+     * @param string      $nodeId
+     * @param string|null $language
      *
      * @return mixed
      */
-    public function findWithPublishedAndLastVersionAndSiteId($nodeId)
+    public function findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeId, $language = null)
     {
         $qb = $this->buildTreeRequest();
 
         $qb->field('nodeId')->equals($nodeId);
+        $fieldLanguage = $language?: $this->currentSiteManager->getCurrentSiteDefaultLanguage();
+        $qb->field('language')->equals($fieldLanguage);
         $qb->sort('version', 'desc');
 
         return $qb->getQuery()->getSingleResult();
