@@ -16,21 +16,26 @@ class PreventProhibitedStatusChangeValidator extends ConstraintValidator
     protected $securityContext;
     protected $documentManager;
     protected $translator;
+    protected $roleRepository;
 
     /**
      * @param SecurityContextInterface $securityContext
      * @param Translator               $translator
      * @param DocumentManager          $documentManager
+     * @param DocumentRepository       $roleRepository
      */
     public function __construct(
         SecurityContextInterface $securityContext,
         Translator $translator,
-        DocumentManager $documentManager
+        DocumentManager $documentManager,
+        $roleRepository
     )
     {
         $this->securityContext = $securityContext;
         $this->documentManager = $documentManager;
         $this->translator = $translator;
+        $this->roleRepository = $roleRepository;
+        
     }
 
     /**
@@ -53,20 +58,27 @@ class PreventProhibitedStatusChangeValidator extends ConstraintValidator
             return;
         }
 
-        $toRoles = array();
-        foreach ($status->getToRoles() as $toRole) {
-            $toRoles[] = $toRole->getName();
-        }
-
-        $fromRoles = array();
-        foreach ($oldStatus->getFromRoles() as $fromRole) {
-            $fromRoles[] = $fromRole->getName();
-        }
-
-        if ((!empty($toRoles) && !$this->securityContext->isGranted($toRoles))
-            || (!empty($fromRoles) && !$this->securityContext->isGranted($fromRoles))
-        ) {
+        if (! $this->canSwitchStatus($oldStatus, $status)) {
             $this->context->addViolationAt('status', $this->translator->trans($constraint->message));
+        }
+    }
+
+    /**
+     * Check if current user is allowed to change content/node from fromStatus to toStatus
+     * 
+     * @param Status $fromStatus
+     * @param Status $toStatus
+     * 
+     * @return boolean
+     */
+    public function canSwitchStatus($fromStatus, $toStatus)
+    {
+        $role = $this->roleRepository->findOneRoleFromStatusToStatus($fromStatus, $toStatus);
+
+        if ($role) {
+            return $this->securityContext->isGranted($role->getName());
+        } else {
+            return false;
         }
     }
 }
