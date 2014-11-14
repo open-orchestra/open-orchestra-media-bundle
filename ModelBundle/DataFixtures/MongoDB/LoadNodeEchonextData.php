@@ -167,7 +167,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      *
      * @param string $blockLabel
      * @param string $htmlContent
-     * @param int $nodeId
+     * @param int    $nodeId
      * @param string $areaId
      *
      * @return Block
@@ -184,7 +184,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      * Generate a list of Content
      * @param string $blockLabel
      * @param string $areaId
-     * @param int $nodeId
+     * @param int    $nodeId
      * @param string $divClass
      * @param string $each
      * @param string $titleClass
@@ -217,7 +217,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      * @param string $contentClass
      * @param string $blockLabel
      * @param string $areaId
-     * @param int $nodeId
+     * @param int    $nodeId
      *
      * @return Block
      */
@@ -247,7 +247,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      * @param string $node
      * @param string $blockLabel
      * @param string $areaId
-     * @param int $nodeId
+     * @param int    $nodeId
      *
      * @return Block
      */
@@ -273,7 +273,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      *
      * @param string $areaLabel
      * @param string $areaId
-     * @param array $blocks
+     * @param array  $blocks
      *
      * @return Area
      */
