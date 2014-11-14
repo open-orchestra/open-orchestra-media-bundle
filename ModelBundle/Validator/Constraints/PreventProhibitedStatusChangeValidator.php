@@ -22,20 +22,19 @@ class PreventProhibitedStatusChangeValidator extends ConstraintValidator
      * @param SecurityContextInterface $securityContext
      * @param Translator               $translator
      * @param DocumentManager          $documentManager
-     * @param DocumentRepository       $roleRepository
+     * @param RoleRepository           $roleRepository
      */
     public function __construct(
         SecurityContextInterface $securityContext,
         Translator $translator,
         DocumentManager $documentManager,
-        $roleRepository
+        RoleRepository $roleRepository
     )
     {
         $this->securityContext = $securityContext;
         $this->documentManager = $documentManager;
         $this->translator = $translator;
         $this->roleRepository = $roleRepository;
-        
     }
 
     /**
@@ -73,7 +72,7 @@ class PreventProhibitedStatusChangeValidator extends ConstraintValidator
      */
     public function canSwitchStatus($fromStatus, $toStatus)
     {
-        $role = $this->roleRepository->findOneRoleFromStatusToStatus($fromStatus, $toStatus);
+        $role = $this->roleRepository->findOneByFromStatusAndToStatus($fromStatus, $toStatus);
 
         if ($role) {
             return $this->securityContext->isGranted($role->getName());

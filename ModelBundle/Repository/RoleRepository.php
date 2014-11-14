@@ -15,7 +15,7 @@ class RoleRepository extends DocumentRepository
      * @param $fromStatus
      * @param $toStatus
      */
-    public function findOneRoleFromStatusToStatus($fromStatus, $toStatus)
+    public function findOneByFromStatusAndToStatus($fromStatus, $toStatus)
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('fromStatus.id')->equals($fromStatus->getId());
