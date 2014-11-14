@@ -48,9 +48,9 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
     /**
      * Generate a node
-     * 
+     *
      * @param array $params
-     * 
+     *
      * @return Node
      */
     protected function generateNode($params)
@@ -69,20 +69,20 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->setDeleted(false);
         $node->setTemplateId('template_main');
         $node->setTheme('echonext');
-        $node->setInMenu($params['inMenu']);
-        $node->setInFooter($params['inFooter']);
+        $node->setInMenu(true);
+        $node->setInFooter(true);
 
         return $node;
     }
 
     /**
      * Generate a specific block
-     * 
+     *
      * @param string $blockType
      * @param string $blockLabel
      * @param int|string $nodeId
      * @param string $areaId
-     * 
+     *
      * @return Block
      */
     protected function generateBlock($blockType, $blockLabel, $nodeId, $areaId)
@@ -91,7 +91,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $block->setLabel($blockLabel);
         $block->setComponent($blockType);
         $block->addArea(array('nodeId' => $nodeId, 'areaId' => $areaId));
-        
+
         return $block;
     }
 
@@ -164,17 +164,17 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
     /**
      * Generate a Wysiwyg block
-     * 
+     *
      * @param string $blockLabel
      * @param string $htmlContent
      * @param int|string $nodeId
      * @param string $areaId
-     * 
+     *
      * @return Block
      */
     protected function generateBlockWysiwyg($blockLabel, $htmlContent, $areaId, $nodeId = 0)
     {
-        $wysiwygBlock = $this->generateBlock('tiny_mce_wysiwyg', $blockLabel, $nodeId, $areaId); 
+        $wysiwygBlock = $this->generateBlock('tiny_mce_wysiwyg', $blockLabel, $nodeId, $areaId);
         $wysiwygBlock->setAttributes(array('htmlContent' => $htmlContent));
 
         return $wysiwygBlock;
@@ -182,13 +182,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
     /**
      * Generate a list of Content
-     * @param $blockLabel
-     * @param $areaId
+     *
+     * @param string $blockLabel
+     * @param string $areaId
      * @param int $nodeId
-     * @param $divClass
-     * @param $each
-     * @param $titleClass
-     * @param $url
+     * @param string $divClass
+     * @param string $each
+     * @param string $titleClass
+     * @param string $url
      *
      * @return Block
      */
@@ -211,11 +212,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
     /**
      * Generate a content
-     * @param $divClass
-     * @param $titleClass
-     * @param $contentClass
-     * @param $blockLabel
-     * @param $areaId
+     *
+     * @param string $divClass
+     * @param string $ulClass
+     * @param string $titleClass
+     * @param string $contentClass
+     * @param string $blockLabel
+     * @param string $areaId
      * @param int $nodeId
      *
      * @return Block
@@ -224,7 +227,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     {
         $contentBlock = $this->generateBlock('content', $blockLabel, $nodeId, $areaId);
         $contentBlock->setAttributes(array(
-           'id' => 'contentNews',
+            'id' => 'contentNews',
             'class' => array(
                 'div' => $divClass,
                 'title' => $titleClass,
@@ -236,38 +239,8 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     }
 
     /**
-     * @param $divclass
-     * @param $ulclass
-     * @param $linkclass
-     * @param $idmenu
-     * @param $nbLevel
-     * @param $node
-     * @param $blockLabel
-     * @param $areaId
-     * @param int $nodeId
-     *
-     * @return Block
-     */
-    protected function generateBlockSubMenu($divclass, $ulclass, $linkclass, $idmenu, $nbLevel, $node, $blockLabel, $areaId, $nodeId = 0)
-    {
-        $subMenuBlock = $this->generateBlock('sub_menu', $blockLabel, $nodeId, $areaId);
-        $subMenuBlock->setAttributes(array(
-            'class' => array(
-                'div' => $divclass,
-                'ul' => $ulclass,
-                'link' => $linkclass,
-            ),
-            'id' => $idmenu,
-            'nbLevel' => $nbLevel,
-            'node' => $node,
-        ));
-
-        return $subMenuBlock;
-    }
-
-    /**
      * Generate an Area
-     * 
+     *
      * @param string $areaLabel
      * @param string $areaId
      * @param array $blocks
@@ -308,6 +281,17 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         return $footerBlock;
     }
 
+    /**
+     * Generate a div for clearing floats
+     * @param $areaId
+     *
+     * @return Block
+     */
+    protected function generateClearBlock($areaId)
+    {
+        return $this->generateBlockWysiwyg('Clear', '<div class="clear" style="clear:both"></div>', $areaId);
+    }
+
 
     /**
      * @return Node
@@ -319,6 +303,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
         $loginBlock = $this->generateBlockLogin('Login', 'header');
         $menuBlock = $this->generateBlockMenu('Menu', 'header');
+        $clearHeader = $this->generateClearBlock('header');
 
         $headerArea = $this->generateArea('Header', 'header',
             array(
@@ -326,6 +311,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => 0, 'blockId' => 1),
                 array('nodeId' => 0, 'blockId' => 2),
                 array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => 0, 'blockId' => 4),
             )
         );
 
@@ -333,22 +319,26 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $descBlock = $this->generateBlockWysiwyg('Home', '<h1>Bienvenue sur le site de demo Echonext.</h1>', 'main');
         $carrouselBlock = $this->generateBlockCarrousel('slider1_container', 'Carrousel', 'main');
         $newsList = $this->generateBlockContentList('content-list', 'each_news', 'title_news', 'news', 'News 6', 'main');
+        $clearMain = $this->generateClearBlock('main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
                 array('nodeId' => 0, 'blockId' => 5),
                 array('nodeId' => 0, 'blockId' => 6),
+                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => 0, 'blockId' => 8),
             )
         );
 
 
         // Footer
         $footerBlock = $this->generateFooterBlock('Footer', 'footer');
+        $clearFooter = $this->generateClearBlock('footer');
 
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => 0, 'blockId' => 9),
+                array('nodeId' => 0, 'blockId' => 10),
             )
         );
 
@@ -360,8 +350,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'name' => 'Home',
             'alias' => 'home',
             'url' => 'home',
-            'inMenu' => true,
-            'inFooter' => true,
         ));
 
         $node->addArea($headerArea);
@@ -369,14 +357,17 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addBlock($logoBlock);
         $node->addBlock($search);
         $node->addBlock($menuBlock);
+        $node->addBlock($clearHeader);
 
         $node->addArea($mainArea);
         $node->addBlock($descBlock);
         $node->addBlock($carrouselBlock);
         $node->addBlock($newsList);
+        $node->addBlock($clearMain);
 
         $node->addArea($footerArea);
         $node->addBlock($footerBlock);
+        $node->addBlock($clearFooter);
         return $node;
     }
 
@@ -390,6 +381,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
         $loginBlock = $this->generateBlockLogin('Login', 'header');
         $menuBlock = $this->generateBlockMenu('Menu', 'header');
+        $clearHeader = $this->generateClearBlock('header');
 
         $headerArea = $this->generateArea('Header', 'header',
             array(
@@ -397,36 +389,39 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => 0, 'blockId' => 1),
                 array('nodeId' => 0, 'blockId' => 2),
                 array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => 0, 'blockId' => 4),
             )
         );
 
         // Main
-        $newsList = $this->generateBlockContent('news', 'title_news', 'section', 'News', 'main');
+        $newsList = $this->generateBlockContent('news', 'title_news', 'section', 'News 6', 'main');
+        $clearMain = $this->generateClearBlock('main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 6),
             )
         );
 
         // Footer
         $footerBlock = $this->generateFooterBlock('Footer', 'footer');
+        $clearFooter = $this->generateClearBlock('footer');
 
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => 0, 'blockId' => 8),
             )
         );
 
         $node = $this->generateNode(array(
             'nodeId' => 'news',
-            'parentId' => NodeInterface::ROOT_NODE_ID,
+            'parentId' => 'espace_Cardif',
             'path' => 'news',
             'name' => 'News',
             'alias' => 'news',
             'url' => 'news',
-            'inMenu' => false,
-            'inFooter' => false,
         ));
 
         $node->addArea($headerArea);
@@ -434,76 +429,45 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addBlock($logoBlock);
         $node->addBlock($search);
         $node->addBlock($menuBlock);
+        $node->addBlock($clearHeader);
 
         $node->addArea($mainArea);
         $node->addBlock($newsList);
+        $node->addBlock($clearMain);
 
         $node->addArea($footerArea);
         $node->addBlock($footerBlock);
+        $node->addBlock($clearFooter);
 
         return $node;
     }
-    
+
     /**
      * @return Node
      */
     protected function generateEspaceBDDF()
     {
-        // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
-        $headerArea = $this->generateArea('Header', 'header',
-            array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
-            )
-        );
-
-        // Main
-        $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Espace BDDF</h1>', 'main');
+        $descBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Espace BDDF</h1>', 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-            )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
-        $footerArea = $this->generateArea('Footer', 'footer',
-            array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1)
             )
         );
 
         $node = $this->generateNode(array(
-            'nodeId' => 'espace_bddf',
+            'nodeId' => 'espace_BDDF',
             'parentId' => NodeInterface::ROOT_NODE_ID,
             'path' => 'espace-bddf',
             'name' => 'Espace BDDF',
             'alias' => 'espace-bddf',
             'url' => 'espace-bddf',
-            'inMenu' => true,
-            'inFooter' => true,
         ));
-
-        $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+        $node->addBlock($descBlock);
+        $node->addBlock($loginBlock);
 
         return $node;
     }
@@ -513,46 +477,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     protected function generateEspaceCardif()
     {
-        // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
-        $headerArea = $this->generateArea('Header', 'header',
-            array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
-            )
-        );
-
-        // Main
-        $titleBlock = $this->generateBlockWysiwyg('Cardif', "<h1>Bienvenue sur l'espace de cardif</h1>", 'main');
-        $subMenu = $this->generateBlockSubMenu('left_menu', 'left_ul', 'link', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
-        $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
-            Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
-            ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at
-            sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque
-            quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.</p><p>Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla,
-            non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et
-            fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
+        $descBlock = $this->generateBlockWysiwyg('Cardif', '<h1>Page Espace Cardif</h1>', 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-                array('nodeId' => 0, 'blockId' => 5),
-                array('nodeId' => 0, 'blockId' => 6),
-            )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
-        $footerArea = $this->generateArea('Footer', 'footer',
-            array(
-                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1)
             )
         );
 
@@ -563,25 +494,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'name' => 'Espace Cardif',
             'alias' => 'espace-cardif',
             'url' => 'espace-cardif',
-            'inMenu' => true,
-            'inFooter' => true,
         ));
-
-        $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-        $node->addBlock($subMenu);
-        $node->addBlock($bodyBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
-
-        return $node;
+        $node->addBlock($descBlock);
+        $node->addBlock($loginBlock);
 
         return $node;
     }
@@ -591,36 +507,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     protected function generateEspaceArval()
     {
-        // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
-        $headerArea = $this->generateArea('Header', 'header',
-            array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
-            )
-        );
-
-        // Main
-        $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Espace Arval</h1>', 'main');
+        $descBlock = $this->generateBlockWysiwyg('Arval', '<h1>Page Espace Arval</h1>', 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-            )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
-        $footerArea = $this->generateArea('Footer', 'footer',
-            array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1)
             )
         );
 
@@ -631,21 +524,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'name' => 'Espace Arval',
             'alias' => 'espace-arval',
             'url' => 'espace-arval',
-            'inMenu' => true,
-            'inFooter' => true,
         ));
-
-        $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+        $node->addBlock($descBlock);
+        $node->addBlock($loginBlock);
 
         return $node;
     }
@@ -655,36 +537,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     protected function generateEspaceXXX()
     {
-        // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
-        $headerArea = $this->generateArea('Header', 'header',
-            array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
-            )
-        );
-
-        // Main
-        $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Espace XXX</h1>', 'main');
+        $descBlock = $this->generateBlockWysiwyg('XXX', '<h1>Page Espace XXX</h1>', 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-            )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
-        $footerArea = $this->generateArea('Footer', 'footer',
-            array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1)
             )
         );
 
@@ -695,21 +554,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'name' => 'Espace XXX',
             'alias' => 'espace-xxx',
             'url' => 'espace-xxx',
-            'inMenu' => true,
-            'inFooter' => true,
         ));
-
-        $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+        $node->addBlock($descBlock);
+        $node->addBlock($loginBlock);
 
         return $node;
     }
@@ -719,36 +567,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     protected function generateCardifBienvenu()
     {
-        // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
-        $headerArea = $this->generateArea('Header', 'header',
-            array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
-            )
-        );
-
-        // Main
-        $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Bienvenue sur l\'espace Cardif</h1>', 'main');
+        $descBlock = $this->generateBlockWysiwyg('Bienvenu', '<h1>Bienvenu sur l\'espace Cardif</h1>', 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-            )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
-        $footerArea = $this->generateArea('Footer', 'footer',
-            array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1)
             )
         );
 
@@ -759,21 +584,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'name' => 'Bienvenu',
             'alias' => 'bienvenu',
             'url' => 'bienvenu',
-            'inMenu' => false,
-            'inFooter' => false,
         ));
-
-        $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+        $node->addBlock($descBlock);
+        $node->addBlock($loginBlock);
 
         return $node;
     }
@@ -783,36 +597,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     protected function generateCardifActualite()
     {
-        // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
-        $headerArea = $this->generateArea('Header', 'header',
-            array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
-            )
-        );
-
-        // Main
-        $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page actualité Cardif</h1>', 'main');
+        $descBlock = $this->generateBlockWysiwyg('Actualité', '<h1>Actualité de l\'espace Cardif</h1>', 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-            )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
-        $footerArea = $this->generateArea('Footer', 'footer',
-            array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1)
             )
         );
 
@@ -823,21 +614,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'name' => 'Actualité',
             'alias' => 'actualite',
             'url' => 'actualite',
-            'inMenu' => true,
-            'inFooter' => true,
         ));
-
-        $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+        $node->addBlock($descBlock);
+        $node->addBlock($loginBlock);
 
         return $node;
     }
@@ -847,36 +627,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     protected function generateCardifMissions()
     {
-        // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
-        $headerArea = $this->generateArea('Header', 'header',
-            array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
-            )
-        );
-
-        // Main
-        $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Missions Cardif</h1>', 'main');
+        $descBlock = $this->generateBlockWysiwyg('Missions', '<h1>Missions de l\'espace Cardif</h1>', 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-            )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
-        $footerArea = $this->generateArea('Footer', 'footer',
-            array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1)
             )
         );
 
@@ -887,21 +644,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'name' => 'Mission',
             'alias' => 'missions',
             'url' => 'missions',
-            'inMenu' => true,
-            'inFooter' => true,
         ));
-
-        $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+        $node->addBlock($descBlock);
+        $node->addBlock($loginBlock);
 
         return $node;
     }
@@ -911,36 +657,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     protected function generateCardifRemun()
     {
-        // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
-        $headerArea = $this->generateArea('Header', 'header',
-            array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
-            )
-        );
-
-        // Main
-        $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Cardif Rémunération</h1>', 'main');
+        $descBlock = $this->generateBlockWysiwyg('Rémunération', '<h1>Politique de rémunération variable</h1>', 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-            )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
-        $footerArea = $this->generateArea('Footer', 'footer',
-            array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1)
             )
         );
 
@@ -951,21 +674,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'name' => 'Remunerations',
             'alias' => 'remunarations-variables',
             'url' => 'remunarations-variables',
-            'inMenu' => true,
-            'inFooter' => true,
         ));
-
-        $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+        $node->addBlock($descBlock);
+        $node->addBlock($loginBlock);
 
         return $node;
     }
