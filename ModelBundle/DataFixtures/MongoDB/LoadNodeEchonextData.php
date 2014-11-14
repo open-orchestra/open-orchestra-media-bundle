@@ -740,10 +740,20 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Bienvenue sur l\'espace Cardif</h1>', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'left_ul', 'link', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
+            Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
+            ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at
+            sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque
+            quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.</p><p>Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla,
+            non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et
+            fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
                 array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 6),
             )
         );
 
@@ -752,7 +762,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 7),
             )
         );
 
@@ -775,6 +785,8 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node->addArea($mainArea);
         $node->addBlock($titleBlock);
+        $node->addBlock($subMenu);
+        $node->addBlock($bodyBlock);
 
         $node->addArea($footerArea);
         $node->addBlock($footerBlock);
@@ -804,10 +816,20 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page actualité Cardif</h1>', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'left_ul', 'link', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
+            Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
+            ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at
+            sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque
+            quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.</p><p>Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla,
+            non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et
+            fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
                 array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 6),
             )
         );
 
@@ -816,7 +838,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 7),
             )
         );
 
@@ -839,6 +861,8 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node->addArea($mainArea);
         $node->addBlock($titleBlock);
+        $node->addBlock($subMenu);
+        $node->addBlock($bodyBlock);
 
         $node->addArea($footerArea);
         $node->addBlock($footerBlock);
@@ -868,10 +892,20 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Missions Cardif</h1>', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'left_ul', 'link', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
+            Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
+            ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at
+            sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque
+            quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.</p><p>Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla,
+            non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et
+            fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
                 array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 6),
             )
         );
 
@@ -880,7 +914,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 7),
             )
         );
 
@@ -903,6 +937,8 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node->addArea($mainArea);
         $node->addBlock($titleBlock);
+        $node->addBlock($subMenu);
+        $node->addBlock($bodyBlock);
 
         $node->addArea($footerArea);
         $node->addBlock($footerBlock);
@@ -932,10 +968,20 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Cardif Rémunération</h1>', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'left_ul', 'link', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
+            Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
+            ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at
+            sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque
+            quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.</p><p>Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla,
+            non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et
+            fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
                 array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 6),
             )
         );
 
@@ -944,7 +990,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 7),
             )
         );
 
@@ -967,6 +1013,8 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node->addArea($mainArea);
         $node->addBlock($titleBlock);
+        $node->addBlock($subMenu);
+        $node->addBlock($bodyBlock);
 
         $node->addArea($footerArea);
         $node->addBlock($footerBlock);
