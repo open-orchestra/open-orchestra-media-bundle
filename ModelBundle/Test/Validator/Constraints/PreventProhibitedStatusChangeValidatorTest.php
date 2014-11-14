@@ -27,12 +27,10 @@ class PreventProhibitedStatusChangeValidatorTest extends \PHPUnit_Framework_Test
     protected $unitOfWork;
     protected $oldStatus;
     protected $roleName;
-    protected $oldRoles;
     protected $oldRole;
     protected $oldNode;
     protected $context;
     protected $status;
-    protected $roles;
     protected $role;
     protected $node;
 
@@ -50,10 +48,7 @@ class PreventProhibitedStatusChangeValidatorTest extends \PHPUnit_Framework_Test
         $this->roleName = 'ROLE';
         $this->role = Phake::mock('PHPOrchestra\ModelBundle\Document\Role');
         Phake::when($this->role)->getName()->thenReturn($this->roleName);
-        $this->roles = new ArrayCollection();
-        $this->roles->add($this->role);
         $this->status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        Phake::when($this->status)->getToRoles()->thenReturn($this->roles);
         Phake::when($this->status)->getId()->thenReturn('newId');
 
         $this->roleRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\RoleRepository');
@@ -65,10 +60,7 @@ class PreventProhibitedStatusChangeValidatorTest extends \PHPUnit_Framework_Test
         $this->oldRoleName = 'OLD_ROLE';
         $this->oldRole = Phake::mock('PHPOrchestra\ModelBundle\Document\Role');
         Phake::when($this->oldRole)->getName()->thenReturn($this->oldRoleName);
-        $this->oldRoles = new ArrayCollection();
-        $this->oldRoles->add($this->oldRole);
         $this->oldStatus = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        Phake::when($this->oldStatus)->getFromRoles()->thenReturn($this->oldRoles);
         Phake::when($this->oldStatus)->getId()->thenReturn('oldId');
 
         $this->oldNode = array('status' => $this->oldStatus);
@@ -139,5 +131,40 @@ class PreventProhibitedStatusChangeValidatorTest extends \PHPUnit_Framework_Test
         $this->validator->validate($this->node, $this->constraint);
 
         Phake::verify($this->context, Phake::never())->addViolationAt(Phake::anyParameters());
+    }
+
+    /**
+     * Test if role exist
+     * 
+     * @param boolean $roleFound
+     * @param boolean $isGranted
+     * @param boolean $canSwitch
+     *
+     * @dataProvider provideRoleAndResult
+     */
+    public function testCanSwitchStatus($roleFound, $isGranted, $canSwitch)
+    {
+        if ($roleFound) {
+            Phake::when($this->roleRepository)->findOneByFromStatusAndToStatus(Phake::anyParameters())->thenReturn($this->role);
+            Phake::when($this->securityContext)->isGranted($this->roleName)->thenReturn($isGranted);
+        } else {
+            Phake::when($this->roleRepository)->findOneByFromStatusAndToStatus(Phake::anyParameters())->thenReturn(null);
+        }
+
+        $result = $this->validator->canSwitchStatus($this->oldNode['status'], $this->status);
+
+        $this->assertEquals($canSwitch, $result);
+    }
+    /**
+     * @return array
+     */
+    public function provideRoleAndResult()
+    {
+        return array(
+            array(true, true, true),
+            array(true, false, false),
+            array(false, true, false),
+            array(false, false, false)
+        );
     }
 }
