@@ -7,6 +7,7 @@ use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Doctrine\ODM\MongoDB\DocumentManager;
+use PHPOrchestra\ModelBundle\Repository\RoleRepository;
 
 /**
  * Class PreventProhibitedStatusChangeValidator
