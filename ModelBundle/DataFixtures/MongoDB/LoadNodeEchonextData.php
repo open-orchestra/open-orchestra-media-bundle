@@ -80,7 +80,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      *
      * @param string $blockType
      * @param string $blockLabel
-     * @param int|string $nodeId
+     * @param int    $nodeId
      * @param string $areaId
      *
      * @return Block
@@ -99,7 +99,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      * Generate a login block
      *
      * @param sting $blockLabel
-     * @param int| string $nodeId
+     * @param int   $nodeId
      * @param string $areaId
      *
      * @return Block
@@ -182,6 +182,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
     /**
      * Generate a list of Content
+     *
      * @param string $blockLabel
      * @param string $areaId
      * @param int    $nodeId
