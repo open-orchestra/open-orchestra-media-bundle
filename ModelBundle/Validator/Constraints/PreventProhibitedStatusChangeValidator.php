@@ -77,8 +77,7 @@ class PreventProhibitedStatusChangeValidator extends ConstraintValidator
 
         if ($role) {
             return $this->securityContext->isGranted($role->getName());
-        } else {
-            return false;
-        }
+
+        return false;
     }
 }
