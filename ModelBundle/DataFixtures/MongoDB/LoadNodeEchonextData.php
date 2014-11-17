@@ -409,11 +409,9 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -433,7 +431,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addArea($footerArea);
 
         $node->addBlock($newsList);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -463,11 +460,9 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -487,7 +482,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addArea($footerArea);
 
         $node->addBlock($titleBlock);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -524,14 +518,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => 0, 'blockId' => 1),
                 array('nodeId' => 0, 'blockId' => 2),
             )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
+        );// Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -553,7 +543,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -583,11 +572,9 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -607,7 +594,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addArea($footerArea);
 
         $node->addBlock($titleBlock);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -637,11 +623,9 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -661,7 +645,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addArea($footerArea);
 
         $node->addBlock($titleBlock);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -701,11 +684,9 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -727,7 +708,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -767,11 +747,9 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -793,7 +771,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -833,11 +810,9 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -859,7 +834,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -899,11 +873,9 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -925,7 +897,6 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
