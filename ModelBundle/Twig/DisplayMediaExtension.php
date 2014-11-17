@@ -32,7 +32,7 @@ class DisplayMediaExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('media_mym_type', array($this, 'mediaMymType'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('media_preview', array($this, 'mediaPreview')),
+            new \Twig_SimpleFunction('display_media', array($this, 'displayMedia')),
         );
     }
 
@@ -41,7 +41,7 @@ class DisplayMediaExtension extends \Twig_Extension
      *
      * @return String
      */
-    public function mediaMymType($mediaId)
+    public function displayMedia($mediaId)
     {
         $media = $this->mediaRepository->findOneById($mediaId);
 

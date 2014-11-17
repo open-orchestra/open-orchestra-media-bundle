@@ -36,7 +36,7 @@ class ImageStrategyTest extends \PHPUnit_Framework_TestCase
     public function testDisplayMedia($images, $url)
     {
         Phake::when($this->media)->getName()->thenReturn($images);
-        Phake::when($this->media)->getThumbnail()->thenReturn($images);
+        Phake::when($this->media)->getFilesystemName()->thenReturn($images);
 
         $html = '<img src="' . $url .'" alt="' . $images .'">';
 

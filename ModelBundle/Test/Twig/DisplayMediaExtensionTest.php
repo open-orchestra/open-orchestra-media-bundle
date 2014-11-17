@@ -30,14 +30,14 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     /**
      * Test mediaMymType
      */
-    public function testMediaMymType()
+    public function testDisplayMedia()
     {
         $mediaId = 'mediaId';
         $html = '<img src="test" alt="test">';
         Phake::when($this->mediaRepository)->findOneById($mediaId)->thenReturn($this->media);
         Phake::when($this->displayMediaManager)->displayMedia($this->media)->thenReturn($html);
 
-        $this->assertSame($html, $this->extension->mediaMymType($mediaId));
+        $this->assertSame($html, $this->extension->displayMedia($mediaId));
 
         Phake::verify($this->displayMediaManager, Phake::times(1))->displayMedia($this->media);
     }
@@ -45,12 +45,12 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     /**
      * Test mediaMymType
      */
-    public function testMediaMymTypeNull()
+    public function testDisplayMediaNull()
     {
         $mediaId = 'mediaId';
         Phake::when($this->mediaRepository)->findOneById(Phake::anyParameters())->thenReturn(null);
 
-        $this->assertSame('', $this->extension->mediaMymType($mediaId));
+        $this->assertSame('', $this->extension->displayMedia($mediaId));
 
         Phake::verify($this->displayMediaManager, Phake::never())->displayMedia($this->media);
     }
