@@ -18,7 +18,10 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $rootImage = new Media();
-        $rootImage->setName('Root image');
+        $rootImage->setName('logo Phporchestra');
+        $rootImage->setFilesystemName('themePresentation-logoOrchestra.png');
+        $rootImage->setThumbnail('themePresentation-logoOrchestra.png');
+        $rootImage->setMimeType('image/png');
         $rootImage->setMediaFolder($this->getReference('mediaFolder-rootImages'));
         $manager->persist($rootImage);
 
