@@ -53,6 +53,9 @@ class GenerateNodeIdListenerTest extends \PHPUnit_Framework_TestCase
         Phake::verify($this->node)->setNodeId($expectedNodeId);
     }
 
+    /**
+     * @return array
+     */
     public function provideNodeIntel()
     {
         return array(
@@ -62,6 +65,9 @@ class GenerateNodeIdListenerTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Test with already set nodeId
+     */
     public function testPrePersistWithNodeIdAlreadySet()
     {
         Phake::when($this->node)->getNodeId()->thenReturn('something');
