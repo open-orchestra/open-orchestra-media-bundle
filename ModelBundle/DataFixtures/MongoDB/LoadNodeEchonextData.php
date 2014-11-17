@@ -320,7 +320,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     {
         // Header
         $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
+        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='http://media.phporchestra.inte/echonext-head_logo.png' /> </a><img src='http://media.phporchestra.inte/echonext-head_img.jpg' class='bg-header'/>", 'header');
         $loginBlock = $this->generateBlockLogin('Login', 'header');
         $menuBlock = $this->generateBlockMenu('Menu', 'header');
 
@@ -390,17 +390,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateNodeNews()
     {
         // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
 
@@ -409,16 +404,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 0),
             )
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -434,16 +427,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         ));
 
         $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($newsList);
-
         $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+
+        $node->addBlock($newsList);
 
         return $node;
     }
@@ -454,17 +441,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateEspaceBDDF()
     {
         // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
 
@@ -473,16 +455,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 0),
             )
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -498,16 +478,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         ));
 
         $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
         $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+
+        $node->addBlock($titleBlock);
 
         return $node;
     }
@@ -518,17 +492,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateEspaceCardif()
     {
         // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
 
@@ -545,18 +514,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-                array('nodeId' => 0, 'blockId' => 5),
-                array('nodeId' => 0, 'blockId' => 6),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
-        );
-
-        // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
+        );// Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -572,20 +537,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         ));
 
         $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
+        $node->addArea($footerArea);
+
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
-
-        return $node;
 
         return $node;
     }
@@ -596,17 +553,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateEspaceArval()
     {
         // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
 
@@ -615,16 +567,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 0),
             )
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -640,16 +590,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         ));
 
         $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
         $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+
+        $node->addBlock($titleBlock);
 
         return $node;
     }
@@ -660,17 +604,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateEspaceXXX()
     {
         // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
 
@@ -679,16 +618,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 0),
             )
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 5),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -704,16 +641,10 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         ));
 
         $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
-        $node->addBlock($titleBlock);
-
         $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
+
+        $node->addBlock($titleBlock);
 
         return $node;
     }
@@ -724,17 +655,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateCardifBienvenu()
     {
         // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
 
@@ -751,18 +677,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-                array('nodeId' => 0, 'blockId' => 5),
-                array('nodeId' => 0, 'blockId' => 6),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -778,18 +702,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         ));
 
         $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
+        $node->addArea($footerArea);
+
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -800,17 +718,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateCardifActualite()
     {
         // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
 
@@ -827,18 +740,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-                array('nodeId' => 0, 'blockId' => 5),
-                array('nodeId' => 0, 'blockId' => 6),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -854,18 +765,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         ));
 
         $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
+        $node->addArea($footerArea);
+
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -876,17 +781,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateCardifMissions()
     {
         // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
 
@@ -903,18 +803,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-                array('nodeId' => 0, 'blockId' => 5),
-                array('nodeId' => 0, 'blockId' => 6),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -930,18 +828,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         ));
 
         $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
+        $node->addArea($footerArea);
+
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
@@ -952,17 +844,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateCardifRemun()
     {
         // Header
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='/bundles/fakeapptheme/themes/echonext/img/head_logo.png' /> </a><img src='/bundles/fakeapptheme/themes/echonext/img/head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => 0, 'blockId' => 0),
-                array('nodeId' => 0, 'blockId' => 1),
-                array('nodeId' => 0, 'blockId' => 2),
-                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
 
@@ -979,18 +866,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 0, 'blockId' => 4),
-                array('nodeId' => 0, 'blockId' => 5),
-                array('nodeId' => 0, 'blockId' => 6),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
         );
 
         // Footer
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
-
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => 0, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
             )
         );
 
@@ -1006,18 +891,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         ));
 
         $node->addArea($headerArea);
-        $node->addBlock($loginBlock);
-        $node->addBlock($logoBlock);
-        $node->addBlock($search);
-        $node->addBlock($menuBlock);
-
         $node->addArea($mainArea);
+        $node->addArea($footerArea);
+
         $node->addBlock($titleBlock);
         $node->addBlock($subMenu);
         $node->addBlock($bodyBlock);
-
-        $node->addArea($footerArea);
-        $node->addBlock($footerBlock);
 
         return $node;
     }
