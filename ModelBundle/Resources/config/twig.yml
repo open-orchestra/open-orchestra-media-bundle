@@ -1,0 +1,11 @@
+parameters:
+    php_orchestra_model.twig.display_media.extension.class: PHPOrchestra\ModelBundle\Twig\DisplayMediaExtension
+
+services:
+    php_orchestra_model.twig.display_media.extension:
+        class: %php_orchestra_model.twig.display_media.extension.class%
+        arguments:
+            - @php_orchestra_model.display_media_manager
+            - @php_orchestra_model.repository.media
+        tags:
+            - { name: twig.extension }
