@@ -9,6 +9,7 @@ services:
             - @security.context
             - @translator
             - @doctrine_mongodb.odm.default_document_manager
+            - @php_orchestra_model.repository.role
         tags:
             - { name: validator.constraint_validator, alias: prevent_prohibited_status_change}
     php_orchestra_model.validator.prevent_published_document_save:

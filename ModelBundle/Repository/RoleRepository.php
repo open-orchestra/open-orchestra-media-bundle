@@ -9,5 +9,18 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
  */
 class RoleRepository extends DocumentRepository
 {
+    /**
+     * Find the role that connect fromStatus to toStatus
+     * 
+     * @param $fromStatus
+     * @param $toStatus
+     */
+    public function findOneByFromStatusAndToStatus($fromStatus, $toStatus)
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->field('fromStatus.id')->equals($fromStatus->getId());
+        $qb->field('toStatus.id')->equals($toStatus->getId());
 
+        return $qb->getQuery()->getSingleResult();
+    }
 }
