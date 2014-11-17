@@ -31,8 +31,8 @@ class DisplayMediaExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('media_mym_type', array($this, 'mediaMymType'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('display_media', array($this, 'displayMedia')),
+            new \Twig_SimpleFunction('display_media', array($this, 'displayMedia'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('media_preview', array($this, 'mediaPreview')),
         );
     }
 
