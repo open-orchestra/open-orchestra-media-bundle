@@ -52,7 +52,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
         $mediaId = 'mediaId';
         Phake::when($this->mediaRepository)->findOneById(Phake::anyParameters())->thenReturn(null);
 
-        $this->assertSame($this->noMedia, $this->extension->displayMedia($mediaId));
+        $this->assertSame('', $this->extension->displayMedia($mediaId));
 
         Phake::verify($this->displayMediaManager, Phake::never())->displayMedia($this->media);
     }
@@ -80,7 +80,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
         $mediaId = 'mediaId';
         Phake::when($this->mediaRepository)->findOneById(Phake::anyParameters())->thenReturn(null);
 
-        $this->assertSame('', $this->extension->mediaPreview($mediaId));
+        $this->assertSame($this->noMedia, $this->extension->mediaPreview($mediaId));
 
         Phake::verify($this->displayMediaManager, Phake::never())->displayPreview($this->media);
     }
