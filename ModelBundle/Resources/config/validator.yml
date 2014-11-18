@@ -1,6 +1,7 @@
 parameters:
     php_orchestra_model.validator.prevent_prohibited_status_change.class: PHPOrchestra\ModelBundle\Validator\Constraints\PreventProhibitedStatusChangeValidator
     php_orchestra_model.validator.prevent_published_document_save.class: PHPOrchestra\ModelBundle\Validator\Constraints\PreventPublishedDocumentSaveValidator
+    php_orchestra_model.validator.check_area_presence.class: PHPOrchestra\ModelBundle\Validator\Constraints\CheckAreaPresenceValidator
 
 services:
     php_orchestra_model.validator.prevent_prohibited_status_change:
@@ -19,3 +20,9 @@ services:
             - @doctrine.odm.mongodb.document_manager
         tags:
             - { name: validator.constraint_validator, alias: prevent_published_document_save}
+    php_orchestra_model.validator.check_area_presence:
+        class: %php_orchestra_model.validator.check_area_presence.class%
+        arguments:
+            - @translator
+        tags:
+            - { name: validator.constraint_validator, alias: check_area_presence}
