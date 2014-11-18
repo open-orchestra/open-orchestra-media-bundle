@@ -125,11 +125,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $blocksubmenu->setLabel('subMenu');
         $blocksubmenu->setComponent('sub_menu');
         $blocksubmenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
+            'class' => 'sousmenu',
             'id' => 'idmenu',
             'nbLevel' => 2,
             'node' => 'fixture_about_us',
@@ -140,7 +136,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $blockLanguage->setLabel('languages');
         $blockLanguage->setComponent('language_list');
         $blockLanguage->setAttributes(array(
-            'class' => array('div' => 'divclass'),
+            'class' => 'languageClass',
             'id' => 'languages'
         ));
         $blockLanguage->addArea(array('nodeId' => 0, 'areaId' => 'main'));
@@ -204,11 +200,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $blocksubmenu->setLabel('subMenu');
         $blocksubmenu->setComponent('sub_menu');
         $blocksubmenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
+            'class' => 'sousmenu',
             'id' => 'idmenu',
             'nbLevel' => 2,
             'node' => 'fixture_about_us',
@@ -267,11 +259,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $block1->setLabel('block 2');
         $block1->setComponent('menu');
         $block1->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
+            'class' => 'menuclass',
             'id' => 'idmenu',
         ));
         $block1->addArea(array('nodeId' => 0, 'areaId' => 'left_menu'));
@@ -322,11 +310,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $block6->setComponent('footer');
         $block6->setAttributes(array(
             'id' => 'idFooter',
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
+            'class' => 'footerclass',
         ));
         $block6->addArea(array('nodeId' => 0, 'areaId' => 'footer'));
 
@@ -466,11 +450,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $contentListBlock->setAttributes(array(
             'contentType' => 'news',
             'id' => 'contentNewsList',
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'title' => 'titleclass'
-            ),
+            'class' => 'contentListClass',
             'url' => 'fixture_bd'
         ));
         $contentListBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
@@ -524,12 +504,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $contentBlock->setComponent('content');
         $contentBlock->setAttributes(array(
             'id' => 'contentNews',
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'title' => 'titleclass',
-                'content' => 'contentclass'
-            ),
+            'class' => 'contentClass',
         ));
         $contentBlock->addArea(array('nodeId' => 1, 'areaId' => 'main'));
 
@@ -709,11 +684,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $searchBlock1->setLabel('Menu');
         $searchBlock1->setComponent('menu');
         $searchBlock1->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
+            'class' => 'menuClass',
             'id' => 'idmenu',
         ));
         $searchBlock1->addArea(array('nodeId' => 0, 'areaId' => 'left_menu'));
@@ -765,11 +736,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $searchBlock4->setComponent('footer');
         $searchBlock4->setAttributes(array(
             'id' => 'idFooter',
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
+            'class' => 'footerClass',
         ));
         $searchBlock4->addArea(array('nodeId' => 0, 'areaId' => 'footer'));
 
@@ -877,11 +844,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeBlockMenu->setLabel('Menu');
         $siteHomeBlockMenu->setComponent('menu');
         $siteHomeBlockMenu->setAttributes(array(
-            'class' => array(
-                'div' => 'divclass',
-                'ul' => 'ulclass',
-                'link' => 'linkclass'
-            ),
+            'class' => 'menuClass',
             'id' => 'myMainMenu',
         ));
         $siteHomeBlockMenu->addArea(array('nodeId' => 0, 'areaId' => 'main_menu'));
