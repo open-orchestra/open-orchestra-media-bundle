@@ -436,7 +436,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 8),
             )
         );
 
@@ -489,7 +489,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 8),
             )
         );
 
@@ -557,7 +557,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 8),
             )
         );
 
@@ -612,7 +612,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 8),
             )
         );
 
@@ -665,7 +665,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 8),
             )
         );
 
@@ -733,7 +733,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 8),
             )
         );
 
@@ -803,7 +803,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 8),
             )
         );
 
@@ -873,7 +873,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 8),
             )
         );
 
@@ -943,7 +943,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7),
+                array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 8),
             )
         );
 
