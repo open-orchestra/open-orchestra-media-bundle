@@ -52,16 +52,17 @@ class NodeRepository extends DocumentRepository
     /**
      * @param string $nodeId
      * @param int    $nbLevel
+     * @param string $language
      *
      * @return array
      */
-    public function getSubMenu($nodeId, $nbLevel)
+    public function getSubMenu($nodeId, $nbLevel, $language = null)
     {
-        $node = $this->findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeId);
+        $node = $this->findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeId, $language);
 
         $list = array();
         $list[] = $node;
-        $list = array_merge($list, $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel));
+        $list = array_merge($list, $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel, $language));
 
         return $list;
     }
@@ -272,23 +273,25 @@ class NodeRepository extends DocumentRepository
     /**
      * @param string $parentId
      * @param int    $nbLevel
+     * @param string $locale
      *
      * @return array
      */
-    protected function getTreeParentIdAndLevel($parentId, $nbLevel)
+    protected function getTreeParentIdAndLevel($parentId, $nbLevel, $locale)
     {
         $result = array();
 
         if ($nbLevel >= 0) {
-            $qb = $this->buildTreeRequest();;
+            $qb = $this->buildTreeRequest();
             $qb->field('parentId')->equals($parentId);
+            $qb->field('language')->equals($locale);
 
             $nodes = $qb->getQuery()->execute();
             $result = $nodes->toArray();
 
             if (is_array($nodes->toArray())) {
                 foreach ($nodes as $node) {
-                    $temp = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel-1);
+                    $temp = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel-1, $locale);
                     $result = array_merge($result, $temp);
                 }
             }
