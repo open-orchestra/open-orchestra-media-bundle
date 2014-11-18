@@ -2,3 +2,4 @@ PHPOrchestra\ModelBundle\Document\Node:
     constraints:
           - PHPOrchestra\ModelBundle\Validator\Constraints\PreventProhibitedStatusChange: ~
           - PHPOrchestra\ModelBundle\Validator\Constraints\PreventPublishedDocumentSave: ~
+          - PHPOrchestra\ModelBundle\Validator\Constraints\CheckAreaPresence: ~
