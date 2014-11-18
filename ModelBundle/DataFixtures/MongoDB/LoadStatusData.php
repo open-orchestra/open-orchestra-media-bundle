@@ -64,7 +64,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
         $draft->addLabel($draftFr);
         $draft->addLabel($draftDe);
         $draft->addLabel($draftEs);
-        $draft->setDisplayColor('red');
+        $draft->setDisplayColor('green');
         $draft->setInitial(true);
 
         $this->addReference('status-draft', $draft);
@@ -128,7 +128,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
         $published->addLabel($publishedFr);
         $published->addLabel($publishedDe);
         $published->addLabel($publishedEs);
-        $published->setDisplayColor('green');
+        $published->setDisplayColor('red');
 
         $this->addReference('status-published', $published);
 
