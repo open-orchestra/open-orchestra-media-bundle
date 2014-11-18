@@ -273,25 +273,28 @@ class NodeRepository extends DocumentRepository
     /**
      * @param string $parentId
      * @param int    $nbLevel
-     * @param string $locale
+     * @param string $language
      *
      * @return array
      */
-    protected function getTreeParentIdAndLevel($parentId, $nbLevel, $locale)
+    protected function getTreeParentIdAndLevel($parentId, $nbLevel, $language = null)
     {
         $result = array();
 
         if ($nbLevel >= 0) {
             $qb = $this->buildTreeRequest();
             $qb->field('parentId')->equals($parentId);
-            $qb->field('language')->equals($locale);
+
+            if (null != $language) {
+                $qb->field('language')->equals($language);
+            }
 
             $nodes = $qb->getQuery()->execute();
             $result = $nodes->toArray();
 
             if (is_array($nodes->toArray())) {
                 foreach ($nodes as $node) {
-                    $temp = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel-1, $locale);
+                    $temp = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel-1, $language);
                     $result = array_merge($result, $temp);
                 }
             }
