@@ -95,6 +95,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         return $block;
     }
 
+    /**
+     * Generate language block
+     * 
+     * @param $areaId
+     * @param int $nodeId
+     *
+     * @return Block
+     */
     protected function generateBlockLang($areaId, $nodeId = 0)
     {
         $blockLang = $this->generateBlock('language_list', 'Language', $nodeId, $areaId);
