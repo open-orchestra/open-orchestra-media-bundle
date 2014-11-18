@@ -39,14 +39,14 @@ class GenerateContentIdListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $id
+     * @param string $name
      * @param string $expectedContentId
      *
      * @dataProvider provideContentIntel
      */
-    public function testPrePersist($id, $expectedContentId)
+    public function testPrePersist($name, $expectedContentId)
     {
-        Phake::when($this->content)->getId()->thenReturn($id);
+        Phake::when($this->content)->getName()->thenReturn($name);
 
         $this->listener->prePersist($this->event);
 
@@ -60,7 +60,8 @@ class GenerateContentIdListenerTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('page', 'page'),
-            array('new page', 'new page'),
+            array('new page', 'new_page'),
+            array('new Page', 'new_page'),
         );
     }
 
