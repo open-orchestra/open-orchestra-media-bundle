@@ -5,6 +5,7 @@ namespace PHPOrchestra\ModelBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use PHPOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface;
 use PHPOrchestra\ModelBundle\Document\Area;
 use PHPOrchestra\ModelBundle\Document\Block;
 use PHPOrchestra\ModelBundle\Document\Node;
@@ -836,7 +837,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     {
         $siteHomeBlock0 = new Block();
         $siteHomeBlock0->setLabel('Wysiwyg 1');
-        $siteHomeBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteHomeBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteHomeBlock0->setAttributes(array(
             "htmlContent" => "<a href='#' id='myLogo'> <img src='http://media.phporchestra.inte/themePresentation-logoOrchestra.png' /> </a>",
         ));
@@ -855,7 +856,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $siteHomeBlock1 = new Block();
         $siteHomeBlock1->setLabel('Wysiwyg 2');
-        $siteHomeBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteHomeBlock1->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteHomeBlock1->setAttributes(array(
             "htmlContent" => "<ul id='mySubMenu'> <li><a href='/page-home/page-about-us'> A PROPOS </a></li> <li><a href='/page-home/page-our-team'> NOTRE EQUIPE </a></li><li><a href='/page-home/page-our-news'> NOTRE ACTU </a></li><li><a href='/page-home/page-nous-rejoindre'>  NOUS REJOINDRE</a></li> <li><a href='/page-home/page-networks'> NETWORKS </a></li> </ul>",
         ));
@@ -914,7 +915,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $siteHomeBlock4 = new Block();
         $siteHomeBlock4->setLabel('Wysiwyg 1');
-        $siteHomeBlock4->setComponent('tiny_mce_wysiwyg');
+        $siteHomeBlock4->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteHomeBlock4->setAttributes(array(
             "htmlContent" => "<div id='area2.2' class='content'><p>
             Business & Decision est un Groupe international de services numériques,  leader de la Business Intelligence (BI) et du CRM, acteur majeur de l'e-Business.  Le Groupe contribue à la réussite des projets à forte valeur ajoutée des entreprises et accompagne ses clients dans des domaines d’innovation tels que le Big Data et le Digital. Il est reconnu pour son expertise fonctionnelle et technologique par les plus grands éditeurs de logiciels du marché avec lesquels il a noué des partenariats. Fort d’une expertise unique dans ses domaines de spécialisation, Business & Decision offre des solutions adaptées à des secteurs d’activité ainsi qu’à des directions métiers.
@@ -924,7 +925,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $siteHomeBlock5 = new Block();
         $siteHomeBlock5->setLabel('Wysiwyg 2');
-        $siteHomeBlock5->setComponent('tiny_mce_wysiwyg');
+        $siteHomeBlock5->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteHomeBlock5->setAttributes(array(
             "htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
@@ -943,7 +944,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $siteWhatBlock6 = new Block();
         $siteWhatBlock6->setLabel('What block');
-        $siteWhatBlock6->setComponent('tiny_mce_wysiwyg');
+        $siteWhatBlock6->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteWhatBlock6->setAttributes(array(
             "htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
@@ -1060,7 +1061,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     {
         $siteWhatBlock0 = new Block();
         $siteWhatBlock0->setLabel('Wysiwyg');
-        $siteWhatBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteWhatBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteWhatBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'><h1>PHPOrchestra</h1><p>
 PHP Orchestra est une plateforme développée conjointement par Interakting et Zend Technologies. Cette offre, dédiée au marketing est destinée aux grands projets de nouvelle génération en digital marketing et entreprise 2.0.
@@ -1165,7 +1166,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
     {
         $siteStartBlock0 = new Block();
         $siteStartBlock0->setLabel('Wysiwyg');
-        $siteStartBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteStartBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteStartBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>Le tour rapide</h1>
             <p>
@@ -1255,7 +1256,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
     {
         $siteDocBlock0 = new Block();
         $siteDocBlock0->setLabel('Wysiwyg');
-        $siteDocBlock0->setComponent('tiny_mce_wysiwyg 1');
+        $siteDocBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteDocBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>PHP Documentation</h1>
                 <p>The PHP Manual is available online in a selection of languages. Please pick a language from the list below.
@@ -1347,7 +1348,7 @@ Note, that many languages are just under translation, and the untranslated parts
     {
         $siteComBlock0 = new Block();
         $siteComBlock0->setLabel('Wysiwyg 1');
-        $siteComBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteComBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteComBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>ENTREPRISE DIGITALE : LES LEVIERS DE LA PERFORMANCE</h1>
                 <p>
@@ -1445,7 +1446,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
     {
         $siteAboutUsBlock0 = new Block();
         $siteAboutUsBlock0->setLabel('Wysiwyg 1');
-        $siteAboutUsBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteAboutUsBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteAboutUsBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>Interakting</h1>
                 <p>
@@ -1537,7 +1538,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
     {
         $siteOurTeamBlock0 = new Block();
         $siteOurTeamBlock0->setLabel('Wysiwyg 1');
-        $siteOurTeamBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteOurTeamBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteOurTeamBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>Our Team</h1>
             <br>
@@ -1631,7 +1632,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
     {
         $siteNewsBlock0 = new Block();
         $siteNewsBlock0->setLabel('Wysiwyg 1');
-        $siteNewsBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteNewsBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteNewsBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>Actu</h1>
             <br>
@@ -1726,7 +1727,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
     {
         $siteJoinUsBlock0 = new Block();
         $siteJoinUsBlock0->setLabel('Wysiwyg 1');
-        $siteJoinUsBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteJoinUsBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteJoinUsBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'><div id='annonce'><h1>Nous rejoindre</h1> <p>Vous êtes un passionné d’Internet en général et du Web en particulier?</p> <p>Vous avez une expérience significative dans les domaines suivants: Développement web le framwork Symfony 2 Votre profil est susceptible de nous intéresser </div> <div id='form'><table border='0'><tbody><tr><td valign='top'> Nom   </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société   </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr> <td valign='top'> Email   </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/> </td></tr><tr> <td valign='top'> Message   </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr><tr> <td valign='top'> CV   </td><td><input type='file' /> </td></tr> <tr> <td> <input type='submit' value='OK'/></td>  </tr> </tbody></table></div> </div>",
         ));
@@ -1812,7 +1813,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
     {
         $siteNetworkBlock0 = new Block();
         $siteNetworkBlock0->setLabel('Wysiwyg 1');
-        $siteNetworkBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteNetworkBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteNetworkBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>Smart Eolas</h1><p>
             Smart.eolas allie le meilleur du e-commerce et de la gestion de contenus. Jusqu’alors, il n’existait aucune plateforme sur le marché mêlant avec succès des fonctions avancées de gestion de contenus et de catalogue produits. Il y a plus de deux ans, Eolas s’est lancé dans ce vaste chantier : construire une nouvelle plateforme e-Commerce et de gestion de contenus innovante et à l’état de l’art.
@@ -1902,7 +1903,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
     {
         $siteContactBlock0 = new Block();
         $siteContactBlock0->setLabel('Wysiwyg');
-        $siteContactBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteContactBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteContactBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2' id='contactArea' ><div id='contactInformation'><h3>Contactez-nous</h3><img src='http://media.phporchestra.inte/themePresentation-logoOrchestra.png' /><div id='infoInterakting'><p><b>Interakting</b> <br>Groupe Business & Decision<br>153 Rue de Courcelles<br>75017 PARIS FRANCE<br><span class='fontOrange'>Tél:</span> +33 1 56 21 21 21<br> <span class='fontOrange'>Fax:</span> +33 1 56 21 21 22</p></div><div id='accessInterakting'><h3>Accès:</h3> <p><span class='fontOrange'>Metro ligne 3</span> arrêt Pereire<br><span class='fontOrange'>RER ligne C</span> arrêt Pereire-Levallois</p> </div><div id='googleMapsInterakting'><iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14&amp;output=embed'></iframe><br /><small><a href='https://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14' style='color:#0000FF;text-align:left'>Agrandir le plan</a></small></div></div><div id='contactForm'><h3>Une Demande ?<table border='0'><tbody><tr><td valign='top'> Nom </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr><td valign='top'> Email  </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/></tr><tr><td valign='top'> Sujet   </td><td> <input type='text' placeholder='Votre sujet' required/> </td></tr><tr> <td valign='top'> Type de demande   </td><td> <select><option> Orchestra </option><option> Presse </option><option> Information </option><option> Emploi </option></select></td></tr><tr><td valign='top'> Message </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr> <tr> <td> <input type='submit' value='OK' /></td> </tr> </tbody></table></div></div>",
         ));
@@ -1981,7 +1982,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
     {
         $siteLegalBlock0 = new Block();
         $siteLegalBlock0->setLabel('Wysiwyg 1');
-        $siteLegalBlock0->setComponent('tiny_mce_wysiwyg');
+        $siteLegalBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteLegalBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1><p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate. Cras at urna sem. Nullam sed risus porta, placerat metus bibendum, commodo metus. Donec blandit leo eros, sed convallis odio sollicitudin at.Morbi ut pulvinar lorem. Duis venenatis interdum hendrerit. Curabitur sit amet eleifend sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse volutpat nulla sed eleifend malesuada. Suspendisse fringilla, est et dapibus molestie, orci leo pretium nulla, vitae consectetur ipsum enim ut magna. Duis sagittis auctor sollicitudin. Nunc interdum, quam id varius interdum, nulla felis blandit sapien, ac egestas lectus turpis in urna. Sed id ullamcorper nulla, quis tempor libero. Donec aliquet neque vitae rhoncus vestibulum. Aliquam id nunc ut justo sagittis bibendum sit amet non metus.Mauris aliquam mattis sem, in tempus eros feugiat non. Aenean vitae odio sapien. Curabitur ut luctus purus, nec vehicula nunc. Sed massa odio, sagittis a odio eget, posuere imperdiet eros. Sed sit amet neque tempus urna rutrum egestas. Maecenas dignissim justo orci, vitae aliquet mi gravida feugiat. Quisque ullamcorper non dui eget fringilla. convallis condimentum placerat. Mauris bibendum libero ac neque tempus, et pharetra enim cursus. In nec porta mi. Duis feugiat, enim nec ornare malesuada, ligula metus iaculis quam, dapibus fermentum lacus lorem ut diam. Pellentesque condimentum ante sed augue pretium placerat. Ut venenatis, lacus vel imperdiet aliquam, enim risus rhoncus mi, eget consequat tellus ante nec felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in erat eget leo tincidunt euismod. Sed hendrerit malesuada magna commodo porta. Suspendisse diam urna, pretium ut mi vel, vulputate ultricies dolor. Nam eleifend accumsan nibh. Duis hendrerit ornare urna, sit amet commodo eros imperdiet nec.Donec tristique est sit amet justo fringilla, a hendrerit ligula ultricies. Phasellus dignissim mi sit amet nibh gravida, vitae lobortis lorem imperdiet. Praesent dolor quam, luctus sed dui eu, eleifend mattis tortor. Curabitur varius lacus at sapien eleifend, vitae feugiat lectus mattis. In malesuada molestie turpis, et mattis ante euismod sed. Integer interdum adipiscing purus vitae vestibulum. Proin aliquam egestas nunc, ut dictum justo lacinia quis. Phasellus tincidunt mauris fringilla mauris hendrerit euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.</p></h1></div>",
         ));
@@ -1989,7 +1990,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
 
         $siteLegalBlock1 = new Block();
         $siteLegalBlock1->setLabel('Wysiwyg 2');
-        $siteLegalBlock1->setComponent('tiny_mce_wysiwyg');
+        $siteLegalBlock1->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteLegalBlock1->setAttributes(array(
             "htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
