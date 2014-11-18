@@ -62,7 +62,7 @@ class NodeRepository extends DocumentRepository
 
         $list = array();
         $list[] = $node;
-        $list = array_merge($list, $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel, $language));
+        $list = array_merge($list, $this->getTreeParentIdLevelAndLanguage($node->getNodeId(), $nbLevel, $language));
 
         return $list;
     }
@@ -277,7 +277,7 @@ class NodeRepository extends DocumentRepository
      *
      * @return array
      */
-    protected function getTreeParentIdAndLevel($parentId, $nbLevel, $language = null)
+    protected function getTreeParentIdLevelAndLanguage($parentId, $nbLevel, $language = null)
     {
         $result = array();
 
@@ -294,7 +294,7 @@ class NodeRepository extends DocumentRepository
 
             if (is_array($nodes->toArray())) {
                 foreach ($nodes as $node) {
-                    $temp = $this->getTreeParentIdAndLevel($node->getNodeId(), $nbLevel-1, $language);
+                    $temp = $this->getTreeParentIdLevelAndLanguage($node->getNodeId(), $nbLevel-1, $language);
                     $result = array_merge($result, $temp);
                 }
             }
