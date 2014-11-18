@@ -107,7 +107,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     {
         $blockLang = $this->generateBlock('language_list', 'Language', $nodeId, $areaId);
         $blockLang->setAttributes(array(
-            'class' => array('div' => 'lang'),
+            'class' => 'lang',
             'id' => 'lang'
         ));
 
