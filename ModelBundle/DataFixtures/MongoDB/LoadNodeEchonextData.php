@@ -332,6 +332,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => 0, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $descBlock = $this->generateBlockWysiwyg('Home', '<h1>Bienvenue sur le site de demo Echonext.</h1>', 'main');
@@ -398,6 +399,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $newsList = $this->generateBlockContent('news', 'title_news', 'section', 'News', 'main');
@@ -449,6 +451,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Espace BDDF</h1>', 'main');
@@ -500,6 +503,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('Cardif', "<h1>Bienvenue sur l'espace de cardif</h1>", 'main');
@@ -561,6 +565,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Espace Arval</h1>', 'main');
@@ -612,6 +617,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Espace XXX</h1>', 'main');
@@ -663,6 +669,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Bienvenue sur l\'espace Cardif</h1>', 'main');
@@ -726,6 +733,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page actualité Cardif</h1>', 'main');
@@ -789,6 +797,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Missions Cardif</h1>', 'main');
@@ -852,6 +861,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
                 array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 3),
             )
         );
+        $headerArea->setBoDirection('v');
 
         // Main
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Cardif Rémunération</h1>', 'main');
