@@ -143,11 +143,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     {
         $menuBlock = $this->generateBlock('menu', $blockLabel, $nodeId, $areaId);
         $menuBlock->setAttributes(array(
-            'class' => array(
-                'div' => 'menu',
-                'ul' => 'menu_ul',
-                'link' => 'menu_link'
-            ),
+            'class' => 'menu',
             'id' => 'menu',
         ));
 
@@ -163,7 +159,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      *
      * @return Block
      */
-    protected function generateBlockCarrousel($carousel_id, $blockLabel, $areaId, $nodeId = 0)
+    protected function generateBlockCarrousel($carouselId, $blockLabel, $areaId, $nodeId = 0)
     {
         $carrouselBlock = $this->generateBlock('carrousel', $blockLabel, $areaId, $nodeId);
         $carrouselBlock->setAttributes(array(
@@ -175,7 +171,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             ),
             'width' => "978px",
             'height' => "300px",
-            'carrousel_id' => $carousel_id,
+            'carrousel_id' => $carouselId,
         ));
 
         return $carrouselBlock;
@@ -186,8 +182,8 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      *
      * @param string $blockLabel
      * @param string $htmlContent
-     * @param int    $nodeId
      * @param string $areaId
+     * @param int    $nodeId
      *
      * @return Block
      */
@@ -202,27 +198,21 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * Generate a list of Content
      *
+     * @param string $class
+     * @param string $url
      * @param string $blockLabel
      * @param string $areaId
      * @param int    $nodeId
-     * @param string $divClass
-     * @param string $each
-     * @param string $titleClass
-     * @param string $url
      *
      * @return Block
      */
-    protected function generateBlockContentList($divClass, $each, $titleClass, $url, $blockLabel, $areaId, $nodeId = 0)
+    protected function generateBlockContentList($class, $url, $blockLabel, $areaId, $nodeId = 0)
     {
         $contentList = $this->generateBlock('content_list', $blockLabel, $nodeId, $areaId);
         $contentList->setAttributes(array(
             'contentType' => 'news',
             'id' => 'contentNewsList',
-            'class' => array(
-                'div' => $divClass,
-                'each' => $each,
-                'title' => $titleClass
-            ),
+            'class' => $class,
             'url' => $url,
         ));
 
@@ -233,24 +223,18 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      * Generate a content
      *
      * @param string $divClass
-     * @param string $titleClass
-     * @param string $contentClass
      * @param string $blockLabel
      * @param string $areaId
      * @param int    $nodeId
      *
      * @return Block
      */
-    protected function generateBlockContent($divClass, $titleClass, $contentClass, $blockLabel, $areaId, $nodeId = 0)
+    protected function generateBlockContent($divClass, $blockLabel, $areaId, $nodeId = 0)
     {
         $contentBlock = $this->generateBlock('content', $blockLabel, $nodeId, $areaId);
         $contentBlock->setAttributes(array(
             'id' => 'contentNews',
-            'class' => array(
-                'div' => $divClass,
-                'title' => $titleClass,
-                'content' => $contentClass
-            )
+            'class' => $divClass,
         ));
 
         return $contentBlock;
@@ -259,9 +243,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * Generate a sub menu
      *
-     * @param string $divclass
-     * @param string $ulclass
-     * @param string $linkclass
+     * @param string $class
      * @param string $idmenu
      * @param string $nbLevel
      * @param string $node
@@ -271,15 +253,11 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      *
      * @return Block
      */
-    protected function generateBlockSubMenu($divclass, $ulclass, $linkclass, $idmenu, $nbLevel, $node, $blockLabel, $areaId, $nodeId = 0)
+    protected function generateBlockSubMenu($class, $idmenu, $nbLevel, $node, $blockLabel, $areaId, $nodeId = 0)
     {
         $subMenuBlock = $this->generateBlock('sub_menu', $blockLabel, $nodeId, $areaId);
         $subMenuBlock->setAttributes(array(
-            'class' => array(
-                'div' => $divclass,
-                'ul' => $ulclass,
-                'link' => $linkclass,
-            ),
+            'class' => $class,
             'id' => $idmenu,
             'nbLevel' => $nbLevel,
             'node' => $node,
@@ -321,11 +299,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $footerBlock = $this->generateBlock('footer', $blockLabel, $nodeId, $areaId);
         $footerBlock->setAttributes(array(
             'id' => 'footer_content',
-            'class' => array(
-                'div' => 'footer',
-                'ul' => 'ul_footer',
-                'link' => 'ul_link'
-            )
+            'class' => 'footer',
         ));
 
         return $footerBlock;
@@ -358,7 +332,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Main
         $descBlock = $this->generateBlockWysiwyg('Home', '<h1>Bienvenue sur le site de demo Echonext.</h1>', 'main');
         $carrouselBlock = $this->generateBlockCarrousel('slider1_container', 'Carrousel', 'main');
-        $newsList = $this->generateBlockContentList('content-list', 'each_news', 'title_news', 'news', 'News 6', 'main');
+        $newsList = $this->generateBlockContentList('content-list', 'news', 'News 6', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
@@ -404,6 +378,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $node->addArea($footerArea);
         $node->addBlock($footerBlock);
+
         return $node;
     }
 
@@ -425,7 +400,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $headerArea->setBoDirection('v');
 
         // Main
-        $newsList = $this->generateBlockContent('news', 'title_news', 'section', 'News', 'main');
+        $newsList = $this->generateBlockContent('news', 'News', 'main');
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
@@ -531,7 +506,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $headerArea->setBoDirection('v');
 
         // Main
-        $subMenu = $this->generateBlockSubMenu('left_menu', 'left_ul', 'link', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
         $titleBlock = $this->generateBlockWysiwyg('Cardif', "<h1>Bienvenue sur l'espace de cardif</h1>", 'main');
         $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
             Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
