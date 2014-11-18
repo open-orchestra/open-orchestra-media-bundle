@@ -18,7 +18,9 @@ class GenerateContentIdListener
         if ( ($content = $event->getDocument()) instanceof ContentInterface
             && is_null($content->getContentId())
         ) {
-            $content->setContentId($content->getId());
+            $name = $content->getName();
+            $name = strtolower(str_replace(' ', '_', $name));
+            $content->setContentId($name);
         }
     }
 }
