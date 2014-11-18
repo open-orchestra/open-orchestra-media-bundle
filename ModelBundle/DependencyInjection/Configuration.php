@@ -24,6 +24,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->children()
             ->scalarNode('upload_dir')->defaultNull()->end()
+            ->scalarNode('no_image_available')->defaultValue('no_image_available.jpg')->end()
             ->arrayNode('content')
                 ->addDefaultsIfNotSet()
                 ->children()

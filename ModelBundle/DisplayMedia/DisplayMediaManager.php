@@ -11,13 +11,16 @@ class DisplayMediaManager
 {
     protected $strategies = array();
     protected $mediathequeUrl;
+    protected $noImagePath;
 
     /**
      * @param string $mediathequeUrl
+     * @param string $noImagePath
      */
-    public function __construct($mediathequeUrl)
+    public function __construct($mediathequeUrl, $noImagePath)
     {
         $this->mediathequeUrl = $mediathequeUrl;
+        $this->noImagePath = $noImagePath;
     }
 
     /**
@@ -44,6 +47,14 @@ class DisplayMediaManager
         }
 
         return $media;
+    }
+
+    /**
+     * @return string
+     */
+    public function displayNoMediaPreview()
+    {
+        return $this->mediathequeUrl . '/' . $this->noImagePath;
     }
 
     /**
