@@ -26,7 +26,10 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($rootImage);
 
         $firstImage = new Media();
-        $firstImage->setName('First image');
+        $firstImage->setName('No image logo');
+        $firstImage->setFilesystemName('no_image_available.jpg');
+        $firstImage->setThumbnail('no_image_available.jpg');
+        $firstImage->setMimeType('image/jpg');
         $firstImage->setMediaFolder($this->getReference('mediaFolder-firstImages'));
         $manager->persist($firstImage);
 
