@@ -26,5 +26,4 @@ class CheckAreaPresence extends Constraint
     {
         return self::CLASS_CONSTRAINT;
     }
-
 }

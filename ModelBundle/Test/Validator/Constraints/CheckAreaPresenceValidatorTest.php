@@ -1,10 +1,10 @@
 <?php
 
 namespace PHPOrchestra\ModelBundle\Test\Validator\Constraints;
+
 use Phake;
 use PHPOrchestra\ModelBundle\Validator\Constraints\CheckAreaPresence;
 use PHPOrchestra\ModelBundle\Validator\Constraints\CheckAreaPresenceValidator;
-
 
 /**
  * Class CheckAreaPresenceValidatorTest

@@ -55,4 +55,3 @@ class CheckAreaPresenceTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('php_orchestra_model.area.presence_required', $this->constraint->message);
     }
 }
- 
