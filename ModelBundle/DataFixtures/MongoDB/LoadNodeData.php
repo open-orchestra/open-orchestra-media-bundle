@@ -163,7 +163,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->setLanguage('fr');
         $home->setStatus($this->getReference('status-published'));
         $home->setDeleted(false);
-        $home->setTemplateId('template_main');
+        $home->setTemplateId('template_home');
         $home->setTheme('theme1');
         $home->setInMenu(true);
         $home->setInFooter(false);
@@ -228,7 +228,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->setLanguage('en');
         $home->setStatus($this->getReference('status-published'));
         $home->setDeleted(false);
-        $home->setTemplateId('template_main');
+        $home->setTemplateId('template_home');
         $home->setTheme('theme1');
         $home->setInMenu(true);
         $home->setInFooter(false);
@@ -473,7 +473,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $aboutUs->setLanguage('fr');
         $aboutUs->setStatus($this->getReference('status-published'));
         $aboutUs->setDeleted(false);
-        $aboutUs->setTemplateId('template_main');
+        $aboutUs->setTemplateId('template_home');
         $aboutUs->setTheme('theme2');
         $aboutUs->setInFooter(true);
         $aboutUs->setInMenu(true);
@@ -526,7 +526,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $bd->setLanguage('fr');
         $bd->setStatus($this->getReference('status-published'));
         $bd->setDeleted(false);
-        $bd->setTemplateId('template_main');
+        $bd->setTemplateId('template_home');
         $bd->setTheme('theme2');
         $bd->setInFooter(true);
         $bd->setInMenu(true);
@@ -569,7 +569,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $interakting->setLanguage('fr');
         $interakting->setStatus($this->getReference('status-published'));
         $interakting->setDeleted(false);
-        $interakting->setTemplateId('template_main');
+        $interakting->setTemplateId('template_home');
         $interakting->setTheme('sample');
         $interakting->setInFooter(true);
         $interakting->setInMenu(true);
@@ -612,7 +612,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $contactUs->setLanguage('fr');
         $contactUs->setStatus($this->getReference('status-published'));
         $contactUs->setDeleted(false);
-        $contactUs->setTemplateId('template_main');
+        $contactUs->setTemplateId('template_home');
         $contactUs->setTheme('theme1');
         $contactUs->setInFooter(true);
         $contactUs->setInMenu(true);
@@ -655,7 +655,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $directory->setLanguage('fr');
         $directory->setStatus($this->getReference('status-published'));
         $directory->setDeleted(false);
-        $directory->setTemplateId('template_main');
+        $directory->setTemplateId('template_home');
         $directory->setTheme('fromApp');
         $directory->setInFooter(true);
         $directory->setInMenu(true);
@@ -781,7 +781,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $search->setLanguage('fr');
         $search->setStatus($this->getReference('status-published'));
         $search->setDeleted(false);
-        $search->setTemplateId('template_main');
+        $search->setTemplateId('template_home');
         $search->setTheme('fromApp');
         $search->setInFooter(true);
         $search->setInMenu(true);
