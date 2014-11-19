@@ -22,16 +22,26 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     public function load(ObjectManager $manager)
     {
-        $manager->persist($this->generateNodeHome());
-        $manager->persist($this->generateEspaceBDDF());
-        $manager->persist($this->generateEspaceCardif());
-        $manager->persist($this->generateEspaceArval());
-        $manager->persist($this->generateEspaceXXX());
-        $manager->persist($this->generateCardifBienvenu());
-        $manager->persist($this->generateCardifActualite());
-        $manager->persist($this->generateCardifMissions());
-        $manager->persist($this->generateCardifRemun());
-        $manager->persist($this->generateNodeNews());
+        $manager->persist($this->generateNodeHome('fr'));
+        $manager->persist($this->generateEspaceBDDF('fr'));
+        $manager->persist($this->generateEspaceCardif('fr'));
+        $manager->persist($this->generateEspaceArval('fr'));
+        $manager->persist($this->generateEspaceXXX('fr'));
+        $manager->persist($this->generateCardifBienvenu('fr'));
+        $manager->persist($this->generateCardifActualite('fr'));
+        $manager->persist($this->generateCardifMissions('fr'));
+        $manager->persist($this->generateCardifRemun('fr'));
+        $manager->persist($this->generateNodeNews('fr'));
+        $manager->persist($this->generateNodeHome('en'));
+        $manager->persist($this->generateEspaceBDDF('en'));
+        $manager->persist($this->generateEspaceCardif('en'));
+        $manager->persist($this->generateEspaceArval('en'));
+        $manager->persist($this->generateEspaceXXX('en'));
+        $manager->persist($this->generateCardifBienvenu('en'));
+        $manager->persist($this->generateCardifActualite('en'));
+        $manager->persist($this->generateCardifMissions('en'));
+        $manager->persist($this->generateCardifRemun('en'));
+        $manager->persist($this->generateNodeNews('en'));
 
         $manager->flush();
     }
@@ -64,7 +74,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->setPath($params['path']);
         $node->setName($params['name']);
         $node->setVersion(1);
-        $node->setLanguage('fr');
+        $node->setLanguage($params['language']);
         $node->setStatus($this->getReference('status-published'));
         $node->setDeleted(false);
         $node->setTemplateId('template_main');
@@ -309,7 +319,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateNodeHome()
+    protected function generateNodeHome($language)
     {
         // Header
         $languageBlock = $this->generateBlockLang('header');
@@ -362,6 +372,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'home',
             'inMenu' => true,
             'inFooter' => true,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);
@@ -385,7 +396,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateNodeNews()
+    protected function generateNodeNews($language)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
@@ -424,6 +435,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'news',
             'inMenu' => false,
             'inFooter' => false,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);
@@ -438,7 +450,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateEspaceBDDF()
+    protected function generateEspaceBDDF($language)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
@@ -477,6 +489,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'espace-bddf',
             'inMenu' => true,
             'inFooter' => true,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);
@@ -491,7 +504,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateEspaceCardif()
+    protected function generateEspaceCardif($language)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
@@ -545,6 +558,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'espace-cardif',
             'inMenu' => true,
             'inFooter' => true,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);
@@ -561,7 +575,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateEspaceArval()
+    protected function generateEspaceArval($language)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
@@ -600,6 +614,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'espace-arval',
             'inMenu' => true,
             'inFooter' => true,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);
@@ -614,7 +629,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateEspaceXXX()
+    protected function generateEspaceXXX($language)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
@@ -653,6 +668,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'espace-xxx',
             'inMenu' => true,
             'inFooter' => true,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);
@@ -667,7 +683,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateCardifBienvenu()
+    protected function generateCardifBienvenu($language)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
@@ -721,6 +737,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'bienvenu',
             'inMenu' => false,
             'inFooter' => false,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);
@@ -737,7 +754,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateCardifActualite()
+    protected function generateCardifActualite($language)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
@@ -791,6 +808,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'actualite',
             'inMenu' => true,
             'inFooter' => true,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);
@@ -807,7 +825,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateCardifMissions()
+    protected function generateCardifMissions($language)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
@@ -861,6 +879,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'missions',
             'inMenu' => true,
             'inFooter' => true,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);
@@ -877,7 +896,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateCardifRemun()
+    protected function generateCardifRemun($language)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
@@ -931,6 +950,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'url' => 'remunarations-variables',
             'inMenu' => true,
             'inFooter' => true,
+            'language' => $language,
         ));
 
         $node->addArea($headerArea);

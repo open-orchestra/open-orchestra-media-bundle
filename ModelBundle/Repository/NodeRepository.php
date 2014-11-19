@@ -28,23 +28,37 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
+     * @param string $language
+     *
      * @return array
      */
-    public function getFooterTree()
+    public function getFooterTree($language = null)
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inFooter')->equals(true);
+
+        if (is_null($language)) {
+            $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
+        }
+        $qb->field('language')->equals($language);
 
         return $qb->getQuery()->execute();
     }
 
     /**
+     * @param string $language
+     *
      * @return array
      */
-    public function getMenuTree()
+    public function getMenuTree($language = null)
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inMenu')->equals(true);
+
+        if (is_null($language)) {
+            $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
+        }
+        $qb->field('language')->equals($language);
 
         return $qb->getQuery()->execute();
     }
@@ -285,9 +299,10 @@ class NodeRepository extends DocumentRepository
             $qb = $this->buildTreeRequest();
             $qb->field('parentId')->equals($parentId);
 
-            if (null != $language) {
-                $qb->field('language')->equals($language);
+            if (is_null($language)) {
+                $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
             }
+            $qb->field('language')->equals($language);
 
             $nodes = $qb->getQuery()->execute();
             $result = $nodes->toArray();
