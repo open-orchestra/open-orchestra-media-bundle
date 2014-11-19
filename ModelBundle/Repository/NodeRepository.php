@@ -37,9 +37,10 @@ class NodeRepository extends DocumentRepository
         $qb = $this->buildTreeRequest();
         $qb->field('inFooter')->equals(true);
 
-        if (null != $language) {
-            $qb->field('language')->equals($language);
+        if (is_null($language)) {
+            $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
         }
+        $qb->field('language')->equals($language);
 
         return $qb->getQuery()->execute();
     }
@@ -54,9 +55,10 @@ class NodeRepository extends DocumentRepository
         $qb = $this->buildTreeRequest();
         $qb->field('inMenu')->equals(true);
 
-        if (null != $language) {
-            $qb->field('language')->equals($language);
+        if (is_null($language)) {
+            $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
         }
+        $qb->field('language')->equals($language);
 
         return $qb->getQuery()->execute();
     }
@@ -297,9 +299,10 @@ class NodeRepository extends DocumentRepository
             $qb = $this->buildTreeRequest();
             $qb->field('parentId')->equals($parentId);
 
-            if (null != $language) {
-                $qb->field('language')->equals($language);
+            if (is_null($language)) {
+                $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
             }
+            $qb->field('language')->equals($language);
 
             $nodes = $qb->getQuery()->execute();
             $result = $nodes->toArray();
