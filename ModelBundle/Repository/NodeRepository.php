@@ -233,6 +233,8 @@ class NodeRepository extends DocumentRepository
     /**
      * @param string $nodeId
      *
+     * @deprecated This method is not precise
+     *
      * @return mixed
      */
     public function findOneByNodeIdAndSiteIdAndLastVersion($nodeId)
