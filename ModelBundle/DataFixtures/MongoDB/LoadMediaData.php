@@ -38,11 +38,6 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
         $secondImage->setMediaFolder($this->getReference('mediaFolder-secondImages'));
         $manager->persist($secondImage);
 
-        $firstFile = new Media();
-        $firstFile->setName('First file');
-        $firstFile->setMediaFolder($this->getReference('mediaFolder-firstFiles'));
-        $manager->persist($firstFile);
-
         $manager->flush();
     }
 
