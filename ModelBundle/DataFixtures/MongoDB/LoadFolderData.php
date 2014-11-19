@@ -50,21 +50,6 @@ class LoadFolderData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($rootFiles);
         $this->addReference('mediaFolder-rootFiles', $rootFiles);
 
-        $firstFiles = new MediaFolder();
-        $firstFiles->setName('First files folder');
-        $firstFiles->setParent($rootFiles);
-        $firstFiles->addSite($this->getReference('site1'));
-        $firstFiles->addSite($this->getReference('site2'));
-        $manager->persist($firstFiles);
-        $this->addReference('mediaFolder-firstFiles', $firstFiles);
-
-        $secondFiles = new MediaFolder();
-        $secondFiles->setName('Second files folder');
-        $secondFiles->setParent($rootFiles);
-        $secondFiles->addSite($this->getReference('site2'));
-        $manager->persist($secondFiles);
-        $this->addReference('mediaFolder-secondFiles', $secondFiles);
-
         $manager->flush();
     }
 
