@@ -28,23 +28,35 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
+     * @param string $language
+     *
      * @return array
      */
-    public function getFooterTree()
+    public function getFooterTree($language = null)
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inFooter')->equals(true);
+
+        if (null != $language) {
+            $qb->field('language')->equals($language);
+        }
 
         return $qb->getQuery()->execute();
     }
 
     /**
+     * @param string $language
+     *
      * @return array
      */
-    public function getMenuTree()
+    public function getMenuTree($language = null)
     {
         $qb = $this->buildTreeRequest();
         $qb->field('inMenu')->equals(true);
+
+        if (null != $language) {
+            $qb->field('language')->equals($language);
+        }
 
         return $qb->getQuery()->execute();
     }
