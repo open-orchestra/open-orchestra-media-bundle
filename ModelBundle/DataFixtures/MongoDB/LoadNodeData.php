@@ -505,10 +505,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $contentBlock = new Block();
         $contentBlock->setLabel('content news');
-        $contentBlock->setComponent('content');
+        $contentBlock->setComponent('content_list');
         $contentBlock->setAttributes(array(
-            'id' => 'contentNews',
-            'class' => 'contentClass',
+            'contentType' => 'news',
+            'id' => 'contentNewsList',
+            'class' => 'contentListClass',
+            'url' => 'fixture_bd'
         ));
         $contentBlock->addArea(array('nodeId' => 1, 'areaId' => 'main'));
 
