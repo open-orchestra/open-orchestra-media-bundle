@@ -1,9 +1,8 @@
 <?php
 
-namespace PHPOrchestra\ModelBundle\Test\Repository;
+namespace PHPOrchestra\ModelBundle\FunctionalTest\Repository;
 
 use Phake;
-use PHPOrchestra\ModelBundle\Document\Node;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use PHPOrchestra\ModelBundle\Repository\NodeRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -195,7 +194,6 @@ class NodeRepositoryTest extends KernelTestCase
     public function provideSiteIdAndNumberOfNode()
     {
         return array(
-            array('1', 8, 3),
             array('2', 12, 1),
             array('3', 10, 1),
         );
