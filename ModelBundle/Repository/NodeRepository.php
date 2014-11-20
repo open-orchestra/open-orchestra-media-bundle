@@ -34,28 +34,12 @@ class NodeRepository extends DocumentRepository
      */
     public function getFooterTree($language = null)
     {
-        $qb = $this->buildTreeRequest();
+        $qb = $this->buildTreeRequest($language);
         $qb->field('inFooter')->equals(true);
 
-        if (is_null($language)) {
-            $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
-        }
-        $qb->field('language')->equals($language);
-
         $list = $qb->getQuery()->execute();
-        $nodes = array();
 
-        foreach ($list as $node) {
-            if (!empty($nodes[$node->getNodeId()])) {
-                if ($nodes[$node->getNodeId()]->getVersion() < $node->getVersion()) {
-                    $nodes[$node->getNodeId()] = $node;
-                }
-            } else {
-                $nodes[$node->getNodeId()] = $node;
-            }
-        }
-
-        return $nodes;
+        return $this->findLastVersion($list);
     }
 
     /**
@@ -65,28 +49,12 @@ class NodeRepository extends DocumentRepository
      */
     public function getMenuTree($language = null)
     {
-        $qb = $this->buildTreeRequest();
+        $qb = $this->buildTreeRequest($language);
         $qb->field('inMenu')->equals(true);
 
-        if (is_null($language)) {
-            $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
-        }
-        $qb->field('language')->equals($language);
-
         $list = $qb->getQuery()->execute();
-        $nodes = array();
 
-        foreach ($list as $node) {
-            if (!empty($nodes[$node->getNodeId()])) {
-                if ($nodes[$node->getNodeId()]->getVersion() < $node->getVersion()) {
-                    $nodes[$node->getNodeId()] = $node;
-                }
-            } else {
-                $nodes[$node->getNodeId()] = $node;
-            }
-        }
-
-        return $nodes;
+        return $this->findLastVersion($list);
     }
 
     /**
@@ -148,9 +116,11 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
+     * @param string|null $language
+     *
      * @return \Doctrine\ODM\MongoDB\Query\Builder
      */
-    protected function buildTreeRequest()
+    protected function buildTreeRequest($language = null)
     {
         $qb = $this->createQueryBuilder('n');
 
@@ -159,6 +129,11 @@ class NodeRepository extends DocumentRepository
         $qb->field('deleted')->equals(false);
 
         $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
+
+        if (is_null($language)) {
+            $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
+        }
+        $qb->field('language')->equals($language);
 
         return $qb;
     }
@@ -171,11 +146,9 @@ class NodeRepository extends DocumentRepository
      */
     public function findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeId, $language = null)
     {
-        $qb = $this->buildTreeRequest();
+        $qb = $this->buildTreeRequest($language);
 
         $qb->field('nodeId')->equals($nodeId);
-        $fieldLanguage = $language?: $this->currentSiteManager->getCurrentSiteDefaultLanguage();
-        $qb->field('language')->equals($fieldLanguage);
         $qb->sort('version', 'desc');
 
         return $qb->getQuery()->getSingleResult();
@@ -284,19 +257,8 @@ class NodeRepository extends DocumentRepository
         $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
 
         $list = $qb->getQuery()->execute();
-        $nodes = array();
 
-        foreach ($list as $node) {
-            if (!empty($nodes[$node->getNodeId()])) {
-                if ($nodes[$node->getNodeId()]->getVersion() < $node->getVersion()) {
-                    $nodes[$node->getNodeId()] = $node;
-                }
-            } else {
-                $nodes[$node->getNodeId()] = $node;
-            }
-        }
-
-        return $nodes;
+        return $this->findLastVersion($list);
     }
 
     /**
@@ -324,13 +286,8 @@ class NodeRepository extends DocumentRepository
         $result = array();
 
         if ($nbLevel >= 0) {
-            $qb = $this->buildTreeRequest();
+            $qb = $this->buildTreeRequest($language);
             $qb->field('parentId')->equals($parentId);
-
-            if (is_null($language)) {
-                $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
-            }
-            $qb->field('language')->equals($language);
 
             $nodes = $qb->getQuery()->execute();
             $result = $nodes->toArray();
@@ -344,5 +301,27 @@ class NodeRepository extends DocumentRepository
         }
 
         return $result;
+    }
+
+    /**
+     * @param array $list
+     *
+     * @return array
+     */
+    protected function findLastVersion($list)
+    {
+        $nodes = array();
+
+        foreach ($list as $node) {
+            if (!empty($nodes[$node->getNodeId()])) {
+                if ($nodes[$node->getNodeId()]->getVersion() < $node->getVersion()) {
+                    $nodes[$node->getNodeId()] = $node;
+                }
+            } else {
+                $nodes[$node->getNodeId()] = $node;
+            }
+        }
+
+        return $nodes;
     }
 }
