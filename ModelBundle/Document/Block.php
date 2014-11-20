@@ -132,7 +132,7 @@ class Block implements BlockInterface
     {
         foreach ($this->getAreas() as $key => $area) {
             if ($areaId === $area['areaId'] && $nodeId === $area['nodeId']) {
-                $this->areas[$key] = null;
+                unset($this->areas[$key]);
             }
         }
     }
