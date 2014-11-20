@@ -42,7 +42,20 @@ class NodeRepository extends DocumentRepository
         }
         $qb->field('language')->equals($language);
 
-        return $qb->getQuery()->execute();
+        $list = $qb->getQuery()->execute();
+        $nodes = array();
+
+        foreach ($list as $node) {
+            if (!empty($nodes[$node->getNodeId()])) {
+                if ($nodes[$node->getNodeId()]->getVersion() < $node->getVersion()) {
+                    $nodes[$node->getNodeId()] = $node;
+                }
+            } else {
+                $nodes[$node->getNodeId()] = $node;
+            }
+        }
+
+        return $nodes;
     }
 
     /**
@@ -60,7 +73,20 @@ class NodeRepository extends DocumentRepository
         }
         $qb->field('language')->equals($language);
 
-        return $qb->getQuery()->execute();
+        $list = $qb->getQuery()->execute();
+        $nodes = array();
+
+        foreach ($list as $node) {
+            if (!empty($nodes[$node->getNodeId()])) {
+                if ($nodes[$node->getNodeId()]->getVersion() < $node->getVersion()) {
+                    $nodes[$node->getNodeId()] = $node;
+                }
+            } else {
+                $nodes[$node->getNodeId()] = $node;
+            }
+        }
+
+        return $nodes;
     }
 
     /**
@@ -206,6 +232,8 @@ class NodeRepository extends DocumentRepository
 
     /**
      * @param string $nodeId
+     *
+     * @deprecated This method is not precise
      *
      * @return mixed
      */

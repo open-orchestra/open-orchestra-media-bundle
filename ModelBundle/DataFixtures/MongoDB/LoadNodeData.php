@@ -22,8 +22,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $home = $this->generateNodeHome();
+        $home = $this->generateNodeHome(1);
         $manager->persist($home);
+        $home2 = $this->generateNodeHome(2);
+        $manager->persist($home2);
+        $home2 = $this->generateNodeHome(3, 'status-draft');
+        $manager->persist($home2);
 
         $homeEn = $this->generateNodeHomeEn();
         $manager->persist($homeEn);
@@ -104,7 +108,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * @return Node
      */
-    protected function generateNodeHome()
+    protected function generateNodeHome($version, $status = 'status-published')
     {
         $homeBlock = new Block();
         $homeBlock->setLabel('Home');
@@ -159,9 +163,9 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->setAlias('-');
         $home->setPath('-');
         $home->setName('Fixture Home');
-        $home->setVersion(1);
+        $home->setVersion($version);
         $home->setLanguage('fr');
-        $home->setStatus($this->getReference('status-published'));
+        $home->setStatus($this->getReference($status));
         $home->setDeleted(false);
         $home->setTemplateId('template_home');
         $home->setTheme('theme1');
@@ -501,10 +505,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $contentBlock = new Block();
         $contentBlock->setLabel('content news');
-        $contentBlock->setComponent('content');
+        $contentBlock->setComponent('content_list');
         $contentBlock->setAttributes(array(
-            'id' => 'contentNews',
-            'class' => 'contentClass',
+            'contentType' => 'news',
+            'id' => 'contentNewsList',
+            'class' => 'contentListClass',
+            'url' => 'fixture_bd'
         ));
         $contentBlock->addArea(array('nodeId' => 1, 'areaId' => 'main'));
 
