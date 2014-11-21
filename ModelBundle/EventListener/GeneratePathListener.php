@@ -33,7 +33,7 @@ class GeneratePathListener
             $nodeId = $document->getNodeId();
             $documentManager = $eventArgs->getDocumentManager();
             $path = '';
-            $parentNode = $nodeRepository->findOneByNodeIdAndSiteIdAndLastVersion($document->getParentId());
+            $parentNode = $nodeRepository->findOneByNodeIdAndLanguageAndSiteIdAndLastVersion($document->getParentId(), $document->getLanguage());
             if ($parentNode instanceof NodeInterface) {
                 $path = $parentNode->getPath() . '/';
             }
