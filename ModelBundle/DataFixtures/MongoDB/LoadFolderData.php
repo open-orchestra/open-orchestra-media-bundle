@@ -60,7 +60,7 @@ class LoadFolderData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 35;
+        return 90;
     }
 
 }

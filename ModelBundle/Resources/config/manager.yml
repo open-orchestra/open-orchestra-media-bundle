@@ -1,0 +1,8 @@
+parameters:
+    php_orchestra_model.manager.node.class: PHPOrchestra\ModelBundle\Manager\NodeManager
+
+services:
+    php_orchestra_model.manager.node:
+        class: %php_orchestra_model.manager.node.class%
+        arguments:
+            - %php_orchestra_model.document.node.class%
