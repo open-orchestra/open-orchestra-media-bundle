@@ -63,4 +63,10 @@ Interface BlockInterface
      * @param array $area
      */
     public function addArea(array $area);
+
+    /**
+     * @param string $areaId
+     * @param string $nodeId
+     */
+    public function removeAreaRef($areaId, $nodeId);
 }

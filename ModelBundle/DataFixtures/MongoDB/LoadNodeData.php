@@ -9,6 +9,7 @@ use PHPOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface;
 use PHPOrchestra\ModelBundle\Document\Area;
 use PHPOrchestra\ModelBundle\Document\Block;
 use PHPOrchestra\ModelBundle\Document\Node;
+use PHPOrchestra\ModelBundle\Model\NodeInterface;
 
 /**
  * Class LoadNodeData
@@ -118,12 +119,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => "Bienvenu sur le site de démo issu des fixtures.",
             'author' => ''
         ));
-        $homeBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $homeBlock->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
 
         $loginBlock = new Block();
         $loginBlock->setLabel('Login');
         $loginBlock->setComponent('login');
-        $loginBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $loginBlock->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
 
         $blocksubmenu = new Block();
         $blocksubmenu->setLabel('subMenu');
@@ -134,7 +135,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'nbLevel' => 2,
             'node' => 'fixture_about_us',
         ));
-        $blocksubmenu->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $blocksubmenu->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
 
         $blockLanguage = new Block();
         $blockLanguage->setLabel('languages');
@@ -143,7 +144,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'languageClass',
             'id' => 'languages'
         ));
-        $blockLanguage->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $blockLanguage->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
 
         $homeArea = new Area();
         $homeArea->setLabel('Main');
@@ -156,7 +157,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $home = new Node();
-        $home->setNodeId('root');
+        $home->setNodeId(NodeInterface::ROOT_NODE_ID);
         $home->setNodeType('page');
         $home->setSiteId('1');
         $home->setParentId('-');
@@ -193,12 +194,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => "Bienvenu sur le site de démo issu des fixtures.",
             'author' => ''
         ));
-        $homeBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $homeBlock->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
 
         $loginBlock = new Block();
         $loginBlock->setLabel('Login');
         $loginBlock->setComponent('login');
-        $loginBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $loginBlock->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
 
         $blocksubmenu = new Block();
         $blocksubmenu->setLabel('subMenu');
@@ -209,7 +210,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'nbLevel' => 2,
             'node' => 'fixture_about_us',
         ));
-        $blocksubmenu->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $blocksubmenu->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
 
         $homeArea = new Area();
         $homeArea->setLabel('Main');
@@ -221,7 +222,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         ));
 
         $home = new Node();
-        $home->setNodeId('root');
+        $home->setNodeId(NodeInterface::ROOT_NODE_ID);
         $home->setNodeType('page');
         $home->setSiteId('1');
         $home->setParentId('-');
@@ -257,7 +258,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Pourquoi nous choisir ?',
             'news' => 'Nos agences'
         ));
-        $block0->addArea(array('nodeId' => 0, 'areaId' => 'header'));
+        $block0->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'header'));
 
         $block1 = new Block();
         $block1->setLabel('block 2');
@@ -266,7 +267,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'menuclass',
             'id' => 'idmenu',
         ));
-        $block1->addArea(array('nodeId' => 0, 'areaId' => 'left_menu'));
+        $block1->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'left_menu'));
 
         $block2 = new Block();
         $block2->setLabel('block 3');
@@ -276,7 +277,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             "author" => "Donec bibendum at nibh eget imperdiet. Mauris eget justo augue. Fusce fermentum iaculis erat, sollicitudin elementum enim sodales eu. Donec a ante tortor. Suspendisse a.",
             "news" => ""
         ));
-        $block2->addArea(array('nodeId' => 0, 'areaId' => 'content'));
+        $block2->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'content'));
 
         $block3 = new Block();
         $block3->setLabel('block 4');
@@ -286,7 +287,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             "author" => "Aliquam convallis facilisis nulla, id ultricies ipsum cursus eu. Proin augue quam, iaculis id nisi ac, rutrum blandit leo. In leo ante, scelerisque tempus lacinia in, sollicitudin quis justo. Vestibulum.",
             "news" => ""
         ));
-        $block3->addArea(array('nodeId' => 0, 'areaId' => 'content'));
+        $block3->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'content'));
 
         $block4 = new Block();
         $block4->setLabel('block 5');
@@ -296,7 +297,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             "author" => "Phasellus condimentum diam placerat varius iaculis. Aenean dictum, libero in sollicitudin hendrerit, nulla mi elementum massa, eget mattis lorem enim vel magna. Fusce suscipit orci vitae vestibulum.",
             "news" => ""
         ));
-        $block4->addArea(array('nodeId' => 0, 'areaId' => 'content'));
+        $block4->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'content'));
 
         $block5 = new Block();
         $block5->setLabel('block 6');
@@ -307,7 +308,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => '',
             'image' => '/apple-touch-icon.png'
         ));
-        $block5->addArea(array('nodeId' => 0, 'areaId' => 'skycrapper'));
+        $block5->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'skycrapper'));
 
         $block6 = new Block();
         $block6->setLabel('block 7');
@@ -316,7 +317,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'id' => 'idFooter',
             'class' => 'footerclass',
         ));
-        $block6->addArea(array('nodeId' => 0, 'areaId' => 'footer'));
+        $block6->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'footer'));
 
         $block7 = new Block();
         $block7->setLabel('block 8');
@@ -327,7 +328,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'nodeId' => 'fixture_search',
             'limit' => 8
         ));
-        $block7->addArea(array('nodeId' => 0, 'areaId' => 'search'));
+        $block7->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'search'));
 
         $headerArea = new Area();
         $headerArea->setLabel('Header');
@@ -375,7 +376,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $full->setNodeId('fixture_full');
         $full->setNodeType('page');
         $full->setSiteId('1');
-        $full->setParentId('root');
+        $full->setParentId(NodeInterface::ROOT_NODE_ID);
         $full->setPath('-');
         $full->setAlias('fixture-full');
         $full->setName('Fixture full sample');
@@ -417,7 +418,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $generic->setNodeId('fixutre_generic');
         $generic->setNodeType('page');
         $generic->setSiteId('1');
-        $generic->setParentId('root');
+        $generic->setParentId(NodeInterface::ROOT_NODE_ID);
         $generic->setPath('-');
         $generic->setAlias('fixture-generic');
         $generic->setName('Generic Node');
@@ -446,7 +447,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Pour tout savoir sur notre entreprise.',
             'news' => ''
         ));
-        $aboutUsBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $aboutUsBlock->addArea(array('nodeId' => 'fixture_about_us', 'areaId' => 'main'));
 
         $contentListBlock = new Block();
         $contentListBlock->setLabel('Content list');
@@ -457,7 +458,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'contentListClass',
             'url' => 'fixture_bd'
         ));
-        $contentListBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $contentListBlock->addArea(array('nodeId' => 'fixture_about_us', 'areaId' => 'main'));
 
         $aboutUsArea = new Area();
         $aboutUsArea->setLabel('Main');
@@ -470,7 +471,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $aboutUs->setNodeType('page');
         $aboutUs->setName('Fixture About Us');
         $aboutUs->setSiteId('1');
-        $aboutUs->setParentId('root');
+        $aboutUs->setParentId(NodeInterface::ROOT_NODE_ID);
         $aboutUs->setPath('-');
         $aboutUs->setAlias('qui-sommes-nous');
         $aboutUs->setVersion(1);
@@ -501,7 +502,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Tout sur B&D',
             'news' => ''
         ));
-        $bdBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $bdBlock->addArea(array('nodeId' => 'fixture_bd', 'areaId' => 'main'));
 
         $contentBlock = new Block();
         $contentBlock->setLabel('content news');
@@ -512,7 +513,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'contentListClass',
             'url' => 'fixture_bd'
         ));
-        $contentBlock->addArea(array('nodeId' => 1, 'areaId' => 'main'));
+        $contentBlock->addArea(array('nodeId' => 'fixture_bd', 'areaId' => 'main'));
 
         $bdArea = new Area();
         $bdArea->setLabel('Main');
@@ -556,7 +557,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => '',
             'news' => 'Des trucs sur Interakting (non versionnés)'
         ));
-        $interaktingBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $interaktingBlock->addArea(array('nodeId' => 'fixture_interakting', 'areaId' => 'main'));
 
         $interaktingArea = new Area();
         $interaktingArea->setLabel('Main');
@@ -599,7 +600,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => 'swgsdwgh',
             'contentType' => 'news'
         ));
-        $contactUsBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $contactUsBlock->addArea(array('nodeId' => 'fixture_contact_us', 'areaId' => 'main'));
 
         $contactUsArea = new Area();
         $contactUsArea->setLabel('Main');
@@ -611,7 +612,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $contactUs->setNodeType('page');
         $contactUs->setName('Fixture Contact Us');
         $contactUs->setSiteId('1');
-        $contactUs->setParentId('root');
+        $contactUs->setParentId(NodeInterface::ROOT_NODE_ID);
         $contactUs->setPath('-');
         $contactUs->setAlias('nous-contacter');
         $contactUs->setVersion(1);
@@ -642,7 +643,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => '',
             'contentType' => 'car'
         ));
-        $directoryBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+        $directoryBlock->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'main'));
 
         $directoryArea = new Area();
         $directoryArea->setLabel('Main');
@@ -654,7 +655,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $directory->setNodeType('directory');
         $directory->setName('Fixture Directory');
         $directory->setSiteId('1');
-        $directory->setParentId('root');
+        $directory->setParentId(NodeInterface::ROOT_NODE_ID);
         $directory->setPath('-');
         $directory->setAlias('nous-contacter');
         $directory->setVersion(1);
@@ -684,7 +685,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Pourquoi nous choisir ?',
             'news' => 'Nos agences'
         ));
-        $searchBlock0->addArea(array('nodeId' => 0, 'areaId' => 'header'));
+        $searchBlock0->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'header'));
 
         $searchBlock1 = new Block();
         $searchBlock1->setLabel('Menu');
@@ -693,7 +694,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'menuClass',
             'id' => 'idmenu',
         ));
-        $searchBlock1->addArea(array('nodeId' => 0, 'areaId' => 'left_menu'));
+        $searchBlock1->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'left_menu'));
 
         $searchBlock2 = new Block();
         $searchBlock2->setLabel('search');
@@ -704,7 +705,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'classbouton',
             'nodeId' => 'fixture_search'
         ));
-        $searchBlock2->addArea(array('nodeId' => 0, 'areaId' => 'content'));
+        $searchBlock2->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'content'));
 
         $searchBlock3 = new Block();
         $searchBlock3->setLabel('Search result');
@@ -735,7 +736,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
                 "mm" => "75%"
             )
         ));
-        $searchBlock3->addArea(array('nodeId' => 0, 'areaId' => 'content'));
+        $searchBlock3->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'content'));
 
         $searchBlock4 = new Block();
         $searchBlock4->setLabel('Footer');
@@ -744,7 +745,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'id' => 'idFooter',
             'class' => 'footerClass',
         ));
-        $searchBlock4->addArea(array('nodeId' => 0, 'areaId' => 'footer'));
+        $searchBlock4->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'footer'));
 
         $searchArea0 = new Area();
         $searchArea0->setLabel('Header');
@@ -780,7 +781,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $search->setNodeType('search');
         $search->setName('Fixture Search');
         $search->setSiteId('1');
-        $search->setParentId('root');
+        $search->setParentId(NodeInterface::ROOT_NODE_ID);
         $search->setPath('-');
         $search->setAlias('nous-contacter');
         $search->setVersion(1);
@@ -814,7 +815,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeBlock0->setAttributes(array(
             "htmlContent" => "<a href='#' id='myLogo'> <img src='http://media.phporchestra.inte/themePresentation-logoOrchestra.png' /> </a>",
         ));
-        $siteHomeBlock0->addArea(array('nodeId' => 0, 'areaId' => 'logo'));
+        $siteHomeBlock0->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'logo'));
         $siteHomeBlock0->addArea(array('nodeId' => 'fixture_page_what_is_orchestra', 'areaId' => 'logo'));
         $siteHomeBlock0->addArea(array('nodeId' => 'fixture_page_start_orchestra', 'areaId' => 'logo'));
         $siteHomeBlock0->addArea(array('nodeId' => 'fixture_page_documentation', 'areaId' => 'logo'));
@@ -833,7 +834,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeBlock1->setAttributes(array(
             "htmlContent" => "<ul id='mySubMenu'> <li><a href='/page-home/page-about-us'> A PROPOS </a></li> <li><a href='/page-home/page-our-team'> NOTRE EQUIPE </a></li><li><a href='/page-home/page-our-news'> NOTRE ACTU </a></li><li><a href='/page-home/page-nous-rejoindre'>  NOUS REJOINDRE</a></li> <li><a href='/page-home/page-networks'> NETWORKS </a></li> </ul>",
         ));
-        $siteHomeBlock1->addArea(array('nodeId' => 0, 'areaId' => 'sub_menu'));
+        $siteHomeBlock1->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'sub_menu'));
         $siteHomeBlock1->addArea(array('nodeId' => 'fixture_page_what_is_orchestra', 'areaId' => 'sub_menu'));
         $siteHomeBlock1->addArea(array('nodeId' => 'fixture_page_start_orchestra', 'areaId' => 'sub_menu'));
         $siteHomeBlock1->addArea(array('nodeId' => 'fixture_page_documentation', 'areaId' => 'sub_menu'));
@@ -853,7 +854,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'menuClass',
             'id' => 'myMainMenu',
         ));
-        $siteHomeBlockMenu->addArea(array('nodeId' => 0, 'areaId' => 'main_menu'));
+        $siteHomeBlockMenu->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main_menu'));
         $siteHomeBlockMenu->addArea(array('nodeId' => 'fixture_page_what_is_orchestra', 'areaId' => 'main_menu'));
         $siteHomeBlockMenu->addArea(array('nodeId' => 'fixture_page_start_orchestra', 'areaId' => 'main_menu'));
         $siteHomeBlockMenu->addArea(array('nodeId' => 'fixture_page_documentation', 'areaId' => 'main_menu'));
@@ -898,7 +899,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeBlock5->setAttributes(array(
             "htmlContent" => "<div id='footerInfos'><h4>Infos</h4><ul><li> <a href='/app_dev.php/node/fixture_page_about_us'>Qui sommes nous ?</a> </li><li> <a href='/app_dev.php/node/fixture_page_contact'>Contact</a> </li></ul></div> <div id='footerLegal'><h4>Légal</h4><ul><li> <a href=''>Mentions Légal</a> </li><li> <a href='/app_dev.php/node/fixture_page_networks'>Plan du site</a> </li></ul></div> <div id='footerNetworks'><h4>Networks</h4><ul><li> <a href='http://www.businessdecision.fr/'>http://www.businessdecision.fr/</a> </li><li> <a href='http://www.interakting.com/'>http://www.interakting.com/</a> </li></ul></div> <div id='footerContact'><h4>Contact</h4> <ul> <li>Interakting</li><li>153 Rue de Courcelles</li> <li>75017 Paris France</li> <li>01 56 21 21 21</li><li> <a href='/app_dev.php/node/fixture_page_contact'>contact@interakting.com </a> </li></div>",
         ));
-        $siteHomeBlock5->addArea(array('nodeId' => 0, 'areaId' => 'footer'));
+        $siteHomeBlock5->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'footer'));
         $siteHomeBlock5->addArea(array('nodeId' => 'fixture_page_what_is_orchestra', 'areaId' => 'footer'));
         $siteHomeBlock5->addArea(array('nodeId' => 'fixture_page_start_orchestra', 'areaId' => 'footer'));
         $siteHomeBlock5->addArea(array('nodeId' => 'fixture_page_documentation', 'areaId' => 'footer'));
@@ -993,7 +994,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $siteHomeContainerFooter->addArea($siteHomeFooter);
 
         $siteHome = new Node();
-        $siteHome->setNodeId('root');
+        $siteHome->setNodeId(NodeInterface::ROOT_NODE_ID);
         $siteHome->setNodeType('page');
         $siteHome->setName('Home');
         $siteHome->setSiteId('2');
@@ -1058,17 +1059,17 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteWhatArea1 = new Area();
         $siteWhatArea1->setLabel('Logo');
         $siteWhatArea1->setAreaId('logo');
-        $siteWhatArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteWhatArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteWhatArea2 = new Area();
         $siteWhatArea2->setLabel('Sub menu');
         $siteWhatArea2->setAreaId('sub_menu');
-        $siteWhatArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteWhatArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteWhatArea3 = new Area();
         $siteWhatArea3->setLabel('Main menu');
         $siteWhatArea3->setAreaId('main_menu');
-        $siteWhatArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteWhatArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteWhatArea0 = new Area();
         $siteWhatArea0->setLabel('Header');
@@ -1085,8 +1086,8 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteWhatArea6 = new Area();
         $siteWhatArea6->setLabel('Module area');
         $siteWhatArea6->setAreaId('moduleArea');
-        $siteWhatArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
-        $siteWhatArea6->addBlock(array('nodeId' => 'root', 'blockId' => 7));
+        $siteWhatArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
+        $siteWhatArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7));
 
         $siteWhatArea4 = new Area();
         $siteWhatArea4->setLabel('My main');
@@ -1097,7 +1098,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteWhatArea8 = new Area();
         $siteWhatArea8->setLabel('Containe footer');
         $siteWhatArea8->setAreaId('containeFooter');
-        $siteWhatArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteWhatArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteWhatArea7 = new Area();
         $siteWhatArea7->setLabel('Footer');
@@ -1109,7 +1110,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteWhat->setNodeType('page');
         $siteWhat->setName('Orchestra ?');
         $siteWhat->setSiteId('2');
-        $siteWhat->setParentId('root');
+        $siteWhat->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteWhat->setPath('-');
         $siteWhat->setAlias('page-what-is-orchestra');
         $siteWhat->setVersion(1);
@@ -1143,22 +1144,22 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
             </p>
             </div>",
         ));
-        $siteStartBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteStartBlock0->addArea(array('nodeId' => 'fixture_page_start_orchestra', 'areaId' => 'mainContentArea1'));
 
         $siteStartArea1 = new Area();
         $siteStartArea1->setLabel('Logo');
         $siteStartArea1->setAreaId('logo');
-        $siteStartArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteStartArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteStartArea2 = new Area();
         $siteStartArea2->setLabel('Sub menu');
         $siteStartArea2->setAreaId('sub_menu');
-        $siteStartArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteStartArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteStartArea3 = new Area();
         $siteStartArea3->setLabel('Main menu');
         $siteStartArea3->setAreaId('main_menu');
-        $siteStartArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteStartArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteStartArea0 = new Area();
         $siteStartArea0->setLabel('Header');
@@ -1175,8 +1176,8 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteStartArea6 = new Area();
         $siteStartArea6->setLabel('Module area');
         $siteStartArea6->setAreaId('moduleArea');
-        $siteStartArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
-        $siteStartArea6->addBlock(array('nodeId' => 'root', 'blockId' => 7));
+        $siteStartArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
+        $siteStartArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7));
 
         $siteStartArea4 = new Area();
         $siteStartArea4->setLabel('My main');
@@ -1187,7 +1188,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteStartArea8 = new Area();
         $siteStartArea8->setLabel('Containe footer');
         $siteStartArea8->setAreaId('containeFooter');
-        $siteStartArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteStartArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteStartArea7 = new Area();
         $siteStartArea7->setLabel('Footer');
@@ -1199,7 +1200,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteStart->setNodeType('page');
         $siteStart->setName('Get Started');
         $siteStart->setSiteId('2');
-        $siteStart->setParentId('root');
+        $siteStart->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteStart->setPath('-');
         $siteStart->setAlias('page-start-orchestra');
         $siteStart->setVersion(1);
@@ -1235,22 +1236,22 @@ More information about php.net URL shortcuts by visiting our URL howto page.
 Note, that many languages are just under translation, and the untranslated parts are still in English. Also some translated parts might be outdated. The translation teams are open to contributions.</p>
             </div>",
         ));
-        $siteDocBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteDocBlock0->addArea(array('nodeId' => 'fixture_page_documentation', 'areaId' => 'mainContentArea1'));
 
         $siteDocArea1 = new Area();
         $siteDocArea1->setLabel('Logo');
         $siteDocArea1->setAreaId('logo');
-        $siteDocArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteDocArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteDocArea2 = new Area();
         $siteDocArea2->setLabel('Sub menu');
         $siteDocArea2->setAreaId('sub_menu');
-        $siteDocArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteDocArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteDocArea3 = new Area();
         $siteDocArea3->setLabel('Main menu');
         $siteDocArea3->setAreaId('main_menu');
-        $siteDocArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteDocArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteDocArea0 = new Area();
         $siteDocArea0->setLabel('Header');
@@ -1267,8 +1268,8 @@ Note, that many languages are just under translation, and the untranslated parts
         $siteDocArea6 = new Area();
         $siteDocArea6->setLabel('Module area');
         $siteDocArea6->setAreaId('moduleArea');
-        $siteDocArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
-        $siteDocArea6->addBlock(array('nodeId' => 'root', 'blockId' => 7));
+        $siteDocArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
+        $siteDocArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7));
 
         $siteDocArea4 = new Area();
         $siteDocArea4->setLabel('My main');
@@ -1279,7 +1280,7 @@ Note, that many languages are just under translation, and the untranslated parts
         $siteDocArea8 = new Area();
         $siteDocArea8->setLabel('Containe footer');
         $siteDocArea8->setAreaId('containeFooter');
-        $siteDocArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteDocArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteDocArea7 = new Area();
         $siteDocArea7->setLabel('Footer');
@@ -1291,7 +1292,7 @@ Note, that many languages are just under translation, and the untranslated parts
         $siteDoc->setNodeType('page');
         $siteDoc->setName('Documentation');
         $siteDoc->setSiteId('2');
-        $siteDoc->setParentId('root');
+        $siteDoc->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteDoc->setPath('-');
         $siteDoc->setAlias('page-documentation');
         $siteDoc->setVersion(1);
@@ -1333,22 +1334,22 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
                 </p>
             </div>",
         ));
-        $siteComBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteComBlock0->addArea(array('nodeId' => 'fixture_page_community', 'areaId' => 'mainContentArea1'));
 
         $siteComArea1 = new Area();
         $siteComArea1->setLabel('Logo');
         $siteComArea1->setAreaId('logo');
-        $siteComArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteComArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteComArea2 = new Area();
         $siteComArea2->setLabel('Sub menu');
         $siteComArea2->setAreaId('sub_menu');
-        $siteComArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteComArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteComArea3 = new Area();
         $siteComArea3->setLabel('Main menu');
         $siteComArea3->setAreaId('main_menu');
-        $siteComArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteComArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteComArea0 = new Area();
         $siteComArea0->setLabel('Header');
@@ -1365,8 +1366,8 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteComArea6 = new Area();
         $siteComArea6->setLabel('module area');
         $siteComArea6->setAreaId('moduleArea');
-        $siteComArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
-        $siteComArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
+        $siteComArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
+        $siteComArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
 
         $siteComArea4 = new Area();
         $siteComArea4->setLabel('My main');
@@ -1377,7 +1378,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteComArea8 = new Area();
         $siteComArea8->setLabel('Containe footer');
         $siteComArea8->setAreaId('containeFooter');
-        $siteComArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteComArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteComArea7 = new Area();
         $siteComArea7->setLabel('Footer');
@@ -1389,7 +1390,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteCom->setNodeType('page');
         $siteCom->setName('Communauté');
         $siteCom->setSiteId('2');
-        $siteCom->setParentId('root');
+        $siteCom->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteCom->setPath('-');
         $siteCom->setAlias('page-community');
         $siteCom->setVersion(1);
@@ -1425,22 +1426,22 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
                 </p>
             </div>",
         ));
-        $siteAboutUsBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteAboutUsBlock0->addArea(array('nodeId' => 'fixture_page_about_us', 'areaId' => 'mainContentArea1'));
 
         $siteAboutUsArea1 = new Area();
         $siteAboutUsArea1->setLabel('Logo');
         $siteAboutUsArea1->setAreaId('logo');
-        $siteAboutUsArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteAboutUsArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteAboutUsArea2 = new Area();
         $siteAboutUsArea2->setLabel('Sub menu');
         $siteAboutUsArea2->setAreaId('sub_menu');
-        $siteAboutUsArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteAboutUsArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteAboutUsArea3 = new Area();
         $siteAboutUsArea3->setLabel('Main menu');
         $siteAboutUsArea3->setAreaId('main_menu');
-        $siteAboutUsArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteAboutUsArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteAboutUsArea0 = new Area();
         $siteAboutUsArea0->setLabel('Header');
@@ -1457,8 +1458,8 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteAboutUsArea6 = new Area();
         $siteAboutUsArea6->setLabel('Module area');
         $siteAboutUsArea6->setAreaId('moduleArea');
-        $siteAboutUsArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
-        $siteAboutUsArea6->addBlock(array('nodeId' => 'root', 'blockId' => 7));
+        $siteAboutUsArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
+        $siteAboutUsArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7));
 
         $siteAboutUsArea4 = new Area();
         $siteAboutUsArea4->setLabel('My main');
@@ -1469,7 +1470,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteAboutUsArea8 = new Area();
         $siteAboutUsArea8->setLabel('Containe footer');
         $siteAboutUsArea8->setAreaId('containeFooter');
-        $siteAboutUsArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteAboutUsArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteAboutUsArea7 = new Area();
         $siteAboutUsArea7->setLabel('Footer');
@@ -1481,7 +1482,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteAboutUs->setNodeType('page');
         $siteAboutUs->setName('A propos');
         $siteAboutUs->setSiteId('2');
-        $siteAboutUs->setParentId('root');
+        $siteAboutUs->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteAboutUs->setPath('-');
         $siteAboutUs->setAlias('page-about-us');
         $siteAboutUs->setVersion(1);
@@ -1519,22 +1520,22 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
             </p>
             </div>",
         ));
-        $siteOurTeamBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteOurTeamBlock0->addArea(array('nodeId' => 'fixture_page_our_team', 'areaId' => 'mainContentArea1'));
 
         $siteOurTeamArea1 = new Area();
         $siteOurTeamArea1->setLabel('Logo');
         $siteOurTeamArea1->setAreaId('logo');
-        $siteOurTeamArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteOurTeamArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteOurTeamArea2 = new Area();
         $siteOurTeamArea2->setLabel('Sub menu');
         $siteOurTeamArea2->setAreaId('sub_menu');
-        $siteOurTeamArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteOurTeamArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteOurTeamArea3 = new Area();
         $siteOurTeamArea3->setLabel('Main menu');
         $siteOurTeamArea3->setAreaId('main_menu');
-        $siteOurTeamArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteOurTeamArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteOurTeamArea0 = new Area();
         $siteOurTeamArea0->setLabel('Header');
@@ -1551,8 +1552,8 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteOurTeamArea6 = new Area();
         $siteOurTeamArea6->setLabel('Module area');
         $siteOurTeamArea6->setAreaId('moduleArea');
-        $siteOurTeamArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
-        $siteOurTeamArea6->addBlock(array('nodeId' => 'root', 'blockId' => 7));
+        $siteOurTeamArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
+        $siteOurTeamArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7));
 
         $siteOurTeamArea4 = new Area();
         $siteOurTeamArea4->setLabel('My main');
@@ -1563,7 +1564,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteOurTeamArea8 = new Area();
         $siteOurTeamArea8->setLabel('Containe footer');
         $siteOurTeamArea8->setAreaId('containeFooter');
-        $siteOurTeamArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteOurTeamArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteOurTeamArea7 = new Area();
         $siteOurTeamArea7->setLabel('Footer');
@@ -1575,7 +1576,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteOurTeam->setNodeType('page');
         $siteOurTeam->setName('Fixture page our team');
         $siteOurTeam->setSiteId('2');
-        $siteOurTeam->setParentId('root');
+        $siteOurTeam->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteOurTeam->setPath('-');
         $siteOurTeam->setAlias('page-our-team');
         $siteOurTeam->setVersion(1);
@@ -1614,22 +1615,22 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
             </p>
             </div>",
         ));
-        $siteNewsBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteNewsBlock0->addArea(array('nodeId' => 'fixture_page_news', 'areaId' => 'mainContentArea1'));
 
         $siteNewsArea1 = new Area();
         $siteNewsArea1->setLabel('Logo');
         $siteNewsArea1->setAreaId('logo');
-        $siteNewsArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteNewsArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteNewsArea2 = new Area();
         $siteNewsArea2->setLabel('Sub menu');
         $siteNewsArea2->setAreaId('sub_menu');
-        $siteNewsArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteNewsArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteNewsArea3 = new Area();
         $siteNewsArea3->setLabel('Main menu');
         $siteNewsArea3->setAreaId('main_menu');
-        $siteNewsArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteNewsArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteNewsArea0 = new Area();
         $siteNewsArea0->setLabel('Header');
@@ -1646,8 +1647,8 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteNewsArea6 = new Area();
         $siteNewsArea6->setLabel('Module area');
         $siteNewsArea6->setAreaId('moduleArea');
-        $siteNewsArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
-        $siteNewsArea6->addBlock(array('nodeId' => 'root', 'blockId' => 7));
+        $siteNewsArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
+        $siteNewsArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7));
 
         $siteNewsArea4 = new Area();
         $siteNewsArea4->setLabel('My main');
@@ -1658,7 +1659,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteNewsArea8 = new Area();
         $siteNewsArea8->setLabel('Containe footer');
         $siteNewsArea8->setAreaId('containeFooter');
-        $siteNewsArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteNewsArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteNewsArea7 = new Area();
         $siteNewsArea7->setLabel('Footer');
@@ -1670,7 +1671,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteNews->setNodeType('page');
         $siteNews->setName('Fixture page news');
         $siteNews->setSiteId('2');
-        $siteNews->setParentId('root');
+        $siteNews->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteNews->setPath('-');
         $siteNews->setAlias('page-our-news');
         $siteNews->setVersion(1);
@@ -1700,22 +1701,22 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteJoinUsBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'><div id='annonce'><h1>Nous rejoindre</h1> <p>Vous êtes un passionné d’Internet en général et du Web en particulier?</p> <p>Vous avez une expérience significative dans les domaines suivants: Développement web le framwork Symfony 2 Votre profil est susceptible de nous intéresser </div> <div id='form'><table border='0'><tbody><tr><td valign='top'> Nom   </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société   </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr> <td valign='top'> Email   </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/> </td></tr><tr> <td valign='top'> Message   </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr><tr> <td valign='top'> CV   </td><td><input type='file' /> </td></tr> <tr> <td> <input type='submit' value='OK'/></td>  </tr> </tbody></table></div> </div>",
         ));
-        $siteJoinUsBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteJoinUsBlock0->addArea(array('nodeId' => 'fixture_page_join_us', 'areaId' => 'mainContentArea1'));
 
         $siteJoinUsArea1 = new Area();
         $siteJoinUsArea1->setLabel('Logo');
         $siteJoinUsArea1->setAreaId('logo');
-        $siteJoinUsArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteJoinUsArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteJoinUsArea2 = new Area();
         $siteJoinUsArea2->setLabel('Sub menu');
         $siteJoinUsArea2->setAreaId('sub_menu');
-        $siteJoinUsArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteJoinUsArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteJoinUsArea3 = new Area();
         $siteJoinUsArea3->setLabel('Main menu');
         $siteJoinUsArea3->setAreaId('main_menu');
-        $siteJoinUsArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteJoinUsArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteJoinUsArea0 = new Area();
         $siteJoinUsArea0->setLabel('Header');
@@ -1732,8 +1733,8 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteJoinUsArea6 = new Area();
         $siteJoinUsArea6->setLabel('Module area');
         $siteJoinUsArea6->setAreaId('moduleArea');
-        $siteJoinUsArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
-        $siteJoinUsArea6->addBlock(array('nodeId' => 'root', 'blockId' => 7));
+        $siteJoinUsArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
+        $siteJoinUsArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7));
 
         $siteJoinUsArea4 = new Area();
         $siteJoinUsArea4->setLabel('My main');
@@ -1744,7 +1745,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteJoinUsArea8 = new Area();
         $siteJoinUsArea8->setLabel('Containe footer');
         $siteJoinUsArea8->setAreaId('containeFooter');
-        $siteJoinUsArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteJoinUsArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteJoinUsArea7 = new Area();
         $siteJoinUsArea7->setLabel('Footer');
@@ -1756,7 +1757,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteJoinUs->setNodeType('page');
         $siteJoinUs->setName('Fixture page join us');
         $siteJoinUs->setSiteId('2');
-        $siteJoinUs->setParentId('root');
+        $siteJoinUs->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteJoinUs->setPath('-');
         $siteJoinUs->setAlias('page-nous-rejoindre');
         $siteJoinUs->setVersion(1);
@@ -1790,22 +1791,22 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
 Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spécialiste du e-Commerce, du Digital Marketing et en tant qu’opérateur de solutions SaaS. Ce projet a ainsi fait appel aux compétences de toutes les équipes d’Eolas, notamment celles des experts en e-Tailing, issues du rachat du fonds de commerce de Proxi-Business, il y a un an.
             </p></div>",
         ));
-        $siteNetworkBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteNetworkBlock0->addArea(array('nodeId' => 'fixture_page_networks', 'areaId' => 'mainContentArea1'));
 
         $siteNetworkArea1 = new Area();
         $siteNetworkArea1->setLabel('Logo');
         $siteNetworkArea1->setAreaId('logo');
-        $siteNetworkArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteNetworkArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteNetworkArea2 = new Area();
         $siteNetworkArea2->setLabel('Sub menu');
         $siteNetworkArea2->setAreaId('sub_menu');
-        $siteNetworkArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteNetworkArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteNetworkArea3 = new Area();
         $siteNetworkArea3->setLabel('Main menu');
         $siteNetworkArea3->setAreaId('main_menu');
-        $siteNetworkArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteNetworkArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteNetworkArea0 = new Area();
         $siteNetworkArea0->setLabel('Header');
@@ -1822,8 +1823,8 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteNetworkArea6 = new Area();
         $siteNetworkArea6->setLabel('Module area');
         $siteNetworkArea6->setAreaId('moduleArea');
-        $siteNetworkArea6->addBlock(array('nodeId' => 'root', 'blockId' => 6));
-        $siteNetworkArea6->addBlock(array('nodeId' => 'root', 'blockId' => 7));
+        $siteNetworkArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 6));
+        $siteNetworkArea6->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 7));
 
         $siteNetworkArea4 = new Area();
         $siteNetworkArea4->setLabel('My main');
@@ -1834,7 +1835,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteNetworkArea8 = new Area();
         $siteNetworkArea8->setLabel('Containe footer');
         $siteNetworkArea8->setAreaId('containeFooter');
-        $siteNetworkArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteNetworkArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteNetworkArea7 = new Area();
         $siteNetworkArea7->setLabel('Footer');
@@ -1846,7 +1847,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteNetwork->setNodeType('page');
         $siteNetwork->setName('Fixture page networks');
         $siteNetwork->setSiteId('2');
-        $siteNetwork->setParentId('root');
+        $siteNetwork->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteNetwork->setPath('-');
         $siteNetwork->setAlias('page-networks');
         $siteNetwork->setVersion(1);
@@ -1876,22 +1877,22 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteContactBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2' id='contactArea' ><div id='contactInformation'><h3>Contactez-nous</h3><img src='http://media.phporchestra.inte/themePresentation-logoOrchestra.png' /><div id='infoInterakting'><p><b>Interakting</b> <br>Groupe Business & Decision<br>153 Rue de Courcelles<br>75017 PARIS FRANCE<br><span class='fontOrange'>Tél:</span> +33 1 56 21 21 21<br> <span class='fontOrange'>Fax:</span> +33 1 56 21 21 22</p></div><div id='accessInterakting'><h3>Accès:</h3> <p><span class='fontOrange'>Metro ligne 3</span> arrêt Pereire<br><span class='fontOrange'>RER ligne C</span> arrêt Pereire-Levallois</p> </div><div id='googleMapsInterakting'><iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14&amp;output=embed'></iframe><br /><small><a href='https://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14' style='color:#0000FF;text-align:left'>Agrandir le plan</a></small></div></div><div id='contactForm'><h3>Une Demande ?<table border='0'><tbody><tr><td valign='top'> Nom </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr><td valign='top'> Email  </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/></tr><tr><td valign='top'> Sujet   </td><td> <input type='text' placeholder='Votre sujet' required/> </td></tr><tr> <td valign='top'> Type de demande   </td><td> <select><option> Orchestra </option><option> Presse </option><option> Information </option><option> Emploi </option></select></td></tr><tr><td valign='top'> Message </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr> <tr> <td> <input type='submit' value='OK' /></td> </tr> </tbody></table></div></div>",
         ));
-        $siteContactBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteContactBlock0->addArea(array('nodeId' => 'fixture_page_contact', 'areaId' => 'mainContentArea1'));
 
         $siteContactArea1 = new Area();
         $siteContactArea1->setLabel('Logo');
         $siteContactArea1->setAreaId('logo');
-        $siteContactArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteContactArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteContactArea2 = new Area();
         $siteContactArea2->setLabel('Sub menu');
         $siteContactArea2->setAreaId('sub_menu');
-        $siteContactArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteContactArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteContactArea3 = new Area();
         $siteContactArea3->setLabel('Main menu');
         $siteContactArea3->setAreaId('main_menu');
-        $siteContactArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteContactArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteContactArea0 = new Area();
         $siteContactArea0->setLabel('Header');
@@ -1913,7 +1914,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteContactArea8 = new Area();
         $siteContactArea8->setLabel('Containe footer');
         $siteContactArea8->setAreaId('containeFooter');
-        $siteContactArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteContactArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteContactArea7 = new Area();
         $siteContactArea7->setLAbel('Footer');
@@ -1925,7 +1926,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteContact->setNodeType('page');
         $siteContact->setName('Contact');
         $siteContact->setSiteId('2');
-        $siteContact->setParentId('root');
+        $siteContact->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteContact->setPath('-');
         $siteContact->setAlias('page-contact');
         $siteContact->setVersion(1);
@@ -1955,7 +1956,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteLegalBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1><p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate. Cras at urna sem. Nullam sed risus porta, placerat metus bibendum, commodo metus. Donec blandit leo eros, sed convallis odio sollicitudin at.Morbi ut pulvinar lorem. Duis venenatis interdum hendrerit. Curabitur sit amet eleifend sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse volutpat nulla sed eleifend malesuada. Suspendisse fringilla, est et dapibus molestie, orci leo pretium nulla, vitae consectetur ipsum enim ut magna. Duis sagittis auctor sollicitudin. Nunc interdum, quam id varius interdum, nulla felis blandit sapien, ac egestas lectus turpis in urna. Sed id ullamcorper nulla, quis tempor libero. Donec aliquet neque vitae rhoncus vestibulum. Aliquam id nunc ut justo sagittis bibendum sit amet non metus.Mauris aliquam mattis sem, in tempus eros feugiat non. Aenean vitae odio sapien. Curabitur ut luctus purus, nec vehicula nunc. Sed massa odio, sagittis a odio eget, posuere imperdiet eros. Sed sit amet neque tempus urna rutrum egestas. Maecenas dignissim justo orci, vitae aliquet mi gravida feugiat. Quisque ullamcorper non dui eget fringilla. convallis condimentum placerat. Mauris bibendum libero ac neque tempus, et pharetra enim cursus. In nec porta mi. Duis feugiat, enim nec ornare malesuada, ligula metus iaculis quam, dapibus fermentum lacus lorem ut diam. Pellentesque condimentum ante sed augue pretium placerat. Ut venenatis, lacus vel imperdiet aliquam, enim risus rhoncus mi, eget consequat tellus ante nec felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in erat eget leo tincidunt euismod. Sed hendrerit malesuada magna commodo porta. Suspendisse diam urna, pretium ut mi vel, vulputate ultricies dolor. Nam eleifend accumsan nibh. Duis hendrerit ornare urna, sit amet commodo eros imperdiet nec.Donec tristique est sit amet justo fringilla, a hendrerit ligula ultricies. Phasellus dignissim mi sit amet nibh gravida, vitae lobortis lorem imperdiet. Praesent dolor quam, luctus sed dui eu, eleifend mattis tortor. Curabitur varius lacus at sapien eleifend, vitae feugiat lectus mattis. In malesuada molestie turpis, et mattis ante euismod sed. Integer interdum adipiscing purus vitae vestibulum. Proin aliquam egestas nunc, ut dictum justo lacinia quis. Phasellus tincidunt mauris fringilla mauris hendrerit euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.</p></h1></div>",
         ));
-        $siteLegalBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
+        $siteLegalBlock0->addArea(array('nodeId' => 'fixture_page_legal_mentions', 'areaId' => 'mainContentArea1'));
 
         $siteLegalBlock1 = new Block();
         $siteLegalBlock1->setLabel('Wysiwyg 2');
@@ -1963,22 +1964,22 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteLegalBlock1->setAttributes(array(
             "htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
-        $siteLegalBlock1->addArea(array('nodeId' => 0, 'areaId' => 'moduleArea'));
+        $siteLegalBlock1->addArea(array('nodeId' => 'fixture_page_legal_mentions', 'areaId' => 'moduleArea'));
 
         $siteLegalArea1 = new Area();
         $siteLegalArea1->setLabel('Logo');
         $siteLegalArea1->setAreaId('logo');
-        $siteLegalArea1->addBlock(array('nodeId' => 'root', 'blockId' => 0));
+        $siteLegalArea1->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 0));
 
         $siteLegalArea2 = new Area();
         $siteLegalArea2->setLabel('Sub menu');
         $siteLegalArea2->setAreaId('sub_menu');
-        $siteLegalArea2->addBlock(array('nodeId' => 'root', 'blockId' => 1));
+        $siteLegalArea2->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 1));
 
         $siteLegalArea3 = new Area();
         $siteLegalArea3->setLabel('Main menu');
         $siteLegalArea3->setAreaId('main_menu');
-        $siteLegalArea3->addBlock(array('nodeId' => 'root', 'blockId' => 2));
+        $siteLegalArea3->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 2));
 
         $siteLegalArea0 = new Area();
         $siteLegalArea0->setLabel('Header');
@@ -2006,7 +2007,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteLegalArea8 = new Area();
         $siteLegalArea8->setLabel('Containe footer');
         $siteLegalArea8->setAreaId('containeFooter');
-        $siteLegalArea8->addBlock(array('nodeId' => 'root', 'blockId' => 5));
+        $siteLegalArea8->addBlock(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'blockId' => 5));
 
         $siteLegalArea7 = new Area();
         $siteLegalArea7->setLabel('Footer');
@@ -2018,7 +2019,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteLegal->setNodeType('page');
         $siteLegal->setName('Fixture page legal mentions');
         $siteLegal->setSiteId('2');
-        $siteLegal->setParentId('root');
+        $siteLegal->setParentId(NodeInterface::ROOT_NODE_ID);
         $siteLegal->setPath('-');
         $siteLegal->setAlias('page legal mentions');
         $siteLegal->setVersion(1);
