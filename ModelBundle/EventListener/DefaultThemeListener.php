@@ -18,7 +18,7 @@ class DefaultThemeListener
     public function preUpdate(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
-        if ($document instanceof ThemeInterface && $document->getDefault()) {
+        if ($document instanceof ThemeInterface && $document->isDefault()) {
             $documentManager = $eventArgs->getDocumentManager();
             $themes = $documentManager->getRepository('PHPOrchestraModelBundle:Theme')->findAll();
             foreach ($themes as $theme) {

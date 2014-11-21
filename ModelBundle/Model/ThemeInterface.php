@@ -25,7 +25,7 @@ interface ThemeInterface
     /**
      * @return boolean
      */
-    public function getDefault();
+    public function isDefault();
 
     /**
      * @param boolean $default

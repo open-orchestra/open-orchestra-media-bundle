@@ -63,7 +63,7 @@ class Theme implements ThemeInterface
     /**
      * @return boolean
      */
-    public function getDefault()
+    public function isDefault()
     {
         return $this->default;
     }

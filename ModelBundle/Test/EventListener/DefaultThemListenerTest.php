@@ -64,7 +64,7 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
         $this->listener->preUpdate($this->lifecycleEventArgs);
 
         foreach ($documents as $document) {
-            Phake::verify($document)->setInitial(false);
+            Phake::verify($document)->setDefault(false);
         }
     }
 
@@ -75,7 +75,7 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
     public function provideTheme()
     {
         $theme = Phake::mock('PHPOrchestra\ModelBundle\Document\Theme');
-        Phake::when($theme)->getDefault()->thenReturn(true);
+        Phake::when($theme)->isDefault()->thenReturn(true);
         Phake::when($theme)->getId()->thenReturn('fakeThemeId0');
 
         $document = Phake::mock('PHPOrchestra\ModelBundle\Document\Theme');
