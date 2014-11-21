@@ -55,9 +55,11 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
         $themeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\ThemeRepository');
 
         Phake::when($themeRepository)->findAll()->thenReturn($documents);
+        Phake::when($documentManager)->getRepository('PHPOrchestraModelBundle:Theme')->thenReturn($themeRepository);
 
         Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($theme);
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
+
 
         $this->listener->preUpdate($this->lifecycleEventArgs);
 
