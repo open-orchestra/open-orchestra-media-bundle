@@ -18,10 +18,12 @@ class LoadThemeData implements FixtureInterface
     {
         $theme = new Theme();
         $theme->setName('themePresentation');
+        $theme->setDefault(true);
         $manager->persist($theme);
 
         $theme = new Theme();
         $theme->setName('echonext');
+        $theme->setDefault(false);
         $manager->persist($theme);
 
         $manager->flush();
