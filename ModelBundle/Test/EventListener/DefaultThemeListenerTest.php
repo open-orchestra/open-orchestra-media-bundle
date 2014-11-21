@@ -55,6 +55,29 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testpreUpdate(Theme $theme, $documents)
     {
+        $this->makeTest('preUpdate', $theme, $documents);
+    }
+
+    /**
+     *
+     * @param Theme $theme
+     * @param array  $documents
+     *
+     * @dataProvider provideTheme
+     */
+    public function testprePersist(Theme $theme, $documents)
+    {
+        $this->makeTest('prePersist', $theme, $documents);
+    }
+
+    /**
+     *
+     * @param Theme $theme
+     * @param array  $documents
+     *
+     */
+    protected function makeTest($method, Theme $theme, $documents)
+    {
         $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $themeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\ThemeRepository');
 
@@ -65,7 +88,7 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($documentManager);
 
 
-        $this->listener->preUpdate($this->lifecycleEventArgs);
+        $this->listener->$method($this->lifecycleEventArgs);
 
         foreach ($documents as $document) {
             Phake::verify($document)->setDefault(false);
