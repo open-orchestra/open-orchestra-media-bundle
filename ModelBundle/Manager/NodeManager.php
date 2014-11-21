@@ -37,4 +37,3 @@ class NodeManager
         return $node;
     }
 }
- 
