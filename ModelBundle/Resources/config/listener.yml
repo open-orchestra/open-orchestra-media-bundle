@@ -7,6 +7,7 @@ parameters:
     php_orchestra_model.doctrine_listener.set_initial_status.class: PHPOrchestra\ModelBundle\EventListener\SetInitialStatusListener
     php_orchestra_model.doctrine_listener.move_uploaded_file.class: PHPOrchestra\ModelBundle\EventListener\MoveUploadedFileListener
     php_orchestra_model.doctrine_listener.save_published_document.class: PHPOrchestra\ModelBundle\EventListener\SavePublishedDocumentListener
+    php_orchestra_model.doctrine_listener.transversal_node_creator.class: PHPOrchestra\ModelBundle\EventListener\TransversalNodeCreatorListener
 
 services:
     php_orchestra_model.doctrine_listener.initial_status:
@@ -50,3 +51,12 @@ services:
         class: %php_orchestra_model.doctrine_listener.save_published_document.class%
 #        tags:
 #            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
+    php_orchestra_model.doctrine_listener.transversal_node_creator:
+        class: %php_orchestra_model.doctrine_listener.transversal_node_creator.class%
+        arguments:
+            - @service_container
+            - @php_orchestra_model.manager.node
+        tags:
+            -  { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
+            -  { name: doctrine_mongodb.odm.event_listener, event: postFlush }

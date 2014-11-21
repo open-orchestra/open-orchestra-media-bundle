@@ -70,7 +70,7 @@ class Site implements SiteInterface
      *
      * @MongoDB\Field(type="hash")
      */
-    protected $blocks;
+    protected $blocks = array();
 
     /**
      * @param string $alias

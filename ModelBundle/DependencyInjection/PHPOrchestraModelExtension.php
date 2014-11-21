@@ -58,5 +58,6 @@ class PHPOrchestraModelExtension extends Extension
         $loader->load('thumbnail.yml');
         $loader->load('twig.yml');
         $loader->load('display.yml');
+        $loader->load('manager.yml');
     }
 }

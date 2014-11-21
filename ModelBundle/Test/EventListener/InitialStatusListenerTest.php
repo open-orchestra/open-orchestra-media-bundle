@@ -24,6 +24,7 @@ class InitialStatusListenerTest extends \PHPUnit_Framework_TestCase
     {
         $this->lifecycleEventArgs = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
         $this->postFlushEventArgs = Phake::mock('Doctrine\ODM\MongoDB\Event\PostFlushEventArgs');
+
         $this->listener = new InitialStatusListener();
     }
 
@@ -32,24 +33,17 @@ class InitialStatusListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCallable()
     {
-        $this->assertTrue(is_callable(array(
-            $this->listener,
-            'preUpdate'
-        )));
-        $this->assertTrue(is_callable(array(
-            $this->listener,
-            'postFlush'
-        )));
+        $this->assertTrue(is_callable(array($this->listener, 'preUpdate')));
+        $this->assertTrue(is_callable(array($this->listener, 'postFlush')));
     }
 
     /**
-     *
      * @param Status $status
      * @param array  $documents
      *
      * @dataProvider provideStatus
      */
-    public function testpreUpdate(Status $status, $documents)
+    public function testPreUpdate(Status $status, $documents)
     {
         $documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $queryBuilder = Phake::mock('Doctrine\ODM\MongoDB\Query\Builder');
@@ -71,7 +65,6 @@ class InitialStatusListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
      * @return array
      */
     public function provideStatus()
@@ -84,9 +77,7 @@ class InitialStatusListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($document0)->isInitial()->thenReturn(true);
 
         return array(
-            array(
-                $status, array($document0)
-            )
+            array($status, array($document0))
         );
     }
 }
