@@ -15,7 +15,23 @@ class DefaultThemeListener
     /**
      * @param LifecycleEventArgs $eventArgs
      */
+    public function prePersist(LifecycleEventArgs $eventArgs)
+    {
+        $this->changeDefault($eventArgs);
+    }
+
+    /**
+     * @param LifecycleEventArgs $eventArgs
+     */
     public function preUpdate(LifecycleEventArgs $eventArgs)
+    {
+        $this->changeDefault($eventArgs);
+    }
+
+    /**
+     * @param LifecycleEventArgs $eventArgs
+     */
+    protected function changeDefault(LifecycleEventArgs $eventArgs)
     {
         $document = $eventArgs->getDocument();
         if ($document instanceof ThemeInterface && $document->isDefault()) {
