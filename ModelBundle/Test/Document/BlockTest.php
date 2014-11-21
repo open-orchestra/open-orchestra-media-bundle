@@ -26,14 +26,14 @@ class BlockTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideAreaIdNodeIdArray
      */
-    public function testRemoveAreaByAreaIdAndNodeId($areaId, $nodeId, $expected)
+    public function testRemoveAreaRef($areaId, $nodeId, $expected)
     {
         $this->block->addArea(array('nodeId' => 'what', 'areaId' => 'moduleArea'));
         $this->block->addArea(array('nodeId' => 'what', 'areaId' => 'testarea'));
         $this->block->addArea(array('nodeId' => 'start', 'areaId' => 'moduleArea'));
         $this->block->addArea(array('nodeId' => 'documentation', 'areaId' => 'testarea'));
 
-        $this->block->removeAreaByAreaIdAndNodeId($areaId, $nodeId);
+        $this->block->removeAreaRef($areaId, $nodeId);
 
         $this->assertSame($expected, $this->block->getAreas());
     }
@@ -75,11 +75,11 @@ class BlockTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideAreaIdNodeIdArrayWithOneArea
      */
-    public function testRemoveAreaByAreaIdAndNodeIdWithOneArea($areaId, $nodeId, $expected)
+    public function testRemoveAreaRefWithOneArea($areaId, $nodeId, $expected)
     {
         $this->block->addArea(array('nodeId' => 'what', 'areaId' => 'moduleArea'));
 
-        $this->block->removeAreaByAreaIdAndNodeId($areaId, $nodeId);
+        $this->block->removeAreaRef($areaId, $nodeId);
 
         $this->assertSame($expected, $this->block->getAreas());
     }

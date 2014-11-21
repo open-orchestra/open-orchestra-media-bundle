@@ -128,7 +128,7 @@ class Block implements BlockInterface
      * @param string $areaId
      * @param string $nodeId
      */
-    public function removeAreaByAreaIdAndNodeId($areaId, $nodeId)
+    public function removeAreaRef($areaId, $nodeId)
     {
         foreach ($this->getAreas() as $key => $area) {
             if ($areaId === $area['areaId'] && $nodeId === $area['nodeId']) {

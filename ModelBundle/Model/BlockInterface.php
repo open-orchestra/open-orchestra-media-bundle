@@ -68,5 +68,5 @@ Interface BlockInterface
      * @param string $areaId
      * @param string $nodeId
      */
-    public function removeAreaByAreaIdAndNodeId($areaId, $nodeId);
+    public function removeAreaRef($areaId, $nodeId);
 }
