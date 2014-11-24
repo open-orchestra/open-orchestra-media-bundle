@@ -29,6 +29,10 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
         $this->documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         $this->themeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\ThemeRepository');
         $this->listener = new DefaultThemeListener();
+
+        Phake::when($this->documentManager)->getRepository('PHPOrchestraModelBundle:Theme')->thenReturn($this->themeRepository);
+        Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($this->documentManager);
+        Phake::when($this->postFlushEventArgs)->getDocumentManager()->thenReturn($this->documentManager);
     }
 
     /**
@@ -113,11 +117,7 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
     protected function loadConfig(ThemeInterface $theme, $documents){
 
         Phake::when($this->themeRepository)->findAll()->thenReturn($documents);
-        Phake::when($this->documentManager)->getRepository('PHPOrchestraModelBundle:Theme')->thenReturn($this->themeRepository);
-
         Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($theme);
-        Phake::when($this->lifecycleEventArgs)->getDocumentManager()->thenReturn($this->documentManager);
-        Phake::when($this->postFlushEventArgs)->getDocumentManager()->thenReturn($this->documentManager);
     }
 
     /**
