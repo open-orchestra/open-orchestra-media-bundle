@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Container;
  */
 class DefaultThemeListener
 {
-    protected $themes = [];
+    public $themes = [];
     protected $container;
 
     /**

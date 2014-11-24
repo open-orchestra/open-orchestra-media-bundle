@@ -13,12 +13,16 @@ use Doctrine\ODM\MongoDB\Query\Builder;
  */
 class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var DefaultThemeListener
+     */
+    protected $listener;
+
     protected $lifecycleEventArgs;
     protected $postFlushEventArgs;
     protected $documentManager;
     protected $themeRepository;
     protected $container;
-    protected $listener;
 
     /**
      * setUp
@@ -76,10 +80,8 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPostFlush(ThemeInterface $theme, $documents)
     {
-        Phake::when($this->themeRepository)->findAll()->thenReturn($documents);
-        Phake::when($this->lifecycleEventArgs)->getDocument()->thenReturn($theme);
+        $this->listener->themes = $documents;
 
-        $this->listener->prePersist($this->lifecycleEventArgs);
         $this->listener->postFlush($this->postFlushEventArgs);
 
         foreach ($documents as $document) {
