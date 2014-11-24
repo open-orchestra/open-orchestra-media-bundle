@@ -61,6 +61,8 @@ services:
             -  { name: doctrine_mongodb.odm.event_listener, event: prePersist }
     php_orchestra_model.doctrine_listener.default_theme:
         class: %php_orchestra_model.doctrine_listener.default_theme.class%
+        arguments:
+            - @service_container
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: prePersist }
             -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }

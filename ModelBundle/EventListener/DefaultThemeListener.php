@@ -4,6 +4,8 @@ namespace PHPOrchestra\ModelBundle\EventListener;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ODM\MongoDB\Event\PostFlushEventArgs;
 use PHPOrchestra\ModelBundle\Model\ThemeInterface;
+use PHPOrchestra\ModelBundle\Repository\ThemeRepository;
+use Symfony\Component\DependencyInjection\Container;
 
 /**
  * Class DefaultThemeListener
@@ -11,6 +13,15 @@ use PHPOrchestra\ModelBundle\Model\ThemeInterface;
 class DefaultThemeListener
 {
     protected $themes = [];
+    protected $container;
+
+    /**
+     * @param Container $container
+     */
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
 
     /**
      * @param LifecycleEventArgs $eventArgs
@@ -35,8 +46,7 @@ class DefaultThemeListener
     {
         $document = $eventArgs->getDocument();
         if ($document instanceof ThemeInterface && $document->isDefault()) {
-            $documentManager = $eventArgs->getDocumentManager();
-            $themes = $documentManager->getRepository('PHPOrchestraModelBundle:Theme')->findAll();
+            $themes = $this->getRepository()->findAll();
             foreach ($themes as $theme) {
                 if ($theme->getId() != $document->getId()) {
                     $theme->setDefault(false);
@@ -59,5 +69,13 @@ class DefaultThemeListener
             $this->themes = array();
             $documentManager->flush();
         }
+    }
+
+    /**
+     * @return ThemeRepository
+     */
+    protected function getRepository()
+    {
+        return $this->container->get('php_orchestra_model.repository.theme');
     }
 }
