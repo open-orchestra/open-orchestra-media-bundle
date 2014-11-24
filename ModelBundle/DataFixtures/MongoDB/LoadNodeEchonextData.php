@@ -215,11 +215,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      * @param string $url
      * @param string $blockLabel
      * @param string $areaId
-     * @param int    $nodeId
+     * @param string $nodeId
+     * @param int    $nbCharacters
      *
      * @return Block
      */
-    protected function generateBlockContentList($class, $url, $blockLabel, $areaId, $nodeId = 0)
+    protected function generateBlockContentList($class, $url, $blockLabel, $areaId, $nodeId, $nbCharacters = 0)
     {
         $contentList = $this->generateBlock('content_list', $blockLabel, $nodeId, $areaId);
         $contentList->setAttributes(array(
@@ -227,6 +228,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'id' => 'contentNewsList',
             'class' => $class,
             'url' => $url,
+            'characterNumber' => $nbCharacters
         ));
 
         return $contentList;
@@ -386,7 +388,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Main
         $descBlock = $this->generateBlockWysiwyg('Home', '<h1>Bienvenue sur le site de demo Echonext.</h1>', 'main');
         $carrouselBlock = $this->generateBlockCarrousel('slider1_container', 'Carrousel', 'main');
-        $newsList = $this->generateBlockContentList('content-list', 'news', 'News 6', 'main');
+        $newsList = $this->generateBlockContentList('content-list', 'news', 'News 6', 'main', 70);
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
