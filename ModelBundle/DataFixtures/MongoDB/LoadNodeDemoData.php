@@ -202,8 +202,8 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
 
         $nodeTransverse = new Node();
         $nodeTransverse->setNodeId(NodeInterface::TRANSVERSE_NODE_ID);
-        $nodeTransverse->setNodeType('page');
-        $nodeTransverse->setName('Home');
+        $nodeTransverse->setNodeType(NodeInterface::TYPE_GENERAL);
+        $nodeTransverse->setName(NodeInterface::TRANSVERSE_NODE_ID);
         $nodeTransverse->setSiteId('2');
         $nodeTransverse->setParentId('-');
         $nodeTransverse->setPath('-');

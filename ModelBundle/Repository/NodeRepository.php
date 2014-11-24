@@ -257,14 +257,16 @@ class NodeRepository extends DocumentRepository
     }
 
     /**
+     * @param string $type
+     *
      * @return array
      */
-    public function findLastVersionBySiteId()
+    public function findLastVersionBySiteId($type = NodeInterface::TYPE_DEFAULT)
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('deleted')->equals(false);
         $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
-        $qb->field('nodeId')->notEqual(NodeInterface::TRANSVERSE_NODE_ID);
+        $qb->field('nodeType')->equals($type);
 
         $list = $qb->getQuery()->execute();
 
