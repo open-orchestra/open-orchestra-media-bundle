@@ -8,6 +8,7 @@ parameters:
     php_orchestra_model.doctrine_listener.move_uploaded_file.class: PHPOrchestra\ModelBundle\EventListener\MoveUploadedFileListener
     php_orchestra_model.doctrine_listener.save_published_document.class: PHPOrchestra\ModelBundle\EventListener\SavePublishedDocumentListener
     php_orchestra_model.doctrine_listener.transversal_node_creator.class: PHPOrchestra\ModelBundle\EventListener\TransversalNodeCreatorListener
+    php_orchestra_model.doctrine_listener.default_theme.class: PHPOrchestra\ModelBundle\EventListener\DefaultThemeListener
 
 services:
     php_orchestra_model.doctrine_listener.initial_status:
@@ -56,6 +57,14 @@ services:
         arguments:
             - @service_container
             - @php_orchestra_model.manager.node
+        tags:
+            -  { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
+            -  { name: doctrine_mongodb.odm.event_listener, event: postFlush }
+    php_orchestra_model.doctrine_listener.default_theme:
+        class: %php_orchestra_model.doctrine_listener.default_theme.class%
+        arguments:
+            - @service_container
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: prePersist }
             -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
