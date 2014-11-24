@@ -349,13 +349,13 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             'nodeId' => NodeInterface::TRANSVERSE_NODE_ID,
             'parentId' => '-',
             'path' => '-',
-            'name' => 'Home',
-            'alias' => 'home',
-            'url' => 'home',
+            'name' => NodeInterface::TRANSVERSE_NODE_ID,
+            'alias' => NodeInterface::TRANSVERSE_NODE_ID,
             'inMenu' => false,
             'inFooter' => false,
             'language' => $language,
         ));
+        $node->setNodeType(NodeInterface::TYPE_GENERAL);
 
         $node->addArea($mainArea);
         $node->addBlock($languageBlock);

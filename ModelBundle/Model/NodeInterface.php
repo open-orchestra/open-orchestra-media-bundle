@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\Collection;
 interface NodeInterface extends AreaContainerInterface, BlockContainerInterface, StatusableInterface, BlameableInterface, TimestampableInterface
 {
     const TYPE_DEFAULT = 'page';
+    const TYPE_GENERAL = 'general';
     const ROOT_NODE_ID = 'root';
     const TRANSVERSE_NODE_ID = 'transverse';
 

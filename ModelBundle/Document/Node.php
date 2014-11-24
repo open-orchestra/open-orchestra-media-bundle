@@ -45,7 +45,7 @@ class Node implements NodeInterface
      *
      * @ODM\Field(type="string")
      */
-    protected $nodeType;
+    protected $nodeType = NodeInterface::TYPE_DEFAULT;
 
     /**
      * @var string $siteId

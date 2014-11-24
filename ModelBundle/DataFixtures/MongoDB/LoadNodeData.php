@@ -122,7 +122,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $home = new Node();
         $home->setNodeId(NodeInterface::ROOT_NODE_ID);
-        $home->setNodeType('page');
+        $home->setNodeType(NodeInterface::TYPE_DEFAULT);
         $home->setSiteId('1');
         $home->setParentId('-');
         $home->setAlias('-');
@@ -175,7 +175,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $home = new Node();
         $home->setNodeId(NodeInterface::ROOT_NODE_ID);
-        $home->setNodeType('page');
+        $home->setNodeType(NodeInterface::TYPE_DEFAULT);
         $home->setSiteId('1');
         $home->setParentId('-');
         $home->setAlias('-');
@@ -325,7 +325,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $full = new Node();
         $full->setNodeId('fixture_full');
-        $full->setNodeType('page');
+        $full->setNodeType(NodeInterface::TYPE_DEFAULT);
         $full->setSiteId('1');
         $full->setParentId(NodeInterface::ROOT_NODE_ID);
         $full->setPath('-');
@@ -367,7 +367,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $generic = new Node();
         $generic->setNodeId('fixutre_generic');
-        $generic->setNodeType('page');
+        $generic->setNodeType(NodeInterface::TYPE_DEFAULT);
         $generic->setSiteId('1');
         $generic->setParentId(NodeInterface::ROOT_NODE_ID);
         $generic->setPath('-');
@@ -419,7 +419,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $aboutUs = new Node();
         $aboutUs->setNodeId('fixture_about_us');
-        $aboutUs->setNodeType('page');
+        $aboutUs->setNodeType(NodeInterface::TYPE_DEFAULT);
         $aboutUs->setName('Fixture About Us');
         $aboutUs->setSiteId('1');
         $aboutUs->setParentId(NodeInterface::ROOT_NODE_ID);
@@ -474,7 +474,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $bd = new Node();
         $bd->setNodeId('fixture_bd');
-        $bd->setNodeType('page');
+        $bd->setNodeType(NodeInterface::TYPE_DEFAULT);
         $bd->setName('Fixture B&D');
         $bd->setSiteId('1');
         $bd->setParentId('fixture_about_us');
@@ -517,7 +517,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $interakting = new Node();
         $interakting->setNodeId('fixture_interakting');
-        $interakting->setNodeType('page');
+        $interakting->setNodeType(NodeInterface::TYPE_DEFAULT);
         $interakting->setName('Fixture Interakting');
         $interakting->setSiteId('1');
         $interakting->setParentId('fixture_about_us');
@@ -560,7 +560,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $contactUs = new Node();
         $contactUs->setNodeId('fixture_contact_us');
-        $contactUs->setNodeType('page');
+        $contactUs->setNodeType(NodeInterface::TYPE_DEFAULT);
         $contactUs->setName('Fixture Contact Us');
         $contactUs->setSiteId('1');
         $contactUs->setParentId(NodeInterface::ROOT_NODE_ID);
@@ -603,7 +603,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $directory = new Node();
         $directory->setNodeId('fixture_directory');
-        $directory->setNodeType('directory');
+        $directory->setNodeType(NodeInterface::TYPE_DEFAULT);
         $directory->setName('Fixture Directory');
         $directory->setSiteId('1');
         $directory->setParentId(NodeInterface::ROOT_NODE_ID);
@@ -729,7 +729,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $search = new Node();
         $search->setNodeId('fixture_search');
-        $search->setNodeType('search');
+        $search->setNodeType(NodeInterface::TYPE_DEFAULT);
         $search->setName('Fixture Search');
         $search->setSiteId('1');
         $search->setParentId(NodeInterface::ROOT_NODE_ID);
