@@ -59,6 +59,8 @@ services:
             - @php_orchestra_model.manager.node
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+            -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
+            -  { name: doctrine_mongodb.odm.event_listener, event: postFlush }
     php_orchestra_model.doctrine_listener.default_theme:
         class: %php_orchestra_model.doctrine_listener.default_theme.class%
         arguments:
