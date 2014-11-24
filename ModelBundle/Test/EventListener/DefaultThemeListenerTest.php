@@ -108,11 +108,9 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param ThemeInterface $theme
-     * @param array  $documents
+     * @param array          $documents
      */
     protected function loadConfig(ThemeInterface $theme, $documents){
-        $this->documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
-        $this->themeRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\ThemeRepository');
 
         Phake::when($this->themeRepository)->findAll()->thenReturn($documents);
         Phake::when($this->documentManager)->getRepository('PHPOrchestraModelBundle:Theme')->thenReturn($this->themeRepository);
