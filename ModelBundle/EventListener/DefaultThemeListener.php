@@ -56,7 +56,7 @@ class DefaultThemeListener
             foreach ($this->themes as $theme) {
                 $documentManager->persist($theme);
             }
-            $this->themes = [];
+            $this->themes = array();
             $documentManager->flush();
         }
     }

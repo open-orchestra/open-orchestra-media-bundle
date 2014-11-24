@@ -51,37 +51,34 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
      * @param ThemeInterface $theme
-     * @param array  $documents
+     * @param array          $documents
      *
      * @dataProvider provideTheme
      */
-    public function testpreUpdate(ThemeInterface $theme, $documents)
+    public function testPreUpdate(ThemeInterface $theme, $documents)
     {
         $this->makeTest('preUpdate', $theme, $documents);
     }
 
     /**
-     *
      * @param ThemeInterface $theme
-     * @param array  $documents
+     * @param array          $documents
      *
      * @dataProvider provideTheme
      */
-    public function testprePersist(ThemeInterface $theme, $documents)
+    public function testPrePersist(ThemeInterface $theme, $documents)
     {
         $this->makeTest('prePersist', $theme, $documents);
     }
 
     /**
-     *
      * @param ThemeInterface $theme
-     * @param array  $documents
+     * @param array          $documents
      *
      * @dataProvider provideTheme
      */
-    public function testpostFlush(ThemeInterface $theme, $documents)
+    public function testPostFlush(ThemeInterface $theme, $documents)
     {
         $this->loadConfig($theme, $documents);
         $this->listener->prePersist($this->lifecycleEventArgs);
@@ -95,10 +92,9 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     * @param string         $method
      * @param ThemeInterface $theme
-     * @param array  $documents
-     *
+     * @param array          $documents
      */
     protected function makeTest($method, ThemeInterface $theme, $documents)
     {
@@ -111,10 +107,8 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
      * @param ThemeInterface $theme
      * @param array  $documents
-     *
      */
     protected function loadConfig(ThemeInterface $theme, $documents){
         $this->documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
@@ -129,7 +123,6 @@ class DefaultThemeListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
      * @return array
      */
     public function provideTheme()
