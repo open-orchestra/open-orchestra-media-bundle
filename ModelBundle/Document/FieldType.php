@@ -117,6 +117,20 @@ class FieldType implements FieldTypeInterface
     }
 
     /**
+     * @param string $language
+     *
+     * @return mixed
+     */
+    public function getLabel($language = 'en')
+    {
+        $choosenLanguage = $this->labels->filter(function ($translatedValue) use ($language) {
+            return $language == $translatedValue->getLanguage();
+        });
+
+        return $choosenLanguage->first()->getValue();
+    }
+
+    /**
      * Set Default Value
      *
      * @param string $value
@@ -191,6 +205,18 @@ class FieldType implements FieldTypeInterface
     }
 
     /**
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function hasOption($key)
+    {
+        return $this->options->filter(function($option) use ($key) {
+            return $option->getKey() == $key;
+        })->count();
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getOptions()
@@ -220,5 +246,13 @@ class FieldType implements FieldTypeInterface
         return array(
             'getLabels'
         );
+    }
+
+    /**
+     * Clone the element
+     */
+    public function __clone()
+    {
+        $this->labels = new ArrayCollection();
     }
 }
