@@ -98,6 +98,7 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
         $siteHomeBlock0->addArea(array('nodeId' => 'fixture_page_networks', 'areaId' => 'logo'));
         $siteHomeBlock0->addArea(array('nodeId' => 'fixture_page_contact', 'areaId' => 'logo'));
         $siteHomeBlock0->addArea(array('nodeId' => 'fixture_page_legal_mentions', 'areaId' => 'logo'));
+        $siteHomeBlock0->addArea(array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'areaId' => 'main'));
 
         $siteHomeBlock1 = new Block();
         $siteHomeBlock1->setLabel('Wysiwyg 2');
@@ -117,6 +118,7 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
         $siteHomeBlock1->addArea(array('nodeId' => 'fixture_page_networks', 'areaId' => 'sub_menu'));
         $siteHomeBlock1->addArea(array('nodeId' => 'fixture_page_contact', 'areaId' => 'sub_menu'));
         $siteHomeBlock1->addArea(array('nodeId' => 'fixture_page_legal_mentions', 'areaId' => 'sub_menu'));
+        $siteHomeBlock1->addArea(array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'areaId' => 'main'));
 
         $siteHomeBlockMenu = new Block();
         $siteHomeBlockMenu->setLabel('Menu');
@@ -137,6 +139,7 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
         $siteHomeBlockMenu->addArea(array('nodeId' => 'fixture_page_networks', 'areaId' => 'main_menu'));
         $siteHomeBlockMenu->addArea(array('nodeId' => 'fixture_page_contact', 'areaId' => 'main_menu'));
         $siteHomeBlockMenu->addArea(array('nodeId' => 'fixture_page_legal_mentions', 'areaId' => 'main_menu'));
+        $siteHomeBlockMenu->addArea(array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'areaId' => 'main'));
 
         $siteHomeBlock5 = new Block();
         $siteHomeBlock5->setLabel('Wysiwyg 2');
@@ -156,6 +159,7 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
         $siteHomeBlock5->addArea(array('nodeId' => 'fixture_page_networks', 'areaId' => 'footer'));
         $siteHomeBlock5->addArea(array('nodeId' => 'fixture_page_contact', 'areaId' => 'footer'));
         $siteHomeBlock5->addArea(array('nodeId' => 'fixture_page_legal_mentions', 'areaId' => 'footer'));
+        $siteHomeBlock5->addArea(array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'areaId' => 'main'));
 
         $siteWhatBlock6 = new Block();
         $siteWhatBlock6->setLabel('What block');
@@ -172,6 +176,7 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
         $siteWhatBlock6->addArea(array('nodeId' => 'fixture_page_news', 'areaId' => 'moduleArea'));
         $siteWhatBlock6->addArea(array('nodeId' => 'fixture_page_join_us', 'areaId' => 'moduleArea'));
         $siteWhatBlock6->addArea(array('nodeId' => 'fixture_page_networks', 'areaId' => 'moduleArea'));
+        $siteWhatBlock6->addArea(array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'areaId' => 'main'));
 
         $siteWhatBlock7 = new Block();
         $siteWhatBlock7->setLabel('Contact');
@@ -189,10 +194,11 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
         $siteWhatBlock7->addArea(array('nodeId' => 'fixture_page_news', 'areaId' => 'moduleArea'));
         $siteWhatBlock7->addArea(array('nodeId' => 'fixture_page_join_us', 'areaId' => 'moduleArea'));
         $siteWhatBlock7->addArea(array('nodeId' => 'fixture_page_networks', 'areaId' => 'moduleArea'));
+        $siteWhatBlock7->addArea(array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'areaId' => 'main'));
 
         $mainArea = new Area();
         $mainArea->setLabel('main');
-        $mainArea->setAreaId('mail');
+        $mainArea->setAreaId('main');
         $mainArea->addBlock(array('nodeId' => 0, 'blockId' => 0));
         $mainArea->addBlock(array('nodeId' => 0, 'blockId' => 1));
         $mainArea->addBlock(array('nodeId' => 0, 'blockId' => 2));
