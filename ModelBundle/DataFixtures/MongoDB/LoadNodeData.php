@@ -320,7 +320,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $searchArea = new Area();
         $searchArea->setLabel('Search');
-        $searchArea->setAreaId('Search');
+        $searchArea->setAreaId('search');
         $searchArea->setBlocks(array(array('nodeId' => 0, 'blockId' => 7)));
 
         $full = new Node();

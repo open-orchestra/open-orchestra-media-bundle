@@ -174,7 +174,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     protected function generateBlockCarrousel($carouselId, $blockLabel, $areaId, $nodeId = 0)
     {
-        $carrouselBlock = $this->generateBlock('carrousel', $blockLabel, $areaId, $nodeId);
+        $carrouselBlock = $this->generateBlock('carrousel', $blockLabel, $nodeId, $areaId);
         $carrouselBlock->setAttributes(array(
             'pictures' => array(
                 array('src' => "/bundles/fakeapptheme/themes/echonext/img/carroussel/01.jpg"),
@@ -326,12 +326,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     protected function generateNodeTransverse($language)
     {
         // Header
-        $languageBlock = $this->generateBlockLang('header');
-        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'header');
-        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='http://media.phporchestra.inte/echonext-head_logo.png' /> </a><img src='http://media.phporchestra.inte/echonext-head_img.jpg' class='bg-header'/>", 'header');
-        $loginBlock = $this->generateBlockLogin('Login', 'header');
-        $menuBlock = $this->generateBlockMenu('Menu', 'header');
-        $footerBlock = $this->generateFooterBlock('Footer', 'footer');
+        $languageBlock = $this->generateBlockLang('main');
+        $search = $this->generateBlockWysiwyg('Search', "<div class=search><input type='text'><button type='submit'>Rechercher</button></div>", 'main');
+        $logoBlock = $this->generateBlockWysiwyg('Logo', "<a href='#' id='myLogo'> <img src='http://media.phporchestra.inte/echonext-head_logo.png' /> </a><img src='http://media.phporchestra.inte/echonext-head_img.jpg' class='bg-header'/>", 'main');
+        $loginBlock = $this->generateBlockLogin('Login', 'main');
+        $menuBlock = $this->generateBlockMenu('Menu', 'main');
+        $footerBlock = $this->generateFooterBlock('Footer', 'main');
 
         $mainArea = $this->generateArea('main', 'main',
             array(
@@ -555,7 +555,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $headerArea->setBoDirection('v');
 
         // Main
-        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'left_menu');
         $titleBlock = $this->generateBlockWysiwyg('Cardif', "<h1>Bienvenue sur l'espace de cardif</h1>", 'main');
         $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
             Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
@@ -734,7 +734,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $headerArea->setBoDirection('v');
 
         // Main
-        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'left_menu');
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Bienvenue sur l\'espace Cardif</h1>', 'main');
         $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
             Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
@@ -805,7 +805,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $headerArea->setBoDirection('v');
 
         // Main
-        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'left_menu');
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page actualité Cardif</h1>', 'main');
         $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
             Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
@@ -876,7 +876,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $headerArea->setBoDirection('v');
 
         // Main
-        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'left_menu');
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Missions Cardif</h1>', 'main');
         $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
             Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
@@ -947,7 +947,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $headerArea->setBoDirection('v');
 
         // Main
-        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'main');
+        $subMenu = $this->generateBlockSubMenu('left_menu', 'cardif_left_menu', 2, 'espace_Cardif', 'Sub Menu', 'left_menu');
         $titleBlock = $this->generateBlockWysiwyg('BDDF', '<h1>Page Cardif Rémunération</h1>', 'main');
         $bodyBlock = $this->generateBlockWysiwyg('Body cardif', '<div class="body-espace-cardif"><p>BNP Paribas cardif est l\'un des François Villeroy de Galhau,
             Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis
