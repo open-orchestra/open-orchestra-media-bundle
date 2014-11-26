@@ -110,7 +110,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
     protected function generateContentTypeNews()
     {
         $maxLengthOption = $this->generateOption('max_length', 25);
-        $required = $this->generateOption('required', 1);
+        $required = $this->generateOption('required', true);
         $dateWidgetOption = $this->generateOption('widget', 'single_text');
         $dateInputOption = $this->generateOption('input', 'string');
         $tinyMceOption = $this->generateOption('attr', array('class' => 'tinymce'));
@@ -197,13 +197,9 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
      */
     protected function generateContentTypeCar()
     {
-        $maxLengthOption = new FieldOption();
-        $maxLengthOption->setKey('max_length');
-        $maxLengthOption->setValue(25);
+        $maxLengthOption = $this->generateOption('max_length', 25);
 
-        $required = new FieldOption();
-        $required->setKey('required');
-        $required->setValue('1');
+        $required = $this->generateOption('required', true);
 
         $enLabel = new TranslatedValue();
         $enLabel->setLanguage('en');
@@ -267,13 +263,9 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
      */
     protected function generateContentTypeCarV2()
     {
-        $maxLengthOption = new FieldOption();
-        $maxLengthOption->setKey('max_length');
-        $maxLengthOption->setValue(25);
+        $maxLengthOption = $this->generateOption('max_length', 25);
 
-        $required = new FieldOption();
-        $required->setKey('required');
-        $required->setValue('1');
+        $required = $this->generateOption('required', true);
 
         $enLabel = new TranslatedValue();
         $enLabel->setLanguage('en');
@@ -336,13 +328,8 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
      */
     protected function generateContentTypeCustomer()
     {
-        $maxLengthOption = new FieldOption();
-        $maxLengthOption->setKey('max_length');
-        $maxLengthOption->setValue(25);
-
-        $required = new FieldOption();
-        $required->setKey('required');
-        $required->setValue('1');
+        $maxLengthOption = $this->generateOption('max_length', 25);
+        $required = $this->generateOption('required', true);
 
         $enLabel = new TranslatedValue();
         $enLabel->setLanguage('en');
