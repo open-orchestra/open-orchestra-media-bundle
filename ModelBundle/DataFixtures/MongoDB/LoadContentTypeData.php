@@ -113,7 +113,6 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
         $required = $this->generateOption('required', true);
         $dateWidgetOption = $this->generateOption('widget', 'single_text');
         $dateInputOption = $this->generateOption('input', 'string');
-        $tinyMceOption = $this->generateOption('attr', array('class' => 'tinymce'));
 
         /* TITLE */
 
@@ -165,9 +164,7 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
         $enLabel = $this->generateTranslatedValue('en', 'Text');
         $frLabel = $this->generateTranslatedValue('fr', 'Texte');
 
-        $newsText = $this->generateField('textarea', 'text', array($enLabel, $frLabel));
-        $newsText->addOption($tinyMceOption);
-//        $newsText->addOption($required);
+        $newsText = $this->generateField('tinymce', 'text', array($enLabel, $frLabel));
 
         /* CONTENT TYPE */
 

@@ -10,15 +10,21 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
 class ContentTypeRepository extends DocumentRepository
 {
     /**
-     * @param string $contentType
+     * @param string   $contentType
+     * @param int|null $version
      * 
      * @return array|null|object
      */
-    public function findOneByContentTypeIdAndLastVersion($contentType)
+    public function findOneByContentTypeIdAndVersion($contentType, $version = null)
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('contentTypeId')->equals($contentType);
-        $qb->sort('version', 'desc');
+
+        if ($version) {
+            $qb->field('version')->equals($version);
+        } else {
+            $qb->sort('version', 'desc');
+        }
 
         return $qb->getQuery()->getSingleResult();
     }
