@@ -4,6 +4,7 @@ namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use PHPOrchestra\ModelBundle\Mapping\Annotations as ORCHESTRA;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\BlockInterface;
 use PHPOrchestra\ModelBundle\Model\StatusInterface;
@@ -15,6 +16,10 @@ use PHPOrchestra\ModelBundle\Model\TemplateInterface;
  * @MongoDB\Document(
  *   collection="template",
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\TemplateRepository"
+ * )
+ * @ORCHESTRA\Document(
+ *   generatedId="templateId",
+ *   sourceId="name"
  * )
  */
 class Template implements TemplateInterface

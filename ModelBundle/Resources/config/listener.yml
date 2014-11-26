@@ -1,7 +1,5 @@
 parameters:
-    php_orchestra_model.doctrine_listener.generate_node_id.class: PHPOrchestra\ModelBundle\EventListener\GenerateNodeIdListener
-    php_orchestra_model.doctrine_listener.generate_template_id.class: PHPOrchestra\ModelBundle\EventListener\GenerateTemplateIdListener
-    php_orchestra_model.doctrine_listener.generate_content_id.class: PHPOrchestra\ModelBundle\EventListener\GenerateContentIdListener
+    php_orchestra_model.doctrine_listener.generate_id.class: PHPOrchestra\ModelBundle\EventListener\GenerateIdListener
     php_orchestra_model.doctrine_listener.initial_status.class: PHPOrchestra\ModelBundle\EventListener\InitialStatusListener
     php_orchestra_model.doctrine_listener.generate_path.class: PHPOrchestra\ModelBundle\EventListener\GeneratePathListener
     php_orchestra_model.doctrine_listener.set_initial_status.class: PHPOrchestra\ModelBundle\EventListener\SetInitialStatusListener
@@ -25,16 +23,8 @@ services:
             - @service_container
         tags:
             -  { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
-    php_orchestra_model.doctrine_listener.generate_node_id:
-        class: %php_orchestra_model.doctrine_listener.generate_node_id.class%
-        tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
-    php_orchestra_model.doctrine_listener.generate_template_id:
-        class: %php_orchestra_model.doctrine_listener.generate_template_id.class%
-        tags:
-            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
-    php_orchestra_model.doctrine_listener.generate_content_id:
-        class: %php_orchestra_model.doctrine_listener.generate_content_id.class%
+    php_orchestra_model.doctrine_listener.generate_id:
+        class: %php_orchestra_model.doctrine_listener.generate_id.class%
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
     php_orchestra_model.doctrine_listener.save_published_document:

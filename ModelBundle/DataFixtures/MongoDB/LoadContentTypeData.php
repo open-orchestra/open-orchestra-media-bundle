@@ -49,10 +49,10 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
 
     /**
      * Generate a translatedValue
-     * 
+     *
      * @param string $language
      * @param string $value
-     * 
+     *
      * @return TranslatedValue
      */
     protected function generateTranslatedValue($language, $value)
@@ -66,11 +66,11 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
 
     /**
      * Generate a field type
-     * 
+     *
      * @param string $fieldType
      * @param string $fieldId
      * @param array $labels
-     * 
+     *
      * @return FieldType
      */
     protected function generateField($fieldType, $fieldId, $labels)
@@ -89,10 +89,10 @@ class LoadContentTypeData extends AbstractFixture implements OrderedFixtureInter
 
     /**
      * Generate a field option
-     * 
+     *
      * @param string $key
      * @param string|int|array $value
-     * 
+     *
      * @return FieldOption
      */
     protected function generateOption($key, $value)
