@@ -2,7 +2,10 @@
 
 namespace PHPOrchestra\ModelBundle\Document;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Gedmo\Blameable\Traits\BlameableDocument;
+use Gedmo\Timestampable\Traits\TimestampableDocument;
+use Gedmo\Mapping\Annotation as Gedmo;
 use PHPOrchestra\ModelBundle\Model\ContentTypeInterface;
 use PHPOrchestra\ModelBundle\Model\FieldTypeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,57 +15,60 @@ use PHPOrchestra\ModelBundle\Model\TranslatedValueInterface;
 /**
  * Description of ContentType
  *
- * @MongoDB\Document(
+ * @ODM\Document(
  *   collection="content_type",
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\ContentTypeRepository"
  * )
  */
 class ContentType implements ContentTypeInterface
 {
+    use BlameableDocument;
+    use TimestampableDocument;
+
     /**
      * @var string $id
      *
-     * @MongoDB\Id
+     * @ODM\Id
      */
     protected $id;
 
     /**
      * @var string $contentTypeId
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $contentTypeId;
 
     /**
-     * @MongoDB\EmbedMany(targetDocument="TranslatedValue")
+     * @ODM\EmbedMany(targetDocument="TranslatedValue")
      */
     protected $names;
 
     /**
      * @var int $version
      *
-     * @MongoDB\Field(type="int")
+     * @ODM\Field(type="int")
      */
     protected $version;
 
     /**
      * @var StatusInterface $status
      *
-     * @MongoDB\EmbedOne(targetDocument="EmbedStatus")
+     * @ODM\EmbedOne(targetDocument="EmbedStatus")
      */
     protected $status;
 
     /**
      * @var boolean $deleted
      *
-     * @MongoDB\Field(type="boolean")
+     * @ODM\Field(type="boolean")
      */
     protected $deleted = false;
 
     /**
      * @var ArrayCollection $fields
      *
-     * @MongoDB\EmbedMany(targetDocument="FieldType")
+     * @ODM\EmbedMany(targetDocument="FieldType")
      */
     protected $fields;
 
@@ -241,5 +247,19 @@ class ContentType implements ContentTypeInterface
         return array(
             'getNames'
         );
+    }
+
+    /**
+     * Clone the element
+     */
+    public function __clone()
+    {
+        if (!is_null($this->id)) {
+            $this->id = null;
+            $this->names = new ArrayCollection();
+            $this->fields = new ArrayCollection();
+            $this->setUpdatedAt(new \DateTime());
+            $this->setVersion($this->getVersion() + 1);
+        }
     }
 }

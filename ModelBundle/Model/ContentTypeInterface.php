@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Interface ContentTypeInterface
  */
-interface ContentTypeInterface extends FieldTypeContainerInterface, StatusableInterface, TranslatedValueContainerInterface
+interface ContentTypeInterface extends FieldTypeContainerInterface, StatusableInterface, TranslatedValueContainerInterface, BlameableInterface, TimestampableInterface
 {
     /**
      * @param string $contentTypeId

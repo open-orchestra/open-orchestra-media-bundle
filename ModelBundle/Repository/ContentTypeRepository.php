@@ -14,7 +14,7 @@ class ContentTypeRepository extends DocumentRepository
      * 
      * @return array|null|object
      */
-    public function findInLastVersionByContentType($contentType)
+    public function findOneByContentTypeIdAndLastVersion($contentType)
     {
         $qb = $this->createQueryBuilder('n');
         $qb->field('contentTypeId')->equals($contentType);

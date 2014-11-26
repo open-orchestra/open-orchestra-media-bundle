@@ -42,6 +42,13 @@ Interface FieldTypeInterface extends TranslatedValueContainerInterface
     public function getLabels();
 
     /**
+     * @param string $language
+     *
+     * @return mixed
+     */
+    public function getLabel($language = 'fr');
+
+    /**
      * Set Default Value
      *
      * @param string $value
@@ -90,6 +97,13 @@ Interface FieldTypeInterface extends TranslatedValueContainerInterface
      * @param FieldOptionInterface $option
      */
     public function removeOption(FieldOptionInterface $option);
+
+    /**
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function hasOption($key);
 
     /**
      * @return ArrayCollection
