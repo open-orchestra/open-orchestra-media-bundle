@@ -37,9 +37,11 @@ class GenerateIdListener
             $setGenerated = $generateAnnotations->setGenerated($document);
 
             if (is_null($document->$getGenerated())) {
-                setlocale(LC_ALL, 'fr_FR.UTF-8');
                 $sourceId = $document->$getSource();
-                $sourceId = iconv('UTF-8', 'ASCII//TRANSLIT', $sourceId);
+                $accents = '/&([A-Za-z]{1,2})(grave|acute|circ|cedil|uml|lig|tilde);/';
+                $sourceId = htmlentities($sourceId, ENT_NOQUOTES, 'UTF-8');
+                $sourceId = preg_replace($accents, '$1', $sourceId);
+                $sourceId = preg_replace('/[[:^print:]]/', '_', $sourceId);
                 $sourceId = strtolower($sourceId);
                 $sourceId = rawurlencode($sourceId);
                 $generatedId = $sourceId;
