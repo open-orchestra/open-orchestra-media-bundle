@@ -36,11 +36,12 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSource($parameters, $exception, $expectedResult){
         $document = new Document($parameters);
-        $source = $document->getSource($this->node);
-        if($exception){
-            $this->setExpectedException($exception);
+        try {
+            $source = $document->getSource($this->node);
+        } catch (Exception $e) {
+            $this->assertInstanceOf($exception, $e);
         }
-        else{
+        if($exception === null){
             $this->assertSame($source, $expectedResult);
         }
     }
