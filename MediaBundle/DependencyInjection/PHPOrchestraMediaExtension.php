@@ -56,5 +56,7 @@ class PHPOrchestraMediaExtension extends Extension
         $loader->load('display.yml');
         $loader->load('twig.yml');
         $loader->load('thumbnail.yml');
+        $loader->load('subscriber.yml');
+        $loader->load('listener.yml');
     }
 }

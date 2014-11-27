@@ -1,0 +1,8 @@
+parameters:
+    php_orchestra_media.subscriber.generate_image.class: PHPOrchestra\Media\EventSubscriber\GenerateImageSubscriber
+
+services:
+    php_orchestra_media.subscriber.generate_image:
+        class: %php_orchestra_media.subscriber.generate_image.class%
+        tags:
+             - { name: kernel.event_subscriber }

@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\ModelBundle\Test\EventListener;
+namespace PHPOrchestra\MediaBundle\Test\EventListener;
 
 use Phake;
-use PHPOrchestra\ModelBundle\EventListener\MoveUploadedFileListener;
+use PHPOrchestra\Media\EventListener\MoveUploadedFileListener;
 
 /**
  * Class MoveUploadedFileListenerTest
