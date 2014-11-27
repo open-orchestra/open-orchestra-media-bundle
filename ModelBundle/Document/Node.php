@@ -24,6 +24,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORCHESTRA\Document(
  *   generatedId="nodeId",
  *   sourceId="name"
+ *   serviceName="php_orchestra_model.repository.node",
+ *   existsName="existsInSiteWithName"
  * )
  */
 class Node implements NodeInterface

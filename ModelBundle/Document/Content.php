@@ -19,6 +19,8 @@ use PHPOrchestra\ModelBundle\Model\StatusInterface;
  * @ORCHESTRA\Document(
  *   generatedId="contentId",
  *   sourceId="name"
+ *   serviceName="php_orchestra_model.repository.content",
+ *   existsName="existsInSiteWithName"
  * )
  */
 class Content implements ContentInterface

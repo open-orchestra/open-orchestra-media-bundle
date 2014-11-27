@@ -5,6 +5,7 @@ namespace PHPOrchestra\ModelBundle\Mapping\Annotations;
 use Doctrine\Common\Annotations\Annotation;
 use PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException;
 use PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException;
+use Symfony\Component\DependencyInjection\Container;
 
 /**
  * @Annotation
@@ -14,23 +15,29 @@ class Document extends Annotation
 {
     protected $generatedId;
     protected $sourceId;
+    protected $serviceName;
+    protected $existsName;
+    protected $repository;
 
     /**
-     * Get generatedId
+     * init repository
      *
-     * @return string $generatedId
+     * @param Container $container
      */
-    public function getGeneratedId(){
-        return $this->generatedId;
+    public function initRepository(Container $container){
+        $this->repository = $this->container->get($this->serviceName);
     }
 
     /**
-     * Get sourceId
+     * test exists
      *
-     * @return string $sourceId
+     * @param string $id
+     *
+     * @return boolean
      */
-    public function getSourceId(){
-        return $this->sourceId;
+    public function exists($id){
+        $method = $this->existsName;
+        return $this->repository->$method($id);
     }
 
     /**

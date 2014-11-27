@@ -26,6 +26,7 @@ services:
     php_orchestra_model.doctrine_listener.generate_id:
         class: %php_orchestra_model.doctrine_listener.generate_id.class%
         arguments:
+            - @service_container
             - @php_orchestra_model.annotation_reader
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }

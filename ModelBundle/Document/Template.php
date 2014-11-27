@@ -19,9 +19,12 @@ use PHPOrchestra\ModelBundle\Model\TemplateInterface;
  * )
  * @ORCHESTRA\Document(
  *   generatedId="templateId",
- *   sourceId="name"
+ *   sourceId="name",
+ *   serviceName="php_orchestra_model.repository.template",
+ *   existsName="existsInSiteWithName"
  * )
  */
+
 class Template implements TemplateInterface
 {
     /**

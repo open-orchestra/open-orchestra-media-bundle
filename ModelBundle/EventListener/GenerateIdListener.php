@@ -6,19 +6,23 @@ use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\Common\Annotations\AnnotationReader;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use Assetic\Exception\Exception;
+use Symfony\Component\DependencyInjection\Container;
 
 /**
  * Class GenerateIdListener
  */
 class GenerateIdListener
 {
+    protected $container;
     protected $annotationReader;
 
     /**
+     * @param Container $container
      * @param AnnotationReader $annotationReader
      */
-    public function __construct(AnnotationReader $annotationReader)
+    public function __construct(Container $container, AnnotationReader $annotationReader)
     {
+        $this->container = $container;
         $this->annotationReader = $annotationReader;
     }
 
@@ -31,6 +35,7 @@ class GenerateIdListener
         $className = get_class($document);
         $generateAnnotations = $this->annotationReader->getClassAnnotation(new \ReflectionClass($className), 'PHPOrchestra\ModelBundle\Mapping\Annotations\Document');
         if (!is_null($generateAnnotations)) {
+            $generateAnnotations->initRepository($this->container);
             $documentManager = $event->getDocumentManager();
             $getSource = $generateAnnotations->getSource($document);
             $getGenerated = $generateAnnotations->getGenerated($document);
@@ -46,11 +51,13 @@ class GenerateIdListener
                 $sourceId = rawurlencode($sourceId);
                 $generatedId = $sourceId;
                 $count = 0;
-                $repository = $documentManager->getRepository(get_class($document));
-                while($repository->findOneBy(array($generateAnnotations->getGeneratedId() => $generatedId)) !== null){
+
+                while($generateAnnotations->exists($generatedId)){
                     $generatedId = $sourceId . '_' . $count;
                     $count++;
                 }
+
+
                 $document->$setGenerated($generatedId);
             }
         }
