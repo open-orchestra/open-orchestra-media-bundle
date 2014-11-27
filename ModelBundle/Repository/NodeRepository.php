@@ -336,4 +336,17 @@ class NodeRepository extends DocumentRepository
 
         return $nodes;
     }
+    /**
+     * @param string $name
+     *
+     * @return boolean
+     */
+    public function existsInSiteWithName($name)
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
+        $qb->field('name')->equals($name);
+
+        return count($qb->getQuery()->execute()) > 0;
+    }
 }

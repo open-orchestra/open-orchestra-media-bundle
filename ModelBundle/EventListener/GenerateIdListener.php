@@ -57,7 +57,6 @@ class GenerateIdListener
                     $count++;
                 }
 
-
                 $document->$setGenerated($generatedId);
             }
         }

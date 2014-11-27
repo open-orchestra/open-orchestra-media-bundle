@@ -51,4 +51,14 @@ class TemplateRepository extends DocumentRepository
 
         return null;
     }
+
+    /**
+     * @param string $name
+     *
+     * @return boolean
+     */
+    public function existsWithName($name)
+    {
+        return $this->findOneByName($name) !== null;
+    }
 }

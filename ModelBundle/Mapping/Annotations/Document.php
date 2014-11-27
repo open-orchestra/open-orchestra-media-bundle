@@ -25,7 +25,7 @@ class Document extends Annotation
      * @param Container $container
      */
     public function initRepository(Container $container){
-        $this->repository = $this->container->get($this->serviceName);
+        $this->repository = $container->get($this->serviceName);
     }
 
     /**

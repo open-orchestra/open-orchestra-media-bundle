@@ -21,7 +21,7 @@ use PHPOrchestra\ModelBundle\Model\TemplateInterface;
  *   generatedId="templateId",
  *   sourceId="name",
  *   serviceName="php_orchestra_model.repository.template",
- *   existsName="existsInSiteWithName"
+ *   existsName="existsWithName"
  * )
  */
 

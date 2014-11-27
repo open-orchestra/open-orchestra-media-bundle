@@ -23,4 +23,14 @@ class ContentRepository extends DocumentRepository
 
         return $this->findBy($criteria);
     }
+
+    /**
+     * @param string $name
+     *
+     * @return boolean
+     */
+    public function existsWithName($name)
+    {
+        return $this->findOneByName($name) !== null;
+    }
 }
