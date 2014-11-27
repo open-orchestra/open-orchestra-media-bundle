@@ -25,11 +25,11 @@ class GenerateIdListenerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->annotationReader = Phake::mock('Doctrine\Common\Annotations\AnnotationReader');
-        $this->event = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
-        Phake::when($this->event)->getDocumentManager()->thenReturn($this->documentManager);
+        $this->documentRepository = Phake::mock('Doctrine\ODM\MongoDB\DocumentRepository');
         $this->documentManager = Phake::mock('Doctrine\ODM\MongoDB\DocumentManager');
         Phake::when($this->documentManager)->getRepository(Phake::anyParameters())->thenReturn($this->documentRepository);
-        $this->documentRepository = Phake::mock('Doctrine\ODM\MongoDB\DocumentRepository');
+        $this->event = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
+        Phake::when($this->event)->getDocumentManager()->thenReturn($this->documentManager);
 
         $this->listener = new GenerateIdListener($this->annotationReader);
     }
