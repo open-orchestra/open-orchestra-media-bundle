@@ -79,7 +79,7 @@ class ImageToThumbnailManagerTest extends \PHPUnit_Framework_TestCase
         $this->manager->generateThumbnailName($this->media);
 
         Phake::verify($this->media)->setThumbnail($fileName);
-        Phake::verify($this->eventDispatcher)->dispatch(MediaEvents::ADD_IMAGE, Phake::anyParameters());
+        Phake::verify($this->eventDispatcher)->dispatch(Phake::anyParameters());
     }
 
     /**
