@@ -7,22 +7,30 @@ use PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException;
 use PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException;
 
 /** @Annotation */
-final class Document extends Annotation
+class Document extends Annotation
 {
-    public $generatedId;
-    public $sourceId;
+    protected $generatedId;
+    protected $sourceId;
 
-    public function getSourceId($target)
+    public function getGeneratedId(){
+        return $this->generatedId;
+    }
+
+    public function getSourceId(){
+        return $this->sourceId;
+    }
+
+    public function getSource($target)
     {
         return $this->getMethod($target, 'sourceId');
     }
 
-    public function getGeneratedId($target)
+    public function getGenerated($target)
     {
         return $this->getMethod($target, 'generatedId');
     }
 
-    public function setGeneratedId($target)
+    public function setGenerated($target)
     {
         return $this->getMethod($target, 'generatedId', 'set');
     }
