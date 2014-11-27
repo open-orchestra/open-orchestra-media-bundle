@@ -52,7 +52,7 @@ class GenerateImageSubscriberTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test methos
+     * Test methodes existance
      */
     public function testMethodExists()
     {
@@ -60,6 +60,9 @@ class GenerateImageSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(method_exists($this->subscriber, 'generateImages'));
     }
 
+    /**
+     * Test add image
+     */
     public function testAddImage()
     {
         Phake::when($this->event)->getMedia()->thenReturn($this->media1);

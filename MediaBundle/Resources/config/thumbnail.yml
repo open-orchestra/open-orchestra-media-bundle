@@ -23,5 +23,6 @@ services:
         class: %php_orchestra_media.thumbnail.image_to_thumbnail.class%
         arguments:
             - %php_orchestra_media.upload_dir%
+            - @event_dispatcher
         tags:
             - { name: php_orchestra_media.thumbnail.strategy }

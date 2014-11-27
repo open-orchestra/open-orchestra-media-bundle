@@ -2,8 +2,11 @@
 
 namespace PHPOrchestra\Media\Thumbnail\Strategies;
 
+use PHPOrchestra\Media\Event\MediaEvent;
+use PHPOrchestra\Media\MediaEvents;
 use PHPOrchestra\MediaBundle\Model\MediaInterface;
 use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
+use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcherInterface;
 
 /**
  * Class ImageToThumbnailManager
@@ -11,13 +14,15 @@ use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
 class ImageToThumbnailManager implements ThumbnailInterface
 {
     protected $uploadDir;
+    protected $dispatcher;
 
     /**
      * @param $uploadDir
      */
-    public function __construct($uploadDir)
+    public function __construct($uploadDir, TraceableEventDispatcherInterface $dispatcher)
     {
         $this->uploadDir = $uploadDir;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -38,6 +43,8 @@ class ImageToThumbnailManager implements ThumbnailInterface
     public function generateThumbnailName(MediaInterface $media)
     {
         $media->setThumbnail($media->getFilesystemName());
+        $event = new MediaEvent($media);
+        $this->dispatcher->dispatch(MediaEvents::ADD_IMAGE, $event);
 
         return $media;
     }

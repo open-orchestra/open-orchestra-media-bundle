@@ -3,6 +3,7 @@
 namespace PHPOrchestra\MediaBundle\Test\Thumbnail\Strategies;
 
 use Phake;
+use PHPOrchestra\Media\MediaEvents;
 use PHPOrchestra\Media\Thumbnail\Strategies\ImageToThumbnailManager;
 
 /**
@@ -15,6 +16,7 @@ class ImageToThumbnailManagerTest extends \PHPUnit_Framework_TestCase
      */
     protected $manager;
 
+    protected $eventDispatcher;
     protected $uploadDir;
     protected $media;
 
@@ -25,7 +27,9 @@ class ImageToThumbnailManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->uploadDir = __DIR__.'/upload';
         $this->media = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
-        $this->manager = new ImageToThumbnailManager($this->uploadDir);
+        $this->eventDispatcher = Phake::mock('Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcherInterface');
+
+        $this->manager = new ImageToThumbnailManager($this->uploadDir, $this->eventDispatcher);
     }
 
     /**
@@ -75,6 +79,7 @@ class ImageToThumbnailManagerTest extends \PHPUnit_Framework_TestCase
         $this->manager->generateThumbnailName($this->media);
 
         Phake::verify($this->media)->setThumbnail($fileName);
+        Phake::verify($this->eventDispatcher)->dispatch(MediaEvents::ADD_IMAGE, Phake::anyParameters());
     }
 
     /**
