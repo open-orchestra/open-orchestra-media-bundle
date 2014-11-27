@@ -1,0 +1,27 @@
+parameters:
+    php_orchestra_media.thumbnail_manager.class: PHPOrchestra\Media\Thumbnail\ThumbnailManager
+    php_orchestra_media.thumbnail.pdf_to_image.class: PHPOrchestra\Media\Thumbnail\Strategies\PdfToImageManager
+    php_orchestra_media.thumbnail.video_to_image.class: PHPOrchestra\Media\Thumbnail\Strategies\VideoToImageManager
+    php_orchestra_media.thumbnail.image_to_thumbnail.class: PHPOrchestra\Media\Thumbnail\Strategies\ImageToThumbnailManager
+
+services:
+    php_orchestra_media.thumbnail_manager:
+        class: %php_orchestra_media.thumbnail_manager.class%
+    php_orchestra_media.thumbnail.pdf_to_image:
+        class: %php_orchestra_media.thumbnail.pdf_to_image.class%
+        arguments:
+            - %php_orchestra_media.upload_dir%
+        tags:
+            - { name: php_orchestra_media.thumbnail.strategy }
+    php_orchestra_media.thumbnail.video_to_image:
+        class: %php_orchestra_media.thumbnail.video_to_image.class%
+        arguments:
+            - %php_orchestra_media.upload_dir%
+        tags:
+            - { name: php_orchestra_media.thumbnail.strategy }
+    php_orchestra_media.thumbnail.image_to_thumbnail:
+        class: %php_orchestra_media.thumbnail.image_to_thumbnail.class%
+        arguments:
+            - %php_orchestra_media.upload_dir%
+        tags:
+            - { name: php_orchestra_media.thumbnail.strategy }

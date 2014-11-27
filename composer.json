@@ -18,7 +18,8 @@
         "doctrine/data-fixtures":"1.0.0",
         "doctrine/mongodb-odm": "1.0.0-BETA11",
         "doctrine/mongodb-odm-bundle" : "3.0.0-BETA6",
-        "stof/doctrine-extensions-bundle": "1.1.0"
+        "stof/doctrine-extensions-bundle": "1.1.0",
+        "liip/imagine-bundle": "1.1.1"
     },
     "require-dev": {
         "itkg/phporchestra-base-bundle": "dev-master",
@@ -33,7 +34,9 @@
     },
     "autoload": {
         "psr-0": {
-            "PHPOrchestra\\ModelBundle": ""
+            "PHPOrchestra\\ModelBundle": "",
+            "PHPOrchestra\\MediaBundle": "",
+            "PHPOrchestra\\Media": ""
         }
     },
     "target-dir": "PHPOrchestra"

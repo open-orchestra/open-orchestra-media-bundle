@@ -3,8 +3,8 @@
 namespace PHPOrchestra\ModelBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
-use PHPOrchestra\ModelBundle\Model\MediaInterface;
-use PHPOrchestra\ModelBundle\Thumbnail\ThumbnailManager;
+use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Thumbnail\ThumbnailManager;
 
 /**
  * Class MoveUploadedFileListener
