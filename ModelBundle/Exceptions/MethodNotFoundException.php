@@ -1,16 +1,16 @@
 <?php
 
 namespace PHPOrchestra\ModelBundle\Exceptions;
-use Exception;
 
 /**
  * Class MethodNotFoundException
  */
+
 class MethodNotFoundException extends \Exception
 {
     /**
-     * @param string     $method
-     * @param string     $class
+     * @param string $method
+     * @param string $class
      */
     public function __construct($method = "", $class = "")
     {
@@ -18,5 +18,4 @@ class MethodNotFoundException extends \Exception
             sprintf('Annotation Error : method %s is missing in class %s.', $method, $class)
         );
     }
-
 }

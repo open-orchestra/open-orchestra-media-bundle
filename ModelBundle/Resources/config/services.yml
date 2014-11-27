@@ -1,3 +1,6 @@
 parameters:
+    php_orchestra_model.annotation_reader.class: Doctrine\Common\Annotations\AnnotationReader
 
 services:
+    php_orchestra_model.annotation_reader:
+        class: %php_orchestra_model.annotation_reader.class%

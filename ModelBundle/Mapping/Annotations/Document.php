@@ -6,30 +6,63 @@ use Doctrine\Common\Annotations\Annotation;
 use PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException;
 use PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException;
 
-/** @Annotation */
+/**
+ * @Annotation
+ */
+
 class Document extends Annotation
 {
     protected $generatedId;
     protected $sourceId;
 
+    /**
+     * Get generatedId
+     *
+     * @return string $generatedId
+     */
     public function getGeneratedId(){
         return $this->generatedId;
     }
 
+    /**
+     * Get sourceId
+     *
+     * @return string $sourceId
+     */
     public function getSourceId(){
         return $this->sourceId;
     }
 
+    /**
+     * Get source method
+     *
+     * @param string $target
+     *
+     * @return string
+     */
     public function getSource($target)
     {
         return $this->getMethod($target, 'sourceId');
     }
 
+    /**
+     * Get generated method
+     *
+     * @param string $target
+     *
+     * @return string
+     */
     public function getGenerated($target)
     {
         return $this->getMethod($target, 'generatedId');
     }
 
+    /**
+     * Get generated value
+     *
+     * @param string $target
+     *
+     */
     public function setGenerated($target)
     {
         return $this->getMethod($target, 'generatedId', 'set');
