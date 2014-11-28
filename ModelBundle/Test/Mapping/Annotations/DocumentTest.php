@@ -27,7 +27,11 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideSource
      */
-    public function testGetSource($parameters, $exception, $expectedResult){
+    public function testGetSource($parameters, $exception, $expectedResult)
+    {
+        if($exception !== null){
+            $this->setExpectedException($exception);
+        }
         $document = new Document($parameters);
         try {
             $source = $document->getSource($this->node);
@@ -46,7 +50,11 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideGetGenerated
      */
-    public function testGetGenerated($parameters, $exception, $expectedResult){
+    public function testGetGenerated($parameters, $exception, $expectedResult)
+    {
+        if($exception !== null){
+            $this->setExpectedException($exception);
+        }
         $document = new Document($parameters);
         $generate = $document->getGenerated($this->node);
         if($exception){
@@ -64,7 +72,11 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideSetGenerated
      */
-    public function testSetGenerated($parameters, $exception, $expectedResult){
+    public function testSetGenerated($parameters, $exception, $expectedResult)
+    {
+        if($exception !== null){
+            $this->setExpectedException($exception);
+        }
         $document = new Document($parameters);
         $generate = $document->setGenerated($this->node);
         if($exception){
@@ -80,16 +92,16 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function provideSource()
     {
-        $parameters0 = array('sourceId' => 'name');
+        $parameters0 = array('sourceField' => 'name');
 
         $parameters1 = array();
 
-        $parameters2 = array('sourceId' => 'fakeproperty');
+        $parameters2 = array('sourceField' => 'fakeproperty');
 
         return array(
             array($parameters0, null, 'getName'),
-            array($parameters1, 'PropertyNotFoundException', null),
-            array($parameters2, 'MethodNotFoundException', null),
+            array($parameters1, 'PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException', null),
+            array($parameters2, 'PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException', null),
         );
     }
 
@@ -98,16 +110,16 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function provideGetGenerated()
     {
-        $parameters0 = array('generatedId' => 'nodeId');
+        $parameters0 = array('generatedField' => 'nodeId');
 
         $parameters1 = array();
 
-        $parameters2 = array('generatedId' => 'fakeproperty');
+        $parameters2 = array('generatedField' => 'fakeproperty');
 
         return array(
             array($parameters0, null, 'getNodeId'),
-            array($parameters1, 'PropertyNotFoundException', null),
-            array($parameters2, 'MethodNotFoundException', null),
+            array($parameters1, 'PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException', null),
+            array($parameters2, 'PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException', null),
         );
     }
 
@@ -116,16 +128,16 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function provideSetGenerated()
     {
-        $parameters0 = array('generatedId' => 'nodeId');
+        $parameters0 = array('generatedField' => 'nodeId');
 
         $parameters1 = array();
 
-        $parameters2 = array('generatedId' => 'fakeproperty');
+        $parameters2 = array('generatedField' => 'fakeproperty');
 
         return array(
             array($parameters0, null, 'setNodeId'),
-            array($parameters1, 'PropertyNotFoundException', null),
-            array($parameters2, 'MethodNotFoundException', null),
+            array($parameters1, 'PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException', null),
+            array($parameters2, 'PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException', null),
         );
     }
 }
