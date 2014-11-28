@@ -21,64 +21,54 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param array         $parameters
-     * @param string        $exception
-     * @param string        $expectedResult
+     * @param array  $parameters
+     * @param string $exception
+     * @param string $expectedResult
      *
      * @dataProvider provideSource
      */
     public function testGetSource($parameters, $exception, $expectedResult)
     {
-        if($exception !== null){
-            $this->setExpectedException($exception);
-        }
-        $document = new Document($parameters);
-        try {
-            $source = $document->getSource($this->node);
-        } catch (Exception $e) {
-            $this->assertInstanceOf($exception, $e);
-        }
-        if($exception === null){
-            $this->assertSame($source, $expectedResult);
-        }
+        $this->makeTest('getSource', $parameters, $exception, $expectedResult);
     }
 
     /**
-     * @param array         $parameters
-     * @param string        $exception
-     * @param string        $expectedResult
+     * @param array  $parameters
+     * @param string $exception
+     * @param string $expectedResult
      *
      * @dataProvider provideGetGenerated
      */
     public function testGetGenerated($parameters, $exception, $expectedResult)
     {
-        if($exception !== null){
-            $this->setExpectedException($exception);
-        }
-        $document = new Document($parameters);
-        $generate = $document->getGenerated($this->node);
-        if($exception){
-            $this->setExpectedException($exception);
-        }
-        else{
-            $this->assertSame($generate, $expectedResult);
-        }
+        $this->makeTest('getGenerated', $parameters, $exception, $expectedResult);
     }
 
     /**
-     * @param array         $parameters
-     * @param string        $exception
-     * @param string        $expectedResult
+     * @param array  $parameters
+     * @param string $exception
+     * @param string $expectedResult
      *
      * @dataProvider provideSetGenerated
      */
     public function testSetGenerated($parameters, $exception, $expectedResult)
     {
+        $this->makeTest('setGenerated', $parameters, $exception, $expectedResult);
+    }
+
+    /**
+     * @param string $method
+     * @param array  $parameters
+     * @param string $exception
+     * @param string $expectedResult
+     */
+    public function makeTest($method, $parameters, $exception, $expectedResult)
+    {
         if($exception !== null){
             $this->setExpectedException($exception);
         }
         $document = new Document($parameters);
-        $generate = $document->setGenerated($this->node);
+        $generate = $document->$method($this->node);
         if($exception){
             $this->setExpectedException($exception);
         }

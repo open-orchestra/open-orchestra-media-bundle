@@ -44,8 +44,10 @@ class GenerateIdListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $page
-     * @param string $expectedNodeId
+     * @param DocumentRepository $repository
+     * @param Document           $generateAnnotations
+     * @param NodeInterface      $node
+     * @param string             $expectedId
      *
      * @dataProvider provideAnnotations
      */
