@@ -64,16 +64,17 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function makeTest($method, $parameters, $exception, $expectedResult)
     {
+        $document = new Document($parameters);
         if($exception !== null){
             $this->setExpectedException($exception);
         }
-        $document = new Document($parameters);
-        $generate = $document->$method($this->node);
-        if($exception){
-            $this->setExpectedException($exception);
+        try {
+            $source = $document->$method($this->node);
+        } catch (Exception $e) {
+            $this->assertInstanceOf($exception, $e);
         }
-        else{
-            $this->assertSame($generate, $expectedResult);
+        if($exception === null){
+            $this->assertSame($source, $expectedResult);
         }
     }
 
