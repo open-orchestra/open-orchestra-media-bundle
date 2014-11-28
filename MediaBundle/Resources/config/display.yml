@@ -1,0 +1,24 @@
+parameters:
+    php_orchestra_media.display_media_manager.class: PHPOrchestra\Media\DisplayMedia\DisplayMediaManager
+    php_orchestra_media.display_media.image.class: PHPOrchestra\Media\DisplayMedia\Strategies\ImageStrategy
+    php_orchestra_media.display_media.pdf.class: PHPOrchestra\Media\DisplayMedia\Strategies\PdfStrategy
+    php_orchestra_media.display_media.video.class: PHPOrchestra\Media\DisplayMedia\Strategies\VideoStrategy
+
+services:
+    php_orchestra_media.display_media_manager:
+        class: %php_orchestra_media.display_media_manager.class%
+        arguments:
+            - %php_orchestra_base.mediatheque.url%
+            - %php_orchestra_media.no_image_available%
+    php_orchestra_media.display_media.image:
+        class: %php_orchestra_media.display_media.image.class%
+        tags:
+            - { name: php_orchestra_media.display_media.strategy }
+    php_orchestra_media.display_media.pdf:
+        class: %php_orchestra_media.display_media.pdf.class%
+        tags:
+            - { name: php_orchestra_media.display_media.strategy }
+    php_orchestra_media.display_media.video:
+        class: %php_orchestra_media.display_media.video.class%
+        tags:
+            - { name: php_orchestra_media.display_media.strategy }

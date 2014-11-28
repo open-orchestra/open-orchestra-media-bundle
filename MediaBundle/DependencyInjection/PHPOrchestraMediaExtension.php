@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\ModelBundle\DependencyInjection;
+namespace PHPOrchestra\MediaBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -13,10 +13,10 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class PHPOrchestraModelExtension extends Extension
+class PHPOrchestraMediaExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -25,9 +25,9 @@ class PHPOrchestraModelExtension extends Extension
 
         foreach ($config as $class => $content) {
             if (is_array($content)) {
-                $container->setParameter('php_orchestra_model.document.' . $class . '.class', $content['class']);
+                $container->setParameter('php_orchestra_media.document.' . $class . '.class', $content['class']);
                 if (array_key_exists('current_site', $content) && $content['current_site']) {
-                    $container->register('php_orchestra_model.repository.' . $class, $content['repository'])
+                    $container->register('php_orchestra_media.repository.' . $class, $content['repository'])
                         ->setFactoryService('doctrine.odm.mongodb.document_manager')
                         ->setFactoryMethod('getRepository')
                         ->addArgument($content['class'])
@@ -35,7 +35,7 @@ class PHPOrchestraModelExtension extends Extension
                             new Reference('php_orchestra.manager.current_site')
                         ));
                 } else {
-                    $container->register('php_orchestra_model.repository.' . $class, $content['repository'])
+                    $container->register('php_orchestra_media.repository.' . $class, $content['repository'])
                         ->setFactoryService('doctrine.odm.mongodb.document_manager')
                         ->setFactoryMethod('getRepository')
                         ->addArgument($content['class']);
@@ -43,10 +43,20 @@ class PHPOrchestraModelExtension extends Extension
             }
         }
 
+        if (!is_null($config['upload_dir'])) {
+            $dir = $config['upload_dir'];
+        } else {
+            $dir = '/var/www/media-phporchestra';
+        }
+        $container->setParameter('php_orchestra_media.upload_dir', $dir);
+        $container->setParameter('php_orchestra_media.no_image_available', $config['no_image_available']);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('listener.yml');
         $loader->load('services.yml');
-        $loader->load('validator.yml');
-        $loader->load('manager.yml');
+        $loader->load('display.yml');
+        $loader->load('twig.yml');
+        $loader->load('thumbnail.yml');
+        $loader->load('subscriber.yml');
+        $loader->load('listener.yml');
     }
 }
