@@ -54,6 +54,7 @@ class PdfToImageManager implements ThumbnailInterface
     {
         $im = new Imagick($this->uploadDir . '/' . $media->getFilesystemName().'[0]');
         $im->setImageFormat('jpg');
+        $im->setCompression(75);
         $im->writeImage($this->uploadDir . '/' . $media->getThumbnail());
 
         return $media;
