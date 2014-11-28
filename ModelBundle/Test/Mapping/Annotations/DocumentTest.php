@@ -22,59 +22,95 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param array  $parameters
-     * @param string $exception
      * @param string $expectedResult
      *
      * @dataProvider provideSource
      */
-    public function testGetSource($parameters, $exception, $expectedResult)
+    public function testGetSource($parameters, $expectedResult)
     {
-        $this->makeTest('getSource', $parameters, $exception, $expectedResult);
+        $this->makeTest('getSource', $parameters, $expectedResult);
     }
 
     /**
      * @param array  $parameters
      * @param string $exception
+     *
+     * @dataProvider provideExceptionSource
+     */
+    public function testExceptionGetSource($parameters, $exception)
+    {
+        $this->makeExceptionTest('getSource', $parameters, $exception);
+    }
+
+    /**
+     * @param array  $parameters
      * @param string $expectedResult
      *
      * @dataProvider provideGetGenerated
      */
-    public function testGetGenerated($parameters, $exception, $expectedResult)
+    public function testGetGenerated($parameters, $expectedResult)
     {
-        $this->makeTest('getGenerated', $parameters, $exception, $expectedResult);
+        $this->makeTest('getGenerated', $parameters, $expectedResult);
     }
 
     /**
      * @param array  $parameters
      * @param string $exception
+     *
+     * @dataProvider provideExceptionGetGenerated
+     */
+    public function testExceptionGetGenerated($parameters, $exception)
+    {
+        $this->makeExceptionTest('getGenerated', $parameters, $exception);
+    }
+
+    /**
+     * @param array  $parameters
      * @param string $expectedResult
      *
      * @dataProvider provideSetGenerated
      */
-    public function testSetGenerated($parameters, $exception, $expectedResult)
+    public function testSetGenerated($parameters, $expectedResult)
     {
-        $this->makeTest('setGenerated', $parameters, $exception, $expectedResult);
+        $this->makeTest('setGenerated', $parameters, $expectedResult);
+    }
+
+    /**
+     * @param array  $parameters
+     * @param string $exception
+     *
+     * @dataProvider provideExceptionSetGenerated
+     */
+    public function testExceptionSetGenerated($parameters, $exception)
+    {
+        $this->makeExceptionTest('setGenerated', $parameters, $exception);
+    }
+
+    /**
+     * @param string $method
+     * @param array  $parameters
+     * @param string $expectedResult
+     */
+    public function makeTest($method, $parameters, $expectedResult)
+    {
+        $document = new Document($parameters);
+        $source = $document->$method($this->node);
+        $this->assertSame($source, $expectedResult);
     }
 
     /**
      * @param string $method
      * @param array  $parameters
      * @param string $exception
-     * @param string $expectedResult
      */
-    public function makeTest($method, $parameters, $exception, $expectedResult)
+    public function makeExceptionTest($method, $parameters, $exception)
     {
         $document = new Document($parameters);
-        if($exception !== null){
-            $this->setExpectedException($exception);
-        }
+        $this->setExpectedException($exception);
         try {
             $source = $document->$method($this->node);
         } catch (Exception $e) {
             $this->assertInstanceOf($exception, $e);
-        }
-        if($exception === null){
-            $this->assertSame($source, $expectedResult);
         }
     }
 
@@ -85,14 +121,23 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
     {
         $parameters0 = array('sourceField' => 'name');
 
-        $parameters1 = array();
+        return array(
+            array($parameters0, 'getName'),
+        );
+    }
 
-        $parameters2 = array('sourceField' => 'fakeproperty');
+    /**
+     * @return array
+     */
+    public function provideExceptionSource()
+    {
+        $parameters0 = array();
+
+        $parameters1 = array('sourceField' => 'fakeproperty');
 
         return array(
-            array($parameters0, null, 'getName'),
-            array($parameters1, 'PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException', null),
-            array($parameters2, 'PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException', null),
+            array($parameters0, 'PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException'),
+            array($parameters1, 'PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException'),
         );
     }
 
@@ -103,14 +148,23 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
     {
         $parameters0 = array('generatedField' => 'nodeId');
 
-        $parameters1 = array();
+        return array(
+            array($parameters0, 'getNodeId'),
+        );
+    }
 
-        $parameters2 = array('generatedField' => 'fakeproperty');
+    /**
+     * @return array
+     */
+    public function provideExceptionGetGenerated()
+    {
+        $parameters0 = array();
+
+        $parameters1 = array('generatedField' => 'fakeproperty');
 
         return array(
-            array($parameters0, null, 'getNodeId'),
-            array($parameters1, 'PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException', null),
-            array($parameters2, 'PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException', null),
+            array($parameters0, 'PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException'),
+            array($parameters1, 'PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException'),
         );
     }
 
@@ -121,14 +175,23 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
     {
         $parameters0 = array('generatedField' => 'nodeId');
 
-        $parameters1 = array();
+        return array(
+            array($parameters0, 'setNodeId'),
+        );
+    }
 
-        $parameters2 = array('generatedField' => 'fakeproperty');
+    /**
+     * @return array
+     */
+    public function provideExceptionSetGenerated()
+    {
+        $parameters0 = array();
+
+        $parameters1 = array('generatedField' => 'fakeproperty');
 
         return array(
-            array($parameters0, null, 'setNodeId'),
-            array($parameters1, 'PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException', null),
-            array($parameters2, 'PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException', null),
+            array($parameters0, 'PHPOrchestra\ModelBundle\Exceptions\PropertyNotFoundException'),
+            array($parameters1, 'PHPOrchestra\ModelBundle\Exceptions\MethodNotFoundException'),
         );
     }
 }
