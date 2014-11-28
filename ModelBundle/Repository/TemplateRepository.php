@@ -4,11 +4,12 @@ namespace PHPOrchestra\ModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
+use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
 
 /**
  * Class TemplateRepository
  */
-class TemplateRepository extends DocumentRepository
+class TemplateRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface
 {
     /**
      * @param string $templateId
@@ -57,7 +58,7 @@ class TemplateRepository extends DocumentRepository
      *
      * @return boolean
      */
-    public function existsWithName($name)
+    public function testUnicityInContext($name)
     {
         return $this->findOneByName($name) !== null;
     }

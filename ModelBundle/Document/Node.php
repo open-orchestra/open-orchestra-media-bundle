@@ -25,7 +25,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *   generatedField="nodeId",
  *   sourceField="name",
  *   serviceName="php_orchestra_model.repository.node",
- *   testMethod="existsInSiteWithName"
+ *   testMethod="testUnicityInContext"
  * )
  */
 class Node implements NodeInterface

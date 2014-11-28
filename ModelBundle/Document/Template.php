@@ -21,7 +21,6 @@ use PHPOrchestra\ModelBundle\Model\TemplateInterface;
  *   generatedField="templateId",
  *   sourceField="name",
  *   serviceName="php_orchestra_model.repository.template",
- *   testMethod="existsWithName"
  * )
  */
 

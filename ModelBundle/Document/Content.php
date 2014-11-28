@@ -20,7 +20,7 @@ use PHPOrchestra\ModelBundle\Model\StatusInterface;
  *   generatedField="contentId",
  *   sourceField="name",
  *   serviceName="php_orchestra_model.repository.content",
- *   testMethod="existsWithName"
+ *   testMethod="testUnicityInContext"
  * )
  */
 class Content implements ContentInterface

@@ -7,6 +7,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use Assetic\Exception\Exception;
 use Symfony\Component\DependencyInjection\Container;
+use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
 
 /**
  * Class GenerateIdListener
@@ -42,7 +43,9 @@ class GenerateIdListener
             $getGenerated = $generateAnnotations->getGenerated($document);
             $setGenerated = $generateAnnotations->setGenerated($document);
             $testMethod = $generateAnnotations->getTestMethod();
-
+            if($testMethod === null && $repository instanceof FieldAutoGenerableRepositoryInterface){
+                $testMethod = 'testUnicityInContext';
+            }
             if (is_null($document->$getGenerated())) {
                 $sourceField = $document->$getSource();
                 $accents = '/&([A-Za-z]{1,2})(grave|acute|circ|cedil|uml|lig|tilde);/';
