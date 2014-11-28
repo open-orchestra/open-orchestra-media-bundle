@@ -6,7 +6,6 @@ use PHPOrchestra\Media\Event\MediaEvent;
 use PHPOrchestra\Media\MediaEvents;
 use PHPOrchestra\MediaBundle\Model\MediaInterface;
 use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
-use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcherInterface;
 
 /**
  * Class ImageToThumbnailManager
@@ -19,7 +18,7 @@ class ImageToThumbnailManager implements ThumbnailInterface
     /**
      * @param $uploadDir
      */
-    public function __construct($uploadDir, TraceableEventDispatcherInterface $dispatcher)
+    public function __construct($uploadDir, $dispatcher)
     {
         $this->uploadDir = $uploadDir;
         $this->dispatcher = $dispatcher;

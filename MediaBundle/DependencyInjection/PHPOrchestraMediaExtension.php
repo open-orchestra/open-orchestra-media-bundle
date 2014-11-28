@@ -23,7 +23,7 @@ class PHPOrchestraMediaExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        foreach ($config as $class => $content) {
+        foreach ($config['document'] as $class => $content) {
             if (is_array($content)) {
                 $container->setParameter('php_orchestra_media.document.' . $class . '.class', $content['class']);
                 if (array_key_exists('current_site', $content) && $content['current_site']) {
@@ -50,6 +50,7 @@ class PHPOrchestraMediaExtension extends Extension
         }
         $container->setParameter('php_orchestra_media.upload_dir', $dir);
         $container->setParameter('php_orchestra_media.no_image_available', $config['no_image_available']);
+        $container->setParameter('php_orchestra_media.thumbnail.configuration', $config['thumbnail']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
