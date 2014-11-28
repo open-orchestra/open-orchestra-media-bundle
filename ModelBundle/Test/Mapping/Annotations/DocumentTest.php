@@ -28,7 +28,9 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSource($parameters, $expectedResult)
     {
-        $this->makeTest('getSource', $parameters, $expectedResult);
+        $document = new Document($parameters);
+        $result = $document->getSource($this->node);
+        $this->assertSame($result, $expectedResult);
     }
 
     /**
@@ -39,7 +41,9 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionGetSource($parameters, $exception)
     {
-        $this->makeExceptionTest('getSource', $parameters, $exception);
+        $document = new Document($parameters);
+        $this->setExpectedException($exception);
+        $result = $document->getSource($this->node);
     }
 
     /**
@@ -50,7 +54,9 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetGenerated($parameters, $expectedResult)
     {
-        $this->makeTest('getGenerated', $parameters, $expectedResult);
+        $document = new Document($parameters);
+        $result = $document->getGenerated($this->node);
+        $this->assertSame($result, $expectedResult);
     }
 
     /**
@@ -61,7 +67,9 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionGetGenerated($parameters, $exception)
     {
-        $this->makeExceptionTest('getGenerated', $parameters, $exception);
+        $document = new Document($parameters);
+        $this->setExpectedException($exception);
+        $result = $document->getGenerated($this->node);
     }
 
     /**
@@ -72,7 +80,9 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGenerated($parameters, $expectedResult)
     {
-        $this->makeTest('setGenerated', $parameters, $expectedResult);
+        $document = new Document($parameters);
+        $result = $document->setGenerated($this->node);
+        $this->assertSame($result, $expectedResult);
     }
 
     /**
@@ -83,35 +93,9 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionSetGenerated($parameters, $exception)
     {
-        $this->makeExceptionTest('setGenerated', $parameters, $exception);
-    }
-
-    /**
-     * @param string $method
-     * @param array  $parameters
-     * @param string $expectedResult
-     */
-    public function makeTest($method, $parameters, $expectedResult)
-    {
-        $document = new Document($parameters);
-        $source = $document->$method($this->node);
-        $this->assertSame($source, $expectedResult);
-    }
-
-    /**
-     * @param string $method
-     * @param array  $parameters
-     * @param string $exception
-     */
-    public function makeExceptionTest($method, $parameters, $exception)
-    {
         $document = new Document($parameters);
         $this->setExpectedException($exception);
-        try {
-            $source = $document->$method($this->node);
-        } catch (Exception $e) {
-            $this->assertInstanceOf($exception, $e);
-        }
+        $result = $document->setGenerated($this->node);
     }
 
     /**
