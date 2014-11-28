@@ -13,31 +13,27 @@ use Symfony\Component\DependencyInjection\Container;
 
 class Document extends Annotation
 {
-    protected $generatedId;
-    protected $sourceId;
+    protected $generatedField;
+    protected $sourceField;
     protected $serviceName;
-    protected $existsName;
-    protected $repository;
+    protected $testMethod;
 
     /**
-     * init repository
+     * return service name
      *
-     * @param Container $container
+     * @return string
      */
-    public function initRepository(Container $container){
-        $this->repository = $container->get($this->serviceName);
+    public function getServiceName(){
+        return $this->serviceName;
     }
 
     /**
-     * test exists
+     * return test method
      *
-     * @param string $id
-     *
-     * @return boolean
+     * @return string
      */
-    public function exists($id){
-        $method = $this->existsName;
-        return $this->repository->$method($id);
+    public function getTestMethod(){
+        return $this->testMethod;
     }
 
     /**
@@ -49,7 +45,7 @@ class Document extends Annotation
      */
     public function getSource($target)
     {
-        return $this->getMethod($target, 'sourceId');
+        return $this->getMethod($target, 'sourceField');
     }
 
     /**
@@ -61,7 +57,7 @@ class Document extends Annotation
      */
     public function getGenerated($target)
     {
-        return $this->getMethod($target, 'generatedId');
+        return $this->getMethod($target, 'generatedField');
     }
 
     /**
@@ -72,7 +68,7 @@ class Document extends Annotation
      */
     public function setGenerated($target)
     {
-        return $this->getMethod($target, 'generatedId', 'set');
+        return $this->getMethod($target, 'generatedField', 'set');
     }
 
     protected function getMethod($target, $property, $pre = 'get')

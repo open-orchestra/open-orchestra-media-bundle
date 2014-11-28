@@ -35,29 +35,30 @@ class GenerateIdListener
         $className = get_class($document);
         $generateAnnotations = $this->annotationReader->getClassAnnotation(new \ReflectionClass($className), 'PHPOrchestra\ModelBundle\Mapping\Annotations\Document');
         if (!is_null($generateAnnotations)) {
-            $generateAnnotations->initRepository($this->container);
+            $repository = $this->container->get($generateAnnotations->getServiceName());
+
             $documentManager = $event->getDocumentManager();
             $getSource = $generateAnnotations->getSource($document);
             $getGenerated = $generateAnnotations->getGenerated($document);
             $setGenerated = $generateAnnotations->setGenerated($document);
+            $testMethod = $generateAnnotations->getTestMethod();
 
             if (is_null($document->$getGenerated())) {
-                $sourceId = $document->$getSource();
+                $sourceField = $document->$getSource();
                 $accents = '/&([A-Za-z]{1,2})(grave|acute|circ|cedil|uml|lig|tilde);/';
-                $sourceId = htmlentities($sourceId, ENT_NOQUOTES, 'UTF-8');
-                $sourceId = preg_replace($accents, '$1', $sourceId);
-                $sourceId = preg_replace('/[[:^print:]]/', '_', $sourceId);
-                $sourceId = strtolower($sourceId);
-                $sourceId = rawurlencode($sourceId);
-                $generatedId = $sourceId;
+                $sourceField = htmlentities($sourceField, ENT_NOQUOTES, 'UTF-8');
+                $sourceField = preg_replace($accents, '$1', $sourceField);
+                $sourceField = preg_replace('/[[:^print:]]/', '_', $sourceField);
+                $sourceField = strtolower($sourceField);
+                $sourceField = rawurlencode($sourceField);
+                $generatedField = $sourceField;
                 $count = 0;
-
-                while($generateAnnotations->exists($generatedId)){
-                    $generatedId = $sourceId . '_' . $count;
+                while($repository->$testMethod($generatedField)){
+                    $generatedField = $sourceField . '_' . $count;
                     $count++;
                 }
 
-                $document->$setGenerated($generatedId);
+                $document->$setGenerated($generatedField);
             }
         }
     }

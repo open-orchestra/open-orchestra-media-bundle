@@ -18,10 +18,10 @@ use PHPOrchestra\ModelBundle\Model\TemplateInterface;
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\TemplateRepository"
  * )
  * @ORCHESTRA\Document(
- *   generatedId="templateId",
- *   sourceId="name",
+ *   generatedField="templateId",
+ *   sourceField="name",
  *   serviceName="php_orchestra_model.repository.template",
- *   existsName="existsWithName"
+ *   testMethod="existsWithName"
  * )
  */
 

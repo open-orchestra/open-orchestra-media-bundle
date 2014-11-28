@@ -20,13 +20,6 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
         $this->node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
     }
 
-/*    public function testInitRepository(){
-        $document->initRepository();
-    }
-    public function testExists(){
-        $document->exists($id);
-    }*/
-
     /**
      * @param array         $parameters
      * @param string        $exception

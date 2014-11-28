@@ -22,10 +22,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\NodeRepository"
  * )
  * @ORCHESTRA\Document(
- *   generatedId="nodeId",
- *   sourceId="name",
+ *   generatedField="nodeId",
+ *   sourceField="name",
  *   serviceName="php_orchestra_model.repository.node",
- *   existsName="existsInSiteWithName"
+ *   testMethod="existsInSiteWithName"
  * )
  */
 class Node implements NodeInterface

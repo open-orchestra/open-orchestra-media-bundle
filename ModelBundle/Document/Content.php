@@ -17,10 +17,10 @@ use PHPOrchestra\ModelBundle\Model\StatusInterface;
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\ContentRepository"
  * )
  * @ORCHESTRA\Document(
- *   generatedId="contentId",
- *   sourceId="name",
+ *   generatedField="contentId",
+ *   sourceField="name",
  *   serviceName="php_orchestra_model.repository.content",
- *   existsName="existsWithName"
+ *   testMethod="existsWithName"
  * )
  */
 class Content implements ContentInterface
