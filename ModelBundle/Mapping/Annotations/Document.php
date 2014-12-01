@@ -10,7 +10,6 @@ use Symfony\Component\DependencyInjection\Container;
 /**
  * @Annotation
  */
-
 class Document extends Annotation
 {
     protected $generatedField;
