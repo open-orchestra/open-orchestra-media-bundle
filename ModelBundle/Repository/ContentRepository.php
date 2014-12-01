@@ -9,6 +9,7 @@ use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
  */
 class ContentRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface
 {
+
     /**
      * Get all content if the contentType is "news"
      *
