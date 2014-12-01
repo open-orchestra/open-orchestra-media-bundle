@@ -70,6 +70,15 @@ class Document extends Annotation
         return $this->getMethod($target, 'generatedField', 'set');
     }
 
+    /**
+     * Get generated value
+     *
+     * @param string $target
+     * @param string $property
+     * @param string $pre
+     *
+     */
+
     protected function getMethod($target, $property, $pre = 'get')
     {
         if(isset($this->$property)){
