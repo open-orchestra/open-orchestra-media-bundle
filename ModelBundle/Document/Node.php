@@ -5,6 +5,7 @@ namespace PHPOrchestra\ModelBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use PHPOrchestra\ModelBundle\Mapping\Annotations as ORCHESTRA;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
@@ -19,6 +20,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ODM\Document(
  *   collection="node",
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\NodeRepository"
+ * )
+ * @ORCHESTRA\Document(
+ *   generatedField="nodeId",
+ *   sourceField="name",
+ *   serviceName="php_orchestra_model.repository.node",
  * )
  */
 class Node implements NodeInterface

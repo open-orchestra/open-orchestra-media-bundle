@@ -3,12 +3,13 @@
 namespace PHPOrchestra\ModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
-
+use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
 /**
  * Class ContentRepository
  */
-class ContentRepository extends DocumentRepository
+class ContentRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface
 {
+
     /**
      * Get all content if the contentType is "news"
      *
@@ -22,5 +23,15 @@ class ContentRepository extends DocumentRepository
         );
 
         return $this->findBy($criteria);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return boolean
+     */
+    public function testUnicityInContext($name)
+    {
+        return $this->findOneByName($name) !== null;
     }
 }

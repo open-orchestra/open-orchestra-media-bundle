@@ -8,11 +8,12 @@ use Doctrine\ODM\MongoDB\Mapping;
 use PHPOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
 use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
 
 /**
  * Class NodeRepository
  */
-class NodeRepository extends DocumentRepository
+class NodeRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface
 {
     /**
      * @var CurrentSiteIdInterface
@@ -335,5 +336,18 @@ class NodeRepository extends DocumentRepository
         }
 
         return $nodes;
+    }
+    /**
+     * @param string $name
+     *
+     * @return boolean
+     */
+    public function testUnicityInContext($name)
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
+        $qb->field('name')->equals($name);
+
+        return count($qb->getQuery()->execute()) > 0;
     }
 }

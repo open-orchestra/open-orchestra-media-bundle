@@ -4,6 +4,7 @@ namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use PHPOrchestra\ModelBundle\Mapping\Annotations as ORCHESTRA;
 use PHPOrchestra\ModelBundle\Model\ContentAttributeInterface;
 use PHPOrchestra\ModelBundle\Model\ContentInterface;
 use PHPOrchestra\ModelBundle\Model\StatusInterface;
@@ -14,6 +15,11 @@ use PHPOrchestra\ModelBundle\Model\StatusInterface;
  * @MongoDB\Document(
  *   collection="content",
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\ContentRepository"
+ * )
+ * @ORCHESTRA\Document(
+ *   generatedField="contentId",
+ *   sourceField="name",
+ *   serviceName="php_orchestra_model.repository.content",
  * )
  */
 class Content implements ContentInterface
