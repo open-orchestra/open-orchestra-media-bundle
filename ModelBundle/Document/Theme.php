@@ -31,13 +31,6 @@ class Theme implements ThemeInterface
     protected $name;
 
     /**
-     * @var boolean $default
-     *
-     * @MongoDB\Field(type="boolean")
-     */
-    protected $default;
-
-    /**
      * @return string
      */
     public function getId()
@@ -59,21 +52,5 @@ class Theme implements ThemeInterface
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isDefault()
-    {
-        return $this->default;
-    }
-
-    /**
-     * @param boolean $default
-     */
-    public function setDefault($default)
-    {
-        $this->default = $default;
     }
 }

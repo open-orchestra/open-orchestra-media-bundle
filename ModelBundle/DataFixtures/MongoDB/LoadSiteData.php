@@ -48,6 +48,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
         $site1->setDefaultLanguage('fr');
         $site1->setLanguages(array('en', 'fr'));
         $site1->setDeleted(true);
+        $site1->setTheme($this->getReference('themePresentation'));
         $site1->addBlock('sample');
 
         return $site1;
@@ -65,6 +66,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
         $site2->setDefaultLanguage('fr');
         $site2->setLanguages(array('en', 'fr'));
         $site2->setDeleted(false);
+        $site2->setTheme($this->getReference('themePresentation'));
         $site2->addBlock('sample');
 
         return $site2;
@@ -82,6 +84,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
         $site3->setDefaultLanguage('fr');
         $site3->setLanguages(array('en', 'fr'));
         $site3->setDeleted(false);
+        $site3->setTheme($this->getReference('themePresentation'));
         $site3->addBlock('sample');
 
         return $site3;
@@ -99,6 +102,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
         $site4->setDefaultLanguage('fr');
         $site4->setLanguages(array('en', 'fr'));
         $site4->setDeleted(true);
+        $site4->setTheme($this->getReference('themePresentation'));
         $site4->addBlock('sample');
 
         return $site4;

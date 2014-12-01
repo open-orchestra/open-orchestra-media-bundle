@@ -2,14 +2,15 @@
 
 namespace PHPOrchestra\ModelBundle\DataFixtures\MongoDB;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Theme;
 
 /**
  * Class LoadThemeData
  */
-class LoadThemeData implements FixtureInterface
+class LoadThemeData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * @param ObjectManager $manager
@@ -18,15 +19,24 @@ class LoadThemeData implements FixtureInterface
     {
         $theme = new Theme();
         $theme->setName('themePresentation');
-        $theme->setDefault(true);
         $manager->persist($theme);
+        $this->addReference('themePresentation', $theme);
 
         $theme = new Theme();
         $theme->setName('echonext');
-        $theme->setDefault(false);
         $manager->persist($theme);
+        $this->addReference('echonext', $theme);
 
         $manager->flush();
     }
 
+    /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    public function getOrder()
+    {
+        return 10;
+    }
 }

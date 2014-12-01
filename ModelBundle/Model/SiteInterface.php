@@ -3,6 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use PHPOrchestra\ModelBundle\Model\ThemeInterface;
 
 /**
  * Interface SiteInterface
@@ -92,4 +93,18 @@ interface SiteInterface
      * @return boolean $deleted
      */
     public function getDeleted();
+
+    /**
+     * Set theme
+     *
+     * @param ThemeInterface $theme
+     */
+    public function setTheme(ThemeInterface $theme);
+
+    /**
+     * Get theme
+     *
+     * @return ThemeInterface $theme
+     */
+    public function getTheme();
 }
