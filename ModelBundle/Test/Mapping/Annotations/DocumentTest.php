@@ -4,12 +4,12 @@ namespace PHPOrchestra\ModelBundle\Test\Mapping\Annotations;
 use Phake;
 use PHPOrchestra\ModelBundle\Mapping\Annotations\Document;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
+
 /**
  * Class DocumentTest
  */
 class DocumentTest extends \PHPUnit_Framework_TestCase
 {
-
     protected $node;
 
     /**
