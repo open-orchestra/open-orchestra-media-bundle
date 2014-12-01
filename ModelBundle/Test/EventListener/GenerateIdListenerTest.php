@@ -83,6 +83,10 @@ class GenerateIdListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($document2)->getName()->thenReturn('fakeName');
         Phake::when($document2)->getNodeId()->thenReturn(null);
 
+        $document3 = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        Phake::when($document3)->getName()->thenReturn('fakeName');
+        Phake::when($document3)->getNodeId()->thenReturn(null);
+
         $annotations0 = Phake::mock('PHPOrchestra\ModelBundle\Mapping\Annotations\Document');
         Phake::when($annotations0)->getGeneratedField(Phake::anyParameters())->thenReturn('nodeId');
         Phake::when($annotations0)->getSource(Phake::anyParameters())->thenReturn('getName');
@@ -104,6 +108,13 @@ class GenerateIdListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($annotations2)->setGenerated(Phake::anyParameters())->thenReturn('setNodeId');
         Phake::when($annotations2)->getTestMethod()->thenReturn('fakeMethod');
 
+        $annotations3 = Phake::mock('PHPOrchestra\ModelBundle\Mapping\Annotations\Document');
+        Phake::when($annotations3)->getGeneratedField(Phake::anyParameters())->thenReturn('nodeId');
+        Phake::when($annotations3)->getSource(Phake::anyParameters())->thenReturn('getName');
+        Phake::when($annotations3)->getGenerated(Phake::anyParameters())->thenReturn('getNodeId');
+        Phake::when($annotations3)->setGenerated(Phake::anyParameters())->thenReturn('setNodeId');
+        Phake::when($annotations3)->getTestMethod()->thenReturn(null);
+
         $repository0 = Phake::mock('Doctrine\ODM\MongoDB\DocumentRepository');
         Phake::when($repository0)->fakeMethod(Phake::anyParameters())->thenReturn(false);
 
@@ -114,10 +125,14 @@ class GenerateIdListenerTest extends \PHPUnit_Framework_TestCase
         Phake::when($repository2)->fakeMethod('fakename')->thenReturn(true);
         Phake::when($repository2)->fakeMethod('fakename_0')->thenReturn(false);
 
+        $repository3 = Phake::mock('PHPOrchestra\ModelBundle\Repository\NodeRepository');
+        Phake::when($repository3)->testUnicityInContext('fakename')->thenReturn(false);
+
         return array(
             array($repository0, $annotations0, $document0, 'fakename'),
             array($repository1, $annotations1, $document1, 'aaaaaceeeeiiiinooooouuuuyyaaaaaceeeeiiiinooooouuuuy%20%5C'),
             array($repository2, $annotations2, $document2, 'fakename_0'),
+            array($repository3, $annotations3, $document3, 'fakename'),
         );
     }
 
