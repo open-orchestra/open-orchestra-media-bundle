@@ -76,7 +76,7 @@ class Site implements SiteInterface
     /**
      * @var ThemeInterface $theme
      *
-     * @MongoDB\EmbedOne(targetDocument="Theme")
+     * @MongoDB\ReferenceOne(targetDocument="Theme")
      */
     protected $theme;
 
@@ -220,7 +220,7 @@ class Site implements SiteInterface
     public function setTheme(ThemeInterface $theme = null)
     {
         if ($theme instanceof ThemeInterface) {
-            $this->theme = clone $theme;
+            $this->theme = $theme;
         } else {
             $this->theme = null;
         }

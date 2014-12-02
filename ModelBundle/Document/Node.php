@@ -432,21 +432,17 @@ class Node implements NodeInterface
     /**
      * Set theme
      *
-     * @param ThemeInterface|null $theme
+     * @param string $theme
      */
-    public function setTheme(ThemeInterface $theme = null)
+    public function setTheme($theme)
     {
-        if ($theme instanceof ThemeInterface) {
-            $this->theme = clone $theme;
-        } else {
-            $this->theme = null;
-        }
+        $this->theme = $theme;
     }
 
     /**
      * Get theme
      *
-     * @return ThemeInterface $theme
+     * @return string $theme
      */
     public function getTheme()
     {

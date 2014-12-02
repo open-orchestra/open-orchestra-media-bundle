@@ -81,7 +81,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $node->setStatus($this->getReference('status-published'));
         $node->setDeleted(false);
         $node->setTemplateId('template_main');
-        $node->setTheme($this->getReference('echonext'));
+        $node->setTheme('echonext');
         $node->setInMenu($params['inMenu']);
         $node->setInFooter($params['inFooter']);
 

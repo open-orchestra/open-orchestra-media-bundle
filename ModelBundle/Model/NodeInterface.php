@@ -179,14 +179,14 @@ interface NodeInterface extends AreaContainerInterface, BlockContainerInterface,
     /**
      * Set theme
      *
-     * @param ThemeInterface $theme
+     * @param string $theme
      */
-    public function setTheme(ThemeInterface $theme);
+    public function setTheme($theme);
 
     /**
      * Get theme
      *
-     * @return ThemeInterface $theme
+     * @return string $theme
      */
     public function getTheme();
 
