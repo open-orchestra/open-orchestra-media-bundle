@@ -215,15 +215,11 @@ class Site implements SiteInterface
     /**
      * Set theme
      *
-     * @param ThemeInterface|null $theme
+     * @param ThemeInterface $theme
      */
-    public function setTheme(ThemeInterface $theme = null)
+    public function setTheme(ThemeInterface $theme)
     {
-        if ($theme instanceof ThemeInterface) {
-            $this->theme = $theme;
-        } else {
-            $this->theme = null;
-        }
+        $this->theme = $theme;
     }
 
     /**
