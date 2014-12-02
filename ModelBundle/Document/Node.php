@@ -124,7 +124,7 @@ class Node implements NodeInterface
     protected $templateId;
 
     /**
-     * @var string
+     * @var string $theme
      *
      * @ODM\Field(type="string")
      */

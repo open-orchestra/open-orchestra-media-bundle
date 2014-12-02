@@ -110,7 +110,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
     /**
      * Generate language block
-     * 
+     *
      * @param $areaId
      * @param int $nodeId
      *

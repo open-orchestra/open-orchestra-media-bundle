@@ -5,6 +5,7 @@ namespace PHPOrchestra\ModelBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelBundle\Model\SiteInterface;
+use PHPOrchestra\ModelBundle\Model\ThemeInterface;
 
 /**
  * Description of Site
@@ -71,6 +72,13 @@ class Site implements SiteInterface
      * @MongoDB\Field(type="hash")
      */
     protected $blocks = array();
+
+    /**
+     * @var ThemeInterface $theme
+     *
+     * @MongoDB\ReferenceOne(targetDocument="Theme")
+     */
+    protected $theme;
 
     /**
      * @param string $alias
@@ -202,5 +210,25 @@ class Site implements SiteInterface
     public function getDeleted()
     {
         return $this->deleted;
+    }
+
+    /**
+     * Set theme
+     *
+     * @param ThemeInterface $theme
+     */
+    public function setTheme(ThemeInterface $theme)
+    {
+        $this->theme = $theme;
+    }
+
+    /**
+     * Get theme
+     *
+     * @return ThemeInterface $theme
+     */
+    public function getTheme()
+    {
+        return $this->theme;
     }
 }
