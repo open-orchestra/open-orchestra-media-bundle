@@ -219,7 +219,7 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
         $nodeTransverse->setStatus($this->getReference('status-published'));
         $nodeTransverse->setDeleted(false);
         $nodeTransverse->setTemplateId('');
-        $nodeTransverse->setTheme('');
+        $nodeTransverse->setTheme($this->getReference('themePresentation'));
         $nodeTransverse->setInFooter(false);
         $nodeTransverse->setInMenu(false);
         $nodeTransverse->addArea($mainArea);
@@ -325,7 +325,7 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
         $siteHome->setStatus($this->getReference('status-published'));
         $siteHome->setDeleted(false);
         $siteHome->setTemplateId('');
-        $siteHome->setTheme('themePresentation');
+        $siteHome->setTheme($this->getReference('themePresentation'));
         $siteHome->setInFooter(false);
         $siteHome->setInMenu(true);
         $siteHome->addArea($siteHomeArea0);
@@ -431,7 +431,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteWhat->setStatus($this->getReference('status-published'));
         $siteWhat->setDeleted(false);
         $siteWhat->setTemplateId('');
-        $siteWhat->setTheme('themePresentation');
+        $siteWhat->setTheme($this->getReference('themePresentation'));
         $siteWhat->setInFooter(false);
         $siteWhat->setInMenu(true);
         $siteWhat->addArea($siteWhatArea0);
@@ -521,7 +521,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
         $siteStart->setStatus($this->getReference('status-published'));
         $siteStart->setDeleted(false);
         $siteStart->setTemplateId('');
-        $siteStart->setTheme('themePresentation');
+        $siteStart->setTheme($this->getReference('themePresentation'));
         $siteStart->setInFooter(false);
         $siteStart->setInMenu(true);
         $siteStart->addArea($siteStartArea0);
@@ -613,7 +613,7 @@ Note, that many languages are just under translation, and the untranslated parts
         $siteDoc->setStatus($this->getReference('status-published'));
         $siteDoc->setDeleted(false);
         $siteDoc->setTemplateId('');
-        $siteDoc->setTheme('themePresentation');
+        $siteDoc->setTheme($this->getReference('themePresentation'));
         $siteDoc->setInFooter(false);
         $siteDoc->setInMenu(true);
         $siteDoc->addArea($siteDocArea0);
@@ -711,7 +711,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteCom->setStatus($this->getReference('status-published'));
         $siteCom->setDeleted(false);
         $siteCom->setTemplateId('');
-        $siteCom->setTheme('themePresentation');
+        $siteCom->setTheme($this->getReference('themePresentation'));
         $siteCom->setInFooter(false);
         $siteCom->setInMenu(true);
         $siteCom->addArea($siteComArea0);
@@ -803,7 +803,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteAboutUs->setStatus($this->getReference('status-published'));
         $siteAboutUs->setDeleted(false);
         $siteAboutUs->setTemplateId('');
-        $siteAboutUs->setTheme('themePresentation');
+        $siteAboutUs->setTheme($this->getReference('themePresentation'));
         $siteAboutUs->setInFooter(false);
         $siteAboutUs->setInMenu(false);
         $siteAboutUs->addArea($siteAboutUsArea0);
@@ -897,7 +897,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
         $siteOurTeam->setStatus($this->getReference('status-published'));
         $siteOurTeam->setDeleted(false);
         $siteOurTeam->setTemplateId('');
-        $siteOurTeam->setTheme('themePresentation');
+        $siteOurTeam->setTheme($this->getReference('themePresentation'));
         $siteOurTeam->setInFooter(false);
         $siteOurTeam->setInMenu(false);
         $siteOurTeam->addArea($siteOurTeamArea0);
@@ -992,7 +992,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteNews->setStatus($this->getReference('status-published'));
         $siteNews->setDeleted(false);
         $siteNews->setTemplateId('');
-        $siteNews->setTheme('themePresentation');
+        $siteNews->setTheme($this->getReference('themePresentation'));
         $siteNews->setInFooter(false);
         $siteNews->setInMenu(false);
         $siteNews->addArea($siteNewsArea0);
@@ -1078,7 +1078,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteJoinUs->setStatus($this->getReference('status-published'));
         $siteJoinUs->setDeleted(false);
         $siteJoinUs->setTemplateId('');
-        $siteJoinUs->setTheme('themePresentation');
+        $siteJoinUs->setTheme($this->getReference('themePresentation'));
         $siteJoinUs->setInFooter(false);
         $siteJoinUs->setInMenu(false);
         $siteJoinUs->addArea($siteJoinUsArea0);
@@ -1168,7 +1168,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteNetwork->setStatus($this->getReference('status-published'));
         $siteNetwork->setDeleted(false);
         $siteNetwork->setTemplateId('');
-        $siteNetwork->setTheme('themePresentation');
+        $siteNetwork->setTheme($this->getReference('themePresentation'));
         $siteNetwork->setInFooter(false);
         $siteNetwork->setInMenu(false);
         $siteNetwork->addArea($siteNetworkArea0);
@@ -1247,7 +1247,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteContact->setStatus($this->getReference('status-published'));
         $siteContact->setDeleted(false);
         $siteContact->setTemplateId('');
-        $siteContact->setTheme('themePresentation');
+        $siteContact->setTheme($this->getReference('themePresentation'));
         $siteContact->setInFooter(false);
         $siteContact->setInMenu(true);
         $siteContact->addArea($siteContactArea0);
@@ -1340,7 +1340,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteLegal->setStatus($this->getReference('status-published'));
         $siteLegal->setDeleted(false);
         $siteLegal->setTemplateId('');
-        $siteLegal->setTheme('themePresentation');
+        $siteLegal->setTheme($this->getReference('themePresentation'));
         $siteLegal->setInFooter(false);
         $siteLegal->setInMenu(false);
         $siteLegal->addArea($siteLegalArea0);

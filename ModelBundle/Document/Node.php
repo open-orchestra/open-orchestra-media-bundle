@@ -12,6 +12,7 @@ use PHPOrchestra\ModelBundle\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Model\BlockInterface;
 use PHPOrchestra\ModelBundle\Model\NodeInterface;
 use PHPOrchestra\ModelBundle\Model\StatusInterface;
+use PHPOrchestra\ModelBundle\Model\ThemeInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -124,9 +125,9 @@ class Node implements NodeInterface
     protected $templateId;
 
     /**
-     * @var string
+     * @var ThemeInterface $theme
      *
-     * @ODM\Field(type="string")
+     * @ODM\EmbedOne(targetDocument="Theme")
      */
     protected $theme;
 
@@ -431,17 +432,21 @@ class Node implements NodeInterface
     /**
      * Set theme
      *
-     * @param string $theme
+     * @param ThemeInterface|null $theme
      */
-    public function setTheme($theme)
+    public function setTheme(ThemeInterface $theme = null)
     {
-        $this->theme = $theme;
+        if ($theme instanceof ThemeInterface) {
+            $this->theme = clone $theme;
+        } else {
+            $this->theme = null;
+        }
     }
 
     /**
      * Get theme
      *
-     * @return string $theme
+     * @return ThemeInterface $theme
      */
     public function getTheme()
     {

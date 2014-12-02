@@ -220,7 +220,7 @@ class Site implements SiteInterface
     public function setTheme(ThemeInterface $theme = null)
     {
         if ($theme instanceof ThemeInterface) {
-            $this->theme = $theme;
+            $this->theme = clone $theme;
         } else {
             $this->theme = null;
         }

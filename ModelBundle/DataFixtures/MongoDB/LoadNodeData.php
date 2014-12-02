@@ -133,7 +133,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->setStatus($this->getReference($status));
         $home->setDeleted(false);
         $home->setTemplateId('template_home');
-        $home->setTheme('theme1');
+        $home->setTheme($this->getReference('themePresentation'));
         $home->setInMenu(true);
         $home->setInFooter(false);
         $home->addArea($homeArea);
@@ -186,7 +186,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $home->setStatus($this->getReference('status-published'));
         $home->setDeleted(false);
         $home->setTemplateId('template_home');
-        $home->setTheme('theme1');
+        $home->setTheme($this->getReference('themePresentation'));
         $home->setInMenu(true);
         $home->setInFooter(false);
         $home->addArea($homeArea);
@@ -336,7 +336,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $full->setStatus($this->getReference('status-published'));
         $full->setDeleted(false);
         $full->setTemplateId('template_full');
-        $full->setTheme('mixed');
+        $full->setTheme($this->getReference('themePresentation'));;
         $full->setInMenu(true);
         $full->setInFooter(false);
         $full->addArea($headerArea);
@@ -430,7 +430,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $aboutUs->setStatus($this->getReference('status-published'));
         $aboutUs->setDeleted(false);
         $aboutUs->setTemplateId('template_home');
-        $aboutUs->setTheme('theme2');
+        $aboutUs->setTheme($this->getReference('themePresentation'));;
         $aboutUs->setInFooter(true);
         $aboutUs->setInMenu(true);
         $aboutUs->addArea($aboutUsArea);
@@ -485,7 +485,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $bd->setStatus($this->getReference('status-published'));
         $bd->setDeleted(false);
         $bd->setTemplateId('template_home');
-        $bd->setTheme('theme2');
+        $bd->setTheme($this->getReference('themePresentation'));;
         $bd->setInFooter(true);
         $bd->setInMenu(true);
         $bd->addArea($bdArea);
@@ -528,7 +528,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $interakting->setStatus($this->getReference('status-published'));
         $interakting->setDeleted(false);
         $interakting->setTemplateId('template_home');
-        $interakting->setTheme('sample');
+        $interakting->setTheme($this->getReference('themePresentation'));
         $interakting->setInFooter(true);
         $interakting->setInMenu(true);
         $interakting->addArea($interaktingArea);
@@ -571,7 +571,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $contactUs->setStatus($this->getReference('status-published'));
         $contactUs->setDeleted(false);
         $contactUs->setTemplateId('template_home');
-        $contactUs->setTheme('theme1');
+        $contactUs->setTheme($this->getReference('themePresentation'));
         $contactUs->setInFooter(true);
         $contactUs->setInMenu(true);
         $contactUs->addArea($contactUsArea);
@@ -614,7 +614,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $directory->setStatus($this->getReference('status-published'));
         $directory->setDeleted(false);
         $directory->setTemplateId('template_home');
-        $directory->setTheme('fromApp');
+        $directory->setTheme($this->getReference('themePresentation'));
         $directory->setInFooter(true);
         $directory->setInMenu(true);
         $directory->addArea($directoryArea);
@@ -740,7 +740,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $search->setStatus($this->getReference('status-published'));
         $search->setDeleted(false);
         $search->setTemplateId('template_home');
-        $search->setTheme('fromApp');
+        $search->setTheme($this->getReference('themePresentation'));
         $search->setInFooter(true);
         $search->setInMenu(true);
         $search->addArea($searchArea0);
