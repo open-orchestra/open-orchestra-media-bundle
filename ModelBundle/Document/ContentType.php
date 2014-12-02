@@ -49,7 +49,7 @@ class ContentType implements ContentTypeInterface
      *
      * @ODM\Field(type="int")
      */
-    protected $version;
+    protected $version = 1;
 
     /**
      * @var StatusInterface $status
