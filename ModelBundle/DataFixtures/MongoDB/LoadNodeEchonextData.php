@@ -22,29 +22,31 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     public function load(ObjectManager $manager)
     {
-        $manager->persist($this->generateNodeTransverse('fr'));
-        $manager->persist($this->generateNodeHome('fr'));
-        $manager->persist($this->generateEspaceBDDF('fr'));
-        $manager->persist($this->generateEspaceCardif('fr'));
-        $manager->persist($this->generateEspaceArval('fr'));
-        $manager->persist($this->generateEspaceXXX('fr'));
-        $manager->persist($this->generateCardifBienvenu('fr'));
-        $manager->persist($this->generateCardifActualite('fr'));
-        $manager->persist($this->generateCardifMissions('fr'));
-        $manager->persist($this->generateCardifRemun('fr'));
-        $manager->persist($this->generateNodeNews('fr'));
+        $nodeTransverseFr = $this->generateNodeTransverse('fr');
+        $manager->persist($nodeTransverseFr);
+        $manager->persist($this->generateNodeHome('fr', $nodeTransverseFr->getId()));
+        $manager->persist($this->generateEspaceBDDF('fr', $nodeTransverseFr->getId()));
+        $manager->persist($this->generateEspaceCardif('fr', $nodeTransverseFr->getId()));
+        $manager->persist($this->generateEspaceArval('fr', $nodeTransverseFr->getId()));
+        $manager->persist($this->generateEspaceXXX('fr', $nodeTransverseFr->getId()));
+        $manager->persist($this->generateCardifBienvenu('fr', $nodeTransverseFr->getId()));
+        $manager->persist($this->generateCardifActualite('fr', $nodeTransverseFr->getId()));
+        $manager->persist($this->generateCardifMissions('fr', $nodeTransverseFr->getId()));
+        $manager->persist($this->generateCardifRemun('fr', $nodeTransverseFr->getId()));
+        $manager->persist($this->generateNodeNews('fr', $nodeTransverseFr->getId()));
 
-        $manager->persist($this->generateNodeTransverse('en'));
-        $manager->persist($this->generateNodeHome('en'));
-        $manager->persist($this->generateEspaceBDDF('en'));
-        $manager->persist($this->generateEspaceCardif('en'));
-        $manager->persist($this->generateEspaceArval('en'));
-        $manager->persist($this->generateEspaceXXX('en'));
-        $manager->persist($this->generateCardifBienvenu('en'));
-        $manager->persist($this->generateCardifActualite('en'));
-        $manager->persist($this->generateCardifMissions('en'));
-        $manager->persist($this->generateCardifRemun('en'));
-        $manager->persist($this->generateNodeNews('en'));
+        $nodeTransverseEn = $this->generateNodeTransverse('en');
+        $manager->persist($nodeTransverseEn);
+        $manager->persist($this->generateNodeHome('en', $nodeTransverseEn->getId()));
+        $manager->persist($this->generateEspaceBDDF('en', $nodeTransverseEn->getId()));
+        $manager->persist($this->generateEspaceCardif('en', $nodeTransverseEn->getId()));
+        $manager->persist($this->generateEspaceArval('en', $nodeTransverseEn->getId()));
+        $manager->persist($this->generateEspaceXXX('en', $nodeTransverseEn->getId()));
+        $manager->persist($this->generateCardifBienvenu('en', $nodeTransverseEn->getId()));
+        $manager->persist($this->generateCardifActualite('en', $nodeTransverseEn->getId()));
+        $manager->persist($this->generateCardifMissions('en', $nodeTransverseEn->getId()));
+        $manager->persist($this->generateCardifRemun('en', $nodeTransverseEn->getId()));
+        $manager->persist($this->generateNodeNews('en', $nodeTransverseEn->getId()));
 
         $manager->flush();
     }
@@ -335,12 +337,12 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('main', 'main',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => 0, 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
+                array('nodeId' => 0, 'blockId' => 3),
+                array('nodeId' => 0, 'blockId' => 4),
+                array('nodeId' => 0, 'blockId' => 5),
             )
         );
 
@@ -371,16 +373,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateNodeHome($language)
+    protected function generateNodeHome($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -400,7 +402,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
@@ -432,16 +434,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateNodeNews($language)
+    protected function generateNodeNews($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -451,14 +453,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 'news', 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 0),
             )
         );
 
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
@@ -486,16 +488,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateEspaceBDDF($language)
+    protected function generateEspaceBDDF($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -505,14 +507,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 'espace_bddf', 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 0),
             )
         );
 
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
@@ -540,16 +542,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateEspaceCardif($language)
+    protected function generateEspaceCardif($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -566,11 +568,11 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
 
         $leftMenu = $this->generateArea('Left menu', 'left_menu', array(
-            array('nodeId' => 'espace_Cardif', 'blockId' => 0),));
+            array('nodeId' => 0, 'blockId' => 0),));
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 'espace_Cardif', 'blockId' => 1),
-                array('nodeId' => 'espace_Cardif', 'blockId' => 2),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
         );
         $bodyArea = $this->generateArea('Body', 'body', array());
@@ -581,7 +583,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
@@ -611,16 +613,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateEspaceArval($language)
+    protected function generateEspaceArval($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -630,14 +632,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 'espace_Arval', 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 0),
             )
         );
 
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
@@ -665,16 +667,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateEspaceXXX($language)
+    protected function generateEspaceXXX($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -684,14 +686,14 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 'espace_XXX', 'blockId' => 0),
+                array('nodeId' => 0, 'blockId' => 0),
             )
         );
 
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
@@ -719,16 +721,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateCardifBienvenu($language)
+    protected function generateCardifBienvenu($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -745,11 +747,11 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
 
         $leftMenu = $this->generateArea('Left menu', 'left_menu', array(
-            array('nodeId' => 'cardif_bienvenu', 'blockId' => 0),));
+            array('nodeId' => 0, 'blockId' => 0),));
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 'cardif_bienvenu', 'blockId' => 1),
-                array('nodeId' => 'cardif_bienvenu', 'blockId' => 2),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
         );
         $bodyArea = $this->generateArea('Body', 'body', array());
@@ -760,7 +762,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
@@ -790,16 +792,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateCardifActualite($language)
+    protected function generateCardifActualite($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -816,11 +818,11 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
 
         $leftMenu = $this->generateArea('Left menu', 'left_menu', array(
-            array('nodeId' => 'cardif_actualite', 'blockId' => 0),));
+            array('nodeId' => 0, 'blockId' => 0),));
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 'cardif_actualite', 'blockId' => 1),
-                array('nodeId' => 'cardif_actualite', 'blockId' => 2),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
         );
         $bodyArea = $this->generateArea('Body', 'body', array());
@@ -831,7 +833,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
@@ -861,16 +863,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateCardifMissions($language)
+    protected function generateCardifMissions($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -887,11 +889,11 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
 
         $leftMenu = $this->generateArea('Left menu', 'left_menu', array(
-            array('nodeId' => 'cardif_missions', 'blockId' => 0),));
+            array('nodeId' => 0, 'blockId' => 0),));
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 'cardif_missions', 'blockId' => 1),
-                array('nodeId' => 'cardif_missions', 'blockId' => 2),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
         );
         $bodyArea = $this->generateArea('Body', 'body', array());
@@ -902,7 +904,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
@@ -932,16 +934,16 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     /**
      * @return Node
      */
-    protected function generateCardifRemun($language)
+    protected function generateCardifRemun($language, $transverseId)
     {
         // Header
         $headerArea = $this->generateArea('Header', 'header',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 1),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 2),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 3),
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 4),
+                array('nodeId' => $transverseId, 'blockId' => 0),
+                array('nodeId' => $transverseId, 'blockId' => 1),
+                array('nodeId' => $transverseId, 'blockId' => 2),
+                array('nodeId' => $transverseId, 'blockId' => 3),
+                array('nodeId' => $transverseId, 'blockId' => 4),
             )
         );
         $headerArea->setBoDirection('v');
@@ -958,11 +960,11 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
             fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.</p></div>', 'main');
 
         $leftMenu = $this->generateArea('Left menu', 'left_menu', array(
-            array('nodeId' => 'cardif_remunerations', 'blockId' => 0),));
+            array('nodeId' => 0, 'blockId' => 0),));
         $mainArea = $this->generateArea('Main', 'main',
             array(
-                array('nodeId' => 'cardif_remunerations', 'blockId' => 1),
-                array('nodeId' => 'cardif_remunerations', 'blockId' => 2),
+                array('nodeId' => 0, 'blockId' => 1),
+                array('nodeId' => 0, 'blockId' => 2),
             )
         );
         $bodyArea = $this->generateArea('Body', 'body', array());
@@ -973,7 +975,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Footer
         $footerArea = $this->generateArea('Footer', 'footer',
             array(
-                array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 5),
+                array('nodeId' => $transverseId, 'blockId' => 5),
             )
         );
 
