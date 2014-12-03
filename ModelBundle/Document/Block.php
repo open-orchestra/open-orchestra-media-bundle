@@ -131,7 +131,7 @@ class Block implements BlockInterface
     public function removeAreaRef($areaId, $nodeId)
     {
         foreach ($this->getAreas() as $key => $area) {
-            if ($areaId === $area['areaId'] && $nodeId === $area['nodeId']) {
+            if ($areaId === $area['areaId'] && ($nodeId === $area['nodeId'] || 0 === $area['nodeId'])) {
                 unset($this->areas[$key]);
             }
         }

@@ -83,12 +83,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => "Bienvenu sur le site de démo issu des fixtures.",
             'author' => ''
         ));
-        $homeBlock->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
+        $homeBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $loginBlock = new Block();
         $loginBlock->setLabel('Login');
         $loginBlock->setComponent('login');
-        $loginBlock->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
+        $loginBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $blocksubmenu = new Block();
         $blocksubmenu->setLabel('subMenu');
@@ -99,7 +99,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'nbLevel' => 2,
             'node' => 'fixture_about_us',
         ));
-        $blocksubmenu->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
+        $blocksubmenu->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $blockLanguage = new Block();
         $blockLanguage->setLabel('languages');
@@ -108,7 +108,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'languageClass',
             'id' => 'languages'
         ));
-        $blockLanguage->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
+        $blockLanguage->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $homeArea = new Area();
         $homeArea->setLabel('Main');
@@ -158,12 +158,12 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => "Welcome to the demo site from fixtures.",
             'author' => ''
         ));
-        $homeBlock->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
+        $homeBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $loginBlock = new Block();
         $loginBlock->setLabel('Login');
         $loginBlock->setComponent('login');
-        $loginBlock->addArea(array('nodeId' => NodeInterface::ROOT_NODE_ID, 'areaId' => 'main'));
+        $loginBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $homeArea = new Area();
         $homeArea->setLabel('Main');
@@ -209,7 +209,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Pourquoi nous choisir ?',
             'news' => 'Nos agences'
         ));
-        $block0->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'header'));
+        $block0->addArea(array('nodeId' => 0, 'areaId' => 'header'));
 
         $block1 = new Block();
         $block1->setLabel('block 2');
@@ -218,7 +218,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'menuclass',
             'id' => 'idmenu',
         ));
-        $block1->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'left_menu'));
+        $block1->addArea(array('nodeId' => 0, 'areaId' => 'left_menu'));
 
         $block2 = new Block();
         $block2->setLabel('block 3');
@@ -228,7 +228,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             "author" => "Donec bibendum at nibh eget imperdiet. Mauris eget justo augue. Fusce fermentum iaculis erat, sollicitudin elementum enim sodales eu. Donec a ante tortor. Suspendisse a.",
             "news" => ""
         ));
-        $block2->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'content'));
+        $block2->addArea(array('nodeId' => 0, 'areaId' => 'content'));
 
         $block3 = new Block();
         $block3->setLabel('block 4');
@@ -238,7 +238,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             "author" => "Aliquam convallis facilisis nulla, id ultricies ipsum cursus eu. Proin augue quam, iaculis id nisi ac, rutrum blandit leo. In leo ante, scelerisque tempus lacinia in, sollicitudin quis justo. Vestibulum.",
             "news" => ""
         ));
-        $block3->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'content'));
+        $block3->addArea(array('nodeId' => 0, 'areaId' => 'content'));
 
         $block4 = new Block();
         $block4->setLabel('block 5');
@@ -248,7 +248,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             "author" => "Phasellus condimentum diam placerat varius iaculis. Aenean dictum, libero in sollicitudin hendrerit, nulla mi elementum massa, eget mattis lorem enim vel magna. Fusce suscipit orci vitae vestibulum.",
             "news" => ""
         ));
-        $block4->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'content'));
+        $block4->addArea(array('nodeId' => 0, 'areaId' => 'content'));
 
         $block5 = new Block();
         $block5->setLabel('block 6');
@@ -259,7 +259,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => '',
             'image' => '/apple-touch-icon.png'
         ));
-        $block5->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'skycrapper'));
+        $block5->addArea(array('nodeId' => 0, 'areaId' => 'skycrapper'));
 
         $block6 = new Block();
         $block6->setLabel('block 7');
@@ -268,7 +268,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'id' => 'idFooter',
             'class' => 'footerclass',
         ));
-        $block6->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'footer'));
+        $block6->addArea(array('nodeId' => 0, 'areaId' => 'footer'));
 
         $block7 = new Block();
         $block7->setLabel('block 8');
@@ -279,7 +279,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'nodeId' => 'fixture_search',
             'limit' => 8
         ));
-        $block7->addArea(array('nodeId' => 'fixture_full', 'areaId' => 'search'));
+        $block7->addArea(array('nodeId' => 0, 'areaId' => 'search'));
 
         $headerArea = new Area();
         $headerArea->setLabel('Header');
@@ -398,7 +398,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Pour tout savoir sur notre entreprise.',
             'news' => ''
         ));
-        $aboutUsBlock->addArea(array('nodeId' => 'fixture_about_us', 'areaId' => 'main'));
+        $aboutUsBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $contentListBlock = new Block();
         $contentListBlock->setLabel('Content list');
@@ -409,7 +409,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'contentListClass',
             'url' => 'fixture_bd'
         ));
-        $contentListBlock->addArea(array('nodeId' => 'fixture_about_us', 'areaId' => 'main'));
+        $contentListBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $aboutUsArea = new Area();
         $aboutUsArea->setLabel('Main');
@@ -453,7 +453,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Tout sur B&D',
             'news' => ''
         ));
-        $bdBlock->addArea(array('nodeId' => 'fixture_bd', 'areaId' => 'main'));
+        $bdBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $contentBlock = new Block();
         $contentBlock->setLabel('content news');
@@ -464,7 +464,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'contentListClass',
             'url' => 'fixture_bd'
         ));
-        $contentBlock->addArea(array('nodeId' => 'fixture_bd', 'areaId' => 'main'));
+        $contentBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $bdArea = new Area();
         $bdArea->setLabel('Main');
@@ -508,7 +508,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => '',
             'news' => 'Des trucs sur Interakting (non versionnés)'
         ));
-        $interaktingBlock->addArea(array('nodeId' => 'fixture_interakting', 'areaId' => 'main'));
+        $interaktingBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $interaktingArea = new Area();
         $interaktingArea->setLabel('Main');
@@ -551,7 +551,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => 'swgsdwgh',
             'contentType' => 'news'
         ));
-        $contactUsBlock->addArea(array('nodeId' => 'fixture_contact_us', 'areaId' => 'main'));
+        $contactUsBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $contactUsArea = new Area();
         $contactUsArea->setLabel('Main');
@@ -594,7 +594,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'news' => '',
             'contentType' => 'car'
         ));
-        $directoryBlock->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'main'));
+        $directoryBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
         $directoryArea = new Area();
         $directoryArea->setLabel('Main');
@@ -636,7 +636,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Pourquoi nous choisir ?',
             'news' => 'Nos agences'
         ));
-        $searchBlock0->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'header'));
+        $searchBlock0->addArea(array('nodeId' => 0, 'areaId' => 'header'));
 
         $searchBlock1 = new Block();
         $searchBlock1->setLabel('Menu');
@@ -645,7 +645,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'menuClass',
             'id' => 'idmenu',
         ));
-        $searchBlock1->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'left_menu'));
+        $searchBlock1->addArea(array('nodeId' => 0, 'areaId' => 'left_menu'));
 
         $searchBlock2 = new Block();
         $searchBlock2->setLabel('search');
@@ -656,7 +656,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'class' => 'classbouton',
             'nodeId' => 'fixture_search'
         ));
-        $searchBlock2->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'content'));
+        $searchBlock2->addArea(array('nodeId' => 0, 'areaId' => 'content'));
 
         $searchBlock3 = new Block();
         $searchBlock3->setLabel('Search result');
@@ -687,7 +687,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
                 "mm" => "75%"
             )
         ));
-        $searchBlock3->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'content'));
+        $searchBlock3->addArea(array('nodeId' => 0, 'areaId' => 'content'));
 
         $searchBlock4 = new Block();
         $searchBlock4->setLabel('Footer');
@@ -696,7 +696,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'id' => 'idFooter',
             'class' => 'footerClass',
         ));
-        $searchBlock4->addArea(array('nodeId' => 'fixture_search', 'areaId' => 'footer'));
+        $searchBlock4->addArea(array('nodeId' => 0, 'areaId' => 'footer'));
 
         $searchArea0 = new Area();
         $searchArea0->setLabel('Header');
