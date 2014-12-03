@@ -20,8 +20,7 @@ class GenerateImageSubscriberTest extends \PHPUnit_Framework_TestCase
     protected $event;
     protected $media1;
     protected $media2;
-    protected $formats;
-    protected $uploadDir;
+    protected $imageResizerManager;
     protected $file1 = 'What-are-you-talking-about.jpg';
 
     /**
@@ -31,25 +30,13 @@ class GenerateImageSubscriberTest extends \PHPUnit_Framework_TestCase
     {
         $this->event = Phake::mock('PHPOrchestra\Media\Event\MediaEvent');
 
+        $this->imageResizerManager = Phake::mock('PHPOrchestra\Media\Manager\ImageResizerManager');
+
         $this->media1 = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
         Phake::when($this->media1)->getFilesystemName()->thenReturn($this->file1);
         $this->media2 = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
 
-        $this->uploadDir = __DIR__ . '/images';
-        $this->formats = array(
-            'max_width' => array(
-                'max_width' => 100,
-            ),
-            'max_height' => array(
-                'max_height' => 100,
-            ),
-            'rectangle' => array(
-                'width' => 70,
-                'height' => 50,
-            ),
-        );
-
-        $this->subscriber = new GenerateImageSubscriber($this->uploadDir, $this->formats);
+        $this->subscriber = new GenerateImageSubscriber($this->imageResizerManager);
     }
 
     /**
@@ -99,20 +86,8 @@ class GenerateImageSubscriberTest extends \PHPUnit_Framework_TestCase
     {
         $this->subscriber->medias[] = $this->media1;
 
-        foreach ($this->formats as $key => $format) {
-            if (file_exists($this->uploadDir .'/' . $key . '-' . $this->file1)) {
-                unlink($this->uploadDir .'/' . $key . '-' . $this->file1);
-            }
-            $this->assertFalse(file_exists($this->uploadDir .'/' . $key . '-' . $this->file1));
-        }
-
         $this->subscriber->generateImages();
 
-        $this->assertFileExists($this->uploadDir . '/' . $this->file1);
-        foreach ($this->formats as $key => $format) {
-            $this->assertFileExists($this->uploadDir . '/'. $key . '-' . $this->file1);
-//            TODO Check why travis sees two different strings
-//            $this->assertFileEquals($this->uploadDir . '/'. $key . '-reference.jpg', $this->uploadDir . '/'. $key . '-' . $this->file1);
-        }
+        Phake::verify($this->imageResizerManager)->generateAllThumbnails($this->media1);
     }
 }
