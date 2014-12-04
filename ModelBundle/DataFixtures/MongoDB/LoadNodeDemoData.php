@@ -494,7 +494,7 @@ More information about php.net URL shortcuts by visiting our URL howto page.
 Note, that many languages are just under translation, and the untranslated parts are still in English. Also some translated parts might be outdated. The translation teams are open to contributions.</p>
             </div>",
         ));
-        $siteDocBlock0->addArea(array('nodeId' => 'fixture_page_documentation', 'areaId' => 'mainContentArea1'));
+        $siteDocBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteDocArea1 = new Area();
         $siteDocArea1->setLabel('Logo');
@@ -594,7 +594,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
                 </p>
             </div>",
         ));
-        $siteComBlock0->addArea(array('nodeId' => 'fixture_page_community', 'areaId' => 'mainContentArea1'));
+        $siteComBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteComArea1 = new Area();
         $siteComArea1->setLabel('Logo');
@@ -688,7 +688,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
                 </p>
             </div>",
         ));
-        $siteAboutUsBlock0->addArea(array('nodeId' => 'fixture_page_about_us', 'areaId' => 'mainContentArea1'));
+        $siteAboutUsBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteAboutUsArea1 = new Area();
         $siteAboutUsArea1->setLabel('Logo');
@@ -784,7 +784,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
             </p>
             </div>",
         ));
-        $siteOurTeamBlock0->addArea(array('nodeId' => 'fixture_page_our_team', 'areaId' => 'mainContentArea1'));
+        $siteOurTeamBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteOurTeamArea1 = new Area();
         $siteOurTeamArea1->setLabel('Logo');
@@ -868,6 +868,7 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
     {
         $siteNewsBlock0 = new Block();
         $siteNewsBlock0->setLabel('Wysiwyg 1');
+        $siteNewsBlock0->setLabel('Wysiwyg 1');
         $siteNewsBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteNewsBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>Actu</h1>
@@ -881,7 +882,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
             </p>
             </div>",
         ));
-        $siteNewsBlock0->addArea(array('nodeId' => 'fixture_page_news', 'areaId' => 'mainContentArea1'));
+        $siteNewsBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteNewsArea1 = new Area();
         $siteNewsArea1->setLabel('Logo');
@@ -969,7 +970,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
         $siteJoinUsBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'><div id='annonce'><h1>Nous rejoindre</h1> <p>Vous êtes un passionné d’Internet en général et du Web en particulier?</p> <p>Vous avez une expérience significative dans les domaines suivants: Développement web le framwork Symfony 2 Votre profil est susceptible de nous intéresser </div> <div id='form'><table border='0'><tbody><tr><td valign='top'> Nom   </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société   </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr> <td valign='top'> Email   </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/> </td></tr><tr> <td valign='top'> Message   </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr><tr> <td valign='top'> CV   </td><td><input type='file' /> </td></tr> <tr> <td> <input type='submit' value='OK'/></td>  </tr> </tbody></table></div> </div>",
         ));
-        $siteJoinUsBlock0->addArea(array('nodeId' => 'fixture_page_join_us', 'areaId' => 'mainContentArea1'));
+        $siteJoinUsBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteJoinUsArea1 = new Area();
         $siteJoinUsArea1->setLabel('Logo');
@@ -1061,7 +1062,7 @@ Ces Victoires mettent en lumière celles et ceux qui, chaque jour, agissent pour
 Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spécialiste du e-Commerce, du Digital Marketing et en tant qu’opérateur de solutions SaaS. Ce projet a ainsi fait appel aux compétences de toutes les équipes d’Eolas, notamment celles des experts en e-Tailing, issues du rachat du fonds de commerce de Proxi-Business, il y a un an.
             </p></div>",
         ));
-        $siteNetworkBlock0->addArea(array('nodeId' => 'fixture_page_networks', 'areaId' => 'mainContentArea1'));
+        $siteNetworkBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteNetworkArea1 = new Area();
         $siteNetworkArea1->setLabel('Logo');
@@ -1149,7 +1150,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteContactBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2' id='contactArea' ><div id='contactInformation'><h3>Contactez-nous</h3><img src='http://media.phporchestra.inte/themePresentation-logoOrchestra.png' /><div id='infoInterakting'><p><b>Interakting</b> <br>Groupe Business & Decision<br>153 Rue de Courcelles<br>75017 PARIS FRANCE<br><span class='fontOrange'>Tél:</span> +33 1 56 21 21 21<br> <span class='fontOrange'>Fax:</span> +33 1 56 21 21 22</p></div><div id='accessInterakting'><h3>Accès:</h3> <p><span class='fontOrange'>Metro ligne 3</span> arrêt Pereire<br><span class='fontOrange'>RER ligne C</span> arrêt Pereire-Levallois</p> </div><div id='googleMapsInterakting'><iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14&amp;output=embed'></iframe><br /><small><a href='https://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=153+Rue+de+Courcelles+75817+Paris&amp;aq=&amp;sll=48.834414,2.499298&amp;sspn=0.523838,0.909805&amp;ie=UTF8&amp;hq=&amp;hnear=153+Rue+de+Courcelles,+75817+Paris&amp;ll=48.883747,2.298345&amp;spn=0.004088,0.007108&amp;t=m&amp;z=14' style='color:#0000FF;text-align:left'>Agrandir le plan</a></small></div></div><div id='contactForm'><h3>Une Demande ?<table border='0'><tbody><tr><td valign='top'> Nom </td><td> <input type='text' placeholder='Votre nom' required/> </td></tr><tr> <td valign='top'> Société </td><td> <input type='text' placeholder='Votre société'/> </td></tr><tr><td valign='top'> Email  </td><td> <input type='email' placeholder='Votre e-mail' required/> </td></tr><tr> <td valign='top'> Téléphone </td><td> <input type='tel' placeholder='Votre téléphone' required/></tr><tr><td valign='top'> Sujet   </td><td> <input type='text' placeholder='Votre sujet' required/> </td></tr><tr> <td valign='top'> Type de demande   </td><td> <select><option> Orchestra </option><option> Presse </option><option> Information </option><option> Emploi </option></select></td></tr><tr><td valign='top'> Message </td><td> <textarea  rows='10' cols='25' placeholder='Votre message' required> </textarea> </td></tr> <tr> <td> <input type='submit' value='OK' /></td> </tr> </tbody></table></div></div>",
         ));
-        $siteContactBlock0->addArea(array('nodeId' => 'fixture_page_contact', 'areaId' => 'mainContentArea1'));
+        $siteContactBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteContactArea1 = new Area();
         $siteContactArea1->setLabel('Logo');
@@ -1230,7 +1231,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteLegalBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1><p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate. Cras at urna sem. Nullam sed risus porta, placerat metus bibendum, commodo metus. Donec blandit leo eros, sed convallis odio sollicitudin at.Morbi ut pulvinar lorem. Duis venenatis interdum hendrerit. Curabitur sit amet eleifend sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse volutpat nulla sed eleifend malesuada. Suspendisse fringilla, est et dapibus molestie, orci leo pretium nulla, vitae consectetur ipsum enim ut magna. Duis sagittis auctor sollicitudin. Nunc interdum, quam id varius interdum, nulla felis blandit sapien, ac egestas lectus turpis in urna. Sed id ullamcorper nulla, quis tempor libero. Donec aliquet neque vitae rhoncus vestibulum. Aliquam id nunc ut justo sagittis bibendum sit amet non metus.Mauris aliquam mattis sem, in tempus eros feugiat non. Aenean vitae odio sapien. Curabitur ut luctus purus, nec vehicula nunc. Sed massa odio, sagittis a odio eget, posuere imperdiet eros. Sed sit amet neque tempus urna rutrum egestas. Maecenas dignissim justo orci, vitae aliquet mi gravida feugiat. Quisque ullamcorper non dui eget fringilla. convallis condimentum placerat. Mauris bibendum libero ac neque tempus, et pharetra enim cursus. In nec porta mi. Duis feugiat, enim nec ornare malesuada, ligula metus iaculis quam, dapibus fermentum lacus lorem ut diam. Pellentesque condimentum ante sed augue pretium placerat. Ut venenatis, lacus vel imperdiet aliquam, enim risus rhoncus mi, eget consequat tellus ante nec felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in erat eget leo tincidunt euismod. Sed hendrerit malesuada magna commodo porta. Suspendisse diam urna, pretium ut mi vel, vulputate ultricies dolor. Nam eleifend accumsan nibh. Duis hendrerit ornare urna, sit amet commodo eros imperdiet nec.Donec tristique est sit amet justo fringilla, a hendrerit ligula ultricies. Phasellus dignissim mi sit amet nibh gravida, vitae lobortis lorem imperdiet. Praesent dolor quam, luctus sed dui eu, eleifend mattis tortor. Curabitur varius lacus at sapien eleifend, vitae feugiat lectus mattis. In malesuada molestie turpis, et mattis ante euismod sed. Integer interdum adipiscing purus vitae vestibulum. Proin aliquam egestas nunc, ut dictum justo lacinia quis. Phasellus tincidunt mauris fringilla mauris hendrerit euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia neque sed consequat dapibus. Nulla hendrerit mollis nisi vitae vehicula. Maecenas viverra lacus neque, quis viverra ligula dignissim vel. Nulla interdum pulvinar vulputate.</p></h1></div>",
         ));
-        $siteLegalBlock0->addArea(array('nodeId' => 'fixture_page_legal_mentions', 'areaId' => 'mainContentArea1'));
+        $siteLegalBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteLegalBlock1 = new Block();
         $siteLegalBlock1->setLabel('Wysiwyg 2');
@@ -1238,7 +1239,7 @@ Smart.eolas est le fruit de 15 ans d’expérience, à la fois en tant que spéc
         $siteLegalBlock1->setAttributes(array(
             "htmlContent" => "<div class='content3'>  <h3 class='blocTitle'><p class='titleModule'>Actu</p> </h3>   <div class='blockContent'> NEWS</div> </div>",
         ));
-        $siteLegalBlock1->addArea(array('nodeId' => 'fixture_page_legal_mentions', 'areaId' => 'moduleArea'));
+        $siteLegalBlock1->addArea(array('nodeId' => 0, 'areaId' => 'moduleArea'));
 
         $siteLegalArea1 = new Area();
         $siteLegalArea1->setLabel('Logo');
