@@ -252,7 +252,7 @@ class NodeRepositoryTest extends KernelTestCase
     public function provideSiteIdAndNumberOfNode()
     {
         return array(
-            array('2', 11, 1),
+            array('2', 12, 1),
             array('3', 10, 1),
         );
     }
@@ -339,7 +339,7 @@ class NodeRepositoryTest extends KernelTestCase
         return array(
             array('1', 8, 2, 'fr'),
             array('1', 1, 1, 'en'),
-            array('2', 5, 1, 'fr'),
+            array('2', 6, 1, 'fr'),
             array('3', 8, 1, 'fr'),
             array('3', 8, 1, 'en'),
         );
@@ -383,8 +383,8 @@ class NodeRepositoryTest extends KernelTestCase
             array(NodeInterface::ROOT_NODE_ID, 0, 6, 2, '1', 'fr'),
             array(NodeInterface::ROOT_NODE_ID, 1, 1, 1, '1', 'en'),
             array(NodeInterface::ROOT_NODE_ID, 0, 6, 2, '1'),
-            array(NodeInterface::ROOT_NODE_ID, 1, 11, 1, '2', 'fr'),
-            array(NodeInterface::ROOT_NODE_ID, 1, 11, 1, '2'),
+            array(NodeInterface::ROOT_NODE_ID, 1, 12, 1, '2', 'fr'),
+            array(NodeInterface::ROOT_NODE_ID, 1, 12, 1, '2'),
             array(NodeInterface::ROOT_NODE_ID, 1, 10, 1, '3', 'fr'),
             array(NodeInterface::ROOT_NODE_ID, 0, 6, 1, '3', 'fr'),
             array('espace_Cardif', 0, 5, 1, '3', 'fr'),
