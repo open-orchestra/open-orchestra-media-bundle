@@ -9,7 +9,6 @@ services:
         class: %php_orchestra_media.display_media_manager.class%
         arguments:
             - %php_orchestra_base.mediatheque.url%
-            - %php_orchestra_media.no_image_available%
     php_orchestra_media.display_media.image:
         class: %php_orchestra_media.display_media.image.class%
         tags:
