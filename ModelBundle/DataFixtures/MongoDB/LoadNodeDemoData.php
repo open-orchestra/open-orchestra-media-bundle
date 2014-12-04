@@ -868,7 +868,6 @@ Enfin, la digitalisation des applications et les stratégies mobiles de l’entr
     {
         $siteNewsBlock0 = new Block();
         $siteNewsBlock0->setLabel('Wysiwyg 1');
-        $siteNewsBlock0->setLabel('Wysiwyg 1');
         $siteNewsBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteNewsBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>Actu</h1>
