@@ -154,7 +154,6 @@ class NodeRepositoryTest extends KernelTestCase
         foreach ($nodes as $node) {
             $this->assertSameNode($language, array_shift($versions), $siteId, $node);
         }
-
     }
 
     /**
@@ -168,6 +167,65 @@ class NodeRepositoryTest extends KernelTestCase
             array(array(1), 'fr', '2'),
             array(array(1), 'fr', '3'),
             array(array(1), 'en', '3'),
+        );
+    }
+
+    /**
+     * @param string $nodeId
+     * @param string $siteId
+     * @param int    $count
+     *
+     * @dataProvider provideNodeIdSiteIdAndCount
+     */
+    public function testFindByNodeIdAndSiteId($nodeId, $siteId, $count)
+    {
+        Phake::when($this->currentSiteManager)->getCurrentSiteId()->thenReturn($siteId);
+
+        $nodes = $this->repository->findByNodeIdAndSiteId($nodeId);
+
+        $this->assertCount($count, $nodes);
+    }
+
+    /**
+     * @return array
+     */
+    public function provideNodeIdSiteIdAndCount()
+    {
+        return array(
+            array(NodeInterface::ROOT_NODE_ID, '1', 4),
+            array(NodeInterface::TRANSVERSE_NODE_ID, '2', 2),
+            array('fixture_page_what_is_orchestra', '2', 1),
+        );
+    }
+
+
+
+    /**
+     * @param string $parentId
+     * @param string $siteId
+     * @param int    $count
+     *
+     * @dataProvider provideParentIdSiteIdAndCount
+     */
+    public function testFindByParentIdAndSiteId($parentId, $siteId, $count)
+    {
+        Phake::when($this->currentSiteManager)->getCurrentSiteId()->thenReturn($siteId);
+
+        $nodes = $this->repository->findByParentIdAndSiteId($parentId);
+
+        $this->assertCount($count, $nodes);
+    }
+
+    /**
+     * @return array
+     */
+    public function provideParentIdSiteIdAndCount()
+    {
+        return array(
+            array(NodeInterface::ROOT_NODE_ID, '1', 8),
+            array('fixture_about_us', '1', 2),
+            array(NodeInterface::TRANSVERSE_NODE_ID, '2', 0),
+            array('fixture_page_what_is_orchestra', '2', 0),
         );
     }
 
