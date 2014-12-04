@@ -49,7 +49,6 @@ class PHPOrchestraMediaExtension extends Extension
             $dir = '/var/www/media-phporchestra';
         }
         $container->setParameter('php_orchestra_media.upload_dir', $dir);
-        $container->setParameter('php_orchestra_media.no_image_available', $config['no_image_available']);
         $container->setParameter('php_orchestra_media.thumbnail.configuration', $config['thumbnail']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
