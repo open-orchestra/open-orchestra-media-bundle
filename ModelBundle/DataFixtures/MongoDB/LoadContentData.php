@@ -34,7 +34,7 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 71;
+        return 510;
     }
     /**
      * @return Content

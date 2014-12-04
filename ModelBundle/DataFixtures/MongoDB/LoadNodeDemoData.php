@@ -73,7 +73,7 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function getOrder()
     {
-        return 51;
+        return 610;
     }
 
     /**

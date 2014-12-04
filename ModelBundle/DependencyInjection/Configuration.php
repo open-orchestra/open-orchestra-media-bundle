@@ -94,6 +94,13 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\RoleRepository')->end()
                 ->end()
             ->end()
+            ->arrayNode('keyword')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('class')->defaultValue('PHPOrchestra\ModelBundle\Document\Keyword')->end()
+                    ->scalarNode('repository')->defaultValue('PHPOrchestra\ModelBundle\Repository\KeywordRepository')->end()
+                ->end()
+            ->end()
         ->end();
 
         return $treeBuilder;

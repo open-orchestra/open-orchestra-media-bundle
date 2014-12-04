@@ -34,7 +34,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        return 70;
+        return 520;
     }
 
     /**

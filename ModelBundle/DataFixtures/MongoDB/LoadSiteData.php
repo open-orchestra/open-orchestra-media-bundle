@@ -115,6 +115,6 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 80;
+        return 300;
     }
 }
