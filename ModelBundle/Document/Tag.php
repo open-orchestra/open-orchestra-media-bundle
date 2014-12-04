@@ -23,7 +23,7 @@ class Tag implements TagInterface
     /**
      * @ODM\Field(type="string")
      */
-    protected $name;
+    protected $label;
 
     /**
      * @return mixed
@@ -36,17 +36,17 @@ class Tag implements TagInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getLabel()
     {
-        return $this->name;
+        return $this->label;
     }
 
     /**
-     * @param string $name
+     * @param string $label
      */
-    public function setName($name)
+    public function setLabel($label)
     {
-        $this->name = $name;
+        $this->label = $label;
     }
 
     /**

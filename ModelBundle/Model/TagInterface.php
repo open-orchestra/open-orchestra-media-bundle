@@ -15,10 +15,10 @@ interface TagInterface
     /**
      * @return string
      */
-    public function getName();
+    public function getLabel();
 
     /**
-     * @param string $name
+     * @param string $label
      */
-    public function setName($name);
+    public function setLabel($name);
 }
