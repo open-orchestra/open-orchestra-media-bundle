@@ -3,9 +3,9 @@
 namespace PHPOrchestra\ModelBundle\Model;
 
 /**
- * interface TagInterface
+ * interface KeywordInterface
  */
-interface TagInterface
+interface KeywordInterface
 {
     /**
      * @return string

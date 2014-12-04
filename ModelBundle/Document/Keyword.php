@@ -3,17 +3,17 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use PHPOrchestra\ModelBundle\Model\TagInterface;
+use PHPOrchestra\ModelBundle\Model\KeywordInterface;
 
 /**
- * Class Tags
+ * Class Keyword
  *
  * @ODM\Document(
- *   collection="tag",
- *   repositoryClass="PHPOrchestra\ModelBundle\Repository\TagRepository"
+ *   collection="keyword",
+ *   repositoryClass="PHPOrchestra\ModelBundle\Repository\KeywordRepository"
  * )
  */
-class Tag implements TagInterface
+class Keyword implements KeywordInterface
 {
     /**
      * @ODM\Id()

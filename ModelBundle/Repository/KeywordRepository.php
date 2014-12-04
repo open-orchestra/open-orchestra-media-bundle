@@ -5,9 +5,9 @@ namespace PHPOrchestra\ModelBundle\Repository;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 
 /**
- * Class TagRepository
+ * Class KeywordRepository
  */
-class TagRepository extends DocumentRepository
+class KeywordRepository extends DocumentRepository
 {
 
 }
