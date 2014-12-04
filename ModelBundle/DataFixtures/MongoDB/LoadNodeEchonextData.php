@@ -22,33 +22,62 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     public function load(ObjectManager $manager)
     {
-        $nodeTransverseFr = $this->generateNodeTransverse('fr');
-        $manager->persist($nodeTransverseFr);
-        $manager->persist($this->generateNodeHome('fr', $nodeTransverseFr->getId()));
-        $manager->persist($this->generateEspaceBDDF('fr', $nodeTransverseFr->getId()));
-        $manager->persist($this->generateEspaceCardif('fr', $nodeTransverseFr->getId()));
-        $manager->persist($this->generateEspaceArval('fr', $nodeTransverseFr->getId()));
-        $manager->persist($this->generateEspaceXXX('fr', $nodeTransverseFr->getId()));
-        $manager->persist($this->generateCardifBienvenu('fr', $nodeTransverseFr->getId()));
-        $manager->persist($this->generateCardifActualite('fr', $nodeTransverseFr->getId()));
-        $manager->persist($this->generateCardifMissions('fr', $nodeTransverseFr->getId()));
-        $manager->persist($this->generateCardifRemun('fr', $nodeTransverseFr->getId()));
-        $manager->persist($this->generateNodeNews('fr', $nodeTransverseFr->getId()));
-
-        $nodeTransverseEn = $this->generateNodeTransverse('en');
-        $manager->persist($nodeTransverseEn);
-        $manager->persist($this->generateNodeHome('en', $nodeTransverseEn->getId()));
-        $manager->persist($this->generateEspaceBDDF('en', $nodeTransverseEn->getId()));
-        $manager->persist($this->generateEspaceCardif('en', $nodeTransverseEn->getId()));
-        $manager->persist($this->generateEspaceArval('en', $nodeTransverseEn->getId()));
-        $manager->persist($this->generateEspaceXXX('en', $nodeTransverseEn->getId()));
-        $manager->persist($this->generateCardifBienvenu('en', $nodeTransverseEn->getId()));
-        $manager->persist($this->generateCardifActualite('en', $nodeTransverseEn->getId()));
-        $manager->persist($this->generateCardifMissions('en', $nodeTransverseEn->getId()));
-        $manager->persist($this->generateCardifRemun('en', $nodeTransverseEn->getId()));
-        $manager->persist($this->generateNodeNews('en', $nodeTransverseEn->getId()));
+        $this->loadByLanguages('fr', $manager);
+        $this->loadByLanguages('en', $manager);
 
         $manager->flush();
+    }
+
+    /**
+     * @param string        $languages
+     * @param ObjectManager $manager
+     */
+    protected function loadByLanguages($languages, ObjectManager $manager)
+    {
+        $nodeTransverse = $this->generateNodeTransverse($languages);
+        $manager->persist($nodeTransverse);
+
+        $nodeHome = $this->generateNodeHome($languages, $nodeTransverse->getId());
+        $manager->persist($nodeHome);
+        $this->addAreaRef($nodeTransverse, $nodeHome);
+
+        $nodeEspaceBDDF = $this->generateEspaceBDDF($languages, $nodeTransverse->getId());
+        $manager->persist($nodeEspaceBDDF);
+        $this->addAreaRef($nodeTransverse, $nodeEspaceBDDF);
+
+        $nodeEspaceCardifFr = $this->generateEspaceCardif($languages, $nodeTransverse->getId());
+        $manager->persist($nodeEspaceCardifFr);
+        $this->addAreaRef($nodeTransverse, $nodeEspaceCardifFr);
+
+        $nodeEspaceArval = $this->generateEspaceArval($languages, $nodeTransverse->getId());
+        $manager->persist($nodeEspaceArval);
+        $this->addAreaRef($nodeTransverse, $nodeEspaceArval);
+
+        $nodeEspaceXXX = $this->generateEspaceXXX($languages, $nodeTransverse->getId());
+        $manager->persist($nodeEspaceXXX);
+        $this->addAreaRef($nodeTransverse, $nodeEspaceXXX);
+
+        $nodeCardifBienvenue = $this->generateCardifBienvenu($languages, $nodeTransverse->getId());
+        $manager->persist($nodeCardifBienvenue);
+        $this->addAreaRef($nodeTransverse, $nodeCardifBienvenue);
+
+        $nodeCardifActualite = $this->generateCardifActualite($languages, $nodeTransverse->getId());
+        $manager->persist($nodeCardifActualite);
+        $this->addAreaRef($nodeTransverse, $nodeCardifActualite);
+
+        $nodeCardifMission = $this->generateCardifMissions($languages, $nodeTransverse->getId());
+        $manager->persist($nodeCardifMission);
+        $this->addAreaRef($nodeTransverse, $nodeCardifMission);
+
+        $nodeCardifRemun = $this->generateCardifRemun($languages, $nodeTransverse->getId());
+        $manager->persist($nodeCardifRemun);
+        $this->addAreaRef($nodeTransverse, $nodeCardifRemun);
+
+        $nodeNews = $this->generateNodeNews($languages, $nodeTransverse->getId());
+        $manager->persist($nodeNews);
+        $this->addAreaRef($nodeTransverse, $nodeNews);
+
+        $manager->persist($nodeTransverse);
     }
 
     /**
@@ -59,6 +88,22 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     public function getOrder()
     {
         return 52;
+    }
+
+    /**
+     * @param NodeInterface $nodeTransverse
+     * @param NodeInterface $node
+     */
+    protected function addAreaRef(NodeInterface $nodeTransverse, NodeInterface $node)
+    {
+        foreach ($node->getAreas() as $area) {
+            foreach ($area->getBlocks() as $areaBlock) {
+                if ($nodeTransverse->getId() === $areaBlock['nodeId']) {
+                    $block = $nodeTransverse->getBlock($areaBlock['blockId']);
+                    $block->addArea(array('nodeId' => $node->getId(), 'areaId' => $area->getAreaId()));
+                }
+            }
+        }
     }
 
     /**
@@ -390,7 +435,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         // Main
         $descBlock = $this->generateBlockWysiwyg('Home', '<h1>Bienvenue sur le site de demo Echonext.</h1>', 'main');
         $carrouselBlock = $this->generateBlockCarrousel('slider1_container', 'Carrousel', 'main');
-        $newsList = $this->generateBlockContentList('content-list', 'news', 'News 6', 'main', 70);
+        $newsList = $this->generateBlockContentList('content-list', 'news', 'News 6', 'main', 0, 70);
 
         $mainArea = $this->generateArea('Main', 'main',
             array(
