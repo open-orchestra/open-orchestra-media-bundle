@@ -210,6 +210,38 @@ class NodeRepository extends DocumentRepository implements FieldAutoGenerableRep
     /**
      * @param string $nodeId
      *
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     *
+     * @return mixed
+     */
+    public function findByNodeIdAndSiteId($nodeId)
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->field('nodeId')->equals($nodeId);
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
+
+        return $qb->getQuery()->execute();
+    }
+
+    /**
+     * @param string $parentId
+     *
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     *
+     * @return mixed
+     */
+    public function findByParentIdAndSiteId($parentId)
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->field('parentId')->equals($parentId);
+        $qb->field('siteId')->equals($this->currentSiteManager->getCurrentSiteId());
+
+        return $qb->getQuery()->execute();
+    }
+
+    /**
+     * @param string $nodeId
+     *
      * @deprecated This method is not precise
      *
      * @return mixed

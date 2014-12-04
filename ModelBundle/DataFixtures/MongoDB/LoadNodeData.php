@@ -42,6 +42,9 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $aboutUs = $this->generateAboutUsNode();
         $manager->persist($aboutUs);
 
+        $manager->persist($this->generateDeletedNode());
+        $manager->persist($this->generateDeletedSonNode());
+
         $bd = $this->generateBdNode();
         $manager->persist($bd);
 
@@ -407,7 +410,8 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
             'contentType' => 'news',
             'id' => 'contentNewsList',
             'class' => 'contentListClass',
-            'url' => 'fixture_bd'
+            'url' => 'fixture_bd',
+            'characterNumber' => 50
         ));
         $contentListBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
 
@@ -436,6 +440,91 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $aboutUs->addArea($aboutUsArea);
         $aboutUs->addBlock($aboutUsBlock);
         $aboutUs->addBlock($contentListBlock);
+
+        return $aboutUs;
+    }
+
+    /**
+     * @return Node
+     */
+    protected function generateDeletedNode()
+    {
+        $aboutUsBlock = new Block();
+        $aboutUsBlock->setLabel('About us');
+        $aboutUsBlock->setComponent('sample');
+        $aboutUsBlock->setAttributes(array(
+            'title' => 'Qui sommes-nous?',
+            'author' => 'Pour tout savoir sur notre entreprise.',
+            'news' => ''
+        ));
+        $aboutUsBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
+        $aboutUsArea = new Area();
+        $aboutUsArea->setLabel('Main');
+        $aboutUsArea->setAreaId('main');
+        $aboutUsArea->addBlock(array('nodeId' => 0, 'blockId' => 0));
+
+        $aboutUs = new Node();
+        $aboutUs->setNodeId('fixture_deleted');
+        $aboutUs->setNodeType(NodeInterface::TYPE_DEFAULT);
+        $aboutUs->setName('Fixture deleted');
+        $aboutUs->setSiteId('1');
+        $aboutUs->setParentId(NodeInterface::ROOT_NODE_ID);
+        $aboutUs->setPath('-');
+        $aboutUs->setAlias('deleted');
+        $aboutUs->setVersion(1);
+        $aboutUs->setLanguage('fr');
+        $aboutUs->setStatus($this->getReference('status-published'));
+        $aboutUs->setDeleted(true);
+        $aboutUs->setTemplateId('template_home');
+        $aboutUs->setTheme('theme2');
+        $aboutUs->setInFooter(true);
+        $aboutUs->setInMenu(true);
+        $aboutUs->addArea($aboutUsArea);
+        $aboutUs->addBlock($aboutUsBlock);
+
+        return $aboutUs;
+    }
+
+    /**
+     * @return Node
+     */
+    protected function generateDeletedSonNode()
+    {
+        $aboutUsBlock = new Block();
+        $aboutUsBlock->setLabel('About us');
+        $aboutUsBlock->setComponent('sample');
+        $aboutUsBlock->setAttributes(array(
+            'title' => 'Qui sommes-nous?',
+            'author' => 'Pour tout savoir sur notre entreprise.',
+            'news' => ''
+        ));
+        $aboutUsBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
+        $aboutUsArea = new Area();
+        $aboutUsArea->setLabel('Main');
+        $aboutUsArea->setAreaId('main');
+        $aboutUsArea->addBlock(array('nodeId' => 0, 'blockId' => 0));
+        $aboutUsArea->addBlock(array('nodeId' => 0, 'blockId' => 1));
+
+        $aboutUs = new Node();
+        $aboutUs->setNodeId('fixture_deleted_son');
+        $aboutUs->setNodeType(NodeInterface::TYPE_DEFAULT);
+        $aboutUs->setName('Fixture deleted son');
+        $aboutUs->setSiteId('1');
+        $aboutUs->setParentId('fixture_deleted');
+        $aboutUs->setPath('-');
+        $aboutUs->setAlias('deleted');
+        $aboutUs->setVersion(1);
+        $aboutUs->setLanguage('fr');
+        $aboutUs->setStatus($this->getReference('status-published'));
+        $aboutUs->setDeleted(true);
+        $aboutUs->setTemplateId('template_home');
+        $aboutUs->setTheme('theme2');
+        $aboutUs->setInFooter(true);
+        $aboutUs->setInMenu(true);
+        $aboutUs->addArea($aboutUsArea);
+        $aboutUs->addBlock($aboutUsBlock);
 
         return $aboutUs;
     }
