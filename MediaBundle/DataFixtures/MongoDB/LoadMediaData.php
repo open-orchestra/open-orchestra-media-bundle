@@ -48,6 +48,6 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 100;
+        return 410;
     }
 }

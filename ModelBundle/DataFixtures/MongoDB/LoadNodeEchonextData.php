@@ -87,7 +87,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
      */
     public function getOrder()
     {
-        return 52;
+        return 620;
     }
 
     /**

@@ -34,7 +34,7 @@ class LoadTemplateData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function getOrder()
     {
-        return 40;
+        return 210;
     }
 
     /**
