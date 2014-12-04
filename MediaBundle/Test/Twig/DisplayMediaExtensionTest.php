@@ -10,7 +10,7 @@ use PHPOrchestra\MediaBundle\Twig\DisplayMediaExtension;
  */
 class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    protected $noMedia = 'noMedia';
+    protected $noMedia = '';
     protected $displayMediaManager;
     protected $mediaRepository;
     protected $extension;
@@ -22,7 +22,6 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->displayMediaManager = Phake::mock('PHPOrchestra\Media\DisplayMedia\DisplayMediaManager');
-        Phake::when($this->displayMediaManager)->displayNoMediaPreview()->thenReturn($this->noMedia);
         $this->mediaRepository = Phake::mock('PHPOrchestra\MediaBundle\Repository\MediaRepository');
         $this->media = Phake::mock('PHPOrchestra\MediaBundle\Document\Media');
 
