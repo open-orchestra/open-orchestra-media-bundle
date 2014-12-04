@@ -58,6 +58,6 @@ class EntityTest extends \PHPUnit_Framework_TestCase
             array('Theme',            'ThemeInterface'),
             array('Area',             'HtmlClassContainerInterface'),
             array('Keyword',          'KeywordInterface'),
-            );
+        );
     }
 }
