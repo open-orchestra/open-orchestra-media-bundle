@@ -71,6 +71,34 @@ class Media implements MediaInterface
     protected $thumbnail;
 
     /**
+     * @var string
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $title;
+
+    /**
+     * @var string
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $alt;
+
+    /**
+     * @var string
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $copyright;
+
+    /**
+     * @var string
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $comment;
+
+    /**
      * @return string
      */
     public function getFilesystemName()
@@ -172,5 +200,69 @@ class Media implements MediaInterface
     public function setThumbnail($thumbnail)
     {
         $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+
+    /**
+     * @param string $alt
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCopyright()
+    {
+        return $this->copyright;
+    }
+
+    /**
+     * @param string $copyright
+     */
+    public function setCopyright($copyright)
+    {
+        $this->copyright = $copyright;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 }

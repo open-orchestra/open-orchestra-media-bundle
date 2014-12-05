@@ -75,4 +75,44 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface
      * @param string $thumbnail
      */
     public function setThumbnail($thumbnail);
+
+    /**
+     * @return string
+     */
+    public function getAlt();
+
+    /**
+     * @param string $alt
+     */
+    public function setAlt($alt);
+
+    /**
+     * @return string
+     */
+    public function getComment();
+
+    /**
+     * @param string $comment
+     */
+    public function setComment($comment);
+
+    /**
+     * @return string
+     */
+    public function getCopyright();
+
+    /**
+     * @param string $copyright
+     */
+    public function setCopyright($copyright);
+
+    /**
+     * @return string
+     */
+    public function getTitle();
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title);
 }
