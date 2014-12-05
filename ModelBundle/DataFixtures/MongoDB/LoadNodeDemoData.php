@@ -28,40 +28,54 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
         $manager->persist($this->generateNodeTransverse('en'));
 
         $siteHome = $this->generateNodeSiteHome($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteHome);
         $manager->persist($siteHome);
 
         $siteWhat = $this->generateNodeSiteWhatIsOrchestra($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteWhat);
         $manager->persist($siteWhat);
 
         $siteAboutUs = $this->generateNodeSiteAboutUs($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteAboutUs);
         $manager->persist($siteAboutUs);
 
         $siteCommunity = $this->generateNodeSiteCommunity($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteCommunity);
         $manager->persist($siteCommunity);
 
         $siteContact = $this->generateNodeSiteContact($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteContact);
         $manager->persist($siteContact);
 
         $siteDocumentation = $this->generateNodeSiteDocumentation($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteDocumentation);
         $manager->persist($siteDocumentation);
 
         $siteJoinUs = $this->generateNodeSiteJoinUs($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteJoinUs);
         $manager->persist($siteJoinUs);
 
         $siteLegalMention = $this->generateNodeSiteLegalMentions($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteLegalMention);
         $manager->persist($siteLegalMention);
 
         $siteNetwork = $this->generateNodeSiteNetwork($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteNetwork);
         $manager->persist($siteNetwork);
 
         $siteNews = $this->generateNodeSiteNews($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteNews);
         $manager->persist($siteNews);
 
         $siteOurTeam = $this->generateNodeSiteOurTeam($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteOurTeam);
         $manager->persist($siteOurTeam);
 
         $siteStart = $this->generateNodeSiteStartOrchestra($transverseFr->getId());
+        $this->addAreaRef($transverseFr, $siteStart);
         $manager->persist($siteStart);
+
+        $manager->persist($transverseFr);
 
         $manager->flush();
     }
@@ -74,6 +88,22 @@ class LoadNodeDemoData extends AbstractFixture implements OrderedFixtureInterfac
     public function getOrder()
     {
         return 61;
+    }
+
+    /**
+     * @param NodeInterface $nodeTransverse
+     * @param NodeInterface $node
+     */
+    protected function addAreaRef(NodeInterface $nodeTransverse, NodeInterface $node)
+    {
+        foreach ($node->getAreas() as $area) {
+            foreach ($area->getBlocks() as $areaBlock) {
+                if ($nodeTransverse->getNodeId() === $areaBlock['nodeId']) {
+                    $block = $nodeTransverse->getBlock($areaBlock['blockId']);
+                    $block->addArea(array('nodeId' => $node->getId(), 'areaId' => $area->getAreaId()));
+                }
+            }
+        }
     }
 
     /**
@@ -394,7 +424,7 @@ Nativement, multi-sites multi support, facile d’intégration au SI, ouvert ver
             </p>
             </div>",
         ));
-        $siteStartBlock0->addArea(array('nodeId' => 'fixture_page_start_orchestra', 'areaId' => 'mainContentArea1'));
+        $siteStartBlock0->addArea(array('nodeId' => 0, 'areaId' => 'mainContentArea1'));
 
         $siteStartArea1 = new Area();
         $siteStartArea1->setLabel('Logo');
