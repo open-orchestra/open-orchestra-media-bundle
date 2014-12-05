@@ -8,6 +8,7 @@ use PHPOrchestra\ModelBundle\Mapping\Annotations as ORCHESTRA;
 use PHPOrchestra\ModelBundle\Model\ContentAttributeInterface;
 use PHPOrchestra\ModelBundle\Model\ContentInterface;
 use PHPOrchestra\ModelBundle\Model\StatusInterface;
+use PHPOrchestra\ModelBundle\Model\KeywordInterface;
 
 /**
  * Description of Content
@@ -88,6 +89,13 @@ class Content implements ContentInterface
     protected $status;
 
     /**
+     * @var ArrayCollection
+     *
+     * @MongoDB\EmbedMany(targetDocument="EmbedKeyword")
+     */
+    protected $keywords;
+
+    /**
      * @var boolean
      *
      * @MongoDB\Field(type="boolean")
@@ -147,6 +155,46 @@ class Content implements ContentInterface
     public function removeAttribute(ContentAttributeInterface $attribute)
     {
         $this->attributes->removeElement($attribute);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * @param string $label
+     *
+     * @return KeywordInterface|null
+     */
+    public function getKeywordByLabel($label)
+    {
+        foreach ($this->keywords as $keyword) {
+            if ($label == $keyword->getLabel()) {
+                return $keyword;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param KeywordInterface $keyword
+     */
+    public function addKeyword(KeywordInterface $keyword)
+    {
+        $this->keywords->add(EmbedKeyword::createFromKeyword($keyword));
+    }
+
+    /**
+     * @param ContentAttributeInterface $attribute
+     */
+    public function removeKeyword(KeywordInterface $keyword)
+    {
+        $this->keywords->removeElement($keyword);
     }
 
     /**
