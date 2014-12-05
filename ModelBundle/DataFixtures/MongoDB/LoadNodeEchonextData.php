@@ -37,43 +37,43 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
         $nodeTransverse = $this->generateNodeTransverse($languages);
         $manager->persist($nodeTransverse);
 
-        $nodeHome = $this->generateNodeHome($languages, $nodeTransverse->getId());
+        $nodeHome = $this->generateNodeHome($languages);
         $manager->persist($nodeHome);
         $this->addAreaRef($nodeTransverse, $nodeHome);
 
-        $nodeEspaceBDDF = $this->generateEspaceBDDF($languages, $nodeTransverse->getId());
+        $nodeEspaceBDDF = $this->generateEspaceBDDF($languages);
         $manager->persist($nodeEspaceBDDF);
         $this->addAreaRef($nodeTransverse, $nodeEspaceBDDF);
 
-        $nodeEspaceCardifFr = $this->generateEspaceCardif($languages, $nodeTransverse->getId());
+        $nodeEspaceCardifFr = $this->generateEspaceCardif($languages);
         $manager->persist($nodeEspaceCardifFr);
         $this->addAreaRef($nodeTransverse, $nodeEspaceCardifFr);
 
-        $nodeEspaceArval = $this->generateEspaceArval($languages, $nodeTransverse->getId());
+        $nodeEspaceArval = $this->generateEspaceArval($languages);
         $manager->persist($nodeEspaceArval);
         $this->addAreaRef($nodeTransverse, $nodeEspaceArval);
 
-        $nodeEspaceXXX = $this->generateEspaceXXX($languages, $nodeTransverse->getId());
+        $nodeEspaceXXX = $this->generateEspaceXXX($languages);
         $manager->persist($nodeEspaceXXX);
         $this->addAreaRef($nodeTransverse, $nodeEspaceXXX);
 
-        $nodeCardifBienvenue = $this->generateCardifBienvenu($languages, $nodeTransverse->getId());
+        $nodeCardifBienvenue = $this->generateCardifBienvenu($languages);
         $manager->persist($nodeCardifBienvenue);
         $this->addAreaRef($nodeTransverse, $nodeCardifBienvenue);
 
-        $nodeCardifActualite = $this->generateCardifActualite($languages, $nodeTransverse->getId());
+        $nodeCardifActualite = $this->generateCardifActualite($languages);
         $manager->persist($nodeCardifActualite);
         $this->addAreaRef($nodeTransverse, $nodeCardifActualite);
 
-        $nodeCardifMission = $this->generateCardifMissions($languages, $nodeTransverse->getId());
+        $nodeCardifMission = $this->generateCardifMissions($languages);
         $manager->persist($nodeCardifMission);
         $this->addAreaRef($nodeTransverse, $nodeCardifMission);
 
-        $nodeCardifRemun = $this->generateCardifRemun($languages, $nodeTransverse->getId());
+        $nodeCardifRemun = $this->generateCardifRemun($languages);
         $manager->persist($nodeCardifRemun);
         $this->addAreaRef($nodeTransverse, $nodeCardifRemun);
 
-        $nodeNews = $this->generateNodeNews($languages, $nodeTransverse->getId());
+        $nodeNews = $this->generateNodeNews($languages);
         $manager->persist($nodeNews);
         $this->addAreaRef($nodeTransverse, $nodeNews);
 
@@ -98,7 +98,7 @@ class LoadNodeEchonextData extends AbstractFixture implements OrderedFixtureInte
     {
         foreach ($node->getAreas() as $area) {
             foreach ($area->getBlocks() as $areaBlock) {
-                if ($nodeTransverse->getId() === $areaBlock['nodeId']) {
+                if ($nodeTransverse->getNodeId() === $areaBlock['nodeId']) {
                     $block = $nodeTransverse->getBlock($areaBlock['blockId']);
                     $block->addArea(array('nodeId' => $node->getId(), 'areaId' => $area->getAreaId()));
                 }

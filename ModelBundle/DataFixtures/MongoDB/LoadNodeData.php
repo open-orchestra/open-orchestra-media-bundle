@@ -505,7 +505,6 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $aboutUsArea->setLabel('Main');
         $aboutUsArea->setAreaId('main');
         $aboutUsArea->addBlock(array('nodeId' => 0, 'blockId' => 0));
-        $aboutUsArea->addBlock(array('nodeId' => 0, 'blockId' => 1));
 
         $aboutUs = new Node();
         $aboutUs->setNodeId('fixture_deleted_son');
