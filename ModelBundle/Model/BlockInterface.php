@@ -45,7 +45,7 @@ Interface BlockInterface
     /**
      * Get attributes
      *
-     * @return mixed $attributes
+     * @return array $attributes
      */
     public function getAttributes();
 
