@@ -10,7 +10,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  *
  * @MongoDB\EmbeddedDocument
  */
-class EmbedStatus extends Status
+class EmbedStatus extends AbstractStatus
 {
     /**
      * @param Status $status
