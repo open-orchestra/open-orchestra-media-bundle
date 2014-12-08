@@ -187,7 +187,7 @@ class Content implements ContentInterface
      */
     public function addKeyword(KeywordInterface $keyword)
     {
-        $this->keywords->add(EmbedKeyword::createFromKeyword($keyword));
+        $this->keywords->add($keyword);
     }
 
     /**
