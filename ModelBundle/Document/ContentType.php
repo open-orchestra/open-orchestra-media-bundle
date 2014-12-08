@@ -198,14 +198,7 @@ class ContentType implements ContentTypeInterface
      */
     public function setStatus(StatusInterface $status = null)
     {
-        if ($status instanceof EmbedStatus ) {
-            $this->status = $status;
-        }
-        elseif ($status instanceof StatusInterface) {
-            $this->status = EmbedStatus::createFromStatus($status);
-        } else {
-            $this->status = null;
-        }
+        $this->status = $status;
     }
 
     /**
