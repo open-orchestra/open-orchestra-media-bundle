@@ -4,6 +4,7 @@ namespace PHPOrchestra\MediaBundle\Test\Manager;
 
 use Phake;
 use PHPOrchestra\Media\Manager\ImageResizerManager;
+use PHPOrchestra\Media\MediaEvents;
 
 /**
  * Class ImageResizerManagerTest
@@ -18,6 +19,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
     protected $media;
     protected $formats;
     protected $uploadDir;
+    protected $dispatcher;
     protected $file = 'What-are-you-talking-about.jpg';
 
     /**
@@ -39,10 +41,12 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
+        $this->dispatcher = Phake::mock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+
         $this->media = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
         Phake::when($this->media)->getFilesystemName()->thenReturn($this->file);
 
-        $this->manager = new ImageResizerManager($this->uploadDir, $this->formats);
+        $this->manager = new ImageResizerManager($this->uploadDir, $this->formats, $this->dispatcher);
     }
 
     /**
@@ -64,7 +68,9 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
         $this->manager->crop($this->media, $x, $y, $h, $w, $format);
 
         $this->assertFileExists($this->uploadDir .'/' . $format . '-' . $this->file);
+//        TODO Check why travis sees two different strings
 //        $this->assertFileEquals($this->uploadDir . '/'. $format . '-reference-crop.jpg', $this->uploadDir . '/'. $format . '-' . $this->file);
+        Phake::verify($this->dispatcher)->dispatch(MediaEvents::RESIZE_IMAGE, Phake::anyParameters());
     }
 
     /**
@@ -79,6 +85,9 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Test generate all thumbnails
+     */
     public function testGenerateAllThumbnails()
     {
         foreach ($this->formats as $key => $format) {
@@ -96,5 +105,6 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
 //            TODO Check why travis sees two different strings
 //            $this->assertFileEquals($this->uploadDir . '/'. $key . '-reference.jpg', $this->uploadDir . '/'. $key . '-' . $this->file);
         }
+        Phake::verify($this->dispatcher, Phake::times(3))->dispatch(MediaEvents::RESIZE_IMAGE, Phake::anyParameters());
     }
 }
