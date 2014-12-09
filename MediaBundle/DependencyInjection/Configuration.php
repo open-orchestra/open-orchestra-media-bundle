@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->children()
             ->scalarNode('upload_dir')->defaultNull()->end()
+            ->scalarNode('compression_quality')->defaultValue(75)->end()
             ->arrayNode('document')
                 ->addDefaultsIfNotSet()
                 ->children()

@@ -3,22 +3,31 @@
 namespace PHPOrchestra\Media\Manager;
 
 use Imagick;
+use PHPOrchestra\Media\Event\ResizeImageEvent;
+use PHPOrchestra\Media\MediaEvents;
 use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class ImageResizerManager
  */
 class ImageResizerManager
 {
+    protected $compressionQuality;
+    protected $dispatcher;
     protected $uploadDir;
     protected $formats;
 
     /**
-     * @param string $uploadDir
-     * @param array  $formats
+     * @param string                   $uploadDir
+     * @param array                    $formats
+     * @param int                      $compressionQuality
+     * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct($uploadDir, array $formats)
+    public function __construct($uploadDir, array $formats, $compressionQuality, $dispatcher)
     {
+        $this->compressionQuality = $compressionQuality;
+        $this->dispatcher = $dispatcher;
         $this->uploadDir = $uploadDir;
         $this->formats = $formats;
     }
@@ -61,9 +70,13 @@ class ImageResizerManager
     protected function saveImage(MediaInterface $media, Imagick $image, $key)
     {
         $image->setImageCompression(Imagick::COMPRESSION_JPEG);
-        $image->setImageCompressionQuality(75);
+        $image->setImageCompressionQuality($this->compressionQuality);
         $image->stripImage();
-        $image->writeImage($this->uploadDir . '/' . $key . '-' . $media->getFilesystemName());
+        $filename = $key . '-' . $media->getFilesystemName();
+        $image->writeImage($this->uploadDir . '/' . $filename);
+
+        $event = new ResizeImageEvent($filename);
+        $this->dispatcher->dispatch(MediaEvents::RESIZE_IMAGE, $event);
     }
 
     /**
