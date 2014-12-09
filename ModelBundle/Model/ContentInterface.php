@@ -33,6 +33,28 @@ interface ContentInterface extends StatusableInterface
     public function removeAttribute(ContentAttributeInterface $attribute);
 
     /**
+     * @return ArrayCollection
+     */
+    public function getKeywords();
+
+    /**
+     * @param string $label
+     *
+     * @return KeywordInterface|null
+     */
+    public function getKeywordByLabel($label);
+
+    /**
+     * @param KeywordInterface $keyword
+     */
+    public function addKeyword(KeywordInterface $keyword);
+
+    /**
+     * @param KeywordInterface $keyword
+     */
+    public function removeKeyword(KeywordInterface $keyword);
+
+    /**
      * @param string $contentId
      */
     public function setContentId($contentId);
