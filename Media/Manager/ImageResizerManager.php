@@ -13,6 +13,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class ImageResizerManager
 {
+    protected $compressionQuality;
     protected $dispatcher;
     protected $uploadDir;
     protected $formats;
@@ -20,10 +21,12 @@ class ImageResizerManager
     /**
      * @param string                   $uploadDir
      * @param array                    $formats
+     * @param int                      $compressionQuality
      * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct($uploadDir, array $formats, $dispatcher)
+    public function __construct($uploadDir, array $formats, $compressionQuality, $dispatcher)
     {
+        $this->compressionQuality = $compressionQuality;
         $this->dispatcher = $dispatcher;
         $this->uploadDir = $uploadDir;
         $this->formats = $formats;
@@ -67,7 +70,7 @@ class ImageResizerManager
     protected function saveImage(MediaInterface $media, Imagick $image, $key)
     {
         $image->setImageCompression(Imagick::COMPRESSION_JPEG);
-        $image->setImageCompressionQuality(75);
+        $image->setImageCompressionQuality($this->compressionQuality);
         $image->stripImage();
         $filename = $key . '-' . $media->getFilesystemName();
         $image->writeImage($this->uploadDir . '/' . $filename);

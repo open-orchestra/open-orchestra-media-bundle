@@ -20,6 +20,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
     protected $formats;
     protected $uploadDir;
     protected $dispatcher;
+    protected $compressionQuality;
     protected $file = 'What-are-you-talking-about.jpg';
 
     /**
@@ -27,6 +28,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
+        $this->compressionQuality = 75;
         $this->uploadDir = __DIR__ . '/images';
         $this->formats = array(
             'max_width' => array(
@@ -46,7 +48,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
         $this->media = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
         Phake::when($this->media)->getFilesystemName()->thenReturn($this->file);
 
-        $this->manager = new ImageResizerManager($this->uploadDir, $this->formats, $this->dispatcher);
+        $this->manager = new ImageResizerManager($this->uploadDir, $this->formats, $this->compressionQuality, $this->dispatcher);
     }
 
     /**

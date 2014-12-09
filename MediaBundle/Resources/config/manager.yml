@@ -7,4 +7,5 @@ services:
         arguments:
             - %php_orchestra_media.upload_dir%
             - %php_orchestra_media.thumbnail.configuration%
+            - %php_orchestra_media.resize.compression_quality%
             - @event_dispatcher

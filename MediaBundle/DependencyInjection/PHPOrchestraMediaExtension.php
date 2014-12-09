@@ -50,6 +50,7 @@ class PHPOrchestraMediaExtension extends Extension
         }
         $container->setParameter('php_orchestra_media.upload_dir', $dir);
         $container->setParameter('php_orchestra_media.thumbnail.configuration', $config['thumbnail']);
+        $container->setParameter('php_orchestra_media.resize.compression_quality', $config['compression_quality']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
