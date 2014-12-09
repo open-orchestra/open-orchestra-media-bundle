@@ -72,7 +72,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertFileExists($this->uploadDir .'/' . $format . '-' . $this->file);
 //        TODO Check why travis sees two different strings
 //        $this->assertFileEquals($this->uploadDir . '/'. $format . '-reference-crop.jpg', $this->uploadDir . '/'. $format . '-' . $this->file);
-        Phake::verify($this->dispatcher)->dispatch(MediaEvents::RESIZE_IMAGE, Phake::anyParameters());
+        Phake::verify($this->dispatcher)->dispatch(Phake::anyParameters());
     }
 
     /**
@@ -107,6 +107,6 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
 //            TODO Check why travis sees two different strings
 //            $this->assertFileEquals($this->uploadDir . '/'. $key . '-reference.jpg', $this->uploadDir . '/'. $key . '-' . $this->file);
         }
-        Phake::verify($this->dispatcher, Phake::times(3))->dispatch(MediaEvents::RESIZE_IMAGE, Phake::anyParameters());
+        Phake::verify($this->dispatcher, Phake::times(3))->dispatch(Phake::anyParameters());
     }
 }
