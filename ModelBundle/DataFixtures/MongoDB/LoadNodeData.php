@@ -23,6 +23,15 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $transverse = $this->generateTransverse('fr');
+        $manager->persist($transverse);
+
+        $transverseEn = $this->generateTransverse('en');
+        $manager->persist($transverseEn);
+
+        $transverseEs = $this->generateTransverse('es');
+        $manager->persist($transverseEs);
+
         $home = $this->generateNodeHome(1);
         $manager->persist($home);
         $home2 = $this->generateNodeHome(2);
@@ -34,6 +43,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($homeEn);
 
         $full = $this->genereFullFixture();
+        $this->addAreaRef($transverse, $full);
         $manager->persist($full);
 
         $generic = $this->generateGenericNode();
@@ -71,6 +81,65 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder()
     {
         return 60;
+    }
+
+    /**
+     * @param NodeInterface $nodeTransverse
+     * @param NodeInterface $node
+     */
+    protected function addAreaRef(NodeInterface $nodeTransverse, NodeInterface $node)
+    {
+        foreach ($node->getAreas() as $area) {
+            foreach ($area->getBlocks() as $areaBlock) {
+                if ($nodeTransverse->getNodeId() === $areaBlock['nodeId']) {
+                    $block = $nodeTransverse->getBlock($areaBlock['blockId']);
+                    $block->addArea(array('nodeId' => $node->getId(), 'areaId' => $area->getAreaId()));
+                }
+            }
+        }
+    }
+    /**
+     * @param string $language
+     *
+     * @return NodeInterface
+     */
+    public function generateTransverse($language)
+    {
+        $homeBlock = new Block();
+        $homeBlock->setLabel('Bienvenue');
+        $homeBlock->setComponent('sample');
+        $homeBlock->setAttributes(array(
+            'title' => 'Bienvenue',
+            'news' => "Bienvenu sur le site de démo issu des fixtures.",
+            'author' => 'ben'
+        ));
+        $homeBlock->addArea(array('nodeId' => 0, 'areaId' => 'main'));
+
+        $mainArea = new Area();
+        $mainArea->setLabel('main');
+        $mainArea->setAreaId('main');
+        $mainArea->addBlock(array('nodeId' => 0, 'blockId' => 0));
+
+        $nodeTransverse = new Node();
+        $nodeTransverse->setNodeId(NodeInterface::TRANSVERSE_NODE_ID);
+        $nodeTransverse->setNodeType(NodeInterface::TYPE_GENERAL);
+        $nodeTransverse->setName(NodeInterface::TRANSVERSE_NODE_ID);
+        $nodeTransverse->setSiteId('1');
+        $nodeTransverse->setParentId('-');
+        $nodeTransverse->setPath('-');
+        $nodeTransverse->setAlias('');
+        $nodeTransverse->setVersion(1);
+        $nodeTransverse->setLanguage($language);
+        $nodeTransverse->setStatus($this->getReference('status-published'));
+        $nodeTransverse->setDeleted(false);
+        $nodeTransverse->setTemplateId('');
+        $nodeTransverse->setTheme('');
+        $nodeTransverse->setInFooter(false);
+        $nodeTransverse->setInMenu(false);
+        $nodeTransverse->addArea($mainArea);
+        $nodeTransverse->addBlock($homeBlock);
+
+        return $nodeTransverse;
     }
 
     /**
@@ -204,6 +273,11 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function genereFullFixture()
     {
+        $siteHomeArea1 = new Area();
+        $siteHomeArea1->setLabel('Bienvenue');
+        $siteHomeArea1->setAreaId('bienvenue');
+        $siteHomeArea1->addBlock(array('nodeId' => NodeInterface::TRANSVERSE_NODE_ID, 'blockId' => 0));
+
         $block0 = new Block();
         $block0->setLabel('block 1');
         $block0->setComponent('sample');
@@ -342,6 +416,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
         $full->setTheme('mixed');
         $full->setInMenu(true);
         $full->setInFooter(false);
+        $full->addArea($siteHomeArea1);
         $full->addArea($headerArea);
         $full->addArea($mainArea);
         $full->addArea($footerArea);
