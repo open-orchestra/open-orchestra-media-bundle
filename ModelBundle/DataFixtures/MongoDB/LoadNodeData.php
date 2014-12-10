@@ -480,7 +480,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $contentListBlock = new Block();
         $contentListBlock->setLabel('Content list');
-        $contentListBlock->setComponent('content_list');
+        $contentListBlock->setComponent(DisplayBlockInterface::CONTENT_LIST_BY_TYPE);
         $contentListBlock->setAttributes(array(
             'contentType' => 'news',
             'id' => 'contentNewsList',
@@ -620,7 +620,7 @@ class LoadNodeData extends AbstractFixture implements OrderedFixtureInterface
 
         $contentBlock = new Block();
         $contentBlock->setLabel('content news');
-        $contentBlock->setComponent('content_list');
+        $contentBlock->setComponent(DisplayBlockInterface::CONTENT_LIST_BY_TYPE);
         $contentBlock->setAttributes(array(
             'contentType' => 'news',
             'id' => 'contentNewsList',
