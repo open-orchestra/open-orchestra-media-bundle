@@ -2,6 +2,7 @@
 
 namespace PHPOrchestra\MediaBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
@@ -99,6 +100,14 @@ class Media implements MediaInterface
      * @ODM\Field(type="string")
      */
     protected $comment;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->keywords = new ArrayCollection();
+    }
 
     /**
      * @return string
