@@ -13,7 +13,7 @@ trait KeywordableDocument
     /**
      * @var ArrayCollection
      *
-     * @ODM\EmbedMany(targetDocument="EmbedKeyword")
+     * @ODM\EmbedMany(targetDocument="PHPOrchestra\ModelBundle\Document\EmbedKeyword")
      */
     protected $keywords;
 
