@@ -59,6 +59,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
             array('MediaFolder',      'BlameableInterface'),
             array('Media',            'TimestampableInterface'),
             array('MediaFolder',      'TimestampableInterface'),
+            array('Media',            'KeywordableInterface'),
         );
     }
 }
