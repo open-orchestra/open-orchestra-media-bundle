@@ -9,7 +9,6 @@ use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
  */
 class ContentRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface
 {
-
     /**
      * Get all content if the contentType is "news"
      *
@@ -33,5 +32,19 @@ class ContentRepository extends DocumentRepository implements FieldAutoGenerable
     public function testUnicityInContext($name)
     {
         return $this->findOneByName($name) !== null;
+    }
+
+    /**
+     * @param string $keyword
+     *
+     * @return array
+     */
+    public function findByKeyword($keyword)
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->field('keywords.label')->equals($keyword);
+
+        return $qb->getQuery()->execute();
     }
 }
