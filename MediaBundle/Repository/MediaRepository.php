@@ -23,4 +23,18 @@ class MediaRepository extends DocumentRepository
 
         return $qb->getQuery()->execute();
     }
+
+    /**
+     * @param string $keyword
+     *
+     * @return array
+     */
+    public function findByKeyword($keyword)
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->field('keywords.label')->equals($keyword);
+
+        return $qb->getQuery()->execute();
+    }
 }

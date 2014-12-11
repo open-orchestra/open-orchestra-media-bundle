@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\MediaBundle\Document\Media;
+use PHPOrchestra\ModelBundle\Document\EmbedKeyword;
 
 /**
  * Class LoadMediaData
@@ -23,6 +24,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
         $rootImage->setThumbnail('themePresentation-logoOrchestra.png');
         $rootImage->setMimeType('image/png');
         $rootImage->setMediaFolder($this->getReference('mediaFolder-rootImages'));
+        $rootImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
         $manager->persist($rootImage);
 
         $firstImage = new Media();
@@ -31,11 +33,13 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
         $firstImage->setThumbnail('no_image_available.jpg');
         $firstImage->setMimeType('image/jpg');
         $firstImage->setMediaFolder($this->getReference('mediaFolder-firstImages'));
+        $firstImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
         $manager->persist($firstImage);
 
         $secondImage = new Media();
         $secondImage->setName('Second image');
         $secondImage->setMediaFolder($this->getReference('mediaFolder-secondImages'));
+        $secondImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-dolor')));
         $manager->persist($secondImage);
 
         $manager->flush();
