@@ -8,6 +8,7 @@ use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use PHPOrchestra\MediaBundle\Model\MediaFolderInterface;
 use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\ModelBundle\Document\KeywordableDocument;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -22,6 +23,7 @@ class Media implements MediaInterface
 {
     use BlameableDocument;
     use TimestampableDocument;
+    use KeywordableDocument;
 
     /**
      * @var string $id

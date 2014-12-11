@@ -3,17 +3,19 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Gedmo\Blameable\Traits\BlameableDocument;
+use Gedmo\Timestampable\Traits\TimestampableDocument;
 use PHPOrchestra\ModelBundle\Mapping\Annotations as ORCHESTRA;
 use PHPOrchestra\ModelBundle\Model\ContentAttributeInterface;
 use PHPOrchestra\ModelBundle\Model\ContentInterface;
 use PHPOrchestra\ModelBundle\Model\StatusInterface;
-use PHPOrchestra\ModelBundle\Model\KeywordInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Description of Content
  *
- * @MongoDB\Document(
+ * @ODM\Document(
  *   collection="content",
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\ContentRepository"
  * )
@@ -25,87 +27,84 @@ use PHPOrchestra\ModelBundle\Model\KeywordInterface;
  */
 class Content implements ContentInterface
 {
+    use BlameableDocument;
+    use TimestampableDocument;
+    use KeywordableDocument;
+
     /**
      * @var string $id
      *
-     * @MongoDB\Id
+     * @ODM\Id
      */
     protected $id;
 
     /**
      * @var int $contentId
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $contentId;
 
     /**
      * @var string $contentType
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $contentType;
 
     /**
      * @var string $siteId
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $siteId;
 
     /**
      * @var string $name
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $name;
 
     /**
      * @var int $version
      *
-     * @MongoDB\Field(type="int")
+     * @ODM\Field(type="int")
      */
     protected $version;
 
     /**
      * @var int $contentTypeVersion
      *
-     * @MongoDB\Field(type="int")
+     * @ODM\Field(type="int")
      */
     protected $contentTypeVersion;
 
     /**
      * @var string $language
      *
-     * @MongoDB\Field(type="string")
+     * @ODM\Field(type="string")
      */
     protected $language;
 
     /**
      * @var StatusInterface $status
      *
-     * @MongoDB\EmbedOne(targetDocument="EmbedStatus")
+     * @ODM\EmbedOne(targetDocument="EmbedStatus")
      */
     protected $status;
 
     /**
-     * @var ArrayCollection
-     *
-     * @MongoDB\EmbedMany(targetDocument="EmbedKeyword")
-     */
-    protected $keywords;
-
-    /**
      * @var boolean
      *
-     * @MongoDB\Field(type="boolean")
+     * @ODM\Field(type="boolean")
      */
     protected $deleted = false;
 
     /**
      * @var ArrayCollection
      *
-     * @MongoDB\EmbedMany(targetDocument="ContentAttribute")
+     * @ODM\EmbedMany(targetDocument="ContentAttribute")
      */
     protected $attributes;
 
@@ -156,46 +155,6 @@ class Content implements ContentInterface
     public function removeAttribute(ContentAttributeInterface $attribute)
     {
         $this->attributes->removeElement($attribute);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getKeywords()
-    {
-        return $this->keywords;
-    }
-
-    /**
-     * @param string $label
-     *
-     * @return KeywordInterface|null
-     */
-    public function getKeywordByLabel($label)
-    {
-        foreach ($this->keywords as $keyword) {
-            if ($label == $keyword->getLabel()) {
-                return $keyword;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @param KeywordInterface $keyword
-     */
-    public function addKeyword(KeywordInterface $keyword)
-    {
-        $this->keywords->add($keyword);
-    }
-
-    /**
-     * @param ContentAttributeInterface $attribute
-     */
-    public function removeKeyword(KeywordInterface $keyword)
-    {
-        $this->keywords->removeElement($keyword);
     }
 
     /**

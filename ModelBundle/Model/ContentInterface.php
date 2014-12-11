@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Interface ContentInterface
  */
-interface ContentInterface extends StatusableInterface
+interface ContentInterface extends StatusableInterface, TimestampableInterface, BlameableInterface, KeywordableInterface
 {
     /**
      * @return ArrayCollection
@@ -31,28 +31,6 @@ interface ContentInterface extends StatusableInterface
      * @param ContentAttributeInterface $attribute
      */
     public function removeAttribute(ContentAttributeInterface $attribute);
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getKeywords();
-
-    /**
-     * @param string $label
-     *
-     * @return KeywordInterface|null
-     */
-    public function getKeywordByLabel($label);
-
-    /**
-     * @param KeywordInterface $keyword
-     */
-    public function addKeyword(KeywordInterface $keyword);
-
-    /**
-     * @param KeywordInterface $keyword
-     */
-    public function removeKeyword(KeywordInterface $keyword);
 
     /**
      * @param string $contentId
