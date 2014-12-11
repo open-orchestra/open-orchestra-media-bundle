@@ -7,6 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Content;
 use PHPOrchestra\ModelBundle\Document\ContentAttribute;
+use PHPOrchestra\ModelBundle\Document\EmbedKeyword;
 
 /**
  * Class LoadContentNewsData
@@ -83,7 +84,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
     /**
      * Fill news attributes
      * 
-     * @param Content $news
+     * @param Content          $news
      * @param ContentAttribute $title
      * @param ContentAttribute $start
      * @param ContentAttribute $end
@@ -117,6 +118,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
         $start = $this->generateContentAttribute('publish_start', '2014-08-26');
         $end = $this->generateContentAttribute('publish_end', '2014-12-19');
         $welcome = $this->generateContent('news', 1, 'Welcome', 'fr');
+        $welcome->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-sit')));
 
         return $this->addNewsAttributes($welcome, $title, $start, $end, $image, $intro, $text);
     }
@@ -133,6 +135,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
         $start = $this->generateContentAttribute('publish_start', '2014-08-16');
         $end = $this->generateContentAttribute('publish_end', '2014-12-19');
         $bigUp = $this->generateContent('news', 2, 'Big up', 'fr');
+        $bigUp->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-sit')));
 
         return $this->addNewsAttributes($bigUp, $title, $start, $end, $image, $intro, $text);
     }
@@ -149,6 +152,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
         $start = $this->generateContentAttribute('publish_start', '2014-08-25');
         $end = $this->generateContentAttribute('publish_end', '2014-12-19');
         $echonext = $this->generateContent('news', 3, 'Echonext', 'fr');
+        $echonext->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-sit')));
 
         return $this->addNewsAttributes($echonext, $title, $start, $end, $image, $intro, $text);
     }

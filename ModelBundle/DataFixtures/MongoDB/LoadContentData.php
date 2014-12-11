@@ -7,6 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPOrchestra\ModelBundle\Document\Content;
 use PHPOrchestra\ModelBundle\Document\ContentAttribute;
+use PHPOrchestra\ModelBundle\Document\EmbedKeyword;
 
 /**
  * Class LoadContentData
@@ -63,6 +64,7 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
         $content->setLanguage("en");
         $content->setStatus($this->getReference('status-published'));
         $content->setVersion(2);
+        $content->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
 
         $content->addAttribute($attribute1);
         $content->addAttribute($attribute2);
@@ -98,6 +100,7 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
         $content->setLanguage("fr");
         $content->setStatus($this->getReference('status-published'));
         $content->setVersion(2);
+        $content->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
 
         $content->addAttribute($attribute1);
         $content->addAttribute($attribute2);

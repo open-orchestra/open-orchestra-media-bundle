@@ -20,22 +20,27 @@ class LoadKeywordData extends AbstractFixture implements OrderedFixtureInterface
         $keyword1 = new Keyword();
         $keyword1->setLabel('Lorem');
         $manager->persist($keyword1);
+        $this->addReference('keyword-lorem', $keyword1);
 
         $keyword2 = new Keyword();
         $keyword2->setLabel('Ipsum');
         $manager->persist($keyword2);
+        $this->addReference('keyword-ipsum', $keyword2);
 
         $keyword3 = new Keyword();
         $keyword3->setLabel('Dolor');
         $manager->persist($keyword3);
+        $this->addReference('keyword-dolor', $keyword3);
 
         $keyword4 = new Keyword();
         $keyword4->setLabel('Sit');
         $manager->persist($keyword4);
+        $this->addReference('keyword-sit', $keyword4);
 
         $keyword5 = new Keyword();
         $keyword5->setLabel('Amet');
         $manager->persist($keyword5);
+        $this->addReference('keyword-amet', $keyword5);
 
         $manager->flush();
     }
