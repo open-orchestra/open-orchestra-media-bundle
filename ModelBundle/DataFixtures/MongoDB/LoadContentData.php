@@ -56,7 +56,7 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
         $attribute3->setName("description");
         $attribute3->setValue("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non feugiat sem. Aliquam a mauris tellus. In hac habitasse platea dictumst. Nunc eget interdum ante, id mollis diam. Suspendisse sed magna lectus. Aenean fringilla elementum lorem id suscipit. Phasellus feugiat tellus sapien, id tempus nisi ultrices ut.");
 
-        $content->setContentId("3");
+        $content->setContentId("r5_3_portes");
         $content->setContentType("car");
         $content->setContentTypeVersion(1);
         $content->setDeleted(false);
@@ -65,6 +65,7 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
         $content->setStatus($this->getReference('status-published'));
         $content->setVersion(2);
         $content->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
+        $content->setSiteId('1');
 
         $content->addAttribute($attribute1);
         $content->addAttribute($attribute2);
@@ -92,7 +93,7 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
         $attribute3->setName("identifier");
         $attribute3->setValue(28);
 
-        $content->setContentId("4");
+        $content->setContentId("jean_paul");
         $content->setContentType("customer");
         $content->setContentTypeVersion(1);
         $content->setDeleted(false);
@@ -101,6 +102,7 @@ class LoadContentData extends AbstractFixture implements OrderedFixtureInterface
         $content->setStatus($this->getReference('status-published'));
         $content->setVersion(2);
         $content->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
+        $content->setSiteId('1');
 
         $content->addAttribute($attribute1);
         $content->addAttribute($attribute2);
