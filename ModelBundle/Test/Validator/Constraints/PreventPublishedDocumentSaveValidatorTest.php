@@ -63,17 +63,17 @@ class PreventPublishedDocumentSaveValidatorTest extends \PHPUnit_Framework_TestC
     public function provideDocument()
     {
 
-        $status0 = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        $statusableInterface0 = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusableInterface');
+        $status0 = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusInterface');
+        $statusableInterface0 = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusableInterface');
         Phake::when($status0)->isPublished()->thenReturn(true);
         Phake::when($statusableInterface0)->getStatus()->thenReturn($status0);
 
-        $status1 = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        $statusableInterface1 = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusableInterface');
+        $status1 = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusInterface');
+        $statusableInterface1 = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusableInterface');
         Phake::when($status1)->isPublished()->thenReturn(false);
         Phake::when($statusableInterface1)->getStatus()->thenReturn($status1);
 
-        $statusableInterface2 = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusableInterface');
+        $statusableInterface2 = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusableInterface');
         Phake::when($statusableInterface2)->getStatus()->thenReturn(null);
 
         $notStatusableInterface = Phake::mock('\stdClass');
@@ -91,11 +91,11 @@ class PreventPublishedDocumentSaveValidatorTest extends \PHPUnit_Framework_TestC
      */
     public function testWithDocumentNotYetPublished()
     {
-        $oldStatus = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        $oldStatus = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusInterface');
         Phake::when($oldStatus)->isPublished()->thenReturn(false);
 
-        $status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
-        $statusable = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusableInterface');
+        $status = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusInterface');
+        $statusable = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusableInterface');
         Phake::when($status)->isPublished()->thenReturn(true);
         Phake::when($statusable)->getStatus()->thenReturn($status);
 

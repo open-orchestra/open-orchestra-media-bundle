@@ -1,21 +1,22 @@
 <?php
 
-namespace PHPOrchestra\ModelBundle\Model;
+
+namespace PHPOrchestra\ModelInterface\Model;
 
 /**
- * Interface ContentAttributeInterface
+ * Interface FieldOptionInterface
  */
-interface ContentAttributeInterface
+interface FieldOptionInterface
 {
     /**
-     * @param string $name
+     * @param string $key
      */
-    public function setName($name);
+    public function setKey($key);
 
     /**
      * @return string
      */
-    public function getName();
+    public function getKey();
 
     /**
      * @param string $value

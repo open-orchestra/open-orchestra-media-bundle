@@ -34,7 +34,7 @@ class CheckAreaPresenceValidatorTest extends \PHPUnit_Framework_TestCase
         $this->context = Phake::mock('Symfony\Component\Validator\Context\ExecutionContext');
         $this->areas = Phake::mock('Doctrine\Common\Collections\ArrayCollection');
 
-        $this->node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $this->node = Phake::mock('PHPOrchestra\ModelInterface\Model\NodeInterface');
         Phake::when($this->node)->getAreas()->thenReturn($this->areas);
 
         $this->validator = new CheckAreaPresenceValidator($this->translator);

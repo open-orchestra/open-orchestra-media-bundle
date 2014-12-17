@@ -1,7 +1,7 @@
 <?php
 
 
-namespace PHPOrchestra\ModelBundle\Model;
+namespace PHPOrchestra\ModelInterface\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 

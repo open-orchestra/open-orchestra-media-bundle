@@ -3,7 +3,7 @@
 namespace PHPOrchestra\ModelBundle\FunctionalTest\Repository;
 
 use Phake;
-use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelInterface\Model\NodeInterface;
 use PHPOrchestra\ModelBundle\Repository\NodeRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -266,7 +266,7 @@ class NodeRepositoryTest extends KernelTestCase
      */
     protected function assertSameNode($language, $version, $siteId, $node, $nodeId = NodeInterface::ROOT_NODE_ID)
     {
-        $this->assertInstanceOf('PHPOrchestra\ModelBundle\Model\NodeInterface', $node);
+        $this->assertInstanceOf('PHPOrchestra\ModelInterface\Model\NodeInterface', $node);
         $this->assertSame($nodeId, $node->getNodeId());
         $this->assertSame($language, $node->getLanguage());
         $this->assertSame($version, $node->getVersion());

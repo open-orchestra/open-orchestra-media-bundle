@@ -3,7 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use PHPOrchestra\ModelBundle\Model\TranslatedValueInterface;
+use PHPOrchestra\ModelInterface\Model\TranslatedValueInterface;
 
 /**
  * Class TranslatedValue

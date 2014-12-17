@@ -3,7 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Manager;
 
 use PHPOrchestra\ModelBundle\Document\Area;
-use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelInterface\Model\NodeInterface;
 
 /**
  * Class NodeManager

@@ -6,11 +6,11 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
-use PHPOrchestra\ModelBundle\Model\ContentTypeInterface;
-use PHPOrchestra\ModelBundle\Model\FieldTypeInterface;
+use PHPOrchestra\ModelInterface\Model\ContentTypeInterface;
+use PHPOrchestra\ModelInterface\Model\FieldTypeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use PHPOrchestra\ModelBundle\Model\StatusInterface;
-use PHPOrchestra\ModelBundle\Model\TranslatedValueInterface;
+use PHPOrchestra\ModelInterface\Model\StatusInterface;
+use PHPOrchestra\ModelInterface\Model\TranslatedValueInterface;
 
 /**
  * Description of ContentType

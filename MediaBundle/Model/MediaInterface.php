@@ -2,10 +2,10 @@
 
 namespace PHPOrchestra\MediaBundle\Model;
 
-use PHPOrchestra\ModelBundle\Model\KeywordableInterface;
+use PHPOrchestra\ModelInterface\Model\KeywordableInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use PHPOrchestra\ModelBundle\Model\BlameableInterface;
-use PHPOrchestra\ModelBundle\Model\TimestampableInterface;
+use PHPOrchestra\ModelInterface\Model\BlameableInterface;
+use PHPOrchestra\ModelInterface\Model\TimestampableInterface;
 
 /**
  * Interface MediaInterface

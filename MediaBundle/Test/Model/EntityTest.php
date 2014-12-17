@@ -43,7 +43,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     public function testInstanceOfModelBundle($class, $interface)
     {
         $fullClass = 'PHPOrchestra\MediaBundle\Document\\' . $class;
-        $fullInterface = 'PHPOrchestra\ModelBundle\Model\\' . $interface;
+        $fullInterface = 'PHPOrchestra\ModelInterface\Model\\' . $interface;
         $entity = new $fullClass();
 
         $this->assertInstanceOf($fullInterface, $entity);

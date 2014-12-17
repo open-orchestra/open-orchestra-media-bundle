@@ -3,7 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use PHPOrchestra\ModelBundle\Model\ContentAttributeInterface;
+use PHPOrchestra\ModelInterface\Model\ContentAttributeInterface;
 
 /**
  * Description of ContentAttribute

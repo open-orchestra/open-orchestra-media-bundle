@@ -9,7 +9,7 @@ use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use PHPOrchestra\MediaBundle\Model\FolderInterface;
-use PHPOrchestra\ModelBundle\Model\SiteInterface;
+use PHPOrchestra\ModelInterface\Model\SiteInterface;
 
 /**
  * Class Folder

@@ -54,10 +54,10 @@ class SavePublishedDocumentListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPreUpdateWithNoPreviousData($published, $deleted, $numberOfDetach)
     {
-        $status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        $status = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusInterface');
         Phake::when($status)->isPublished()->thenReturn($published);
 
-        $nodeInterface = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $nodeInterface = Phake::mock('PHPOrchestra\ModelInterface\Model\NodeInterface');
         Phake::when($nodeInterface)->getStatus()->thenReturn($status);
         Phake::when($nodeInterface)->isDeleted()->thenReturn($deleted);
 
@@ -105,13 +105,13 @@ class SavePublishedDocumentListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testWithPreUpdateOldClass($published, $oldPublished, $deleted, $numberOfDetach)
     {
-        $status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        $status = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusInterface');
         Phake::when($status)->isPublished()->thenReturn($published);
 
-        $oldStatus = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        $oldStatus = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusInterface');
         Phake::when($oldStatus)->isPublished()->thenReturn($oldPublished);
 
-        $nodeInterface = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $nodeInterface = Phake::mock('PHPOrchestra\ModelInterface\Model\NodeInterface');
         Phake::when($nodeInterface)->getStatus()->thenReturn($status);
         Phake::when($nodeInterface)->isDeleted()->thenReturn($deleted);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\ModelBundle\Model;
+namespace PHPOrchestra\ModelInterface\Model;
 
 /**
  * Interface ThemeInterface

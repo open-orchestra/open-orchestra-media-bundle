@@ -4,8 +4,8 @@ namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use PHPOrchestra\ModelBundle\Model\AreaInterface;
-use PHPOrchestra\ModelBundle\Model\HtmlClassContainerInterface;
+use PHPOrchestra\ModelInterface\Model\AreaInterface;
+use PHPOrchestra\ModelInterface\Model\HtmlClassContainerInterface;
 
 /**
  * Description of BaseArea

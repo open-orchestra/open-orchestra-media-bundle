@@ -3,7 +3,7 @@ namespace PHPOrchestra\ModelBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ODM\MongoDB\Event\PostFlushEventArgs;
-use PHPOrchestra\ModelBundle\Model\StatusInterface;
+use PHPOrchestra\ModelInterface\Model\StatusInterface;
 
 /**
  * Class InitialStatusListener

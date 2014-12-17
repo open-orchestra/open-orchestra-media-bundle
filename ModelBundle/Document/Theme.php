@@ -2,7 +2,7 @@
 
 namespace PHPOrchestra\ModelBundle\Document;
 
-use PHPOrchestra\ModelBundle\Model\ThemeInterface;
+use PHPOrchestra\ModelInterface\Model\ThemeInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelBundle\Mapping\Annotations as ORCHESTRA;
 

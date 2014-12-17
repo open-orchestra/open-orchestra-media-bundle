@@ -3,7 +3,8 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use PHPOrchestra\ModelBundle\Model\StatusInterface;
+use PHPOrchestra\ModelInterface\Model\RoleInterface;
+use PHPOrchestra\ModelInterface\Model\StatusInterface;
 
 /**
  * Class Role
@@ -13,7 +14,7 @@ use PHPOrchestra\ModelBundle\Model\StatusInterface;
  *   repositoryClass="PHPOrchestra\ModelBundle\Repository\RoleRepository"
  * )
  */
-class Role
+class Role implements RoleInterface
 {
     /**
      * @ODM\Id()

@@ -6,7 +6,7 @@ use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Doctrine\ODM\MongoDB\DocumentManager;
-use PHPOrchestra\ModelBundle\Model\StatusableInterface;
+use PHPOrchestra\ModelInterface\Model\StatusableInterface;
 
 /**
  * Class PreventPublishedDocumentSaveValidator

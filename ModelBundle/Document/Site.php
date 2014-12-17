@@ -4,8 +4,8 @@ namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use PHPOrchestra\ModelBundle\Model\SiteInterface;
-use PHPOrchestra\ModelBundle\Model\ThemeInterface;
+use PHPOrchestra\ModelInterface\Model\SiteInterface;
+use PHPOrchestra\ModelInterface\Model\ThemeInterface;
 
 /**
  * Description of Site

@@ -34,6 +34,7 @@
     "autoload": {
         "psr-0": {
             "PHPOrchestra\\ModelBundle": "",
+            "PHPOrchestra\\ModelInterface": "",
             "PHPOrchestra\\MediaBundle": "",
             "PHPOrchestra\\Media": ""
         }

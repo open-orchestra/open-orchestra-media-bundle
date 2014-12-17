@@ -3,7 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
-use PHPOrchestra\ModelBundle\Model\AreaInterface;
+use PHPOrchestra\ModelInterface\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
 
 /**
