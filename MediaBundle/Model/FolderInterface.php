@@ -3,9 +3,9 @@
 namespace PHPOrchestra\MediaBundle\Model;
 
 use Doctrine\Common\Collections\Collection;
-use PHPOrchestra\ModelBundle\Model\BlameableInterface;
-use PHPOrchestra\ModelBundle\Model\SiteInterface;
-use PHPOrchestra\ModelBundle\Model\TimestampableInterface;
+use PHPOrchestra\ModelInterface\Model\BlameableInterface;
+use PHPOrchestra\ModelInterface\Model\SiteInterface;
+use PHPOrchestra\ModelInterface\Model\TimestampableInterface;
 
 /**
  * Interface FolderInterface

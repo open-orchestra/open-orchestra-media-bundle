@@ -48,19 +48,19 @@ class PreventProhibitedStatusChangeValidatorTest extends \PHPUnit_Framework_Test
         $this->roleName = 'ROLE';
         $this->role = Phake::mock('PHPOrchestra\ModelBundle\Document\Role');
         Phake::when($this->role)->getName()->thenReturn($this->roleName);
-        $this->status = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        $this->status = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusInterface');
         Phake::when($this->status)->getId()->thenReturn('newId');
 
         $this->roleRepository = Phake::mock('PHPOrchestra\ModelBundle\Repository\RoleRepository');
         Phake::when($this->roleRepository)->findOneByFromStatusAndToStatus(Phake::anyParameters())->thenReturn($this->role);
 
-        $this->node = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $this->node = Phake::mock('PHPOrchestra\ModelInterface\Model\NodeInterface');
         Phake::when($this->node)->getStatus()->thenReturn($this->status);
 
         $this->oldRoleName = 'OLD_ROLE';
         $this->oldRole = Phake::mock('PHPOrchestra\ModelBundle\Document\Role');
         Phake::when($this->oldRole)->getName()->thenReturn($this->oldRoleName);
-        $this->oldStatus = Phake::mock('PHPOrchestra\ModelBundle\Model\StatusInterface');
+        $this->oldStatus = Phake::mock('PHPOrchestra\ModelInterface\Model\StatusInterface');
         Phake::when($this->oldStatus)->getId()->thenReturn('oldId');
 
         $this->oldNode = array('status' => $this->oldStatus);

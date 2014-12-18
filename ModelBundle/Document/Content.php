@@ -7,9 +7,9 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use PHPOrchestra\ModelBundle\Mapping\Annotations as ORCHESTRA;
-use PHPOrchestra\ModelBundle\Model\ContentAttributeInterface;
-use PHPOrchestra\ModelBundle\Model\ContentInterface;
-use PHPOrchestra\ModelBundle\Model\StatusInterface;
+use PHPOrchestra\ModelInterface\Model\ContentAttributeInterface;
+use PHPOrchestra\ModelInterface\Model\ContentInterface;
+use PHPOrchestra\ModelInterface\Model\StatusInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**

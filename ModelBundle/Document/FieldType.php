@@ -5,8 +5,8 @@ namespace PHPOrchestra\ModelBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Inflector\Inflector;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use PHPOrchestra\ModelBundle\Model\FieldOptionInterface;
-use PHPOrchestra\ModelBundle\Model\FieldTypeInterface;
+use PHPOrchestra\ModelInterface\Model\FieldOptionInterface;
+use PHPOrchestra\ModelInterface\Model\FieldTypeInterface;
 
 /**
  * Description of Base FieldType

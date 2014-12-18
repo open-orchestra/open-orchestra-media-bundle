@@ -3,7 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use PHPOrchestra\ModelBundle\Model\KeywordInterface;
+use PHPOrchestra\ModelInterface\Model\KeywordInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**

@@ -1,22 +1,21 @@
 <?php
 
-
-namespace PHPOrchestra\ModelBundle\Model;
+namespace PHPOrchestra\ModelInterface\Model;
 
 /**
- * Interface FieldOptionInterface
+ * interface TranslatedValueInterface
  */
-interface FieldOptionInterface
+interface TranslatedValueInterface
 {
     /**
-     * @param string $key
+     * @param string $language
      */
-    public function setKey($key);
+    public function setLanguage($language);
 
     /**
      * @return string
      */
-    public function getKey();
+    public function getLanguage();
 
     /**
      * @param string $value

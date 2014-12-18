@@ -3,7 +3,7 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use PHPOrchestra\ModelBundle\Model\FieldIndexInterface;
+use PHPOrchestra\ModelInterface\Model\FieldIndexInterface;
 
 /**
  * Description of FieldIndex class

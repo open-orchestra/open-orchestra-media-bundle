@@ -5,7 +5,7 @@ namespace PHPOrchestra\ModelBundle\Test\EventListener;
 use Phake;
 use PHPOrchestra\ModelBundle\EventListener\GenerateIdListener;
 use PHPOrchestra\ModelBundle\Mapping\Annotations\Document;
-use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelInterface\Model\NodeInterface;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 
 /**
@@ -71,19 +71,19 @@ class GenerateIdListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function provideAnnotations()
     {
-        $document0 = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $document0 = Phake::mock('PHPOrchestra\ModelInterface\Model\NodeInterface');
         Phake::when($document0)->getName()->thenReturn('fakeName');
         Phake::when($document0)->getNodeId()->thenReturn(null);
 
-        $document1 = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $document1 = Phake::mock('PHPOrchestra\ModelInterface\Model\NodeInterface');
         Phake::when($document1)->getName()->thenReturn('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ \\');
         Phake::when($document1)->getNodeId()->thenReturn(null);
 
-        $document2 = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $document2 = Phake::mock('PHPOrchestra\ModelInterface\Model\NodeInterface');
         Phake::when($document2)->getName()->thenReturn('fakeName');
         Phake::when($document2)->getNodeId()->thenReturn(null);
 
-        $document3 = Phake::mock('PHPOrchestra\ModelBundle\Model\NodeInterface');
+        $document3 = Phake::mock('PHPOrchestra\ModelInterface\Model\NodeInterface');
         Phake::when($document3)->getName()->thenReturn('fakeName');
         Phake::when($document3)->getNodeId()->thenReturn(null);
 

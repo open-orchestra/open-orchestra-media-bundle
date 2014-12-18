@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\ModelBundle\Model;
+namespace PHPOrchestra\ModelInterface\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use PHPOrchestra\ModelBundle\Model\ThemeInterface;
+use PHPOrchestra\ModelInterface\Model\ThemeInterface;
 
 /**
  * Interface SiteInterface

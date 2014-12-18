@@ -4,18 +4,20 @@ namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use PHPOrchestra\ModelInterface\Model\EmbedStatusInterface;
+use PHPOrchestra\ModelInterface\Model\StatusInterface;
 
 /**
  * Class EmbedStatus
  *
  * @MongoDB\EmbeddedDocument
  */
-class EmbedStatus extends AbstractStatus
+class EmbedStatus extends AbstractStatus implements EmbedStatusInterface
 {
     /**
-     * @param Status $status
+     * @param StatusInterface $status
      */
-    public function __construct(Status $status)
+    public function __construct(StatusInterface $status)
     {
         $this->id = $status->getId();
         $this->setPublished($status->isPublished());
@@ -36,11 +38,11 @@ class EmbedStatus extends AbstractStatus
     }
 
     /**
-     * @param Status $status
+     * @param StatusInterface $status
      *
      * @return EmbedStatus
      */
-    public static function createFromStatus(Status $status)
+    public static function createFromStatus(StatusInterface $status)
     {
         return new EmbedStatus($status);
     }

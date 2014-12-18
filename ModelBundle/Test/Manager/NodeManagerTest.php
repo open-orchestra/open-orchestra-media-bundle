@@ -4,7 +4,7 @@ namespace PHPOrchestra\ModelBundle\Test\Manager;
 
 use Phake;
 use PHPOrchestra\ModelBundle\Manager\NodeManager;
-use PHPOrchestra\ModelBundle\Model\NodeInterface;
+use PHPOrchestra\ModelInterface\Model\NodeInterface;
 
 /**
  * Class NodeManagerTest
@@ -35,7 +35,7 @@ class NodeManagerTest extends \PHPUnit_Framework_TestCase
     {
         $node = $this->manager->createTransverseNode($language, $siteId);
 
-        $this->assertInstanceOf('PHPOrchestra\ModelBundle\Model\NodeInterface', $node);
+        $this->assertInstanceOf('PHPOrchestra\ModelInterface\Model\NodeInterface', $node);
         $this->assertSame($siteId, $node->getSiteId());
         $this->assertSame(NodeInterface::TRANSVERSE_NODE_ID, $node->getNodeId());
         $this->assertSame(NodeInterface::TRANSVERSE_NODE_ID, $node->getName());

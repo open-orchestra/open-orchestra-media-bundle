@@ -3,8 +3,8 @@
 namespace PHPOrchestra\ModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use PHPOrchestra\ModelBundle\Model\StatusInterface;
-use PHPOrchestra\ModelBundle\Model\TranslatedValueInterface;
+use PHPOrchestra\ModelInterface\Model\StatusInterface;
+use PHPOrchestra\ModelInterface\Model\TranslatedValueInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**

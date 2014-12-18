@@ -1,21 +1,21 @@
 <?php
 
-namespace PHPOrchestra\ModelBundle\Model;
+namespace PHPOrchestra\ModelInterface\Model;
 
 /**
- * interface TranslatedValueInterface
+ * Interface ContentAttributeInterface
  */
-interface TranslatedValueInterface
+interface ContentAttributeInterface
 {
     /**
-     * @param string $language
+     * @param string $name
      */
-    public function setLanguage($language);
+    public function setName($name);
 
     /**
      * @return string
      */
-    public function getLanguage();
+    public function getName();
 
     /**
      * @param string $value
