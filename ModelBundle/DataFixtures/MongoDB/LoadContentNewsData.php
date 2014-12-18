@@ -40,10 +40,10 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
 
     /**
      * Generate a content attribute
-     * 
+     *
      * @param string $name
      * @param string $value
-     * 
+     *
      * @return ContentAttribute
      */
     protected function generateContentAttribute($name, $value)
@@ -57,12 +57,12 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
 
     /**
      * Generate a content
-     * 
+     *
      * @param string $type
      * @param int $id
      * @param string $name
      * @param string $language
-     * 
+     *
      * @return Content
      */
     protected function generateContent($type, $id, $name, $language)
@@ -77,13 +77,14 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
         $content->setLanguage($language);
         $content->setStatus($this->getReference('status-published'));
         $content->setVersion(1);
+        $content->setSiteId('1');
 
         return $content;
     }
 
     /**
      * Fill news attributes
-     * 
+     *
      * @param Content          $news
      * @param ContentAttribute $title
      * @param ContentAttribute $start
@@ -91,7 +92,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
      * @param ContentAttribute $image
      * @param ContentAttribute $intro
      * @param ContentAttribute $text
-     * 
+     *
      * @return Content
      */
     protected function addNewsAttributes($news, $title, $start, $end, $image, $intro, $text)
@@ -117,7 +118,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
         $text = $this->generateContentAttribute('text', 'A l’occasion de la sortie de son livre, François Villeroy de Galhau, Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.<br /><br />Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla, non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.');
         $start = $this->generateContentAttribute('publish_start', '2014-08-26');
         $end = $this->generateContentAttribute('publish_end', '2014-12-19');
-        $welcome = $this->generateContent('news', 1, 'Welcome', 'fr');
+        $welcome = $this->generateContent('news', 'welcome', 'Welcome', 'fr');
         $welcome->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-sit')));
 
         return $this->addNewsAttributes($welcome, $title, $start, $end, $image, $intro, $text);
@@ -134,7 +135,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
         $text = $this->generateContentAttribute('text', 'Organisé pour la première fois en Asie-Pacifique, le Master WTA BNP Paribas rassemble les meilleures joueuses mondiales de tennis à Singapour du 17 au 26 octobre 2014. A l’occasion de la sortie de son livre, François Villeroy de Galhau, Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.<br /><br />Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla, non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.');
         $start = $this->generateContentAttribute('publish_start', '2014-08-16');
         $end = $this->generateContentAttribute('publish_end', '2014-12-19');
-        $bigUp = $this->generateContent('news', 2, 'Big up', 'fr');
+        $bigUp = $this->generateContent('news', 'big_up', 'Big up', 'fr');
         $bigUp->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-sit')));
 
         return $this->addNewsAttributes($bigUp, $title, $start, $end, $image, $intro, $text);
@@ -151,7 +152,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
         $text = $this->generateContentAttribute('text', 'Echonext Organisé pour la première fois en Asie-Pacifique, le Master WTA BNP Paribas rassemble les meilleures joueuses mondiales de tennis à Singapour du 17 au 26 octobre 2014. A l’occasion de la sortie de son livre, François Villeroy de Galhau, Directeur Général Délégué de BNP Paribas répond à nos questions. Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.<br /><br />Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla, non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.');
         $start = $this->generateContentAttribute('publish_start', '2014-08-25');
         $end = $this->generateContentAttribute('publish_end', '2014-12-19');
-        $echonext = $this->generateContent('news', 3, 'Echonext', 'fr');
+        $echonext = $this->generateContent('news', 'echonext', 'Echonext', 'fr');
         $echonext->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-sit')));
 
         return $this->addNewsAttributes($echonext, $title, $start, $end, $image, $intro, $text);
@@ -168,7 +169,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
         $text = $this->generateContentAttribute('text', 'Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.<br /><br />Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla, non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.');
         $start = $this->generateContentAttribute('publish_start', '2014-07-25');
         $end = $this->generateContentAttribute('publish_end', '2014-10-19');
-        $bienvenueFrance = $this->generateContent('news', 4, 'Bien vivre en France', 'fr');
+        $bienvenueFrance = $this->generateContent('news', 'bien_vivre_en_france', 'Bien vivre en France', 'fr');
 
         return $this->addNewsAttributes($bienvenueFrance, $title, $start, $end, $image, $intro, $text);
     }
@@ -184,7 +185,7 @@ class LoadContentNewsData extends AbstractFixture implements OrderedFixtureInter
         $text = $this->generateContentAttribute('text', 'Cras non dui id neque mattis molestie. Quisque feugiat metus in est aliquet, nec convallis ante blandit. Suspendisse tincidunt tortor et tellus eleifend bibendum. Fusce fringilla mauris dolor, quis tempus diam tempus eu. Morbi enim orci, aliquam at sapien eu, dignissim commodo enim. Nulla ultricies erat non facilisis feugiat. Quisque fringilla ante lacus, vitae viverra magna aliquam non. Pellentesque quis diam suscipit, tincidunt felis eget, mollis mauris. Nulla facilisi.<br /><br />Nunc tincidunt pellentesque suscipit. Donec tristique massa at turpis fringilla, non aliquam ante luctus. Nam in felis tristique, scelerisque magna eget, sagittis purus. Maecenas malesuada placerat rutrum. Vestibulum sem urna, pharetra et fermentum a, iaculis quis augue. Ut ac neque mauris. In vel risus dui. Fusce lacinia a velit vitae condimentum.');
         $start = $this->generateContentAttribute('publish_start', '2014-08-25');
         $end = $this->generateContentAttribute('publish_end', '2014-11-19');
-        $loremIpsum = $this->generateContent('news', 5, 'Lorem ipsum', 'fr');
+        $loremIpsum = $this->generateContent('news', 'lorem_ipsum', 'Lorem ipsum', 'fr');
 
         return $this->addNewsAttributes($loremIpsum, $title, $start, $end, $image, $intro, $text);
     }
