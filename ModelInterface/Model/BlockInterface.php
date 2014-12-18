@@ -5,7 +5,7 @@ namespace PHPOrchestra\ModelInterface\Model;
 /**
  * Interface BlockInterface
  */
-Interface BlockInterface
+interface BlockInterface
 {
     /**
      * Set component
