@@ -9,11 +9,12 @@ use PHPOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
 use PHPOrchestra\ModelInterface\Model\AreaInterface;
 use PHPOrchestra\ModelInterface\Model\NodeInterface;
 use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
+use PHPOrchestra\ModelInterface\Repository\NodeRepositoryInterface;
 
 /**
  * Class NodeRepository
  */
-class NodeRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface
+class NodeRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface, NodeRepositoryInterface
 {
     /**
      * @var CurrentSiteIdInterface
@@ -382,4 +383,32 @@ class NodeRepository extends DocumentRepository implements FieldAutoGenerableRep
 
         return count($qb->getQuery()->execute()) > 0;
     }
+
+    /**
+     * @param string $parentId
+     * @param string $alias
+     * @param string $siteId
+     *
+     * @return mixed
+     */
+    public function findOneByParendIdAndAliasAndSiteId($parentId, $alias, $siteId)
+    {
+        return $this->findOneBy(array(
+            'parentId' => $parentId,
+            'alias' => $alias,
+            'siteId' => $siteId
+        ));
+    }
+
+    /**
+     * @param string $nodeId
+     *
+     * @return NodeInterface
+     */
+    public function findOneByNodeId($nodeId)
+    {
+        return $this->findOneBy(array('nodeId' => $nodeId));
+    }
+
+
 }

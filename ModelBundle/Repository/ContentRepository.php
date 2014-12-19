@@ -4,10 +4,13 @@ namespace PHPOrchestra\ModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
+use PHPOrchestra\ModelInterface\Model\ContentInterface;
+use PHPOrchestra\ModelInterface\Repository\ContentRepositoryInterface;
+
 /**
  * Class ContentRepository
  */
-class ContentRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface
+class ContentRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface, ContentRepositoryInterface
 {
     /**
      * Get all content if the contentType is "news"
@@ -46,5 +49,25 @@ class ContentRepository extends DocumentRepository implements FieldAutoGenerable
         $qb->field('keywords.label')->equals($keyword);
 
         return $qb->getQuery()->execute();
+    }
+
+    /**
+     * @param string $contentId
+     *
+     * @return ContentInterface
+     */
+    public function findOneByContentId($contentId)
+    {
+        return $this->findOneBy(array('contentId' => $contentId));
+    }
+
+    /**
+     * @param string $contentType
+     *
+     * @return array
+     */
+    public function findByContentType($contentType)
+    {
+        return $this->findBy(array('contentType' => $contentType));
     }
 }
