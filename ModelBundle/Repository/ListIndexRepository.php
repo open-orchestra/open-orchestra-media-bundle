@@ -3,11 +3,12 @@
 namespace PHPOrchestra\ModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use PHPOrchestra\ModelInterface\Repository\ListIndexRepositoryInterface;
 
 /**
  * Class ListIndexRepository
  */
-class ListIndexRepository extends DocumentRepository
+class ListIndexRepository extends DocumentRepository implements ListIndexRepositoryInterface
 {
     /**
      * @param string $docId

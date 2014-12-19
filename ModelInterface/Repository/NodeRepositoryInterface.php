@@ -26,6 +26,11 @@ interface NodeRepositoryInterface
     public function find($id);
 
     /**
+     * @return array
+     */
+    public function findAll();
+
+    /**
      * @param string      $nodeId
      * @param string|null $language
      *
