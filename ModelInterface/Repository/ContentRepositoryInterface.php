@@ -41,4 +41,12 @@ interface ContentRepositoryInterface
      * @return array
      */
     public function findByContentType($contentType);
+
+    /**
+     * @param string $contentId
+     * @param string $language
+     *
+     * @return ContentInterface
+     */
+    public function findOneByContentIdAndLanguage($contentId, $language);
 }

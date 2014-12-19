@@ -67,4 +67,49 @@ interface NodeRepositoryInterface
      * @return array
      */
     public function getFooterTree($language = null);
+
+    /**
+     * @param string $parentId
+     *
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     *
+     * @return mixed
+     */
+    public function findByParentIdAndSiteId($parentId);
+
+    /**
+     * @param string      $nodeId
+     * @param string|null $language
+     * @param string|null $siteId
+     *
+     * @return mixed
+     */
+    public function findOneByNodeIdAndLanguageAndSiteIdAndLastVersion($nodeId, $language = null, $siteId = null);
+
+    /**
+     * @param string      $nodeId
+     * @param string|null $language
+     * @param string|null $siteId
+     *
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     *
+     * @return mixed
+     */
+    public function findByNodeIdAndLanguageAndSiteId($nodeId, $language = null, $siteId = null);
+
+    /**
+     * @param string $type
+     *
+     * @return array
+     */
+    public function findLastVersionBySiteId($type = NodeInterface::TYPE_DEFAULT);
+
+    /**
+     * @param string $nodeId
+     *
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     *
+     * @return mixed
+     */
+    public function findByNodeIdAndSiteId($nodeId);
 }
