@@ -5,14 +5,13 @@ namespace PHPOrchestra\ModelBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use PHPOrchestra\ModelInterface\Model\AreaInterface;
-use PHPOrchestra\ModelInterface\Model\HtmlClassContainerInterface;
 
 /**
  * Description of BaseArea
  *
  * @MongoDB\EmbeddedDocument
  */
-class Area implements AreaInterface, HtmlClassContainerInterface
+class Area implements AreaInterface
 {
     /**
      * @var string $label

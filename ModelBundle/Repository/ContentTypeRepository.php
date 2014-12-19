@@ -3,11 +3,12 @@
 namespace PHPOrchestra\ModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use PHPOrchestra\ModelInterface\Repository\ContentTypeRepositoryInterface;
 
 /**
  * Class ContentTypeRepository
  */
-class ContentTypeRepository extends DocumentRepository
+class ContentTypeRepository extends DocumentRepository implements ContentTypeRepositoryInterface
 {
     /**
      * @param string   $contentType

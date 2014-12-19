@@ -3,16 +3,16 @@
 namespace PHPOrchestra\ModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use PHPOrchestra\ModelInterface\Model\StatusInterface;
+use PHPOrchestra\ModelInterface\Repository\StatusRepositoryInterface;
 
 /**
  * Class StatusRepository
  */
-class StatusRepository extends DocumentRepository
+class StatusRepository extends DocumentRepository implements StatusRepositoryInterface
 {
     /**
-     * @param string $name
-     *
-     * @return Status
+     * @return StatusInterface
      */
     public function findOneByInitial()
     {
@@ -25,7 +25,7 @@ class StatusRepository extends DocumentRepository
     /**
      * @param string $name
      *
-     * @return Cursor
+     * @return mixed
      */
     public function findOtherByInitial($name)
     {

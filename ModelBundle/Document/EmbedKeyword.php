@@ -2,31 +2,32 @@
 
 namespace PHPOrchestra\ModelBundle\Document;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use PHPOrchestra\ModelInterface\Model\EmbedKeywordInterface;
+use PHPOrchestra\ModelInterface\Model\KeywordInterface;
 
 /**
  * Class EmbedKeyword
  *
  * @MongoDB\EmbeddedDocument
  */
-class EmbedKeyword extends AbstractKeyword
+class EmbedKeyword extends AbstractKeyword implements EmbedKeywordInterface
 {
     /**
-     * @param Keyword $keyword
+     * @param KeywordInterface $keyword
      */
-    public function __construct(Keyword $keyword)
+    public function __construct(KeywordInterface $keyword)
     {
         $this->id = $keyword->getId();
         $this->setLabel($keyword->getLabel());
     }
 
     /**
-     * @param Keyword $keyword
+     * @param KeywordInterface $keyword
      *
-     * @return EmbedKeyword
+     * @return EmbedKeywordInterface
      */
-    public static function createFromKeyword(Keyword $keyword)
+    public static function createFromKeyword(KeywordInterface $keyword)
     {
         return new EmbedKeyword($keyword);
     }

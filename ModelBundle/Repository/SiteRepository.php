@@ -20,4 +20,15 @@ class SiteRepository extends DocumentRepository implements SiteRepositoryInterfa
     {
         return $this->findOneBy(array('siteId' => $siteId));
     }
+
+    /**
+     * @param boolean $deleted
+     *
+     * @return array
+     */
+    public function findByDeleted($deleted)
+    {
+        return $this->findBy(array('deleted' => $deleted));
+    }
+
 }

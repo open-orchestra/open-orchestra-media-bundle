@@ -15,4 +15,11 @@ interface SiteRepositoryInterface
      * @return SiteInterface
      */
     public function findOneBySiteId($siteId);
+
+    /**
+     * @param boolean $deleted
+     *
+     * @return array
+     */
+    public function findByDeleted($deleted);
 }

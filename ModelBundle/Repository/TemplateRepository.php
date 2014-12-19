@@ -5,11 +5,13 @@ namespace PHPOrchestra\ModelBundle\Repository;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use PHPOrchestra\ModelInterface\Model\AreaInterface;
 use PHPOrchestra\ModelBundle\Repository\FieldAutoGenerableRepositoryInterface;
+use PHPOrchestra\ModelInterface\Model\TemplateInterface;
+use PHPOrchestra\ModelInterface\Repository\TemplateRepositoryInterface;
 
 /**
  * Class TemplateRepository
  */
-class TemplateRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface
+class TemplateRepository extends DocumentRepository implements FieldAutoGenerableRepositoryInterface, TemplateRepositoryInterface
 {
     /**
      * @param string $templateId
@@ -31,6 +33,26 @@ class TemplateRepository extends DocumentRepository implements FieldAutoGenerabl
         }
 
         return null;
+    }
+
+    /**
+     * @param string $templateId
+     *
+     * @return TemplateInterface
+     */
+    public function findOneByTemplateId($templateId)
+    {
+        return $this->findOneBy(array('templateId' => $templateId));
+    }
+
+    /**
+     * @param boolean $deleted
+     *
+     * @return array
+     */
+    public function findByDeleted($deleted)
+    {
+        return $this->findBy(array('deleted' => $deleted));
     }
 
     /**

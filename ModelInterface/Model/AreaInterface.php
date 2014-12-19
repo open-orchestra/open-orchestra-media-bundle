@@ -5,7 +5,7 @@ namespace PHPOrchestra\ModelInterface\Model;
 /**
  * interface AreaInterface
  */
-interface AreaInterface extends AreaContainerInterface
+interface AreaInterface extends AreaContainerInterface, HtmlClassContainerInterface
 {
     /**
      * Set label
