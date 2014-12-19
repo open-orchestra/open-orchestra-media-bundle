@@ -598,7 +598,7 @@ Note, that many languages are just under translation, and the untranslated parts
     {
         $siteComBlock0 = new Block();
         $siteComBlock0->setLabel('Wysiwyg 1');
-        $siteComBlock0->setComponent(NodeInterface::TRANSVERSE_NODE_ID);
+        $siteComBlock0->setComponent(DisplayBlockInterface::TINYMCEWYSIWYG);
         $siteComBlock0->setAttributes(array(
             "htmlContent" => "<div class='content2'> <h1>ENTREPRISE DIGITALE : LES LEVIERS DE LA PERFORMANCE</h1>
                 <p>
