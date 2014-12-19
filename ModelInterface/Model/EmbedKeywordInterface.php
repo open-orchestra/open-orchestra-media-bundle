@@ -1,8 +1,6 @@
 <?php
 
-
 namespace PHPOrchestra\ModelInterface\Model;
-
 
 /**
  * Interface EmbedKeywordInterface
