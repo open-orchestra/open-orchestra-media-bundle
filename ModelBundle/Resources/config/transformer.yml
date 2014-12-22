@@ -1,0 +1,9 @@
+parameters:
+    php_orchestra_model.transformer.embed_status_to_status.class: PHPOrchestra\ModelBundle\Form\DataTransformer\EmbedStatusToStatusTransformer
+
+services:
+    php_orchestra_model.transformer.embed_status_to_status:
+        class: %php_orchestra_model.transformer.embed_status_to_status.class%
+        arguments:
+            - @php_orchestra_model.repository.status
+            - %php_orchestra_model.document.embed_status.class%

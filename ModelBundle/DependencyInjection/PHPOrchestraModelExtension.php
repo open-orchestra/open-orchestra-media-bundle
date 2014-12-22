@@ -50,5 +50,7 @@ class PHPOrchestraModelExtension extends Extension
         $loader->load('services.yml');
         $loader->load('validator.yml');
         $loader->load('manager.yml');
+        $loader->load('form.yml');
+        $loader->load('transformer.yml');
     }
 }
