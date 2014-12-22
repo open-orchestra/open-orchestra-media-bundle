@@ -19,6 +19,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "ext-imagick": "*",
         "itkg/phporchestra-model-bundle": "dev-master",
         "doctrine/data-fixtures":"1.0.0",
         "doctrine/mongodb-odm": "1.0.0-BETA11",
