@@ -18,4 +18,9 @@ interface RoleRepositoryInterface
      * @return RoleInterface
      */
     public function findOneByFromStatusAndToStatus(StatusInterface $fromStatus, StatusInterface $toStatus);
+
+    /**
+     * @return array
+     */
+    public function findAll();
 }
