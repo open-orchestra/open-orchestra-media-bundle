@@ -1,5 +1,5 @@
 {
-    "name": "itkg/phporchestra-model-bundle",
+    "name": "itkg/phporchestra-media-bundle",
     "license": "MIT",
     "authors": [
         {
@@ -11,10 +11,15 @@
         {
             "type": "vcs",
             "url": "https://github.com/itkg/phporchestra-base-bundle"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/itkg/phporchestra-model-bundle"
         }
     ],
     "minimum-stability": "dev",
     "require": {
+        "itkg/phporchestra-model-bundle": "dev-master",
         "doctrine/data-fixtures":"1.0.0",
         "doctrine/mongodb-odm": "1.0.0-BETA11",
         "doctrine/mongodb-odm-bundle" : "3.0.0-BETA6",
@@ -33,8 +38,6 @@
     },
     "autoload": {
         "psr-0": {
-            "PHPOrchestra\\ModelBundle": "",
-            "PHPOrchestra\\ModelInterface": "",
             "PHPOrchestra\\MediaBundle": "",
             "PHPOrchestra\\Media": ""
         }
