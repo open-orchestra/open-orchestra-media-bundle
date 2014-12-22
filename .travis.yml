@@ -9,6 +9,8 @@ cache:
 php:
   - 5.4
 
+sudo: false
+
 before_install:
   - printf "\n" |pecl install imagick
   - phpenv config-add .travis.php.ini
