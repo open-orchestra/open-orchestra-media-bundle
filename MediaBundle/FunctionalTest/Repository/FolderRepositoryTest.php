@@ -3,7 +3,7 @@
 namespace PHPOrchestra\MediaBundle\FunctionalTest\Repository;
 
 use Phake;
-use PHPOrchestra\MediaBundle\Repository\FolderRepository;
+use PHPOrchestra\Media\Repository\FolderRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 class FolderRepositoryTest extends KernelTestCase
 {
     /**
-     * @var FolderRepository
+     * @var FolderRepositoryInterface
      */
     protected $repository;
 

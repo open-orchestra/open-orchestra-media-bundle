@@ -4,7 +4,7 @@ namespace PHPOrchestra\Media\Thumbnail\Strategies;
 
 use PHPOrchestra\Media\Event\MediaEvent;
 use PHPOrchestra\Media\MediaEvents;
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
 
 /**

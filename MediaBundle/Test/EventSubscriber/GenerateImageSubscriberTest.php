@@ -32,9 +32,9 @@ class GenerateImageSubscriberTest extends \PHPUnit_Framework_TestCase
 
         $this->imageResizerManager = Phake::mock('PHPOrchestra\Media\Manager\ImageResizerManager');
 
-        $this->media1 = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
+        $this->media1 = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media1)->getFilesystemName()->thenReturn($this->file1);
-        $this->media2 = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
+        $this->media2 = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
 
         $this->subscriber = new GenerateImageSubscriber($this->imageResizerManager);
     }

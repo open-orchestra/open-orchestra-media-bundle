@@ -2,7 +2,7 @@
 
 namespace PHPOrchestra\MediaBundle\FunctionalTest\Repository;
 
-use PHPOrchestra\MediaBundle\Repository\MediaRepository;
+use PHPOrchestra\Media\Repository\MediaRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 class MediaRepositoryTest extends KernelTestCase
 {
     /**
-     * @var MediaRepository
+     * @var MediaRepositoryInterface
      */
     protected $repository;
 

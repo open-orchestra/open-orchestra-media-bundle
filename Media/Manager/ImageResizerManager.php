@@ -5,7 +5,7 @@ namespace PHPOrchestra\Media\Manager;
 use Imagick;
 use PHPOrchestra\Media\Event\ResizeImageEvent;
 use PHPOrchestra\Media\MediaEvents;
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**

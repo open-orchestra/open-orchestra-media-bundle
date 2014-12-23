@@ -45,7 +45,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
 
         $this->dispatcher = Phake::mock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
 
-        $this->media = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
+        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media)->getFilesystemName()->thenReturn($this->file);
 
         $this->manager = new ImageResizerManager($this->uploadDir, $this->formats, $this->compressionQuality, $this->dispatcher);

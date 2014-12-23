@@ -5,12 +5,13 @@ namespace PHPOrchestra\MediaBundle\Repository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use PHPOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
-use PHPOrchestra\MediaBundle\Model\FolderInterface;
+use PHPOrchestra\Media\Model\FolderInterface;
+use PHPOrchestra\Media\Repository\FolderRepositoryInterface;
 
 /**
  * Class FolderRepository
  */
-class FolderRepository extends DocumentRepository
+class FolderRepository extends DocumentRepository implements FolderRepositoryInterface
 {
     /**
      * @var CurrentSiteIdInterface

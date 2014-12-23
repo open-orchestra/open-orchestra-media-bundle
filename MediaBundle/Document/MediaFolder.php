@@ -5,8 +5,8 @@ namespace PHPOrchestra\MediaBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\Common\Collections\Collection;
-use PHPOrchestra\MediaBundle\Model\MediaFolderInterface;
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaFolderInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class MediaFolder

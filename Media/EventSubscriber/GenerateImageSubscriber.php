@@ -6,7 +6,7 @@ use Imagick;
 use PHPOrchestra\Media\Event\MediaEvent;
 use PHPOrchestra\Media\Manager\ImageResizerManager;
 use PHPOrchestra\Media\MediaEvents;
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 

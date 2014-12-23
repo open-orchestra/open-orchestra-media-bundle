@@ -26,7 +26,7 @@ class ImageToThumbnailManagerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->uploadDir = __DIR__.'/upload';
-        $this->media = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
+        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
         $this->eventDispatcher = Phake::mock('Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcherInterface');
 
         $this->manager = new ImageToThumbnailManager($this->uploadDir, $this->eventDispatcher);

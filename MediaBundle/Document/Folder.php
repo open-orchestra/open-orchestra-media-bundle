@@ -8,7 +8,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
-use PHPOrchestra\MediaBundle\Model\FolderInterface;
+use PHPOrchestra\Media\Model\FolderInterface;
 use PHPOrchestra\ModelInterface\Model\SiteInterface;
 
 /**

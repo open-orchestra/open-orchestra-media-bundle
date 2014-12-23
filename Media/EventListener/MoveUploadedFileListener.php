@@ -3,7 +3,7 @@
 namespace PHPOrchestra\Media\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 use PHPOrchestra\Media\Thumbnail\ThumbnailManager;
 
 /**

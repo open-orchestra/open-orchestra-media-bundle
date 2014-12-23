@@ -28,7 +28,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
     {
         $this->markTestSkipped();
         $this->file = Phake::mock('Symfony\Component\HttpFoundation\File\UploadedFile');
-        $this->media = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
+        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media)->getFile()->thenReturn($this->file);
 
         $this->thumbnailManager = Phake::mock('PHPOrchestra\Media\Thumbnail\ThumbnailManager');
