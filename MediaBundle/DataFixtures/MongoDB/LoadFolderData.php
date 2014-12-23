@@ -46,7 +46,6 @@ class LoadFolderData extends AbstractFixture implements OrderedFixtureInterface
         $rootFiles->addSite($this->getReference('site1'));
         $rootFiles->addSite($this->getReference('site2'));
         $rootFiles->addSite($this->getReference('site3'));
-        $rootFiles->addSite($this->getReference('site4'));
         $manager->persist($rootFiles);
         $this->addReference('mediaFolder-rootFiles', $rootFiles);
 

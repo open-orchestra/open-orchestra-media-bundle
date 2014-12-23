@@ -58,7 +58,7 @@ abstract class Folder implements FolderInterface
     /**
      * @var ArrayCollection
      *
-     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelBundle\Document\Site")
+     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelInterface\Model\SiteInterface")
      */
     protected $sites;
 
