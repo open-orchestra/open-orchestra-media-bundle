@@ -5,7 +5,6 @@ namespace PHPOrchestra\MediaBundle\Test\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
 use PHPOrchestra\MediaBundle\Document\MediaFolder;
-use PHPOrchestra\ModelBundle\Document\Site;
 
 /**
  * Class FolderTest
@@ -58,18 +57,19 @@ class FolderTest extends \PHPUnit_Framework_TestCase
             array('site2', 1)
         );
     }
+
     /**
      * @return ArrayCollection
      */
     public function generateSite1()
     {
         $sites = new ArrayCollection();
-        $site1 = new Site();
-        $site1->setSiteId('site1');
+        $site1 = Phake::mock('PHPOrchestra\ModelInterface\Model\SiteInterface');
+        Phake::when($site1)->getSiteId()->thenReturn('site1');
         $sites->add($site1);
 
-        $site2 = new Site();
-        $site2->setSiteId('site2');
+        $site2 = Phake::mock('PHPOrchestra\ModelInterface\Model\SiteInterface');
+        Phake::when($site2)->getSiteId()->thenReturn('site2');
         $sites->add($site2);
 
         return $sites;
@@ -82,8 +82,8 @@ class FolderTest extends \PHPUnit_Framework_TestCase
     {
         $sites = new ArrayCollection();
 
-        $site1 = new Site();
-        $site1->setSiteId('site1');
+        $site1 = Phake::mock('PHPOrchestra\ModelInterface\Model\SiteInterface');
+        Phake::when($site1)->getSiteId()->thenReturn('site1');
         $sites->add($site1);
 
         return $sites;

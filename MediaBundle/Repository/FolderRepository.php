@@ -5,6 +5,7 @@ namespace PHPOrchestra\MediaBundle\Repository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use PHPOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
+use PHPOrchestra\MediaBundle\Model\FolderInterface;
 
 /**
  * Class FolderRepository
@@ -37,19 +38,24 @@ class FolderRepository extends DocumentRepository
     }
 
     /**
-     * @return Collection
+     * @return array
      */
     public function findAllRootFolderBySiteId()
     {
-        $siteRepository = $this->getDocumentManager()->getRepository('PHPOrchestraModelBundle:Site');
-        $site = $siteRepository->findOneBySiteId($this->currentSiteManager->getCurrentSiteId());
+        $siteId = $this->currentSiteManager->getCurrentSiteId();
 
-        $qb = $this->createQueryBuilder('f');
-        $qb->field('parent')->equals(null);
-        if ($site) {
-            $qb->field('sites.id')->equals($site->getId());
+        $list = $this->findAllRootFolder();
+
+        $folders = array();
+        /** @var FolderInterface $folder */
+        foreach ($list as $folder) {
+            foreach ($folder->getSites() as $site) {
+                if ($site->getSiteId() == $siteId) {
+                    $folders[] = $folder;
+                }
+            }
         }
 
-        return $qb->getQuery()->execute();
+        return $folders;
     }
 }

@@ -38,9 +38,9 @@ class EntityTest extends \PHPUnit_Framework_TestCase
      * @param string $class
      * @param string $interface
      *
-     * @dataProvider providateClassInterfaceRelationOfModelBundle
+     * @dataProvider providateClassInterfaceRelationOfModelInterface
      */
-    public function testInstanceOfModelBundle($class, $interface)
+    public function testInstanceOfModelInterface($class, $interface)
     {
         $fullClass = 'PHPOrchestra\MediaBundle\Document\\' . $class;
         $fullInterface = 'PHPOrchestra\ModelInterface\Model\\' . $interface;
@@ -52,7 +52,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function providateClassInterfaceRelationOfModelBundle()
+    public function providateClassInterfaceRelationOfModelInterface()
     {
         return array(
             array('Media',            'BlameableInterface'),
