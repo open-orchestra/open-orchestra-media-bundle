@@ -2,7 +2,7 @@
 
 namespace PHPOrchestra\Media\Event;
 
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**

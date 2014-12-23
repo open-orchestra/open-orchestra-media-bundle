@@ -2,7 +2,7 @@
 
 namespace PHPOrchestra\Media\DisplayMedia\Strategies;
 
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class PdfStrategy

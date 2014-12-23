@@ -3,7 +3,7 @@
 namespace PHPOrchestra\Media\Thumbnail\Strategies;
 
 use Imagick;
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
 
 /**

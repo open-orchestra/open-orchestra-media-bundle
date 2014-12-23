@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Model;
+namespace PHPOrchestra\Media\Model;
 
 use Doctrine\Common\Collections\Collection;
 use PHPOrchestra\ModelInterface\Model\BlameableInterface;

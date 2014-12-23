@@ -13,14 +13,13 @@ class VideoStrategyTest extends \PHPUnit_Framework_TestCase
     protected $media;
     protected $mediathequeUrl = 'media.phporchestra.dev';
     protected $strategy;
-    protected $mediaRepository;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->media = Phake::mock('PHPOrchestra\MediaBundle\Model\MediaInterface');
+        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
 
         $this->strategy = new VideoStrategy();
 

@@ -22,7 +22,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->displayMediaManager = Phake::mock('PHPOrchestra\Media\DisplayMedia\DisplayMediaManager');
-        $this->mediaRepository = Phake::mock('PHPOrchestra\MediaBundle\Repository\MediaRepository');
+        $this->mediaRepository = Phake::mock('PHPOrchestra\Media\Repository\MediaRepositoryInterface');
         $this->media = Phake::mock('PHPOrchestra\MediaBundle\Document\Media');
 
         $this->extension = new DisplayMediaExtension($this->displayMediaManager, $this->mediaRepository);
@@ -35,7 +35,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $mediaId = 'mediaId';
         $html = '<img src="test" alt="test">';
-        Phake::when($this->mediaRepository)->findOneById($mediaId)->thenReturn($this->media);
+        Phake::when($this->mediaRepository)->find($mediaId)->thenReturn($this->media);
         Phake::when($this->displayMediaManager)->displayMedia($this->media)->thenReturn($html);
 
         $this->assertSame($html, $this->extension->displayMedia($mediaId));
@@ -49,7 +49,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     public function testDisplayMediaNull()
     {
         $mediaId = 'mediaId';
-        Phake::when($this->mediaRepository)->findOneById(Phake::anyParameters())->thenReturn(null);
+        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn(null);
 
         $this->assertSame('', $this->extension->displayMedia($mediaId));
 
@@ -63,7 +63,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $mediaId = 'mediaId';
         $url = 'test.jpg';
-        Phake::when($this->mediaRepository)->findOneById($mediaId)->thenReturn($this->media);
+        Phake::when($this->mediaRepository)->find($mediaId)->thenReturn($this->media);
         Phake::when($this->displayMediaManager)->displayPreview($this->media)->thenReturn($url);
 
         $this->assertSame($url, $this->extension->mediaPreview($mediaId));
@@ -77,7 +77,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     public function testMediaPreviewNull()
     {
         $mediaId = 'mediaId';
-        Phake::when($this->mediaRepository)->findOneById(Phake::anyParameters())->thenReturn(null);
+        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn(null);
 
         $this->assertSame($this->noMedia, $this->extension->mediaPreview($mediaId));
 

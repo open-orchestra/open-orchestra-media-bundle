@@ -2,7 +2,7 @@
 
 namespace PHPOrchestra\Media\Thumbnail;
 
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 
 /**
  * Interface ThumbnailInterface

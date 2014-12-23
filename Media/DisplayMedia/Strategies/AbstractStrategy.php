@@ -3,7 +3,7 @@
 namespace PHPOrchestra\Media\DisplayMedia\Strategies;
 
 use PHPOrchestra\Media\DisplayMedia\DisplayMediaInterface;
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class AbstractStrategy

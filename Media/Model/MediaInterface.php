@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Model;
+namespace PHPOrchestra\Media\Model;
 
 use PHPOrchestra\ModelInterface\Model\KeywordableInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

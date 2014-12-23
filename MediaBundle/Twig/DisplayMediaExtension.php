@@ -3,7 +3,7 @@
 namespace PHPOrchestra\MediaBundle\Twig;
 
 use PHPOrchestra\Media\DisplayMedia\DisplayMediaManager;
-use PHPOrchestra\MediaBundle\Repository\MediaRepository;
+use PHPOrchestra\Media\Repository\MediaRepositoryInterface;
 
 /**
  * Class DisplayMediaExtension
@@ -14,10 +14,10 @@ class DisplayMediaExtension extends \Twig_Extension
     protected $mediaRepository;
 
     /**
-     * @param DisplayMediaManager $displayMediaManager
-     * @param MediaRepository     $mediaRepository
+     * @param DisplayMediaManager      $displayMediaManager
+     * @param MediaRepositoryInterface $mediaRepository
      */
-    public function __construct(DisplayMediaManager $displayMediaManager, MediaRepository $mediaRepository)
+    public function __construct(DisplayMediaManager $displayMediaManager, MediaRepositoryInterface $mediaRepository)
     {
         $this->displayMediaManager = $displayMediaManager;
         $this->mediaRepository = $mediaRepository;
@@ -42,7 +42,7 @@ class DisplayMediaExtension extends \Twig_Extension
      */
     public function displayMedia($mediaId)
     {
-        $media = $this->mediaRepository->findOneById($mediaId);
+        $media = $this->mediaRepository->find($mediaId);
 
         if ($media) {
             return $this->displayMediaManager->displayMedia($media);
@@ -58,7 +58,7 @@ class DisplayMediaExtension extends \Twig_Extension
      */
     public function mediaPreview($mediaId)
     {
-        $media = $this->mediaRepository->findOneById($mediaId);
+        $media = $this->mediaRepository->find($mediaId);
 
         if ($media) {
             return $this->displayMediaManager->displayPreview($media);

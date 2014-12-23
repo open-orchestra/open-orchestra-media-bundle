@@ -7,8 +7,8 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
-use PHPOrchestra\MediaBundle\Model\MediaFolderInterface;
-use PHPOrchestra\MediaBundle\Model\MediaInterface;
+use PHPOrchestra\Media\Model\MediaFolderInterface;
+use PHPOrchestra\Media\Model\MediaInterface;
 use PHPOrchestra\ModelInterface\MongoTrait\KeywordableDocument;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

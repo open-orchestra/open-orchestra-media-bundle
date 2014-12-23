@@ -4,11 +4,13 @@ namespace PHPOrchestra\MediaBundle\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use PHPOrchestra\Media\Model\MediaInterface;
+use PHPOrchestra\Media\Repository\MediaRepositoryInterface;
 
 /**
  * Class MediaRepository
  */
-class MediaRepository extends DocumentRepository
+class MediaRepository extends DocumentRepository implements MediaRepositoryInterface
 {
     /**
      * @param string $folderId
@@ -36,5 +38,15 @@ class MediaRepository extends DocumentRepository
         $qb->field('keywords.label')->equals($keyword);
 
         return $qb->getQuery()->execute();
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return MediaInterface
+     */
+    public function findOneByName($name)
+    {
+        return $this->findOneBy(array('name' => $name));
     }
 }
