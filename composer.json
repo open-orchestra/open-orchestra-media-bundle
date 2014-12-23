@@ -14,13 +14,13 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/itkg/phporchestra-model-bundle"
+            "url": "https://github.com/itkg/phporchestra-model-interface"
         }
     ],
     "minimum-stability": "dev",
     "require": {
         "ext-imagick": "*",
-        "itkg/phporchestra-model-bundle": "dev-master",
+        "itkg/phporchestra-model-interface": "dev-master",
         "doctrine/data-fixtures":"1.0.0",
         "doctrine/mongodb-odm": "1.0.0-BETA11",
         "doctrine/mongodb-odm-bundle" : "3.0.0-BETA6",
