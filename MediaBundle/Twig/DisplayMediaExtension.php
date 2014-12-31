@@ -46,9 +46,9 @@ class DisplayMediaExtension extends \Twig_Extension
 
         if ($media) {
             return $this->displayMediaManager->displayMedia($media);
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     /**
