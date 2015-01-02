@@ -20,7 +20,7 @@ class DisplayMediaCompilerPass extends AbstractTaggedCompiler implements Compile
      */
     public function process(ContainerBuilder $container)
     {
-        $managerName = 'php_orchestra_media.thumbnail_manager';
+        $managerName = 'php_orchestra_media.display_media_manager';
         $tagName = 'php_orchestra_media.display_media.strategy';
 
         $this->addStrategyToManager($container, $managerName, $tagName);
