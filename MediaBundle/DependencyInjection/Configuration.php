@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->scalarNode('upload_dir')->defaultNull()->end()
             ->scalarNode('compression_quality')->defaultValue(75)->end()
+            ->scalarNode('mediatheque_url')->defaultValue('http://media.phporchestra.dev')->end()
             ->arrayNode('document')
                 ->addDefaultsIfNotSet()
                 ->children()
