@@ -43,11 +43,11 @@ class PHPOrchestraMediaExtension extends Extension
             }
         }
 
+        $dir = '/var/www/media-phporchestra';
         if (!is_null($config['upload_dir'])) {
             $dir = $config['upload_dir'];
-        } else {
-            $dir = '/var/www/media-phporchestra';
         }
+
         $container->setParameter('php_orchestra_media.upload_dir', $dir);
         $container->setParameter('php_orchestra_media.thumbnail.configuration', $config['thumbnail']);
         $container->setParameter('php_orchestra_media.resize.compression_quality', $config['compression_quality']);
