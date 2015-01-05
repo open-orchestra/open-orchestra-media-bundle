@@ -18,11 +18,11 @@ interface MediaRepositoryInterface
     public function findByFolderId($folderId);
 
     /**
-     * @param string $keyword
+     * @param string $keywords
      *
      * @return array
      */
-    public function findByKeyword($keyword);
+    public function findByKeywords($keywords);
 
     /**
      * @param string $id
