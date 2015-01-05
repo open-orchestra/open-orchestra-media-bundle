@@ -34,6 +34,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
         $firstImage->setMimeType('image/jpg');
         $firstImage->setMediaFolder($this->getReference('mediaFolder-firstImages'));
         $firstImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
+        $firstImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-dolor')));
         $manager->persist($firstImage);
 
         $secondImage = new Media();
