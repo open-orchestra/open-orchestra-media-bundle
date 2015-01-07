@@ -18,7 +18,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
 
     protected $media;
     protected $formats;
-    protected $uploadDir;
+    protected $tmpDir;
     protected $dispatcher;
     protected $compressionQuality;
     protected $file = 'What-are-you-talking-about.jpg';
@@ -29,7 +29,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->compressionQuality = 75;
-        $this->uploadDir = __DIR__ . '/images';
+        $this->tmpDir = __DIR__ . '/images';
         $this->formats = array(
             'max_width' => array(
                 'max_width' => 100,
@@ -48,7 +48,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
         $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media)->getFilesystemName()->thenReturn($this->file);
 
-        $this->manager = new ImageResizerManager($this->uploadDir, $this->formats, $this->compressionQuality, $this->dispatcher);
+        $this->manager = new ImageResizerManager($this->tmpDir, $this->formats, $this->compressionQuality, $this->dispatcher);
     }
 
     /**
@@ -62,16 +62,16 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCrop($x, $y, $h, $w, $format)
     {
-        if (file_exists($this->uploadDir .'/' . $format . '-' . $this->file)) {
-            unlink($this->uploadDir .'/' . $format . '-' . $this->file);
+        if (file_exists($this->tmpDir .'/' . $format . '-' . $this->file)) {
+            unlink($this->tmpDir .'/' . $format . '-' . $this->file);
         }
-        $this->assertFileNotExists($this->uploadDir .'/' . $format . '-' . $this->file);
+        $this->assertFileNotExists($this->tmpDir .'/' . $format . '-' . $this->file);
 
         $this->manager->crop($this->media, $x, $y, $h, $w, $format);
 
-        $this->assertFileExists($this->uploadDir .'/' . $format . '-' . $this->file);
+        $this->assertFileExists($this->tmpDir .'/' . $format . '-' . $this->file);
 //        TODO Check why travis sees two different strings
-//        $this->assertFileEquals($this->uploadDir . '/'. $format . '-reference-crop.jpg', $this->uploadDir . '/'. $format . '-' . $this->file);
+//        $this->assertFileEquals($this->tmpDir . '/'. $format . '-reference-crop.jpg', $this->tmpDir . '/'. $format . '-' . $this->file);
         Phake::verify($this->dispatcher)->dispatch(Phake::anyParameters());
     }
 
@@ -93,19 +93,19 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
     public function testGenerateAllThumbnails()
     {
         foreach ($this->formats as $key => $format) {
-            if (file_exists($this->uploadDir .'/' . $key . '-' . $this->file)) {
-                unlink($this->uploadDir .'/' . $key . '-' . $this->file);
+            if (file_exists($this->tmpDir .'/' . $key . '-' . $this->file)) {
+                unlink($this->tmpDir .'/' . $key . '-' . $this->file);
             }
-            $this->assertFileNotExists($this->uploadDir .'/' . $key . '-' . $this->file);
+            $this->assertFileNotExists($this->tmpDir .'/' . $key . '-' . $this->file);
         }
 
         $this->manager->generateAllThumbnails($this->media);
 
-        $this->assertFileExists($this->uploadDir . '/' . $this->file);
+        $this->assertFileExists($this->tmpDir . '/' . $this->file);
         foreach ($this->formats as $key => $format) {
-            $this->assertFileExists($this->uploadDir . '/'. $key . '-' . $this->file);
+            $this->assertFileExists($this->tmpDir . '/'. $key . '-' . $this->file);
 //            TODO Check why travis sees two different strings
-//            $this->assertFileEquals($this->uploadDir . '/'. $key . '-reference.jpg', $this->uploadDir . '/'. $key . '-' . $this->file);
+//            $this->assertFileEquals($this->tmpDir . '/'. $key . '-reference.jpg', $this->tmpDir . '/'. $key . '-' . $this->file);
         }
         Phake::verify($this->dispatcher, Phake::times(3))->dispatch(Phake::anyParameters());
     }

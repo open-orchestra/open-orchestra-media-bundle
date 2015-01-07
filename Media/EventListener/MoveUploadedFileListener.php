@@ -13,18 +13,18 @@ use PHPOrchestra\Media\Manager\GaufretteManager;
 class MoveUploadedFileListener
 {
     public $filename;
-    protected $uploadDir;
+    protected $tmpDir;
     protected $thumbnailManager;
     protected $gaufretteManager;
 
     /**
-     * @param string $uploadDir
+     * @param string $tmpDir
      * @param ThumbnailManager $thumbnailManager
      * @param GaufretteManager $gaufretteManager
      */
-    public function __construct($uploadDir, ThumbnailManager $thumbnailManager, GaufretteManager $gaufretteManager)
+    public function __construct($tmpDir, ThumbnailManager $thumbnailManager, GaufretteManager $gaufretteManager)
     {
-        $this->uploadDir = $uploadDir;
+        $this->tmpDir = $tmpDir;
         $this->thumbnailManager = $thumbnailManager;
         $this->gaufretteManager = $gaufretteManager;
     }
@@ -52,8 +52,8 @@ class MoveUploadedFileListener
     {
         if ( ($document = $event->getDocument()) instanceof MediaInterface) {
             if (null !== ($file = $document->getFile())) {
-                $file->move($this->uploadDir, $this->filename);
-                $this->gaufretteManager->upload($this->filename, $this->uploadDir);
+                $file->move($this->tmpDir, $this->filename);
+                $this->gaufretteManager->uploadContent($this->filename, $file);
                 $document = $this->thumbnailManager->generateThumbnail($document);
             }
         }

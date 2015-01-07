@@ -1,10 +1,17 @@
 parameters:
     php_orchestra_media.subscriber.generate_image.class: PHPOrchestra\Media\EventSubscriber\GenerateImageSubscriber
+    php_orchestra_media.subscriber.upload_image.class: PHPOrchestra\Media\EventSubscriber\UploadImageSubscriber
 
 services:
     php_orchestra_media.subscriber.generate_image:
         class: %php_orchestra_media.subscriber.generate_image.class%
         arguments:
             - @php_orchestra_media.manager.image_resizer
+        tags:
+             - { name: kernel.event_subscriber }
+    php_orchestra_media.subscriber.upload_image:
+        class: %php_orchestra_media.subscriber.upload_image.class%
+        arguments:
+            - @php_orchestra_media.manager.gaufrette
         tags:
              - { name: kernel.event_subscriber }

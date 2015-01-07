@@ -21,25 +21,22 @@ class GaufretteManager
     }
 
     /**
-     * Upload a file with gaufrette
+     * Upload a file with gaufrette with the key $key and content $filecontent
      * 
-     * @param string $filename
-     * @param string $path
+     * @param string $key
+     * @param string $filecontent
      */
-    public function upload($filename, $path) {
-        $this->adapter->write($filename, file_get_contents($path . '/' . $filename));
-        // remove local file
-        return $filename;
+    public function uploadContent($key, $filecontent) {
+        return $this->adapter->write($key, $filecontent);
     }
 
     /**
-     * Download a file with gaufrette
+     * Get content of a file with gaufrette
      * 
-     * @param string $filename
+     * @param string $key
      */
-    public function download($filename) {
-        $fileContent = $this->adapter->read($filename);
-        // ecriture en local et lien vers le fichier
+    public function getMediaContent($key) {
+        return $this->adapter->read($key);
     }
 
 }

@@ -6,7 +6,7 @@ services:
     php_orchestra_media.manager.image_resizer:
         class: %php_orchestra_media.manager.image_resizer.class%
         arguments:
-            - %php_orchestra_media.upload_dir%
+            - %php_orchestra_media.tmp_dir%
             - %php_orchestra_media.thumbnail.configuration%
             - %php_orchestra_media.resize.compression_quality%
             - @event_dispatcher

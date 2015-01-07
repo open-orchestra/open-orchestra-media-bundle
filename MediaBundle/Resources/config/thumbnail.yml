@@ -10,19 +10,19 @@ services:
     php_orchestra_media.thumbnail.pdf_to_image:
         class: %php_orchestra_media.thumbnail.pdf_to_image.class%
         arguments:
-            - %php_orchestra_media.upload_dir%
+            - %php_orchestra_media.tmp_dir%
         tags:
             - { name: php_orchestra_media.thumbnail.strategy }
     php_orchestra_media.thumbnail.video_to_image:
         class: %php_orchestra_media.thumbnail.video_to_image.class%
         arguments:
-            - %php_orchestra_media.upload_dir%
+            - %php_orchestra_media.tmp_dir%
         tags:
             - { name: php_orchestra_media.thumbnail.strategy }
     php_orchestra_media.thumbnail.image_to_thumbnail:
         class: %php_orchestra_media.thumbnail.image_to_thumbnail.class%
         arguments:
-            - %php_orchestra_media.upload_dir%
+            - %php_orchestra_media.tmp_dir%
             - @event_dispatcher
         tags:
             - { name: php_orchestra_media.thumbnail.strategy }
