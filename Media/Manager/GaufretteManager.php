@@ -35,7 +35,7 @@ class GaufretteManager
      * 
      * @param string $key
      */
-    public function getMediaContent($key) {
+    public function getFileContent($key) {
         return $this->adapter->read($key);
     }
 
