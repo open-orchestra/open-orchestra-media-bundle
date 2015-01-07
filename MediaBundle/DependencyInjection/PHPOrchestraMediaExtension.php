@@ -61,5 +61,6 @@ class PHPOrchestraMediaExtension extends Extension
         $loader->load('subscriber.yml');
         $loader->load('listener.yml');
         $loader->load('manager.yml');
+        $loader->load('displayblock.yml');
     }
 }
