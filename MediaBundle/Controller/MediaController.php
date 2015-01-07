@@ -22,9 +22,16 @@ class MediaController extends Controller
     public function getAction($key)
     {
         $gaufretteManager = $this->get('php_orchestra_media.manager.gaufrette');
+        $fileContent = $gaufretteManager->getMediaContent($key);
+
+        $finfo = finfo_open(FILEINFO_MIME);
+        $mimetype = finfo_buffer($finfo, $fileContent);
+        finfo_close($finfo);
 
         $response = new Response();
-        $response->setContent($gaufretteManager->getMediaContent($key));
+        $response->headers->set('Content-Type', $mimetype);
+        $response->headers->set('Content-Length', strlen($fileContent));
+        $response->setContent($fileContent);
 
         return $response;
     }
