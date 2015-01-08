@@ -4,20 +4,21 @@ namespace PHPOrchestra\Media\DisplayMedia\Strategies;
 
 use PHPOrchestra\Media\DisplayMedia\DisplayMediaInterface;
 use PHPOrchestra\Media\Model\MediaInterface;
+use Symfony\Component\Routing\Router;
 
 /**
  * Class AbstractStrategy
  */
 abstract class AbstractStrategy implements DisplayMediaInterface
 {
-    protected $mediathequeUrl;
+    protected $router;
 
     /**
-     * @param string $mediathequeUrl
+     * @param Router $router
      */
-    public function setMediathequeUrl($mediathequeUrl)
+    public function __construct(Router $router)
     {
-        $this->mediathequeUrl = $mediathequeUrl;
+        $this->router = $router;
     }
 
     /**
@@ -27,6 +28,22 @@ abstract class AbstractStrategy implements DisplayMediaInterface
      */
     public function displayPreview(MediaInterface $media)
     {
-        return $this->mediathequeUrl . '/' . $media->getThumbnail();
+        return $this->getFileUrl($media->getThumbnail());
+    }
+
+    /**
+     * Return url to a file stored with gaufrette
+     * 
+     * @param string $filename
+     *
+     * @return String
+     */
+    protected function getFileUrl($filename)
+    {
+        return $this->router->generate(
+            'php_orchestra_media_get',
+            array('key' => $filename),
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
     }
 }

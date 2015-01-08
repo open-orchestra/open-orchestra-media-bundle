@@ -10,16 +10,6 @@ use PHPOrchestra\Media\Model\MediaInterface;
 class DisplayMediaManager
 {
     protected $strategies = array();
-    protected $mediathequeUrl;
-
-    /**
-     * @param string $mediathequeUrl
-     * @param string $noImagePath
-     */
-    public function __construct($mediathequeUrl)
-    {
-        $this->mediathequeUrl = $mediathequeUrl;
-    }
 
     /**
      * @param DisplayMediaInterface $strategy
@@ -27,7 +17,6 @@ class DisplayMediaManager
     public function addStrategy(DisplayMediaInterface $strategy)
     {
         $this->strategies[$strategy->getName()] = $strategy;
-        $strategy->setMediathequeUrl($this->mediathequeUrl);
     }
 
     /**

@@ -10,11 +10,6 @@ use PHPOrchestra\Media\Model\MediaInterface;
 interface DisplayMediaInterface
 {
     /**
-     * @param string $mediathequeUrl
-     */
-    public function setMediathequeUrl($mediathequeUrl);
-
-    /**
      * @param MediaInterface $media
      *
      * @return bool

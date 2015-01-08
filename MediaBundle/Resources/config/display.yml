@@ -7,17 +7,21 @@ parameters:
 services:
     php_orchestra_media.display_media_manager:
         class: %php_orchestra_media.display_media_manager.class%
-        arguments:
-            - %php_orchestra_media.mediatheque.url%
     php_orchestra_media.display_media.image:
         class: %php_orchestra_media.display_media.image.class%
+        arguments:
+            - @router
         tags:
             - { name: php_orchestra_media.display_media.strategy }
     php_orchestra_media.display_media.pdf:
         class: %php_orchestra_media.display_media.pdf.class%
+        arguments:
+            - @router
         tags:
             - { name: php_orchestra_media.display_media.strategy }
     php_orchestra_media.display_media.video:
         class: %php_orchestra_media.display_media.video.class%
+        arguments:
+            - @router
         tags:
             - { name: php_orchestra_media.display_media.strategy }
