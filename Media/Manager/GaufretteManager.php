@@ -12,12 +12,12 @@ class GaufretteManager
     protected $adapter;
 
     /**
-     * @param FilesystemMap $filesystem_map
+     * @param FilesystemMap $filesystemMap
      * @param string        $filesystem
      */
-    public function __construct(FilesystemMap $filesystem_map, $filesystem)
+    public function __construct(FilesystemMap $filesystemMap, $filesystem)
     {
-        $this->adapter = $filesystem_map->get($filesystem)->getAdapter();
+        $this->adapter = $filesystemMap->get($filesystem)->getAdapter();
     }
 
     /**
