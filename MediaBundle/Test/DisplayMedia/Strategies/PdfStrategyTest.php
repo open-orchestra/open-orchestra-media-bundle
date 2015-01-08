@@ -68,4 +68,45 @@ class PdfStrategyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($url, $this->strategy->displayPreview($this->media));
     }
+
+    /**
+     * @param string $mimeType
+     * @param bool $supported
+     *
+     * @dataProvider provideMimeTypes
+     */
+    public function testSupport($mimeType, $supported)
+    {
+        Phake::when($this->media)->getMimeType()->thenReturn($mimeType);
+
+        $this->assertSame($supported, $this->strategy->support($this->media));
+    }
+
+    /**
+     * @return array
+     */
+    public function provideMimeTypes()
+    {
+        return array(
+            array('image/jpeg', false),
+            array('image/gif', false),
+            array('image/png', false),
+            array('application/pdf', true),
+            array('video/mpeg', false),
+            array('video/quicktime', false),
+            array('text/csv', false),
+            array('text/html', false),
+            array('text/plain', false),
+            array('audio/mpeg', false),
+            array('application/msword', false),
+        );
+    }
+
+    /**
+     * test strategy name
+     */
+    public function testGetName()
+    {
+        $this->assertSame('pdf', $this->strategy->getName());
+    }
 }
