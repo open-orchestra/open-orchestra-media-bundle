@@ -11,8 +11,9 @@ use PHPOrchestra\Media\DisplayMedia\Strategies\VideoStrategy;
 class VideoStrategyTest extends \PHPUnit_Framework_TestCase
 {
     protected $media;
-    protected $mediathequeUrl = 'media.phporchestra.dev';
     protected $strategy;
+    protected $router;
+    protected $pathToFile = 'pathToFile';
 
     /**
      * Set up the test
@@ -21,23 +22,24 @@ class VideoStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
 
-        $this->strategy = new VideoStrategy();
+        $this->router = Phake::mock('PHPOrchestra\DisplayBundle\Routing\PhpOrchestraRouter');
 
-        $this->strategy->setMediathequeUrl($this->mediathequeUrl);
+        $this->strategy = new VideoStrategy($this->router);
     }
 
     /**
-     * @param string $images
+     * @param string $image
      * @param string $url
      *
      * @dataProvider displayImage
      */
-    public function testDisplayMedia($images, $url)
+    public function testDisplayMedia($image, $url)
     {
-        Phake::when($this->media)->getName()->thenReturn($images);
-        Phake::when($this->media)->getThumbnail()->thenReturn($images);
+        Phake::when($this->media)->getName()->thenReturn($image);
+        Phake::when($this->media)->getThumbnail()->thenReturn($image);
+        Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
 
-        $html = '<img src="' . $url .'" alt="' . $images .'">';
+        $html = '<img src="' . $url .'" alt="' . $image .'">';
 
         $this->assertSame($html, $this->strategy->displayMedia($this->media));
     }
@@ -48,20 +50,21 @@ class VideoStrategyTest extends \PHPUnit_Framework_TestCase
     public function displayImage()
     {
         return array(
-            array('test1.mp4', $this->mediathequeUrl . '/' . 'test1.mp4'),
-            array('test2.avi', $this->mediathequeUrl . '/' . 'test2.avi'),
+            array('test1.mp4', $this->pathToFile . '/' . 'test1.mp4'),
+            array('test2.avi', $this->pathToFile . '/' . 'test2.avi'),
         );
     }
 
     /**
-     * @param string $images
+     * @param string $image
      * @param string $url
      *
      * @dataProvider displayImage
      */
-    public function testDisplayPreview($images, $url)
+    public function testDisplayPreview($image, $url)
     {
-        Phake::when($this->media)->getThumbnail()->thenReturn($images);
+        Phake::when($this->media)->getThumbnail()->thenReturn($image);
+        Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
 
         $this->assertSame($url, $this->strategy->displayPreview($this->media));
     }

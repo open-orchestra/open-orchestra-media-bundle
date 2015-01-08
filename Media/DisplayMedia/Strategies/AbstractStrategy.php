@@ -5,6 +5,7 @@ namespace PHPOrchestra\Media\DisplayMedia\Strategies;
 use PHPOrchestra\Media\DisplayMedia\DisplayMediaInterface;
 use PHPOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Class AbstractStrategy
