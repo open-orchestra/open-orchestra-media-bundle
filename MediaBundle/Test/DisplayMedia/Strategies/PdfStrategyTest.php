@@ -22,7 +22,7 @@ class PdfStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
 
-        $this->router = Phake::mock('PHPOrchestra\DisplayBundle\Routing\PhpOrchestraRouter');
+        $this->router = Phake::mock('Symfony\Component\Routing\Router');
 
         $this->strategy = new PdfStrategy($this->router);
     }
