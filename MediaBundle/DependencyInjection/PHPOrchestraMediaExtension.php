@@ -43,12 +43,8 @@ class PHPOrchestraMediaExtension extends Extension
             }
         }
 
-        $dir = '/tmp';
-        if (!is_null($config['tmp_dir'])) {
-            $dir = $config['tmp_dir'];
-        }
-
-        $container->setParameter('php_orchestra_media.tmp_dir', $dir);
+        $container->setParameter('php_orchestra_media.tmp_dir', $config['tmp_dir']);
+        $container->setParameter('php_orchestra_media.filesystem', $config['filesystem']);
         $container->setParameter('php_orchestra_media.thumbnail.configuration', $config['thumbnail']);
         $container->setParameter('php_orchestra_media.resize.compression_quality', $config['compression_quality']);
 
@@ -60,6 +56,5 @@ class PHPOrchestraMediaExtension extends Extension
         $loader->load('listener.yml');
         $loader->load('manager.yml');
         $loader->load('displayblock.yml');
-        $loader->load('gaufrette.yml');
     }
 }

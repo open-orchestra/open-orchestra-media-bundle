@@ -21,7 +21,8 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('php_orchestra_media');
 
         $rootNode->children()
-            ->scalarNode('tmp_dir')->defaultNull()->end()
+            ->scalarNode('tmp_dir')->defaultValue('/tmp')->end()
+            ->scalarNode('filesystem')->defaultValue('media_storage')->end()
             ->scalarNode('compression_quality')->defaultValue(75)->end()
             ->arrayNode('document')
                 ->addDefaultsIfNotSet()
