@@ -24,7 +24,8 @@ class PdfStrategyTest extends \PHPUnit_Framework_TestCase
 
         $this->router = Phake::mock('Symfony\Component\Routing\Router');
 
-        $this->strategy = new PdfStrategy($this->router);
+        $this->strategy = new PdfStrategy();
+        $this->strategy->setRouter($this->router);
     }
 
     /**

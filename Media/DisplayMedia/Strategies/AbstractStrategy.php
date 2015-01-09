@@ -15,9 +15,11 @@ abstract class AbstractStrategy implements DisplayMediaInterface
     protected $router;
 
     /**
+     * Set the router
+     * 
      * @param Router $router
      */
-    public function __construct(Router $router)
+    public function setRouter(Router $router)
     {
         $this->router = $router;
     }

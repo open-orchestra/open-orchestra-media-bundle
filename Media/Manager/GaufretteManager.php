@@ -26,7 +26,8 @@ class GaufretteManager
      * @param string $key
      * @param string $filecontent
      */
-    public function uploadContent($key, $filecontent) {
+    public function uploadContent($key, $filecontent)
+    {
         return $this->adapter->write($key, $filecontent);
     }
 
@@ -35,7 +36,8 @@ class GaufretteManager
      * 
      * @param string $key
      */
-    public function getFileContent($key) {
+    public function getFileContent($key)
+    {
         return $this->adapter->read($key);
     }
 

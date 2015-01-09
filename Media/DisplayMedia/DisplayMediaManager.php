@@ -3,6 +3,7 @@
 namespace PHPOrchestra\Media\DisplayMedia;
 
 use PHPOrchestra\Media\Model\MediaInterface;
+use Symfony\Component\Routing\Router;
 
 /**
  * Class DisplayMediaManager
@@ -10,12 +11,22 @@ use PHPOrchestra\Media\Model\MediaInterface;
 class DisplayMediaManager
 {
     protected $strategies = array();
+    protected $router;
+
+    /**
+     * @param Router $router
+     */
+    public function __construct(Router $router)
+    {
+        $this->router = $router;
+    }
 
     /**
      * @param DisplayMediaInterface $strategy
      */
     public function addStrategy(DisplayMediaInterface $strategy)
     {
+        $strategy->setRouter($this->router);
         $this->strategies[$strategy->getName()] = $strategy;
     }
 

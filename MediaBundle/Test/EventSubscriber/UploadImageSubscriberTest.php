@@ -68,6 +68,9 @@ class UploadImageSubscriberTest extends \PHPUnit_Framework_TestCase
         Phake::verify($this->gaufretteManager, Phake::times(1))->uploadContent($filename, $fileContent);
     }
 
+    /**
+     * Provide file names & content
+     */
     public function provideFileInfos()
     {
         return array(

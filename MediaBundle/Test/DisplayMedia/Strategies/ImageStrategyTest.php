@@ -24,7 +24,8 @@ class ImageStrategyTest extends \PHPUnit_Framework_TestCase
 
         $this->router = Phake::mock('Symfony\Component\Routing\Router');
 
-        $this->strategy = new ImageStrategy($this->router);
+        $this->strategy = new ImageStrategy();
+        $this->strategy->setRouter($this->router);
     }
 
     /**
