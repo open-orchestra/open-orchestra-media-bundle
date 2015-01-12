@@ -11,14 +11,14 @@ use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
  */
 class PdfToImageManager implements ThumbnailInterface
 {
-    protected $uploadDir;
+    protected $tmpDir;
 
     /**
-     * @param $uploadDir
+     * @param $tmpDir
      */
-    public function __construct($uploadDir)
+    public function __construct($tmpDir)
     {
-        $this->uploadDir = $uploadDir;
+        $this->tmpDir = $tmpDir;
     }
 
     /**
@@ -52,10 +52,10 @@ class PdfToImageManager implements ThumbnailInterface
      */
     public function generateThumbnail(MediaInterface $media)
     {
-        $im = new Imagick($this->uploadDir . '/' . $media->getFilesystemName().'[0]');
+        $im = new Imagick($this->tmpDir . '/' . $media->getFilesystemName().'[0]');
         $im->setImageFormat('jpg');
         $im->setCompression(75);
-        $im->writeImage($this->uploadDir . '/' . $media->getThumbnail());
+        $im->writeImage($this->tmpDir . '/' . $media->getThumbnail());
 
         return $media;
     }

@@ -3,6 +3,7 @@
 namespace PHPOrchestra\Media\DisplayMedia;
 
 use PHPOrchestra\Media\Model\MediaInterface;
+use Symfony\Component\Routing\Router;
 
 /**
  * Class DisplayMediaInterface
@@ -10,16 +11,18 @@ use PHPOrchestra\Media\Model\MediaInterface;
 interface DisplayMediaInterface
 {
     /**
-     * @param string $mediathequeUrl
-     */
-    public function setMediathequeUrl($mediathequeUrl);
-
-    /**
      * @param MediaInterface $media
      *
      * @return bool
      */
     public function support(MediaInterface $media);
+
+    /**
+     * Set the router
+     * 
+     * @param Router $router
+     */
+    public function setRouter(Router $router);
 
     /**
      * @param MediaInterface $media

@@ -4,8 +4,9 @@ services:
     php_orchestra_media.doctrine_listener.move_uploaded_file:
         class: %php_orchestra_media.doctrine_listener.move_uploaded_file.class%
         arguments:
-            - %php_orchestra_media.upload_dir%
+            - %php_orchestra_media.tmp_dir%
             - @php_orchestra_media.thumbnail_manager
+            - @php_orchestra_media.manager.gaufrette
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
             - { name: doctrine_mongodb.odm.event_listener, event: preUpdate }

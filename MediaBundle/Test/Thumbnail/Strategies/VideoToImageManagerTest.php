@@ -16,17 +16,17 @@ class VideoToImageManagerTest extends \PHPUnit_Framework_TestCase
     protected $manager;
 
     protected $media;
-    protected $uploadDir;
+    protected $tmpDir;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->uploadDir = __DIR__.'/upload';
+        $this->tmpDir = __DIR__.'/tmpdir';
         $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
 
-        $this->manager = new VideoToImageManager($this->uploadDir);
+        $this->manager = new VideoToImageManager($this->tmpDir);
     }
 
     /**
@@ -95,17 +95,17 @@ class VideoToImageManagerTest extends \PHPUnit_Framework_TestCase
         $this->markTestSkipped();
         $fileName = 'video';
 
-        if (file_exists($this->uploadDir .'/'. $fileName .'.jpg')) {
-            unlink($this->uploadDir .'/'. $fileName .'.jpg');
+        if (file_exists($this->tmpDir .'/'. $fileName .'.jpg')) {
+            unlink($this->tmpDir .'/'. $fileName .'.jpg');
         }
-        $this->assertFalse(file_exists($this->uploadDir .'/'. $fileName .'.jpg'));
+        $this->assertFalse(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
 
         Phake::when($this->media)->getFilesystemName()->thenReturn($fileName. '.' . $fileExtension);
         Phake::when($this->media)->getThumbnail()->thenReturn($fileName. '.jpg');
 
         $this->manager->generateThumbnail($this->media);
 
-        $this->assertTrue(file_exists($this->uploadDir .'/'. $fileName .'.jpg'));
+        $this->assertTrue(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
     }
 
     /**

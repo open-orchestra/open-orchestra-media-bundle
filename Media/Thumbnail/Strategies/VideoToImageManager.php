@@ -10,14 +10,14 @@ use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
  */
 class VideoToImageManager implements ThumbnailInterface
 {
-    protected $uploadDir;
+    protected $tmpDir;
 
     /**
-     * @param $uploadDir
+     * @param $tmpDir
      */
-    public function __construct($uploadDir)
+    public function __construct($tmpDir)
     {
-        $this->uploadDir = $uploadDir;
+        $this->tmpDir = $tmpDir;
     }
 
     /**
@@ -51,10 +51,10 @@ class VideoToImageManager implements ThumbnailInterface
      */
     public function generateThumbnail(MediaInterface $media)
     {
-        $video = new \ffmpeg_movie($this->uploadDir . '/' . $media->getFilesystemName());
+        $video = new \ffmpeg_movie($this->tmpDir . '/' . $media->getFilesystemName());
         $frame = $video->getFrame(1);
         $image = $frame->toGDImage();
-        imagejpeg($image, $this->uploadDir . '/' . $media->getThumbnail());
+        imagejpeg($image, $this->tmpDir . '/' . $media->getThumbnail());
 
         return $media;
     }

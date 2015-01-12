@@ -15,20 +15,20 @@ class ImageResizerManager
 {
     protected $compressionQuality;
     protected $dispatcher;
-    protected $uploadDir;
+    protected $tmpDir;
     protected $formats;
 
     /**
-     * @param string                   $uploadDir
+     * @param string                   $tmpDir
      * @param array                    $formats
      * @param int                      $compressionQuality
      * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct($uploadDir, array $formats, $compressionQuality, $dispatcher)
+    public function __construct($tmpDir, array $formats, $compressionQuality, $dispatcher)
     {
         $this->compressionQuality = $compressionQuality;
         $this->dispatcher = $dispatcher;
-        $this->uploadDir = $uploadDir;
+        $this->tmpDir = $tmpDir;
         $this->formats = $formats;
     }
 
@@ -38,7 +38,7 @@ class ImageResizerManager
     public function generateAllThumbnails(MediaInterface $media)
     {
         foreach ($this->formats as $key => $format) {
-            $image = new Imagick($this->uploadDir . '/' . $media->getFilesystemName());
+            $image = new Imagick($this->tmpDir . '/' . $media->getFilesystemName());
             $this->resizeImage($format, $image);
 
             $this->saveImage($media, $image, $key);
@@ -55,7 +55,7 @@ class ImageResizerManager
      */
     public function crop(MediaInterface $media, $x, $y, $h, $w, $format)
     {
-        $image = new Imagick($this->uploadDir . '/' . $media->getFilesystemName());
+        $image = new Imagick($this->tmpDir . '/' . $media->getFilesystemName());
         $image->cropImage($w, $h, $x, $y);
         $this->resizeImage($this->formats[$format], $image);
 
@@ -73,9 +73,8 @@ class ImageResizerManager
         $image->setImageCompressionQuality($this->compressionQuality);
         $image->stripImage();
         $filename = $key . '-' . $media->getFilesystemName();
-        $image->writeImage($this->uploadDir . '/' . $filename);
 
-        $event = new ResizeImageEvent($filename);
+        $event = new ResizeImageEvent($filename, $image);
         $this->dispatcher->dispatch(MediaEvents::RESIZE_IMAGE, $event);
     }
 

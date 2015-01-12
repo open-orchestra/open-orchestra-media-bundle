@@ -12,15 +12,15 @@ use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
  */
 class ImageToThumbnailManager implements ThumbnailInterface
 {
-    protected $uploadDir;
+    protected $tmpDir;
     protected $dispatcher;
 
     /**
-     * @param $uploadDir
+     * @param $tmpDir
      */
-    public function __construct($uploadDir, $dispatcher)
+    public function __construct($tmpDir, $dispatcher)
     {
-        $this->uploadDir = $uploadDir;
+        $this->tmpDir = $tmpDir;
         $this->dispatcher = $dispatcher;
     }
 

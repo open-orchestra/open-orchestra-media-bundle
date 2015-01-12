@@ -15,7 +15,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
      */
     protected $listener;
 
-    protected $uploadDir = 'uploadDir';
+    protected $tmpDir = 'tmpDir';
     protected $thumbnailManager;
     protected $event;
     protected $media;
@@ -36,7 +36,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
         $this->event = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
         Phake::when($this->event)->getDocument()->thenReturn($this->media);
 
-        $this->listener = new MoveUploadedFileListener($this->uploadDir, $this->thumbnailManager);
+        $this->listener = new MoveUploadedFileListener($this->tmpDir, $this->thumbnailManager);
     }
 
     /**
@@ -106,7 +106,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
 
         $this->listener->postPersist($this->event);
 
-        Phake::verify($this->file)->move($this->uploadDir, $fileName);
+        Phake::verify($this->file)->move($this->tmpDir, $fileName);
         Phake::verify($this->thumbnailManager)->generateThumbnail($this->media);
     }
 

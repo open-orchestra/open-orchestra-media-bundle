@@ -3,27 +3,39 @@
 namespace PHPOrchestra\Media\Event;
 
 use Symfony\Component\EventDispatcher\Event;
+use Imagick;
 
 /**
  * Class ResizeImageEvent
  */
 class ResizeImageEvent extends Event
 {
-    protected $filePath;
+    protected $fileName;
+    protected $fileContent;
 
     /**
-     * @param string $filePath
+     * @param string $fileName
+     * @param Imagick $fileContent
      */
-    public function __construct($filePath)
+    public function __construct($fileName, Imagick $fileContent)
     {
-        $this->filePath = $filePath;
+        $this->fileName = $fileName;
+        $this->fileContent = $fileContent;
     }
 
     /**
      * @return string
      */
-    public function getFilePath()
+    public function getFileName()
     {
-        return $this->filePath;
+        return $this->fileName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileContent()
+    {
+        return $this->fileContent;
     }
 }
