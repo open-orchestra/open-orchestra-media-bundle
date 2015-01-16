@@ -116,4 +116,19 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface, Key
      * @param string $title
      */
     public function setTitle($title);
+
+    /**
+     * @param string $reference
+     */
+    public function addUsageReference($reference);
+
+    /**
+     * @param string $reference
+     */
+    public function removeUsageReference($reference);
+
+    /**
+     * @return array
+     */
+    public function getUsageReference();
 }

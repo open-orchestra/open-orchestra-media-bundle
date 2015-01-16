@@ -102,6 +102,11 @@ class Media implements MediaInterface
     protected $comment;
 
     /**
+     * @MongoDB\Field(type="collection")
+     */
+    protected $usageReference = array();
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -275,5 +280,33 @@ class Media implements MediaInterface
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @param string $reference
+     */
+    public function addUsageReference($reference)
+    {
+        $this->usageReference[] = $reference;
+    }
+
+    /**
+     * @param string $reference
+     */
+    public function removeUsageReference($reference)
+    {
+        foreach ($this->usageReference as $key => $usageReference) {
+            if ($usageReference == $reference) {
+                unset($this->usageReference[$key]);
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function getUsageReference()
+    {
+        return $this->usageReference;
     }
 }
