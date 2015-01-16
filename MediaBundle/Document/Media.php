@@ -102,7 +102,7 @@ class Media implements MediaInterface
     protected $comment;
 
     /**
-     * @MongoDB\Field(type="collection")
+     * @ODM\Field(type="collection")
      */
     protected $usageReference = array();
 
