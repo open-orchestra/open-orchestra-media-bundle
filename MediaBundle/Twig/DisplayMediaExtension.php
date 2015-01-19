@@ -3,6 +3,7 @@
 namespace PHPOrchestra\MediaBundle\Twig;
 
 use PHPOrchestra\Media\DisplayMedia\DisplayMediaManager;
+use PHPOrchestra\Media\Model\MediaInterface;
 use PHPOrchestra\Media\Repository\MediaRepositoryInterface;
 
 /**
@@ -42,8 +43,8 @@ class DisplayMediaExtension extends \Twig_Extension
      */
     public function displayMedia($mediaId)
     {
-        if (strpos($mediaId, 'media-') === 0) {
-            $mediaId = substr($mediaId, 6);
+        if (strpos($mediaId, MediaInterface::MEDIA_PREFIX) === 0) {
+            $mediaId = substr($mediaId, strlen(MediaInterface::MEDIA_PREFIX));
         }
 
         $media = $this->mediaRepository->find($mediaId);

@@ -12,6 +12,8 @@ use PHPOrchestra\ModelInterface\Model\TimestampableInterface;
  */
 interface MediaInterface extends TimestampableInterface, BlameableInterface, KeywordableInterface
 {
+    const MEDIA_PREFIX = 'media-';
+
     /**
      * @return string
      */
