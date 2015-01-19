@@ -42,6 +42,10 @@ class DisplayMediaExtension extends \Twig_Extension
      */
     public function displayMedia($mediaId)
     {
+        if (strpos($mediaId, 'media-') === 0) {
+            $mediaId = substr($mediaId, 6);
+        }
+
         $media = $this->mediaRepository->find($mediaId);
 
         if ($media) {
