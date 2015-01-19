@@ -133,4 +133,9 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface, Key
      * @return array
      */
     public function getUsageReference();
+
+    /**
+     * @return bool
+     */
+    public function isDeletable();
 }

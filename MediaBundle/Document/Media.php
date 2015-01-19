@@ -309,4 +309,12 @@ class Media implements MediaInterface
     {
         return $this->usageReference;
     }
+
+    /**
+     * @return bool
+     */
+    public function isDeletable()
+    {
+        return !(bool) count($this->usageReference);
+    }
 }
