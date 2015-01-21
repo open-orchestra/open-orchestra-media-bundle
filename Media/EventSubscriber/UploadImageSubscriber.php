@@ -5,7 +5,7 @@ namespace PHPOrchestra\Media\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use PHPOrchestra\Media\MediaEvents;
-use PHPOrchestra\Media\Event\ResizeImageEvent;
+use PHPOrchestra\Media\Event\ImagickEvent;
 use PHPOrchestra\Media\Manager\GaufretteManager;
 
 /**
@@ -24,9 +24,9 @@ class UploadImageSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param MediaEvent $event
+     * @param ImagickEvent $event
      */
-    public function uploadImage(ResizeImageEvent $event)
+    public function uploadImage(ImagickEvent $event)
     {
         $this->gaufretteManager->uploadContent($event->getFileName(), $event->getFileContent());
     }
@@ -37,7 +37,8 @@ class UploadImageSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            MediaEvents::RESIZE_IMAGE => 'uploadImage'
+            MediaEvents::RESIZE_IMAGE => 'uploadImage',
+            MediaEvents::OVERRIDE_IMAGE => 'uploadImage',
         );
     }
 }
