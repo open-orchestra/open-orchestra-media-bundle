@@ -20,7 +20,7 @@
     "minimum-stability": "dev",
     "require": {
         "ext-imagick": "*",
-        "itkg/phporchestra-model-interface": "dev-master",
+        "itkg/phporchestra-model-interface": "*",
         "doctrine/data-fixtures":"1.0.0",
         "doctrine/mongodb-odm": "1.0.0-BETA11",
         "doctrine/mongodb-odm-bundle" : "3.0.0-BETA6",
@@ -28,7 +28,7 @@
         "knplabs/knp-gaufrette-bundle": "v0.1.7"
     },
     "require-dev": {
-        "itkg/phporchestra-base-bundle": "dev-master",
+        "itkg/phporchestra-base-bundle": "*",
         "scrutinizer/ocular": "1.1.1",
         "symfony/validator": "2.5.5",
         "jmikola/geojson": "1.0.1",
