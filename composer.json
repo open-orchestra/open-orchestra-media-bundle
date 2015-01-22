@@ -28,7 +28,7 @@
         "knplabs/knp-gaufrette-bundle": "v0.1.7"
     },
     "require-dev": {
-        "itkg/phporchestra-base-bundle": "*",
+        "itkg/phporchestra-base-bundle": "dev-master",
         "scrutinizer/ocular": "1.1.1",
         "symfony/validator": "2.5.5",
         "jmikola/geojson": "1.0.1",
