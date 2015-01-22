@@ -63,4 +63,22 @@ class DisplayMediaManager
 
         return $media;
     }
+
+    /**
+     * @param MediaInterface $media
+     * @param String         $format
+     *
+     * @return String
+     */
+    public function getMediaFormatUrl(MediaInterface $media, $format)
+    {
+        /** @var DisplayMediaInterface $strategy */
+        foreach ($this->strategies as $strategy) {
+            if ($strategy->support($media)) {
+                return $strategy->getMediaFormatUrl($media, $format);
+            }
+        }
+
+        return $media;
+    }
 }

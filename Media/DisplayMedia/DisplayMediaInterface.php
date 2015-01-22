@@ -39,6 +39,14 @@ interface DisplayMediaInterface
     public function displayMedia(MediaInterface $media);
 
     /**
+     * @param MediaInterface $media
+     * @param string         $format
+     *
+     * @return String
+     */
+    public function getMediaFormatUrl(MediaInterface $media, $format);
+
+    /**
      * @return string
      */
     public function getName();
