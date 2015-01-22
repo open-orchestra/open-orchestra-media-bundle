@@ -3,7 +3,7 @@
 namespace PHPOrchestra\Media\Manager;
 
 use Imagick;
-use PHPOrchestra\Media\Event\ResizeImageEvent;
+use PHPOrchestra\Media\Event\ImagickEvent;
 use PHPOrchestra\Media\MediaEvents;
 use PHPOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -74,7 +74,7 @@ class ImageResizerManager
         $image->stripImage();
         $filename = $key . '-' . $media->getFilesystemName();
 
-        $event = new ResizeImageEvent($filename, $image);
+        $event = new ImagickEvent($filename, $image);
         $this->dispatcher->dispatch(MediaEvents::RESIZE_IMAGE, $event);
     }
 

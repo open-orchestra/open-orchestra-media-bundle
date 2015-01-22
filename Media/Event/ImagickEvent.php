@@ -6,9 +6,9 @@ use Symfony\Component\EventDispatcher\Event;
 use Imagick;
 
 /**
- * Class ResizeImageEvent
+ * Class ImagickEvent
  */
-class ResizeImageEvent extends Event
+class ImagickEvent extends Event
 {
     protected $fileName;
     protected $fileContent;

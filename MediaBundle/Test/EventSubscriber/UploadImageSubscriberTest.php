@@ -25,7 +25,7 @@ class UploadImageSubscriberTest extends \PHPUnit_Framework_TestCase
 
         $this->subscriber = new UploadImageSubscriber($this->gaufretteManager);
 
-        $this->event = Phake::mock('PHPOrchestra\Media\Event\ResizeImageEvent');
+        $this->event = Phake::mock('PHPOrchestra\Media\Event\ImagickEvent');
     }
 
     /**
