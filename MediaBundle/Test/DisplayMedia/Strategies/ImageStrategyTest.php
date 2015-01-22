@@ -4,6 +4,7 @@ namespace PHPOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
 
 use Phake;
 use PHPOrchestra\Media\DisplayMedia\Strategies\ImageStrategy;
+use PHPOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class ImageStrategyTest
@@ -57,6 +58,18 @@ class ImageStrategyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return array
+     */
+    public function getMediaFormatUrl()
+    {
+        return array(
+            array('test1.jpg', MediaInterface::MEDIA_ORIGINAL, $this->pathToFile . '/' . 'test1.jpg'),
+            array('test1.jpg', 'max-width', $this->pathToFile . '/' . 'max-width-test1.jpg'),
+            array('test2.png', 'max-height', $this->pathToFile . '/' . 'max-height-test2.png'),
+        );
+    }
+
+    /**
      * @param string $image
      * @param string $url
      *
@@ -68,6 +81,25 @@ class ImageStrategyTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
 
         $this->assertSame($url, $this->strategy->displayPreview($this->media));
+    }
+
+    /**
+     * @param string $image
+     * @param string $format
+     * @param string $url
+     *
+     * @dataProvider getMediaFormatUrl
+     */
+    public function testGetMediaFormatUrl($image, $format, $url)
+    {
+        Phake::when($this->media)->getThumbnail()->thenReturn($image);
+        Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn(
+            (MediaInterface::MEDIA_ORIGINAL == $format) ?
+                $this->pathToFile . '/' . $image :
+                $this->pathToFile . '/' . $format. '-' . $image
+        );
+
+        $this->assertSame($url, $this->strategy->getMediaFormatUrl($this->media, $format));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace PHPOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
 
 use Phake;
 use PHPOrchestra\Media\DisplayMedia\Strategies\VideoStrategy;
+use PHPOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class VideoStrategyTest
@@ -46,6 +47,22 @@ class VideoStrategyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param string $image
+     * @param string $format
+     * @param string $url
+     *
+     * @dataProvider getMediaFormatUrl
+     */
+    public function testGetMediaFormatUrl($image, $format, $url)
+    {
+        Phake::when($this->media)->getName()->thenReturn($image);
+        Phake::when($this->media)->getThumbnail()->thenReturn($image);
+        Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
+
+        $this->assertSame($url, $this->strategy->getMediaFormatUrl($this->media, $format));
+    }
+
+    /**
      * @return array
      */
     public function displayImage()
@@ -53,6 +70,18 @@ class VideoStrategyTest extends \PHPUnit_Framework_TestCase
         return array(
             array('test1.mp4', $this->pathToFile . '/' . 'test1.mp4'),
             array('test2.avi', $this->pathToFile . '/' . 'test2.avi'),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getMediaFormatUrl()
+    {
+        return array(
+            array('test1.mp4', MediaInterface::MEDIA_ORIGINAL, $this->pathToFile . '/test1.mp4'),
+            array('test1.mp4', 'max-width', $this->pathToFile . '/test1.mp4'),
+            array('test2.avi', 'max-height', $this->pathToFile . '/test2.avi'),
         );
     }
 
