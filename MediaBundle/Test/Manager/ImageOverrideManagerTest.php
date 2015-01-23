@@ -18,7 +18,7 @@ class ImageOverrideManagerTest extends \PHPUnit_Framework_TestCase
     protected $media;
     protected $tmpDir;
     protected $dispatcher;
-    protected $file = 'What-are-you-talking-about.jpg';
+    protected $file = 'reference.jpg';
 
     public function setUp()
     {
