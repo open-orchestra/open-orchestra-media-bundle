@@ -93,6 +93,7 @@ class DisplayMediaExtension extends \Twig_Extension
         if ($media) {
             return $this->displayMediaManager->getMediaFormatUrl($media, $format);
         }
+
         return '';
     }
 
