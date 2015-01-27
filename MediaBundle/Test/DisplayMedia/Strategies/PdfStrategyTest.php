@@ -4,6 +4,7 @@ namespace PHPOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
 
 use Phake;
 use PHPOrchestra\Media\DisplayMedia\Strategies\PdfStrategy;
+use PHPOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class PdfStrategyTest
@@ -29,7 +30,7 @@ class PdfStrategyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $images
+     * @param string $image
      * @param string $url
      *
      * @dataProvider displayImage
@@ -46,6 +47,22 @@ class PdfStrategyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param string $image
+     * @param string $format
+     * @param string $url
+     *
+     * @dataProvider getMediaFormatUrl
+     */
+    public function testGetMediaFormatUrl($image, $format, $url)
+    {
+        Phake::when($this->media)->getName()->thenReturn($image);
+        Phake::when($this->media)->getThumbnail()->thenReturn($image);
+        Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
+
+        $this->assertSame($url, $this->strategy->getMediaFormatUrl($this->media, $format));
+    }
+
+    /**
      * @return array
      */
     public function displayImage()
@@ -53,6 +70,18 @@ class PdfStrategyTest extends \PHPUnit_Framework_TestCase
         return array(
             array('test1.pdf', $this->pathToFile . '/' . 'test1.pdf'),
             array('test2.pdf', $this->pathToFile . '/' . 'test2.pdf'),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getMediaFormatUrl()
+    {
+        return array(
+            array('test1.pdf', MediaInterface::MEDIA_ORIGINAL, $this->pathToFile . '/test1.pdf'),
+            array('test1.pdf', 'max-width', $this->pathToFile . '/test1.pdf'),
+            array('test2.pdf', 'max-height', $this->pathToFile . '/test2.pdf'),
         );
     }
 

@@ -30,6 +30,19 @@ class ImageStrategy extends AbstractStrategy
     }
 
     /**
+     * @param MediaInterface $media
+     * @param string         $format
+     */
+    public function getMediaFormatUrl(MediaInterface $media, $format)
+    {
+        if (MediaInterface::MEDIA_ORIGINAL == $format) {
+            return $this->getFileUrl($media->getFilesystemName());
+        }
+
+        return $this->getFileUrl($format . '-' . $media->getFilesystemName());
+    }
+
+    /**
      * @return string
      */
     public function getName()

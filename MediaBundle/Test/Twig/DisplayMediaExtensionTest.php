@@ -83,4 +83,18 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
 
         Phake::verify($this->displayMediaManager, Phake::never())->displayPreview($this->media);
     }
+
+    /**
+     * Test getMediaFormatUrl
+     */
+    public function testGetMediaFormatUrl()
+    {
+        $mediaId = 'mediaId';
+        $format = 'format';
+        Phake::when($this->mediaRepository)->find($mediaId)->thenReturn($this->media);
+
+        $this->extension->getMediaFormatUrl($mediaId, $format);
+
+        Phake::verify($this->displayMediaManager, Phake::times(1))->getMediaFormatUrl($this->media, $format);
+    }
 }

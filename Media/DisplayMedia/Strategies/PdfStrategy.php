@@ -30,6 +30,15 @@ class PdfStrategy extends AbstractStrategy
     }
 
     /**
+     * @param MediaInterface $media
+     * @param string         $format
+     */
+    public function getMediaFormatUrl(MediaInterface $media, $format)
+    {
+        return $this->displayPreview($media);
+    }
+
+    /**
      * @return string
      */
     public function getName()
