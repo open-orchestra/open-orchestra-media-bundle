@@ -37,9 +37,9 @@ class ImageStrategy extends AbstractStrategy
     {
         if (MediaInterface::MEDIA_ORIGINAL == $format) {
             return $this->getFileUrl($media->getFilesystemName());
-        } else {
-            return $this->getFileUrl($format . '-' . $media->getFilesystemName());
         }
+
+        return $this->getFileUrl($format . '-' . $media->getFilesystemName());
     }
 
     /**
