@@ -12,4 +12,6 @@ final class MediaEvents
     const RESIZE_IMAGE = 'media.resize_image';
 
     const OVERRIDE_IMAGE = 'media.override_image';
+
+    const MEDIA_DELETE = 'media.delete';
 }
