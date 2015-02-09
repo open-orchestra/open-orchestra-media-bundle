@@ -22,6 +22,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
     protected $dispatcher;
     protected $compressionQuality;
     protected $file = 'What-are-you-talking-about.jpg';
+    protected $overrideFile = 'reference.jpg';
 
     /**
      * Set up the test
@@ -106,5 +107,33 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
 //            $this->assertFileEquals($this->tmpDir . '/'. $key . '-reference.jpg', $this->tmpDir . '/'. $key . '-' . $this->file);
         }
         Phake::verify($this->dispatcher, Phake::times(3))->dispatch(Phake::anyParameters());
+    }
+
+    /**
+     * Test override
+     *
+     * @param string $format
+     * @param string $fileName
+     *
+     * @dataProvider generateFormatOverride
+     */
+    public function testOverride($format, $fileName)
+    {
+        $this->assertFileExists($this->tmpDir . '/' . $fileName);
+        Phake::when($this->media)->getFilesystemName()->thenReturn($this->overrideFile);
+        $this->manager->override($this->media, $format);
+        Phake::verify($this->dispatcher)->dispatch(Phake::anyParameters());
+    }
+
+    /**
+     * @return array
+     */
+    public function generateFormatOverride()
+    {
+        return array(
+            array('max_height', 'max_height-' . $this->overrideFile),
+            array('max_width', 'max_width-' . $this->overrideFile),
+            array('rectangle', 'rectangle-' . $this->overrideFile),
+        );
     }
 }

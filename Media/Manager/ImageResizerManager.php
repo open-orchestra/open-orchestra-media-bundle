@@ -64,6 +64,19 @@ class ImageResizerManager
 
     /**
      * @param MediaInterface $media
+     * @param string         $format
+     */
+    public function override(MediaInterface $media, $format)
+    {
+        $filename = $format . '-' . $media->getFilesystemName();
+        $image = new Imagick($this->tmpDir . '/' . $filename);
+        $this->resizeImage($this->formats[$format], $image);
+
+        $this->saveImage($media, $image, $format);
+    }
+
+    /**
+     * @param MediaInterface $media
      * @param Imagick        $image
      * @param string         $key
      */
