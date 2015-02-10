@@ -38,7 +38,6 @@ class UploadImageSubscriber implements EventSubscriberInterface
     {
         return array(
             MediaEvents::RESIZE_IMAGE => 'uploadImage',
-            MediaEvents::OVERRIDE_IMAGE => 'uploadImage',
         );
     }
 }

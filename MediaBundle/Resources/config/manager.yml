@@ -1,7 +1,6 @@
 parameters:
     php_orchestra_media.manager.image_resizer.class: PHPOrchestra\Media\Manager\ImageResizerManager
     php_orchestra_media.manager.gaufrette.class: PHPOrchestra\Media\Manager\GaufretteManager
-    php_orchestra_media.manager.image_override.class: PHPOrchestra\Media\Manager\ImageOverrideManager
 
 services:
     php_orchestra_media.manager.image_resizer:
@@ -17,8 +16,3 @@ services:
         arguments:
             - @knp_gaufrette.filesystem_map
             - %php_orchestra_media.filesystem%
-    php_orchestra_media.manager.image_override:
-        class: %php_orchestra_media.manager.image_override.class%
-        arguments:
-            - @event_dispatcher
-            - %php_orchestra_media.tmp_dir%
