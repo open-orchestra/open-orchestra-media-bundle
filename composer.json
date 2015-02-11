@@ -1,5 +1,6 @@
 {
     "name": "itkg/phporchestra-media-bundle",
+    "description": "A media bundle for the PhpOrchestra Project",
     "license": "MIT",
     "authors": [
         {
