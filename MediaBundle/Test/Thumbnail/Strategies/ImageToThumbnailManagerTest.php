@@ -3,7 +3,6 @@
 namespace PHPOrchestra\MediaBundle\Test\Thumbnail\Strategies;
 
 use Phake;
-use PHPOrchestra\Media\MediaEvents;
 use PHPOrchestra\Media\Thumbnail\Strategies\ImageToThumbnailManager;
 
 /**

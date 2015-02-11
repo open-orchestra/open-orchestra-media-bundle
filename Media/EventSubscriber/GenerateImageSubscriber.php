@@ -2,7 +2,6 @@
 
 namespace PHPOrchestra\Media\EventSubscriber;
 
-use Imagick;
 use PHPOrchestra\Media\Event\MediaEvent;
 use PHPOrchestra\Media\Manager\ImageResizerManager;
 use PHPOrchestra\Media\MediaEvents;

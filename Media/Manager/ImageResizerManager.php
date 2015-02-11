@@ -92,10 +92,10 @@ class ImageResizerManager
     }
 
     /**
-     * @param $format
-     * @param $image
+     * @param string  $format
+     * @param Imagick $image
      */
-    protected function resizeImage($format, $image)
+    protected function resizeImage($format, Imagick $image)
     {
         if (array_key_exists('width', $format) && array_key_exists('height', $format)) {
             $image->thumbnailImage($format['width'], $format['height']);

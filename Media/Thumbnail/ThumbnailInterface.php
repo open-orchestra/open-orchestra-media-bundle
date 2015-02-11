@@ -35,5 +35,3 @@ interface ThumbnailInterface
      */
     public function getName();
 }
-
- 

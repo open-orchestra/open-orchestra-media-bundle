@@ -4,7 +4,6 @@ namespace PHPOrchestra\MediaBundle\Test\Manager;
 
 use Phake;
 use PHPOrchestra\Media\Manager\ImageResizerManager;
-use PHPOrchestra\Media\MediaEvents;
 
 /**
  * Class ImageResizerManagerTest

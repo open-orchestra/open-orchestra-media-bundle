@@ -5,7 +5,6 @@ namespace PHPOrchestra\MediaBundle\Test\EventSubscriber;
 use Phake;
 use PHPOrchestra\Media\EventSubscriber\UploadImageSubscriber;
 use PHPOrchestra\Media\MediaEvents;
-use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Class UploadImageSubscriberTest
