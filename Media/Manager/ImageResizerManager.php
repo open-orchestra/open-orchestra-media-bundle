@@ -98,11 +98,61 @@ class ImageResizerManager
     protected function resizeImage($format, Imagick $image)
     {
         if (array_key_exists('width', $format) && array_key_exists('height', $format)) {
-            $image->thumbnailImage($format['width'], $format['height']);
+            $this->resizeInBox($image, $format['width'], $format['height']);
+
         } elseif (array_key_exists('max_height', $format)) {
-            $image->resizeImage(0, $format['max_height'], Imagick::FILTER_LANCZOS, 1);
+            $this->resizeOnHeight($image, $format['max_height']);
+
         } elseif (array_key_exists('max_width', $format)) {
-            $image->resizeImage($format['max_width'], 0, Imagick::FILTER_LANCZOS, 1);
+            $this->resizeOnWidth($image, $format['max_width']);
         }
+    }
+
+    /**
+     * Resize an image keeping its ratio to the width $width
+     * 
+     * @param Imagick $image
+     * @param int $width
+     */
+    protected function resizeOnWidth(Imagick $image, $width)
+    {
+        $image->resizeImage($width, 0, Imagick::FILTER_LANCZOS, 1);
+    }
+
+    /**
+     * Resize an image keeping its ratio to the height $height
+     * 
+     * @param Imagick $image
+     * @param int $height
+     */
+    protected function resizeOnHeight(Imagick $image, $height)
+    {
+        $image->resizeImage(0, $height, Imagick::FILTER_LANCZOS, 1);
+    }
+
+    /**
+     * Resize an image keeping its ratio to make it standing in a box of width $width and height $height
+     * 
+     * @param Imagick $image
+     * @param int $width
+     * @param int $height
+     */
+    protected function resizeInBox(Imagick $image, $width, $height)
+    {
+        $image->setimagebackgroundcolor('#000000');
+        $left = 0;
+        $top = 0;
+        $refRatio = $width / $height;
+        $imageRatio = $image->getImageWidth() / $image->getImageHeight();
+
+        if ($refRatio > $imageRatio) {
+            $this->resizeOnHeight($image, $height);
+            $left = ($image->getImageWidth() - $width) / 2;
+        } else {
+            $this->resizeOnWidth($image, $width);
+            $top = ($image->getImageHeight() - $height) / 2;
+        }
+
+        $image->extentimage($width, $height, $left, $top);
     }
 }
