@@ -70,7 +70,7 @@ class DisplayMediaExtension extends \Twig_Extension
 
     /**
      * @param String $mediaId
-     * @param String $mediaFormat
+     * @param String $format
      *
      * @return String
      */

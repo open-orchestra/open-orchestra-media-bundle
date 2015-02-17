@@ -3,6 +3,7 @@
 namespace PHPOrchestra\MediaBundle\Test\Twig;
 
 use Phake;
+use PHPOrchestra\Media\Model\MediaInterface;
 use PHPOrchestra\MediaBundle\Twig\DisplayMediaExtension;
 
 /**
@@ -30,12 +31,15 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test mediaMymType
+     *
+     * @param string $mediaId
+     *
+     * @dataProvider provideMediaId
      */
-    public function testDisplayMedia()
+    public function testDisplayMedia($mediaId)
     {
-        $mediaId = 'mediaId';
         $html = '<img src="test" alt="test">';
-        Phake::when($this->mediaRepository)->find($mediaId)->thenReturn($this->media);
+        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
         Phake::when($this->displayMediaManager)->displayMedia($this->media)->thenReturn($html);
 
         $this->assertSame($html, $this->extension->displayMedia($mediaId));
@@ -44,11 +48,25 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test mediaMymType
+     * @return array
      */
-    public function testDisplayMediaNull()
+    public function provideMediaId()
     {
-        $mediaId = 'mediaId';
+        return array(
+            array('mediaId'),
+            array(MediaInterface::MEDIA_PREFIX . 'mediaId')
+        );
+    }
+
+    /**
+     * Test mediaMymType
+     *
+     * @param string $mediaId
+     *
+     * @dataProvider provideMediaId
+     */
+    public function testDisplayMediaNull($mediaId)
+    {
         Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn(null);
 
         $this->assertSame('', $this->extension->displayMedia($mediaId));
@@ -58,12 +76,15 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test mediaMymType
+     *
+     * @param string $mediaId
+     *
+     * @dataProvider provideMediaId
      */
-    public function testMediaPreview()
+    public function testMediaPreview($mediaId)
     {
-        $mediaId = 'mediaId';
         $url = 'test.jpg';
-        Phake::when($this->mediaRepository)->find($mediaId)->thenReturn($this->media);
+        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
         Phake::when($this->displayMediaManager)->displayPreview($this->media)->thenReturn($url);
 
         $this->assertSame($url, $this->extension->mediaPreview($mediaId));
@@ -73,10 +94,13 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test mediaMymType
+     *
+     * @param string $mediaId
+     *
+     * @dataProvider provideMediaId
      */
-    public function testMediaPreviewNull()
+    public function testMediaPreviewNull($mediaId)
     {
-        $mediaId = 'mediaId';
         Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn(null);
 
         $this->assertSame($this->noMedia, $this->extension->mediaPreview($mediaId));
@@ -86,12 +110,15 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test getMediaFormatUrl
+     *
+     * @param string $mediaId
+     *
+     * @dataProvider provideMediaId
      */
-    public function testGetMediaFormatUrl()
+    public function testGetMediaFormatUrl($mediaId)
     {
-        $mediaId = 'mediaId';
         $format = 'format';
-        Phake::when($this->mediaRepository)->find($mediaId)->thenReturn($this->media);
+        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
 
         $this->extension->getMediaFormatUrl($mediaId, $format);
 
