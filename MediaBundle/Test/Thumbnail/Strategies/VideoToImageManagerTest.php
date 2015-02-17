@@ -8,38 +8,16 @@ use PHPOrchestra\Media\Thumbnail\Strategies\VideoToImageManager;
 /**
  * Class VideoToImageManagerTest
  */
-class VideoToImageManagerTest extends \PHPUnit_Framework_TestCase
+class VideoToImageManagerTest extends AbstractStrategyTest
 {
-    /**
-     * @var VideoToImageManager
-     */
-    protected $manager;
-
-    protected $media;
-    protected $tmpDir;
-
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->tmpDir = __DIR__.'/tmpdir';
-        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
+        parent::setUp();
 
         $this->manager = new VideoToImageManager($this->tmpDir);
-    }
-
-    /**
-     * @param string $mimeType
-     * @param bool   $result
-     *
-     * @dataProvider provideMimeType
-     */
-    public function testSupport($mimeType, $result)
-    {
-        Phake::when($this->media)->getMimeType()->thenReturn($mimeType);
-
-        $this->assertSame($result, $this->manager->support($this->media));
     }
 
     /**
@@ -59,21 +37,6 @@ class VideoToImageManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $fileName
-     * @param string $fileExtension
-     *
-     * @dataProvider provideNameAndExtension
-     */
-    public function testGenerateThumbnailName($fileName, $fileExtension)
-    {
-        Phake::when($this->media)->getFilesystemName()->thenReturn($fileName . '.' . $fileExtension);
-
-        $this->manager->generateThumbnailName($this->media);
-
-        Phake::verify($this->media)->setThumbnail($fileName . '.jpg');
-    }
-
-    /**
      * @return array
      */
     public function provideNameAndExtension()
@@ -86,36 +49,13 @@ class VideoToImageManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $fileExtension
-     *
-     * @dataProvider provideFileExtension
-     */
-    public function testGenerateThumbnail($fileExtension)
-    {
-        $this->markTestSkipped();
-        $fileName = 'video';
-
-        if (file_exists($this->tmpDir .'/'. $fileName .'.jpg')) {
-            unlink($this->tmpDir .'/'. $fileName .'.jpg');
-        }
-        $this->assertFalse(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
-
-        Phake::when($this->media)->getFilesystemName()->thenReturn($fileName. '.' . $fileExtension);
-        Phake::when($this->media)->getThumbnail()->thenReturn($fileName. '.jpg');
-
-        $this->manager->generateThumbnail($this->media);
-
-        $this->assertTrue(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
-    }
-
-    /**
      * @return array
      */
-    public function provideFileExtension()
+    public function provideFileNameAndExtension()
     {
         return array(
-            array('3gp'),
-            array('mp4'),
+            array('video', '3gp'),
+            array('video', 'mp4'),
         );
     }
 }

@@ -8,38 +8,16 @@ use PHPOrchestra\Media\Thumbnail\Strategies\PdfToImageManager;
 /**
  * Class PdfToImageManagerTest
  */
-class PdfToImageManagerTest extends \PHPUnit_Framework_TestCase
+class PdfToImageManagerTest extends AbstractStrategyTest
 {
-    /**
-     * @var PdfToImageManager
-     */
-    protected $manager;
-
-    protected $tmpDir;
-    protected $media;
-
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->tmpDir = __DIR__.'/upload';
-        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
+        parent::setUp();
 
         $this->manager = new PdfToImageManager($this->tmpDir);
-    }
-
-    /**
-     * @param string $mimeType
-     * @param bool   $result
-     *
-     * @dataProvider provideMimeType
-     */
-    public function testSupport($mimeType, $result)
-    {
-        Phake::when($this->media)->getMimeType()->thenReturn($mimeType);
-
-        $this->assertSame($result, $this->manager->support($this->media));
     }
 
     /**
@@ -60,48 +38,23 @@ class PdfToImageManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * test thumbnail creation
+     * @return array
      */
-    public function testGenerateThumbnail()
+    public function provideFileNameAndExtension()
     {
-        $this->markTestSkipped();
-        $fileName = 'BarometreAFUP-Agence-e-2014';
-
-        if (file_exists($this->tmpDir .'/'. $fileName .'.jpg')) {
-            unlink($this->tmpDir .'/'. $fileName .'.jpg');
-        }
-        $this->assertFalse(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
-
-        Phake::when($this->media)->getFilesystemName()->thenReturn($fileName. '.pdf');
-        Phake::when($this->media)->getThumbnail()->thenReturn($fileName. '.jpg');
-
-        $this->manager->generateThumbnail($this->media);
-
-        $this->assertTrue(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
-    }
-
-    /**
-     * @param string $fileName
-     *
-     * @dataProvider provideFileName
-     */
-    public function testGenerateThumbnailName($fileName)
-    {
-        Phake::when($this->media)->getFilesystemName()->thenReturn($fileName. '.pdf');
-
-        $this->manager->generateThumbnailName($this->media);
-
-        Phake::verify($this->media)->setThumbnail($fileName. '.jpg');
+        return array(
+            array('BarometreAFUP-Agence-e-2014', 'pdf'),
+        );
     }
 
     /**
      * @return array
      */
-    public function provideFileName()
+    public function provideNameAndExtension()
     {
         return array(
-            array('BarometreAFUP-Agence-e-2014'),
-            array('document'),
+            array('BarometreAFUP-Agence-e-2014', 'pdf'),
+            array('document', 'pdf'),
         );
     }
 }

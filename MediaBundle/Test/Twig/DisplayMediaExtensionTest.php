@@ -58,13 +58,9 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testDisplayMedia($mediaId)
     {
+        $method = 'displayMedia';
         $html = '<img src="test" alt="test">';
-        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
-        Phake::when($this->displayMediaManager)->displayMedia($this->media)->thenReturn($html);
-
-        $this->assertSame($html, $this->extension->displayMedia($mediaId));
-
-        Phake::verify($this->displayMediaManager, Phake::times(1))->displayMedia($this->media);
+        $this->displayMediaOrPreviewTest($mediaId, $html, $method);
     }
 
     /**
@@ -103,13 +99,9 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testMediaPreview($mediaId)
     {
+        $method = 'mediaPreview';
         $url = 'test.jpg';
-        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
-        Phake::when($this->displayMediaManager)->displayPreview($this->media)->thenReturn($url);
-
-        $this->assertSame($url, $this->extension->mediaPreview($mediaId));
-
-        Phake::verify($this->displayMediaManager, Phake::times(1))->displayPreview($this->media);
+        $this->displayMediaOrPreviewTest($mediaId, $url, $method);
     }
 
     /**
@@ -143,5 +135,19 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
         $this->extension->getMediaFormatUrl($mediaId, $format);
 
         Phake::verify($this->displayMediaManager, Phake::times(1))->getMediaFormatUrl($this->media, $format);
+    }
+
+    /**
+     * @param $mediaId
+     * @param $methodReturn
+     * @param $method
+     */
+    protected function displayMediaOrPreviewTest($mediaId, $methodReturn, $method)
+    {
+        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
+        Phake::when($this->displayMediaManager)->displayPreview($this->media)->thenReturn($methodReturn);
+        Phake::when($this->displayMediaManager)->displayMedia($this->media)->thenReturn($methodReturn);
+
+        $this->assertSame($methodReturn, $this->extension->$method($mediaId));
     }
 }
