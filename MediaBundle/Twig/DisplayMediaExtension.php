@@ -44,11 +44,7 @@ class DisplayMediaExtension extends \Twig_Extension
      */
     public function displayMedia($mediaId)
     {
-        if (strpos($mediaId, MediaInterface::MEDIA_PREFIX) === 0) {
-            $mediaId = substr($mediaId, strlen(MediaInterface::MEDIA_PREFIX));
-        }
-
-        $media = $this->mediaRepository->find($mediaId);
+        $media = $this->getMedia($mediaId);
 
         if ($media) {
             return $this->displayMediaManager->displayMedia($media);
@@ -64,11 +60,7 @@ class DisplayMediaExtension extends \Twig_Extension
      */
     public function mediaPreview($mediaId)
     {
-        if (strpos($mediaId, MediaInterface::MEDIA_PREFIX) === 0) {
-            $mediaId = substr($mediaId, strlen(MediaInterface::MEDIA_PREFIX));
-        }
-
-        $media = $this->mediaRepository->find($mediaId);
+        $media = $this->getMedia($mediaId);
 
         if ($media) {
             return $this->displayMediaManager->displayPreview($media);
@@ -78,17 +70,13 @@ class DisplayMediaExtension extends \Twig_Extension
 
     /**
      * @param String $mediaId
-     * @param String $mediaFormat
+     * @param String $format
      *
      * @return String
      */
     public function getMediaFormatUrl($mediaId, $format)
     {
-        if (strpos($mediaId, MediaInterface::MEDIA_PREFIX) === 0) {
-            $mediaId = substr($mediaId, strlen(MediaInterface::MEDIA_PREFIX));
-        }
-
-        $media = $this->mediaRepository->find($mediaId);
+        $media = $this->getMedia($mediaId);
 
         if ($media) {
             return $this->displayMediaManager->getMediaFormatUrl($media, $format);
@@ -105,5 +93,19 @@ class DisplayMediaExtension extends \Twig_Extension
     public function getName()
     {
         return 'media';
+    }
+
+    /**
+     * @param $mediaId
+     * @return MediaInterface
+     */
+    protected function getMedia($mediaId)
+    {
+        if (strpos($mediaId, MediaInterface::MEDIA_PREFIX) === 0) {
+            $mediaId = substr($mediaId, strlen(MediaInterface::MEDIA_PREFIX));
+        }
+
+        $media = $this->mediaRepository->find($mediaId);
+        return $media;
     }
 }
