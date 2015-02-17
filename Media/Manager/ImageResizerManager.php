@@ -39,7 +39,7 @@ class ImageResizerManager
     {
         foreach ($this->formats as $key => $format) {
             $filePath = $this->tmpDir . '/' . $media->getFilesystemName();
-            $this->resizeAndSaveImage($media, $format, $filePath);
+            $this->resizeAndSaveImage($media, $key, $filePath);
         }
     }
 
