@@ -2,7 +2,6 @@
 
 namespace PHPOrchestra\MediaBundle\Test\Thumbnail\Strategies;
 
-use Phake;
 use PHPOrchestra\Media\Thumbnail\Strategies\PdfToImageManager;
 
 /**

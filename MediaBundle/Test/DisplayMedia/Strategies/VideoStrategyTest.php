@@ -2,7 +2,6 @@
 
 namespace PHPOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
 
-use Phake;
 use PHPOrchestra\Media\DisplayMedia\Strategies\VideoStrategy;
 use PHPOrchestra\Media\Model\MediaInterface;
 
