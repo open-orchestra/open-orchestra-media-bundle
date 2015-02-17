@@ -11,10 +11,14 @@ use PHPOrchestra\MediaBundle\Twig\DisplayMediaExtension;
  */
 class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    protected $noMedia = '';
+    /**
+     * @var DisplayMediaExtension
+     */
+    protected $extension;
+
     protected $displayMediaManager;
     protected $mediaRepository;
-    protected $extension;
+    protected $noMedia = '';
     protected $media;
 
     /**
@@ -27,6 +31,22 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
         $this->media = Phake::mock('PHPOrchestra\MediaBundle\Document\Media');
 
         $this->extension = new DisplayMediaExtension($this->displayMediaManager, $this->mediaRepository);
+    }
+
+    /**
+     * Test name
+     */
+    public function testGetName()
+    {
+        $this->assertSame('media', $this->extension->getName());
+    }
+
+    /**
+     * Test functions
+     */
+    public function testFunctions()
+    {
+        $this->assertCount(3, $this->extension->getFunctions());
     }
 
     /**
