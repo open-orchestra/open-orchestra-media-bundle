@@ -38,10 +38,8 @@ class ImageResizerManager
     public function generateAllThumbnails(MediaInterface $media)
     {
         foreach ($this->formats as $key => $format) {
-            $image = new Imagick($this->tmpDir . '/' . $media->getFilesystemName());
-            $this->resizeImage($format, $image);
-
-            $this->saveImage($media, $image, $key);
+            $filePath = $this->tmpDir . '/' . $media->getFilesystemName();
+            $this->resizeAndSaveImage($media, $format, $filePath);
         }
     }
 
@@ -69,10 +67,8 @@ class ImageResizerManager
     public function override(MediaInterface $media, $format)
     {
         $filename = $format . '-' . $media->getFilesystemName();
-        $image = new Imagick($this->tmpDir . '/' . $filename);
-        $this->resizeImage($this->formats[$format], $image);
-
-        $this->saveImage($media, $image, $format);
+        $filePath = $this->tmpDir . '/' . $filename;
+        $this->resizeAndSaveImage($media, $format, $filePath);
     }
 
     /**
@@ -154,5 +150,18 @@ class ImageResizerManager
         }
 
         $image->extentimage($width, $height, $left, $top);
+    }
+
+    /**
+     * @param MediaInterface $media
+     * @param $format
+     * @param $filePath
+     */
+    protected function resizeAndSaveImage(MediaInterface $media, $format, $filePath)
+    {
+        $image = new Imagick($filePath);
+        $this->resizeImage($this->formats[$format], $image);
+
+        $this->saveImage($media, $image, $format);
     }
 }
