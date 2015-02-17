@@ -9,57 +9,17 @@ use PHPOrchestra\Media\Model\MediaInterface;
 /**
  * Class PdfStrategyTest
  */
-class PdfStrategyTest extends \PHPUnit_Framework_TestCase
+class PdfStrategyTest extends AbstractStrategyTest
 {
-    protected $media;
-    protected $strategy;
-    protected $router;
-    protected $pathToFile = 'pathToFile';
-
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
-
-        $this->router = Phake::mock('Symfony\Component\Routing\Router');
+        parent::setUp();
 
         $this->strategy = new PdfStrategy();
         $this->strategy->setRouter($this->router);
-    }
-
-    /**
-     * @param string $image
-     * @param string $url
-     *
-     * @dataProvider displayImage
-     */
-    public function testDisplayMedia($image, $url)
-    {
-        Phake::when($this->media)->getName()->thenReturn($image);
-        Phake::when($this->media)->getThumbnail()->thenReturn($image);
-        Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
-
-        $html = '<img src="' . $url .'" alt="' . $image .'">';
-
-        $this->assertSame($html, $this->strategy->displayMedia($this->media));
-    }
-
-    /**
-     * @param string $image
-     * @param string $format
-     * @param string $url
-     *
-     * @dataProvider getMediaFormatUrl
-     */
-    public function testGetMediaFormatUrl($image, $format, $url)
-    {
-        Phake::when($this->media)->getName()->thenReturn($image);
-        Phake::when($this->media)->getThumbnail()->thenReturn($image);
-        Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
-
-        $this->assertSame($url, $this->strategy->getMediaFormatUrl($this->media, $format));
     }
 
     /**
@@ -86,20 +46,6 @@ class PdfStrategyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $image
-     * @param string $url
-     *
-     * @dataProvider displayImage
-     */
-    public function testDisplayPreview($image, $url)
-    {
-        Phake::when($this->media)->getThumbnail()->thenReturn($image);
-        Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
-
-        $this->assertSame($url, $this->strategy->displayPreview($this->media));
-    }
-
-    /**
      * @param string $mimeType
      * @param bool $supported
      *
@@ -117,19 +63,11 @@ class PdfStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function provideMimeTypes()
     {
-        return array(
-            array('image/jpeg', false),
-            array('image/gif', false),
-            array('image/png', false),
+        return array_merge(parent::provideMimeTypes(), array(
             array('application/pdf', true),
             array('video/mpeg', false),
             array('video/quicktime', false),
-            array('text/csv', false),
-            array('text/html', false),
-            array('text/plain', false),
-            array('audio/mpeg', false),
-            array('application/msword', false),
-        );
+        ));
     }
 
     /**
