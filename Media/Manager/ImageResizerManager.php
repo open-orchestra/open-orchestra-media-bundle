@@ -136,20 +136,14 @@ class ImageResizerManager
     protected function resizeInBox(Imagick $image, $width, $height)
     {
         $image->setimagebackgroundcolor('#000000');
-        $left = 0;
-        $top = 0;
         $refRatio = $width / $height;
         $imageRatio = $image->getImageWidth() / $image->getImageHeight();
 
         if ($refRatio > $imageRatio) {
             $this->resizeOnHeight($image, $height);
-            $left = ($image->getImageWidth() - $width) / 2;
         } else {
             $this->resizeOnWidth($image, $width);
-            $top = ($image->getImageHeight() - $height) / 2;
         }
-
-        $image->extentimage($width, $height, $left, $top);
     }
 
     /**
