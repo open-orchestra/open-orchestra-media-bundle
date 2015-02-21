@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPOrchestra\Media\Event;
+namespace OpenOrchestra\Media\Event;
 
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**

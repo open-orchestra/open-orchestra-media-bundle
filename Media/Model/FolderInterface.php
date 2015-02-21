@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPOrchestra\Media\Model;
+namespace OpenOrchestra\Media\Model;
 
 use Doctrine\Common\Collections\Collection;
-use PHPOrchestra\ModelInterface\Model\BlameableInterface;
-use PHPOrchestra\ModelInterface\Model\SiteInterface;
-use PHPOrchestra\ModelInterface\Model\TimestampableInterface;
+use OpenOrchestra\ModelInterface\Model\BlameableInterface;
+use OpenOrchestra\ModelInterface\Model\SiteInterface;
+use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
 
 /**
  * Interface FolderInterface

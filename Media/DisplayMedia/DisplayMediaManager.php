@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPOrchestra\Media\DisplayMedia;
+namespace OpenOrchestra\Media\DisplayMedia;
 
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\Routing\Router;
 
 /**

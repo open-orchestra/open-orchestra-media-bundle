@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\EventListener;
+namespace OpenOrchestra\MediaBundle\Test\EventListener;
 
 use Phake;
-use PHPOrchestra\Media\EventListener\MoveUploadedFileListener;
+use OpenOrchestra\Media\EventListener\MoveUploadedFileListener;
 
 /**
  * Class MoveUploadedFileListenerTest
@@ -28,10 +28,10 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
     {
         $this->markTestSkipped();
         $this->file = Phake::mock('Symfony\Component\HttpFoundation\File\UploadedFile');
-        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
+        $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media)->getFile()->thenReturn($this->file);
 
-        $this->thumbnailManager = Phake::mock('PHPOrchestra\Media\Thumbnail\ThumbnailManager');
+        $this->thumbnailManager = Phake::mock('OpenOrchestra\Media\Thumbnail\ThumbnailManager');
 
         $this->event = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
         Phake::when($this->event)->getDocument()->thenReturn($this->media);

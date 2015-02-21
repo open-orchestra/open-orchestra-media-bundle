@@ -1,16 +1,16 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle;
+namespace OpenOrchestra\MediaBundle;
 
-use PHPOrchestra\MediaBundle\DependencyInjection\CompilerPass\DisplayMediaCompilerPass;
-use PHPOrchestra\MediaBundle\DependencyInjection\CompilerPass\ThumbnailCompilerPass;
+use OpenOrchestra\MediaBundle\DependencyInjection\CompilerPass\DisplayMediaCompilerPass;
+use OpenOrchestra\MediaBundle\DependencyInjection\CompilerPass\ThumbnailCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class PHPOrchestraMediaBundle
+ * Class OpenOrchestraMediaBundle
  */
-class PHPOrchestraMediaBundle extends Bundle
+class OpenOrchestraMediaBundle extends Bundle
 {
     /**
      * @param ContainerBuilder $container

@@ -1,12 +1,12 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Repository;
+namespace OpenOrchestra\MediaBundle\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
-use PHPOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
-use PHPOrchestra\Media\Model\FolderInterface;
-use PHPOrchestra\Media\Repository\FolderRepositoryInterface;
+use OpenOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
+use OpenOrchestra\Media\Model\FolderInterface;
+use OpenOrchestra\Media\Repository\FolderRepositoryInterface;
 
 /**
  * Class FolderRepository

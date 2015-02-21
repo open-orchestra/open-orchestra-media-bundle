@@ -1,12 +1,12 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\DataFixtures\MongoDB;
+namespace OpenOrchestra\MediaBundle\DataFixtures\MongoDB;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use PHPOrchestra\MediaBundle\Document\Media;
-use PHPOrchestra\ModelBundle\Document\EmbedKeyword;
+use OpenOrchestra\MediaBundle\Document\Media;
+use OpenOrchestra\ModelBundle\Document\EmbedKeyword;
 
 /**
  * Class LoadMediaData

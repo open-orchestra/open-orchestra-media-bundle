@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPOrchestra\Media\Manager;
+namespace OpenOrchestra\Media\Manager;
 
 use Imagick;
-use PHPOrchestra\Media\Event\ImagickEvent;
-use PHPOrchestra\Media\MediaEvents;
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Event\ImagickEvent;
+use OpenOrchestra\Media\MediaEvents;
+use OpenOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**

@@ -1,6 +1,6 @@
 {
-    "name": "itkg/phporchestra-media-bundle",
-    "description": "A media bundle for the PhpOrchestra Project",
+    "name": "itkg/open-orchestra-media-bundle",
+    "description": "A media bundle for the OpenOrchestra Project",
     "license": "MIT",
     "authors": [
         {
@@ -21,7 +21,7 @@
     "minimum-stability": "dev",
     "require": {
         "ext-imagick": "*",
-        "itkg/phporchestra-model-interface": "*",
+        "itkg/open-orchestra-model-interface": "*",
         "doctrine/data-fixtures":"1.0.0",
         "doctrine/mongodb-odm": "1.0.0-BETA11",
         "doctrine/mongodb-odm-bundle" : "3.0.0-BETA6",
@@ -29,7 +29,7 @@
         "knplabs/knp-gaufrette-bundle": "v0.1.7"
     },
     "require-dev": {
-        "itkg/phporchestra-base-bundle": "dev-master",
+        "itkg/open-orchestra-base-bundle": "dev-master",
         "scrutinizer/ocular": "1.1.1",
         "symfony/validator": "2.5.5",
         "jmikola/geojson": "1.0.1",
@@ -41,9 +41,9 @@
     },
     "autoload": {
         "psr-0": {
-            "PHPOrchestra\\MediaBundle": "",
-            "PHPOrchestra\\Media": ""
+            "OpenOrchestra\\MediaBundle": "",
+            "OpenOrchestra\\Media": ""
         }
     },
-    "target-dir": "PHPOrchestra"
+    "target-dir": "OpenOrchestra"
 }

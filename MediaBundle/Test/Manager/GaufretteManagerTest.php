@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\Manager;
+namespace OpenOrchestra\MediaBundle\Test\Manager;
 
 use Phake;
-use PHPOrchestra\Media\Manager\GaufretteManager;
+use OpenOrchestra\Media\Manager\GaufretteManager;
 
 /**
  * Class GaufretteManagerTest

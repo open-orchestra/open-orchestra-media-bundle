@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\DependencyInjection;
+namespace OpenOrchestra\MediaBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('php_orchestra_media');
+        $rootNode = $treeBuilder->root('open_orchestra_media');
 
         $rootNode->children()
             ->scalarNode('tmp_dir')->defaultValue('/tmp')->end()
@@ -30,15 +30,15 @@ class Configuration implements ConfigurationInterface
                     ->arrayNode('media')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('class')->defaultValue('PHPOrchestra\MediaBundle\Document\Media')->end()
-                            ->scalarNode('repository')->defaultValue('PHPOrchestra\MediaBundle\Repository\MediaRepository')->end()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\MediaBundle\Document\Media')->end()
+                            ->scalarNode('repository')->defaultValue('OpenOrchestra\MediaBundle\Repository\MediaRepository')->end()
                         ->end()
                     ->end()
                     ->arrayNode('media_folder')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('class')->defaultValue('PHPOrchestra\MediaBundle\Document\MediaFolder')->end()
-                            ->scalarNode('repository')->defaultValue('PHPOrchestra\MediaBundle\Repository\FolderRepository')->end()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\MediaBundle\Document\MediaFolder')->end()
+                            ->scalarNode('repository')->defaultValue('OpenOrchestra\MediaBundle\Repository\FolderRepository')->end()
                             ->booleanNode('current_site')->defaultTrue()->end()
                         ->end()
                     ->end()

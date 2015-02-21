@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\Twig;
+namespace OpenOrchestra\MediaBundle\Test\Twig;
 
 use Phake;
-use PHPOrchestra\Media\Model\MediaInterface;
-use PHPOrchestra\MediaBundle\Twig\DisplayMediaExtension;
+use OpenOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\MediaBundle\Twig\DisplayMediaExtension;
 
 /**
  * Class DisplayMediaExtensionTest
@@ -26,9 +26,9 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->displayMediaManager = Phake::mock('PHPOrchestra\Media\DisplayMedia\DisplayMediaManager');
-        $this->mediaRepository = Phake::mock('PHPOrchestra\Media\Repository\MediaRepositoryInterface');
-        $this->media = Phake::mock('PHPOrchestra\MediaBundle\Document\Media');
+        $this->displayMediaManager = Phake::mock('OpenOrchestra\Media\DisplayMedia\DisplayMediaManager');
+        $this->mediaRepository = Phake::mock('OpenOrchestra\Media\Repository\MediaRepositoryInterface');
+        $this->media = Phake::mock('OpenOrchestra\MediaBundle\Document\Media');
 
         $this->extension = new DisplayMediaExtension($this->displayMediaManager, $this->mediaRepository);
     }

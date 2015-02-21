@@ -1,12 +1,12 @@
 <?php
 
-namespace PHPOrchestra\Media\EventSubscriber;
+namespace OpenOrchestra\Media\EventSubscriber;
 
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use PHPOrchestra\Media\MediaEvents;
-use PHPOrchestra\Media\Event\ImagickEvent;
-use PHPOrchestra\Media\Manager\GaufretteManager;
+use OpenOrchestra\Media\MediaEvents;
+use OpenOrchestra\Media\Event\ImagickEvent;
+use OpenOrchestra\Media\Manager\GaufretteManager;
 
 /**
  * Class UploadImageSubscriber

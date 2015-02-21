@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\Thumbnail\Strategies;
+namespace OpenOrchestra\MediaBundle\Test\Thumbnail\Strategies;
 
-use PHPOrchestra\Media\Thumbnail\Strategies\PdfToImageManager;
+use OpenOrchestra\Media\Thumbnail\Strategies\PdfToImageManager;
 
 /**
  * Class PdfToImageManagerTest

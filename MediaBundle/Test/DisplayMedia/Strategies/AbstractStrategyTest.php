@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
+namespace OpenOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
 
 use Phake;
 
@@ -19,7 +19,7 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
+        $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         $this->router = Phake::mock('Symfony\Component\Routing\Router');
     }
 

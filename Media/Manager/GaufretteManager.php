@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\Media\Manager;
+namespace OpenOrchestra\Media\Manager;
 
 use Knp\Bundle\GaufretteBundle\FilesystemMap;
 

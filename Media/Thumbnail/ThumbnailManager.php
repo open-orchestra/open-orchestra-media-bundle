@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPOrchestra\Media\Thumbnail;
+namespace OpenOrchestra\Media\Thumbnail;
 
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class ThumbnailManager

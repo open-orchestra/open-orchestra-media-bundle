@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\Media;
+namespace OpenOrchestra\Media;
 
 /**
  * Class MediaEvents

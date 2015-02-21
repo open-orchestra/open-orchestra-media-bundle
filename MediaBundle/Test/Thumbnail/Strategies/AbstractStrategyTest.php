@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\Thumbnail\Strategies;
+namespace OpenOrchestra\MediaBundle\Test\Thumbnail\Strategies;
 
 use Phake;
 
@@ -19,7 +19,7 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->tmpDir = __DIR__ . '/upload';
-        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
+        $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
     }
 
     /**

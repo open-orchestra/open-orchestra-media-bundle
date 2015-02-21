@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\Media\Model;
+namespace OpenOrchestra\Media\Model;
 
 use Doctrine\Common\Collections\Collection;
 
