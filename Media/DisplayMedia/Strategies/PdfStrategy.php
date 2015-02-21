@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPOrchestra\Media\DisplayMedia\Strategies;
+namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class PdfStrategy

@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPOrchestra\Media\EventSubscriber;
+namespace OpenOrchestra\Media\EventSubscriber;
 
-use PHPOrchestra\Media\Event\MediaEvent;
-use PHPOrchestra\Media\Manager\ImageResizerManager;
-use PHPOrchestra\Media\MediaEvents;
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Event\MediaEvent;
+use OpenOrchestra\Media\Manager\ImageResizerManager;
+use OpenOrchestra\Media\MediaEvents;
+use OpenOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
+namespace OpenOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
 
 use Phake;
-use PHPOrchestra\Media\DisplayMedia\Strategies\PdfStrategy;
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\DisplayMedia\Strategies\PdfStrategy;
+use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class PdfStrategyTest

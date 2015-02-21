@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\Document;
+namespace OpenOrchestra\MediaBundle\Test\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
-use PHPOrchestra\MediaBundle\Document\MediaFolder;
+use OpenOrchestra\MediaBundle\Document\MediaFolder;
 
 /**
  * Class FolderTest
@@ -20,8 +20,8 @@ class FolderTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->folder1 = Phake::mock('PHPOrchestra\Media\Model\FolderInterface');
-        $this->folder2 = Phake::mock('PHPOrchestra\Media\Model\FolderInterface');
+        $this->folder1 = Phake::mock('OpenOrchestra\Media\Model\FolderInterface');
+        $this->folder2 = Phake::mock('OpenOrchestra\Media\Model\FolderInterface');
 
         $this->mediaFolder = new MediaFolder();
         $this->mediaFolder->addSubFolder($this->folder1);
@@ -64,11 +64,11 @@ class FolderTest extends \PHPUnit_Framework_TestCase
     public function generateSite1()
     {
         $sites = new ArrayCollection();
-        $site1 = Phake::mock('PHPOrchestra\ModelInterface\Model\SiteInterface');
+        $site1 = Phake::mock('OpenOrchestra\ModelInterface\Model\SiteInterface');
         Phake::when($site1)->getSiteId()->thenReturn('site1');
         $sites->add($site1);
 
-        $site2 = Phake::mock('PHPOrchestra\ModelInterface\Model\SiteInterface');
+        $site2 = Phake::mock('OpenOrchestra\ModelInterface\Model\SiteInterface');
         Phake::when($site2)->getSiteId()->thenReturn('site2');
         $sites->add($site2);
 
@@ -82,7 +82,7 @@ class FolderTest extends \PHPUnit_Framework_TestCase
     {
         $sites = new ArrayCollection();
 
-        $site1 = Phake::mock('PHPOrchestra\ModelInterface\Model\SiteInterface');
+        $site1 = Phake::mock('OpenOrchestra\ModelInterface\Model\SiteInterface');
         Phake::when($site1)->getSiteId()->thenReturn('site1');
         $sites->add($site1);
 

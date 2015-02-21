@@ -1,6 +1,6 @@
 {
-    "name": "itkg/phporchestra-media-bundle",
-    "description": "A media bundle for the PhpOrchestra Project",
+    "name": "itkg/open-orchestra-media-bundle",
+    "description": "A media bundle for the OpenOrchestra Project",
     "license": "MIT",
     "authors": [
         {
@@ -41,9 +41,9 @@
     },
     "autoload": {
         "psr-0": {
-            "PHPOrchestra\\MediaBundle": "",
-            "PHPOrchestra\\Media": ""
+            "OpenOrchestra\\MediaBundle": "",
+            "OpenOrchestra\\Media": ""
         }
     },
-    "target-dir": "PHPOrchestra"
+    "target-dir": "OpenOrchestra"
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\DependencyInjection;
+namespace OpenOrchestra\MediaBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class PHPOrchestraMediaExtension extends Extension
+class OpenOrchestraMediaExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -25,17 +25,17 @@ class PHPOrchestraMediaExtension extends Extension
 
         foreach ($config['document'] as $class => $content) {
             if (is_array($content)) {
-                $container->setParameter('php_orchestra_media.document.' . $class . '.class', $content['class']);
+                $container->setParameter('open_orchestra_media.document.' . $class . '.class', $content['class']);
                 if (array_key_exists('current_site', $content) && $content['current_site']) {
-                    $container->register('php_orchestra_media.repository.' . $class, $content['repository'])
+                    $container->register('open_orchestra_media.repository.' . $class, $content['repository'])
                         ->setFactoryService('doctrine.odm.mongodb.document_manager')
                         ->setFactoryMethod('getRepository')
                         ->addArgument($content['class'])
                         ->addMethodCall('setCurrentSiteManager', array(
-                            new Reference('php_orchestra.manager.current_site')
+                            new Reference('open_orchestra.manager.current_site')
                         ));
                 } else {
-                    $container->register('php_orchestra_media.repository.' . $class, $content['repository'])
+                    $container->register('open_orchestra_media.repository.' . $class, $content['repository'])
                         ->setFactoryService('doctrine.odm.mongodb.document_manager')
                         ->setFactoryMethod('getRepository')
                         ->addArgument($content['class']);
@@ -43,10 +43,10 @@ class PHPOrchestraMediaExtension extends Extension
             }
         }
 
-        $container->setParameter('php_orchestra_media.tmp_dir', $config['tmp_dir']);
-        $container->setParameter('php_orchestra_media.filesystem', $config['filesystem']);
-        $container->setParameter('php_orchestra_media.thumbnail.configuration', $config['thumbnail']);
-        $container->setParameter('php_orchestra_media.resize.compression_quality', $config['compression_quality']);
+        $container->setParameter('open_orchestra_media.tmp_dir', $config['tmp_dir']);
+        $container->setParameter('open_orchestra_media.filesystem', $config['filesystem']);
+        $container->setParameter('open_orchestra_media.thumbnail.configuration', $config['thumbnail']);
+        $container->setParameter('open_orchestra_media.resize.compression_quality', $config['compression_quality']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('display.yml');

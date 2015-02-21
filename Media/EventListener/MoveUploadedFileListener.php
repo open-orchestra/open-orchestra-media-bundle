@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPOrchestra\Media\EventListener;
+namespace OpenOrchestra\Media\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
-use PHPOrchestra\Media\Model\MediaInterface;
-use PHPOrchestra\Media\Thumbnail\ThumbnailManager;
-use PHPOrchestra\Media\Manager\GaufretteManager;
+use OpenOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Thumbnail\ThumbnailManager;
+use OpenOrchestra\Media\Manager\GaufretteManager;
 
 /**
  * Class MoveUploadedFileListener

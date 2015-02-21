@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\Manager;
+namespace OpenOrchestra\MediaBundle\Test\Manager;
 
 use Phake;
-use PHPOrchestra\Media\Manager\ImageResizerManager;
+use OpenOrchestra\Media\Manager\ImageResizerManager;
 
 /**
  * Class ImageResizerManagerTest
@@ -45,7 +45,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
 
         $this->dispatcher = Phake::mock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
 
-        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
+        $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media)->getFilesystemName()->thenReturn($this->file);
 
         $this->manager = new ImageResizerManager($this->tmpDir, $this->formats, $this->compressionQuality, $this->dispatcher);

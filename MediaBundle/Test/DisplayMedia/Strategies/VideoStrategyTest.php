@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
+namespace OpenOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
 
-use PHPOrchestra\Media\DisplayMedia\Strategies\VideoStrategy;
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\DisplayMedia\Strategies\VideoStrategy;
+use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class VideoStrategyTest

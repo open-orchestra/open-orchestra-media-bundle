@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\Media\Event;
+namespace OpenOrchestra\Media\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Imagick;

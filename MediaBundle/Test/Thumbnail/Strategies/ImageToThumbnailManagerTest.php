@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\Thumbnail\Strategies;
+namespace OpenOrchestra\MediaBundle\Test\Thumbnail\Strategies;
 
 use Phake;
-use PHPOrchestra\Media\Thumbnail\Strategies\ImageToThumbnailManager;
+use OpenOrchestra\Media\Thumbnail\Strategies\ImageToThumbnailManager;
 
 /**
  * Class ImageToThumbnailManagerTest
@@ -25,7 +25,7 @@ class ImageToThumbnailManagerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->tmpDir = __DIR__.'/tmpdir';
-        $this->media = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
+        $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         $this->eventDispatcher = Phake::mock('Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcherInterface');
 
         $this->manager = new ImageToThumbnailManager($this->tmpDir, $this->eventDispatcher);

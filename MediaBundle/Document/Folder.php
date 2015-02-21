@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Document;
+namespace OpenOrchestra\MediaBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -8,15 +8,15 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
-use PHPOrchestra\Media\Model\FolderInterface;
-use PHPOrchestra\ModelInterface\Model\SiteInterface;
+use OpenOrchestra\Media\Model\FolderInterface;
+use OpenOrchestra\ModelInterface\Model\SiteInterface;
 
 /**
  * Class Folder
  *
  * @ODM\Document(
  *   collection="folder",
- *   repositoryClass="PHPOrchestra\MediaBundle\Repository\FolderRepository"
+ *   repositoryClass="OpenOrchestra\MediaBundle\Repository\FolderRepository"
  * )
  * @ODM\InheritanceType("SINGLE_COLLECTION")
  * @ODM\DiscriminatorField("type")
@@ -44,21 +44,21 @@ abstract class Folder implements FolderInterface
     /**
      * @var FolderInterface
      *
-     * @ODM\ReferenceOne(targetDocument="PHPOrchestra\MediaBundle\Document\Folder", inversedBy="subFolders")
+     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\MediaBundle\Document\Folder", inversedBy="subFolders")
      */
     protected $parent;
 
     /**
      * @var ArrayCollection
      *
-     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\MediaBundle\Document\Folder", mappedBy="parent")
+     * @ODM\ReferenceMany(targetDocument="OpenOrchestra\MediaBundle\Document\Folder", mappedBy="parent")
      */
     protected $subFolders;
 
     /**
      * @var ArrayCollection
      *
-     * @ODM\ReferenceMany(targetDocument="PHPOrchestra\ModelInterface\Model\SiteInterface")
+     * @ODM\ReferenceMany(targetDocument="OpenOrchestra\ModelInterface\Model\SiteInterface")
      */
     protected $sites;
 

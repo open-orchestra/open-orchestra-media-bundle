@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\Media\Repository;
+namespace OpenOrchestra\Media\Repository;
 
 use Doctrine\Common\Collections\Collection;
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Interface MediaRepositoryInterface

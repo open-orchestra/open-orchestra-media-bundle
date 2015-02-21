@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Twig;
+namespace OpenOrchestra\MediaBundle\Twig;
 
-use PHPOrchestra\Media\DisplayMedia\DisplayMediaManager;
-use PHPOrchestra\Media\Model\MediaInterface;
-use PHPOrchestra\Media\Repository\MediaRepositoryInterface;
+use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
+use OpenOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 
 /**
  * Class DisplayMediaExtension

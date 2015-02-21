@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Repository;
+namespace OpenOrchestra\MediaBundle\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
-use PHPOrchestra\Media\Model\MediaInterface;
-use PHPOrchestra\Media\Repository\MediaRepositoryInterface;
+use OpenOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 
 /**
  * Class MediaRepository

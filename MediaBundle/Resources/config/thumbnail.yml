@@ -1,28 +1,28 @@
 parameters:
-    php_orchestra_media.thumbnail_manager.class: PHPOrchestra\Media\Thumbnail\ThumbnailManager
-    php_orchestra_media.thumbnail.pdf_to_image.class: PHPOrchestra\Media\Thumbnail\Strategies\PdfToImageManager
-    php_orchestra_media.thumbnail.video_to_image.class: PHPOrchestra\Media\Thumbnail\Strategies\VideoToImageManager
-    php_orchestra_media.thumbnail.image_to_thumbnail.class: PHPOrchestra\Media\Thumbnail\Strategies\ImageToThumbnailManager
+    open_orchestra_media.thumbnail_manager.class: OpenOrchestra\Media\Thumbnail\ThumbnailManager
+    open_orchestra_media.thumbnail.pdf_to_image.class: OpenOrchestra\Media\Thumbnail\Strategies\PdfToImageManager
+    open_orchestra_media.thumbnail.video_to_image.class: OpenOrchestra\Media\Thumbnail\Strategies\VideoToImageManager
+    open_orchestra_media.thumbnail.image_to_thumbnail.class: OpenOrchestra\Media\Thumbnail\Strategies\ImageToThumbnailManager
 
 services:
-    php_orchestra_media.thumbnail_manager:
-        class: %php_orchestra_media.thumbnail_manager.class%
-    php_orchestra_media.thumbnail.pdf_to_image:
-        class: %php_orchestra_media.thumbnail.pdf_to_image.class%
+    open_orchestra_media.thumbnail_manager:
+        class: %open_orchestra_media.thumbnail_manager.class%
+    open_orchestra_media.thumbnail.pdf_to_image:
+        class: %open_orchestra_media.thumbnail.pdf_to_image.class%
         arguments:
-            - %php_orchestra_media.tmp_dir%
+            - %open_orchestra_media.tmp_dir%
         tags:
-            - { name: php_orchestra_media.thumbnail.strategy }
-    php_orchestra_media.thumbnail.video_to_image:
-        class: %php_orchestra_media.thumbnail.video_to_image.class%
+            - { name: open_orchestra_media.thumbnail.strategy }
+    open_orchestra_media.thumbnail.video_to_image:
+        class: %open_orchestra_media.thumbnail.video_to_image.class%
         arguments:
-            - %php_orchestra_media.tmp_dir%
+            - %open_orchestra_media.tmp_dir%
         tags:
-            - { name: php_orchestra_media.thumbnail.strategy }
-    php_orchestra_media.thumbnail.image_to_thumbnail:
-        class: %php_orchestra_media.thumbnail.image_to_thumbnail.class%
+            - { name: open_orchestra_media.thumbnail.strategy }
+    open_orchestra_media.thumbnail.image_to_thumbnail:
+        class: %open_orchestra_media.thumbnail.image_to_thumbnail.class%
         arguments:
-            - %php_orchestra_media.tmp_dir%
+            - %open_orchestra_media.tmp_dir%
             - @event_dispatcher
         tags:
-            - { name: php_orchestra_media.thumbnail.strategy }
+            - { name: open_orchestra_media.thumbnail.strategy }

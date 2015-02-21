@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\EventSubscriber;
+namespace OpenOrchestra\MediaBundle\Test\EventSubscriber;
 
 use Phake;
-use PHPOrchestra\Media\EventSubscriber\GenerateImageSubscriber;
-use PHPOrchestra\Media\MediaEvents;
+use OpenOrchestra\Media\EventSubscriber\GenerateImageSubscriber;
+use OpenOrchestra\Media\MediaEvents;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -28,13 +28,13 @@ class GenerateImageSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->event = Phake::mock('PHPOrchestra\Media\Event\MediaEvent');
+        $this->event = Phake::mock('OpenOrchestra\Media\Event\MediaEvent');
 
-        $this->imageResizerManager = Phake::mock('PHPOrchestra\Media\Manager\ImageResizerManager');
+        $this->imageResizerManager = Phake::mock('OpenOrchestra\Media\Manager\ImageResizerManager');
 
-        $this->media1 = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
+        $this->media1 = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media1)->getFilesystemName()->thenReturn($this->file1);
-        $this->media2 = Phake::mock('PHPOrchestra\Media\Model\MediaInterface');
+        $this->media2 = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
 
         $this->subscriber = new GenerateImageSubscriber($this->imageResizerManager);
     }

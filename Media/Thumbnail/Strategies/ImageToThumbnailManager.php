@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPOrchestra\Media\Thumbnail\Strategies;
+namespace OpenOrchestra\Media\Thumbnail\Strategies;
 
-use PHPOrchestra\Media\Event\MediaEvent;
-use PHPOrchestra\Media\MediaEvents;
-use PHPOrchestra\Media\Model\MediaInterface;
-use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
+use OpenOrchestra\Media\Event\MediaEvent;
+use OpenOrchestra\Media\MediaEvents;
+use OpenOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
 
 /**
  * Class ImageToThumbnailManager

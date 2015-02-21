@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\Media\DisplayMedia\Strategies;
+namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 
-use PHPOrchestra\Media\DisplayMedia\DisplayMediaInterface;
-use PHPOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\DisplayMedia\DisplayMediaInterface;
+use OpenOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -44,7 +44,7 @@ abstract class AbstractStrategy implements DisplayMediaInterface
     protected function getFileUrl($filename)
     {
         return $this->router->generate(
-            'php_orchestra_media_get',
+            'open_orchestra_media_get',
             array('key' => $filename),
             UrlGeneratorInterface::ABSOLUTE_URL
         );

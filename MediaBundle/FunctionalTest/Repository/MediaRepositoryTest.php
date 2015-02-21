@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\FunctionalTest\Repository;
+namespace OpenOrchestra\MediaBundle\FunctionalTest\Repository;
 
-use PHPOrchestra\Media\Repository\MediaRepositoryInterface;
+use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -23,7 +23,7 @@ class MediaRepositoryTest extends KernelTestCase
         parent::setUp();
 
         static::bootKernel();
-        $this->repository = static::$kernel->getContainer()->get('php_orchestra_media.repository.media');
+        $this->repository = static::$kernel->getContainer()->get('open_orchestra_media.repository.media');
     }
 
     /**

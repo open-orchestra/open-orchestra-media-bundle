@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\DependencyInjection\CompilerPass;
+namespace OpenOrchestra\MediaBundle\DependencyInjection\CompilerPass;
 
-use PHPOrchestra\BaseBundle\DependencyInjection\Compiler\AbstractTaggedCompiler;
+use OpenOrchestra\BaseBundle\DependencyInjection\Compiler\AbstractTaggedCompiler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -20,8 +20,8 @@ class DisplayMediaCompilerPass extends AbstractTaggedCompiler implements Compile
      */
     public function process(ContainerBuilder $container)
     {
-        $managerName = 'php_orchestra_media.display_media_manager';
-        $tagName = 'php_orchestra_media.display_media.strategy';
+        $managerName = 'open_orchestra_media.display_media_manager';
+        $tagName = 'open_orchestra_media.display_media.strategy';
 
         $this->addStrategyToManager($container, $managerName, $tagName);
     }

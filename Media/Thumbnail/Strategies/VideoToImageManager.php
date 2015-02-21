@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\Media\Thumbnail\Strategies;
+namespace OpenOrchestra\Media\Thumbnail\Strategies;
 
-use PHPOrchestra\Media\Model\MediaInterface;
-use PHPOrchestra\Media\Thumbnail\ThumbnailInterface;
+use OpenOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
 
 /**
  * Class VideoToImageManager

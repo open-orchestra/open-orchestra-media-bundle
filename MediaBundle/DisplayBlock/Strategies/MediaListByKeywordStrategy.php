@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\DisplayBlock\Strategies;
+namespace OpenOrchestra\MediaBundle\DisplayBlock\Strategies;
 
-use PHPOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface;
-use PHPOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
-use PHPOrchestra\Media\Repository\MediaRepositoryInterface;
-use PHPOrchestra\ModelInterface\Model\BlockInterface;
+use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface;
+use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
+use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
+use OpenOrchestra\ModelInterface\Model\BlockInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -49,7 +49,7 @@ class MediaListByKeywordStrategy extends AbstractStrategy
         $medias = $this->mediaRepository->findByKeywords($attributes['keywords']);
 
         return $this->render(
-            'PHPOrchestraMediaBundle:Block/MediaList:show.html.twig',
+            'OpenOrchestraMediaBundle:Block/MediaList:show.html.twig',
             array(
                 'id' => array_key_exists('id', $attributes)? $attributes['id']: '',
                 'class' => array_key_exists('class', $attributes)? $attributes['class']: '',

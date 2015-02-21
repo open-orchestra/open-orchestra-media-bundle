@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPOrchestra\Media\Event;
+namespace OpenOrchestra\Media\Event;
 
-use PHPOrchestra\Media\Model\FolderInterface;
+use OpenOrchestra\Media\Model\FolderInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**

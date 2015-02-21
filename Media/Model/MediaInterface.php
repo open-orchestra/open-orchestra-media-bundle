@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPOrchestra\Media\Model;
+namespace OpenOrchestra\Media\Model;
 
-use PHPOrchestra\ModelInterface\Model\KeywordableInterface;
+use OpenOrchestra\ModelInterface\Model\KeywordableInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use PHPOrchestra\ModelInterface\Model\BlameableInterface;
-use PHPOrchestra\ModelInterface\Model\TimestampableInterface;
+use OpenOrchestra\ModelInterface\Model\BlameableInterface;
+use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
 
 /**
  * Interface MediaInterface

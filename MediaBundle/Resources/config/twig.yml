@@ -1,11 +1,11 @@
 parameters:
-    php_orchestra_media.twig.display_media.extension.class: PHPOrchestra\MediaBundle\Twig\DisplayMediaExtension
+    open_orchestra_media.twig.display_media.extension.class: OpenOrchestra\MediaBundle\Twig\DisplayMediaExtension
 
 services:
-    php_orchestra_media.twig.display_media.extension:
-        class: %php_orchestra_media.twig.display_media.extension.class%
+    open_orchestra_media.twig.display_media.extension:
+        class: %open_orchestra_media.twig.display_media.extension.class%
         arguments:
-            - @php_orchestra_media.display_media_manager
-            - @php_orchestra_media.repository.media
+            - @open_orchestra_media.display_media_manager
+            - @open_orchestra_media.repository.media
         tags:
             - { name: twig.extension }

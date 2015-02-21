@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\Media\Repository;
+namespace OpenOrchestra\Media\Repository;
 
 use Doctrine\Common\Collections\Collection;
-use PHPOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
-use PHPOrchestra\Media\Model\FolderInterface;
+use OpenOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
+use OpenOrchestra\Media\Model\FolderInterface;
 
 /**
  * Interface FolderRepositoryInterface

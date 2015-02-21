@@ -1,15 +1,15 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Document;
+namespace OpenOrchestra\MediaBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
-use PHPOrchestra\Media\Model\MediaFolderInterface;
-use PHPOrchestra\Media\Model\MediaInterface;
-use PHPOrchestra\ModelInterface\MongoTrait\KeywordableDocument;
+use OpenOrchestra\Media\Model\MediaFolderInterface;
+use OpenOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\ModelInterface\MongoTrait\KeywordableDocument;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ODM\Document(
  *   collection="media",
- *   repositoryClass="PHPOrchestra\MediaBundle\Repository\MediaRepository"
+ *   repositoryClass="OpenOrchestra\MediaBundle\Repository\MediaRepository"
  * )
  */
 class Media implements MediaInterface
@@ -57,7 +57,7 @@ class Media implements MediaInterface
     /**
      * @var MediaFolderInterface
      *
-     * @ODM\ReferenceOne(targetDocument="PHPOrchestra\MediaBundle\Document\MediaFolder", inversedBy="medias")
+     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\MediaBundle\Document\MediaFolder", inversedBy="medias")
      */
     protected $mediaFolder;
 

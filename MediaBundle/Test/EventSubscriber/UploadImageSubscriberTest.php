@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\MediaBundle\Test\EventSubscriber;
+namespace OpenOrchestra\MediaBundle\Test\EventSubscriber;
 
 use Phake;
-use PHPOrchestra\Media\EventSubscriber\UploadImageSubscriber;
-use PHPOrchestra\Media\MediaEvents;
+use OpenOrchestra\Media\EventSubscriber\UploadImageSubscriber;
+use OpenOrchestra\Media\MediaEvents;
 
 /**
  * Class UploadImageSubscriberTest
@@ -20,11 +20,11 @@ class UploadImageSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->gaufretteManager = Phake::mock('PHPOrchestra\Media\Manager\GaufretteManager');
+        $this->gaufretteManager = Phake::mock('OpenOrchestra\Media\Manager\GaufretteManager');
 
         $this->subscriber = new UploadImageSubscriber($this->gaufretteManager);
 
-        $this->event = Phake::mock('PHPOrchestra\Media\Event\ImagickEvent');
+        $this->event = Phake::mock('OpenOrchestra\Media\Event\ImagickEvent');
     }
 
     /**

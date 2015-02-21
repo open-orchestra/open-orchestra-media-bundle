@@ -1,12 +1,12 @@
 parameters:
-    php_orchestra_media.doctrine_listener.move_uploaded_file.class: PHPOrchestra\Media\EventListener\MoveUploadedFileListener
+    open_orchestra_media.doctrine_listener.move_uploaded_file.class: OpenOrchestra\Media\EventListener\MoveUploadedFileListener
 services:
-    php_orchestra_media.doctrine_listener.move_uploaded_file:
-        class: %php_orchestra_media.doctrine_listener.move_uploaded_file.class%
+    open_orchestra_media.doctrine_listener.move_uploaded_file:
+        class: %open_orchestra_media.doctrine_listener.move_uploaded_file.class%
         arguments:
-            - %php_orchestra_media.tmp_dir%
-            - @php_orchestra_media.thumbnail_manager
-            - @php_orchestra_media.manager.gaufrette
+            - %open_orchestra_media.tmp_dir%
+            - @open_orchestra_media.thumbnail_manager
+            - @open_orchestra_media.manager.gaufrette
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
             - { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
