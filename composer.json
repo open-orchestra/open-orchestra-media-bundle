@@ -11,11 +11,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/itkg/phporchestra-base-bundle"
+            "url": "https://github.com/itkg/open-orchestra-base-bundle"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/itkg/phporchestra-model-interface"
+            "url": "https://github.com/itkg/open-orchestra-model-interface"
         }
     ],
     "minimum-stability": "dev",
