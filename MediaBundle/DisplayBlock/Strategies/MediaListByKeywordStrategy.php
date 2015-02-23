@@ -51,8 +51,8 @@ class MediaListByKeywordStrategy extends AbstractStrategy
         return $this->render(
             'OpenOrchestraMediaBundle:Block/MediaList:show.html.twig',
             array(
-                'id' => array_key_exists('id', $attributes)? $attributes['id']: '',
-                'class' => array_key_exists('class', $attributes)? $attributes['class']: '',
+                'id' => $block->getAttribute('id'),
+                'class' => $block->getAttribute('class'),
                 'medias' => $medias
             )
         );
