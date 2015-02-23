@@ -44,15 +44,13 @@ class MediaListByKeywordStrategy extends AbstractStrategy
      */
     public function show(BlockInterface $block)
     {
-        $attributes = $block->getAttributes();
-
-        $medias = $this->mediaRepository->findByKeywords($attributes['keywords']);
+        $medias = $this->mediaRepository->findByKeywords($block->getAttribute('keywords'));
 
         return $this->render(
             'OpenOrchestraMediaBundle:Block/MediaList:show.html.twig',
             array(
-                'id' => $block->getAttribute('id'),
-                'class' => $block->getAttribute('class'),
+                'id' => $block->getId(),
+                'class' => $block->getClass(),
                 'medias' => $medias
             )
         );
