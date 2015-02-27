@@ -9,7 +9,7 @@ use OpenOrchestra\ModelInterface\Model\BlockInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class HeaderStrategy
+ * Class MediaListByKeywordStrategy
  */
 class MediaListByKeywordStrategy extends AbstractStrategy
 {
