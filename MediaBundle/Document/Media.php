@@ -9,7 +9,7 @@ use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\Media\Model\MediaFolderInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
-use OpenOrchestra\ModelInterface\MongoTrait\KeywordableDocument;
+use OpenOrchestra\ModelInterface\MongoTrait\Keywordable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -24,7 +24,7 @@ class Media implements MediaInterface
 {
     use BlameableDocument;
     use TimestampableDocument;
-    use KeywordableDocument;
+    use Keywordable;
 
     /**
      * @var string $id
