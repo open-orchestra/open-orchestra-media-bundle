@@ -9,6 +9,4 @@ services:
             - @open_orchestra_media.manager.gaufrette
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
-            - { name: doctrine_mongodb.odm.event_listener, event: preUpdate }
             - { name: doctrine_mongodb.odm.event_listener, event: postPersist }
-            - { name: doctrine_mongodb.odm.event_listener, event: postUpdate }

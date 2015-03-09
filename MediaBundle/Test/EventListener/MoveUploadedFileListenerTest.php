@@ -17,6 +17,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
 
     protected $tmpDir = 'tmpDir';
     protected $thumbnailManager;
+    protected $gaufrette;
     protected $event;
     protected $media;
     protected $file;
@@ -26,17 +27,18 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->markTestSkipped();
         $this->file = Phake::mock('Symfony\Component\HttpFoundation\File\UploadedFile');
         $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media)->getFile()->thenReturn($this->file);
+
+        $this->gaufrette = Phake::mock('OpenOrchestra\Media\Manager\GaufretteManager');
 
         $this->thumbnailManager = Phake::mock('OpenOrchestra\Media\Thumbnail\ThumbnailManager');
 
         $this->event = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
         Phake::when($this->event)->getDocument()->thenReturn($this->media);
 
-        $this->listener = new MoveUploadedFileListener($this->tmpDir, $this->thumbnailManager);
+        $this->listener = new MoveUploadedFileListener($this->tmpDir, $this->thumbnailManager, $this->gaufrette);
     }
 
     /**
@@ -45,9 +47,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
     public function testCallable()
     {
         $this->assertTrue(method_exists($this->listener, 'prePersist'));
-        $this->assertTrue(method_exists($this->listener, 'preUpdate'));
         $this->assertTrue(method_exists($this->listener, 'postPersist'));
-        $this->assertTrue(method_exists($this->listener, 'postUpdate'));
     }
 
     /**
@@ -65,22 +65,10 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
         $this->listener->prePersist($this->event);
 
         Phake::verify($this->media)->setFilesystemName(Phake::anyParameters());
-        $this->assertRegExp('/'.$fileName .'.'. $fileExtension.'/', $this->listener->path);
+        $this->assertRegExp('/'.$fileName .'.'. $fileExtension.'/', $this->listener->filename);
         Phake::verify($this->media)->setName($fileName);
         Phake::verify($this->media)->setMimeType($fileExtension);
         Phake::verify($this->thumbnailManager)->generateThumbnailName($this->media);
-    }
-
-    /**
-     * Test with no file
-     */
-    public function testPreUploadWithNoFile()
-    {
-        Phake::when($this->media)->getFile()->thenReturn(null);
-
-        $this->listener->preUpdate($this->event);
-
-        Phake::verify($this->media, Phake::never())->setFilesystemName(Phake::anyParameters());
     }
 
     /**
@@ -102,7 +90,8 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpload($fileName)
     {
-        $this->listener->path = $fileName;
+        $this->markTestSkipped();
+        $this->listener->filename = $fileName;
 
         $this->listener->postPersist($this->event);
 
