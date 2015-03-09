@@ -31,7 +31,8 @@ class GenerateImageSubscriber implements EventSubscriberInterface
      */
     public function addMedia(MediaEvent $event)
     {
-        $this->medias[] = $event->getMedia();
+        $media = $event->getMedia();
+        $this->medias[] = $media;
     }
 
     /**

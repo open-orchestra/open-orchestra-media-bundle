@@ -70,23 +70,7 @@ class MoveUploadedFileListener
     /**
      * @param LifecycleEventArgs $event
      */
-    public function preUpdate(LifecycleEventArgs $event)
-    {
-        $this->preUpload($event);
-    }
-
-    /**
-     * @param LifecycleEventArgs $event
-     */
     public function postPersist(LifecycleEventArgs $event)
-    {
-        $this->upload($event);
-    }
-
-    /**
-     * @param LifecycleEventArgs $event
-     */
-    public function postUpdate(LifecycleEventArgs $event)
     {
         $this->upload($event);
     }
