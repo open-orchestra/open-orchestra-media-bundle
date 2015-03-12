@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class MediaListByKeywordStrategy extends AbstractStrategy
 {
+    const MEDIA_LIST_BY_KEYWORD = 'media_list_by_keyword';
+
     protected $mediaRepository;
 
     /**
@@ -32,7 +34,7 @@ class MediaListByKeywordStrategy extends AbstractStrategy
      */
     public function support(BlockInterface $block)
     {
-        return DisplayBlockInterface::MEDIA_LIST_BY_KEYWORD == $block->getComponent();
+        return self::MEDIA_LIST_BY_KEYWORD == $block->getComponent();
     }
 
     /**
