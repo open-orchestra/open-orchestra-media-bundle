@@ -2,6 +2,8 @@
 
 namespace OpenOrchestra\MediaBundle\DependencyInjection;
 
+use OpenOrchestra\MediaBundle\DisplayBlock\Strategies\GalleryStrategy;
+use OpenOrchestra\MediaBundle\DisplayBlock\Strategies\MediaListByKeywordStrategy;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Reference;
@@ -43,6 +45,8 @@ class OpenOrchestraMediaExtension extends Extension
             }
         }
 
+        $this->updateBlockParameter($container);
+
         $container->setParameter('open_orchestra_media.tmp_dir', $config['tmp_dir']);
         $container->setParameter('open_orchestra_media.filesystem', $config['filesystem']);
         $container->setParameter('open_orchestra_media.thumbnail.configuration', $config['thumbnail']);
@@ -56,5 +60,23 @@ class OpenOrchestraMediaExtension extends Extension
         $loader->load('listener.yml');
         $loader->load('manager.yml');
         $loader->load('displayblock.yml');
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     */
+    protected function updateBlockParameter(ContainerBuilder $container)
+    {
+        $blockType = array(
+            GalleryStrategy::GALLERY,
+            MediaListByKeywordStrategy::MEDIA_LIST_BY_KEYWORD,
+        );
+
+        $blocksAlreadySet = array();
+        if ($container->hasParameter('open_orchestra.blocks')) {
+            $blocksAlreadySet = $container->getParameter('open_orchestra.blocks');
+        }
+        $blocks = array_merge($blocksAlreadySet, $blockType);
+        $container->setParameter('open_orchestra.blocks', $blocks);
     }
 }

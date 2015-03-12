@@ -1,10 +1,17 @@
 parameters:
     open_orchestra_media.display.media_list_by_keyword.class: OpenOrchestra\MediaBundle\DisplayBlock\Strategies\MediaListByKeywordStrategy
+    open_orchestra_media.display.gallery.class: OpenOrchestra\MediaBundle\DisplayBlock\Strategies\GalleryStrategy
 
 services:
     open_orchestra_media.display.media_list_by_keyword:
         class: %open_orchestra_media.display.media_list_by_keyword.class%
         arguments:
             - @open_orchestra_media.repository.media
+        tags:
+            - { name: open_orchestra_display.display_block.strategy }
+    open_orchestra_media.display.gallery:
+        class: %open_orchestra_media.display.gallery.class%
+        arguments:
+            - @request_stack
         tags:
             - { name: open_orchestra_display.display_block.strategy }

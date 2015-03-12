@@ -1,0 +1,26 @@
+<div id="{{galleryId}}" class="gallery {{ galleryClass }}">
+    <div>
+    {% for picture in pictures %}<a 
+        class="fancybox-thumb"
+        rel="fancybox-thumb"
+        href="{{ get_media_format_url(picture, imageFormat) }}"
+        title="{{ 'open_orchestra_display.block.gallery.no_title_defined'|trans }}"
+       ><img src="{{ get_media_format_url(picture, thumbnailFormat) }}" alt="" class="gallery-picture" /></a>{% endfor %}
+    </div>
+</div>
+{% if (numberOfPages > 1) %}
+    <div class="gallery-navigator">
+        {{ navigator(numberOfPages, currentPage, parameters) }}
+    </div>
+{%endif%}
+
+
+<script type="text/javascript">
+    if (typeof orchestraGalCol == 'undefined') {
+        var orchestraGalCol = {};
+    }
+    orchestraGalCol['{{galleryId}}'] = {{ numberOfColumns }};
+</script>
+
+<script data-main="{{ asset('/bundles/openorchestradisplay/block/Gallery/js/loadJs.js') }}" src="{{ asset('/bundles/openorchestradisplay/libs/require.js') }}"></script>
+<script src="{{ asset('/bundles/openorchestradisplay/block/Gallery/js/loadCss.js') }}"></script>
