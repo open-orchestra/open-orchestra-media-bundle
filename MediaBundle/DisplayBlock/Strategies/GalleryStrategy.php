@@ -141,7 +141,7 @@ class GalleryStrategy extends AbstractStrategy
 
         return $tags;
     }
-    
+
     /**
      * Get the name of the strategy
      *
