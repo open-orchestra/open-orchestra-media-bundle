@@ -1,0 +1,62 @@
+.gallery {
+    width:996px;
+    background-color:#000000;
+    padding:2px;
+    text-align:center;
+}
+
+.gallery-picture {
+    visibility:hidden;
+    border:1px solid #444444;
+    opacity:0.8;
+    margin:2px;
+}
+.gallery-picture:hover {
+    border:1px solid #FFFFFF;
+    opacity:1;
+}
+
+#fancybox-thumbs ul li.active {
+    border:1px solid #FFFFFF;
+    opacity:1;
+}
+
+#fancybox-thumbs.bottom {
+    background-color:#111111;
+    padding-top:1px;
+    border-top:1px solid #444444;
+}
+
+.fancybox-overlay {
+    background-color:#000000;
+}
+
+div.fancybox-skin {
+    background:none repeat scroll 0 0 #111111;
+    color:#FFFFFF;
+    border:1px solid #444444;
+}
+
+.fancybox-image {
+    border:1px solid #FFFFFF;
+}
+
+.gallery-navigator {
+    background-color:#000000;
+    color:#fff;
+    padding:4px;
+    text-align:center;
+}
+
+.gallery-navigator a {
+    font-size:14px;
+    color:#888888;
+}
+
+.gallery-navigator a:hover {
+    color:#FFFFFF;
+}
+
+.gallery-navigator .navigatorCurrent {
+    font-size:16px;
+}
