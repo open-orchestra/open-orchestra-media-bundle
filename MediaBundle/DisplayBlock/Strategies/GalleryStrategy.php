@@ -38,6 +38,16 @@ class GalleryStrategy extends AbstractStrategy
     }
 
     /**
+     * Indicate if the block is public or private
+     * 
+     * @return boolean
+     */
+    public function isPublic(BlockInterface $block)
+    {
+        return true;
+    }
+
+    /**
      * Perform the show action for a block
      *
      * @param BlockInterface $block
@@ -110,6 +120,28 @@ class GalleryStrategy extends AbstractStrategy
         return $filteredMedias;
     }
 
+    /**
+     * Return block specific tags
+     * 
+     * @param BlockInterface $block
+     * 
+     * @return array
+     */
+    public function getTags(BlockInterface $block)
+    {
+        $tags = array();
+
+        $medias = $block->getAttribute('pictures');
+
+        if ($medias) {
+            foreach ($medias as $media) {
+                $tags[] = $media;
+            }
+        }
+
+        return $tags;
+    }
+    
     /**
      * Get the name of the strategy
      *
