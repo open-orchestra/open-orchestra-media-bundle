@@ -21,6 +21,7 @@ class GalleryStrategy extends AbstractStrategy
 
     /**
      * @param RequestStack $requestStack
+     * @param TagManager   $tagManager
      */
     public function __construct(RequestStack $requestStack, TagManager $tagManager)
     {
