@@ -7,6 +7,7 @@ use OpenOrchestra\ModelInterface\Model\BlockInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RequestStack;
 use OpenOrchestra\DisplayBundle\Twig\NavigatorExtension;
+use OpenOrchestra\DisplayBundle\Manager\TagManager;
 
 /**
  * Class GalleryStrategy
@@ -16,13 +17,15 @@ class GalleryStrategy extends AbstractStrategy
     const GALLERY = 'gallery';
 
     protected $request;
+    protected $tagManager;
 
     /**
      * @param RequestStack $requestStack
      */
-    public function __construct(RequestStack $requestStack)
+    public function __construct(RequestStack $requestStack, TagManager $tagManager)
     {
         $this->request = $requestStack->getCurrentRequest();
+        $this->tagManager = $tagManager;
     }
 
     /**
@@ -135,7 +138,7 @@ class GalleryStrategy extends AbstractStrategy
 
         if ($medias) {
             foreach ($medias as $media) {
-                $tags[] = $media;
+                $tags[] = $this->tagManager->formatMediaId($media);
             }
         }
 
