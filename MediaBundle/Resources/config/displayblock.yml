@@ -13,6 +13,6 @@ services:
         class: %open_orchestra_media.display.gallery.class%
         arguments:
             - @request_stack
-            - @open_orchestra_display.manager.tag
+            - @open_orchestra_base.manager.tag
         tags:
             - { name: open_orchestra_display.display_block.strategy }
