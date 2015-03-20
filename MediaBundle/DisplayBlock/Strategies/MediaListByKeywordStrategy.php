@@ -91,7 +91,7 @@ class MediaListByKeywordStrategy extends AbstractStrategy
 
         if ($medias) {
             foreach ($medias as $media) {
-                $tags[] = $this->tagManager->formatMediaId($media->getId());
+                $tags[] = $this->tagManager->formatMediaIdTag($media->getId());
             }
         }
 
