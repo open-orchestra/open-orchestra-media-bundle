@@ -139,7 +139,7 @@ class GalleryStrategy extends AbstractStrategy
 
         if ($medias) {
             foreach ($medias as $media) {
-                $tags[] = $this->tagManager->formatMediaId($media);
+                $tags[] = $this->tagManager->formatMediaIdTag($media);
             }
         }
 
