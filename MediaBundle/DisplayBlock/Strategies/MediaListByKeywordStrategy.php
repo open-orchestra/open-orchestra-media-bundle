@@ -71,6 +71,13 @@ class MediaListByKeywordStrategy extends AbstractStrategy
         );
     }
 
+    /**
+     * Get media to display
+     * 
+     * @param array $keywords
+     * 
+     * @return array
+     */
     protected function getMediasByKeywords($keywords)
     {
         return $this->mediaRepository->findByKeywords($keywords);
