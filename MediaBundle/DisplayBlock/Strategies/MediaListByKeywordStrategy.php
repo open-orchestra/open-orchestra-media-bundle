@@ -72,7 +72,7 @@ class MediaListByKeywordStrategy extends AbstractStrategy
     }
 
     /**
-     * Get media to display
+     * Get medias to display
      * 
      * @param array $keywords
      * 
