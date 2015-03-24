@@ -9,6 +9,7 @@ use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\Media\Model\MediaFolderInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;
 use OpenOrchestra\ModelInterface\MongoTrait\Keywordable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -74,18 +75,14 @@ class Media implements MediaInterface
     protected $thumbnail;
 
     /**
-     * @var string
-     *
-     * @ODM\Field(type="string")
+     * @ODM\EmbedMany(targetDocument="OpenOrchestra\ModelInterface\Model\TranslatedValueInterface")
      */
-    protected $title;
+    protected $titles;
 
     /**
-     * @var string
-     *
-     * @ODM\Field(type="string")
+     * @ODM\EmbedMany(targetDocument="OpenOrchestra\ModelInterface\Model\TranslatedValueInterface")
      */
-    protected $alt;
+    protected $alts;
 
     /**
      * @var string
@@ -112,6 +109,8 @@ class Media implements MediaInterface
     public function __construct()
     {
         $this->keywords = new ArrayCollection();
+        $this->titles = new ArrayCollection();
+        $this->alts = new ArrayCollection();
     }
 
     /**
@@ -219,19 +218,25 @@ class Media implements MediaInterface
     }
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getAlt()
+    public function getAlts()
     {
-        return $this->alt;
+        return $this->alts;
     }
 
     /**
-     * @param string $alt
+     * @param string $language
+     *
+     * @return string
      */
-    public function setAlt($alt)
+    public function getAlt($language = 'en')
     {
-        $this->alt = $alt;
+        $choosenLanguage = $this->alts->filter(function (TranslatedValueInterface $translatedValue) use ($language) {
+            return $language == $translatedValue->getLanguage();
+        });
+
+        return $choosenLanguage->first()->getValue();
     }
 
     /**
@@ -267,19 +272,25 @@ class Media implements MediaInterface
     }
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getTitle()
+    public function getTitles()
     {
-        return $this->title;
+        return $this->titles;
     }
 
     /**
-     * @param string $title
+     * @param string $language
+     *
+     * @return string
      */
-    public function setTitle($title)
+    public function getTitle($language = 'en')
     {
-        $this->title = $title;
+        $choosenLanguage = $this->titles->filter(function (TranslatedValueInterface $translatedValue) use ($language) {
+            return $language == $translatedValue->getLanguage();
+        });
+
+        return $choosenLanguage->first()->getValue();
     }
 
     /**
@@ -316,5 +327,45 @@ class Media implements MediaInterface
     public function isDeletable()
     {
         return !(bool) count($this->usageReference);
+    }
+
+    /**
+     * @param TranslatedValueInterface $alt
+     */
+    public function addAlt(TranslatedValueInterface $alt)
+    {
+        $this->alts->add($alt);
+    }
+
+    /**
+     * @param TranslatedValueInterface $alt
+     */
+    public function removeAlt(TranslatedValueInterface $alt)
+    {
+        $this->alts->removeElement($alt);
+    }
+
+    /**
+     * @param TranslatedValueInterface $title
+     */
+    public function addTitle(TranslatedValueInterface $title)
+    {
+        $this->titles->add($title);
+    }
+
+    /**
+     * @param TranslatedValueInterface $title
+     */
+    public function removeTitle(TranslatedValueInterface $title)
+    {
+        $this->titles->removeElement($title);
+    }
+
+    /**
+     * @return array
+     */
+    public function getTranslatedProperties()
+    {
+        return array('getTitles', 'getAlts');
     }
 }

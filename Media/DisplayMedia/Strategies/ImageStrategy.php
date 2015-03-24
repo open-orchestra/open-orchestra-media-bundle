@@ -26,7 +26,7 @@ class ImageStrategy extends AbstractStrategy
      */
     public function displayMedia(MediaInterface $media)
     {
-        return '<img src="' . $this->getFileUrl($media->getFilesystemName()) . '" alt="' . $media->getName() . '">';
+        return '<img src="' . $this->getFileUrl($media->getFilesystemName()) . '" alt="' . $media->getAlt() . '">';
     }
 
     /**
