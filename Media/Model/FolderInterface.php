@@ -4,7 +4,7 @@ namespace OpenOrchestra\Media\Model;
 
 use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\ModelInterface\Model\BlameableInterface;
-use OpenOrchestra\ModelInterface\Model\SiteInterface;
+use OpenOrchestra\ModelInterface\Model\ReadSiteInterface;
 use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
 
 /**
@@ -65,12 +65,12 @@ interface FolderInterface extends TimestampableInterface, BlameableInterface
     public function getSites();
 
     /**
-     * @param SiteInterface $site
+     * @param ReadSiteInterface $site
      */
-    public function addSite(SiteInterface $site);
+    public function addSite(ReadSiteInterface $site);
 
     /**
-     * @param SiteInterface $site
+     * @param ReadSiteInterface $site
      */
-    public function removeSite(SiteInterface $site);
+    public function removeSite(ReadSiteInterface $site);
 }
