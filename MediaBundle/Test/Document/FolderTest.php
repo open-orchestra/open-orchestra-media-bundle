@@ -64,11 +64,11 @@ class FolderTest extends \PHPUnit_Framework_TestCase
     public function generateSite1()
     {
         $sites = new ArrayCollection();
-        $site1 = Phake::mock('OpenOrchestra\ModelInterface\Model\SiteInterface');
+        $site1 = Phake::mock('OpenOrchestra\ModelInterface\Model\ReadSiteInterface');
         Phake::when($site1)->getSiteId()->thenReturn('site1');
         $sites->add($site1);
 
-        $site2 = Phake::mock('OpenOrchestra\ModelInterface\Model\SiteInterface');
+        $site2 = Phake::mock('OpenOrchestra\ModelInterface\Model\ReadSiteInterface');
         Phake::when($site2)->getSiteId()->thenReturn('site2');
         $sites->add($site2);
 
@@ -82,7 +82,7 @@ class FolderTest extends \PHPUnit_Framework_TestCase
     {
         $sites = new ArrayCollection();
 
-        $site1 = Phake::mock('OpenOrchestra\ModelInterface\Model\SiteInterface');
+        $site1 = Phake::mock('OpenOrchestra\ModelInterface\Model\ReadSiteInterface');
         Phake::when($site1)->getSiteId()->thenReturn('site1');
         $sites->add($site1);
 

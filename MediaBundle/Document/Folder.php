@@ -9,7 +9,7 @@ use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\Media\Model\FolderInterface;
-use OpenOrchestra\ModelInterface\Model\SiteInterface;
+use OpenOrchestra\ModelInterface\Model\ReadSiteInterface;
 
 /**
  * Class Folder
@@ -58,7 +58,7 @@ abstract class Folder implements FolderInterface
     /**
      * @var ArrayCollection
      *
-     * @ODM\ReferenceMany(targetDocument="OpenOrchestra\ModelInterface\Model\SiteInterface")
+     * @ODM\ReferenceMany(targetDocument="OpenOrchestra\ModelInterface\Model\ReadSiteInterface")
      */
     protected $sites;
 
@@ -163,17 +163,17 @@ abstract class Folder implements FolderInterface
     }
 
     /**
-     * @param SiteInterface $site
+     * @param ReadSiteInterface $site
      */
-    public function addSite(SiteInterface $site)
+    public function addSite(ReadSiteInterface $site)
     {
         $this->sites->add($site);
     }
 
     /**
-     * @param SiteInterface $site
+     * @param ReadSiteInterface $site
      */
-    public function removeSite(SiteInterface $site)
+    public function removeSite(ReadSiteInterface $site)
     {
         $this->sites->remove($site);
     }
