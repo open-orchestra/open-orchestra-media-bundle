@@ -17,7 +17,7 @@ class VideoStrategyTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->strategy = new VideoStrategy();
+        $this->strategy = new VideoStrategy($this->requestStack);
         $this->strategy->setRouter($this->router);
     }
 
@@ -27,8 +27,8 @@ class VideoStrategyTest extends AbstractStrategyTest
     public function displayImage()
     {
         return array(
-            array('test1.mp4', $this->pathToFile . '/' . 'test1.mp4'),
-            array('test2.avi', $this->pathToFile . '/' . 'test2.avi'),
+            array('test1.mp4', $this->pathToFile . '/' . 'test1.mp4', 'test1'),
+            array('test2.avi', $this->pathToFile . '/' . 'test2.avi', 'test2'),
         );
     }
 

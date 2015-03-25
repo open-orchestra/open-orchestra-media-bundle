@@ -2,7 +2,10 @@
 
 namespace OpenOrchestra\Media\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use OpenOrchestra\ModelInterface\Model\KeywordableInterface;
+use OpenOrchestra\ModelInterface\Model\TranslatedValueContainerInterface;
+use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use OpenOrchestra\ModelInterface\Model\BlameableInterface;
 use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
@@ -10,7 +13,7 @@ use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
 /**
  * Interface MediaInterface
  */
-interface MediaInterface extends TimestampableInterface, BlameableInterface, KeywordableInterface
+interface MediaInterface extends TimestampableInterface, BlameableInterface, KeywordableInterface, TranslatedValueContainerInterface
 {
     const MEDIA_PREFIX = 'media-';
     const MEDIA_ORIGINAL = 'original';
@@ -81,14 +84,16 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface, Key
     public function setThumbnail($thumbnail);
 
     /**
+     * @param string $language
+     *
      * @return string
      */
-    public function getAlt();
+    public function getAlt($language = 'en');
 
     /**
-     * @param string $alt
+     * @return ArrayCollection
      */
-    public function setAlt($alt);
+    public function getAlts();
 
     /**
      * @return string
@@ -111,14 +116,16 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface, Key
     public function setCopyright($copyright);
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getTitle();
+    public function getTitles();
 
     /**
-     * @param string $title
+     * @param string $language
+     *
+     * @return string
      */
-    public function setTitle($title);
+    public function getTitle($language = 'en');
 
     /**
      * @param string $reference
@@ -139,4 +146,24 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface, Key
      * @return bool
      */
     public function isDeletable();
+
+    /**
+     * @param TranslatedValueInterface $alt
+     */
+    public function addAlt(TranslatedValueInterface $alt);
+
+    /**
+     * @param TranslatedValueInterface $alt
+     */
+    public function removeAlt(TranslatedValueInterface $alt);
+
+    /**
+     * @param TranslatedValueInterface $title
+     */
+    public function addTitle(TranslatedValueInterface $title);
+
+    /**
+     * @param TranslatedValueInterface $title
+     */
+    public function removeTitle(TranslatedValueInterface $title);
 }

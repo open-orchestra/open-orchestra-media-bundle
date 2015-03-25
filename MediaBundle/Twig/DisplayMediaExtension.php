@@ -5,6 +5,7 @@ namespace OpenOrchestra\MediaBundle\Twig;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class DisplayMediaExtension
@@ -13,16 +14,18 @@ class DisplayMediaExtension extends \Twig_Extension
 {
     protected $displayMediaManager;
     protected $mediaRepository;
+    protected $request;
 
     /**
      * @param DisplayMediaManager      $displayMediaManager
      * @param MediaRepositoryInterface $mediaRepository
+     * @param RequestStack             $requestStack
      */
-    public function __construct(DisplayMediaManager $displayMediaManager, MediaRepositoryInterface $mediaRepository)
+    public function __construct(DisplayMediaManager $displayMediaManager, MediaRepositoryInterface $mediaRepository, RequestStack $requestStack)
     {
         $this->displayMediaManager = $displayMediaManager;
         $this->mediaRepository = $mediaRepository;
-
+        $this->request = $requestStack->getMasterRequest();
     }
 
     /**
@@ -34,6 +37,7 @@ class DisplayMediaExtension extends \Twig_Extension
             new \Twig_SimpleFunction('display_media', array($this, 'displayMedia'), array('is_safe' => array('html'))),
             new \Twig_SimpleFunction('media_preview', array($this, 'mediaPreview')),
             new \Twig_SimpleFunction('get_media_format_url', array($this, 'getMediaFormatUrl')),
+            new \Twig_SimpleFunction('get_media_alt', array($this, 'getMediaAlt')),
         );
     }
 
@@ -80,6 +84,22 @@ class DisplayMediaExtension extends \Twig_Extension
 
         if ($media) {
             return $this->displayMediaManager->getMediaFormatUrl($media, $format);
+        }
+
+        return '';
+    }
+
+    /**
+     * @param string $mediaId
+     *
+     * @return string
+     */
+    public function getMediaAlt($mediaId)
+    {
+        $media = $this->getMedia($mediaId);
+
+        if ($media) {
+            return $media->getAlt($this->request->getLocale());
         }
 
         return '';

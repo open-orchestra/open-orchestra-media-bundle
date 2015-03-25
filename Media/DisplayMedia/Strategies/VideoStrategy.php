@@ -3,12 +3,23 @@
 namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 
 use OpenOrchestra\Media\Model\MediaInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class VideoStrategy
  */
 class VideoStrategy extends AbstractStrategy
 {
+    protected $request;
+
+    /**
+     * @param RequestStack $requestStack
+     */
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->request = $requestStack->getMasterRequest();
+    }
+
     /**
      * @param MediaInterface $media
      *
@@ -26,7 +37,7 @@ class VideoStrategy extends AbstractStrategy
      */
     public function displayMedia(MediaInterface $media)
     {
-        return '<img src="' . $this->getFileUrl($media->getFilesystemName()) . '" alt="' . $media->getName() . '">';
+        return '<img src="' . $this->getFileUrl($media->getFilesystemName()) . '" alt="' . $media->getAlt($this->request->getLocale()) . '">';
     }
 
     /**

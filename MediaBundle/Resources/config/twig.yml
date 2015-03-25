@@ -7,5 +7,6 @@ services:
         arguments:
             - @open_orchestra_media.display_media_manager
             - @open_orchestra_media.repository.media
+            - @request_stack
         tags:
             - { name: twig.extension }
