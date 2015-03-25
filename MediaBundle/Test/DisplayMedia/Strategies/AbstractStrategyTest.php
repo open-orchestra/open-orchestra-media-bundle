@@ -11,7 +11,10 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
 {
     protected $media;
     protected $router;
+    protected $request;
     protected $strategy;
+    protected $requestStack;
+    protected $locale = 'en';
     protected $pathToFile = 'pathToFile';
 
     /**
@@ -19,6 +22,10 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
+        $this->request = Phake::mock('Symfony\Component\HttpFoundation\Request');
+        Phake::when($this->request)->getLocale()->thenReturn($this->locale);
+        $this->requestStack = Phake::mock('Symfony\Component\HttpFoundation\RequestStack');
+        Phake::when($this->requestStack)->getMasterRequest()->thenReturn($this->request);
         $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         $this->router = Phake::mock('Symfony\Component\Routing\Router');
     }
@@ -26,16 +33,18 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
     /**
      * @param string $image
      * @param string $url
+     * @param string $alt
      *
      * @dataProvider displayImage
      */
-    public function testDisplayMedia($image, $url)
+    public function testDisplayMedia($image, $url, $alt)
     {
         Phake::when($this->media)->getName()->thenReturn($image);
         Phake::when($this->media)->getThumbnail()->thenReturn($image);
+        Phake::when($this->media)->getAlt(Phake::anyParameters())->thenReturn($alt);
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
 
-        $html = '<img src="' . $url .'" alt="' . $image .'">';
+        $html = '<img src="' . $url .'" alt="' . $alt .'">';
 
         $this->assertSame($html, $this->strategy->displayMedia($this->media));
     }

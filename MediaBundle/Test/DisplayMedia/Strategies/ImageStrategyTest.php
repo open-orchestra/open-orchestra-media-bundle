@@ -18,7 +18,7 @@ class ImageStrategyTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->strategy = new ImageStrategy();
+        $this->strategy = new ImageStrategy($this->requestStack);
         $this->strategy->setRouter($this->router);
     }
 
@@ -28,8 +28,8 @@ class ImageStrategyTest extends AbstractStrategyTest
     public function displayImage()
     {
         return array(
-            array('test1.jpg', $this->pathToFile . '/' . 'test1.jpg'),
-            array('test2.png', $this->pathToFile . '/' . 'test2.png'),
+            array('test1.jpg', $this->pathToFile . '/' . 'test1.jpg', 'test1'),
+            array('test2.png', $this->pathToFile . '/' . 'test2.png', 'test2'),
         );
     }
 

@@ -18,7 +18,7 @@ class PdfStrategyTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->strategy = new PdfStrategy();
+        $this->strategy = new PdfStrategy($this->requestStack);
         $this->strategy->setRouter($this->router);
     }
 
@@ -28,8 +28,8 @@ class PdfStrategyTest extends AbstractStrategyTest
     public function displayImage()
     {
         return array(
-            array('test1.pdf', $this->pathToFile . '/' . 'test1.pdf'),
-            array('test2.pdf', $this->pathToFile . '/' . 'test2.pdf'),
+            array('test1.pdf', $this->pathToFile . '/' . 'test1.pdf', 'test1'),
+            array('test2.pdf', $this->pathToFile . '/' . 'test2.pdf', 'test2'),
         );
     }
 

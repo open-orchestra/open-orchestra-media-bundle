@@ -11,13 +11,16 @@ services:
             - @router
     open_orchestra_media.display_media.image:
         class: %open_orchestra_media.display_media.image.class%
+        arguments: [@request_stack]
         tags:
             - { name: open_orchestra_media.display_media.strategy }
     open_orchestra_media.display_media.pdf:
         class: %open_orchestra_media.display_media.pdf.class%
+        arguments: [@request_stack]
         tags:
             - { name: open_orchestra_media.display_media.strategy }
     open_orchestra_media.display_media.video:
         class: %open_orchestra_media.display_media.video.class%
+        arguments: [@request_stack]
         tags:
             - { name: open_orchestra_media.display_media.strategy }

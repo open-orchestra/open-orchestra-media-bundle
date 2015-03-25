@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\MediaBundle\Twig;
 
+use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
@@ -22,7 +23,6 @@ class DisplayMediaExtension extends \Twig_Extension
     {
         $this->displayMediaManager = $displayMediaManager;
         $this->mediaRepository = $mediaRepository;
-
     }
 
     /**
