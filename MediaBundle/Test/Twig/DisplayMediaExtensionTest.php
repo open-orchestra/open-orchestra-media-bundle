@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\MediaBundle\Test\Twig;
 
+use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;
 use Phake;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\MediaBundle\Twig\DisplayMediaExtension;
@@ -20,17 +21,23 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
     protected $mediaRepository;
     protected $noMedia = '';
     protected $media;
+    protected $requestStack;
+    protected $request;
+    protected $language;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
+        $this->request = Phake::mock('Symfony\Component\HttpFoundation\Request');
+        $this->requestStack = Phake::mock('Symfony\Component\HttpFoundation\RequestStack');
+        Phake::when($this->requestStack)->getMasterRequest()->thenReturn($this->request);
         $this->displayMediaManager = Phake::mock('OpenOrchestra\Media\DisplayMedia\DisplayMediaManager');
         $this->mediaRepository = Phake::mock('OpenOrchestra\Media\Repository\MediaRepositoryInterface');
         $this->media = Phake::mock('OpenOrchestra\MediaBundle\Document\Media');
 
-        $this->extension = new DisplayMediaExtension($this->displayMediaManager, $this->mediaRepository);
+        $this->extension = new DisplayMediaExtension($this->displayMediaManager, $this->mediaRepository, $this->requestStack);
     }
 
     /**
@@ -46,7 +53,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testFunctions()
     {
-        $this->assertCount(3, $this->extension->getFunctions());
+        $this->assertCount(4, $this->extension->getFunctions());
     }
 
     /**
@@ -149,5 +156,34 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->displayMediaManager)->displayMedia($this->media)->thenReturn($methodReturn);
 
         $this->assertSame($methodReturn, $this->extension->$method($mediaId));
+    }
+
+    /**
+     * @param string $mediaId
+     * @param string $language
+     * @param string $value
+     *
+     * @dataProvider provideMediaAlt
+     */
+    public function testGetMediaAlt($mediaId, $language, $value)
+    {
+        Phake::when($this->request)->getLocale()->thenReturn($language);
+        Phake::when($this->media)->getAlt($language)->thenReturn($value);
+        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
+
+        $result = $this->extension->getMediaAlt($mediaId);
+
+        $this->assertSame($value, $result);
+    }
+
+    /**
+     * @return array
+     */
+    public function provideMediaAlt()
+    {
+        return array(
+            array('mediaId', 'en', 'alten'),
+            array('mediaId', 'fr', 'altfr'),
+        );
     }
 }
