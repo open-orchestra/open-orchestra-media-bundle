@@ -26,6 +26,15 @@ class MediaSubscriber implements EventSubscriberInterface
         $this->tagManager = $tagManager;
     }
 
+    protected function invalidate($mediaId)
+    {
+        $this->cacheableManager->invalidateTags(
+            array(
+                $this->tagManager->formatMediaIdTag($mediaId)
+            )
+        );
+    }
+
     /**
      * Triggered when a media changes
      * 
@@ -33,25 +42,14 @@ class MediaSubscriber implements EventSubscriberInterface
      */
     public function cropMedia(MediaEvent $event)
     {
-        $media = $event->getMedia();
-
-        $this->cacheableManager->invalidateTags(
-            array(
-                $this->tagManager->formatMediaIdTag($media->getId())
-            )
-        );
+        $this->invalidate($event->getMedia()->getId());
     }
-        public function deleteMedia(MediaEvent $event)
+
+    public function deleteMedia(MediaEvent $event)
     {
-        $media = $event->getMedia();
-
-        $this->cacheableManager->invalidateTags(
-            array(
-                $this->tagManager->formatMediaIdTag($media->getId())
-            )
-        );
+        $this->invalidate($event->getMedia()->getId());
     }
-    
+
     /**
      * @return array The event names to listen to
      */
