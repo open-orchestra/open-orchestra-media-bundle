@@ -236,6 +236,10 @@ class Media implements MediaInterface
             return $language == $translatedValue->getLanguage();
         });
 
+        if ($choosenLanguage->isEmpty()) {
+            return '';
+        }
+
         return $choosenLanguage->first()->getValue();
     }
 
@@ -289,6 +293,10 @@ class Media implements MediaInterface
         $choosenLanguage = $this->titles->filter(function (TranslatedValueInterface $translatedValue) use ($language) {
             return $language == $translatedValue->getLanguage();
         });
+
+        if ($choosenLanguage->isEmpty()) {
+            return '';
+        }
 
         return $choosenLanguage->first()->getValue();
     }
