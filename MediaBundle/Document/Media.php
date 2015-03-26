@@ -232,11 +232,7 @@ class Media implements MediaInterface
      */
     public function getAlt($language = 'en')
     {
-        $choosenLanguage = $this->alts->filter(function (TranslatedValueInterface $translatedValue) use ($language) {
-            return $language == $translatedValue->getLanguage();
-        });
-
-        return $choosenLanguage->first()->getValue();
+        return $this->getChoosenLanguage($this->alts, $language);
     }
 
     /**
@@ -286,11 +282,7 @@ class Media implements MediaInterface
      */
     public function getTitle($language = 'en')
     {
-        $choosenLanguage = $this->titles->filter(function (TranslatedValueInterface $translatedValue) use ($language) {
-            return $language == $translatedValue->getLanguage();
-        });
-
-        return $choosenLanguage->first()->getValue();
+        return $this->getChoosenLanguage($this->titles, $language);
     }
 
     /**
@@ -367,5 +359,24 @@ class Media implements MediaInterface
     public function getTranslatedProperties()
     {
         return array('getTitles', 'getAlts');
+    }
+
+    /**
+     * @param ArrayCollection $mixed
+     * @param string          $language
+     *
+     * @return string
+     */
+    protected function getChoosenLanguage($mixed, $language)
+    {
+        $choosenLanguage = $mixed->filter(function (TranslatedValueInterface $translatedValue) use ($language) {
+            return $language == $translatedValue->getLanguage();
+        });
+
+        if ($choosenLanguage->isEmpty()) {
+            return '';
+        }
+
+        return $choosenLanguage->first()->getValue();
     }
 }
