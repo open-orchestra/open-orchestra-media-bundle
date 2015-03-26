@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Test\DisplayMedia\Strategies;
+namespace OpenOrchestra\MediaBundle\Tests\DisplayMedia\Strategies;
 
 use OpenOrchestra\Media\DisplayMedia\Strategies\VideoStrategy;
 use OpenOrchestra\Media\Model\MediaInterface;

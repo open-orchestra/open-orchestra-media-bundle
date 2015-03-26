@@ -15,7 +15,8 @@
 
     <testsuites>
         <testsuite name="unit">
-            <directory>*Bundle/Test</directory>
+            <directory>*Bundle/Tests</directory>
+            <exclude>./MediaBundle/Tests/Functional</exclude>
         </testsuite>
     </testsuites>
 

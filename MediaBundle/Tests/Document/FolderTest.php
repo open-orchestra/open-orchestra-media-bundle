@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Test\Document;
+namespace OpenOrchestra\MediaBundle\Tests\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
