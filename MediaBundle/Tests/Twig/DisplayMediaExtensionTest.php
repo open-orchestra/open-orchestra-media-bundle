@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Test\Twig;
+namespace OpenOrchestra\MediaBundle\Tests\Twig;
 
 use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;
 use Phake;

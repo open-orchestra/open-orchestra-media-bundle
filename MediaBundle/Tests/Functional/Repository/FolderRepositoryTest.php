@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\FunctionalTest\Repository;
+namespace OpenOrchestra\MediaBundle\Tests\Functional\Repository;
 
 use Phake;
 use OpenOrchestra\Media\Repository\FolderRepositoryInterface;

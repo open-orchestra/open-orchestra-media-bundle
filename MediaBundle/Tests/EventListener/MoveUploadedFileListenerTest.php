@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Test\EventListener;
+namespace OpenOrchestra\MediaBundle\Tests\EventListener;
 
 use Phake;
 use OpenOrchestra\Media\EventListener\MoveUploadedFileListener;

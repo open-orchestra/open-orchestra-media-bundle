@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Test\EventSubscriber;
+namespace OpenOrchestra\MediaBundle\Tests\EventSubscriber;
 
 use Phake;
 use OpenOrchestra\Media\EventSubscriber\UploadImageSubscriber;

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Test\Model;
+namespace OpenOrchestra\MediaBundle\Tests\Model;
 
 /**
  * Description of BaseNodeTest

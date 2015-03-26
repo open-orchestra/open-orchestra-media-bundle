@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Test\Thumbnail\Strategies;
+namespace OpenOrchestra\MediaBundle\Tests\Thumbnail\Strategies;
 
 use OpenOrchestra\Media\Thumbnail\Strategies\VideoToImageManager;
 

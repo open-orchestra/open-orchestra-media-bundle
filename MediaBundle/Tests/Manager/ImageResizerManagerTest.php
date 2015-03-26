@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Test\Manager;
+namespace OpenOrchestra\MediaBundle\Tests\Manager;
 
 use Phake;
 use OpenOrchestra\Media\Manager\ImageResizerManager;
