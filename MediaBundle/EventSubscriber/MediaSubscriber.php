@@ -7,6 +7,7 @@ use OpenOrchestra\Media\MediaEvents;
 use OpenOrchestra\Media\Event\MediaEvent;
 use OpenOrchestra\DisplayBundle\Manager\CacheableManager;
 use OpenOrchestra\BaseBundle\Manager\TagManager;
+use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class MediaSubscriber
@@ -30,7 +31,7 @@ class MediaSubscriber implements EventSubscriberInterface
     {
         $this->cacheableManager->invalidateTags(
             array(
-                $this->tagManager->formatMediaIdTag($mediaId)
+                $this->tagManager->formatMediaIdTag(ltrim($mediaId, MediaInterface::MEDIA_PREFIX))
             )
         );
     }
