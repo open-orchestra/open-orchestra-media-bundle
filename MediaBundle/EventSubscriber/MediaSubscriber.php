@@ -27,6 +27,11 @@ class MediaSubscriber implements EventSubscriberInterface
         $this->tagManager = $tagManager;
     }
 
+    /**
+     * Invalidate cache on $mediaId
+     * 
+     * @param string $mediaId
+     */
     protected function invalidate($mediaId)
     {
         $this->cacheableManager->invalidateTags(
