@@ -1,7 +1,7 @@
 {
     "name": "itkg/open-orchestra-media-bundle",
     "description": "A media bundle for the OpenOrchestra Project",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Nicolas Thal",
