@@ -37,7 +37,7 @@ class MediaSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Triggered when a media changes
+     * Triggered when a media is cropped
      * 
      * @param MediaEvent $event
      */
@@ -46,6 +46,11 @@ class MediaSubscriber implements EventSubscriberInterface
         $this->invalidate($event->getMedia()->getId());
     }
 
+    /**
+     * Triggered when a media is deleted
+     * 
+     * @param MediaEvent $event
+     */
     public function deleteMedia(MediaEvent $event)
     {
         $this->invalidate($event->getMedia()->getId());
