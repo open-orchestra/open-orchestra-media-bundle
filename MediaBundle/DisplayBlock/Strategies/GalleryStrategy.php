@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RequestStack;
 use OpenOrchestra\DisplayBundle\Twig\NavigatorExtension;
 use OpenOrchestra\BaseBundle\Manager\TagManager;
+use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class GalleryStrategy
@@ -139,7 +140,7 @@ class GalleryStrategy extends AbstractStrategy
 
         if ($medias) {
             foreach ($medias as $media) {
-                $tags[] = $this->tagManager->formatMediaIdTag($media);
+                $tags[] = $this->tagManager->formatMediaIdTag(ltrim($media, MediaInterface::MEDIA_PREFIX));
             }
         }
 
