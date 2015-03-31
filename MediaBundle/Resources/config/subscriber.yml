@@ -1,7 +1,6 @@
 parameters:
     open_orchestra_media.subscriber.generate_image.class: OpenOrchestra\Media\EventSubscriber\GenerateImageSubscriber
     open_orchestra_media.subscriber.upload_image.class: OpenOrchestra\Media\EventSubscriber\UploadImageSubscriber
-    open_orchestra_media.subscriber.media_cache__invalidate.class: OpenOrchestra\MediaBundle\EventSubscriber\MediaChacheInvalidateSubscriber
 
 services:
     open_orchestra_media.subscriber.generate_image:
@@ -16,10 +15,3 @@ services:
             - @open_orchestra_media.manager.gaufrette
         tags:
              - { name: kernel.event_subscriber }
-    open_orchestra_media.subscriber.media_cache_invalidate:
-        class: %open_orchestra_media.subscriber.media_cache__invalidate.class%
-        arguments:
-            - @open_orchestra_display.manager.cacheable
-            - @open_orchestra_base.manager.tag
-        tags:
-            - { name: kernel.event_subscriber }
