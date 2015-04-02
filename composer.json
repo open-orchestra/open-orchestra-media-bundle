@@ -1,5 +1,5 @@
 {
-    "name": "itkg/open-orchestra-media-bundle",
+    "name": "open-orchestra/open-orchestra-media-bundle",
     "description": "A media bundle for the OpenOrchestra Project",
     "license": "Apache-2.0",
     "authors": [
@@ -8,20 +8,10 @@
             "email": "nico.th4l@gmail.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/itkg/open-orchestra-base-bundle"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/itkg/open-orchestra-model-interface"
-        }
-    ],
     "minimum-stability": "dev",
     "require": {
         "ext-imagick": "*",
-        "itkg/open-orchestra-model-interface": "*",
+        "open-orchestra/open-orchestra-model-interface": "*",
         "doctrine/data-fixtures":"1.0.0",
         "doctrine/mongodb-odm": "1.0.0-BETA11",
         "doctrine/mongodb-odm-bundle" : "3.0.0-BETA6",
@@ -29,7 +19,7 @@
         "knplabs/knp-gaufrette-bundle": "v0.1.7"
     },
     "require-dev": {
-        "itkg/open-orchestra-base-bundle": "dev-master",
+        "open-orchestra/open-orchestra-base-bundle": "dev-master",
         "scrutinizer/ocular": "1.1.1",
         "symfony/validator": "2.5.5",
         "jmikola/geojson": "1.0.1",
