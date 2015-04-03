@@ -34,7 +34,14 @@ class DisplayMediaStrategy extends AbstractStrategy
      */
     public function show(ReadBlockInterface $block)
     {
+        $parameters = array(
+            'imageFormat' => $block->getAttribute('imageFormat'),
+            'picture' => $block->getAttribute('picture'),
+            'id' => $block->getId(),
+            'class' => $block->getClass()
+        );
 
+        return $this->render('OpenOrchestraMediaBundle:Block/DisplayMedia:show.html.twig', $parameters);
     }
 
     /**
