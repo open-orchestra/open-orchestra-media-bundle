@@ -1,6 +1,7 @@
 parameters:
     open_orchestra_media.display.media_list_by_keyword.class: OpenOrchestra\MediaBundle\DisplayBlock\Strategies\MediaListByKeywordStrategy
     open_orchestra_media.display.gallery.class: OpenOrchestra\MediaBundle\DisplayBlock\Strategies\GalleryStrategy
+    open_orchestra_media.display.display_media.class: OpenOrchestra\MediaBundle\DisplayBlock\Strategies\DisplayMediaStrategy
 
 services:
     open_orchestra_media.display.media_list_by_keyword:
@@ -15,5 +16,9 @@ services:
         arguments:
             - @request_stack
             - @open_orchestra_base.manager.tag
+        tags:
+            - { name: open_orchestra_display.display_block.strategy }
+    open_orchestra_media.display.display_media:
+        class: %open_orchestra_media.display.display_media.class%
         tags:
             - { name: open_orchestra_display.display_block.strategy }
