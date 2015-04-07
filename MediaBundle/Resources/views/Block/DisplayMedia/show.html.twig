@@ -5,5 +5,11 @@
     {%- if class -%}
         class="{{ class }}"
     {%- endif %}>
-    <img src="{{ get_media_format_url(picture, imageFormat) }}" alt="{{ get_media_alt(picture) }}"/>
+    {% if linkUrl is not null %}
+        <a href="{{ url(linkUrl.id) }}">
+            <img src="{{ get_media_format_url(picture, imageFormat) }}" alt="{{ get_media_alt(picture) }}"/>
+        </a>
+    {% else %}
+        <img src="{{ get_media_format_url(picture, imageFormat) }}" alt="{{ get_media_alt(picture) }}"/>
+    {% endif %}
 </div>

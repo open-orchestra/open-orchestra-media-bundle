@@ -20,5 +20,7 @@ services:
             - { name: open_orchestra_display.display_block.strategy }
     open_orchestra_media.display.display_media:
         class: %open_orchestra_media.display.display_media.class%
+        arguments:
+            - @open_orchestra_model.repository.node
         tags:
             - { name: open_orchestra_display.display_block.strategy }
