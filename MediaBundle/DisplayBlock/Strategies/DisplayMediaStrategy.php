@@ -48,7 +48,7 @@ class DisplayMediaStrategy extends AbstractStrategy
         $linkUrl = null;
         $nodeName = $block->getAttribute('linkUrl');
 
-        if (!isEmpty($nodeName)) {
+        if (!empty($nodeName)) {
             $linkUrl = $this->nodeRepository->findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeName);
         }
 
