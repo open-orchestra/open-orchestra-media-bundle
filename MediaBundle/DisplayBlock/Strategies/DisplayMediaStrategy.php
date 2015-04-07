@@ -46,10 +46,10 @@ class DisplayMediaStrategy extends AbstractStrategy
     public function show(ReadBlockInterface $block)
     {
         $linkUrl = null;
-        $nodeName = $block->getAttribute('linkUrl');
+        $nodeToLink = $block->getAttribute('nodeToLink');
 
-        if (!empty($nodeName)) {
-            $linkUrl = $this->nodeRepository->findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeName);
+        if (!empty($nodeToLink)) {
+            $linkUrl = $this->nodeRepository->findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeToLink);
         }
 
         $parameters = array(
