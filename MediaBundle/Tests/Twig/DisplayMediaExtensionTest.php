@@ -53,7 +53,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testFunctions()
     {
-        $this->assertCount(4, $this->extension->getFunctions());
+        $this->assertCount(5, $this->extension->getFunctions());
     }
 
     /**
@@ -167,7 +167,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMediaAlt($mediaId, $language, $value)
     {
-        Phake::when($this->request)->getLocale()->thenReturn($language);
+        Phake::when($this->request)->get(Phake::anyParameters())->thenReturn($language);
         Phake::when($this->media)->getAlt($language)->thenReturn($value);
         Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
 
@@ -184,6 +184,35 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
         return array(
             array('mediaId', 'en', 'alten'),
             array('mediaId', 'fr', 'altfr'),
+        );
+    }
+
+    /**
+     * @param string $mediaId
+     * @param string $language
+     * @param string $value
+     *
+     * @dataProvider provideMediaTitle
+     */
+    public function testGetMediaTitle($mediaId, $language, $value)
+    {
+        Phake::when($this->request)->get(Phake::anyParameters())->thenReturn($language);
+        Phake::when($this->media)->getTitle($language)->thenReturn($value);
+        Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
+
+        $result = $this->extension->getMediaTitle($mediaId);
+
+        $this->assertSame($value, $result);
+    }
+
+    /**
+     * @return array
+     */
+    public function provideMediaTitle()
+    {
+        return array(
+            array('mediaId', 'en', 'titleen'),
+            array('mediaId', 'fr', 'titlefr'),
         );
     }
 }
