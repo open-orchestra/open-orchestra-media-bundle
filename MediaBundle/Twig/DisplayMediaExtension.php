@@ -100,7 +100,7 @@ class DisplayMediaExtension extends \Twig_Extension
         $media = $this->getMedia($mediaId);
 
         if ($media) {
-            return $media->getAlt($this->request->getLocale());
+            return $media->getAlt($this->getRequestLanguage());
         }
 
         return '';
@@ -116,7 +116,7 @@ class DisplayMediaExtension extends \Twig_Extension
         $media = $this->getMedia($mediaId);
 
         if ($media) {
-            return $media->getTitle($this->request->getLocale());
+            return $media->getTitle($this->getRequestLanguage());
         }
 
         return '';
@@ -144,5 +144,13 @@ class DisplayMediaExtension extends \Twig_Extension
 
         $media = $this->mediaRepository->find($mediaId);
         return $media;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getRequestLanguage()
+    {
+        return $this->request->get('language', $this->request->getLocale());
     }
 }
