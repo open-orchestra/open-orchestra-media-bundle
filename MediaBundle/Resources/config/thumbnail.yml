@@ -11,12 +11,14 @@ services:
         class: %open_orchestra_media.thumbnail.pdf_to_image.class%
         arguments:
             - %open_orchestra_media.tmp_dir%
+            - %media.directory%
         tags:
             - { name: open_orchestra_media.thumbnail.strategy }
     open_orchestra_media.thumbnail.video_to_image:
         class: %open_orchestra_media.thumbnail.video_to_image.class%
         arguments:
             - %open_orchestra_media.tmp_dir%
+            - %media.directory%
         tags:
             - { name: open_orchestra_media.thumbnail.strategy }
     open_orchestra_media.thumbnail.image_to_thumbnail:
