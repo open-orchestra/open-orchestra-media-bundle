@@ -16,7 +16,7 @@ class PdfToImageManagerTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->manager = new PdfToImageManager($this->tmpDir);
+        $this->manager = new PdfToImageManager($this->tmpDir, $this->tmpDir);
     }
 
     /**

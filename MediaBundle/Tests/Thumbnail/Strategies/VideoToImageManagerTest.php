@@ -16,7 +16,7 @@ class VideoToImageManagerTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->manager = new VideoToImageManager($this->tmpDir);
+        $this->manager = new VideoToImageManager($this->tmpDir, $this->tmpDir);
     }
 
     /**
