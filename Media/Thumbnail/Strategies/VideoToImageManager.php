@@ -11,13 +11,16 @@ use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
 class VideoToImageManager implements ThumbnailInterface
 {
     protected $tmpDir;
+    protected $mediaDirectory;
 
     /**
-     * @param $tmpDir
+     * @param string $tmpDir
+     * @param string $mediaDirectory;
      */
-    public function __construct($tmpDir)
+    public function __construct($tmpDir, $mediaDirectory)
     {
         $this->tmpDir = $tmpDir;
+        $this->mediaDirectory = $mediaDirectory;
     }
 
     /**
@@ -54,7 +57,7 @@ class VideoToImageManager implements ThumbnailInterface
         $video = new \ffmpeg_movie($this->tmpDir . '/' . $media->getFilesystemName());
         $frame = $video->getFrame(1);
         $image = $frame->toGDImage();
-        imagejpeg($image, $this->tmpDir . '/' . $media->getThumbnail());
+        imagejpeg($image, $this->mediaDirectory . '/' . $media->getThumbnail());
 
         return $media;
     }

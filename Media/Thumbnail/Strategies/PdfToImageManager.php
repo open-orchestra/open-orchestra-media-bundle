@@ -12,13 +12,16 @@ use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
 class PdfToImageManager implements ThumbnailInterface
 {
     protected $tmpDir;
+    protected $mediaDirectory;
 
     /**
-     * @param $tmpDir
+     * @param string $tmpDir
+     * @param string $mediaDirectory
      */
-    public function __construct($tmpDir)
+    public function __construct($tmpDir, $mediaDirectory)
     {
         $this->tmpDir = $tmpDir;
+        $this->mediaDirectory = $mediaDirectory;
     }
 
     /**
@@ -55,7 +58,7 @@ class PdfToImageManager implements ThumbnailInterface
         $im = new Imagick($this->tmpDir . '/' . $media->getFilesystemName().'[0]');
         $im->setImageFormat('jpg');
         $im->setCompression(75);
-        $im->writeImage($this->tmpDir . '/' . $media->getThumbnail());
+        $im->writeImage($this->mediaDirectory . '/' . $media->getThumbnail());
 
         return $media;
     }
