@@ -21,8 +21,6 @@ class GaufretteManagerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->adapter = Phake::mock('Gaufrette\Adapter');
-        Phake::when($this->adapter)->write()->thenReturn(null);
-        Phake::when($this->adapter)->read()->thenReturn(null);
 
         $this->filesystem = Phake::mock('Gaufrette\Filesystem');
         Phake::when($this->filesystem)->getAdapter()->thenReturn($this->adapter);
@@ -57,7 +55,7 @@ class GaufretteManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param $key
+     * @param string $key
      *
      * @dataProvider provideKeys
      */
@@ -77,5 +75,28 @@ class GaufretteManagerTest extends \PHPUnit_Framework_TestCase
             array('someKey')
         );
     }
-    
+
+    /**
+     * @param string $key
+     *
+     * @dataProvider provideKeys
+     */
+    public function testDeleteContent($key)
+    {
+        $this->gaufretteManager->deleteContent($key);
+
+        Phake::verify($this->adapter, Phake::times(1))->delete($key);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @dataProvider provideKeys
+     */
+    public function testExists($key)
+    {
+        $this->gaufretteManager->exists($key);
+
+        Phake::verify($this->adapter, Phake::times(1))->exists($key);
+    }
 }
