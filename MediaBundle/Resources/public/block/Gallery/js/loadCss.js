@@ -1,5 +1,5 @@
 requirejs(
-    ['../../../libs/requireCss'],
+    ['/bundles/openorchestradisplay/libs/requireCss.js'],
     function() {
         loadCss('/bundles/openorchestradisplay/libs/fancybox/source/jquery.fancybox.css?v=2.1.5');
         loadCss('/bundles/openorchestradisplay/libs/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5');
