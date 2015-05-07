@@ -14,7 +14,6 @@
     </div>
 {%endif%}
 
-
 <script type="text/javascript">
     if (typeof orchestraGalCol == 'undefined') {
         var orchestraGalCol = {};
@@ -22,5 +21,4 @@
     orchestraGalCol['{{galleryId}}'] = {{ numberOfColumns }};
 </script>
 
-<script data-main="{{ asset('/bundles/openorchestramedia/block/Gallery/js/loadJs.js') }}" src="{{ asset('/bundles/openorchestradisplay/libs/require.js') }}"></script>
-<script src="{{ asset('/bundles/openorchestramedia/block/Gallery/js/loadCss.js') }}"></script>
+<script src="{{ asset('/bundles/openorchestramedia/block/Gallery/blockLoader.js') }}"></script>
