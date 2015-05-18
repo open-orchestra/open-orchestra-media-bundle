@@ -49,7 +49,9 @@ class DisplayMediaStrategy extends AbstractStrategy
         $nodeToLink = $block->getAttribute('nodeToLink');
 
         if (!empty($nodeToLink)) {
-            $linkUrl = $this->nodeRepository->findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeToLink);
+            $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
+            $siteId = $this->currentSiteManager->getCurrentSiteId();
+            $linkUrl = $this->nodeRepository->findOneByNodeIdAndLanguageWithPublishedAndLastVersionAndSiteId($nodeToLink, $language, $siteId);
         }
 
         $parameters = array(
