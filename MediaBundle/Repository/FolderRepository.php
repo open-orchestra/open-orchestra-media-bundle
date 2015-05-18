@@ -14,11 +14,15 @@ use OpenOrchestra\Media\Repository\FolderRepositoryInterface;
 class FolderRepository extends DocumentRepository implements FolderRepositoryInterface
 {
     /**
+     * @deprecated will be removed in 0.2.4
+     *
      * @var CurrentSiteIdInterface
      */
     protected $currentSiteManager;
 
     /**
+     * @deprecated will be removed in 0.2.4
+     *
      * @param CurrentSiteIdInterface $currentSiteManager
      */
     public function setCurrentSiteManager(CurrentSiteIdInterface $currentSiteManager)
@@ -39,12 +43,12 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
     }
 
     /**
+     * @param string $siteId
+     *
      * @return array
      */
-    public function findAllRootFolderBySiteId()
+    public function findAllRootFolderBySiteId($siteId)
     {
-        $siteId = $this->currentSiteManager->getCurrentSiteId();
-
         $list = $this->findAllRootFolder();
 
         $folders = array();

@@ -12,6 +12,8 @@ use OpenOrchestra\Media\Model\FolderInterface;
 interface FolderRepositoryInterface
 {
     /**
+     * @deprecated will be removed in 0.2.4
+     *
      * @param CurrentSiteIdInterface $currentSiteManager
      */
     public function setCurrentSiteManager(CurrentSiteIdInterface $currentSiteManager);
@@ -22,9 +24,11 @@ interface FolderRepositoryInterface
     public function findAllRootFolder();
 
     /**
+     * @param string $siteId
+     *
      * @return array
      */
-    public function findAllRootFolderBySiteId();
+    public function findAllRootFolderBySiteId($siteId);
 
     /**
      * @param string $id

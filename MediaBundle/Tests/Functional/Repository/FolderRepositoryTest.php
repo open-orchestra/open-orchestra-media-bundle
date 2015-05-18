@@ -16,8 +16,6 @@ class FolderRepositoryTest extends KernelTestCase
      */
     protected $repository;
 
-    protected $siteManager;
-
     /**
      * Set up test
      */
@@ -25,11 +23,8 @@ class FolderRepositoryTest extends KernelTestCase
     {
         parent::setUp();
 
-        $this->siteManager = Phake::mock('OpenOrchestra\BaseBundle\Context\CurrentSiteIdInterface');
-
         static::bootKernel();
         $this->repository = static::$kernel->getContainer()->get('open_orchestra_media.repository.media_folder');
-        $this->repository->setCurrentSiteManager($this->siteManager);
     }
 
     /**
@@ -40,9 +35,7 @@ class FolderRepositoryTest extends KernelTestCase
      */
     public function testFindAllRootFolderBySiteId($siteId, $count)
     {
-        Phake::when($this->siteManager)->getCurrentSiteId()->thenReturn($siteId);
-
-        $result = $this->repository->findAllRootFolderBySiteId();
+        $result = $this->repository->findAllRootFolderBySiteId($siteId);
 
         $this->assertCount($count, $result);
     }
