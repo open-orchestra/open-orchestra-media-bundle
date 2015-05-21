@@ -39,7 +39,7 @@ class Configuration implements ConfigurationInterface
                         ->children()
                             ->scalarNode('class')->defaultValue('OpenOrchestra\MediaBundle\Document\MediaFolder')->end()
                             ->scalarNode('repository')->defaultValue('OpenOrchestra\MediaBundle\Repository\FolderRepository')->end()
-                            ->booleanNode('current_site')->defaultTrue()->end()
+
                         ->end()
                     ->end()
                 ->end()

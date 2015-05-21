@@ -29,20 +29,10 @@ class OpenOrchestraMediaExtension extends Extension
         foreach ($config['document'] as $class => $content) {
             if (is_array($content)) {
                 $container->setParameter('open_orchestra_media.document.' . $class . '.class', $content['class']);
-                if (array_key_exists('current_site', $content) && $content['current_site']) {
-                    $container->register('open_orchestra_media.repository.' . $class, $content['repository'])
-                        ->setFactoryService('doctrine.odm.mongodb.document_manager')
-                        ->setFactoryMethod('getRepository')
-                        ->addArgument($content['class'])
-                        ->addMethodCall('setCurrentSiteManager', array(
-                            new Reference('open_orchestra.manager.current_site')
-                        ));
-                } else {
-                    $container->register('open_orchestra_media.repository.' . $class, $content['repository'])
-                        ->setFactoryService('doctrine.odm.mongodb.document_manager')
-                        ->setFactoryMethod('getRepository')
-                        ->addArgument($content['class']);
-                }
+                $container->register('open_orchestra_media.repository.' . $class, $content['repository'])
+                    ->setFactoryService('doctrine.odm.mongodb.document_manager')
+                    ->setFactoryMethod('getRepository')
+                    ->addArgument($content['class']);
             }
         }
 
