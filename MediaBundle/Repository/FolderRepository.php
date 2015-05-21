@@ -14,23 +14,6 @@ use OpenOrchestra\Media\Repository\FolderRepositoryInterface;
 class FolderRepository extends DocumentRepository implements FolderRepositoryInterface
 {
     /**
-     * @deprecated will be removed in 0.2.4
-     *
-     * @var CurrentSiteIdInterface
-     */
-    protected $currentSiteManager;
-
-    /**
-     * @deprecated will be removed in 0.2.4
-     *
-     * @param CurrentSiteIdInterface $currentSiteManager
-     */
-    public function setCurrentSiteManager(CurrentSiteIdInterface $currentSiteManager)
-    {
-        $this->currentSiteManager = $currentSiteManager;
-    }
-
-    /**
      * @return Collection
      */
     public function findAllRootFolder()
