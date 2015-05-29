@@ -3,7 +3,6 @@
 namespace OpenOrchestra\Media\Repository;
 
 use Doctrine\Common\Collections\Collection;
-use OpenOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
 use OpenOrchestra\Media\Model\FolderInterface;
 
 /**
