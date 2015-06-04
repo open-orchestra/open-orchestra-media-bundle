@@ -37,7 +37,7 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
         /** @var FolderInterface $folder */
         foreach ($list as $folder) {
             foreach ($folder->getSites() as $site) {
-                if ($site->getSiteId() == $siteId) {
+                if ($site == $siteId) {
                     $folders[] = $folder;
                 }
             }
