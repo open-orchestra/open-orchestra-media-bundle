@@ -56,9 +56,9 @@ abstract class Folder implements FolderInterface
     protected $subFolders;
 
     /**
-     * @var ArrayCollection
+     * @var Array
      *
-     * @ODM\ReferenceMany(targetDocument="OpenOrchestra\ModelInterface\Model\ReadSiteInterface")
+     * @ODM\Field(type="collection")
      */
     protected $sites;
 
@@ -68,7 +68,7 @@ abstract class Folder implements FolderInterface
     public function __construct()
     {
         $this->subFolders = new ArrayCollection();
-        $this->sites = new ArrayCollection();
+        $this->sites = array();
     }
 
     /**
@@ -128,8 +128,8 @@ abstract class Folder implements FolderInterface
     public function getSubFoldersBySiteId($siteId)
     {
         return $this->subFolders->filter(function (FolderInterface $folder) use ($siteId) {
-            foreach ($folder->getSites() as $site) {
-                if ($site->getSiteId() === $siteId) {
+            foreach ($folder->getSites() as $folderSite) {
+                if ($folderSite['siteId'] === $siteId) {
                     return true;
                 }
             }
@@ -167,7 +167,7 @@ abstract class Folder implements FolderInterface
      */
     public function addSite(ReadSiteInterface $site)
     {
-        $this->sites->add($site);
+        $this->sites[] = array('siteId' => $site->getSiteId());
     }
 
     /**
@@ -175,6 +175,12 @@ abstract class Folder implements FolderInterface
      */
     public function removeSite(ReadSiteInterface $site)
     {
-        $this->sites->remove($site);
+        $newSites = array();
+        foreach ($this->sites as $associatedSite) {
+            if ($associatedSite['siteId'] !== $site->getSiteId()) {
+                $newSites[] = $siteId;
+            }
+        }
+        $this->sites = $newSites;
     }
 }
