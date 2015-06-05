@@ -25,8 +25,13 @@ class FolderTest extends \PHPUnit_Framework_TestCase
         $this->folder1 = Phake::mock('OpenOrchestra\Media\Model\FolderInterface');
         $this->folder2 = Phake::mock('OpenOrchestra\Media\Model\FolderInterface');
 
-        $this->sites1 = array('site1', 'site2');
-        $this->sites2 = array('site1');
+        $this->sites1 = array(
+            array('siteId' => 'site1'),
+            array('siteId' => 'site2'),
+        );
+        $this->sites2 = array(
+            array('siteId' => 'site1'),
+        );
 
         $this->mediaFolder = new MediaFolder();
         $this->mediaFolder->addSubFolder($this->folder1);

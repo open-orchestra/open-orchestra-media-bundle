@@ -56,9 +56,9 @@ abstract class Folder implements FolderInterface
     protected $subFolders;
 
     /**
-     * @var ArrayCollection
+     * @var Array
      *
-     * @ODM\Field(type="hash")
+     * @ODM\Field(type="collection")
      */
     protected $sites;
 
@@ -128,8 +128,8 @@ abstract class Folder implements FolderInterface
     public function getSubFoldersBySiteId($siteId)
     {
         return $this->subFolders->filter(function (FolderInterface $folder) use ($siteId) {
-            foreach ($folder->getSites() as $folderSiteId) {
-                if ($folderSiteId === $siteId) {
+            foreach ($folder->getSites() as $folderSite) {
+                if ($folderSite['siteId'] === $siteId) {
                     return true;
                 }
             }
@@ -167,7 +167,7 @@ abstract class Folder implements FolderInterface
      */
     public function addSite(ReadSiteInterface $site)
     {
-        $this->sites[] = $site->getSiteId();
+        $this->sites[] = array('siteId' => $site->getSiteId());
     }
 
     /**
@@ -176,8 +176,8 @@ abstract class Folder implements FolderInterface
     public function removeSite(ReadSiteInterface $site)
     {
         $newSites = array();
-        foreach ($this->sites as $siteId) {
-            if ($siteId !== $site->getSiteId()) {
+        foreach ($this->sites as $associatedSite) {
+            if ($associatedSite['siteId'] !== $site->getSiteId()) {
                 $newSites[] = $siteId;
             }
         }
