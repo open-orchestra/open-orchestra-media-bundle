@@ -15,11 +15,14 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
     /**
      * @return Collection
      */
-    public function findAllRootFolder()
+    public function findAllRootFolder($siteId = null)
     {
         $qb = $this->createQueryBuilder('f');
 
         $qb->field('parent')->equals(null);
+        if ($siteId) {
+            $qb->field('sites.siteId')->equals($siteId);
+        }
 
         return $qb->getQuery()->execute();
     }
@@ -31,11 +34,6 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
      */
     public function findAllRootFolderBySiteId($siteId)
     {
-        $qb = $this->createQueryBuilder('f');
-
-        $qb->field('parent')->equals(null);
-        $qb->field('sites.siteId')->equals($siteId);
-
-        return $qb->getQuery()->execute();
+        return $this->findAllRootFolder($siteId);
     }
 }
