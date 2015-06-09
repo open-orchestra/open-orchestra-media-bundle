@@ -4,7 +4,6 @@ namespace OpenOrchestra\MediaBundle\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
-use OpenOrchestra\Media\Model\FolderInterface;
 use OpenOrchestra\Media\Repository\FolderRepositoryInterface;
 
 /**
