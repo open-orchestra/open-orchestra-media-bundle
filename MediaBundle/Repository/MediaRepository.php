@@ -19,7 +19,7 @@ class MediaRepository extends DocumentRepository implements MediaRepositoryInter
      */
     public function findByFolderId($folderId)
     {
-        $qb = $this->createQueryBuilder('m');
+        $qb = $this->createQueryBuilder();
 
         $qb->field('mediaFolder.id')->equals($folderId);
 
@@ -33,7 +33,7 @@ class MediaRepository extends DocumentRepository implements MediaRepositoryInter
      */
     public function findByKeywords($keywords)
     {
-        $qb = $this->createQueryBuilder('c');
+        $qb = $this->createQueryBuilder();
 
         $qb->field('keywords.label')->in(explode(',', $keywords));
 

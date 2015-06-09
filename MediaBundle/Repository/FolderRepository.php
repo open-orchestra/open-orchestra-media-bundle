@@ -17,7 +17,7 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
      */
     public function findAllRootFolder($siteId = null)
     {
-        $qb = $this->createQueryBuilder('f');
+        $qb = $this->createQueryBuilder();
 
         $qb->field('parent')->equals(null);
         if ($siteId) {
