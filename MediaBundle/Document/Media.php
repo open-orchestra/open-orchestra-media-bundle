@@ -232,7 +232,7 @@ class Media implements MediaInterface
      */
     public function getAlt($language = 'en')
     {
-        return $this->getChoosenLanguage($this->alts, $language);
+        return $this->getChosenLanguage($this->alts, $language);
     }
 
     /**
@@ -282,7 +282,7 @@ class Media implements MediaInterface
      */
     public function getTitle($language = 'en')
     {
-        return $this->getChoosenLanguage($this->titles, $language);
+        return $this->getChosenLanguage($this->titles, $language);
     }
 
     /**
@@ -367,7 +367,7 @@ class Media implements MediaInterface
      *
      * @return string
      */
-    protected function getChoosenLanguage($mixed, $language)
+    protected function getChosenLanguage($mixed, $language)
     {
         $choosenLanguage = $mixed->filter(function (TranslatedValueInterface $translatedValue) use ($language) {
             return $language == $translatedValue->getLanguage();
