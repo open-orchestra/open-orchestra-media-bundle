@@ -11,6 +11,8 @@ use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
  */
 class PdfToImageManager implements ThumbnailInterface
 {
+    const MIME_TYPE_PDF = 'application/pdf';
+
     protected $tmpDir;
     protected $mediaDirectory;
 
@@ -31,7 +33,7 @@ class PdfToImageManager implements ThumbnailInterface
      */
     public function support(MediaInterface $media)
     {
-        return 'application/pdf' == $media->getMimeType();
+        return self::MIME_TYPE_PDF == $media->getMimeType();
     }
 
     /**

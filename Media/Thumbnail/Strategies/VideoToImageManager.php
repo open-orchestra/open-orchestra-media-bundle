@@ -10,6 +10,8 @@ use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
  */
 class VideoToImageManager implements ThumbnailInterface
 {
+    const MIME_TYPE_FRAGMENT_VIDEO = 'video';
+
     protected $tmpDir;
     protected $mediaDirectory;
 
@@ -30,7 +32,7 @@ class VideoToImageManager implements ThumbnailInterface
      */
     public function support(MediaInterface $media)
     {
-        return strpos($media->getMimeType(), 'video') === 0;
+        return strpos($media->getMimeType(), self::MIME_TYPE_FRAGMENT_VIDEO) === 0;
     }
 
     /**
@@ -69,5 +71,4 @@ class VideoToImageManager implements ThumbnailInterface
     {
         return 'video_to_image';
     }
-
 }
