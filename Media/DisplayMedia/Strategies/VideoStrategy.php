@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 class VideoStrategy extends AbstractStrategy
 {
+    const MIME_TYPE_FRAGMENT_VIDEO = 'video';
+
     protected $request;
 
     /**
@@ -27,7 +29,7 @@ class VideoStrategy extends AbstractStrategy
      */
     public function support(MediaInterface $media)
     {
-        return strpos($media->getMimeType(), 'video') === 0;
+        return strpos($media->getMimeType(), self::MIME_TYPE_FRAGMENT_VIDEO) === 0;
     }
 
     /**
