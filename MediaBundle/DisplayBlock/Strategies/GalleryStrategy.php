@@ -156,5 +156,4 @@ class GalleryStrategy extends AbstractStrategy
     {
         return 'gallery';
     }
-
 }

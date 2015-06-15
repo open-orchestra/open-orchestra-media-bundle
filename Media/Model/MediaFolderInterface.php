@@ -23,5 +23,4 @@ interface MediaFolderInterface
      * @param MediaInterface $media
      */
     public function removeMedia(MediaInterface $media);
-
 }

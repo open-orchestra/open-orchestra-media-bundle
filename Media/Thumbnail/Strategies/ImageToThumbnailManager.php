@@ -12,6 +12,8 @@ use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
  */
 class ImageToThumbnailManager implements ThumbnailInterface
 {
+    const MIME_TYPE_FRAGMENT_IMAGE = 'image';
+
     protected $tmpDir;
     protected $dispatcher;
 
@@ -31,7 +33,7 @@ class ImageToThumbnailManager implements ThumbnailInterface
      */
     public function support(MediaInterface $media)
     {
-        return strpos($media->getMimeType(), 'image') === 0;
+        return strpos($media->getMimeType(), self::MIME_TYPE_FRAGMENT_IMAGE) === 0;
     }
 
     /**

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 class PdfStrategy extends AbstractStrategy
 {
+    const MIME_TYPE_PDF = 'application/pdf';
+
     protected $request;
 
     /**
@@ -27,7 +29,7 @@ class PdfStrategy extends AbstractStrategy
      */
     public function support(MediaInterface $media)
     {
-        return 'application/pdf' == $media->getMimeType();
+        return self::MIME_TYPE_PDF == $media->getMimeType();
     }
 
    /**

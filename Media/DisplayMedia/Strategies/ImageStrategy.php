@@ -60,5 +60,4 @@ class ImageStrategy extends AbstractStrategy
     {
         return "image";
     }
-
 }
