@@ -134,7 +134,7 @@ abstract class Folder implements FolderInterface
                 }
             }
 
-            return false;
+            return count($folder->getSites()) === 0;
         });
     }
 
