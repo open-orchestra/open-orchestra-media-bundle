@@ -14,6 +14,7 @@ class FolderTest extends \PHPUnit_Framework_TestCase
     protected $mediaFolder;
     protected $folder1;
     protected $folder2;
+    protected $folder3;
     protected $sites1;
     protected $sites2;
 
@@ -24,6 +25,7 @@ class FolderTest extends \PHPUnit_Framework_TestCase
     {
         $this->folder1 = Phake::mock('OpenOrchestra\Media\Model\FolderInterface');
         $this->folder2 = Phake::mock('OpenOrchestra\Media\Model\FolderInterface');
+        $this->folder3 = Phake::mock('OpenOrchestra\Media\Model\FolderInterface');
 
         $this->sites1 = array(
             array('siteId' => 'site1'),
@@ -36,6 +38,7 @@ class FolderTest extends \PHPUnit_Framework_TestCase
         $this->mediaFolder = new MediaFolder();
         $this->mediaFolder->addSubFolder($this->folder1);
         $this->mediaFolder->addSubFolder($this->folder2);
+        $this->mediaFolder->addSubFolder($this->folder3);
     }
 
     /**
@@ -50,6 +53,7 @@ class FolderTest extends \PHPUnit_Framework_TestCase
     {
         Phake::when($this->folder1)->getSites()->thenReturn($this->sites1);
         Phake::when($this->folder2)->getSites()->thenReturn($this->sites2);
+        Phake::when($this->folder3)->getSites()->thenReturn(array());
 
         $result = $this->mediaFolder->getSubFoldersBySiteId($siteId);
 
@@ -63,8 +67,8 @@ class FolderTest extends \PHPUnit_Framework_TestCase
     public function generateSiteId()
     {
         return array(
-            array('site1', 2),
-            array('site2', 1)
+            array('site1', 3),
+            array('site2', 2)
         );
     }
 
