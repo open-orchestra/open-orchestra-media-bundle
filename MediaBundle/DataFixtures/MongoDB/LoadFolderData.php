@@ -19,32 +19,32 @@ class LoadFolderData extends AbstractFixture implements OrderedFixtureInterface
     {
         $rootImages = new MediaFolder();
         $rootImages->setName('Images folder');
-        $rootImages->addSite($this->getReference('site1'));
-        $rootImages->addSite($this->getReference('site2'));
-        $rootImages->addSite($this->getReference('site3'));
+        $rootImages->addSite(array('siteId' => '1'));
+        $rootImages->addSite(array('siteId' => '2'));
+        $rootImages->addSite(array('siteId' => '3'));
         $manager->persist($rootImages);
         $this->addReference('mediaFolder-rootImages', $rootImages);
 
         $firstImages = new MediaFolder();
         $firstImages->setName('First images folder');
         $firstImages->setParent($rootImages);
-        $firstImages->addSite($this->getReference('site1'));
-        $firstImages->addSite($this->getReference('site2'));
+        $firstImages->addSite(array('siteId' => '1'));
+        $firstImages->addSite(array('siteId' => '2'));
         $manager->persist($firstImages);
         $this->addReference('mediaFolder-firstImages', $firstImages);
 
         $secondImages = new MediaFolder();
         $secondImages->setName('Second images folder');
         $secondImages->setParent($rootImages);
-        $secondImages->addSite($this->getReference('site1'));
+        $secondImages->addSite(array('siteId' => '1'));
         $manager->persist($secondImages);
         $this->addReference('mediaFolder-secondImages', $secondImages);
 
         $rootFiles = new MediaFolder();
         $rootFiles->setName('Files folder');
-        $rootFiles->addSite($this->getReference('site1'));
-        $rootFiles->addSite($this->getReference('site2'));
-        $rootFiles->addSite($this->getReference('site3'));
+        $rootFiles->addSite(array('siteId' => '1'));
+        $rootFiles->addSite(array('siteId' => '2'));
+        $rootFiles->addSite(array('siteId' => '3'));
         $manager->persist($rootFiles);
         $this->addReference('mediaFolder-rootFiles', $rootFiles);
 

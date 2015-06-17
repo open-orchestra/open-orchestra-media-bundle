@@ -48,7 +48,7 @@ class FolderRepositoryTest extends KernelTestCase
         return array(
             array('1', 2),
             array('2', 2),
-            array('3', 2),
+            array('3', 1),
         );
     }
 }
