@@ -65,12 +65,12 @@ interface FolderInterface extends TimestampableInterface, BlameableInterface
     public function getSites();
 
     /**
-     * @param ReadSiteInterface $site
+     * @param array $site
      */
-    public function addSite(ReadSiteInterface $site);
+    public function addSite(array $site);
 
     /**
-     * @param ReadSiteInterface $site
+     * @param array $site
      */
-    public function removeSite(ReadSiteInterface $site);
+    public function removeSite(array $site);
 }

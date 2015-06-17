@@ -163,22 +163,22 @@ abstract class Folder implements FolderInterface
     }
 
     /**
-     * @param ReadSiteInterface $site
+     * @param array $site
      */
-    public function addSite(ReadSiteInterface $site)
+    public function addSite(array $site)
     {
-        $this->sites[] = array('siteId' => $site->getSiteId());
+        $this->sites[] = $site;
     }
 
     /**
-     * @param ReadSiteInterface $site
+     * @param array $site
      */
-    public function removeSite(ReadSiteInterface $site)
+    public function removeSite(array $site)
     {
         $newSites = array();
         foreach ($this->sites as $associatedSite) {
-            if ($associatedSite['siteId'] !== $site->getSiteId()) {
-                $newSites[] = $siteId;
+            if ($associatedSite['siteId'] !== $site['siteId']) {
+                $newSites[] = $associatedSite;
             }
         }
         $this->sites = $newSites;
