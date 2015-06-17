@@ -4,7 +4,6 @@ namespace OpenOrchestra\Media\Model;
 
 use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\ModelInterface\Model\BlameableInterface;
-use OpenOrchestra\ModelInterface\Model\ReadSiteInterface;
 use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
 
 /**
