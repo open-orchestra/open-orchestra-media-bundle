@@ -19,4 +19,4 @@ install:
 script: ./bin/phpunit
 
 after_script:
-  - ./bin/ocular code-coverage:upload --access-token="0ab85d09ea536dc6a7f03316b495cc078d8bee02c7c74974bbfd1fe280425a16" --format=php-clover build/logs/clover.xml
+  - CODECLIMATE_REPO_TOKEN=d8790063c357cd94fe7a2e7c15c00b60f3363435a558d5fa16a5874e383a61da ./bin/test-reporter

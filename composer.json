@@ -20,7 +20,8 @@
     },
     "require-dev": {
         "open-orchestra/open-orchestra-base-bundle": "dev-master",
-        "scrutinizer/ocular": "1.1.1",
+        "psr/log": "1.0.0",
+        "codeclimate/php-test-reporter": "dev-master",
         "symfony/validator": "2.7.0",
         "jmikola/geojson": "1.0.1",
         "phpunit/phpunit" : "4.7.2",
