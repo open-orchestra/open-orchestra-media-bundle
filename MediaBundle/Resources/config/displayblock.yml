@@ -1,7 +1,10 @@
 parameters:
     open_orchestra_media.display.media_list_by_keyword.class: OpenOrchestra\Media\DisplayBlock\Strategies\MediaListByKeywordStrategy
+    open_orchestra_media.display.media_list_by_keyword.template: 'OpenOrchestraMediaBundle:Block/MediaList:show.html.twig'
     open_orchestra_media.display.gallery.class: OpenOrchestra\Media\DisplayBlock\Strategies\GalleryStrategy
+    open_orchestra_media.display.gallery.template: 'OpenOrchestraMediaBundle:Block/Gallery:show.html.twig'
     open_orchestra_media.display.display_media.class: OpenOrchestra\Media\DisplayBlock\Strategies\DisplayMediaStrategy
+    open_orchestra_media.display.display_media.template: 'OpenOrchestraMediaBundle:Block/DisplayMedia:show.html.twig'
 
 services:
     open_orchestra_media.display.media_list_by_keyword:
@@ -9,7 +12,7 @@ services:
         arguments:
             - @open_orchestra_media.repository.media
             - @open_orchestra_base.manager.tag
-            - 'OpenOrchestraMediaBundle:Block/MediaList:show.html.twig'
+            - %open_orchestra_media.display.media_list_by_keyword.template%
         tags:
             - { name: open_orchestra_display.display_block.strategy }
     open_orchestra_media.display.gallery:
@@ -17,13 +20,13 @@ services:
         arguments:
             - @request_stack
             - @open_orchestra_base.manager.tag
-            - 'OpenOrchestraMediaBundle:Block/Gallery:show.html.twig'
+            - %open_orchestra_media.display.gallery.template%
         tags:
             - { name: open_orchestra_display.display_block.strategy }
     open_orchestra_media.display.display_media:
         class: %open_orchestra_media.display.display_media.class%
         arguments:
             - @open_orchestra_model.repository.node
-            - 'OpenOrchestraMediaBundle:Block/DisplayMedia:show.html.twig'
+            - %open_orchestra_media.display.display_media.template%
         tags:
             - { name: open_orchestra_display.display_block.strategy }
