@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\DisplayBlock\Strategies;
+namespace OpenOrchestra\Media\DisplayBlock\Strategies;
 
 use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
@@ -11,8 +11,6 @@ use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class MediaListByKeywordStrategy
- *
- * @deprecated use the strategy from the Media folder, will be removed in 0.3.0
  */
 class MediaListByKeywordStrategy extends AbstractStrategy
 {

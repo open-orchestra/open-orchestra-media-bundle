@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\DisplayBlock\Strategies;
+namespace OpenOrchestra\Media\DisplayBlock\Strategies;
 
 use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
@@ -9,8 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class DisplayMediaStrategy
- *
- * @deprecated use the strategy from the Media folder, will be removed in 0.3.0
  */
 class DisplayMediaStrategy extends AbstractStrategy
 {
