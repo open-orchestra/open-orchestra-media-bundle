@@ -91,4 +91,20 @@ class ImageToThumbnailManagerTest extends \PHPUnit_Framework_TestCase
             array('autre.jpg'),
         );
     }
+
+    /**
+     * Test generate thumbnail
+     */
+    public function testGenerateThumbnail()
+    {
+        $this->assertSame($this->media, $this->manager->generateThumbnail($this->media));
+    }
+
+    /**
+     * Test name
+     */
+    public function testGetName()
+    {
+        $this->assertSame('image_to_thumbnail', $this->manager->getName());
+    }
 }
