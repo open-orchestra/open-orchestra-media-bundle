@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Twig;
+namespace OpenOrchestra\Media\Twig;
 
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use OpenOrchestra\Media\Model\MediaInterface;

@@ -2,10 +2,9 @@
 
 namespace OpenOrchestra\MediaBundle\Tests\Twig;
 
-use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;
 use Phake;
 use OpenOrchestra\Media\Model\MediaInterface;
-use OpenOrchestra\MediaBundle\Twig\DisplayMediaExtension;
+use OpenOrchestra\Media\Twig\DisplayMediaExtension;
 
 /**
  * Class DisplayMediaExtensionTest

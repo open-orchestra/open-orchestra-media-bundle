@@ -1,5 +1,5 @@
 parameters:
-    open_orchestra_media.twig.display_media.extension.class: OpenOrchestra\MediaBundle\Twig\DisplayMediaExtension
+    open_orchestra_media.twig.display_media.extension.class: OpenOrchestra\Media\Twig\DisplayMediaExtension
 
 services:
     open_orchestra_media.twig.display_media.extension:
