@@ -18,14 +18,18 @@ class MediaListByKeywordStrategy extends AbstractStrategy
 
     protected $mediaRepository;
     protected $tagManager;
+    protected $template;
 
     /**
      * @param MediaRepositoryInterface $mediaRepository
+     * @param TagManager               $tagManager
+     * @param string                   $template
      */
-    public function __construct(MediaRepositoryInterface $mediaRepository, TagManager $tagManager)
+    public function __construct(MediaRepositoryInterface $mediaRepository, TagManager $tagManager, $template)
     {
         $this->mediaRepository = $mediaRepository;
         $this->tagManager = $tagManager;
+        $this->template = $template;
     }
 
     /**
@@ -62,7 +66,7 @@ class MediaListByKeywordStrategy extends AbstractStrategy
         $medias = $this->getMediasByKeywords($block->getAttribute('keywords'));
 
         return $this->render(
-            'OpenOrchestraMediaBundle:Block/MediaList:show.html.twig',
+            $this->template,
             array(
                 'id' => $block->getId(),
                 'class' => $block->getClass(),

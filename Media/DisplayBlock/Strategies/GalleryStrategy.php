@@ -18,16 +18,19 @@ class GalleryStrategy extends AbstractStrategy
     const GALLERY = 'gallery';
 
     protected $request;
+    protected $template;
     protected $tagManager;
 
     /**
      * @param RequestStack $requestStack
      * @param TagManager   $tagManager
+     * @param string       $template
      */
-    public function __construct(RequestStack $requestStack, TagManager $tagManager)
+    public function __construct(RequestStack $requestStack, TagManager $tagManager, $template)
     {
         $this->request = $requestStack->getCurrentRequest();
         $this->tagManager = $tagManager;
+        $this->template = $template;
     }
 
     /**
@@ -69,7 +72,7 @@ class GalleryStrategy extends AbstractStrategy
         }
 
         return $this->render(
-            'OpenOrchestraMediaBundle:Block/Gallery:show.html.twig',
+            $this->template,
             array(
                 'galleryClass' => $block->getClass(),
                 'galleryId' => $block->getId(),

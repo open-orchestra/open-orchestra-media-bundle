@@ -15,13 +15,16 @@ class DisplayMediaStrategy extends AbstractStrategy
     const DISPLAY_MEDIA = "display_media";
 
     protected $nodeRepository;
+    protected $template;
 
     /**
      * @param ReadNodeRepositoryInterface $nodeRepository
+     * @param string                      $template
      */
-    public function __construct(ReadNodeRepositoryInterface $nodeRepository)
+    public function __construct(ReadNodeRepositoryInterface $nodeRepository, $template)
     {
         $this->nodeRepository = $nodeRepository;
+        $this->template = $template;
     }
 
     /**
@@ -62,7 +65,7 @@ class DisplayMediaStrategy extends AbstractStrategy
             'class' => $block->getClass()
         );
 
-        return $this->render('OpenOrchestraMediaBundle:Block/DisplayMedia:show.html.twig', $parameters);
+        return $this->render($this->template, $parameters);
     }
 
     /**
