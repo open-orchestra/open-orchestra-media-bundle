@@ -2,9 +2,9 @@
 
 namespace OpenOrchestra\MediaBundle\DependencyInjection;
 
-use OpenOrchestra\MediaBundle\DisplayBlock\Strategies\DisplayMediaStrategy;
-use OpenOrchestra\MediaBundle\DisplayBlock\Strategies\GalleryStrategy;
-use OpenOrchestra\MediaBundle\DisplayBlock\Strategies\MediaListByKeywordStrategy;
+use OpenOrchestra\Media\DisplayBlock\Strategies\DisplayMediaStrategy;
+use OpenOrchestra\Media\DisplayBlock\Strategies\GalleryStrategy;
+use OpenOrchestra\Media\DisplayBlock\Strategies\MediaListByKeywordStrategy;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
