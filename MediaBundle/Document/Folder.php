@@ -9,7 +9,7 @@ use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\Media\Model\FolderInterface;
-use OpenOrchestra\ModelInterface\Model\ReadSiteInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Folder
@@ -37,6 +37,7 @@ abstract class Folder implements FolderInterface
     /**
      * @var string $name
      *
+     * @Assert\NotBlank()
      * @ODM\Field(type="string")
      */
     protected $name;
