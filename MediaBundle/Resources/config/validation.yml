@@ -1,0 +1,4 @@
+OpenOrchestra\MediaBundle\Documen\Folder:
+    properties:
+        name:
+            - NotBlank: ~
