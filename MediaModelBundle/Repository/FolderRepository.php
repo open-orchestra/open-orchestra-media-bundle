@@ -12,6 +12,8 @@ use OpenOrchestra\Media\Repository\FolderRepositoryInterface;
 class FolderRepository extends DocumentRepository implements FolderRepositoryInterface
 {
     /**
+     * @param string|null $siteId
+     *
      * @return Collection
      */
     public function findAllRootFolder($siteId = null)
@@ -31,7 +33,7 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
     /**
      * @param string $siteId
      *
-     * @return array
+     * @return Collection
      */
     public function findAllRootFolderBySiteId($siteId)
     {

@@ -28,9 +28,9 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     public function providateClassInterfaceRelation()
     {
         return array(
-            array('Media',            'MediaInterface'),
-            array('MediaFolder',      'FolderInterface'),
-            array('MediaFolder',      'MediaFolderInterface'),
+            array('Media', 'MediaInterface'),
+            array('MediaFolder','FolderInterface'),
+            array('MediaFolder','MediaFolderInterface'),
         );
     }
 
@@ -55,11 +55,11 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     public function providateClassInterfaceRelationOfModelInterface()
     {
         return array(
-            array('Media',            'BlameableInterface'),
-            array('MediaFolder',      'BlameableInterface'),
-            array('Media',            'TimestampableInterface'),
-            array('MediaFolder',      'TimestampableInterface'),
-            array('Media',            'KeywordableInterface'),
+            array('Media', 'BlameableInterface'),
+            array('MediaFolder','BlameableInterface'),
+            array('Media', 'TimestampableInterface'),
+            array('MediaFolder','TimestampableInterface'),
+            array('Media', 'KeywordableInterface'),
         );
     }
 }

@@ -369,7 +369,7 @@ class Media implements MediaInterface
      */
     protected function getChosenLanguage($mixed, $language)
     {
-        $choosenLanguage = $mixed->filter(function (TranslatedValueInterface $translatedValue) use ($language) {
+        $choosenLanguage = $mixed->filter(function(TranslatedValueInterface $translatedValue) use ($language) {
             return $language == $translatedValue->getLanguage();
         });
 
