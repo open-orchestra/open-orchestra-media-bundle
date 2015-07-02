@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Document;
+namespace OpenOrchestra\MediaModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,7 +15,7 @@ use OpenOrchestra\Media\Model\FolderInterface;
  *
  * @ODM\Document(
  *   collection="folder",
- *   repositoryClass="OpenOrchestra\MediaBundle\Repository\FolderRepository"
+ *   repositoryClass="OpenOrchestra\MediaModelBundle\Repository\FolderRepository"
  * )
  * @ODM\InheritanceType("SINGLE_COLLECTION")
  * @ODM\DiscriminatorField("type")
@@ -43,14 +43,14 @@ abstract class Folder implements FolderInterface
     /**
      * @var FolderInterface
      *
-     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\MediaBundle\Document\Folder", inversedBy="subFolders")
+     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\Media\Model\FolderInterface", inversedBy="subFolders")
      */
     protected $parent;
 
     /**
      * @var ArrayCollection
      *
-     * @ODM\ReferenceMany(targetDocument="OpenOrchestra\MediaBundle\Document\Folder", mappedBy="parent")
+     * @ODM\ReferenceMany(targetDocument="OpenOrchestra\Media\Model\FolderInterface", mappedBy="parent")
      */
     protected $subFolders;
 

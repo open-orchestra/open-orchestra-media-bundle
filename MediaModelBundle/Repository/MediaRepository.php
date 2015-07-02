@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Repository;
+namespace OpenOrchestra\MediaModelBundle\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\DocumentRepository;

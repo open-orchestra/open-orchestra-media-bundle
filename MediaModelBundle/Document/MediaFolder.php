@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Document;
+namespace OpenOrchestra\MediaModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
@@ -12,7 +12,7 @@ use OpenOrchestra\Media\Model\MediaInterface;
  * Class MediaFolder
  *
  * @ODM\Document(
- *   repositoryClass="OpenOrchestra\MediaBundle\Repository\FolderRepository"
+ *   repositoryClass="OpenOrchestra\MediaModelBundle\Repository\FolderRepository"
  * )
  */
 class MediaFolder extends Folder implements MediaFolderInterface
@@ -20,7 +20,7 @@ class MediaFolder extends Folder implements MediaFolderInterface
     /**
      * @var Collection
      *
-     * @ODM\ReferenceMany(targetDocument="OpenOrchestra\MediaBundle\Document\Media", mappedBy="mediaFolder")
+     * @ODM\ReferenceMany(targetDocument="OpenOrchestra\Media\Model\MediaInterface", mappedBy="mediaFolder")
      */
     protected $medias;
 

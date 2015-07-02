@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 /**
  * Interface MediaFolderInterface
  */
-interface MediaFolderInterface
+interface MediaFolderInterface extends FolderInterface
 {
     /**
      * @return Collection

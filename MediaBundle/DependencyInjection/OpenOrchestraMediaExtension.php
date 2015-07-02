@@ -27,15 +27,6 @@ class OpenOrchestraMediaExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        foreach ($config['document'] as $class => $content) {
-            if (is_array($content)) {
-                $container->setParameter('open_orchestra_media.document.' . $class . '.class', $content['class']);
-                $definition = new Definition($content['repository'], array($content['class']));
-                $definition->setFactory(array(new Reference('doctrine.odm.mongodb.document_manager'), 'getRepository'));
-                $container->setDefinition('open_orchestra_media.repository.' . $class, $definition);
-            }
-        }
-
         $this->updateBlockParameter($container);
 
         $container->setParameter('open_orchestra_media.tmp_dir', $config['tmp_dir']);
@@ -48,7 +39,6 @@ class OpenOrchestraMediaExtension extends Extension
         $loader->load('twig.yml');
         $loader->load('thumbnail.yml');
         $loader->load('subscriber.yml');
-        $loader->load('listener.yml');
         $loader->load('manager.yml');
         $loader->load('displayblock.yml');
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Tests\Model;
+namespace OpenOrchestra\MediaModelBundle\Tests\Model;
 
 /**
  * Description of BaseNodeTest
@@ -15,7 +15,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testInstance($class, $interface)
     {
-        $fullClass = 'OpenOrchestra\MediaBundle\Document\\' . $class;
+        $fullClass = 'OpenOrchestra\MediaModelBundle\Document\\' . $class;
         $fullInterface = 'OpenOrchestra\Media\Model\\' . $interface;
         $entity = new $fullClass();
 
@@ -42,7 +42,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testInstanceOfModelInterface($class, $interface)
     {
-        $fullClass = 'OpenOrchestra\MediaBundle\Document\\' . $class;
+        $fullClass = 'OpenOrchestra\MediaModelBundle\Document\\' . $class;
         $fullInterface = 'OpenOrchestra\ModelInterface\Model\\' . $interface;
         $entity = new $fullClass();
 

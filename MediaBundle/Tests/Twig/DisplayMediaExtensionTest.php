@@ -34,7 +34,7 @@ class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->requestStack)->getMasterRequest()->thenReturn($this->request);
         $this->displayMediaManager = Phake::mock('OpenOrchestra\Media\DisplayMedia\DisplayMediaManager');
         $this->mediaRepository = Phake::mock('OpenOrchestra\Media\Repository\MediaRepositoryInterface');
-        $this->media = Phake::mock('OpenOrchestra\MediaBundle\Document\Media');
+        $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
 
         $this->extension = new DisplayMediaExtension($this->displayMediaManager, $this->mediaRepository, $this->requestStack);
     }
