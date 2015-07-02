@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\DependencyInjection;
+namespace OpenOrchestra\MediaModelBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,32 +18,24 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('open_orchestra_media');
+        $rootNode = $treeBuilder->root('open_orchestra_media_model');
 
         $rootNode->children()
-            ->scalarNode('tmp_dir')->defaultValue('/tmp')->end()
-            ->scalarNode('filesystem')->defaultValue('media_storage')->end()
-            ->scalarNode('compression_quality')->defaultValue(75)->end()
-            ->arrayNode('thumbnail')
+            ->arrayNode('document')
                 ->addDefaultsIfNotSet()
                 ->children()
-                    ->arrayNode('max_height')
+                    ->arrayNode('media')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('max_height')->defaultValue(100)->end()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\MediaModelBundle\Document\Media')->end()
+                            ->scalarNode('repository')->defaultValue('OpenOrchestra\MediaModelBundle\Repository\MediaRepository')->end()
                         ->end()
                     ->end()
-                    ->arrayNode('max_width')
+                    ->arrayNode('media_folder')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('max_width')->defaultValue(100)->end()
-                        ->end()
-                    ->end()
-                    ->arrayNode('rectangle')
-                        ->addDefaultsIfNotSet()
-                        ->children()
-                            ->scalarNode('width')->defaultValue(100)->end()
-                            ->scalarNode('height')->defaultValue(70)->end()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\MediaModelBundle\Document\MediaFolder')->end()
+                            ->scalarNode('repository')->defaultValue('OpenOrchestra\MediaModelBundle\Repository\FolderRepository')->end()
                         ->end()
                     ->end()
                 ->end()

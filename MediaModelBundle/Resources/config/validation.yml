@@ -1,4 +1,4 @@
-OpenOrchestra\MediaBundle\Documen\Folder:
+OpenOrchestra\MediaModelBundle\Documen\Folder:
     properties:
         name:
             - NotBlank: ~

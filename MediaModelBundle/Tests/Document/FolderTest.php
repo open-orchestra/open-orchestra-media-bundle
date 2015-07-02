@@ -1,10 +1,9 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Tests\Document;
+namespace OpenOrchestra\MediaModelBundle\Tests\Document;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
-use OpenOrchestra\MediaBundle\Document\MediaFolder;
+use OpenOrchestra\MediaModelBundle\Document\MediaFolder;
 
 /**
  * Class FolderTest
@@ -71,5 +70,4 @@ class FolderTest extends \PHPUnit_Framework_TestCase
             array('site2', 2)
         );
     }
-
 }

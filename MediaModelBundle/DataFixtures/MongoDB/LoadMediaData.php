@@ -1,11 +1,11 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\DataFixtures\MongoDB;
+namespace OpenOrchestra\MediaModelBundle\DataFixtures\MongoDB;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use OpenOrchestra\MediaBundle\Document\Media;
+use OpenOrchestra\MediaModelBundle\Document\Media;
 use OpenOrchestra\ModelBundle\Document\EmbedKeyword;
 use OpenOrchestra\ModelBundle\Document\TranslatedValue;
 

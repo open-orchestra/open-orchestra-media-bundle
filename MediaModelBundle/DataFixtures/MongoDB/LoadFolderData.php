@@ -1,11 +1,11 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\DataFixtures\MongoDB;
+namespace OpenOrchestra\MediaModelBundle\DataFixtures\MongoDB;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use OpenOrchestra\MediaBundle\Document\MediaFolder;
+use OpenOrchestra\MediaModelBundle\Document\MediaFolder;
 
 /**
  * Class LoadFolderData

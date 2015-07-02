@@ -1,0 +1,4 @@
+resolve_target_documents:
+    OpenOrchestra\Media\Model\FolderInterface: OpenOrchestra\MediaModelBundle\Document\Folder
+    OpenOrchestra\Media\Model\MediaFolderInterface: OpenOrchestra\MediaModelBundle\Document\MediaFolder
+    OpenOrchestra\Media\Model\MediaInterface: OpenOrchestra\MediaModelBundle\Document\Media

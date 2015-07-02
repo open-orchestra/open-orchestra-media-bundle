@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Document;
+namespace OpenOrchestra\MediaModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ODM\Document(
  *   collection="media",
- *   repositoryClass="OpenOrchestra\MediaBundle\Repository\MediaRepository"
+ *   repositoryClass="OpenOrchestra\MediaModelBundle\Repository\MediaRepository"
  * )
  */
 class Media implements MediaInterface
@@ -58,7 +58,7 @@ class Media implements MediaInterface
     /**
      * @var MediaFolderInterface
      *
-     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\MediaBundle\Document\MediaFolder", inversedBy="medias")
+     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\Media\Model\MediaFolderInterface", inversedBy="medias")
      */
     protected $mediaFolder;
 
@@ -369,7 +369,7 @@ class Media implements MediaInterface
      */
     protected function getChosenLanguage($mixed, $language)
     {
-        $choosenLanguage = $mixed->filter(function (TranslatedValueInterface $translatedValue) use ($language) {
+        $choosenLanguage = $mixed->filter(function(TranslatedValueInterface $translatedValue) use ($language) {
             return $language == $translatedValue->getLanguage();
         });
 
