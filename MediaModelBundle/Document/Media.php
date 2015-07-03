@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\Media\Model\MediaFolderInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;
-use OpenOrchestra\ModelInterface\MongoTrait\Keywordable;
+use OpenOrchestra\MongoTrait\Keywordable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
