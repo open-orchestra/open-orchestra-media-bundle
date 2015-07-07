@@ -8,21 +8,37 @@ use Doctrine\Common\Persistence\ObjectManager;
 use OpenOrchestra\MediaModelBundle\Document\Media;
 use OpenOrchestra\ModelBundle\Document\EmbedKeyword;
 use OpenOrchestra\ModelBundle\Document\TranslatedValue;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class LoadMediaData
  */
-class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
+class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
+        $filename = 'logo-orchestra.png';
         $rootImage = new Media();
-        $rootImage->setName('logo Phporchestra');
-        $rootImage->setFilesystemName('themePresentation-logoOrchestra.png');
-        $rootImage->setThumbnail('themePresentation-logoOrchestra.png');
+        $rootImage->setName('logo Open-Orchestra');
+        $rootImage->setFilesystemName($filename);
+        $rootImage->setThumbnail($filename);
         $rootImage->setMimeType('image/png');
         $rootImage->setMediaFolder($this->getReference('mediaFolder-rootImages'));
         $rootImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
@@ -30,12 +46,14 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
         $rootImage->addAlt($this->generatedValue('fr', 'thème'));
         $rootImage->addTitle($this->generatedValue('en', 'logo image'));
         $rootImage->addTitle($this->generatedValue('fr', 'thème./ image'));
+        $this->copyFile($rootImage);
         $manager->persist($rootImage);
 
+        $filename = 'no_image_available.jpg';
         $firstImage = new Media();
         $firstImage->setName('No image logo');
-        $firstImage->setFilesystemName('no_image_available.jpg');
-        $firstImage->setThumbnail('no_image_available.jpg');
+        $firstImage->setFilesystemName($filename);
+        $firstImage->setThumbnail($filename);
         $firstImage->setMimeType('image/jpg');
         $firstImage->setMediaFolder($this->getReference('mediaFolder-firstImages'));
         $firstImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
@@ -44,19 +62,33 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
         $firstImage->addAlt($this->generatedValue('fr', 'premièreImage'));
         $firstImage->addTitle($this->generatedValue('en', 'firstImage'));
         $firstImage->addTitle($this->generatedValue('fr', 'premièreImage'));
+        $this->copyFile($firstImage);
         $manager->persist($firstImage);
 
-        $secondImage = new Media();
-        $secondImage->setName('Second image');
-        $secondImage->setMediaFolder($this->getReference('mediaFolder-secondImages'));
-        $secondImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-dolor')));
-        $secondImage->addAlt($this->generatedValue('en', 'secondImage'));
-        $secondImage->addAlt($this->generatedValue('fr', 'secondImage'));
-        $secondImage->addTitle($this->generatedValue('en', 'secondImage'));
-        $secondImage->addTitle($this->generatedValue('fr', 'secondImage'));
-        $manager->persist($secondImage);
-
         $manager->flush();
+    }
+
+    /**
+     * Copy the file physically and generate the thumbnails
+     * 
+     * @param string $filename
+     */
+    protected function copyFile(Media $media)
+    {
+        $file = './vendor/open-orchestra/open-orchestra-media-bundle/OpenOrchestra/MediaModelBundle/DataFixtures/Images/' . $media->getFilesystemName();
+        $gaufretteManager = $this->container->get('open_orchestra_media.manager.gaufrette');
+        $imageResizerManager = $this->container->get('open_orchestra_media.manager.image_resizer');
+
+        $gaufretteManager->uploadContent(
+            $media->getFilesystemName(),
+            fopen($file, 'r')
+        );
+
+        copy(
+            $file,
+            $this->container->getParameter('open_orchestra_media.tmp_dir') . '/'. $media->getFilesystemName()
+        );
+        $imageResizerManager->generateAllThumbnails($media);;
     }
 
     /**
