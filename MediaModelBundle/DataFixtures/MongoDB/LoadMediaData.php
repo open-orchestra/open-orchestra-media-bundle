@@ -5,6 +5,7 @@ namespace OpenOrchestra\MediaModelBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\MediaModelBundle\Document\Media;
 use OpenOrchestra\ModelBundle\Document\EmbedKeyword;
 use OpenOrchestra\ModelBundle\Document\TranslatedValue;
@@ -71,23 +72,18 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
     /**
      * Copy the file physically and generate the thumbnails
      * 
-     * @param string $filename
+     * @param MediaInterface $media
      */
-    protected function copyFile(Media $media)
+    protected function copyFile(MediaInterface $media)
     {
         $file = './vendor/open-orchestra/open-orchestra-media-bundle/OpenOrchestra/MediaModelBundle/DataFixtures/Images/' . $media->getFilesystemName();
         $gaufretteManager = $this->container->get('open_orchestra_media.manager.gaufrette');
         $imageResizerManager = $this->container->get('open_orchestra_media.manager.image_resizer');
 
-        $gaufretteManager->uploadContent(
-            $media->getFilesystemName(),
-            fopen($file, 'r')
-        );
+        $gaufretteManager->uploadContent($media->getFilesystemName(), fopen($file, 'r'));
 
-        copy(
-            $file,
-            $this->container->getParameter('open_orchestra_media.tmp_dir') . '/'. $media->getFilesystemName()
-        );
+        copy($file, $this->container->getParameter('open_orchestra_media.tmp_dir') . '/'. $media->getFilesystemName());
+
         $imageResizerManager->generateAllThumbnails($media);;
     }
 
