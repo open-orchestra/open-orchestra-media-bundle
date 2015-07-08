@@ -2,14 +2,14 @@
 
 {% block content %}
     <div class='contentCaroussel'>
-        <div id='{{ attributes.carrousel_id }}'>
+        <div id='{{ carrousel_id }}'>
             <div u='loading'>
                 <div></div>
                 <div></div>
             </div>
-            <div u='slides' style='cursor: move; position: absolute; left: 0px; top: 0px; width: {{ attributes.width }}; height: {{ attributes.height }}; overflow: hidden;'>
-                  {% for myPictures in attributes.pictures %}
-                    <div><img alt='image' src='{{ myPictures.src }}' /></div>
+            <div u='slides' style='cursor: move; position: absolute; left: 0px; top: 0px; width: {{ width }}; height: {{ height }}; overflow: hidden;'>
+                  {% for picture in pictures %}
+                    <div><img src="{{ get_media_format_url(picture, 'original') }}" alt="{{ get_media_alt(picture) }}"</div>
                 {% endfor %}
             <span u='arrowleft' class='jssora12l' style='width: 30px; height: 46px; top: 123px; left: 0px;'></span>
             <span u='arrowright' class='jssora12r' style='width: 30px; height: 46px; top: 123px; right: 0px'></span>
@@ -29,5 +29,5 @@
         callCss('/bundles/openorchestramedia/block/Carrousel/css/style.css');
     </script>
 
-    <script data-main="{{ asset('/bundles/openorchestramedia/block/Carrousel/js/loadJs.js') }}" src="{{ asset('/bundles/openorchestradisplay/libs/require.js') }}"></script>
+    <script src="{{ asset('/bundles/openorchestramedia/block/Carrousel/blockLoader.js') }}"></script>
 {% endblock %}

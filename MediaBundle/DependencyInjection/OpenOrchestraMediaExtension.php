@@ -3,6 +3,7 @@
 namespace OpenOrchestra\MediaBundle\DependencyInjection;
 
 use OpenOrchestra\Media\DisplayBlock\Strategies\DisplayMediaStrategy;
+use OpenOrchestra\Media\DisplayBlock\Strategies\CarrouselStrategy;
 use OpenOrchestra\Media\DisplayBlock\Strategies\GalleryStrategy;
 use OpenOrchestra\Media\DisplayBlock\Strategies\MediaListByKeywordStrategy;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -48,6 +49,7 @@ class OpenOrchestraMediaExtension extends Extension
     {
         $blockType = array(
             GalleryStrategy::GALLERY,
+            CarrouselStrategy::CARROUSEL,
             MediaListByKeywordStrategy::MEDIA_LIST_BY_KEYWORD,
             DisplayMediaStrategy::DISPLAY_MEDIA,
         );

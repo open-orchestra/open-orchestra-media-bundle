@@ -1,14 +1,14 @@
 requirejs(
     [
-     '../../../libs/jquery-2.0.2.min',
-     '../../../libs/jssor/jssor.core',
-     '../../../libs/jssor/jssor.slider',
+     'jquery',
+     '../../libs/jssor/jssor.core',
+     '../../libs/jssor/jssor.slider',
      '../../../libs/jssor/jssor.utils'
     ],
     function () {
 
         $(document).ready(function(){
-/*            var _SlideshowTransitions = [
+            var _SlideshowTransitions = [
                 //Fade
                 { $Duration: 1200, $Opacity: 2 }
             ];
@@ -76,7 +76,7 @@ requirejs(
             //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
             //    $(window).bind("orientationchange", ScaleSlider);
             //}
-            //responsive code end*/
+            //responsive code end
         });
 
     }

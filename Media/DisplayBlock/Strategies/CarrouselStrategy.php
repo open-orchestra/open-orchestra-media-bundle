@@ -35,9 +35,11 @@ class CarrouselStrategy extends AbstractStrategy
     public function show(ReadBlockInterface $block)
     {
         $parameters = array(
-            'class' => $block->getClass(),
-            'id' => $block->getId(),
-            'attributes' => $block->getAttributes()
+            'carrousel_class' => $block->getClass(),
+            'carrousel_id' => $block->getId(),
+            'width' => $block->getAttribute('width'),
+            'height' => $block->getAttribute('height'),
+            'pictures' => $block->getAttribute('pictures')
         );
 
         return $this->render(
