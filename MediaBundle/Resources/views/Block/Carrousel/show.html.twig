@@ -1,33 +1,30 @@
 {% extends 'OpenOrchestraDisplayBundle:Block:layout.html.twig' %}
 
 {% block content %}
-    <div class='contentCaroussel'>
-        <div id='{{ carrousel_id }}'>
-            <div u='loading'>
-                <div></div>
-                <div></div>
+    <div>
+        <div id="{{ carrousel_id }}" class="jssor-slider-container {{ carrousel_class }}" style="width:{{ width }}px; height:{{ height }}px;">
+
+            <div u="loading" class="loading">
+                <div class="filter"></div>
+                <div class="loader"></div>
             </div>
-            <div u='slides' style='cursor: move; position: absolute; left: 0px; top: 0px; width: {{ width }}; height: {{ height }}; overflow: hidden;'>
-                  {% for picture in pictures %}
-                    <div><img src="{{ get_media_format_url(picture, 'original') }}" alt="{{ get_media_alt(picture) }}"</div>
+
+            <div u="slides" class="slides" style="width:{{ width }}px; height:{{ height }}px;">
+                {% for picture in pictures %}
+                    <div>
+                        <img u="image" src2="{{ get_media_format_url(picture, 'original') }}" alt="{{ get_media_alt(picture) }}"</div>
+                    </div>
                 {% endfor %}
-            <span u='arrowleft' class='jssora12l' style='width: 30px; height: 46px; top: 123px; left: 0px;'></span>
-            <span u='arrowright' class='jssora12r' style='width: 30px; height: 46px; top: 123px; right: 0px'></span>
-            <a style='display: none' href='http://www.jssor.com'>Carrousel</a>
             </div>
+
+            <div u="navigator" class="jssorb05 navigator">
+                <div u="prototype"></div>
+            </div>
+
+            <span u="arrowleft" class="jssora11l arrowleft"></span>
+            <span u="arrowright" class="jssora11r arrowright"></span>
         </div>
     </div>
-
-    <script type="text/javascript">
-        function callCss(file){
-            var linkElement = document.createElement("link");
-            linkElement.rel = "stylesheet";
-            linkElement.href = file;
-            document.head.appendChild(linkElement);
-        }
-
-        callCss('/bundles/openorchestramedia/block/Carrousel/css/style.css');
-    </script>
 
     <script src="{{ asset('/bundles/openorchestramedia/block/Carrousel/blockLoader.js') }}"></script>
 {% endblock %}
