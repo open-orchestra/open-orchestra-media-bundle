@@ -7,11 +7,11 @@ use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class CarrouselStrategy
+ * Class SlideshowStrategy
  */
-class CarrouselStrategy extends AbstractStrategy
+class SlideshowStrategy extends AbstractStrategy
 {
-    const CARROUSEL = 'carrousel';
+    const SLIDESHOW = 'slideshow';
 
     /**
      * Check if the strategy support this block
@@ -22,7 +22,7 @@ class CarrouselStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return self::CARROUSEL == $block->getComponent();
+        return self::SLIDESHOW == $block->getComponent();
     }
 
     /**
@@ -35,15 +35,15 @@ class CarrouselStrategy extends AbstractStrategy
     public function show(ReadBlockInterface $block)
     {
         $parameters = array(
-            'carrousel_class' => $block->getClass(),
-            'carrousel_id' => $block->getId(),
+            'slideshow_class' => $block->getClass(),
+            'slideshow_id' => $block->getId(),
             'width' => $block->getAttribute('width'),
             'height' => $block->getAttribute('height'),
             'pictures' => $block->getAttribute('pictures')
         );
 
         return $this->render(
-            'OpenOrchestraMediaBundle:Block/Carrousel:show.html.twig',
+            'OpenOrchestraMediaBundle:Block/Slideshow:show.html.twig',
              $parameters);
     }
 
@@ -54,7 +54,7 @@ class CarrouselStrategy extends AbstractStrategy
      */
     public function getName()
     {
-        return 'carrousel';
+        return 'slideshow';
     }
 
 }

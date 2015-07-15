@@ -2,7 +2,7 @@
 
 {% block content %}
     <div>
-        <div id="{{ carrousel_id }}" class="jssor-slider-container {{ carrousel_class }}" style="width:{{ width }}px; height:{{ height }}px;">
+        <div id="{{ slideshow_id }}" class="jssor-slider-container {{ slideshow_class }}" style="width:{{ width }}px; height:{{ height }}px;">
 
             <div u="loading" class="loading">
                 <div class="filter"></div>
@@ -26,5 +26,5 @@
         </div>
     </div>
 
-    <script src="{{ asset('/bundles/openorchestramedia/block/Carrousel/blockLoader.js') }}"></script>
+    <script src="{{ asset('/bundles/openorchestramedia/block/Slideshow/blockLoader.js') }}"></script>
 {% endblock %}

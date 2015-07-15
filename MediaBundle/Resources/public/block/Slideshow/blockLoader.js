@@ -5,12 +5,11 @@ requirejs(
         requirejs(
             [
              'openOrchestraCss',
-             'bootstrap',
              '/bundles/openorchestramedia/libs/jssor/jssor.slider.mini.js'
             ],
             function(openOrchestraCss){
 
-                openOrchestraCss.load(['/bundles/openorchestramedia/block/Carrousel/css/style.css']);
+                openOrchestraCss.load(['/bundles/openorchestramedia/block/Slideshow/css/style.css']);
 
                 $(document).ready(function(){
                     var options = {
