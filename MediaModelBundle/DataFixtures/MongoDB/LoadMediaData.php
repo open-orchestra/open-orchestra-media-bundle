@@ -35,38 +35,79 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
      */
     public function load(ObjectManager $manager)
     {
-        $filename = 'logo-orchestra.png';
-        $rootImage = new Media();
-        $rootImage->setName('logo Open-Orchestra');
-        $rootImage->setFilesystemName($filename);
-        $rootImage->setThumbnail($filename);
-        $rootImage->setMimeType('image/png');
-        $rootImage->setMediaFolder($this->getReference('mediaFolder-rootImages'));
-        $rootImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
-        $rootImage->addAlt($this->generatedValue('en', 'logo'));
-        $rootImage->addAlt($this->generatedValue('fr', 'thème'));
-        $rootImage->addTitle($this->generatedValue('en', 'logo image'));
-        $rootImage->addTitle($this->generatedValue('fr', 'thème./ image'));
-        $this->copyFile($rootImage);
+        $rootImage = $this->generateImage(
+            'logo-orchestra.png',
+            'logo Open-Orchestra',
+            'image/png',
+            'mediaFolder-rootImages',
+            array('keyword-lorem'),
+            array(
+                'en' => array('alt' => 'logo', 'title' => 'logo image'),
+                'fr' => array('alt' => 'thème', 'title' => 'thème./ image')
+            )
+        );
         $manager->persist($rootImage);
 
-        $filename = 'no_image_available.jpg';
-        $firstImage = new Media();
-        $firstImage->setName('No image logo');
-        $firstImage->setFilesystemName($filename);
-        $firstImage->setThumbnail($filename);
-        $firstImage->setMimeType('image/jpg');
-        $firstImage->setMediaFolder($this->getReference('mediaFolder-firstImages'));
-        $firstImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-lorem')));
-        $firstImage->addKeyword(EmbedKeyword::createFromKeyword($this->getReference('keyword-dolor')));
-        $firstImage->addAlt($this->generatedValue('en', 'firstImage'));
-        $firstImage->addAlt($this->generatedValue('fr', 'premièreImage'));
-        $firstImage->addTitle($this->generatedValue('en', 'firstImage'));
-        $firstImage->addTitle($this->generatedValue('fr', 'premièreImage'));
-        $this->copyFile($firstImage);
+        $firstImage = $this->generateImage(
+            'no_image_available.jpg',
+            'No image logo',
+            'image/jpg',
+            'mediaFolder-firstImages',
+            array('keyword-lorem', 'keyword-dolor'),
+            array(
+                'en' => array('alt' => 'firstImage', 'title' => 'firstImage'),
+                'fr' => array('alt' => 'premièreImage', 'title' => 'premièreImage')
+            )
+        );
         $manager->persist($firstImage);
 
+        for ($i = 1; $i < 5; $i++) {
+            $image0{$i} = $this->generateImage(
+                '0' . $i . '.jpg',
+                'Image 0' . $i,
+                'image/jpg',
+                'mediaFolder-rootImages',
+                array(),
+                array(
+                    'en' => array('alt' => 'image 0' . $i, 'title' => 'image 0' . $i),
+                    'fr' => array('alt' => 'image 0' . $i, 'title' => 'image 0' . $i)
+                )
+            );
+            $manager->persist($image0{$i});
+        }
+
         $manager->flush();
+    }
+
+    /**
+     * Generate a Media (image format)
+     * 
+     * @param string $filename
+     * @param string $name
+     * @param string $mimeType
+     * @param string $folderRefence
+     * @param string $keywordReferencesArray
+     * @param string $languagesArray
+     * 
+     * @return Media
+     */
+    protected function generateImage($filename, $name, $mimeType, $folderRefence, $keywordReferencesArray, $languagesArray) {
+        $image = new Media();
+        $image->setName($name);
+        $image->setFilesystemName($filename);
+        $image->setThumbnail($filename);
+        $image->setMimeType($mimeType);
+        $image->setMediaFolder($this->getReference($folderRefence));
+        foreach ($keywordReferencesArray as $keywordReference) {
+            $image->addKeyword(EmbedKeyword::createFromKeyword($this->getReference($keywordReference)));
+        }
+        foreach ($languagesArray as $language => $labels) {
+            $image->addAlt($this->generatedValue($language, $labels['alt']));
+            $image->addTitle($this->generatedValue($language, $labels['title']));
+        }
+        $this->copyFile($image);
+
+        return $image;
     }
 
     /**

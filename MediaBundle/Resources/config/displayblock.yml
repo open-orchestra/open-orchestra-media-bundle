@@ -1,5 +1,5 @@
 parameters:
-    open_orchestra_media.display.carrousel.class: OpenOrchestra\Media\DisplayBlock\Strategies\CarrouselStrategy
+    open_orchestra_media.display.slideshow.class: OpenOrchestra\Media\DisplayBlock\Strategies\SlideshowStrategy
     open_orchestra_media.display.media_list_by_keyword.class: OpenOrchestra\Media\DisplayBlock\Strategies\MediaListByKeywordStrategy
     open_orchestra_media.display.media_list_by_keyword.template: 'OpenOrchestraMediaBundle:Block/MediaList:show.html.twig'
     open_orchestra_media.display.gallery.class: OpenOrchestra\Media\DisplayBlock\Strategies\GalleryStrategy
@@ -31,7 +31,7 @@ services:
             - %open_orchestra_media.display.display_media.template%
         tags:
             - { name: open_orchestra_display.display_block.strategy }
-    open_orchestra_media.display.carrousel:
-        class: %open_orchestra_media.display.carrousel.class%
+    open_orchestra_media.display.slideshow:
+        class: %open_orchestra_media.display.slideshow.class%
         tags:
             - { name: open_orchestra_display.display_block.strategy }
