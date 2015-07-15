@@ -79,6 +79,18 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
         $manager->flush();
     }
 
+    /**
+     * Generate a Media (image format)
+     * 
+     * @param string $filename
+     * @param string $name
+     * @param string $mimeType
+     * @param string $folderRefence
+     * @param string $keywordReferencesArray
+     * @param string $languagesArray
+     * 
+     * @return Media
+     */
     protected function generateImage($filename, $name, $mimeType, $folderRefence, $keywordReferencesArray, $languagesArray) {
         $image = new Media();
         $image->setName($name);
