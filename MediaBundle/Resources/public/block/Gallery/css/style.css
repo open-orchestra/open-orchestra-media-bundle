@@ -1,62 +1,157 @@
-.gallery {
+.jssor-gallery-container {
     width:996px;
-    background-color:#000000;
-    padding:2px;
-    text-align:center;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 491px;
+    background: #191919;
+    overflow: hidden;
 }
 
-.gallery-picture {
-    visibility:hidden;
-    border:1px solid #444444;
-    opacity:0.8;
-    margin:2px;
-}
-.gallery-picture:hover {
-    border:1px solid #FFFFFF;
-    opacity:1;
-}
-
-#fancybox-thumbs ul li.active {
-    border:1px solid #FFFFFF;
-    opacity:1;
+.jssor-gallery {
+    cursor: move;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width:996px;
+    height: 406px;
+    overflow: hidden;
 }
 
-#fancybox-thumbs.bottom {
-    background-color:#111111;
-    padding-top:1px;
-    border-top:1px solid #444444;
+/* loader */
+.loader_gallery {
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
-
-.fancybox-overlay {
-    background-color:#000000;
+.load1 {
+    filter: alpha(opacity=70);
+    opacity:0.7;
+    position: absolute;
+    display: block;
+    background-color: #000000;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height:100%;"
 }
-
-div.fancybox-skin {
-    background:none repeat scroll 0 0 #111111;
-    color:#FFFFFF;
-    border:1px solid #444444;
+.load2{
+    position: absolute;
+    display: block;
+    background: url(../../../libs/jssor/img/loading.gif) no-repeat center center;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height:100%;
 }
-
-.fancybox-image {
-    border:1px solid #FFFFFF;
+/* jssor slider arrow navigator skin 05 css */
+/*
+.jssora05l                  (normal)
+.jssora05r                  (normal)
+.jssora05l:hover            (normal mouseover)
+.jssora05r:hover            (normal mouseover)
+.jssora05l.jssora05ldn      (mousedown)
+.jssora05r.jssora05rdn      (mousedown)
+*/
+.jssora05l, .jssora05r {
+    display: block;
+    position: absolute;
+    top: 183px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: url(../../../libs/jssor/img/a11.png) no-repeat;
+    overflow: hidden;
 }
-
-.gallery-navigator {
-    background-color:#000000;
-    color:#fff;
-    padding:4px;
-    text-align:center;
+.jssora05l {
+    background-position: -10px -40px;
+    left: 8px
 }
-
-.gallery-navigator a {
-    font-size:14px;
-    color:#888888;
+.jssora05r {
+    background-position: -70px -40px;
+    right: 8px
 }
+.jssora05l:hover { background-position: -130px -40px; }
+.jssora05r:hover { background-position: -190px -40px; }
+.jssora05l.jssora05ldn { background-position: -250px -40px; }
+.jssora05r.jssora05rdn { background-position: -310px -40px; }
 
-.gallery-navigator a:hover {
-    color:#FFFFFF;
+
+/* jssor slider thumbnail navigator skin 01 css */
+/*
+.jssort01 .p            (normal)
+.jssort01 .p:hover      (normal mouseover)
+.jssort01 .p.pav        (active)
+.jssort01 .p.pdn        (mousedown)
+*/
+.jssort01 {
+    position: absolute;
+    /* size of thumbnail navigator container */
+    width: 996px;
+    height: 90px;
+    bottom: 0;
+    left: 0;
 }
-
-.gallery-navigator .navigatorCurrent {
-    font-size:16px;
+.jssort01 .p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 72px;
+    height: 72px;
+}
+.jssort01 .t {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.jssort01 .w {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+.jssort01 .c {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 68px;
+    height: 68px;
+    border: #000 2px solid;
+    box-sizing: content-box;
+    background: url(../../../libs/jssor/img/t01.png) -800px -800px no-repeat;
+    _background: none;
+}
+.jssort01 .pav .c {
+    top: 2px;
+    _top: 0px;
+    left: 2px;
+    _left: 0px;
+    width: 68px;
+    height: 68px;
+    border: #000 0px solid;
+    _border: #fff 2px solid;
+    background-position: 50% 50%;
+}
+.jssort01 .p:hover .c {
+    top: 0px;
+    left: 0px;
+    width: 70px;
+    height: 70px;
+    border: #fff 1px solid;
+    background-position: 50% 50%;
+}
+.jssort01 .p.pdn .c {
+    background-position: 50% 50%;
+    width: 68px;
+    height: 68px;
+    border: #000 2px solid;
+}
+* html .jssort01 .c, * html .jssort01 .pdn .c, * html .jssort01 .pav .c {
+    /* ie quirks mode adjust */
+    width /**/: 72px;
+    height /**/: 72px;
 }
