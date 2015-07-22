@@ -1,7 +1,7 @@
 requirejs(
     ['jquery'],
     function() {
-        requirejs(
+        require(
             [
                 'openOrchestraCss',
                 '/bundles/openorchestramedia/libs/jssor/jssor.slider.mini.js',

@@ -1,4 +1,4 @@
-<div id="{{ galleryId }}" class="jssor-gallery-container {{ galleryClass }}">
+<div {% if id is defined and id is not null %}id="{{ id }}"{% endif %} class="jssor-gallery-container {{ galleryClass }}">
     <!-- Loading Screen -->
         <div u="loading" class="loader_gallery">
             <div class="load1"></div>
