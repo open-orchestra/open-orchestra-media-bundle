@@ -28,6 +28,7 @@ class OpenOrchestraMediaExtension extends Extension
 
         $this->updateBlockParameter($container);
 
+        $container->setParameter('open_orchestra_media.media_domain', $config['media_domain']);
         $container->setParameter('open_orchestra_media.tmp_dir', $config['tmp_dir']);
         $container->setParameter('open_orchestra_media.filesystem', $config['filesystem']);
         $container->setParameter('open_orchestra_media.thumbnail.configuration', $config['thumbnail']);

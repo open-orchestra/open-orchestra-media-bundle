@@ -21,6 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('open_orchestra_media');
 
         $rootNode->children()
+            ->scalarNode('media_domain')->defaultValue('')->end()
             ->scalarNode('tmp_dir')->defaultValue('/tmp')->end()
             ->scalarNode('filesystem')->defaultValue('media_storage')->end()
             ->scalarNode('compression_quality')->defaultValue(75)->end()

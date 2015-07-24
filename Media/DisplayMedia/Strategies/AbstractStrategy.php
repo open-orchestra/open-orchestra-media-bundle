@@ -4,6 +4,7 @@ namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -13,6 +14,18 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 abstract class AbstractStrategy implements DisplayMediaInterface
 {
     protected $router;
+    protected $request;
+    protected $mediaDomain;
+
+    /**
+     * @param RequestStack $requestStack
+     * @param string       $mediaDomain
+     */
+    public function __construct(RequestStack $requestStack, $mediaDomain = "")
+    {
+        $this->request = $requestStack->getMasterRequest();
+        $this->mediaDomain = $mediaDomain;
+    }
 
     /**
      * Set the router
@@ -43,10 +56,10 @@ abstract class AbstractStrategy implements DisplayMediaInterface
      */
     protected function getFileUrl($filename)
     {
-        return $this->router->generate(
-            'open_orchestra_media_get',
+        return $this->mediaDomain
+            . $this->router->generate('open_orchestra_media_get',
             array('key' => $filename),
-            UrlGeneratorInterface::ABSOLUTE_URL
+            UrlGeneratorInterface::ABSOLUTE_PATH
         );
     }
 }

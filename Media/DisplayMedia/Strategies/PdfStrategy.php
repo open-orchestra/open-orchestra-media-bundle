@@ -3,7 +3,6 @@
 namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 
 use OpenOrchestra\Media\Model\MediaInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class PdfStrategy
@@ -11,16 +10,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class PdfStrategy extends AbstractStrategy
 {
     const MIME_TYPE_PDF = 'application/pdf';
-
-    protected $request;
-
-    /**
-     * @param RequestStack $requestStack
-     */
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->request = $requestStack->getMasterRequest();
-    }
 
     /**
      * @param MediaInterface $media
@@ -45,6 +34,8 @@ class PdfStrategy extends AbstractStrategy
     /**
      * @param MediaInterface $media
      * @param string         $format
+     *
+     * @return string
      */
     public function getMediaFormatUrl(MediaInterface $media, $format)
     {

@@ -12,16 +12,6 @@ class VideoStrategy extends AbstractStrategy
 {
     const MIME_TYPE_FRAGMENT_VIDEO = 'video';
 
-    protected $request;
-
-    /**
-     * @param RequestStack $requestStack
-     */
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->request = $requestStack->getMasterRequest();
-    }
-
     /**
      * @param MediaInterface $media
      *
@@ -45,6 +35,8 @@ class VideoStrategy extends AbstractStrategy
     /**
      * @param MediaInterface $media
      * @param string         $format
+     *
+     * @return string
      */
     public function getMediaFormatUrl(MediaInterface $media, $format)
     {

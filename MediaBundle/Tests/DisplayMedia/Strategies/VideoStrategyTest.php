@@ -17,7 +17,7 @@ class VideoStrategyTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->strategy = new VideoStrategy($this->requestStack);
+        $this->strategy = new VideoStrategy($this->requestStack, '');
         $this->strategy->setRouter($this->router);
     }
 
