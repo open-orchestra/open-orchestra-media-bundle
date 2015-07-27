@@ -3,23 +3,12 @@
 namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 
 use OpenOrchestra\Media\Model\MediaInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class ImageStrategy
  */
 class ImageStrategy extends AbstractStrategy
 {
-    protected $request;
-
-    /**
-     * @param RequestStack $requestStack
-     */
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->request = $requestStack->getMasterRequest();
-    }
-
     /**
      * @param MediaInterface $media
      *
@@ -43,6 +32,8 @@ class ImageStrategy extends AbstractStrategy
     /**
      * @param MediaInterface $media
      * @param string         $format
+     *
+     * @return string
      */
     public function getMediaFormatUrl(MediaInterface $media, $format)
     {

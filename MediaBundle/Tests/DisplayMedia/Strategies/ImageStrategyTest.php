@@ -18,7 +18,7 @@ class ImageStrategyTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->strategy = new ImageStrategy($this->requestStack);
+        $this->strategy = new ImageStrategy($this->requestStack, '');
         $this->strategy->setRouter($this->router);
     }
 

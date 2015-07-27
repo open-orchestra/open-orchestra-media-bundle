@@ -18,7 +18,7 @@ class PdfStrategyTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->strategy = new PdfStrategy($this->requestStack);
+        $this->strategy = new PdfStrategy($this->requestStack, '');
         $this->strategy->setRouter($this->router);
     }
 
