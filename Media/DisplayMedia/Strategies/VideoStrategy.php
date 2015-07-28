@@ -3,7 +3,6 @@
 namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 
 use OpenOrchestra\Media\Model\MediaInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class VideoStrategy
