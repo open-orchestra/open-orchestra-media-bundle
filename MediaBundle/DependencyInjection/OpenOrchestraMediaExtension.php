@@ -40,7 +40,9 @@ class OpenOrchestraMediaExtension extends Extension
         $loader->load('thumbnail.yml');
         $loader->load('subscriber.yml');
         $loader->load('manager.yml');
-        $loader->load('displayblock.yml');
+        if (class_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
+            $loader->load('displayblock.yml');
+        }
     }
 
     /**
@@ -48,18 +50,20 @@ class OpenOrchestraMediaExtension extends Extension
      */
     protected function updateBlockParameter(ContainerBuilder $container)
     {
-        $blockType = array(
-            GalleryStrategy::GALLERY,
-            SlideshowStrategy::SLIDESHOW,
-            MediaListByKeywordStrategy::MEDIA_LIST_BY_KEYWORD,
-            DisplayMediaStrategy::DISPLAY_MEDIA,
-        );
+        if (class_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
+            $blockType = array(
+                GalleryStrategy::GALLERY,
+                SlideshowStrategy::SLIDESHOW,
+                MediaListByKeywordStrategy::MEDIA_LIST_BY_KEYWORD,
+                DisplayMediaStrategy::DISPLAY_MEDIA,
+            );
 
-        $blocksAlreadySet = array();
-        if ($container->hasParameter('open_orchestra.blocks')) {
-            $blocksAlreadySet = $container->getParameter('open_orchestra.blocks');
+            $blocksAlreadySet = array();
+            if ($container->hasParameter('open_orchestra.blocks')) {
+                $blocksAlreadySet = $container->getParameter('open_orchestra.blocks');
+            }
+            $blocks = array_merge($blocksAlreadySet, $blockType);
+            $container->setParameter('open_orchestra.blocks', $blocks);
         }
-        $blocks = array_merge($blocksAlreadySet, $blockType);
-        $container->setParameter('open_orchestra.blocks', $blocks);
     }
 }
