@@ -21,8 +21,8 @@ class MediaController extends Controller
      */
     public function getAction($key)
     {
-        $gaufretteManager = $this->get('open_orchestra_media.manager.gaufrette');
-        $fileContent = $gaufretteManager->getFileContent($key);
+        $uploadedMediaManager = $this->get('open_orchestra_media.manager.uploaded_media');
+        $fileContent = $uploadedMediaManager->getFileContent($key);
 
         $finfo = finfo_open(FILEINFO_MIME);
         $mimetype = finfo_buffer($finfo, $fileContent);

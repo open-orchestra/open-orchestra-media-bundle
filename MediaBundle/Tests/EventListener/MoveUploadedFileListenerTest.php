@@ -17,7 +17,7 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
 
     protected $tmpDir = 'tmpDir';
     protected $thumbnailManager;
-    protected $gaufrette;
+    protected $uploadedMediaManager;
     protected $event;
     protected $media;
     protected $file;
@@ -32,14 +32,14 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
         $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media)->getFile()->thenReturn($this->file);
 
-        $this->gaufrette = Phake::mock('OpenOrchestra\Media\Manager\GaufretteManager');
+        $this->uploadedMediaManager = Phake::mock('OpenOrchestra\Media\Manager\UploadedMediaManager');
 
         $this->thumbnailManager = Phake::mock('OpenOrchestra\Media\Thumbnail\ThumbnailManager');
 
         $this->event = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
         Phake::when($this->event)->getDocument()->thenReturn($this->media);
 
-        $this->listener = new MoveUploadedFileListener($this->tmpDir, $this->thumbnailManager, $this->gaufrette);
+        $this->listener = new MoveUploadedFileListener($this->tmpDir, $this->thumbnailManager, $this->uploadedMediaManager);
     }
 
     /**
