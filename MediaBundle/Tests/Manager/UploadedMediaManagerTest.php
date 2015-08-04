@@ -2,15 +2,15 @@
 
 namespace OpenOrchestra\MediaBundle\Tests\Manager;
 
+use OpenOrchestra\Media\Manager\UploadedMediaManager;
 use Phake;
-use OpenOrchestra\Media\Manager\GaufretteManager;
 
 /**
- * Class GaufretteManagerTest
+ * Class UploadedMediaManagerTest
  */
-class GaufretteManagerTest extends \PHPUnit_Framework_TestCase
+class UploadedMediaManagerTest extends \PHPUnit_Framework_TestCase
 {
-    protected $gaufretteManager;
+    protected $uploadedMediaManager;
     protected $adapter;
     protected $filesystem;
     protected $filesystemMap;
@@ -28,7 +28,7 @@ class GaufretteManagerTest extends \PHPUnit_Framework_TestCase
         $this->filesystemMap = Phake::mock('Knp\Bundle\GaufretteBundle\FilesystemMap');
         Phake::when($this->filesystemMap)->get(Phake::anyParameters())->thenReturn($this->filesystem);
 
-        $this->gaufretteManager = new GaufretteManager($this->filesystemMap, 'someFileSystem');
+        $this->uploadedMediaManager = new UploadedMediaManager($this->filesystemMap, 'someFileSystem');
     }
 
     /**
@@ -39,7 +39,7 @@ class GaufretteManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUploadContent($key, $fileContent)
     {
-        $this->gaufretteManager->uploadContent($key, $fileContent);
+        $this->uploadedMediaManager->uploadContent($key, $fileContent);
 
         Phake::verify($this->adapter, Phake::times(1))->write($key, $fileContent);
     }
@@ -61,7 +61,7 @@ class GaufretteManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetFileContent($key)
     {
-        $this->gaufretteManager->getFileContent($key);
+        $this->uploadedMediaManager->getFileContent($key);
 
         Phake::verify($this->adapter, Phake::times(1))->read($key);
     }
@@ -83,7 +83,7 @@ class GaufretteManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDeleteContent($key)
     {
-        $this->gaufretteManager->deleteContent($key);
+        $this->uploadedMediaManager->deleteContent($key);
 
         Phake::verify($this->adapter, Phake::times(1))->delete($key);
     }
@@ -95,7 +95,7 @@ class GaufretteManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testExists($key)
     {
-        $this->gaufretteManager->exists($key);
+        $this->uploadedMediaManager->exists($key);
 
         Phake::verify($this->adapter, Phake::times(1))->exists($key);
     }

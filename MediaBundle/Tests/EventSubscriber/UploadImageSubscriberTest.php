@@ -12,7 +12,7 @@ use OpenOrchestra\Media\MediaEvents;
 class UploadImageSubscriberTest extends \PHPUnit_Framework_TestCase
 {
     protected $subscriber;
-    protected $gaufretteManager;
+    protected $uploadedMediaManager;
     protected $event;
 
     /**
@@ -20,9 +20,9 @@ class UploadImageSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->gaufretteManager = Phake::mock('OpenOrchestra\Media\Manager\GaufretteManager');
+        $this->uploadedMediaManager = Phake::mock('OpenOrchestra\Media\Manager\UploadedMediaManager');
 
-        $this->subscriber = new UploadImageSubscriber($this->gaufretteManager);
+        $this->subscriber = new UploadImageSubscriber($this->uploadedMediaManager);
 
         $this->event = Phake::mock('OpenOrchestra\Media\Event\ImagickEvent');
     }
@@ -64,7 +64,7 @@ class UploadImageSubscriberTest extends \PHPUnit_Framework_TestCase
 
         $this->subscriber->uploadImage($this->event);
 
-        Phake::verify($this->gaufretteManager, Phake::times(1))->uploadContent($filename, $fileContent);
+        Phake::verify($this->uploadedMediaManager, Phake::times(1))->uploadContent($filename, $fileContent);
     }
 
     /**

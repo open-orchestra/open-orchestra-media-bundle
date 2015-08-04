@@ -3,7 +3,7 @@
 namespace OpenOrchestra\Media\EventSubscriber;
 
 use OpenOrchestra\Media\Event\MediaEvent;
-use OpenOrchestra\Media\Manager\GaufretteManager;
+use OpenOrchestra\Media\Manager\UploadedMediaManager;
 use OpenOrchestra\Media\MediaEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -14,16 +14,16 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class DeleteMediaSubscriber implements EventSubscriberInterface
 {
     protected $medias = array();
-    protected $gaufrette;
+    protected $uploadedMediaManager;
     protected $formats;
 
     /**
-     * @param GaufretteManager $gaufrette
-     * @param array            $formats
+     * @param UploadedMediaManager $uploadedMediaManager
+     * @param array                $formats
      */
-    public function __construct(GaufretteManager $gaufrette, array $formats)
+    public function __construct(UploadedMediaManager $uploadedMediaManager, array $formats)
     {
-        $this->gaufrette = $gaufrette;
+        $this->uploadedMediaManager = $uploadedMediaManager;
         $this->formats = $formats;
     }
 
@@ -43,7 +43,7 @@ class DeleteMediaSubscriber implements EventSubscriberInterface
 
         foreach ($this->formats as $key => $format) {
             $formatName = $key . '-' . $name;
-            if ($this->gaufrette->exists($formatName)) {
+            if ($this->uploadedMediaManager->exists($formatName)) {
                 $this->medias[] = $formatName;
             }
         }
@@ -55,7 +55,7 @@ class DeleteMediaSubscriber implements EventSubscriberInterface
     public function removeMedias()
     {
         foreach ($this->medias as $media) {
-            $this->gaufrette->deleteContent($media);
+            $this->uploadedMediaManager->deleteContent($media);
         }
     }
 

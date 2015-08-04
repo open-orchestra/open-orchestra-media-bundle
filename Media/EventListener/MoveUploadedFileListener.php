@@ -3,9 +3,9 @@
 namespace OpenOrchestra\Media\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
+use OpenOrchestra\Media\Manager\UploadedMediaManager;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Thumbnail\ThumbnailManager;
-use OpenOrchestra\Media\Manager\GaufretteManager;
 
 /**
  * Class MoveUploadedFileListener
@@ -15,18 +15,18 @@ class MoveUploadedFileListener
     public $filename;
     protected $tmpDir;
     protected $thumbnailManager;
-    protected $gaufretteManager;
+    protected $uploadedMediaManager;
 
     /**
-     * @param string $tmpDir
-     * @param ThumbnailManager $thumbnailManager
-     * @param GaufretteManager $gaufretteManager
+     * @param string               $tmpDir
+     * @param ThumbnailManager     $thumbnailManager
+     * @param UploadedMediaManager $uploadedMediaManager
      */
-    public function __construct($tmpDir, ThumbnailManager $thumbnailManager, GaufretteManager $gaufretteManager)
+    public function __construct($tmpDir, ThumbnailManager $thumbnailManager, UploadedMediaManager $uploadedMediaManager)
     {
         $this->tmpDir = $tmpDir;
         $this->thumbnailManager = $thumbnailManager;
-        $this->gaufretteManager = $gaufretteManager;
+        $this->uploadedMediaManager = $uploadedMediaManager;
     }
 
     /**
@@ -53,7 +53,7 @@ class MoveUploadedFileListener
         if ( ($document = $event->getDocument()) instanceof MediaInterface) {
             if (null !== ($file = $document->getFile())) {
                 $file->move($this->tmpDir, $this->filename);
-                $this->gaufretteManager->uploadContent($this->filename, file_get_contents($this->tmpDir . '/' . $this->filename));
+                $this->uploadedMediaManager->uploadContent($this->filename, file_get_contents($this->tmpDir . '/' . $this->filename));
                 $document = $this->thumbnailManager->generateThumbnail($document);
             }
         }

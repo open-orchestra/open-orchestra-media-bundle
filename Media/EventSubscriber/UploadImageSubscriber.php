@@ -3,24 +3,24 @@
 namespace OpenOrchestra\Media\EventSubscriber;
 
 
+use OpenOrchestra\Media\Manager\UploadedMediaManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use OpenOrchestra\Media\MediaEvents;
 use OpenOrchestra\Media\Event\ImagickEvent;
-use OpenOrchestra\Media\Manager\GaufretteManager;
 
 /**
  * Class UploadImageSubscriber
  */
 class UploadImageSubscriber implements EventSubscriberInterface
 {
-    protected $gaufretteManager;
+    protected $uploadedMediaManager;
 
     /**
-     * @param GaufretteManager  $gaufretteManager
+     * @param UploadedMediaManager  $uploadedMediaManager
      */
-    public function __construct(GaufretteManager $gaufretteManager)
+    public function __construct(UploadedMediaManager $uploadedMediaManager)
     {
-        $this->gaufretteManager = $gaufretteManager;
+        $this->uploadedMediaManager = $uploadedMediaManager;
     }
 
     /**
@@ -28,7 +28,7 @@ class UploadImageSubscriber implements EventSubscriberInterface
      */
     public function uploadImage(ImagickEvent $event)
     {
-        $this->gaufretteManager->uploadContent($event->getFileName(), $event->getFileContent());
+        $this->uploadedMediaManager->uploadContent($event->getFileName(), $event->getFileContent());
     }
 
     /**

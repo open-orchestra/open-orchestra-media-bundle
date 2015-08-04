@@ -6,7 +6,7 @@ services:
         arguments:
             - %open_orchestra_media.tmp_dir%
             - @open_orchestra_media.thumbnail_manager
-            - @open_orchestra_media.manager.gaufrette
+            - @open_orchestra_media.manager.uploaded_media
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
             - { name: doctrine_mongodb.odm.event_listener, event: postPersist }

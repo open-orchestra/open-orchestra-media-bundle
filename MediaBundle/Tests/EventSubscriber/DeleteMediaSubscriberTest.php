@@ -15,7 +15,7 @@ class DeleteMediaSubscriberTest extends \PHPUnit_Framework_TestCase
     protected $subscriber;
 
     protected $formats = array('max-height' => 100, 'max-width' => 100);
-    protected $gaufrette;
+    protected $uploadedMediaManager;
     protected $event;
     protected $media;
 
@@ -29,8 +29,8 @@ class DeleteMediaSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->event = Phake::mock('OpenOrchestra\Media\Event\MediaEvent');
         Phake::when($this->event)->getMedia()->thenReturn($this->media);
 
-        $this->gaufrette = Phake::mock('OpenOrchestra\Media\Manager\GaufretteManager');
-        $this->subscriber = new DeleteMediaSubscriber($this->gaufrette, $this->formats);
+        $this->uploadedMediaManager = Phake::mock('OpenOrchestra\Media\Manager\UploadedMediaManager');
+        $this->subscriber = new DeleteMediaSubscriber($this->uploadedMediaManager, $this->formats);
     }
 
     /**
@@ -74,17 +74,17 @@ class DeleteMediaSubscriberTest extends \PHPUnit_Framework_TestCase
 
         foreach ($this->formats as $key => $format) {
             $formatName = $key . '-' . $name;
-            Phake::when($this->gaufrette)->exists($formatName)->thenReturn($exist);
+            Phake::when($this->uploadedMediaManager)->exists($formatName)->thenReturn($exist);
         }
 
 
         $this->subscriber->deleteMedia($this->event);
 
-        Phake::verify($this->gaufrette, Phake::times(2))->exists(Phake::anyParameters());
+        Phake::verify($this->uploadedMediaManager, Phake::times(2))->exists(Phake::anyParameters());
 
         $this->subscriber->removeMedias();
 
-        Phake::verify($this->gaufrette, Phake::times($count))->deleteContent(Phake::anyParameters());
+        Phake::verify($this->uploadedMediaManager, Phake::times($count))->deleteContent(Phake::anyParameters());
     }
 
     /**

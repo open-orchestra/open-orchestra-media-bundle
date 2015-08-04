@@ -5,11 +5,9 @@ namespace OpenOrchestra\Media\Manager;
 use Knp\Bundle\GaufretteBundle\FilesystemMap;
 
 /**
- * Class GaufretteManager
- *
- * @deprecated will be removed in 0.3.2 use UploadMediaManager
+ * Class UploadedMediaManager
  */
-class GaufretteManager
+class UploadedMediaManager
 {
     protected $adapter;
 
