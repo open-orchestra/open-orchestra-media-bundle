@@ -4,27 +4,28 @@
     <div>
         <div id="{{ slideshow_id }}" class="jssor-slider-container {{ slideshow_class }}" style="width:{{ width }}px; height:{{ height }}px;">
 
-            <div u="loading" class="loading">
+            <div data-u="loading" class="loading">
                 <div class="filter"></div>
                 <div class="loader"></div>
             </div>
 
-            <div u="slides" class="slides" style="width:{{ width }}px; height:{{ height }}px;">
+            <div data-u="slides" class="slides" style="width:{{ width }}px; height:{{ height }}px;">
                 {% for picture in pictures %}
                     <div>
-                        <img u="image" src2="{{ get_media_format_url(picture, 'original') }}" alt="{{ get_media_alt(picture) }}"</div>
+                        <img data-u="image" data-src2="{{ get_media_format_url(picture, 'original') }}" alt="{{ get_media_alt(picture) }}"/>
                     </div>
                 {% endfor %}
             </div>
 
-            <div u="navigator" class="jssorb05 navigator">
-                <div u="prototype"></div>
+            <div data-u="navigator" class="jssorb05 navigator">
+                <div data-u="prototype"></div>
             </div>
 
-            <span u="arrowleft" class="jssora11l arrowleft"></span>
-            <span u="arrowright" class="jssora11r arrowright"></span>
+            <span data-u="arrowleft" class="jssora11l arrowleft"></span>
+            <span data-u="arrowright" class="jssora11r arrowright"></span>
         </div>
     </div>
-
-    <script src="{{ asset('/bundles/openorchestramedia/block/Slideshow/blockLoader.js') }}"></script>
+    <script>
+           require(['{{ asset('/bundles/openorchestramedia/block/Slideshow/blockLoader.js') }}']);
+    </script>
 {% endblock %}
