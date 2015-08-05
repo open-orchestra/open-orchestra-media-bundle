@@ -40,7 +40,7 @@ class OpenOrchestraMediaExtension extends Extension
         $loader->load('thumbnail.yml');
         $loader->load('subscriber.yml');
         $loader->load('manager.yml');
-        if (class_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
+        if (interface_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
             $loader->load('displayblock.yml');
         }
     }
@@ -50,7 +50,7 @@ class OpenOrchestraMediaExtension extends Extension
      */
     protected function updateBlockParameter(ContainerBuilder $container)
     {
-        if (class_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
+        if (interface_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
             $blockType = array(
                 GalleryStrategy::GALLERY,
                 SlideshowStrategy::SLIDESHOW,
