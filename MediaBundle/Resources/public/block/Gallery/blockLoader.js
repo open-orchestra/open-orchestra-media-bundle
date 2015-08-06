@@ -1,76 +1,51 @@
-/*
- * Resize thumbnails to fit the column number
- */
-function resizeThumbnails(galId, nbCol) {
-    if (galId == '') alert('Error : no id defined for gallery');
-    var picturePadding = parseInt($(".gallery-picture").css("border-left-width")) + parseInt($(".gallery-picture").css("margin-left"));
-    var galleryWidth = parseInt($("#" + galId).width());
-    var pictureWidth = parseInt((galleryWidth / nbCol) - 2*picturePadding);
-
-    $("#" + galId + " .gallery-picture").width(pictureWidth + 'px');
-    $("#" + galId + " .gallery-picture").css("visibility", "visible");
-}
-
-/*
- * Init galleries
- */
-function initGalleries(openOrchestraCss) {
-    openOrchestraCss.load(
-        [
-         '/bundles/openorchestramedia/libs/fancybox/source/jquery.fancybox.css?v=2.1.5',
-         '/bundles/openorchestramedia/libs/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5',
-         '/bundles/openorchestramedia/libs/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7',
-         '/bundles/openorchestramedia/block/Gallery/css/style.css'
-        ]
-    );
-
-    for(var galleryId in orchestraGalCol) {
-        resizeThumbnails(galleryId, orchestraGalCol[galleryId]);
-    }
-
-    $(".fancybox-thumb").fancybox({
-        prevEffect  : 'none',
-        nextEffect  : 'none',
-        closeBtn    : false,
-        helpers     : {
-            title     : {
-                type    : 'inside'
-            },
-            thumbs    : {
-                width   : 50,
-                height  : 50
-            }
-        }
-    });
-}
-
-/*
- * Chain requirements to init galleries
- */
-require(
+requirejs(
     ['jquery'],
-
     function() {
         require(
-            ['/bundles/openorchestramedia/libs/fancybox/source/jquery.fancybox.pack.js'],
-
-            function() {
-                require(
-                    [
-                     'openOrchestraCss',
-                     '/bundles/openorchestramedia/libs/fancybox/source/helpers/jquery.fancybox-buttons.js',
-                     '/bundles/openorchestramedia/libs/fancybox/source/helpers/jquery.fancybox-media.js',
-                     '/bundles/openorchestramedia/libs/fancybox/source/helpers/jquery.fancybox-thumbs.js'
-                    ],
-
-                    function (openOrchestraCss) {
-                        initGalleries(openOrchestraCss);
+            [
+                'openOrchestraCss',
+                '/bundles/openorchestramedia/libs/jssor/jssor.slider.mini.js',
+                '/bundles/openorchestramedia/libs/jssor/jssor.js'
+            ],
+            function (openOrchestraCss) {
+                openOrchestraCss.load(['/bundles/openorchestramedia/block/Gallery/css/style.css']);
+                jQuery(document).ready(function ($) {
+                    var options = {
+                        $AutoPlay: false,
+                        $ArrowKeyNavigation: true,
+                        $ArrowNavigatorOptions: {
+                            $Class: $JssorArrowNavigator$, //[Requried] Class to create arrow navigator instance
+                            $ChanceToShow: 1               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                        },
+                        $ThumbnailNavigatorOptions: {                       //[Optional] Options to specify and enable thumbnail navigator or not
+                            $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                            $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                            $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                            $Lanes: 1,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
+                            $SpacingX: 5,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+                            $SpacingY: 10,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
+                            $DisplayPieces: 10,                             //[Optional] Number of pieces to display, default value is 1
+                            $ParkingPosition: 5,                          //[Optional] The offset position to park thumbnail
+                            $Orientation: 1                                //[Optional] Orientation to arrange thumbnails, 1 horizontal, 2 vertical, default value is 1
+                        }
+                    };
+                    function ScaleSlider(jssor_slider) {
+                        var parentWidth = jssor_slider.$Elmt.parentNode.clientWidth;
+                        if (parentWidth)
+                            jssor_slider.$ScaleWidth(Math.max(Math.min(parentWidth, 960), 300));
+                        else
+                            window.setTimeout(ScaleSlider, 30);
                     }
-
-                );
+                    $.each($(".jssor-gallery-container "), function (gallery) {
+                        $(this).css("display", "block");
+                        var jssor_slider = new $JssorSlider$($(this).attr("id"), options);
+                        ScaleSlider(jssor_slider);
+                        $(window).bind("load", ScaleSlider);
+                        $(window).bind("resize", ScaleSlider);
+                        $(window).bind("orientationchange", ScaleSlider);
+                    });
+                });
             }
-
-        );
+        )
     }
-
 );

@@ -75,7 +75,7 @@ class GalleryStrategy extends AbstractStrategy
             $this->template,
             array(
                 'galleryClass' => $block->getClass(),
-                'galleryId' => $block->getId(),
+                'id' => $block->getId(),
                 'pictures' => $this->filterMedias($block->getAttribute('pictures'), $currentPage, $block->getAttribute('itemNumber')),
                 'numberOfColumns' => $block->getAttribute('columnNumber'),
                 'thumbnailFormat' => $block->getAttribute('thumbnailFormat'),
