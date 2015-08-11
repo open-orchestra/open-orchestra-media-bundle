@@ -28,8 +28,8 @@ class PdfStrategyTest extends AbstractStrategyTest
     public function displayImage()
     {
         return array(
-            array('test1.pdf', $this->pathToFile . '/' . 'test1.pdf', 'test1'),
-            array('test2.pdf', $this->pathToFile . '/' . 'test2.pdf', 'test2'),
+            array('test1.pdf', '//' . $this->pathToFile . '/' . 'test1.pdf', 'test1'),
+            array('test2.pdf', '//' . $this->pathToFile . '/' . 'test2.pdf', 'test2'),
         );
     }
 
@@ -39,9 +39,9 @@ class PdfStrategyTest extends AbstractStrategyTest
     public function getMediaFormatUrl()
     {
         return array(
-            array('test1.pdf', MediaInterface::MEDIA_ORIGINAL, $this->pathToFile . '/test1.pdf'),
-            array('test1.pdf', 'max-width', $this->pathToFile . '/test1.pdf'),
-            array('test2.pdf', 'max-height', $this->pathToFile . '/test2.pdf'),
+            array('test1.pdf', MediaInterface::MEDIA_ORIGINAL, '//' . $this->pathToFile . '/test1.pdf'),
+            array('test1.pdf', 'max-width', '//' . $this->pathToFile . '/test1.pdf'),
+            array('test2.pdf', 'max-height', '//' . $this->pathToFile . '/test2.pdf'),
         );
     }
 

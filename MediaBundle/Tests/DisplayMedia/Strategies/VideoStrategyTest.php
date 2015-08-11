@@ -27,8 +27,8 @@ class VideoStrategyTest extends AbstractStrategyTest
     public function displayImage()
     {
         return array(
-            array('test1.mp4', $this->pathToFile . '/' . 'test1.mp4', 'test1'),
-            array('test2.avi', $this->pathToFile . '/' . 'test2.avi', 'test2'),
+            array('test1.mp4', '//' . $this->pathToFile . '/' . 'test1.mp4', 'test1'),
+            array('test2.avi', '//' . $this->pathToFile . '/' . 'test2.avi', 'test2'),
         );
     }
 
@@ -38,9 +38,9 @@ class VideoStrategyTest extends AbstractStrategyTest
     public function getMediaFormatUrl()
     {
         return array(
-            array('test1.mp4', MediaInterface::MEDIA_ORIGINAL, $this->pathToFile . '/test1.mp4'),
-            array('test1.mp4', 'max-width', $this->pathToFile . '/test1.mp4'),
-            array('test2.avi', 'max-height', $this->pathToFile . '/test2.avi'),
+            array('test1.mp4', MediaInterface::MEDIA_ORIGINAL, '//' . $this->pathToFile . '/test1.mp4'),
+            array('test1.mp4', 'max-width', '//' . $this->pathToFile . '/test1.mp4'),
+            array('test2.avi', 'max-height', '//' . $this->pathToFile . '/test2.avi'),
         );
     }
 
