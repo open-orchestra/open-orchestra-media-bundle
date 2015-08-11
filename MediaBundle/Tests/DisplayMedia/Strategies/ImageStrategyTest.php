@@ -28,8 +28,8 @@ class ImageStrategyTest extends AbstractStrategyTest
     public function displayImage()
     {
         return array(
-            array('test1.jpg', $this->pathToFile . '/' . 'test1.jpg', 'test1'),
-            array('test2.png', $this->pathToFile . '/' . 'test2.png', 'test2'),
+            array('test1.jpg', '//' . $this->pathToFile . '/' . 'test1.jpg', 'test1'),
+            array('test2.png', '//' . $this->pathToFile . '/' . 'test2.png', 'test2'),
         );
     }
 
@@ -39,9 +39,9 @@ class ImageStrategyTest extends AbstractStrategyTest
     public function getMediaFormatUrl()
     {
         return array(
-            array('test1.jpg', MediaInterface::MEDIA_ORIGINAL, $this->pathToFile . '/' . 'test1.jpg'),
-            array('test1.jpg', 'max-width', $this->pathToFile . '/' . 'max-width-test1.jpg'),
-            array('test2.png', 'max-height', $this->pathToFile . '/' . 'max-height-test2.png'),
+            array('test1.jpg', MediaInterface::MEDIA_ORIGINAL, '//' . $this->pathToFile . '/' . 'test1.jpg'),
+            array('test1.jpg', 'max-width', '//' . $this->pathToFile . '/' . 'max-width-test1.jpg'),
+            array('test2.png', 'max-height', '//' . $this->pathToFile . '/' . 'max-height-test2.png'),
         );
     }
 
