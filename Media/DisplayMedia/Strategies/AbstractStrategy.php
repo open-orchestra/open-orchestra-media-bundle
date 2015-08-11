@@ -56,7 +56,7 @@ abstract class AbstractStrategy implements DisplayMediaInterface
      */
     protected function getFileUrl($filename)
     {
-        return $this->mediaDomain
+        return '//' . $this->mediaDomain
             . $this->router->generate('open_orchestra_media_get',
             array('key' => $filename),
             UrlGeneratorInterface::ABSOLUTE_PATH
