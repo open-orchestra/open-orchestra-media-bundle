@@ -41,7 +41,7 @@ class OpenOrchestraMediaExtension extends Extension
         $loader->load('subscriber.yml');
         $loader->load('manager.yml');
         if (interface_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
-            $loader->load('displayblock.yml');
+            $loader->load('display_block.yml');
         }
     }
 
