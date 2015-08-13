@@ -49,14 +49,6 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end()
-            ->arrayNode('media_thumbnail')
-                ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('max_width')->defaultValue(117)->end()
-                        ->scalarNode('max_height')->defaultValue(117)->end()
-                    ->end()
-                ->end()
-            ->end()
         ->end();
 
         return $treeBuilder;

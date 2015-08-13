@@ -32,7 +32,7 @@ class OpenOrchestraMediaExtension extends Extension
         $container->setParameter('open_orchestra_media.tmp_dir', $config['tmp_dir']);
         $container->setParameter('open_orchestra_media.filesystem', $config['filesystem']);
         $thumbnail = $config['thumbnail'];
-        $thumbnail["media_thumbnail"] = $config["media_thumbnail"];
+        $thumbnail["media_thumbnail"] = array('max_width' => '117px', 'max_height' => '117px');
         $container->setParameter('open_orchestra_media.thumbnail.configuration', $thumbnail);
         $container->setParameter('open_orchestra_media.resize.compression_quality', $config['compression_quality']);
 
