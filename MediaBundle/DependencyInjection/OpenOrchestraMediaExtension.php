@@ -31,7 +31,9 @@ class OpenOrchestraMediaExtension extends Extension
         $container->setParameter('open_orchestra_media.media_domain', $config['media_domain']);
         $container->setParameter('open_orchestra_media.tmp_dir', $config['tmp_dir']);
         $container->setParameter('open_orchestra_media.filesystem', $config['filesystem']);
-        $container->setParameter('open_orchestra_media.thumbnail.configuration', $config['thumbnail']);
+        $thumbnail = $config['thumbnail'];
+        $thumbnail["media_thumbnail"] = $config["media_thumbnail"];
+        $container->setParameter('open_orchestra_media.thumbnail.configuration', $thumbnail);
         $container->setParameter('open_orchestra_media.resize.compression_quality', $config['compression_quality']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
