@@ -82,7 +82,8 @@ class GalleryStrategy extends AbstractStrategy
                 'imageFormat' => $block->getAttribute('imageFormat'),
                 'numberOfPages' => ($block->getAttribute('itemNumber') == 0) ? 1 : ceil(count($block->getAttribute('pictures')) / $block->getAttribute('itemNumber')),
                 'parameters' => $parameters,
-                'currentPage' => $currentPage
+                'currentPage' => $currentPage,
+                'width' => $block->getAttribute('width'),
             )
         );
     }

@@ -32,7 +32,7 @@ requirejs(
                     function ScaleSlider(jssor_slider) {
                         var parentWidth = jssor_slider.$Elmt.parentNode.clientWidth;
                         if (parentWidth)
-                            jssor_slider.$ScaleWidth(Math.max(Math.min(parentWidth, 960), 300));
+                            jssor_slider.$ScaleWidth(parentWidth);
                         else
                             window.setTimeout(ScaleSlider, 30);
                     }
