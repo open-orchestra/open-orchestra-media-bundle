@@ -2,7 +2,9 @@
 
 namespace OpenOrchestra\Media\DisplayBlock\Strategies;
 
+use OpenOrchestra\BaseBundle\Manager\TagManager;
 use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
+use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,6 +14,16 @@ use Symfony\Component\HttpFoundation\Response;
 class SlideshowStrategy extends AbstractStrategy
 {
     const SLIDESHOW = 'slideshow';
+
+    protected $tagManager;
+
+    /**
+     * @param TagManager $tagManager
+     */
+    public function __construct(TagManager $tagManager)
+    {
+        $this->tagManager = $tagManager;
+    }
 
     /**
      * Check if the strategy support this block
@@ -45,6 +57,28 @@ class SlideshowStrategy extends AbstractStrategy
         return $this->render(
             'OpenOrchestraMediaBundle:Block/Slideshow:show.html.twig',
              $parameters);
+    }
+
+    /**
+     * Return block specific cache tags
+     *
+     * @param ReadBlockInterface $block
+     *
+     * @return array
+     */
+    public function getCacheTags(ReadBlockInterface $block)
+    {
+        $tags = array();
+
+        $medias = $block->getAttribute('pictures');
+
+        if ($medias) {
+            foreach ($medias as $media) {
+                $tags[] = $this->tagManager->formatMediaIdTag(ltrim($media, MediaInterface::MEDIA_PREFIX));
+            }
+        }
+
+        return $tags;
     }
 
     /**
