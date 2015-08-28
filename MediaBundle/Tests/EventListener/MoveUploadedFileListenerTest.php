@@ -91,12 +91,14 @@ class MoveUploadedFileListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpload($fileName)
     {
+        $this->assertTrue(file_exists($this->tmpDir . '/' . $fileName));
         $this->listener->filename = $fileName;
 
         $this->listener->postPersist($this->event);
 
         Phake::verify($this->file)->move($this->tmpDir, $fileName);
         Phake::verify($this->thumbnailManager)->generateThumbnail($this->media);
+        $this->assertFalse(file_exists($this->tmpDir . '/' . $fileName));
     }
 
     /**

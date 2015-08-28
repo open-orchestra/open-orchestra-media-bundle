@@ -53,8 +53,10 @@ class MoveUploadedFileListener
         if ( ($document = $event->getDocument()) instanceof MediaInterface) {
             if (null !== ($file = $document->getFile())) {
                 $file->move($this->tmpDir, $this->filename);
-                $this->uploadedMediaManager->uploadContent($this->filename, file_get_contents($this->tmpDir . '/' . $this->filename));
+                $tmpFilePath = $this->tmpDir . '/' . $this->filename;
+                $this->uploadedMediaManager->uploadContent($this->filename, file_get_contents($tmpFilePath));
                 $document = $this->thumbnailManager->generateThumbnail($document);
+                unlink($tmpFilePath);
             }
         }
     }
