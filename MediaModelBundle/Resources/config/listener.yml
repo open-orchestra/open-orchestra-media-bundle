@@ -4,9 +4,7 @@ services:
     open_orchestra_media.doctrine_listener.move_uploaded_file:
         class: %open_orchestra_media.doctrine_listener.move_uploaded_file.class%
         arguments:
-            - %open_orchestra_media.tmp_dir%
-            - @open_orchestra_media.thumbnail_manager
-            - @open_orchestra_media.manager.uploaded_media
+            - @open_orchestra_media.manager.save_media
         tags:
             - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
             - { name: doctrine_mongodb.odm.event_listener, event: postPersist }
