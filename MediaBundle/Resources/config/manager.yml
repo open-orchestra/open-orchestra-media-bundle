@@ -2,6 +2,7 @@ parameters:
     open_orchestra_media.manager.image_resizer.class: OpenOrchestra\Media\Manager\ImageResizerManager
     open_orchestra_media.manager.uploaded_media.class: OpenOrchestra\Media\Manager\UploadedMediaManager
     open_orchestra_media.manager.gaufrette.class: OpenOrchestra\Media\Manager\GaufretteManager
+    open_orchestra_media.manager.save_media.class: OpenOrchestra\Media\Manager\SaveMediaManager
 
 services:
     open_orchestra_media.manager.image_resizer:
@@ -21,3 +22,9 @@ services:
         arguments:
             - @knp_gaufrette.filesystem_map
             - %open_orchestra_media.filesystem%
+    open_orchestra_media.manager.save_media:
+        class: %open_orchestra_media.manager.save_media.class%
+        arguments:
+            - %open_orchestra_media.tmp_dir%
+            - @open_orchestra_media.thumbnail_manager
+            - @open_orchestra_media.manager.uploaded_media
