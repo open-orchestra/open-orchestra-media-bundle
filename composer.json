@@ -13,7 +13,7 @@
         "ext-imagick": "*",
         "open-orchestra/open-orchestra-model-interface": "*",
         "doctrine/data-fixtures":"1.1.1",
-        "doctrine/mongodb-odm": "1.0.0-BETA13",
+        "doctrine/mongodb-odm": "1.0.1",
         "doctrine/mongodb-odm-bundle" : "3.0.0",
         "stof/doctrine-extensions-bundle": "1.2.1",
         "knplabs/knp-gaufrette-bundle": "v0.1.7"
