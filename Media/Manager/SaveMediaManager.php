@@ -4,11 +4,12 @@ namespace OpenOrchestra\Media\Manager;
 
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Thumbnail\ThumbnailManager;
+use OpenOrchestra\Media\Manager\SaveMediaManagerInterface;
 
 /**
  * Class SaveMediaManager
  */
-class SaveMediaManager
+class SaveMediaManager implements SaveMediaManagerInterface
 {
     public $filename;
     protected $tmpDir;
