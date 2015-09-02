@@ -27,7 +27,8 @@ class MoveUploadedFileListener
      */
     public function prePersist(LifecycleEventArgs $event)
     {
-        if($document = $event->getDocument() instanceof MediaInterface) {
+        $document = $event->getDocument();
+        if ($document instanceof MediaInterface) {
             $this->saveFileManager->saveMedia($document);
         }
     }
@@ -37,7 +38,8 @@ class MoveUploadedFileListener
      */
     public function postPersist(LifecycleEventArgs $event)
     {
-        if($document = $event->getDocument() instanceof MediaInterface) {
+        $document = $event->getDocument();
+        if ($document instanceof MediaInterface) {
             $this->saveFileManager->uploadMedia($document);
         }
     }
