@@ -37,10 +37,11 @@ class ImageResizerManager
      */
     public function generateAllThumbnails(MediaInterface $media)
     {
+        $filePath = $this->tmpDir . '/' . $media->getFilesystemName();
         foreach ($this->formats as $key => $format) {
-            $filePath = $this->tmpDir . '/' . $media->getFilesystemName();
             $this->resizeAndSaveImage($media, $key, $filePath);
         }
+        unlink($filePath);
     }
 
     /**

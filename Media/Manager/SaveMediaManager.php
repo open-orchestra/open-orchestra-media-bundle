@@ -55,7 +55,6 @@ class SaveMediaManager implements SaveMediaManagerInterface
              $tmpFilePath = $this->tmpDir . '/' . $this->filename;
              $this->uploadedMediaManager->uploadContent($this->filename, file_get_contents($tmpFilePath));
              $this->thumbnailManager->generateThumbnail($media);
-             unlink($tmpFilePath);
          }
     }
 }
