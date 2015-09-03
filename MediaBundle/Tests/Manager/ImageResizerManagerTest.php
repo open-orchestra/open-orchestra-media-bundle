@@ -21,6 +21,7 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
     protected $dispatcher;
     protected $compressionQuality;
     protected $file = 'What-are-you-talking-about.jpg';
+    protected $tmpfile = 'tmp-What-are-you-talking-about.jpg';
     protected $overrideFile = 'reference.jpg';
 
     /**
@@ -98,13 +99,12 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
             $this->assertFileNotExists($this->tmpDir .'/' . $key . '-' . $this->file);
         }
 
-        $this->manager->generateAllThumbnails($this->media);
+        copy($this->tmpDir . '/'. $this->file, $this->tmpDir .'/'. $this->tmpfile);
 
-        $this->assertFileExists($this->tmpDir . '/' . $this->file);
-        foreach ($this->formats as $key => $format) {
-//            TODO Check why travis sees two different strings
-//            $this->assertFileEquals($this->tmpDir . '/'. $key . '-reference.jpg', $this->tmpDir . '/'. $key . '-' . $this->file);
-        }
+        Phake::when($this->media)->getFilesystemName()->thenReturn($this->tmpfile);
+        $this->manager->generateAllThumbnails($this->media);
+        $this->assertFileNotExists($this->tmpDir . '/' . $this->tmpfile);
+
         Phake::verify($this->dispatcher, Phake::times(3))->dispatch(Phake::anyParameters());
     }
 
