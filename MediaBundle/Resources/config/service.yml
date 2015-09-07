@@ -1,0 +1,17 @@
+parameters:
+    open_orchestra_media.bbcode.definition.media.class: OpenOrchestra\MediaBundle\BBcode\MediaCodeDefinition
+    open_orchestra_media.bbcode.code_definitions.class: OpenOrchestra\MediaBundle\BBcode\MediaBundleBBcodeCollection
+
+services:
+    open_orchestra_media.bbcode.definition.media:
+        class: %open_orchestra_media.bbcode.definition.media.class%
+        arguments:
+            - @open_orchestra_media.repository.media
+
+    open_orchestra_media.bbcode.code_definitions:
+        class: %open_orchestra_media.bbcode.code_definitions.class%
+        arguments:
+            - @open_orchestra_media.bbcode.definition.media
+            - @router
+        tags:
+            - { name: open_orchestra_bbcode.code_definitions }
