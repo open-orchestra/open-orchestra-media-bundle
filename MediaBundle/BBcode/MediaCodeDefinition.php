@@ -6,6 +6,8 @@ use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use OpenOrchestra\BBcodeBundle\Definition\BBcodeDefinition;
 use OpenOrchestra\BBcodeBundle\Node\BBcodeElementNodeInterface;
 use JBBCode\ElementNode;
+use OpenOrchestra\Media\Model\MediaInterface;
+use Symfony\Component\Routing\RequestContextAwareInterface;
 
 /**
  * Class MediaCodeDefinition
@@ -13,15 +15,17 @@ use JBBCode\ElementNode;
 class MediaCodeDefinition extends BBcodeDefinition
 {
     protected $repository;
+    protected $router;
 
     /**
      * @param MediaRepositoryInterface $repository
      */
-    public function __construct(MediaRepositoryInterface $repository)
+    public function __construct(MediaRepositoryInterface $repository, RequestContextAwareInterface $router)
     {
         parent::__construct();
         $this->setTagName('media');
         $this->repository = $repository;
+        $this->router = $router;
         $this->useOption = true;
     }
 
@@ -32,38 +36,36 @@ class MediaCodeDefinition extends BBcodeDefinition
      */
     public function asHtml(ElementNode $el)
     {
-//        if (!$this->hasValidInputs($el)) {
-//            return $el->getAsBBCode();
-//        }
-//
-//        $html = $this->getReplacementText();
-//
-//        if ($this->usesOption()) {
-//            $options = $el->getAttribute();
-//            if (count($options)==1){
-//                $vals = array_values($options);
-//                $html = str_ireplace('{option}', reset($vals), $html);
-//            } else {
-//                foreach ($options as $key => $val){
-//                    $html = str_ireplace('{' . $key . '}', $val, $html);
-//                }
-//            }
-//        }
-//
-//        $content = $this->getContent($el);
-//
-//        $html = str_ireplace('{param}', $content, $html);
-//
-//        return $html;
-
         $options = $el->getAttribute();
         if (!isset($options['id'])) {
 
-            return $el->getAsBBCode();
+            return '[media error: no media id]';
         } else {
-            $media = $this->repository->find(new \MongoId($options['id']));
-        	var_dump($media);
-            return "TOTO";
+            $media = $this->repository->find($options['id']);
+            if ($media) {
+
+                return $this->getHtml($media);
+            } else {
+
+                return '[media error: incorrect media id]';
+            }
+        }
+    }
+
+    protected function getHtml(MediaInterface $media)
+    {
+        $types = explode('/', $media->getMimeType());
+        switch ($types[0]) {
+            case 'image': // format
+                return '<img src="'
+                 //   . $this->router->getContext()->getBaseUrl() . '/'
+                    . $this->router->generate(
+                        'open_orchestra_media_get',
+                        array('key' => $media->getId())
+                    )
+                    . '" title="' . $media->getTitle() . '" alt="' . $media->getAlt() . '">';
+            default:
+                return '';
         }
     }
 }

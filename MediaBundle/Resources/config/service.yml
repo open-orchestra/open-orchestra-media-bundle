@@ -7,11 +7,11 @@ services:
         class: %open_orchestra_media.bbcode.definition.media.class%
         arguments:
             - @open_orchestra_media.repository.media
+            - @router
 
     open_orchestra_media.bbcode.code_definitions:
         class: %open_orchestra_media.bbcode.code_definitions.class%
         arguments:
             - @open_orchestra_media.bbcode.definition.media
-            - @router
         tags:
             - { name: open_orchestra_bbcode.code_definitions }
