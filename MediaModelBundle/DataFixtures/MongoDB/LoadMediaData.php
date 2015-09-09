@@ -11,11 +11,12 @@ use OpenOrchestra\ModelBundle\Document\EmbedKeyword;
 use OpenOrchestra\ModelBundle\Document\TranslatedValue;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterface;
 
 /**
  * Class LoadMediaData
  */
-class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface, OrchestraFunctionalFixturesInterface
 {
     /**
      * @var ContainerInterface
