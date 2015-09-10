@@ -51,14 +51,20 @@ abstract class AbstractStrategy implements DisplayMediaInterface
      * Return url to a file stored with gaufrette
      * 
      * @param string $filename
+     * @param string $format
      *
      * @return String
      */
-    protected function getFileUrl($filename)
+    protected function getFileUrl($filename, $format = '')
     {
+        $key = $filename;
+        if ($format != '' && MediaInterface::MEDIA_ORIGINAL != $format) {
+            $key = $format . '-' . $filename;
+        }
+
         return '//' . $this->mediaDomain
             . $this->router->generate('open_orchestra_media_get',
-            array('key' => $filename),
+            array('key' => $key),
             UrlGeneratorInterface::ABSOLUTE_PATH
         );
     }

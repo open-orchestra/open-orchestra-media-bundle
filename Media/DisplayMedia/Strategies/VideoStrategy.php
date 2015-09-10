@@ -23,10 +23,11 @@ class VideoStrategy extends AbstractStrategy
 
     /**
      * @param MediaInterface $media
+     * @param string         $format
      *
      * @return String
      */
-    public function displayMedia(MediaInterface $media)
+    public function displayMedia(MediaInterface $media, $format = '')
     {
         return '<img src="' . $this->getFileUrl($media->getFilesystemName()) . '" alt="' . $media->getAlt($this->request->getLocale()) . '">';
     }

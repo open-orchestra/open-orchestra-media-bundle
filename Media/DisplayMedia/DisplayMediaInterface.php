@@ -33,10 +33,11 @@ interface DisplayMediaInterface
 
     /**
      * @param MediaInterface $media
+     * @param string         $format
      *
      * @return String
      */
-    public function displayMedia(MediaInterface $media);
+    public function displayMedia(MediaInterface $media, $format);
 
     /**
      * @param MediaInterface $media

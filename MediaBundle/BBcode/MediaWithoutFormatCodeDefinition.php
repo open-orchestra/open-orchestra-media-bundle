@@ -4,13 +4,12 @@ namespace OpenOrchestra\MediaBundle\BBcode;
 
 use OpenOrchestra\MediaBundle\BBcode\AbstractMediaCodeDefinition;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
-use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 
 /**
- * Class MediaCodeDefinition
+ * Class MediaWithoutFormatCodeDefinition
  */
-class MediaCodeDefinition extends AbstractMediaCodeDefinition
+class MediaWithoutFormatCodeDefinition extends AbstractMediaCodeDefinition
 {
     /**
      * @param MediaRepositoryInterface $repository
@@ -19,19 +18,6 @@ class MediaCodeDefinition extends AbstractMediaCodeDefinition
     public function __construct(MediaRepositoryInterface $repository, DisplayMediaManager $displayMediaManager)
     {
         parent::__construct($repository, $displayMediaManager);
-        $this->useOption = true;
-    }
-
-    /**
-     * Get requested media format
-     * 
-     * @param BBcodeElementNodeInterface $el
-     * 
-     * @return string
-     */
-    protected function getFormat(BBcodeElementNodeInterface $el)
-    {
-        $options = $el->getAttribute();
-        return $options['media'];
+        $this->useOption = false;
     }
 }
