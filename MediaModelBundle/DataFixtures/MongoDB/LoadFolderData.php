@@ -6,11 +6,12 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use OpenOrchestra\MediaModelBundle\Document\MediaFolder;
+use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterface;
 
 /**
  * Class LoadFolderData
  */
-class LoadFolderData extends AbstractFixture implements OrderedFixtureInterface
+class LoadFolderData extends AbstractFixture implements OrderedFixtureInterface, OrchestraFunctionalFixturesInterface
 {
     /**
      * @param ObjectManager $manager
