@@ -6,4 +6,4 @@ languages:
   Python: false
 exclude_paths:
   - "vendor/*"
-  - "MediaBundle/Resources/public/libs/fancybox/source/*"
+  - "MediaBundle/Resources/public/libs/jssor/*"
