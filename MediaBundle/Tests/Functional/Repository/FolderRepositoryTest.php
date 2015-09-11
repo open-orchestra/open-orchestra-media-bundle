@@ -33,9 +33,9 @@ class FolderRepositoryTest extends KernelTestCase
      *
      * @dataProvider provideSiteIdAndFolderCount
      */
-    public function testFindAllRootFolderBySiteId($siteId, $count)
+    public function testFindAllRootFolderBySite($siteId, $count)
     {
-        $result = $this->repository->findAllRootFolderBySiteId($siteId);
+        $result = $this->repository->findAllRootFolderBySite($siteId);
 
         $this->assertLessThanOrEqual($count, count($result));
     }

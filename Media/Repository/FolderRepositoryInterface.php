@@ -13,14 +13,22 @@ interface FolderRepositoryInterface
     /**
      * @return Collection
      */
-    public function findAllRootFolder();
+    public function findAllFolder();
 
     /**
      * @param string $siteId
      *
      * @return array
      */
-    public function findAllRootFolderBySiteId($siteId);
+    public function findAllRootFolderBySite($siteId);
+
+    /**
+     * @param string $siteId
+     * @param string $parent
+     *
+     * @return array
+     */
+    public function findAllFolderBySiteAndParent($siteId, $parent);
 
     /**
      * @param string $id
