@@ -31,6 +31,9 @@ class DisplayMediaManagerTest extends \PHPUnit_Framework_TestCase
         $this->displayMediaStrategie1 = Phake::mock('OpenOrchestra\Media\DisplayMedia\DisplayMediaInterface');
         Phake::when($this->displayMediaStrategie1)->support($this->media)->thenReturn(true);
         Phake::when($this->displayMediaStrategie1)->getName()->thenReturn('phake_strategie_1');
+        Phake::when($this->displayMediaStrategie1)->displayPreview(Phake::anyParameters())->thenReturn($this->media);
+        Phake::when($this->displayMediaStrategie1)->displayMedia(Phake::anyParameters())->thenReturn($this->media);
+        Phake::when($this->displayMediaStrategie1)->getMediaFormatUrl(Phake::anyParameters())->thenReturn($this->media);
 
         $this->displayMediaStrategie2 = Phake::mock('OpenOrchestra\Media\DisplayMedia\DisplayMediaInterface');
         Phake::when($this->displayMediaStrategie2)->support($this->media)->thenReturn(false);
@@ -56,9 +59,10 @@ class DisplayMediaManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDisplayPreview()
     {
-        $this->manager->displayPreview($this->media);
+        $media = $this->manager->displayPreview($this->media);
         Phake::verify($this->displayMediaStrategie1)->displayPreview($this->media);
         Phake::verify($this->displayMediaStrategie2, Phake::never())->displayPreview($this->media);
+        $this->assertInstanceOf('OpenOrchestra\Media\Model\MediaInterface', $media);
     }
 
     /**
@@ -66,9 +70,10 @@ class DisplayMediaManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDisplayMedia()
     {
-        $this->manager->displayMedia($this->media);
+        $media = $this->manager->displayMedia($this->media);
         Phake::verify($this->displayMediaStrategie1)->displayMedia($this->media);
         Phake::verify($this->displayMediaStrategie2, Phake::never())->displayMedia($this->media);
+        $this->assertInstanceOf('OpenOrchestra\Media\Model\MediaInterface', $media);
     }
 
     /**
@@ -76,8 +81,9 @@ class DisplayMediaManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMediaFormatUrl()
     {
-        $this->manager->getMediaFormatUrl($this->media, 'phake_format');
+        $media = $this->manager->getMediaFormatUrl($this->media, 'phake_format');
         Phake::verify($this->displayMediaStrategie1)->getMediaFormatUrl($this->media, 'phake_format');
         Phake::verify($this->displayMediaStrategie2, Phake::never())->getMediaFormatUrl($this->media, 'phake_format');
+        $this->assertInstanceOf('OpenOrchestra\Media\Model\MediaInterface', $media);
     }
 }
