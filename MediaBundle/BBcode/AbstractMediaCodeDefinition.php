@@ -15,17 +15,18 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
 {
     protected $repository;
     protected $displayMediaManager;
-    const MEDIA_NOT_FOUND = '<img src="/bundles/openorchestramedia/img/media_not_found.png" style="height:22px;width:22px;margin: 0 3px 0 3px;>';
+    protected $mediaNotFoundHtmlTag;
 
     /**
      * @param MediaRepositoryInterface $repository
      * @param DisplayMediaManager      $displayMediaManager
      */
-    public function __construct(MediaRepositoryInterface $repository, DisplayMediaManager $displayMediaManager)
+    public function __construct(MediaRepositoryInterface $repository, DisplayMediaManager $displayMediaManager, $MediaNotFoundHtmlTag)
     {
         parent::__construct('media', '');
         $this->repository = $repository;
         $this->displayMediaManager = $displayMediaManager;
+        $this->mediaNotFoundHtmlTag = $MediaNotFoundHtmlTag;
     }
 
     /**
@@ -38,7 +39,7 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
         $children = $el->getChildren();
         if (count($children) != 1) {
 
-            return self::MEDIA_NOT_FOUND;
+            return $this->mediaNotFoundHtmlTag;
         }
 
         $mediaId = $children[0]->getAsBBCode();
@@ -49,7 +50,7 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
             return $this->displayMediaManager->displayMedia($media, $this->getFormat($el));
         }
 
-        return self::MEDIA_NOT_FOUND;
+        return $this->mediaNotFoundHtmlTag;
     }
 
     /**
@@ -59,7 +60,7 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
      * 
      * @return string
      */
-        protected function getFormat(BBcodeElementNodeInterface $el)
+    protected function getFormat(BBcodeElementNodeInterface $el)
     {
         return MediaInterface::MEDIA_ORIGINAL;
     }
