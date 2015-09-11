@@ -36,7 +36,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
      */
     public function load(ObjectManager $manager)
     {
-        $rootImage = $this->generateImage(
+        $logoOrchestra = $this->generateImage(
             'logo-orchestra.png',
             'logo Open-Orchestra',
             'image/png',
@@ -47,7 +47,8 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
                 'fr' => array('alt' => 'thème', 'title' => 'thème./ image')
             )
         );
-        $manager->persist($rootImage);
+        $manager->persist($logoOrchestra);
+        $this->addReference('logo-orchestra', $logoOrchestra);
 
         $firstImage = $this->generateImage(
             'no_image_available.jpg',
@@ -151,6 +152,6 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
      */
     public function getOrder()
     {
-        return 410;
+        return 51;
     }
 }
