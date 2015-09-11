@@ -56,4 +56,12 @@ class PdfToImageManagerTest extends AbstractStrategyTest
             array('document', 'pdf'),
         );
     }
+
+    /**
+     * Test name
+     */
+    public function testGetName()
+    {
+        $this->assertSame('pdf_to_image', $this->manager->getName());
+    }
 }

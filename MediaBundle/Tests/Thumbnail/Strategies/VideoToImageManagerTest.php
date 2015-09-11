@@ -57,4 +57,12 @@ class VideoToImageManagerTest extends AbstractStrategyTest
             array('video', 'mp4'),
         );
     }
+
+    /**
+     * Test name
+     */
+    public function testGetName()
+    {
+        $this->assertSame('video_to_image', $this->manager->getName());
+    }
 }
