@@ -29,7 +29,7 @@ class VideoStrategy extends AbstractStrategy
      */
     public function displayMedia(MediaInterface $media, $format = '')
     {
-        return '<img src="' . $this->getFileUrl($media->getFilesystemName()) . '" alt="' . $media->getAlt($this->request->getLocale()) . '">';
+        return '<img src="' . $this->getFileUrl($media->getFilesystemName()) . '" alt="' . $media->getAlt($this->request->getLocale()) . '" />';
     }
 
     /**

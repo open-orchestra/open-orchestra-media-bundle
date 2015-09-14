@@ -44,7 +44,7 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->media)->getAlt(Phake::anyParameters())->thenReturn($alt);
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
 
-        $html = '<img src="' . $url .'" alt="' . $alt .'">';
+        $html = '<img src="' . $url .'" alt="' . $alt .'" />';
 
         $this->assertSame($html, $this->strategy->displayMedia($this->media));
     }
