@@ -11,9 +11,12 @@ use OpenOrchestra\Media\Model\FolderInterface;
 interface FolderRepositoryInterface
 {
     /**
+     * @param string|null $siteId
+     * @param string|null $parent
+     *
      * @return Collection
      */
-    public function findAllFolder();
+    public function findAllFolder($siteId = null, $parentId = null);
 
     /**
      * @param string $siteId
