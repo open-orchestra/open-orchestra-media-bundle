@@ -36,8 +36,23 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
      */
     public function getHtml(BBcodeElementNodeInterface $el)
     {
+        return $this->generateHtml($el);
+    }
+
+    /**
+     * Returns this node as HTML, in a preview context
+     *
+     * @return string
+     */
+    public function getPreviewHtml(BBcodeElementNodeInterface $el)
+    {
+        return $this->generateHtml($el, true);
+    }
+
+    protected function generateHtml(BBcodeElementNodeInterface $el, $preview = false)
+    {
         $children = $el->getChildren();
-        if (count($children) != 1) {
+        if (count($children) < 1) {
 
             return $this->mediaNotFoundHtmlTag;
         }
@@ -46,8 +61,13 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
 
         $media = $this->repository->find($mediaId);
         if ($media) {
+            if ($preview) {
 
-            return $this->displayMediaManager->displayMedia($media, $this->getFormat($el));
+                return $this->displayMediaManager->displayMediaForWysiwyg($media, $this->getFormat($el));
+            } else {
+
+                return $this->displayMediaManager->displayMedia($media, $this->getFormat($el));
+            }
         }
 
         return $this->mediaNotFoundHtmlTag;

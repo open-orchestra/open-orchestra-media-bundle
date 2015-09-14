@@ -48,6 +48,19 @@ abstract class AbstractStrategy implements DisplayMediaInterface
     }
 
     /**
+     * @param MediaInterface $media
+     *
+     *  @param MediaInterface $media
+     *  @param string         $format
+     *  
+     * @return string
+     */
+    public function displayMediaForWysiwyg(MediaInterface $media, $format)
+    {
+        return $this->displayMedia($media, $format);
+    }
+
+    /**
      * Return url to a file stored with gaufrette
      * 
      * @param string $filename

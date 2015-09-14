@@ -51,7 +51,7 @@ class DisplayMediaManager
      * @param MediaInterface $media
      * @param string         $format
      *
-     * @return String
+     * @return string
      */
     public function displayMedia(MediaInterface $media, $format = '')
     {
@@ -59,6 +59,24 @@ class DisplayMediaManager
         foreach ($this->strategies as $strategy) {
             if ($strategy->support($media)) {
                 return $strategy->displayMedia($media, $format);
+            }
+        }
+
+        return $media;
+    }
+
+    /**
+     * @param MediaInterface $media
+     * @param string         $format
+     *
+     * @return string
+     */
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
+    {
+        /** @var DisplayMediaInterface $strategy */
+        foreach ($this->strategies as $strategy) {
+            if ($strategy->support($media)) {
+                return $strategy->displayMediaForWysiwyg($media, $format);
             }
         }
 
