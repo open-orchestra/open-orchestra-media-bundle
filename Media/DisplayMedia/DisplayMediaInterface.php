@@ -45,7 +45,7 @@ interface DisplayMediaInterface
      *
      * @return string
      */
-    public function displayMediaForWysiwyg(MediaInterface $media, $format);
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '');
 
     /**
      * @param MediaInterface $media

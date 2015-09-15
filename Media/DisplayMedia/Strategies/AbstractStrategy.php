@@ -55,7 +55,7 @@ abstract class AbstractStrategy implements DisplayMediaInterface
      *  
      * @return string
      */
-    public function displayMediaForWysiwyg(MediaInterface $media, $format)
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
     {
         return $this->displayMedia($media, $format);
     }
