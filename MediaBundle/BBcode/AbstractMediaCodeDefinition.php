@@ -5,6 +5,7 @@ namespace OpenOrchestra\MediaBundle\BBcode;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use OpenOrchestra\BBcodeBundle\Definition\BBcodeDefinition;
 use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface;
+use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use OpenOrchestra\Media\Model\MediaInterface;
 
@@ -34,7 +35,7 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
      *
      * @return string
      */
-    public function getHtml(BBcodeElementNodeInterface $el)
+    public function getHtml(BBcodeElementNode $el)
     {
         return $this->generateHtml($el);
     }
