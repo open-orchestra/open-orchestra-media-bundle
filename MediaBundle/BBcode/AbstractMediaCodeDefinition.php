@@ -16,18 +16,18 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
 {
     protected $repository;
     protected $displayMediaManager;
-    protected $mediaNotFoundHtmlTag;
+    protected $templating;
 
     /**
      * @param MediaRepositoryInterface $repository
      * @param DisplayMediaManager      $displayMediaManager
      */
-    public function __construct(MediaRepositoryInterface $repository, DisplayMediaManager $displayMediaManager, $MediaNotFoundHtmlTag)
+    public function __construct(MediaRepositoryInterface $repository, DisplayMediaManager $displayMediaManager, $templating)
     {
         parent::__construct('media', '');
         $this->repository = $repository;
         $this->displayMediaManager = $displayMediaManager;
-        $this->mediaNotFoundHtmlTag = $MediaNotFoundHtmlTag;
+        $this->templating = $templating;
     }
 
     /**
@@ -55,7 +55,7 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
         $children = $el->getChildren();
         if (count($children) < 1) {
 
-            return $this->mediaNotFoundHtmlTag;
+            return $this->templating->render('OpenOrchestraMediaBundle:BBcode:media_not_found.html.twig');
         }
 
         $mediaId = $children[0]->getAsBBCode();
@@ -71,7 +71,7 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
             }
         }
 
-        return $this->mediaNotFoundHtmlTag;
+        return $this->templating->render('OpenOrchestraMediaBundle:BBcode:media_not_found.html.twig');
     }
 
     /**

@@ -33,6 +33,7 @@ class MediaCodeDefinition extends AbstractMediaCodeDefinition
     protected function getFormat(BBcodeElementNodeInterface $el)
     {
         $options = $el->getAttribute();
+
         return $options['media'];
     }
 }

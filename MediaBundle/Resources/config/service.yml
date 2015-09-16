@@ -2,7 +2,6 @@ parameters:
     open_orchestra_media.bbcode.definition.media.class: OpenOrchestra\MediaBundle\BBcode\MediaCodeDefinition
     open_orchestra_media.bbcode.definition.media_without_format.class: OpenOrchestra\MediaBundle\BBcode\MediaWithoutFormatCodeDefinition
     open_orchestra_media.bbcode.code_definitions.class: OpenOrchestra\MediaBundle\BBcode\MediaBundleBBcodeCollection
-    open_orchestra_media.bbcode.media_not_found: <img src="/bundles/openorchestramedia/img/media_not_found.png" style="height:22px;width:22px;margin: 0 3px 0 3px;>
 
 services:
     open_orchestra_media.bbcode.definition.media:
@@ -10,14 +9,14 @@ services:
         arguments:
             - @open_orchestra_media.repository.media
             - @open_orchestra_media.display_media_manager
-            - %open_orchestra_media.bbcode.media_not_found%
+            - @templating
 
     open_orchestra_media.bbcode.definition.media_without_format:
         class: %open_orchestra_media.bbcode.definition.media_without_format.class%
         arguments:
             - @open_orchestra_media.repository.media
             - @open_orchestra_media.display_media_manager
-            - %open_orchestra_media.bbcode.media_not_found%
+            - @templating
 
     open_orchestra_media.bbcode.code_definitions:
         class: %open_orchestra_media.bbcode.code_definitions.class%
