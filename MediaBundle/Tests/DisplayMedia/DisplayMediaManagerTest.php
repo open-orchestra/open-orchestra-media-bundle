@@ -71,7 +71,7 @@ class DisplayMediaManagerTest extends \PHPUnit_Framework_TestCase
     public function testDisplayMedia()
     {
         $media = $this->manager->displayMedia($this->media);
-        Phake::verify($this->displayMediaStrategie1)->displayMedia($this->media);
+        Phake::verify($this->displayMediaStrategie1)->displayMedia($this->media, '');
         Phake::verify($this->displayMediaStrategie2, Phake::never())->displayMedia($this->media);
         $this->assertInstanceOf('OpenOrchestra\Media\Model\MediaInterface', $media);
     }

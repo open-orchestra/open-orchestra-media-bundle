@@ -3,7 +3,7 @@
 namespace OpenOrchestra\MediaBundle\Tests\BBcode;
 
 use Phake;
-use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface;
+use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode;
 
 /**
  * Class MediaCodeDefinitionTest
@@ -35,7 +35,7 @@ abstract class AbstractMediaCodeDefinitionTest extends \PHPUnit_Framework_TestCa
         $mediaIdNode = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface');
         Phake::when($mediaIdNode)->getAsBBCode()->thenReturn($this->mediaIdOk);
 
-        $this->BBcodeElementNode = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface');
+        $this->BBcodeElementNode = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode');
         Phake::when($this->BBcodeElementNode)->getChildren()->thenReturn(array(0 => $mediaIdNode));
         Phake::when($this->BBcodeElementNode)->getAttribute()->thenReturn(array('media' => $this->format));
     }
@@ -50,7 +50,7 @@ abstract class AbstractMediaCodeDefinitionTest extends \PHPUnit_Framework_TestCa
      * 
      * @dataProvider provideBBNodeWithBadMediaId
      */
-    public function testGetHtmlWithBadMediaId(BBcodeElementNodeInterface $el)
+    public function testGetHtmlWithBadMediaId(BBcodeElementNode $el)
     {
         $html = $this->definition->getHtml($el);
 
@@ -62,13 +62,13 @@ abstract class AbstractMediaCodeDefinitionTest extends \PHPUnit_Framework_TestCa
      */
     public function provideBBNodeWithBadMediaId()
     {
-        $nodeWithNoMediaId = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface');
+        $nodeWithNoMediaId = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode');
         Phake::when($nodeWithNoMediaId)->getChildren()->thenReturn(array());
 
-        $mediaIdNode = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface');
+        $mediaIdNode = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode');
         Phake::when($mediaIdNode)->getAsBBcode()->thenReturn($this->mediaIdKo);
 
-        $nodeWithBadMediaId = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface');
+        $nodeWithBadMediaId = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode');
         Phake::when($nodeWithBadMediaId)->getChildren()->thenReturn(array(0 => $mediaIdNode));
 
         return array(
@@ -82,7 +82,7 @@ abstract class AbstractMediaCodeDefinitionTest extends \PHPUnit_Framework_TestCa
      * 
      * @dataProvider provideBBNodeWithBadMediaId
      */
-    public function testGetPreviewHtmlWithBadMediaId(BBcodeElementNodeInterface $el)
+    public function testGetPreviewHtmlWithBadMediaId(BBcodeElementNode $el)
     {
         $html = $this->definition->getPreviewHtml($el);
 
