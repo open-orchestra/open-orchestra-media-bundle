@@ -8,7 +8,7 @@ use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface;
 use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use OpenOrchestra\Media\Model\MediaInterface;
-
+use Symfony\Component\Templating\EngineInterface;
 /**
  * Class AbstractMediaCodeDefinition
  */
@@ -22,7 +22,7 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
      * @param MediaRepositoryInterface $repository
      * @param DisplayMediaManager      $displayMediaManager
      */
-    public function __construct(MediaRepositoryInterface $repository, DisplayMediaManager $displayMediaManager, $templating)
+    public function __construct(MediaRepositoryInterface $repository, DisplayMediaManager $displayMediaManager, EngineInterface $templating)
     {
         parent::__construct('media', '');
         $this->repository = $repository;

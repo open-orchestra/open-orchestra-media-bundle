@@ -18,7 +18,7 @@ class MediaWithoutFormatCodeDefinitionTest extends AbstractMediaCodeDefinitionTe
     public function setUp()
     {
         parent::setup();
-        $this->definition = new MediaWithoutFormatCodeDefinition($this->repository, $this->displayManager, $this->mediaNotFoundHtmlTag);
+        $this->definition = new MediaWithoutFormatCodeDefinition($this->repository, $this->displayManager, $this->templating);
     }
 
     /**

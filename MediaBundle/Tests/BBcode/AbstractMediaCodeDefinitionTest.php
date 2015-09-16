@@ -19,6 +19,7 @@ abstract class AbstractMediaCodeDefinitionTest extends \PHPUnit_Framework_TestCa
     protected $media;
     protected $format = 'FORMAT';
     protected $BBcodeElementNode;
+    protected $templating;
 
     /**
      * Set up the test
@@ -38,6 +39,9 @@ abstract class AbstractMediaCodeDefinitionTest extends \PHPUnit_Framework_TestCa
         $this->BBcodeElementNode = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode');
         Phake::when($this->BBcodeElementNode)->getChildren()->thenReturn(array(0 => $mediaIdNode));
         Phake::when($this->BBcodeElementNode)->getAttribute()->thenReturn(array('media' => $this->format));
+
+        $this->templating = Phake::mock('Symfony\Component\Templating\EngineInterface');
+        Phake::when($this->templating)->render(Phake::anyParameters())->thenReturn($this->mediaNotFoundHtmlTag);
     }
 
     /**

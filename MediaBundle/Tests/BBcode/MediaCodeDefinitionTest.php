@@ -18,7 +18,7 @@ class MediaCodeDefinitionTest extends AbstractMediaCodeDefinitionTest
     public function setUp()
     {
         parent::setup();
-        $this->definition = new MediaCodeDefinition($this->repository, $this->displayManager, $this->mediaNotFoundHtmlTag);
+        $this->definition = new MediaCodeDefinition($this->repository, $this->displayManager, $this->templating);
     }
 
     /**
