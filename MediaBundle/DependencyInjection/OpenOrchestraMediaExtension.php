@@ -46,6 +46,10 @@ class OpenOrchestraMediaExtension extends Extension
         if (interface_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
             $loader->load('display_block.yml');
         }
+
+        $asseticBundles = $container->getParameter('assetic.bundles');
+        $asseticBundles[] = 'OpenOrchestraMediaBundle';
+        $container->setParameter('assetic.bundles', $asseticBundles);
     }
 
     /**
