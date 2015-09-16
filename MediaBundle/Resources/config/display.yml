@@ -28,5 +28,6 @@ services:
         arguments:
             - @request_stack
             - %open_orchestra_media.media_domain%
+            - @translator
         tags:
             - { name: open_orchestra_media.display_media.strategy }

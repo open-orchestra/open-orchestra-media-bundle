@@ -1,0 +1,4 @@
+open_orchestra_media:
+    strategy:
+        video:
+            tag_not_supported: Your browser does not support the video tag.
