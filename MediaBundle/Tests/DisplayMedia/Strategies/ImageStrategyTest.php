@@ -23,6 +23,22 @@ class ImageStrategyTest extends AbstractStrategyTest
     }
 
     /**
+     * @param string $image
+     * @param string $url
+     * @param string $alt
+     *
+     * @dataProvider displayImage
+     */
+    public function testDisplayMedia($image, $url, $alt)
+    {
+        parent::testDisplayMedia($image, $url, $alt);
+
+        $html = '<img src="' . $url .'" alt="' . $alt .'" />';
+
+        $this->assertSame($html, $this->strategy->displayMedia($this->media));
+    }
+
+    /**
      * @return array
      */
     public function displayImage()

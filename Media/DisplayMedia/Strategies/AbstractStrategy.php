@@ -57,7 +57,8 @@ abstract class AbstractStrategy implements DisplayMediaInterface
      */
     public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
     {
-        return $this->displayMedia($media, $format);
+        return '<img class="tinymce-media" src="' . $this->getFileUrl($media->getFilesystemName(), $format) . '" alt="'
+            . $media->getAlt($this->request->getLocale()) . '" data-id="' . $media->getId() . '" data-format="' . $format . '" />';
     }
 
     /**

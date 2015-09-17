@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\MediaBundle\Tests\DisplayMedia\Strategies;
 
+use Phake;
 use OpenOrchestra\Media\DisplayMedia\Strategies\VideoStrategy;
 use OpenOrchestra\Media\Model\MediaInterface;
 
@@ -10,6 +11,9 @@ use OpenOrchestra\Media\Model\MediaInterface;
  */
 class VideoStrategyTest extends AbstractStrategyTest
 {
+    protected $translator;
+    protected $translation = 'Some Translation';
+
     /**
      * Set up the test
      */
@@ -17,8 +21,31 @@ class VideoStrategyTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->strategy = new VideoStrategy($this->requestStack, '');
+        $this->translator = Phake::mock('Symfony\Component\Translation\TranslatorInterface');
+        Phake::when($this->translator)->trans(Phake::anyParameters())->thenReturn($this->translation);
+        $this->strategy = new VideoStrategy($this->requestStack, '', $this->translator);
         $this->strategy->setRouter($this->router);
+    }
+
+    /**
+     * @param string $image
+     * @param string $url
+     * @param string $alt
+     *
+     * @dataProvider displayImage
+     */
+    public function testDisplayMedia($image, $url, $alt)
+    {
+        $mimeType = 'Mime Type';
+        parent::testDisplayMedia($image, $url, $alt);
+        Phake::when($this->media)->getMimeType()->thenReturn($mimeType);
+
+        $html = '<video width="320" height="240" controls>'
+            . '<source src="' . $url . '" type="' . $mimeType . '">'
+            . $this->translation
+            . '</video>';
+
+        $this->assertSame($html, $this->strategy->displayMedia($this->media));
     }
 
     /**

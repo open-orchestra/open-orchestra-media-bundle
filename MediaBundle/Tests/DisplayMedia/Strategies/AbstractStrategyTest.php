@@ -43,10 +43,6 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->media)->getThumbnail()->thenReturn($image);
         Phake::when($this->media)->getAlt(Phake::anyParameters())->thenReturn($alt);
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
-
-        $html = '<img src="' . $url .'" alt="' . $alt .'" />';
-
-        $this->assertSame($html, $this->strategy->displayMedia($this->media));
     }
 
     /**
@@ -61,11 +57,14 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->media)->getName()->thenReturn($image);
         Phake::when($this->media)->getThumbnail()->thenReturn($image);
         Phake::when($this->media)->getAlt(Phake::anyParameters())->thenReturn($alt);
+        Phake::when($this->media)->getId(Phake::anyParameters())->thenReturn($image);
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
+        $format = 'preview';
 
-        $html = '<img src="' . $url .'" alt="' . $alt .'" />';
+        $html = '<img class="tinymce-media" src="' . $url . '" alt="'
+            . $alt . '" data-id="' . $image . '" data-format="' . $format . '" />';
 
-        $this->assertSame($html, $this->strategy->displayMediaForWysiwyg($this->media));
+        $this->assertSame($html, $this->strategy->displayMediaForWysiwyg($this->media, $format));
     }
 
     /**

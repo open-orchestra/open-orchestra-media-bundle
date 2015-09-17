@@ -32,20 +32,6 @@ class ImageStrategy extends AbstractStrategy
 
     /**
      * @param MediaInterface $media
-     *
-     *  @param MediaInterface $media
-     *  @param string         $format
-     *  
-     * @return string
-     */
-    public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
-    {
-        return '<img class="tinymce-media" src="' . $this->getFileUrl($media->getFilesystemName(), $format) . '" alt="'
-            . $media->getAlt($this->request->getLocale()) . '" data-id="' . $media->getId() . '" data-format="' . $format . '" />';
-    }
-
-    /**
-     * @param MediaInterface $media
      * @param string         $format
      *
      * @return string
