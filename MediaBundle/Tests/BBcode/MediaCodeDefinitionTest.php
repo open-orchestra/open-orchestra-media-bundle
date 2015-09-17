@@ -31,6 +31,8 @@ class MediaCodeDefinitionTest extends AbstractMediaCodeDefinitionTest
 
     /**
      * Provide expected format
+     * 
+     * @return array
      */
     public function provideFormat()
     {

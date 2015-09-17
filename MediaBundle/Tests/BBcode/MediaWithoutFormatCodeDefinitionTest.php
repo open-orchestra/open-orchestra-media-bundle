@@ -31,6 +31,8 @@ class MediaWithoutFormatCodeDefinitionTest extends AbstractMediaCodeDefinitionTe
 
     /**
      * Provide expected format
+     * 
+     * @return array
      */
     public function provideFormat()
     {
