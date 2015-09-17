@@ -37,6 +37,7 @@ class OpenOrchestraMediaExtension extends Extension
         $container->setParameter('open_orchestra_media.resize.compression_quality', $config['compression_quality']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('service.yml');
         $loader->load('display.yml');
         $loader->load('twig.yml');
         $loader->load('thumbnail.yml');
@@ -45,6 +46,10 @@ class OpenOrchestraMediaExtension extends Extension
         if (interface_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
             $loader->load('display_block.yml');
         }
+
+        $asseticBundles = $container->getParameter('assetic.bundles');
+        $asseticBundles[] = 'OpenOrchestraMediaBundle';
+        $container->setParameter('assetic.bundles', $asseticBundles);
     }
 
     /**

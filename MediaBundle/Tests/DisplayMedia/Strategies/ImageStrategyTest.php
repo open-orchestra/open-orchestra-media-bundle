@@ -23,6 +23,22 @@ class ImageStrategyTest extends AbstractStrategyTest
     }
 
     /**
+     * @param string $image
+     * @param string $url
+     * @param string $alt
+     *
+     * @dataProvider displayImage
+     */
+    public function testDisplayMedia($image, $url, $alt)
+    {
+        parent::testDisplayMedia($image, $url, $alt);
+
+        $html = '<img src="' . $url .'" alt="' . $alt .'" />';
+
+        $this->assertSame($html, $this->strategy->displayMedia($this->media));
+    }
+
+    /**
      * @return array
      */
     public function displayImage()
@@ -31,6 +47,39 @@ class ImageStrategyTest extends AbstractStrategyTest
             array('test1.jpg', '//' . $this->pathToFile . '/' . 'test1.jpg', 'test1'),
             array('test2.png', '//' . $this->pathToFile . '/' . 'test2.png', 'test2'),
         );
+    }
+
+    /**
+     * @return array
+     */
+    public function displayImageForWysiwyg()
+    {
+        return array(
+            array('test1.jpg', '//' . $this->pathToFile . '/' . 'test1.jpg', 'test1', 'id1', 'original'),
+            array('test2.png', '//' . $this->pathToFile . '/' . 'test2.png', 'test2', 'id2', 'rectangle'),
+        );
+    }
+
+    /**
+     * @param string $image
+     * @param string $url
+     * @param string $alt
+     * @param string $id
+     * @param string $format
+     *
+     * @dataProvider displayImageForWysiwyg
+     */
+    public function testDisplayMediaForWysiwyg($image, $url, $alt, $id, $format)
+    {
+        Phake::when($this->media)->getName()->thenReturn($image);
+        Phake::when($this->media)->getThumbnail()->thenReturn($image);
+        Phake::when($this->media)->getAlt(Phake::anyParameters())->thenReturn($alt);
+        Phake::when($this->media)->getId(Phake::anyParameters())->thenReturn($id);
+        Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
+
+        $html = '<img class="tinymce-media" src="' . $url .'" alt="' . $alt .'" data-id="' . $id . '" data-format="' . $format . '" />';
+
+        $this->assertSame($html, $this->strategy->displayMediaForWysiwyg($this->media, $format));
     }
 
     /**

@@ -48,17 +48,37 @@ abstract class AbstractStrategy implements DisplayMediaInterface
     }
 
     /**
+     * @param MediaInterface $media
+     *
+     *  @param MediaInterface $media
+     *  @param string         $format
+     *  
+     * @return string
+     */
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
+    {
+        return '<img class="tinymce-media" src="' . $this->getFileUrl($media->getFilesystemName(), $format) . '" alt="'
+            . $media->getAlt($this->request->getLocale()) . '" data-id="' . $media->getId() . '" data-format="' . $format . '" />';
+    }
+
+    /**
      * Return url to a file stored with gaufrette
      * 
      * @param string $filename
+     * @param string $format
      *
      * @return String
      */
-    protected function getFileUrl($filename)
+    protected function getFileUrl($filename, $format = '')
     {
+        $key = $filename;
+        if ($format != '' && MediaInterface::MEDIA_ORIGINAL != $format) {
+            $key = $format . '-' . $filename;
+        }
+
         return '//' . $this->mediaDomain
             . $this->router->generate('open_orchestra_media_get',
-            array('key' => $filename),
+            array('key' => $key),
             UrlGeneratorInterface::ABSOLUTE_PATH
         );
     }

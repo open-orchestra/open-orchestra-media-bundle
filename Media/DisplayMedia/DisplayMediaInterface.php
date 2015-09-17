@@ -33,16 +33,25 @@ interface DisplayMediaInterface
 
     /**
      * @param MediaInterface $media
+     * @param string         $format
      *
-     * @return String
+     * @return string
      */
-    public function displayMedia(MediaInterface $media);
+    public function displayMedia(MediaInterface $media, $format);
 
     /**
      * @param MediaInterface $media
      * @param string         $format
      *
-     * @return String
+     * @return string
+     */
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '');
+
+    /**
+     * @param MediaInterface $media
+     * @param string         $format
+     *
+     * @return string
      */
     public function getMediaFormatUrl(MediaInterface $media, $format);
 

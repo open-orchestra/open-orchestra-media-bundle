@@ -21,12 +21,13 @@ class ImageStrategy extends AbstractStrategy
 
     /**
      * @param MediaInterface $media
-     *
+     * @param string         $format
+     * 
      * @return String
      */
-    public function displayMedia(MediaInterface $media)
+    public function displayMedia(MediaInterface $media, $format = '')
     {
-        return '<img src="' . $this->getFileUrl($media->getFilesystemName()) . '" alt="' . $media->getAlt($this->request->getLocale()) . '">';
+        return '<img src="' . $this->getFileUrl($media->getFilesystemName(), $format) . '" alt="' . $media->getAlt($this->request->getLocale()) . '" />';
     }
 
     /**
@@ -37,11 +38,7 @@ class ImageStrategy extends AbstractStrategy
      */
     public function getMediaFormatUrl(MediaInterface $media, $format)
     {
-        if (MediaInterface::MEDIA_ORIGINAL == $format) {
-            return $this->getFileUrl($media->getFilesystemName());
-        }
-
-        return $this->getFileUrl($format . '-' . $media->getFilesystemName());
+        return $this->getFileUrl($media->getFilesystemName(), $format);
     }
 
     /**

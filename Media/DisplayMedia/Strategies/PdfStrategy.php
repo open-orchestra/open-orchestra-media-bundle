@@ -23,12 +23,13 @@ class PdfStrategy extends AbstractStrategy
 
    /**
      * @param MediaInterface $media
+     * @param string         $format
      *
      * @return String
      */
-    public function displayMedia(MediaInterface $media)
+    public function displayMedia(MediaInterface $media, $format = '')
     {
-        return '<img src="' . $this->getFileUrl($media->getFilesystemName()) . '" alt="' . $media->getAlt($this->request->getLocale()) . '">';
+        return '<a href="' . $this->getFileUrl($media->getFilesystemName()) . '" target="_blank">' . $media->getName() . '</a>';
     }
 
     /**

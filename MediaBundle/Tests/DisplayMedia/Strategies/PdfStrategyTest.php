@@ -23,6 +23,22 @@ class PdfStrategyTest extends AbstractStrategyTest
     }
 
     /**
+     * @param string $image
+     * @param string $url
+     * @param string $alt
+     *
+     * @dataProvider displayImage
+     */
+    public function testDisplayMedia($image, $url, $alt)
+    {
+        parent::testDisplayMedia($image, $url, $alt);
+
+        $html = '<a href="' . $url . '" target="_blank">' . $image . '</a>';
+
+        $this->assertSame($html, $this->strategy->displayMedia($this->media));
+    }
+
+    /**
      * @return array
      */
     public function displayImage()
