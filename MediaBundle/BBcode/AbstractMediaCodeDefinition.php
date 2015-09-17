@@ -9,6 +9,7 @@ use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use OpenOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\Templating\EngineInterface;
+
 /**
  * Class AbstractMediaCodeDefinition
  */
@@ -21,9 +22,11 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
     /**
      * @param MediaRepositoryInterface $repository
      * @param DisplayMediaManager      $displayMediaManager
+     * @param EngineInterface          $templating
      */
-    public function __construct(MediaRepositoryInterface $repository, DisplayMediaManager $displayMediaManager, EngineInterface $templating)
-    {
+    public function __construct(
+        MediaRepositoryInterface $repository, DisplayMediaManager $displayMediaManager, EngineInterface $templating
+    ){
         parent::__construct('media', '');
         $this->repository = $repository;
         $this->displayMediaManager = $displayMediaManager;
@@ -50,6 +53,10 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
         return $this->generateHtml($el, true);
     }
 
+    /**
+     * @param BBcodeElementNodeInterface $el
+     * @param bool                       $preview
+     */
     protected function generateHtml(BBcodeElementNodeInterface $el, $preview = false)
     {
         $children = $el->getChildren();
