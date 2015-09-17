@@ -36,7 +36,7 @@ class SaveMediaManager implements SaveMediaManagerInterface
         if (null !== ($file = $media->getFile())) {
             $media->setName($file->getClientOriginalName());
             $this->filename = sha1(uniqid(mt_rand(), true))
-                . $file->getClientOriginalName()
+                . pathinfo($this->tmpDir . '/' . $file->getClientOriginalName(), PATHINFO_FILENAME)
                 . '.'
                 . $file->guessClientExtension();
             $media->setFilesystemName($this->filename);
