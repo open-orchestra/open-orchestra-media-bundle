@@ -56,7 +56,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
                 'Image 0' . $i,
                 'image/jpg',
                 'mediaFolder-rootImages',
-                array(),
+                array('keyword-lorem', 'keyword-dolor'),
                 array(
                     'en' => array('alt' => 'image 0' . $i, 'title' => 'image 0' . $i),
                     'fr' => array('alt' => 'image 0' . $i, 'title' => 'image 0' . $i)

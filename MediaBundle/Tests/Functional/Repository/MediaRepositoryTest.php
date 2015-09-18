@@ -45,10 +45,10 @@ class MediaRepositoryTest extends KernelTestCase
     public function provideKeywordAndCount()
     {
         return array(
-            array('Lorem', 2),
+            array('Lorem', 5),
             array('Sit', 0),
-            array('Dolor', 1),
-            array('Lorem,Dolor', 2),
+            array('Dolor', 4),
+            array('Lorem,Dolor', 5),
         );
     }
 }
