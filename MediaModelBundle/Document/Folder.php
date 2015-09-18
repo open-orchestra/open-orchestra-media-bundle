@@ -154,14 +154,6 @@ abstract class Folder implements FolderInterface
     }
 
     /**
-     *
-     */
-    public function removeSubFolders()
-    {
-        $this->subFolders = new ArrayCollection();
-    }
-
-    /**
      * @return ArrayCollection
      */
     public function getSites()
