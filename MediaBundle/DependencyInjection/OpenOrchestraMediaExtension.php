@@ -26,8 +26,6 @@ class OpenOrchestraMediaExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $this->updateBlockParameter($container);
-
         $container->setParameter('open_orchestra_media.media_domain', $config['media_domain']);
         $container->setParameter('open_orchestra_media.tmp_dir', $config['tmp_dir']);
         $container->setParameter('open_orchestra_media.filesystem', $config['filesystem']);
@@ -43,7 +41,9 @@ class OpenOrchestraMediaExtension extends Extension
         $loader->load('thumbnail.yml');
         $loader->load('subscriber.yml');
         $loader->load('manager.yml');
-        if (interface_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
+
+        if (array_key_exists("OpenOrchestraDisplayBundle", $container->getParameter('kernel.bundles'))) {
+            $this->updateBlockParameter($container);
             $loader->load('display_block.yml');
         }
 
@@ -57,20 +57,18 @@ class OpenOrchestraMediaExtension extends Extension
      */
     protected function updateBlockParameter(ContainerBuilder $container)
     {
-        if (interface_exists('OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface')) {
-            $blockType = array(
-                GalleryStrategy::GALLERY,
-                SlideshowStrategy::SLIDESHOW,
-                MediaListByKeywordStrategy::MEDIA_LIST_BY_KEYWORD,
-                DisplayMediaStrategy::DISPLAY_MEDIA,
-            );
+        $blockType = array(
+            GalleryStrategy::GALLERY,
+            SlideshowStrategy::SLIDESHOW,
+            MediaListByKeywordStrategy::MEDIA_LIST_BY_KEYWORD,
+            DisplayMediaStrategy::DISPLAY_MEDIA,
+        );
 
-            $blocksAlreadySet = array();
-            if ($container->hasParameter('open_orchestra.blocks')) {
-                $blocksAlreadySet = $container->getParameter('open_orchestra.blocks');
-            }
-            $blocks = array_merge($blocksAlreadySet, $blockType);
-            $container->setParameter('open_orchestra.blocks', $blocks);
+        $blocksAlreadySet = array();
+        if ($container->hasParameter('open_orchestra.blocks')) {
+            $blocksAlreadySet = $container->getParameter('open_orchestra.blocks');
         }
+        $blocks = array_merge($blocksAlreadySet, $blockType);
+        $container->setParameter('open_orchestra.blocks', $blocks);
     }
 }
