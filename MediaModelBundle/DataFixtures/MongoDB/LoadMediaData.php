@@ -50,26 +50,13 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
         $manager->persist($logoOrchestra);
         $this->addReference('logo-orchestra', $logoOrchestra);
 
-        $firstImage = $this->generateImage(
-            'no_image_available.jpg',
-            'No image logo',
-            'image/jpg',
-            'mediaFolder-firstImages',
-            array('keyword-lorem', 'keyword-dolor'),
-            array(
-                'en' => array('alt' => 'firstImage', 'title' => 'firstImage'),
-                'fr' => array('alt' => 'premièreImage', 'title' => 'premièreImage')
-            )
-        );
-        $manager->persist($firstImage);
-
         for ($i = 1; $i < 5; $i++) {
             $image0{$i} = $this->generateImage(
                 '0' . $i . '.jpg',
                 'Image 0' . $i,
                 'image/jpg',
                 'mediaFolder-rootImages',
-                array(),
+                array('keyword-lorem', 'keyword-dolor'),
                 array(
                     'en' => array('alt' => 'image 0' . $i, 'title' => 'image 0' . $i),
                     'fr' => array('alt' => 'image 0' . $i, 'title' => 'image 0' . $i)
