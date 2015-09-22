@@ -64,7 +64,7 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
         $format = 'preview';
 
         $html = '<img class="tinymce-media" src="' . $url . '" alt="'
-            . $alt . '" data-id="' . $image . '" data-format="' . $format . '" />';
+            . $alt . '" data-id="' . $image . '" />';
 
         $this->assertSame($html, $this->strategy->displayMediaForWysiwyg($this->media, $format));
     }
