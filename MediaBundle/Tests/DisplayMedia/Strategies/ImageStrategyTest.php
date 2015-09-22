@@ -69,7 +69,7 @@ class ImageStrategyTest extends AbstractStrategyTest
      *
      * @dataProvider displayImageForWysiwyg
      */
-    public function testDisplayMediaForWysiwyg($image, $url, $alt, $id, $format)
+    public function testDisplayMediaForWysiwyg($image, $url, $alt, $id = null, $format = null)
     {
         Phake::when($this->media)->getName()->thenReturn($image);
         Phake::when($this->media)->getThumbnail()->thenReturn($image);
