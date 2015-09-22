@@ -52,7 +52,7 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider displayImage
      */
-    public function testDisplayMediaForWysiwyg($image, $url, $alt)
+    public function testDisplayMediaForWysiwyg($image, $url, $alt, $id = null, $format = null)
     {
         Phake::when($this->media)->getName()->thenReturn($image);
         Phake::when($this->media)->getThumbnail()->thenReturn($image);
