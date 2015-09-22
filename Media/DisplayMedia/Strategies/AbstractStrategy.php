@@ -5,8 +5,8 @@ namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class AbstractStrategy
@@ -30,9 +30,9 @@ abstract class AbstractStrategy implements DisplayMediaInterface
     /**
      * Set the router
      * 
-     * @param Router $router
+     * @param RouterInterface $router
      */
-    public function setRouter(Router $router)
+    public function setRouter(RouterInterface $router)
     {
         $this->router = $router;
     }

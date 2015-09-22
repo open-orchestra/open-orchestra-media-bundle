@@ -3,7 +3,7 @@
 namespace OpenOrchestra\Media\DisplayMedia;
 
 use OpenOrchestra\Media\Model\MediaInterface;
-use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class DisplayMediaManager
@@ -14,9 +14,9 @@ class DisplayMediaManager
     protected $router;
 
     /**
-     * @param Router $router
+     * @param RouterInterface $router
      */
-    public function __construct(Router $router)
+    public function __construct(RouterInterface $router)
     {
         $this->router = $router;
     }
