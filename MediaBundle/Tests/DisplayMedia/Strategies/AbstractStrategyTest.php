@@ -49,6 +49,8 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
      * @param string $image
      * @param string $url
      * @param string $alt
+     * @param string $id
+     * @param string $format
      *
      * @dataProvider displayImage
      */
