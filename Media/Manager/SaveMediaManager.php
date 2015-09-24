@@ -10,7 +10,6 @@ use OpenOrchestra\Media\Thumbnail\ThumbnailManager;
  */
 class SaveMediaManager implements SaveMediaManagerInterface
 {
-    public $filenames = array();
     protected $tmpDir;
     protected $thumbnailManager;
     protected $uploadedMediaManager;
@@ -48,7 +47,6 @@ class SaveMediaManager implements SaveMediaManagerInterface
                 . pathinfo($this->tmpDir . '/' . $file->getClientOriginalName(), PATHINFO_FILENAME)
                 . '.'
                 . $file->guessClientExtension();
-            $this->filenames[$media->getId()] = $fileName;
             $media->setFilesystemName($fileName);
             $media->setMimeType($file->getClientMimeType());
             $this->thumbnailManager->generateThumbnailName($media);
@@ -71,7 +69,7 @@ class SaveMediaManager implements SaveMediaManagerInterface
     public function uploadMedia(MediaInterface $media)
     {
          if (null !== ($file = $media->getFile())) {
-             $fileName = $this->filenames[$media->getId()];
+             $fileName = $media->getFilesystemName();
              $file->move($this->tmpDir, $fileName);
              $tmpFilePath = $this->tmpDir . '/' . $fileName;
              $this->uploadedMediaManager->uploadContent($fileName, file_get_contents($tmpFilePath));
