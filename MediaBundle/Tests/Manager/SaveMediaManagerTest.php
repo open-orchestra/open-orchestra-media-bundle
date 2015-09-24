@@ -88,8 +88,7 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
     {
         $media = $this->createMockMedia($name, $fileExtension, '1');
 
-        $fileName = $name . "." . $fileExtension;
-        $this->mediaManager->filenames[$media->getId()] = $fileName;
+        $fileName = $media->getFilesystemName();
 
         $this->mediaManager->uploadMedia($media);
 
@@ -114,18 +113,11 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUploadMultipleMedia($medias)
     {
-        foreach ($medias as $media) {
-            $fileName = $media->getFile()->getClientOriginalName();
-            $fileExtension = $media->getFile()->guessClientExtension();
-            $fileName = $fileName . "." . $fileExtension;
-
-            $this->mediaManager->filenames[$media->getId()] = $fileName;
-        }
-
         $this->mediaManager->uploadMultipleMedia($medias);
 
         foreach ($medias as $media) {
-            $this->assertUploadMedia($media, $this->mediaManager->filenames[$media->getId()]);
+            $fileName = $media->getFilesystemName();
+            $this->assertUploadMedia($media, $fileName);
         }
     }
 
@@ -166,7 +158,7 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
         $fileExtension = $media->getFile()->guessClientExtension();
 
         Phake::verify($media)->setFilesystemName(Phake::anyParameters());
-        $this->assertRegExp('/'.$fileName .'.'. $fileExtension.'/', $this->mediaManager->filenames[$media->getId()]);
+        $this->assertRegExp('/'.$fileName .'.'. $fileExtension.'/', $media->getFilesystemName());
         Phake::verify($media)->setName($fileName);
         Phake::verify($media)->setMimeType($fileExtension);
         Phake::verify($this->thumbnailManager)->generateThumbnailName($media);
@@ -189,6 +181,7 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
         $media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         Phake::when($media)->getFile()->thenReturn($file);
         Phake::when($media)->getId()->thenReturn($mediaId);
+        Phake::when($media)->getFilesystemName()->thenReturn($fileName . "." . $fileExtension);
 
         return $media;
     }
