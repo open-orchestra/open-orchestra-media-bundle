@@ -10,9 +10,19 @@ use OpenOrchestra\Media\Model\MediaInterface;
 interface SaveMediaManagerInterface
 {
     /**
+     * @param MediaInterface[] $medias
+     */
+    public function saveMultipleMedia(array $medias);
+
+    /**
      * @param MediaInterface $media
      */
     public function saveMedia(MediaInterface $media);
+
+    /**
+     * @param MediaInterface[] $medias
+     */
+    public function uploadMultipleMedia(array $medias);
 
     /**
      * @param MediaInterface $media

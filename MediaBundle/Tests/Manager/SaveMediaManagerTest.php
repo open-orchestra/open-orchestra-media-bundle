@@ -15,52 +15,55 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
      */
     protected $mediaManager;
 
-    protected $tmpDir = 'tmpDir';
+    protected $tmpDir;
     protected $thumbnailManager;
     protected $uploadedMediaManager;
-    protected $event;
-    protected $media;
-    protected $file;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->markTestSkipped('Skipped because uploadedFile miss arguments on travis');
-        $this->file = Phake::mock('Symfony\Component\HttpFoundation\File\UploadedFile');
-        $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
-        Phake::when($this->media)->getFile()->thenReturn($this->file);
+        $this->tmpDir = __DIR__.'/images';
 
         $this->uploadedMediaManager = Phake::mock('OpenOrchestra\Media\Manager\UploadedMediaManager');
 
         $this->thumbnailManager = Phake::mock('OpenOrchestra\Media\Thumbnail\ThumbnailManager');
 
-        $this->event = Phake::mock('Doctrine\ODM\MongoDB\Event\LifecycleEventArgs');
-        Phake::when($this->event)->getDocument()->thenReturn($this->media);
-
         $this->mediaManager = new SaveMediaManager($this->tmpDir, $this->thumbnailManager, $this->uploadedMediaManager);
+    }
+
+    /**
+     * Test save mutliple media
+     */
+    public function testSaveMultipleMedia()
+    {
+        $medias = array(
+            $this->createMockMedia('media1', 'jpg', 'mediaId1'),
+            $this->createMockMedia('media2', 'txt', 'mediaId2')
+        );
+        $this->mediaManager->saveMultipleMedia($medias);
+
+        foreach ($medias as $media)
+        {
+            $this->assertSaveMedia($media);
+        }
     }
 
     /**
      * @param string $fileName
      * @param string $fileExtension
+     * @param string $mediaId
      *
      * @dataProvider provideFileNameAndExtension
      */
-    public function testPreUpload($fileName, $fileExtension)
+    public function testSaveMedia($fileName, $fileExtension, $mediaId)
     {
-        Phake::when($this->file)->guessClientExtension()->thenReturn($fileExtension);
-        Phake::when($this->file)->getClientMimeType()->thenReturn($fileExtension);
-        Phake::when($this->file)->getClientOriginalName()->thenReturn($fileName);
+        $media = $this->createMockMedia($fileName, $fileExtension, $mediaId);
 
-        $this->mediaManager->saveMedia($this->event->getDocument());
+        $this->mediaManager->saveMedia($media);
 
-        Phake::verify($this->media)->setFilesystemName(Phake::anyParameters());
-        $this->assertRegExp('/'.$fileName .'.'. $fileExtension.'/', $this->mediaManager->filename);
-        Phake::verify($this->media)->setName($fileName);
-        Phake::verify($this->media)->setMimeType($fileExtension);
-        Phake::verify($this->thumbnailManager)->generateThumbnailName($this->media);
+        $this->assertSaveMedia($media);
     }
 
     /**
@@ -69,27 +72,28 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
     public function provideFileNameAndExtension()
     {
         return array(
-            array('test', 'jpg'),
-            array('image', 'png'),
-            array('fichier', 'pdf'),
+            array('test', 'jpg', 'fakeId1'),
+            array('image', 'png', 'fakeId2'),
+            array('fichier', 'pdf', 'fakeId3'),
         );
     }
 
     /**
-     * @param string $fileName
+     * @param string $name
+     * @param string $fileExtension
      *
      * @dataProvider provideFileName
      */
-    public function testUpload($fileName)
+    public function testUploadMedia($name, $fileExtension)
     {
-        $this->assertTrue(file_exists($this->tmpDir . '/' . $fileName));
-        $this->mediaManager->filename = $fileName;
+        $media = $this->createMockMedia($name, $fileExtension, '1');
 
-        $this->mediaManager->postPersist($this->event);
+        $fileName = $name . "." . $fileExtension;
+        $this->mediaManager->filenames[$media->getId()] = $fileName;
 
-        Phake::verify($this->file)->move($this->tmpDir, $fileName);
-        Phake::verify($this->thumbnailManager)->generateThumbnail($this->media);
-        $this->assertFalse(file_exists($this->tmpDir . '/' . $fileName));
+        $this->mediaManager->uploadMedia($media);
+
+        $this->assertUploadMedia($media, $fileName);
     }
 
     /**
@@ -98,8 +102,94 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
     public function provideFileName()
     {
         return array(
-            array('file.txt'),
-            array('test.jpg'),
+            array('What-are-you-talking-about', 'jpg'),
+            array('rectangle-reference', 'jpg'),
         );
+    }
+
+    /**
+     * @param array $medias
+     *
+     * @dataProvider provideMedias
+     */
+    public function testUploadMultipleMedia($medias)
+    {
+        foreach ($medias as $media) {
+            $fileName = $media->getFile()->getClientOriginalName();
+            $fileExtension = $media->getFile()->guessClientExtension();
+            $fileName = $fileName . "." . $fileExtension;
+
+            $this->mediaManager->filenames[$media->getId()] = $fileName;
+        }
+
+        $this->mediaManager->uploadMultipleMedia($medias);
+
+        foreach ($medias as $media) {
+            $this->assertUploadMedia($media, $this->mediaManager->filenames[$media->getId()]);
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function provideMedias()
+    {
+        return array(
+            array(
+                array(
+                    $this->createMockMedia('What-are-you-talking-about', 'jpg', 'mediaId1'),
+                    $this->createMockMedia('rectangle-reference', 'jpg', 'mediaId2'),
+                ),
+            )
+        );
+    }
+
+    /**
+     * @param mixed  $media
+     * @param string $fileName
+     */
+    protected function assertUploadMedia($media, $fileName)
+    {
+        $file = $media->getFile();
+        Phake::verify($file)->move($this->tmpDir, $fileName);
+        $tmpFilePath = $this->tmpDir . '/' . $fileName;
+        Phake::verify($this->uploadedMediaManager)->uploadContent($fileName, file_get_contents($tmpFilePath));
+        Phake::verify($this->thumbnailManager)->generateThumbnail($media);
+    }
+
+    /**
+     * @param mixed $media
+     */
+    protected function assertSaveMedia($media)
+    {
+        $fileName = $media->getFile()->getClientOriginalName();
+        $fileExtension = $media->getFile()->guessClientExtension();
+
+        Phake::verify($media)->setFilesystemName(Phake::anyParameters());
+        $this->assertRegExp('/'.$fileName .'.'. $fileExtension.'/', $this->mediaManager->filenames[$media->getId()]);
+        Phake::verify($media)->setName($fileName);
+        Phake::verify($media)->setMimeType($fileExtension);
+        Phake::verify($this->thumbnailManager)->generateThumbnailName($media);
+    }
+
+    /**
+     * @param string $fileName
+     * @param string $fileExtension
+     * @param string $mediaId
+     *
+     * @return mixed
+     */
+    protected function createMockMedia($fileName, $fileExtension, $mediaId)
+    {
+        $file = Phake::mock('Symfony\Component\HttpFoundation\File\UploadedFile');
+        Phake::when($file)->guessClientExtension()->thenReturn($fileExtension);
+        Phake::when($file)->getClientMimeType()->thenReturn($fileExtension);
+        Phake::when($file)->getClientOriginalName()->thenReturn($fileName);
+
+        $media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
+        Phake::when($media)->getFile()->thenReturn($file);
+        Phake::when($media)->getId()->thenReturn($mediaId);
+
+        return $media;
     }
 }
