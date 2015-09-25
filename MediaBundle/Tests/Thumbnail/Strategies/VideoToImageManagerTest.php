@@ -48,6 +48,17 @@ class VideoToImageManagerTest extends AbstractStrategyTest
     }
 
     /**
+     * @param string $fileName
+     * @param string $fileExtension
+     *
+     * @dataProvider provideFileNameAndExtension
+     */
+    public function testGenerateThumbnail($fileName, $fileExtension)
+    {
+        $this->markTestSkipped("ffmpeg_movie isn't install travis");
+    }
+
+    /**
      * @return array
      */
     public function provideFileNameAndExtension()

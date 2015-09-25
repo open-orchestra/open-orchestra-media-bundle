@@ -2,7 +2,8 @@
 
 namespace OpenOrchestra\Media\Thumbnail\Strategies;
 
-use Imagick;
+use OpenOrchestra\Media\Imagick\OrchestraImagickFactoryInterface;
+use OpenOrchestra\Media\Imagick\OrchestraImagickInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
 
@@ -15,15 +16,18 @@ class PdfToImageManager implements ThumbnailInterface
 
     protected $tmpDir;
     protected $mediaDirectory;
+    protected $imagickFactory;
 
     /**
-     * @param string $tmpDir
-     * @param string $mediaDirectory
+     * @param string                           $tmpDir
+     * @param string                           $mediaDirectory
+     * @param OrchestraImagickFactoryInterface $imagickFactory
      */
-    public function __construct($tmpDir, $mediaDirectory)
+    public function __construct($tmpDir, $mediaDirectory, OrchestraImagickFactoryInterface $imagickFactory)
     {
         $this->tmpDir = $tmpDir;
         $this->mediaDirectory = $mediaDirectory;
+        $this->imagickFactory = $imagickFactory;
     }
 
     /**
@@ -57,10 +61,22 @@ class PdfToImageManager implements ThumbnailInterface
      */
     public function generateThumbnail(MediaInterface $media)
     {
-        $im = new Imagick($this->tmpDir . '/' . $media->getFilesystemName().'[0]');
-        $im->setImageFormat('jpg');
-        $im->setCompression(75);
-        $im->writeImage($this->mediaDirectory . '/' . $media->getThumbnail());
+        $im = $this->imagickFactory->create($this->tmpDir . '/' . $media->getFilesystemName().'[0]');
+
+        return $this->createThumbnail($im, $media);
+    }
+
+    /**
+     * @param OrchestraImagickInterface $imagick
+     * @param MediaInterface $media
+     *
+     * @return MediaInterface
+     */
+    protected function createThumbnail(OrchestraImagickInterface $imagick, MediaInterface $media)
+    {
+        $imagick->setImageFormat('jpg');
+        $imagick->setCompression(75);
+        $imagick->writeImage($this->mediaDirectory . '/' . $media->getThumbnail());
 
         return $media;
     }

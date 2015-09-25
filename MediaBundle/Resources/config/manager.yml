@@ -12,6 +12,7 @@ services:
             - %open_orchestra_media.thumbnail.configuration%
             - %open_orchestra_media.resize.compression_quality%
             - @event_dispatcher
+            - @open_orchestra_media.imagick.factory
     open_orchestra_media.manager.gaufrette:
         class: %open_orchestra_media.manager.gaufrette.class%
         arguments:
