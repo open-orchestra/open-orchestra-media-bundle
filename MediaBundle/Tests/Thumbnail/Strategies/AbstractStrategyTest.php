@@ -48,8 +48,6 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testGenerateThumbnail($fileName, $fileExtension)
     {
-        $this->markTestSkipped();
-
         if (file_exists($this->tmpDir .'/'. $fileName .'.jpg')) {
             unlink($this->tmpDir .'/'. $fileName .'.jpg');
         }

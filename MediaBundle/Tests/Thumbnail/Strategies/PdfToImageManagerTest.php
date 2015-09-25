@@ -3,12 +3,15 @@
 namespace OpenOrchestra\MediaBundle\Tests\Thumbnail\Strategies;
 
 use OpenOrchestra\Media\Thumbnail\Strategies\PdfToImageManager;
+use Phake;
 
 /**
  * Class PdfToImageManagerTest
  */
 class PdfToImageManagerTest extends AbstractStrategyTest
 {
+    protected $imagick;
+
     /**
      * Set up the test
      */
@@ -16,7 +19,11 @@ class PdfToImageManagerTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->manager = new PdfToImageManager($this->tmpDir, $this->tmpDir);
+        $imagickFactory = Phake::mock('OpenOrchestra\Media\Imagick\OrchestraImagickFactory');
+        $this->imagick = Phake::mock('OpenOrchestra\Media\Imagick\OrchestraImagickInterface');
+        Phake::when($imagickFactory)->create(Phake::anyParameters())->thenReturn($this->imagick);
+
+        $this->manager = new PdfToImageManager($this->tmpDir, $this->tmpDir, $imagickFactory);
     }
 
     /**
@@ -55,6 +62,29 @@ class PdfToImageManagerTest extends AbstractStrategyTest
             array('BarometreAFUP-Agence-e-2014', 'pdf'),
             array('document', 'pdf'),
         );
+    }
+
+    /**
+     * @param string $fileName
+     * @param string $fileExtension
+     *
+     * @dataProvider provideFileNameAndExtension
+     */
+    public function testGenerateThumbnail($fileName, $fileExtension)
+    {
+        if (file_exists($this->tmpDir .'/'. $fileName .'.jpg')) {
+            unlink($this->tmpDir .'/'. $fileName .'.jpg');
+        }
+        $this->assertFalse(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
+
+        Phake::when($this->media)->getFilesystemName()->thenReturn($fileName. '.' . $fileExtension);
+        Phake::when($this->media)->getThumbnail()->thenReturn($fileName. '.jpg');
+
+        $this->manager->generateThumbnail($this->media);
+
+        Phake::verify($this->imagick)->setImageFormat('jpg');
+        Phake::verify($this->imagick)->setCompression(75);
+        Phake::verify($this->imagick)->writeImage($this->tmpDir. '/' . $this->media->getThumbnail());
     }
 
     /**

@@ -4,6 +4,8 @@ namespace OpenOrchestra\Media\Manager;
 
 use Imagick;
 use OpenOrchestra\Media\Event\ImagickEvent;
+use OpenOrchestra\Media\Imagick\OrchestraImagickFactoryInterface;
+use OpenOrchestra\Media\Imagick\OrchestraImagickInterface;
 use OpenOrchestra\Media\MediaEvents;
 use OpenOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -17,19 +19,22 @@ class ImageResizerManager
     protected $dispatcher;
     protected $tmpDir;
     protected $formats;
+    protected $imagickFactory;
 
     /**
-     * @param string                   $tmpDir
-     * @param array                    $formats
-     * @param int                      $compressionQuality
-     * @param EventDispatcherInterface $dispatcher
+     * @param string                           $tmpDir
+     * @param array                            $formats
+     * @param int                              $compressionQuality
+     * @param EventDispatcherInterface         $dispatcher
+     * @param OrchestraImagickFactoryInterface $imagickFactory
      */
-    public function __construct($tmpDir, array $formats, $compressionQuality, $dispatcher)
+    public function __construct($tmpDir, array $formats, $compressionQuality, $dispatcher, OrchestraImagickFactoryInterface $imagickFactory)
     {
         $this->compressionQuality = $compressionQuality;
         $this->dispatcher = $dispatcher;
         $this->tmpDir = $tmpDir;
         $this->formats = $formats;
+        $this->imagickFactory = $imagickFactory;
     }
 
     /**
@@ -54,7 +59,7 @@ class ImageResizerManager
      */
     public function crop(MediaInterface $media, $x, $y, $h, $w, $format)
     {
-        $image = new Imagick($this->tmpDir . '/' . $media->getFilesystemName());
+        $image = $this->imagickFactory->create($this->tmpDir . '/' . $media->getFilesystemName());
         $image->cropImage($w, $h, $x, $y);
         $this->resizeImage($this->formats[$format], $image);
 
@@ -73,11 +78,11 @@ class ImageResizerManager
     }
 
     /**
-     * @param MediaInterface $media
-     * @param Imagick        $image
-     * @param string         $key
+     * @param MediaInterface            $media
+     * @param OrchestraImagickInterface $image
+     * @param string                    $key
      */
-    protected function saveImage(MediaInterface $media, Imagick $image, $key)
+    protected function saveImage(MediaInterface $media, OrchestraImagickInterface $image, $key)
     {
         $image->setImageCompression(Imagick::COMPRESSION_JPEG);
         $image->setImageCompressionQuality($this->compressionQuality);
@@ -91,10 +96,10 @@ class ImageResizerManager
     /**
      * Resize an image keeping its ratio
      *
-     * @param string  $format
-     * @param Imagick $image
+     * @param string                    $format
+     * @param OrchestraImagickInterface $image
      */
-    protected function resizeImage($format, Imagick $image)
+    protected function resizeImage($format, OrchestraImagickInterface $image)
     {
         $maxWidth = array_key_exists('max_width', $format)? $format['max_width']: -1;
         $maxHeight = array_key_exists('max_height', $format)? $format['max_height']: -1;
@@ -115,10 +120,10 @@ class ImageResizerManager
     /**
      * Resize an image keeping its ratio to the width $width
      * 
-     * @param Imagick $image
-     * @param int $width
+     * @param OrchestraImagickInterface $image
+     * @param int                       $width
      */
-    protected function resizeOnWidth(Imagick $image, $width)
+    protected function resizeOnWidth(OrchestraImagickInterface $image, $width)
     {
         $image->resizeImage($width, 0, Imagick::FILTER_LANCZOS, 1);
     }
@@ -126,10 +131,10 @@ class ImageResizerManager
     /**
      * Resize an image keeping its ratio to the height $height
      * 
-     * @param Imagick $image
-     * @param int $height
+     * @param OrchestraImagickInterface $image
+     * @param int                       $height
      */
-    protected function resizeOnHeight(Imagick $image, $height)
+    protected function resizeOnHeight(OrchestraImagickInterface $image, $height)
     {
         $image->resizeImage(0, $height, Imagick::FILTER_LANCZOS, 1);
     }
@@ -141,7 +146,7 @@ class ImageResizerManager
      */
     protected function resizeAndSaveImage(MediaInterface $media, $format, $filePath)
     {
-        $image = new Imagick($filePath);
+        $image = $this->imagickFactory->create($filePath);
         $this->resizeImage($this->formats[$format], $image);
 
         $this->saveImage($media, $image, $format);

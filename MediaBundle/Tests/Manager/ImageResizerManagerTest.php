@@ -21,6 +21,8 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
     protected $dispatcher;
     protected $compressionQuality;
     protected $file = 'What-are-you-talking-about.jpg';
+    protected $imageWidth = 10;
+    protected $imageHeight = 10;
     protected $tmpfile = 'tmp-What-are-you-talking-about.jpg';
     protected $overrideFile = 'reference.jpg';
 
@@ -49,7 +51,13 @@ class ImageResizerManagerTest extends \PHPUnit_Framework_TestCase
         $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         Phake::when($this->media)->getFilesystemName()->thenReturn($this->file);
 
-        $this->manager = new ImageResizerManager($this->tmpDir, $this->formats, $this->compressionQuality, $this->dispatcher);
+        $imagickFactory = Phake::mock('OpenOrchestra\Media\Imagick\OrchestraImagickFactory');
+        $imagick = Phake::mock('OpenOrchestra\Media\Imagick\OrchestraImagickInterface');
+        Phake::when($imagick)->getImageWidth()->thenReturn($this->imageWidth);
+        Phake::when($imagick)->getImageHeight()->thenReturn($this->imageHeight);
+        Phake::when($imagickFactory)->create(Phake::anyParameters())->thenReturn($imagick);
+
+        $this->manager = new ImageResizerManager($this->tmpDir, $this->formats, $this->compressionQuality, $this->dispatcher, $imagickFactory);
     }
 
     /**

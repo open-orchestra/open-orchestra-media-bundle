@@ -2,8 +2,8 @@
 
 namespace OpenOrchestra\Media\Event;
 
+use OpenOrchestra\Media\Imagick\OrchestraImagickInterface;
 use Symfony\Component\EventDispatcher\Event;
-use Imagick;
 
 /**
  * Class ImagickEvent
@@ -14,10 +14,10 @@ class ImagickEvent extends Event
     protected $fileContent;
 
     /**
-     * @param string $fileName
-     * @param Imagick $fileContent
+     * @param string                    $fileName
+     * @param OrchestraImagickInterface $fileContent
      */
-    public function __construct($fileName, Imagick $fileContent)
+    public function __construct($fileName, OrchestraImagickInterface $fileContent)
     {
         $this->fileName = $fileName;
         $this->fileContent = $fileContent;
