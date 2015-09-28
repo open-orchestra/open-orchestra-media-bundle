@@ -3,12 +3,12 @@ language: php
 php:
   - 5.4
 
+sudo: false
+
 cache:
   directories:
     - ~/.composer/cache
     - ~/composer
-
-sudo: false
 
 before_install:
   - printf "\n" |pecl install imagick

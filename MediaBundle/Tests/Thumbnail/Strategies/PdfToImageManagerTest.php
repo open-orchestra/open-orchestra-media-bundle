@@ -72,11 +72,6 @@ class PdfToImageManagerTest extends AbstractStrategyTest
      */
     public function testGenerateThumbnail($fileName, $fileExtension)
     {
-        if (file_exists($this->tmpDir .'/'. $fileName .'.jpg')) {
-            unlink($this->tmpDir .'/'. $fileName .'.jpg');
-        }
-        $this->assertFalse(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
-
         Phake::when($this->media)->getFilesystemName()->thenReturn($fileName. '.' . $fileExtension);
         Phake::when($this->media)->getThumbnail()->thenReturn($fileName. '.jpg');
 
