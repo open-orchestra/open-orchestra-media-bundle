@@ -11,8 +11,8 @@
     "minimum-stability": "dev",
     "require": {
         "ext-imagick": "*",
-        "open-orchestra/open-orchestra-model-interface": "*",
-        "open-orchestra/open-orchestra-display-bundle": "*",
+        "open-orchestra/open-orchestra-model-interface": "~1.0.0",
+        "open-orchestra/open-orchestra-display-bundle": "~1.0.0",
         "doctrine/data-fixtures":"1.1.1",
         "doctrine/mongodb-odm": "1.0.2",
         "doctrine/mongodb-odm-bundle" : "3.0.1",
