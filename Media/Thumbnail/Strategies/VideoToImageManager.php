@@ -49,7 +49,7 @@ class VideoToImageManager implements ThumbnailInterface
     public function generateThumbnailName(MediaInterface $media)
     {
         $fileName = $media->getFilesystemName();
-        $jpgFileName = substr($fileName, 0, -4). '.jpg';
+        $jpgFileName = pathinfo($fileName, PATHINFO_FILENAME) . '.jpg';
         $media->setThumbnail($jpgFileName);
 
         return $media;

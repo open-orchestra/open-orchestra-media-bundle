@@ -11,6 +11,7 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
 {
     protected $media;
     protected $router;
+    protected $container;
     protected $request;
     protected $strategy;
     protected $requestStack;
@@ -28,6 +29,8 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->requestStack)->getMasterRequest()->thenReturn($this->request);
         $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         $this->router = Phake::mock('Symfony\Component\Routing\Router');
+
+        $this->container = Phake::mock('Symfony\Component\DependencyInjection\ContainerInterface');
     }
 
     /**
@@ -134,7 +137,6 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
             array('text/csv', false),
             array('text/html', false),
             array('text/plain', false),
-            array('audio/mpeg', false),
             array('application/msword', false),
         );
     }

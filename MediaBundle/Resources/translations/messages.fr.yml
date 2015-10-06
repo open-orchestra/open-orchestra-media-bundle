@@ -2,3 +2,5 @@ open_orchestra_media:
     strategy:
         video:
             tag_not_supported: Votre navigateur ne supporte pas la balise video.
+        audio:
+            tag_not_supported: Votre navigateur ne supporte pas la balise audio.
