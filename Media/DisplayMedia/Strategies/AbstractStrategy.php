@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 
+use Symfony\Component\DependencyInjection\ContainerAware;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -11,7 +12,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Class AbstractStrategy
  */
-abstract class AbstractStrategy implements DisplayMediaInterface
+abstract class AbstractStrategy extends ContainerAware implements DisplayMediaInterface
 {
     protected $router;
     protected $request;
