@@ -32,6 +32,8 @@ class MediaController extends Controller
         $response->headers->set('Content-Type', $mimetype);
         $response->headers->set('Content-Length', strlen($fileContent));
         $response->setContent($fileContent);
+        $response->setPublic();
+        $response->setMaxAge(2629743);
 
         return $response;
     }
