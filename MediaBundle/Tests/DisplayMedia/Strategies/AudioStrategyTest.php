@@ -24,7 +24,7 @@ class AudioStrategyTest extends AbstractStrategyTest
 
         Phake::when($this->container)->get('templating')->thenReturn($this->templating);
 
-        $this->strategy = new AudioStrategy($this->requestStack, '');
+        $this->strategy = new AudioStrategy($this->requestStack);
         $this->strategy->setContainer($this->container);
         $this->strategy->setRouter($this->router);
     }
