@@ -11,6 +11,8 @@ use OpenOrchestra\Media\Model\MediaInterface;
  */
 class AudioStrategyTest extends AbstractStrategyTest
 {
+    protected $templating;
+
     /**
      * Set up the test
      */
