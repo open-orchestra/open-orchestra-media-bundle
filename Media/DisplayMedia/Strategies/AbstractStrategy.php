@@ -58,8 +58,14 @@ abstract class AbstractStrategy extends ContainerAware implements DisplayMediaIn
      */
     public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
     {
-        return '<img class="tinymce-media" src="' . $this->getFileUrl($media->getThumbnail()) . '" alt="'
-            . $media->getAlt($this->request->getLocale()) . '" data-id="' . $media->getId() . '" />';
+        return $this->container->get('templating')->render(
+            'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:thumbnail.html.twig',
+            array(
+                'media_url' => $this->getFileUrl($media->getThumbnail()),
+                'media_alt' => $media->getAlt($this->request->getLocale()),
+                'media_id' => $media->getId()
+            )
+        );
     }
 
     /**

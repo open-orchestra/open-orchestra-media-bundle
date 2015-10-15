@@ -17,6 +17,7 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
     protected $requestStack;
     protected $locale = 'en';
     protected $pathToFile = 'pathToFile';
+    protected $templating;
 
     /**
      * Set up the test
@@ -29,8 +30,10 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->requestStack)->getMasterRequest()->thenReturn($this->request);
         $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
         $this->router = Phake::mock('Symfony\Component\Routing\Router');
+        $this->templating = Phake::mock('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface');
 
         $this->container = Phake::mock('Symfony\Component\DependencyInjection\ContainerInterface');
+        Phake::when($this->container)->get('templating')->thenReturn($this->templating);
     }
 
     /**
@@ -59,17 +62,21 @@ abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testDisplayMediaForWysiwyg($image, $url, $alt, $id = null, $format = null)
     {
-        Phake::when($this->media)->getName()->thenReturn($image);
         Phake::when($this->media)->getThumbnail()->thenReturn($image);
         Phake::when($this->media)->getAlt(Phake::anyParameters())->thenReturn($alt);
-        Phake::when($this->media)->getId(Phake::anyParameters())->thenReturn($image);
+        Phake::when($this->media)->getId(Phake::anyParameters())->thenReturn($id);
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
-        $format = 'preview';
 
-        $html = '<img class="tinymce-media" src="' . $url . '" alt="'
-            . $alt . '" data-id="' . $image . '" />';
+        $this->strategy->displayMediaForWysiwyg($this->media, $format);
 
-        $this->assertSame($html, $this->strategy->displayMediaForWysiwyg($this->media, $format));
+        Phake::verify($this->templating)->render(
+            'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:thumbnail.html.twig',
+            array(
+                'media_url' => $url,
+                'media_alt' => $alt,
+                'media_id' => $id,
+            )
+        );
     }
 
     /**

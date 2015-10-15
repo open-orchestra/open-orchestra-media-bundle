@@ -29,7 +29,13 @@ class PdfStrategy extends AbstractStrategy
      */
     public function displayMedia(MediaInterface $media, $format = '')
     {
-        return '<a href="' . $this->getFileUrl($media->getFilesystemName()) . '" target="_blank">' . $media->getName() . '</a>';
+        return $this->container->get('templating')->render(
+            'OpenOrchestraMediaBundle:BBcode/FullDisplay:pdf.html.twig',
+            array(
+                'media_url' => $this->getFileUrl($media->getFilesystemName()),
+                'media_name' => $media->getName()
+            )
+        );
     }
 
     /**
