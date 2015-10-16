@@ -58,7 +58,7 @@ abstract class AbstractStrategy extends ContainerAware implements DisplayMediaIn
      */
     public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
     {
-        return $this->container->get('templating')->render(
+        return $this->render(
             'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:thumbnail.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getThumbnail()),
@@ -66,6 +66,19 @@ abstract class AbstractStrategy extends ContainerAware implements DisplayMediaIn
                 'media_id' => $media->getId()
             )
         );
+    }
+
+    /**
+     * Render the $template with $params
+     * 
+     * @param string $template
+     * @param array  $params
+     * 
+     * @return string
+     */
+    protected function render($template, $params)
+    {
+        return $this->container->get('templating')->render($template, $params);
     }
 
     /**

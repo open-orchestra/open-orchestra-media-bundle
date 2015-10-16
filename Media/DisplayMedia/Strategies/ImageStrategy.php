@@ -27,7 +27,7 @@ class ImageStrategy extends AbstractStrategy
      */
     public function displayMedia(MediaInterface $media, $format = '')
     {
-        return $this->container->get('templating')->render(
+        return $this->render(
             'OpenOrchestraMediaBundle:BBcode/FullDisplay:image.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getFilesystemName(), $format),
@@ -46,7 +46,7 @@ class ImageStrategy extends AbstractStrategy
      */
     public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
     {
-        return $this->container->get('templating')->render(
+        return $this->render(
             'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:image.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getFilesystemName(), $format),

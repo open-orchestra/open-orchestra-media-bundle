@@ -29,7 +29,7 @@ class AudioStrategy extends AbstractStrategy
      */
     public function displayMedia(MediaInterface $media, $format = '')
     {
-        return $this->container->get('templating')->render(
+        return $this->render(
             'OpenOrchestraMediaBundle:BBcode/FullDisplay:audio.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getFilesystemName()),
@@ -48,7 +48,7 @@ class AudioStrategy extends AbstractStrategy
      */
     public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
     {
-        return $this->container->get('templating')->render(
+        return $this->render(
             'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:audio.html.twig',
             array('media_id' => $media->getId())
         );

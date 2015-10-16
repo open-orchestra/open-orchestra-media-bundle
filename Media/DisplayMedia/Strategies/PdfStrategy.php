@@ -29,7 +29,7 @@ class PdfStrategy extends AbstractStrategy
      */
     public function displayMedia(MediaInterface $media, $format = '')
     {
-        return $this->container->get('templating')->render(
+        return $this->render(
             'OpenOrchestraMediaBundle:BBcode/FullDisplay:pdf.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getFilesystemName()),
