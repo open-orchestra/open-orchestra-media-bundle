@@ -1,0 +1,8 @@
+open_orchestra_media_model:
+    document:
+        media:
+            class: FakeClassMedia
+            repository: FakeRepositoryMedia
+        media_folder:
+            class: FakeClassMediaFolder
+            repository: FakeRepositoryMediaFolder
