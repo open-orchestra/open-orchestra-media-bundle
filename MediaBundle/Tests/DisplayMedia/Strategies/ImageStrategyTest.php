@@ -19,6 +19,7 @@ class ImageStrategyTest extends AbstractStrategyTest
         parent::setUp();
 
         $this->strategy = new ImageStrategy($this->requestStack, '');
+        $this->strategy->setContainer($this->container);
         $this->strategy->setRouter($this->router);
     }
 
@@ -33,9 +34,19 @@ class ImageStrategyTest extends AbstractStrategyTest
     {
         parent::testDisplayMedia($image, $url, $alt);
 
-        $html = '<img src="' . $url .'" alt="' . $alt .'" />';
+        Phake::when($this->media)->getFilesystemName()->thenReturn($image);
+        Phake::when($this->media)->getAlt(Phake::anyParameters())->thenReturn($alt);
+        $format = 'preview';
 
-        $this->assertSame($html, $this->strategy->displayMedia($this->media));
+        $this->strategy->displayMedia($this->media);
+
+        Phake::verify($this->templating)->render(
+            'OpenOrchestraMediaBundle:BBcode/FullDisplay:image.html.twig',
+            array(
+                'media_url' => $url,
+                'media_alt' => $alt
+            )
+        );
     }
 
     /**
@@ -50,17 +61,6 @@ class ImageStrategyTest extends AbstractStrategyTest
     }
 
     /**
-     * @return array
-     */
-    public function displayImageForWysiwyg()
-    {
-        return array(
-            array('test1.jpg', '//' . $this->pathToFile . '/' . 'test1.jpg', 'test1', 'id1', 'original'),
-            array('test2.png', '//' . $this->pathToFile . '/' . 'test2.png', 'test2', 'id2', 'rectangle'),
-        );
-    }
-
-    /**
      * @param string $image
      * @param string $url
      * @param string $alt
@@ -71,15 +71,33 @@ class ImageStrategyTest extends AbstractStrategyTest
      */
     public function testDisplayMediaForWysiwyg($image, $url, $alt, $id = null, $format = null)
     {
-        Phake::when($this->media)->getName()->thenReturn($image);
-        Phake::when($this->media)->getThumbnail()->thenReturn($image);
+        Phake::when($this->media)->getId()->thenReturn($id);
+        Phake::when($this->media)->getFilesystemName()->thenReturn($image);
         Phake::when($this->media)->getAlt(Phake::anyParameters())->thenReturn($alt);
-        Phake::when($this->media)->getId(Phake::anyParameters())->thenReturn($id);
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->pathToFile . '/' . $image);
 
-        $html = '<img class="tinymce-media" src="' . $url .'" alt="' . $alt .'" data-id="' . $id . '" data-format="' . $format . '" />';
+        $this->strategy->displayMediaForWysiwyg($this->media, $format);
 
-        $this->assertSame($html, $this->strategy->displayMediaForWysiwyg($this->media, $format));
+        Phake::verify($this->templating)->render(
+            'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:image.html.twig',
+            array(
+                'media_url' => $url,
+                'media_alt' => $alt,
+                'media_id' => $id,
+                'media_format' => $format
+            )
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function displayImageForWysiwyg()
+    {
+        return array(
+            array('test1.jpg', '//' . $this->pathToFile . '/' . 'test1.jpg', 'test1', 'id1', 'original'),
+            array('test2.png', '//' . $this->pathToFile . '/' . 'test2.png', 'test2', 'id2', 'rectangle'),
+        );
     }
 
     /**

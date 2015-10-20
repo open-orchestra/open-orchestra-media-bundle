@@ -24,6 +24,7 @@ class VideoStrategyTest extends AbstractStrategyTest
         $this->translator = Phake::mock('Symfony\Component\Translation\TranslatorInterface');
         Phake::when($this->translator)->trans(Phake::anyParameters())->thenReturn($this->translation);
         $this->strategy = new VideoStrategy($this->requestStack, '', $this->translator);
+        $this->strategy->setContainer($this->container);
         $this->strategy->setRouter($this->router);
     }
 
@@ -38,14 +39,17 @@ class VideoStrategyTest extends AbstractStrategyTest
     {
         $mimeType = 'Mime Type';
         parent::testDisplayMedia($image, $url, $alt);
-        Phake::when($this->media)->getMimeType()->thenReturn($mimeType);
+        Phake::when($this->media)->getMimeType(Phake::anyParameters())->thenReturn($mimeType);
 
-        $html = '<video width="320" height="240" controls>'
-            . '<source src="' . $url . '" type="' . $mimeType . '">'
-            . $this->translation
-            . '</video>';
+        $this->strategy->displayMedia($this->media);
 
-        $this->assertSame($html, $this->strategy->displayMedia($this->media));
+        Phake::verify($this->templating)->render(
+            'OpenOrchestraMediaBundle:BBcode/FullDisplay:video.html.twig',
+            array(
+                'media_url' => $url,
+                'media_type' => $mimeType
+            )
+        );
     }
 
     /**

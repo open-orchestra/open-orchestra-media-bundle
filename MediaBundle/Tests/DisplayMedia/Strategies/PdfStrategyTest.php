@@ -19,6 +19,7 @@ class PdfStrategyTest extends AbstractStrategyTest
         parent::setUp();
 
         $this->strategy = new PdfStrategy($this->requestStack, '');
+        $this->strategy->setContainer($this->container);
         $this->strategy->setRouter($this->router);
     }
 
@@ -33,9 +34,17 @@ class PdfStrategyTest extends AbstractStrategyTest
     {
         parent::testDisplayMedia($image, $url, $alt);
 
-        $html = '<a href="' . $url . '" target="_blank">' . $image . '</a>';
+        Phake::when($this->media)->getName()->thenReturn($image);
 
-        $this->assertSame($html, $this->strategy->displayMedia($this->media));
+        $this->strategy->displayMedia($this->media);
+
+        Phake::verify($this->templating)->render(
+            'OpenOrchestraMediaBundle:BBcode/FullDisplay:pdf.html.twig',
+            array(
+                'media_url' => $url,
+                'media_name' => $image
+            )
+        );
     }
 
     /**

@@ -11,18 +11,12 @@ use OpenOrchestra\Media\Model\MediaInterface;
  */
 class AudioStrategyTest extends AbstractStrategyTest
 {
-    protected $templating;
-
     /**
      * Set up the test
      */
     public function setUp()
     {
         parent::setUp();
-
-        $this->templating = Phake::mock('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface');
-
-        Phake::when($this->container)->get('templating')->thenReturn($this->templating);
 
         $this->strategy = new AudioStrategy($this->requestStack);
         $this->strategy->setContainer($this->container);
@@ -45,7 +39,7 @@ class AudioStrategyTest extends AbstractStrategyTest
         $this->strategy->displayMedia($this->media);
 
         Phake::verify($this->templating)->render(
-            'OpenOrchestraMediaBundle:BBcode:front_audio.html.twig',
+            'OpenOrchestraMediaBundle:BBcode/FullDisplay:audio.html.twig',
             array(
                 'media_url' => $url,
                 'media_type' => $mimeType
@@ -81,7 +75,7 @@ class AudioStrategyTest extends AbstractStrategyTest
         $this->strategy->displayMediaForWysiwyg($this->media);
 
         Phake::verify($this->templating)->render(
-            'OpenOrchestraMediaBundle:BBcode:wysiwyg_audio.html.twig',
+            'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:audio.html.twig',
             array('media_id' => $image)
         );
     }
