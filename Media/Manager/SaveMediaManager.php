@@ -27,16 +27,6 @@ class SaveMediaManager implements SaveMediaManagerInterface
     }
 
     /**
-     * @param MediaInterface[] $medias
-     */
-    public function saveMultipleMedia(array $medias)
-    {
-        foreach ($medias as $media) {
-            $this->saveMedia($media);
-        }
-    }
-
-    /**
      * @param MediaInterface $media
      */
     public function saveMedia(MediaInterface $media)
@@ -50,16 +40,6 @@ class SaveMediaManager implements SaveMediaManagerInterface
             $media->setFilesystemName($fileName);
             $media->setMimeType($file->getClientMimeType());
             $this->thumbnailManager->generateThumbnailName($media);
-        }
-    }
-
-    /**
-     * @param MediaInterface[] $medias
-     */
-    public function uploadMultipleMedia(array $medias)
-    {
-        foreach ($medias as $media) {
-            $this->uploadMedia($media);
         }
     }
 
