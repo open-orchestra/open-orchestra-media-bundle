@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class MediaRepositoryTest
+ *
+ * @group integrationTest
  */
 class MediaRepositoryTest extends KernelTestCase
 {

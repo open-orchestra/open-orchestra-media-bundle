@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class FolderRepositoryTest
+ *
+ * @group integrationTest
  */
 class FolderRepositoryTest extends KernelTestCase
 {
