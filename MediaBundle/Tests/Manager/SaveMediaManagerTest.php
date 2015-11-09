@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Tests\EventListener;
+namespace OpenOrchestra\MediaBundle\Tests\Manager;
 
 use Phake;
 use OpenOrchestra\Media\Manager\SaveMediaManager;
@@ -31,23 +31,6 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
         $this->thumbnailManager = Phake::mock('OpenOrchestra\Media\Thumbnail\ThumbnailManager');
 
         $this->mediaManager = new SaveMediaManager($this->tmpDir, $this->thumbnailManager, $this->uploadedMediaManager);
-    }
-
-    /**
-     * Test save mutliple media
-     */
-    public function testSaveMultipleMedia()
-    {
-        $medias = array(
-            $this->createMockMedia('media1', 'jpg', 'mediaId1'),
-            $this->createMockMedia('media2', 'txt', 'mediaId2')
-        );
-        $this->mediaManager->saveMultipleMedia($medias);
-
-        foreach ($medias as $media)
-        {
-            $this->assertSaveMedia($media);
-        }
     }
 
     /**
@@ -107,21 +90,6 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param array $medias
-     *
-     * @dataProvider provideMedias
-     */
-    public function testUploadMultipleMedia($medias)
-    {
-        $this->mediaManager->uploadMultipleMedia($medias);
-
-        foreach ($medias as $media) {
-            $fileName = $media->getFilesystemName();
-            $this->assertUploadMedia($media, $fileName);
-        }
-    }
-
-    /**
      * @return array
      */
     public function provideMedias()
@@ -143,7 +111,6 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
     protected function assertUploadMedia($media, $fileName)
     {
         $file = $media->getFile();
-        Phake::verify($file)->move($this->tmpDir, $fileName);
         $tmpFilePath = $this->tmpDir . '/' . $fileName;
         Phake::verify($this->uploadedMediaManager)->uploadContent($fileName, file_get_contents($tmpFilePath));
         Phake::verify($this->thumbnailManager)->generateThumbnail($media);
@@ -157,7 +124,6 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
         $fileName = $media->getFile()->getClientOriginalName();
         $fileExtension = $media->getFile()->guessClientExtension();
 
-        Phake::verify($media)->setFilesystemName(Phake::anyParameters());
         $this->assertRegExp('/'.$fileName .'.'. $fileExtension.'/', $media->getFilesystemName());
         Phake::verify($media)->setName($fileName);
         Phake::verify($media)->setMimeType($fileExtension);
