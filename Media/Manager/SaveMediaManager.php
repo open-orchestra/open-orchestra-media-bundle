@@ -33,11 +33,6 @@ class SaveMediaManager implements SaveMediaManagerInterface
     {
         if (null !== ($file = $media->getFile())) {
             $media->setName($file->getClientOriginalName());
-            $fileName = sha1(uniqid(mt_rand(), true))
-                . pathinfo($this->tmpDir . '/' . $file->getClientOriginalName(), PATHINFO_FILENAME)
-                . '.'
-                . $file->guessClientExtension();
-            $media->setFilesystemName($fileName);
             $media->setMimeType($file->getClientMimeType());
             $this->thumbnailManager->generateThumbnailName($media);
         }
@@ -50,7 +45,6 @@ class SaveMediaManager implements SaveMediaManagerInterface
     {
          if (null !== ($file = $media->getFile())) {
              $fileName = $media->getFilesystemName();
-             $file->move($this->tmpDir, $fileName);
              $tmpFilePath = $this->tmpDir . '/' . $fileName;
              $this->uploadedMediaManager->uploadContent($fileName, file_get_contents($tmpFilePath));
              $this->thumbnailManager->generateThumbnail($media);
