@@ -48,7 +48,7 @@ class SaveMediaManager implements SaveMediaManagerInterface
      */
     public function uploadMedia(MediaInterface $media)
     {
-         if (null !== ($file = $media->getFile())) {
+         if (null !== $media->getFile()) {
              $fileName = $media->getFilesystemName();
              $tmpFilePath = $this->tmpDir . '/' . $fileName;
              $this->uploadedMediaManager->uploadContent($fileName, file_get_contents($tmpFilePath));

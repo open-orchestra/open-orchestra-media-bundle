@@ -4,7 +4,6 @@ namespace OpenOrchestra\MediaModelBundle\Manager;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use OpenOrchestra\Media\Repository\FolderRepositoryInterface;
-use OpenOrchestra\Media\Model\MediaFolderInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
 
 /**
