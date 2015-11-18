@@ -2,8 +2,10 @@
 
 namespace OpenOrchestra\Media\Manager;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Thumbnail\ThumbnailManager;
+use Flow\Basic as FlowBasic;
 
 /**
  * Class SaveMediaManager
@@ -19,21 +21,14 @@ class SaveMediaManager implements SaveMediaManagerInterface
      * @param ThumbnailManager     $thumbnailManager
      * @param UploadedMediaManager $uploadedMediaManager
      */
-    public function __construct($tmpDir, ThumbnailManager $thumbnailManager, UploadedMediaManager $uploadedMediaManager)
-    {
+    public function __construct(
+        $tmpDir,
+        ThumbnailManager $thumbnailManager,
+        UploadedMediaManager $uploadedMediaManager
+    ) {
         $this->tmpDir = $tmpDir;
         $this->thumbnailManager = $thumbnailManager;
         $this->uploadedMediaManager = $uploadedMediaManager;
-    }
-
-    /**
-     * @param MediaInterface[] $medias
-     */
-    public function saveMultipleMedia(array $medias)
-    {
-        foreach ($medias as $media) {
-            $this->saveMedia($media);
-        }
     }
 
     /**
@@ -43,23 +38,8 @@ class SaveMediaManager implements SaveMediaManagerInterface
     {
         if (null !== ($file = $media->getFile())) {
             $media->setName($file->getClientOriginalName());
-            $fileName = sha1(uniqid(mt_rand(), true))
-                . pathinfo($this->tmpDir . '/' . $file->getClientOriginalName(), PATHINFO_FILENAME)
-                . '.'
-                . $file->guessClientExtension();
-            $media->setFilesystemName($fileName);
             $media->setMimeType($file->getClientMimeType());
             $this->thumbnailManager->generateThumbnailName($media);
-        }
-    }
-
-    /**
-     * @param MediaInterface[] $medias
-     */
-    public function uploadMultipleMedia(array $medias)
-    {
-        foreach ($medias as $media) {
-            $this->uploadMedia($media);
         }
     }
 
@@ -68,13 +48,33 @@ class SaveMediaManager implements SaveMediaManagerInterface
      */
     public function uploadMedia(MediaInterface $media)
     {
-         if (null !== ($file = $media->getFile())) {
+         if (null !== $media->getFile()) {
              $fileName = $media->getFilesystemName();
-             $file->move($this->tmpDir, $fileName);
              $tmpFilePath = $this->tmpDir . '/' . $fileName;
              $this->uploadedMediaManager->uploadContent($fileName, file_get_contents($tmpFilePath));
              $this->thumbnailManager->generateThumbnail($media);
          }
     }
 
+    /**
+     * Check if all chunks of a file being uploaded have been received
+     * If yes, return the name of the reassembled temporary file
+     * 
+     * @param UploadedFile $uploadedFile
+     * 
+     * @return string|null
+     */
+    public function getFilenameFromChunks(UploadedFile $uploadedFile)
+    {
+        $filename = sha1(uniqid(mt_rand(), true))
+            . pathinfo(
+                $this->tmpDir . '/' . $uploadedFile->getClientOriginalName(), PATHINFO_FILENAME
+            ) . '.' . $uploadedFile->guessClientExtension();
+
+        if (FlowBasic::save($this->tmpDir . '/' . $filename, $this->tmpDir)) {
+            return $filename;
+        }
+
+        return null;
+    }
 }

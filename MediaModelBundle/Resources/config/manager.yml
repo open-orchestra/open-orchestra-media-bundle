@@ -1,0 +1,10 @@
+parameters:
+    open_orchestra_media.manager.media.class: OpenOrchestra\MediaModelBundle\Manager\MediaManager
+
+services:
+    open_orchestra_media.manager.media:
+        class: %open_orchestra_media.manager.media.class%
+        arguments:
+            - @object_manager
+            - @open_orchestra_media.repository.media_folder
+            - %open_orchestra_media.document.media.class%

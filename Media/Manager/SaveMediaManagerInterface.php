@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\Media\Manager;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
@@ -10,22 +11,19 @@ use OpenOrchestra\Media\Model\MediaInterface;
 interface SaveMediaManagerInterface
 {
     /**
-     * @param MediaInterface[] $medias
-     */
-    public function saveMultipleMedia(array $medias);
-
-    /**
      * @param MediaInterface $media
      */
     public function saveMedia(MediaInterface $media);
 
     /**
-     * @param MediaInterface[] $medias
-     */
-    public function uploadMultipleMedia(array $medias);
-
-    /**
      * @param MediaInterface $media
      */
     public function uploadMedia(MediaInterface $media);
+
+    /**
+     * @param UploadedFile $uploadedFile
+     * 
+     * @return string|null
+     */
+    public function getFilenameFromChunks(UploadedFile $uploadedFile);
 }
