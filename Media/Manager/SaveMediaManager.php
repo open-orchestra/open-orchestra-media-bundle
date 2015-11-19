@@ -15,20 +15,24 @@ class SaveMediaManager implements SaveMediaManagerInterface
     protected $tmpDir;
     protected $thumbnailManager;
     protected $uploadedMediaManager;
+    protected $allowedMimeTypes;
 
     /**
      * @param string               $tmpDir
      * @param ThumbnailManager     $thumbnailManager
      * @param UploadedMediaManager $uploadedMediaManager
+     * @param array                $allowedMimeTypes
      */
     public function __construct(
         $tmpDir,
         ThumbnailManager $thumbnailManager,
-        UploadedMediaManager $uploadedMediaManager
-    ) {
+        UploadedMediaManager $uploadedMediaManager,
+        $allowedMimeTypes
+    ){
         $this->tmpDir = $tmpDir;
         $this->thumbnailManager = $thumbnailManager;
         $this->uploadedMediaManager = $uploadedMediaManager;
+        $this->allowedMimeTypes = $allowedMimeTypes;
     }
 
     /**
@@ -76,5 +80,20 @@ class SaveMediaManager implements SaveMediaManagerInterface
         }
 
         return null;
+    }
+
+    /**
+     * Return true if the file is allowed to be uploaded based on its mime type
+     * 
+     * @param $filename
+     * 
+     * @return bool
+     */
+    public function isFileAllowed($filename)
+    {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $fileMimeType = finfo_file($finfo, $this->tmpDir . '/' . $filename);
+
+        return in_array($fileMimeType, $this->allowedMimeTypes);
     }
 }
