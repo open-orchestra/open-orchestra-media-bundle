@@ -3,7 +3,7 @@ parameters:
     open_orchestra_media.bbcode.definition.media_without_format.class: OpenOrchestra\MediaBundle\BBcode\MediaWithoutFormatCodeDefinition
     open_orchestra_media.bbcode.code_definitions.class: OpenOrchestra\MediaBundle\BBcode\MediaBundleBBcodeCollection
     open_orchestra_media.imagick.factory.class: OpenOrchestra\Media\Imagick\OrchestraImagickFactory
-    open_orchestra_media.ffmpeg_movie.factory.class: OpenOrchestra\Media\FFmpegMovie\FFmpegMovieFactory
+    open_orchestra_media.ffmpeg_movie.frame.class: OpenOrchestra\Media\FFmpegMovie\FFmpegMovieFrame
 
 services:
     open_orchestra_media.bbcode.definition.media:
@@ -27,5 +27,5 @@ services:
             - { name: open_orchestra_bbcode.code_definitions }
     open_orchestra_media.imagick.factory:
         class: %open_orchestra_media.imagick.factory.class%
-    open_orchestra_media.ffmpeg_movie.factory:
-        class: %open_orchestra_media.ffmpeg_movie.factory.class%
+    open_orchestra_media.ffmpeg_movie.frame:
+        class: %open_orchestra_media.ffmpeg_movie.frame.class%

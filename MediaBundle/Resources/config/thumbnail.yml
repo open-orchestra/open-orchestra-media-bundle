@@ -20,7 +20,7 @@ services:
         arguments:
             - %open_orchestra_media.tmp_dir%
             - %media.directory%
-            - @open_orchestra_media.ffmpeg_movie.factory
+            - @open_orchestra_media.ffmpeg_movie.frame
         tags:
             - { name: open_orchestra_media.thumbnail.strategy }
     open_orchestra_media.thumbnail.image_to_thumbnail:
