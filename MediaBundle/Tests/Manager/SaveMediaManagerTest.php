@@ -18,6 +18,7 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
     protected $tmpDir;
     protected $thumbnailManager;
     protected $uploadedMediaManager;
+    protected $allowedMimeTypes = array('mimeType1', 'image/jpeg');
 
     /**
      * Set up the test
@@ -25,12 +26,15 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->tmpDir = __DIR__.'/images';
-
         $this->uploadedMediaManager = Phake::mock('OpenOrchestra\Media\Manager\UploadedMediaManager');
-
         $this->thumbnailManager = Phake::mock('OpenOrchestra\Media\Thumbnail\ThumbnailManager');
 
-        $this->mediaManager = new SaveMediaManager($this->tmpDir, $this->thumbnailManager, $this->uploadedMediaManager);
+        $this->mediaManager = new SaveMediaManager(
+            $this->tmpDir,
+            $this->thumbnailManager,
+            $this->uploadedMediaManager,
+            $this->allowedMimeTypes
+        );
     }
 
     /**
@@ -101,6 +105,28 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
                     $this->createMockMedia('rectangle-reference', 'jpg', 'mediaId2'),
                 ),
             )
+        );
+    }
+
+    /**
+     * @param string $filename
+     * @param bool   $expectedStatus
+     *
+     * @dataProvider provideFileType
+     */
+    public function testIsFileAllowed($filename, $expectedStatus)
+    {
+        $this->assertSame($expectedStatus, $this->mediaManager->isFileAllowed($filename));
+    }
+
+    /**
+     * @return array
+     */
+    public function provideFileType()
+    {
+        return array(
+            array('What-are-you-talking-about.jpg', true),
+            array('hecommon.mp3', false)
         );
     }
 
