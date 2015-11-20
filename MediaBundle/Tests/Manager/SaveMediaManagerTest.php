@@ -114,7 +114,8 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideFileType
      */
-    public function testIsFileAllowed($filename, $expectedStatus) {
+    public function testIsFileAllowed($filename, $expectedStatus)
+    {
         $this->assertSame($expectedStatus, $this->mediaManager->isFileAllowed($filename));
     }
 

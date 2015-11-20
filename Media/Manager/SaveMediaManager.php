@@ -27,7 +27,7 @@ class SaveMediaManager implements SaveMediaManagerInterface
         $tmpDir,
         ThumbnailManager $thumbnailManager,
         UploadedMediaManager $uploadedMediaManager,
-        $allowedMimeTypes
+        array $allowedMimeTypes
     ){
         $this->tmpDir = $tmpDir;
         $this->thumbnailManager = $thumbnailManager;
