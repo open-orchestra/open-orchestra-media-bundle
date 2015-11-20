@@ -1,23 +1,23 @@
 <?php
 
-namespace OpenOrchestra\Media\FFmpegMovie;
+namespace OpenOrchestra\Media\Video;
 
 use FFMpeg\FFMpeg;
 use FFMpeg\Coordinate\TimeCode;
 
 /**
- * Class FFmpegMovieFrame
+ * Class FFmpegVideoManager
  */
-class FFmpegMovieFrame implements FFmpegMovieFrameInterface
+class FFmpegVideoManager implements VideoManagerInterface
 {
     protected $ffmpeg;
 
     /**
-     * FFmpegMovieFrame constructor.
+     * @param FFMpeg $FFmpeg
      */
-    public function __construct()
+    public function __construct(FFMpeg $FFmpeg)
     {
-        $this->ffmpeg = FFMpeg::create();
+        $this->ffmpeg = $FFmpeg;
     }
 
     /**

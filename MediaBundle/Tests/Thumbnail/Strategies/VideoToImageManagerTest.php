@@ -12,7 +12,7 @@ use Phake;
 class VideoToImageManagerTest extends AbstractStrategyTest
 {
     protected $video;
-    protected $ffmpegFrame;
+    protected $videoManager;
 
     /**
      * Set up the test
@@ -21,8 +21,8 @@ class VideoToImageManagerTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->ffmpegFrame = Phake::mock('OpenOrchestra\Media\FFmpegMovie\FFmpegMovieFrameInterface');
-        $this->manager = new VideoToImageManager($this->tmpDir, $this->tmpDir, $this->ffmpegFrame);
+        $this->videoManager = Phake::mock('OpenOrchestra\Media\Video\VideoManagerInterface');
+        $this->manager = new VideoToImageManager($this->tmpDir, $this->tmpDir, $this->videoManager);
     }
 
     /**
@@ -68,7 +68,7 @@ class VideoToImageManagerTest extends AbstractStrategyTest
 
         $path = $this->tmpDir .'/'. $fileName . '.' . $fileExtension;
         $pathFrame = $this->tmpDir .'/'. $fileName. '.jpg';
-        Phake::verify($this->ffmpegFrame)->createFrame($path, $pathFrame, 1);
+        Phake::verify($this->videoManager)->createFrame($path, $pathFrame, 1);
     }
 
     /**

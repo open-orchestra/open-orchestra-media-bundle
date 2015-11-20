@@ -2,9 +2,9 @@
 
 namespace OpenOrchestra\Media\Thumbnail\Strategies;
 
-use OpenOrchestra\Media\FFmpegMovie\FFmpegMovieFrameInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
+use OpenOrchestra\Media\Video\VideoManagerInterface;
 
 /**
  * Class VideoToImageManager
@@ -15,18 +15,18 @@ class VideoToImageManager implements ThumbnailInterface
 
     protected $tmpDir;
     protected $mediaDirectory;
-    protected $ffmpegMovieFrame;
+    protected $videoManager;
 
     /**
-     * @param string                    $tmpDir
-     * @param string                    $mediaDirectory;
-     * @param FFmpegMovieFrameInterface $ffmpegMovieFrame;
+     * @param string                $tmpDir
+     * @param string                $mediaDirectory;
+     * @param VideoManagerInterface $videoManager;
      */
-    public function __construct($tmpDir, $mediaDirectory, FFmpegMovieFrameInterface $ffmpegMovieFrame)
+    public function __construct($tmpDir, $mediaDirectory, VideoManagerInterface $videoManager)
     {
         $this->tmpDir = $tmpDir;
         $this->mediaDirectory = $mediaDirectory;
-        $this->ffmpegMovieFrame = $ffmpegMovieFrame;
+        $this->videoManager = $videoManager;
     }
 
     /**
@@ -62,7 +62,7 @@ class VideoToImageManager implements ThumbnailInterface
     {
         $path = $this->tmpDir . '/' . $media->getFilesystemName();
         $pathFrame = $this->mediaDirectory . '/' . $media->getThumbnail();
-        $this->ffmpegMovieFrame->createFrame($path, $pathFrame, 1);
+        $this->videoManager->createFrame($path, $pathFrame, 1);
 
         return $media;
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace OpenOrchestra\Media\FFmpegMovie;
+namespace OpenOrchestra\Media\Video;
 
 /**
- * Interface FFmpegMovieFrameInterface
+ * Interface VideoManagerInterface
  */
-interface FFmpegMovieFrameInterface
+interface VideoManagerInterface
 {
     /**
      * @param string $pathVideo
