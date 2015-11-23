@@ -41,6 +41,7 @@ class OpenOrchestraMediaExtension extends Extension
         $loader->load('thumbnail.yml');
         $loader->load('subscriber.yml');
         $loader->load('manager.yml');
+        $loader->load('mime_type.yml');
 
         if (array_key_exists("OpenOrchestraDisplayBundle", $container->getParameter('kernel.bundles'))) {
             $this->updateBlockParameter($container);

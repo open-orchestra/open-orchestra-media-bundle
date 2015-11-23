@@ -29,4 +29,4 @@ services:
             - %open_orchestra_media.tmp_dir%
             - @open_orchestra_media.thumbnail_manager
             - @open_orchestra_media.manager.uploaded_media
-            - %open_orchestra_media_admin.allowed_mime_type%
+            - %open_orchestra_media.allowed_mime_type%

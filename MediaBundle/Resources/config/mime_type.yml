@@ -1,0 +1,14 @@
+parameters:
+    open_orchestra_media.allowed_mime_type:
+        - image/jpeg
+        - image/png
+        - image/gif
+        - audio/mpeg
+        - video/mpeg
+        - video/mp4
+        - video/quicktime
+        - video/x-ms-wmv
+        - video/x-msvideo
+        - video/x-flv
+        - video/webm
+        - application/pdf

@@ -4,6 +4,7 @@ namespace OpenOrchestra\MediaBundle;
 
 use OpenOrchestra\MediaBundle\DependencyInjection\CompilerPass\DisplayMediaCompilerPass;
 use OpenOrchestra\MediaBundle\DependencyInjection\CompilerPass\ThumbnailCompilerPass;
+use OpenOrchestra\MediaBundle\DependencyInjection\CompilerPass\TwigGlobalsCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -21,5 +22,6 @@ class OpenOrchestraMediaBundle extends Bundle
 
         $container->addCompilerPass(new ThumbnailCompilerPass());
         $container->addCompilerPass(new DisplayMediaCompilerPass());
+        $container->addCompilerPass(new TwigGlobalsCompilerPass());
     }
 }
