@@ -2,11 +2,9 @@
 
 namespace OpenOrchestra\Media\Thumbnail\Strategies;
 
-use OpenOrchestra\Media\FFmpegMovie\FFmpegMovieFactoryInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Thumbnail\ThumbnailInterface;
-use InvalidArgumentException;
-use UnexpectedValueException;
+use OpenOrchestra\Media\Video\VideoManagerInterface;
 
 /**
  * Class VideoToImageManager
@@ -17,18 +15,18 @@ class VideoToImageManager implements ThumbnailInterface
 
     protected $tmpDir;
     protected $mediaDirectory;
-    protected $ffmpegMovieFactory;
+    protected $videoManager;
 
     /**
-     * @param string                               $tmpDir
-     * @param string                               $mediaDirectory;
-     * @param FFmpegMovieFactoryInterface $ffmpegMovieFactory;
+     * @param string                $tmpDir
+     * @param string                $mediaDirectory;
+     * @param VideoManagerInterface $videoManager;
      */
-    public function __construct($tmpDir, $mediaDirectory, FFmpegMovieFactoryInterface $ffmpegMovieFactory)
+    public function __construct($tmpDir, $mediaDirectory, VideoManagerInterface $videoManager)
     {
         $this->tmpDir = $tmpDir;
         $this->mediaDirectory = $mediaDirectory;
-        $this->ffmpegMovieFactory = $ffmpegMovieFactory;
+        $this->videoManager = $videoManager;
     }
 
     /**
@@ -63,34 +61,8 @@ class VideoToImageManager implements ThumbnailInterface
     public function generateThumbnail(MediaInterface $media)
     {
         $path = $this->tmpDir . '/' . $media->getFilesystemName();
-        $video = $this->ffmpegMovieFactory->create($path, false);
-
-        return $this->getFirstFrame($video, $media);
-    }
-
-    /**
-     * @param mixed          $video
-     * @param MediaInterface $media
-     *
-     * @return MediaInterface
-     */
-    protected function getFirstFrame($video, MediaInterface $media)
-    {
-        if (!method_exists($video, 'getFrame')) {
-            throw new InvalidArgumentException("Argument must have a method getFrame");
-        }
-
-        $frame = $video->getFrame(1);
-        if (!method_exists($frame, 'toGDImage')) {
-            throw new UnexpectedValueException("The object must gave a method toDGImage");
-        }
-
-        $image = $frame->toGDImage();
-        if (gettype($image) !== 'resource') {
-            throw new UnexpectedValueException("The object is not a ressource");
-        }
-
-        imagejpeg($image, $this->mediaDirectory . '/' . $media->getThumbnail());
+        $pathFrame = $this->mediaDirectory . '/' . $media->getThumbnail();
+        $this->videoManager->createFrame($path, $pathFrame, 1);
 
         return $media;
     }

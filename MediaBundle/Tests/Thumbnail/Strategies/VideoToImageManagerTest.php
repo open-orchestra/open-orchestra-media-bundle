@@ -12,8 +12,7 @@ use Phake;
 class VideoToImageManagerTest extends AbstractStrategyTest
 {
     protected $video;
-    protected $imageFrame;
-    protected $ffmpegFactory;
+    protected $videoManager;
 
     /**
      * Set up the test
@@ -22,14 +21,8 @@ class VideoToImageManagerTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->ffmpegFactory = Phake::mock('OpenOrchestra\Media\FFmpegMovie\FFmpegMovieFactoryInterface');
-        $this->video = Phake::mock('OpenOrchestra\MediaBundle\Tests\Thumbnail\Strategies\phakeFFmpegMovie');
-        $this->imageFrame = Phake::mock('OpenOrchestra\MediaBundle\Tests\Thumbnail\Strategies\phakeFFmpegFrame');
-        Phake::when($this->ffmpegFactory)->create(Phake::anyParameters())->thenReturn($this->video);
-        Phake::when($this->video)->getFrame(Phake::anyParameters())->thenReturn($this->imageFrame);
-        Phake::when($this->imageFrame)->toGDImage()->thenReturn(imagecreatetruecolor(100,100));
-
-        $this->manager = new VideoToImageManager($this->tmpDir, $this->tmpDir, $this->ffmpegFactory);
+        $this->videoManager = Phake::mock('OpenOrchestra\Media\Video\VideoManagerInterface');
+        $this->manager = new VideoToImageManager($this->tmpDir, $this->tmpDir, $this->videoManager);
     }
 
     /**
@@ -68,22 +61,14 @@ class VideoToImageManagerTest extends AbstractStrategyTest
      */
     public function testGenerateThumbnail($fileName, $fileExtension)
     {
-        if (file_exists($this->tmpDir .'/'. $fileName .'.jpg')) {
-            unlink($this->tmpDir .'/'. $fileName .'.jpg');
-        }
-        $this->assertFalse(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
-
         Phake::when($this->media)->getFilesystemName()->thenReturn($fileName. '.' . $fileExtension);
         Phake::when($this->media)->getThumbnail()->thenReturn($fileName. '.jpg');
 
         $this->manager->generateThumbnail($this->media);
 
-        Phake::verify($this->ffmpegFactory)->create(Phake::anyParameters());
-        Phake::verify($this->video)->getFrame(1);
-        Phake::verify($this->imageFrame)->toGDImage();
-
-        $this->assertTrue(file_exists($this->tmpDir .'/'. $fileName .'.jpg'));
-        unlink($this->tmpDir .'/'. $fileName .'.jpg');
+        $path = $this->tmpDir .'/'. $fileName . '.' . $fileExtension;
+        $pathFrame = $this->tmpDir .'/'. $fileName. '.jpg';
+        Phake::verify($this->videoManager)->createFrame($path, $pathFrame, 1);
     }
 
     /**
@@ -104,15 +89,4 @@ class VideoToImageManagerTest extends AbstractStrategyTest
     {
         $this->assertSame('video_to_image', $this->manager->getName());
     }
-}
-
-
-interface phakeFFmpegMovie
-{
-    public function getFrame($int);
-}
-
-interface phakeFFmpegFrame
-{
-    public function toGDImage();
 }
