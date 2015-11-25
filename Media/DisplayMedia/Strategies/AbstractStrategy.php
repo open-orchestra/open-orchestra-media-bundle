@@ -82,7 +82,7 @@ abstract class AbstractStrategy extends ContainerAware implements DisplayMediaIn
     }
 
     /**
-     * Return url to a file stored with gaufrette
+     * Return url to a file stored with the UploadedFileManager
      * 
      * @param string $filename
      * @param string $format

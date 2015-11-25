@@ -5,6 +5,7 @@ namespace OpenOrchestra\Media\Manager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Thumbnail\ThumbnailManager;
+use OpenOrchestra\MediaFileBundle\Manager\UploadedMediaManager;
 use Flow\Basic as FlowBasic;
 
 /**

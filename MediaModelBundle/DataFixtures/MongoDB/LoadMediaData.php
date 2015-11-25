@@ -107,7 +107,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
     protected function copyFile(MediaInterface $media)
     {
         $file = './vendor/open-orchestra/open-orchestra-media-bundle/MediaModelBundle/DataFixtures/Images/' . $media->getFilesystemName();
-        $uploadedMediaManager = $this->container->get('open_orchestra_media.manager.uploaded_media');
+        $uploadedMediaManager = $this->container->get('open_orchestra_media_file.manager.uploaded_media');
         $imageResizerManager = $this->container->get('open_orchestra_media.manager.image_resizer');
 
         $uploadedMediaManager->uploadContent($media->getFilesystemName(), fopen($file, 'r'));

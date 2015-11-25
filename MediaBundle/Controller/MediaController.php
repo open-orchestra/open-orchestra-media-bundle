@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 class MediaController extends Controller
 {
     /**
-     * Send a media stored via gaufrette
+     * Send a media stored via the UploadedFileManager
      *
      * @Config\Route("/{key}", name="open_orchestra_media_get")
      * @Config\Method({"GET"})
@@ -21,7 +21,7 @@ class MediaController extends Controller
      */
     public function getAction($key)
     {
-        $uploadedMediaManager = $this->get('open_orchestra_media.manager.uploaded_media');
+        $uploadedMediaManager = $this->get('open_orchestra_media_file.manager.uploaded_media');
         $fileContent = $uploadedMediaManager->getFileContent($key);
 
         $finfo = finfo_open(FILEINFO_MIME);

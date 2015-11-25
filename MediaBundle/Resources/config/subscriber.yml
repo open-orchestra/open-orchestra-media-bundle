@@ -13,13 +13,13 @@ services:
     open_orchestra_media.subscriber.upload_image:
         class: %open_orchestra_media.subscriber.upload_image.class%
         arguments:
-            - @open_orchestra_media.manager.uploaded_media
+            - @open_orchestra_media_file.manager.uploaded_media
         tags:
              - { name: kernel.event_subscriber }
     open_orchestra_media.subscriber.delete_media:
         class: %open_orchestra_media.subscriber.delete_media.class%
         arguments:
-            - @open_orchestra_media.manager.uploaded_media
+            - @open_orchestra_media_file.manager.uploaded_media
             - %open_orchestra_media.thumbnail.configuration%
         tags:
             - { name: kernel.event_subscriber }

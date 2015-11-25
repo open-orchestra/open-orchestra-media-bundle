@@ -26,7 +26,7 @@ class SaveMediaManagerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->tmpDir = __DIR__.'/images';
-        $this->uploadedMediaManager = Phake::mock('OpenOrchestra\Media\Manager\UploadedMediaManager');
+        $this->uploadedMediaManager = Phake::mock('OpenOrchestra\MediaFileBundle\Manager\UploadedMediaManager');
         $this->thumbnailManager = Phake::mock('OpenOrchestra\Media\Thumbnail\ThumbnailManager');
 
         $this->mediaManager = new SaveMediaManager(
