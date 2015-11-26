@@ -3,7 +3,7 @@
 namespace OpenOrchestra\Media\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
-use OpenOrchestra\Media\Manager\SaveMediaManagerInterface;
+use OpenOrchestra\MediaAdminBundle\Manager\SaveMediaManagerInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
