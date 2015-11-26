@@ -38,7 +38,6 @@ class OpenOrchestraMediaExtension extends Extension
         $loader->load('service.yml');
         $loader->load('display.yml');
         $loader->load('twig.yml');
-        $loader->load('subscriber.yml');
         $loader->load('manager.yml');
         $loader->load('mime_type.yml');
 
