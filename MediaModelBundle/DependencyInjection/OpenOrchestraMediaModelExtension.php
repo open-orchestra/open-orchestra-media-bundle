@@ -32,9 +32,5 @@ class OpenOrchestraMediaModelExtension extends Extension
                 $container->setDefinition('open_orchestra_media.repository.' . $class, $definition);
             }
         }
-
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('listener.yml');
-        $loader->load('manager.yml');
     }
 }
