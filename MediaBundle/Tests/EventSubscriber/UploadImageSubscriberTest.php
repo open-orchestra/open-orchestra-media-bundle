@@ -20,7 +20,7 @@ class UploadImageSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->uploadedMediaManager = Phake::mock('OpenOrchestra\Media\Manager\UploadedMediaManager');
+        $this->uploadedMediaManager = Phake::mock('OpenOrchestra\MediaFileBundle\Manager\UploadedMediaManager');
 
         $this->subscriber = new UploadImageSubscriber($this->uploadedMediaManager);
 

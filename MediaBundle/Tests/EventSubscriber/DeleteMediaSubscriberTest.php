@@ -29,7 +29,7 @@ class DeleteMediaSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->event = Phake::mock('OpenOrchestra\Media\Event\MediaEvent');
         Phake::when($this->event)->getMedia()->thenReturn($this->media);
 
-        $this->uploadedMediaManager = Phake::mock('OpenOrchestra\Media\Manager\UploadedMediaManager');
+        $this->uploadedMediaManager = Phake::mock('OpenOrchestra\MediaFileBundle\Manager\UploadedMediaManager');
         $this->subscriber = new DeleteMediaSubscriber($this->uploadedMediaManager, $this->formats);
     }
 

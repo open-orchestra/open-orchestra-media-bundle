@@ -3,7 +3,7 @@
 namespace OpenOrchestra\Media\EventSubscriber;
 
 use OpenOrchestra\Media\Event\MediaEvent;
-use OpenOrchestra\Media\Manager\UploadedMediaManager;
+use OpenOrchestra\MediaFileBundle\Manager\UploadedMediaManager;
 use OpenOrchestra\Media\MediaEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
