@@ -10,7 +10,6 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "ext-imagick": "*",
         "open-orchestra/open-orchestra-model-interface": "*",
         "open-orchestra/open-orchestra-display-bundle": "*",
         "open-orchestra/open-orchestra-bbcode-bundle": "*",

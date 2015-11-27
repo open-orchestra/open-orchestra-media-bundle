@@ -2,7 +2,6 @@ parameters:
     open_orchestra_media.bbcode.definition.media.class: OpenOrchestra\MediaBundle\BBcode\MediaCodeDefinition
     open_orchestra_media.bbcode.definition.media_without_format.class: OpenOrchestra\MediaBundle\BBcode\MediaWithoutFormatCodeDefinition
     open_orchestra_media.bbcode.code_definitions.class: OpenOrchestra\MediaBundle\BBcode\MediaBundleBBcodeCollection
-    open_orchestra_media.imagick.factory.class: OpenOrchestra\Media\Imagick\OrchestraImagickFactory
 
 services:
     open_orchestra_media.bbcode.definition.media:
@@ -24,5 +23,3 @@ services:
             - @open_orchestra_media.bbcode.definition.media_without_format
         tags:
             - { name: open_orchestra_bbcode.code_definitions }
-    open_orchestra_media.imagick.factory:
-        class: %open_orchestra_media.imagick.factory.class%
