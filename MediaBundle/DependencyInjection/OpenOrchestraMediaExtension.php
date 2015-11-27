@@ -38,7 +38,6 @@ class OpenOrchestraMediaExtension extends Extension
         $loader->load('bbcode.yml');
         $loader->load('display.yml');
         $loader->load('twig.yml');
-        $loader->load('mime_type.yml');
 
         if (array_key_exists("OpenOrchestraDisplayBundle", $container->getParameter('kernel.bundles'))) {
             $this->updateBlockParameter($container);
