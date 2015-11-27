@@ -122,7 +122,7 @@ class LoadMediaData
 
         $uploadedMediaManager->uploadContent($media->getFilesystemName(), fopen($file, 'r'));
 
-        copy($file, $this->container->getParameter('open_orchestra_media.tmp_dir') . '/'
+        copy($file, $this->container->getParameter('open_orchestra_media_admin.tmp_dir') . '/'
             . $media->getFilesystemName());
 
         $imageResizerManager->generateAllThumbnails($media);;
