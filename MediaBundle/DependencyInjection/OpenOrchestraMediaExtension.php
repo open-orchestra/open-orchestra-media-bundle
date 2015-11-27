@@ -27,21 +27,12 @@ class OpenOrchestraMediaExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('open_orchestra_media.media_domain', $config['media_domain']);
-        $container->setParameter('open_orchestra_media.tmp_dir', $config['tmp_dir']);
         $container->setParameter('open_orchestra_media.filesystem', $config['filesystem']);
-        $thumbnail = $config['thumbnail'];
-        $thumbnail["media_thumbnail"] = array('max_width' => '117', 'max_height' => '117');
-        $container->setParameter('open_orchestra_media.thumbnail.configuration', $thumbnail);
-        $container->setParameter('open_orchestra_media.resize.compression_quality', $config['compression_quality']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('service.yml');
+        $loader->load('bbcode.yml');
         $loader->load('display.yml');
         $loader->load('twig.yml');
-        $loader->load('thumbnail.yml');
-        $loader->load('subscriber.yml');
-        $loader->load('manager.yml');
-        $loader->load('mime_type.yml');
 
         if (array_key_exists("OpenOrchestraDisplayBundle", $container->getParameter('kernel.bundles'))) {
             $this->updateBlockParameter($container);

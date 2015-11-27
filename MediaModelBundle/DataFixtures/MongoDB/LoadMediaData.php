@@ -16,7 +16,9 @@ use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterfa
 /**
  * Class LoadMediaData
  */
-class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface, OrchestraFunctionalFixturesInterface
+class LoadMediaData
+    extends AbstractFixture
+    implements OrderedFixtureInterface, ContainerAwareInterface, OrchestraFunctionalFixturesInterface
 {
     /**
      * @var ContainerInterface
@@ -80,7 +82,14 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
      * 
      * @return Media
      */
-    protected function generateImage($filename, $name, $mimeType, $folderRefence, $keywordReferencesArray, $languagesArray) {
+    protected function generateImage(
+        $filename,
+        $name,
+        $mimeType,
+        $folderRefence,
+        $keywordReferencesArray,
+        $languagesArray
+    ) {
         $image = new Media();
         $image->setName($name);
         $image->setFilesystemName($filename);
@@ -106,13 +115,15 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, 
      */
     protected function copyFile(MediaInterface $media)
     {
-        $file = './vendor/open-orchestra/open-orchestra-media-bundle/MediaModelBundle/DataFixtures/Images/' . $media->getFilesystemName();
+        $file = './vendor/open-orchestra/open-orchestra-media-bundle/MediaModelBundle/DataFixtures/Images/'
+            . $media->getFilesystemName();
         $uploadedMediaManager = $this->container->get('open_orchestra_media_file.manager.uploaded_media');
-        $imageResizerManager = $this->container->get('open_orchestra_media.manager.image_resizer');
+        $imageResizerManager = $this->container->get('open_orchestra_media_admin.manager.image_resizer');
 
         $uploadedMediaManager->uploadContent($media->getFilesystemName(), fopen($file, 'r'));
 
-        copy($file, $this->container->getParameter('open_orchestra_media.tmp_dir') . '/'. $media->getFilesystemName());
+        copy($file, $this->container->getParameter('open_orchestra_media_admin.tmp_dir') . '/'
+            . $media->getFilesystemName());
 
         $imageResizerManager->generateAllThumbnails($media);;
     }

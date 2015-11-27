@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\DependencyInjection;
+namespace OpenOrchestra\MediaBundle\DependencyInjection;
 
 use OpenOrchestra\MediaBundle\DependencyInjection\OpenOrchestraMediaExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -15,22 +15,16 @@ class OpenOrchestraMediaExtensionTest extends \PHPUnit_Framework_TestCase
     /**
      * @param string $file
      * @param string $domain
-     * @param string $tmp
      * @param string $fileSystem
-     * @param int    $compression
-     * @param array  $thumbnail
      *
      * @dataProvider provideConfig
      */
-    public function testConfig($file, $domain, $tmp, $fileSystem, $compression, $thumbnail)
+    public function testConfig($file, $domain, $fileSystem)
     {
         $container = $this->loadContainerFromFile($file);
-        $this->assertEquals($domain, $container->getParameter('open_orchestra_media.media_domain'));
-        $this->assertEquals($tmp, $container->getParameter('open_orchestra_media.tmp_dir'));
-        $this->assertEquals($fileSystem, $container->getParameter('open_orchestra_media.filesystem'));
-        $this->assertEquals($compression, $container->getParameter('open_orchestra_media.resize.compression_quality'));
-        $this->assertEquals($thumbnail, $container->getParameter('open_orchestra_media.thumbnail.configuration'));
 
+        $this->assertEquals($domain, $container->getParameter('open_orchestra_media.media_domain'));
+        $this->assertEquals($fileSystem, $container->getParameter('open_orchestra_media.filesystem'));
     }
 
     /**
@@ -39,20 +33,8 @@ class OpenOrchestraMediaExtensionTest extends \PHPUnit_Framework_TestCase
     public function provideConfig()
     {
         return array(
-            array("empty", '', '/tmp', 'media_storage', 75,
-                array(
-                "max_height" => array("max_height" => 100),
-                "max_width" => array("max_width" => 100),
-                "rectangle" => array("max_width" => 100, "max_height" => 70),
-                "media_thumbnail" => array("max_width" => 117, "max_height" => 117),
-            )),
-            array("value", 'fake_media_domain', 'fake_tmp', 'fake_media_system', 10000,
-                array(
-                "max_height" => array("max_height" => 5000),
-                "max_width" => array("max_width" => 5000),
-                "rectangle" => array("max_width" => 5000, "max_height" => 5000),
-                "media_thumbnail" => array("max_width" => 117, "max_height" => 117),
-            ))
+            array('empty', '', 'media_storage'),
+            array('value', 'fake_media_domain', 'fake_media_system')
         );
     }
 
