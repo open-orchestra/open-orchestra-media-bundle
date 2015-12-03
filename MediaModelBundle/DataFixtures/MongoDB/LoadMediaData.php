@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\MediaModelBundle\DataFixtures\MongoDB;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -18,7 +19,7 @@ use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterfa
  */
 class LoadMediaData
     extends AbstractFixture
-    implements OrderedFixtureInterface, ContainerAwareInterface, OrchestraFunctionalFixturesInterface
+    implements ContainerAwareInterface, OrderedFixtureInterface, OrchestraFunctionalFixturesInterface
 {
     /**
      * @var ContainerInterface
@@ -38,94 +39,78 @@ class LoadMediaData
      */
     public function load(ObjectManager $manager)
     {
-        $logoOrchestra = $this->generateImage(
+        $logoOrchestra = $this->generateMedia(
             'logo-orchestra.png',
-            'logo Open-Orchestra',
-            'image/png',
             'mediaFolder-rootImages',
+            'logo Open-Orchestra',
             array('keyword-lorem'),
             array(
                 'en' => array('alt' => 'logo', 'title' => 'logo image'),
                 'fr' => array('alt' => 'thème', 'title' => 'thème./ image')
             )
         );
-        $manager->persist($logoOrchestra);
         $this->addReference('logo-orchestra', $logoOrchestra);
 
         for ($i = 1; $i < 5; $i++) {
-            $image0{$i} = $this->generateImage(
+            $this->generateMedia(
                 '0' . $i . '.jpg',
-                'Image 0' . $i,
-                'image/jpg',
                 'mediaFolder-rootImages',
+                'Image 0' . $i,
                 array('keyword-lorem', 'keyword-dolor'),
                 array(
                     'en' => array('alt' => 'image 0' . $i, 'title' => 'image 0' . $i),
                     'fr' => array('alt' => 'image 0' . $i, 'title' => 'image 0' . $i)
                 )
             );
-            $manager->persist($image0{$i});
         }
 
-        $manager->flush();
+        // Launch manually the method as there is no KernelEvents::TERMINATE fired in fixture mode
+        $this->container->get('open_orchestra_media_admin.subscriber.media_file_modified')->generateAlternatives();
     }
 
     /**
-     * Generate a Media (image format)
+     * Generate a media
      * 
-     * @param string $filename
+     * @param string $fileName
+     * @param string $folderReference
      * @param string $name
-     * @param string $mimeType
-     * @param string $folderRefence
-     * @param string $keywordReferencesArray
-     * @param string $languagesArray
-     * 
-     * @return Media
+     * @param array $keywordReferencesArray
+     * @param array $languagesArray
      */
-    protected function generateImage(
-        $filename,
+    protected function generateMedia(
+        $fileName,
+        $folderReference,
         $name,
-        $mimeType,
-        $folderRefence,
-        $keywordReferencesArray,
-        $languagesArray
+        array $keywordReferencesArray,
+        array $languagesArray
     ) {
-        $image = new Media();
-        $image->setName($name);
-        $image->setFilesystemName($filename);
-        $image->setThumbnail($filename);
-        $image->setMimeType($mimeType);
-        $image->setMediaFolder($this->getReference($folderRefence));
+        $folderId = $this->getReference($folderReference)->getId();
+        $filePath = './vendor/open-orchestra/open-orchestra-media-bundle/MediaModelBundle/DataFixtures/Images/'
+            . $fileName;
+        $tmpFilePath = $this->container->getParameter('open_orchestra_media_admin.tmp_dir')
+            . DIRECTORY_SEPARATOR . $fileName;
+
+        copy($filePath, $tmpFilePath);
+
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mimeType = finfo_file($finfo, $tmpFilePath);
+        finfo_close($finfo);
+
+        $uploadedFile = new UploadedFile($tmpFilePath, $fileName, $mimeType);
+
+        $saveMediaManager = $this->container->get('open_orchestra_media_admin.manager.save_media');
+        $media = $saveMediaManager->createMediaFromUploadedFile($uploadedFile, $fileName, $folderId);
+
+        $media->setName($name);
         foreach ($keywordReferencesArray as $keywordReference) {
-            $image->addKeyword(EmbedKeyword::createFromKeyword($this->getReference($keywordReference)));
+            $media->addKeyword(EmbedKeyword::createFromKeyword($this->getReference($keywordReference)));
         }
         foreach ($languagesArray as $language => $labels) {
-            $image->addAlt($this->generatedValue($language, $labels['alt']));
-            $image->addTitle($this->generatedValue($language, $labels['title']));
+            $media->addAlt($this->generatedValue($language, $labels['alt']));
+            $media->addTitle($this->generatedValue($language, $labels['title']));
         }
-        $this->copyFile($image);
 
-        return $image;
-    }
-
-    /**
-     * Copy the file physically and generate the thumbnails
-     * 
-     * @param MediaInterface $media
-     */
-    protected function copyFile(MediaInterface $media)
-    {
-        $file = './vendor/open-orchestra/open-orchestra-media-bundle/MediaModelBundle/DataFixtures/Images/'
-            . $media->getFilesystemName();
-        $uploadedMediaManager = $this->container->get('open_orchestra_media_file.manager.uploaded_media');
-        $imageResizerManager = $this->container->get('open_orchestra_media_admin.manager.image_resizer');
-
-        $uploadedMediaManager->uploadContent($media->getFilesystemName(), fopen($file, 'r'));
-
-        copy($file, $this->container->getParameter('open_orchestra_media_admin.tmp_dir') . '/'
-            . $media->getFilesystemName());
-
-        $imageResizerManager->generateAllThumbnails($media);;
+        return $media;
     }
 
     /**
