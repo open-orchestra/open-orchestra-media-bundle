@@ -65,7 +65,7 @@ class LoadMediaData
         }
 
         // Launch manually the method as there is no KernelEvents::TERMINATE fired in fixture mode
-        $this->container->get('open_orchestra_media_admin.subscriber.media_file_modified')->generateAlternatives();
+        $this->container->get('open_orchestra_media_admin.subscriber.create_media')->generateAlternatives();
     }
 
     /**
