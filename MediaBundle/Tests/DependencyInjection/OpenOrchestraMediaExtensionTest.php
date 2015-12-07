@@ -15,16 +15,14 @@ class OpenOrchestraMediaExtensionTest extends \PHPUnit_Framework_TestCase
     /**
      * @param string $file
      * @param string $domain
-     * @param string $fileSystem
      *
      * @dataProvider provideConfig
      */
-    public function testConfig($file, $domain, $fileSystem)
+    public function testConfig($file, $domain)
     {
         $container = $this->loadContainerFromFile($file);
 
         $this->assertEquals($domain, $container->getParameter('open_orchestra_media.media_domain'));
-        $this->assertEquals($fileSystem, $container->getParameter('open_orchestra_media.filesystem'));
     }
 
     /**
@@ -33,8 +31,8 @@ class OpenOrchestraMediaExtensionTest extends \PHPUnit_Framework_TestCase
     public function provideConfig()
     {
         return array(
-            array('empty', '', 'media_storage'),
-            array('value', 'fake_media_domain', 'fake_media_system')
+            array('empty', ''),
+            array('value', 'fake_media_domain')
         );
     }
 
