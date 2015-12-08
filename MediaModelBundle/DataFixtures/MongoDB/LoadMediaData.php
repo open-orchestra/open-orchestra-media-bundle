@@ -85,8 +85,7 @@ class LoadMediaData
         array $languagesArray
     ) {
         $folderId = $this->getReference($folderReference)->getId();
-        $filePath = './vendor/open-orchestra/open-orchestra-media-bundle/MediaModelBundle/DataFixtures/Images/'
-            . $fileName;
+        $filePath = __DIR__ . '/../Images/' . $fileName;
         $tmpFilePath = $this->container->getParameter('open_orchestra_media_admin.tmp_dir')
             . DIRECTORY_SEPARATOR . $fileName;
 
