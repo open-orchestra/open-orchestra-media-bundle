@@ -22,7 +22,6 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->children()
             ->scalarNode('media_domain')->defaultValue('')->end()
-            ->scalarNode('filesystem')->defaultValue('media_storage')->end()
         ->end();
 
         return $treeBuilder;

@@ -1,3 +1,2 @@
 open_orchestra_media:
     media_domain: fake_media_domain
-    filesystem: fake_media_system
