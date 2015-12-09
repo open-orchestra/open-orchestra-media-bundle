@@ -14,7 +14,6 @@
         "open-orchestra/open-orchestra-display-bundle": "*",
         "open-orchestra/open-orchestra-bbcode-bundle": "*",
         "open-orchestra/open-orchestra-mongo-libs": "*",
-        "open-orchestra/open-orchestra-media-file-bundle": "*",
         "doctrine/data-fixtures":"1.1.1",
         "doctrine/mongodb-odm": "1.0.2",
         "doctrine/mongodb-odm-bundle" : "3.0.1",
