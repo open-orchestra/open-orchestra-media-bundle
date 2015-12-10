@@ -3,7 +3,7 @@
 namespace OpenOrchestra\MediaBundle\Tests\BBcode;
 
 use Phake;
-use OpenOrchestra\MediaBundle\BBcode\MediaBundleBBcodeCollection;
+use OpenOrchestra\Media\BBcode\MediaBundleBBcodeCollection;
 
 /**
  * Class MediaBundleBBcodeDefinitionTest
@@ -20,8 +20,8 @@ class MediaBundleBBcodeDefinitionTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->mediaDefinition = Phake::mock('OpenOrchestra\MediaBundle\BBcode\MediaCodeDefinition');
-        $this->mediaWithoutFormatDefinition = Phake::mock('OpenOrchestra\MediaBundle\BBcode\MediaWithoutFormatCodeDefinition');
+        $this->mediaDefinition = Phake::mock('OpenOrchestra\Media\BBcode\MediaCodeDefinition');
+        $this->mediaWithoutFormatDefinition = Phake::mock('OpenOrchestra\Media\BBcode\MediaWithoutFormatCodeDefinition');
         $this->definitionCollection = new MediaBundleBBcodeCollection($this->mediaDefinition, $this->mediaWithoutFormatDefinition);
     }
 

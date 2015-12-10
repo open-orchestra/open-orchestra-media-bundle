@@ -1,10 +1,10 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\BBcode;
+namespace OpenOrchestra\Media\BBcode;
 
 use OpenOrchestra\BBcodeBundle\Definition\BBcodeDefinitionCollectionInterface;
-use OpenOrchestra\MediaBundle\BBcode\MediaCodeDefinition;
-use OpenOrchestra\MediaBundle\BBcode\MediaWithoutFormatCodeDefinition;
+use OpenOrchestra\Media\BBcode\MediaCodeDefinition;
+use OpenOrchestra\Media\BBcode\MediaWithoutFormatCodeDefinition;
 
 /**
  * Class MediaBundleBBcodeCollection

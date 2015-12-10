@@ -1,6 +1,6 @@
 <?php 
 
-namespace OpenOrchestra\MediaBundle\BBcode;
+namespace OpenOrchestra\Media\BBcode;
 
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use OpenOrchestra\BBcodeBundle\Definition\BBcodeDefinition;
