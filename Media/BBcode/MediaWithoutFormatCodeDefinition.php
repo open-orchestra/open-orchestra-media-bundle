@@ -1,8 +1,8 @@
 <?php 
 
-namespace OpenOrchestra\MediaBundle\BBcode;
+namespace OpenOrchestra\Media\BBcode;
 
-use OpenOrchestra\MediaBundle\BBcode\AbstractMediaCodeDefinition;
+use OpenOrchestra\Media\BBcode\AbstractMediaCodeDefinition;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 

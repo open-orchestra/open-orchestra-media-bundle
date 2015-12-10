@@ -3,7 +3,7 @@
 namespace OpenOrchestra\MediaBundle\Tests\BBcode;
 
 use Phake;
-use OpenOrchestra\MediaBundle\BBcode\MediaCodeDefinition;
+use OpenOrchestra\Media\BBcode\MediaCodeDefinition;
 use OpenOrchestra\MediaBundle\Tests\BBcode\AbstractMediaCodeDefinitionTest;
 
 /**
