@@ -346,6 +346,20 @@ class Media implements MediaInterface
     }
 
     /**
+     * @param $formatName
+     *
+     * @return string|null
+     */
+    public function getAlternative($formatName)
+    {
+        if (isset($this->alternatives[$formatName])) {
+            return $this->alternatives[$formatName];
+        }
+
+        return null;
+    }
+
+    /**
      * @return bool
      */
     public function isDeletable()
