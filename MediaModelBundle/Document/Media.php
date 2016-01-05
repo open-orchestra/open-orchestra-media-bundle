@@ -332,10 +332,8 @@ class Media implements MediaInterface
      */
     public function removeAlternative($formatName)
     {
-        foreach ($this->alternatives as $key) {
-            if ($key === $formatName) {
-                unset($this->alternatives[$key]);
-            }
+        if (isset($this->alternatives[$formatName])) {
+            unset($this->alternatives[$formatName]);
         }
     }
 
