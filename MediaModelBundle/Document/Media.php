@@ -104,6 +104,11 @@ class Media implements MediaInterface
     protected $usageReference = array();
 
     /**
+     * @ODM\Field(type="hash")
+     */
+    protected $alternatives = array();
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -311,6 +316,35 @@ class Media implements MediaInterface
     public function getUsageReference()
     {
         return $this->usageReference;
+    }
+
+    /**
+     * @param string $formatName
+     * @param string $alternativeName
+     */
+    public function addAlternative($formatName, $alternativeName)
+    {
+        $this->alternatives[$formatName] = $alternativeName;
+    }
+
+    /**
+     * @param string $formatName
+     */
+    public function removeAlternative($formatName)
+    {
+        foreach ($this->alternatives as $key) {
+            if ($key === $formatName) {
+                unset($this->alternatives[$key]);
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function getAlternatives()
+    {
+        return $this->alternatives;
     }
 
     /**

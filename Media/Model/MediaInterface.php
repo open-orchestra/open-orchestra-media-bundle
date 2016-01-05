@@ -143,6 +143,22 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface, Key
     public function getUsageReference();
 
     /**
+     * @param string $formatName
+     * @param string $alternativeName
+     */
+    public function addAlternative($formatName, $alternativeName);
+
+    /**
+     * @param string $formatName
+     */
+    public function removeAlternative($formatName);
+
+    /**
+     * @return array
+     */
+    public function getAlternatives();
+
+    /**
      * @return bool
      */
     public function isDeletable();
