@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Tests\DisplayMedia;
+namespace OpenOrchestra\Media\Tests\DisplayMedia;
 
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use Phake;

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Tests\BBcode;
+namespace OpenOrchestra\Media\Tests\BBcode;
 
 use Phake;
 use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode;
