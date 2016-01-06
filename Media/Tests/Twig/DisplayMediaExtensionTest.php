@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Tests\Twig;
+namespace OpenOrchestra\Media\Tests\Twig;
 
 use Phake;
 use OpenOrchestra\Media\Model\MediaInterface;

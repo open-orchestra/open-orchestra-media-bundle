@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Tests\DisplayMedia\Strategies;
+namespace OpenOrchestra\Media\Tests\DisplayMedia\Strategies;
 
 use Phake;
 use OpenOrchestra\Media\DisplayMedia\Strategies\VideoStrategy;

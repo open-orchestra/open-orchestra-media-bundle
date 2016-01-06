@@ -1,10 +1,9 @@
 <?php
 
-namespace OpenOrchestra\MediaBundle\Tests\BBcode;
+namespace OpenOrchestra\Media\Tests\BBcode;
 
 use Phake;
 use OpenOrchestra\Media\BBcode\MediaWithoutFormatCodeDefinition;
-use OpenOrchestra\MediaBundle\Tests\BBcode\AbstractMediaCodeDefinitionTest;
 use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
