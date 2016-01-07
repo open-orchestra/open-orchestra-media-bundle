@@ -2,13 +2,14 @@
 
 namespace OpenOrchestra\MediaModelBundle\Tests\Document;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 use OpenOrchestra\MediaModelBundle\Document\MediaFolder;
 
 /**
  * Class FolderTest
  */
-class FolderTest extends \PHPUnit_Framework_TestCase
+class FolderTest extends AbstractBaseTestCase
 {
     protected $mediaFolder;
     protected $folder1;

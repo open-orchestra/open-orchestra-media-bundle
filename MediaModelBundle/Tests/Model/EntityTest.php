@@ -2,10 +2,12 @@
 
 namespace OpenOrchestra\MediaModelBundle\Tests\Model;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
+
 /**
  * Description of BaseNodeTest
  */
-class EntityTest extends \PHPUnit_Framework_TestCase
+class EntityTest extends AbstractBaseTestCase
 {
     /**
      * @param string $class
