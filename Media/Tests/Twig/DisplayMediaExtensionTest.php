@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\Media\Tests\Twig;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Twig\DisplayMediaExtension;
@@ -9,7 +10,7 @@ use OpenOrchestra\Media\Twig\DisplayMediaExtension;
 /**
  * Class DisplayMediaExtensionTest
  */
-class DisplayMediaExtensionTest extends \PHPUnit_Framework_TestCase
+class DisplayMediaExtensionTest extends AbstractBaseTestCase
 {
     /**
      * @var DisplayMediaExtension

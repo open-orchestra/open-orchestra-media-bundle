@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\Media\Tests\BBcode;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 use OpenOrchestra\Media\BBcode\MediaBundleBBcodeCollection;
 
@@ -9,7 +10,7 @@ use OpenOrchestra\Media\BBcode\MediaBundleBBcodeCollection;
  * Class MediaBundleBBcodeDefinitionTest
  *
  */
-class MediaBundleBBcodeDefinitionTest extends \PHPUnit_Framework_TestCase
+class MediaBundleBBcodeDefinitionTest extends AbstractBaseTestCase
 {
     protected $definitionCollection;
     protected $mediaDefinition;

@@ -2,13 +2,14 @@
 
 namespace OpenOrchestra\Media\Tests\DisplayMedia;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use Phake;
 
 /**
  * Class DisplayMediaManagerTest
  */
-class DisplayMediaManagerTest extends \PHPUnit_Framework_TestCase
+class DisplayMediaManagerTest extends AbstractBaseTestCase
 {
     /**
      * @var DisplayMediaManager

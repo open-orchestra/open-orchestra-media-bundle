@@ -2,7 +2,6 @@
 
 namespace OpenOrchestra\Media\Tests\BBcode;
 
-use Phake;
 use OpenOrchestra\Media\BBcode\MediaWithoutFormatCodeDefinition;
 use OpenOrchestra\Media\Model\MediaInterface;
 

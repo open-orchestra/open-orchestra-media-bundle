@@ -2,12 +2,13 @@
 
 namespace OpenOrchestra\Media\Tests\DisplayMedia\Strategies;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 
 /**
  * Class AbstractStrategyTest
  */
-abstract class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractStrategyTest extends AbstractBaseTestCase
 {
     protected $media;
     protected $router;
