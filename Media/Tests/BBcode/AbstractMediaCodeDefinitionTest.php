@@ -2,13 +2,14 @@
 
 namespace OpenOrchestra\Media\Tests\BBcode;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode;
 
 /**
  * Class MediaCodeDefinitionTest
  */
-abstract class AbstractMediaCodeDefinitionTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractMediaCodeDefinitionTest extends AbstractBaseTestCase
 {
     protected $definition;
     protected $repository;

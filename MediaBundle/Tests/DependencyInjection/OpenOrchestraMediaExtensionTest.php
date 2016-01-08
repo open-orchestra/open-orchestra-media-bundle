@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\MediaBundle\DependencyInjection;
 
-use OpenOrchestra\MediaBundle\DependencyInjection\OpenOrchestraMediaExtension;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 /**
  * Class OpenOrchestraMediaExtensionTest
  */
-class OpenOrchestraMediaExtensionTest extends \PHPUnit_Framework_TestCase
+class OpenOrchestraMediaExtensionTest extends AbstractBaseTestCase
 {
     /**
      * @param string $file

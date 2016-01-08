@@ -4,7 +4,6 @@ namespace OpenOrchestra\Media\Tests\DisplayMedia\Strategies;
 
 use Phake;
 use OpenOrchestra\Media\DisplayMedia\Strategies\AudioStrategy;
-use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class AudioStrategyTest
