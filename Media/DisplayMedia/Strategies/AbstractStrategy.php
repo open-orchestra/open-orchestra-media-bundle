@@ -87,21 +87,15 @@ abstract class AbstractStrategy implements DisplayMediaInterface, ContainerAware
     /**
      * Return url to a file stored with the UploadedFileManager
      * 
-     * @param string $filename
-     * @param string $format
+     * @param string storageKey
      *
-     * @return String
+     * @return string
      */
-    protected function getFileUrl($filename, $format = '')
+    protected function getFileUrl($storageKey)
     {
-        $key = $filename;
-        if ($format != '' && MediaInterface::MEDIA_ORIGINAL != $format) {
-            $key = $format . '-' . $filename;
-        }
-
         return '//' . $this->mediaDomain
             . $this->router->generate('open_orchestra_media_get',
-            array('key' => $key),
+            array('key' => $storageKey),
             UrlGeneratorInterface::ABSOLUTE_PATH
         );
     }

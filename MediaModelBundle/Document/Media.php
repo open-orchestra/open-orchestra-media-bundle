@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
-use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\Media\Model\MediaFolderInterface;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;

@@ -22,7 +22,7 @@ class ImageStrategy extends AbstractStrategy
     /**
      * @param MediaInterface $media
      * @param string         $format
-     * 
+     *
      * @return String
      */
     public function displayMedia(MediaInterface $media, $format = '')
@@ -30,7 +30,7 @@ class ImageStrategy extends AbstractStrategy
         return $this->render(
             'OpenOrchestraMediaBundle:BBcode/FullDisplay:image.html.twig',
             array(
-                'media_url' => $this->getFileUrl($media->getFilesystemName(), $format),
+                'media_url' => $this->getMediaFormatUrl($media, $format),
                 'media_alt' => $media->getAlt($this->request->getLocale())
             )
         );
@@ -41,7 +41,7 @@ class ImageStrategy extends AbstractStrategy
      *
      *  @param MediaInterface $media
      *  @param string         $format
-     *  
+     *
      * @return string
      */
     public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
@@ -49,7 +49,7 @@ class ImageStrategy extends AbstractStrategy
         return $this->render(
             'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:image.html.twig',
             array(
-                'media_url' => $this->getFileUrl($media->getFilesystemName(), $format),
+                'media_url' => $this->getMediaFormatUrl($media, $format),
                 'media_alt' => $media->getAlt($this->request->getLocale()),
                 'media_id' => $media->getId(),
                 'media_format' => $format
@@ -65,7 +65,13 @@ class ImageStrategy extends AbstractStrategy
      */
     public function getMediaFormatUrl(MediaInterface $media, $format)
     {
-        return $this->getFileUrl($media->getFilesystemName(), $format);
+        $key = $media->getFilesystemName();
+
+        if ($format != '' && MediaInterface::MEDIA_ORIGINAL != $format) {
+            $key = $media->getAlternative($format);
+        }
+
+        return $this->getFileUrl($key);
     }
 
     /**
