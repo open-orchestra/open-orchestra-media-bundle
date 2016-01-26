@@ -1,6 +1,9 @@
-<div {% if galleryClass is defined and galleryClass is not empty %}class="{{ galleryClass }}" {% endif %} {% if width is defined and width is not empty %}style="width:{{ width }};"{% endif %}>
-<div {% if id is defined and id is not null %}id="{{ id }}"{% endif %} class="jssor-gallery-container">
-    <!-- Loading Screen -->
+<div
+    {% if galleryClass is defined and galleryClass is not empty %}class="{{ galleryClass }}"{% endif %}
+    {% if width is defined and width is not empty %}style="width:{{ width }};"{% endif %}
+>
+    <div {% if id is defined and id is not null %}id="{{ id }}"{% endif %} class="jssor-gallery-container">
+        <!-- Loading Screen -->
         <div data-u="loading" class="loader_gallery">
             <div class="load1"></div>
             <div class="load2"></div>
@@ -8,25 +11,31 @@
 
         <div data-u="slides" class="jssor-gallery">
             {% for picture in pictures %}
-            <div>
-                <img data-u="image" src="{{ get_media_format_url(picture, imageFormat) }}" title="{{ get_media_title(picture) }}"  alt="{{ get_media_alt(picture) }}" />
-                <img data-u="thumb" src="{{ get_media_format_url(picture, thumbnailFormat) }}" title="{{ get_media_title(picture) }}"  alt="{{ get_media_alt(picture) }}" />
-            </div>
+                {% set mediaInfos = picture|split('-format-') %}
+                {% set picture = mediaInfos|first %}}
+                <div>
+                    <img data-u="image" src="{{ get_media_format_url(picture, imageFormat) }}"
+                        title="{{ get_media_title(picture) }}"  alt="{{ get_media_alt(picture) }}"
+                    />
+                    <img data-u="thumb" src="{{ get_media_format_url(picture, thumbnailFormat) }}"
+                        title="{{ get_media_title(picture) }}"  alt="{{ get_media_alt(picture) }}"
+                    />
+                </div>
             {% endfor %}
         </div>
 
         <span data-u="arrowleft" class="jssora05l" ></span>
         <span data-u="arrowright" class="jssora05r" ></span>
 
-    <div data-u="thumbnavigator" class="jssort01" >
-        <div data-u="slides" style="cursor: default;">
-            <div data-u="prototype" class="p">
-                <div class=w><div data-u="thumbnailtemplate" class="t"></div></div>
-                <div class=c></div>
+        <div data-u="thumbnavigator" class="jssort01" >
+            <div data-u="slides" style="cursor: default;">
+                <div data-u="prototype" class="p">
+                    <div class=w><div data-u="thumbnailtemplate" class="t"></div></div>
+                    <div class=c></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <script>require(['{{ asset('/bundles/openorchestramedia/block/Gallery/blockLoader.js') }}']);</script>
 
