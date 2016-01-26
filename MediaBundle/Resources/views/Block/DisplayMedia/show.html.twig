@@ -1,3 +1,6 @@
+{% set mediaInfos = picture|split('-format-') %}
+{% set picture = mediaInfos|first %}
+{% set format = mediaInfos|last %}
 <div {% if id -%}
         id="{{ id }}"
     {%- endif -%}
@@ -6,9 +9,9 @@
     {%- endif %}>
     {% if linkUrl is not null %}
         <a href="{{ url(linkUrl.id) }}">
-            <img src="{{ get_media_format_url(picture, imageFormat) }}" alt="{{ get_media_alt(picture) }}"/>
+            <img src="{{ get_media_format_url(picture, format) }}" alt="{{ get_media_alt(picture) }}"/>
         </a>
     {% else %}
-        <img src="{{ get_media_format_url(picture, imageFormat) }}" alt="{{ get_media_alt(picture) }}"/>
+        <img src="{{ get_media_format_url(picture, format) }}" alt="{{ get_media_alt(picture) }}"/>
     {% endif %}
 </div>
