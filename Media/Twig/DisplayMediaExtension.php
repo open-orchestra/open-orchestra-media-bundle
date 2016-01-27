@@ -6,7 +6,7 @@ use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use OpenOrchestra\Media\Helper\MediaWithFormatExtractor;
+use OpenOrchestra\Media\Helper\MediaWithFormatExtractorInterface;
 
 /**
  * Class DisplayMediaExtension
@@ -19,16 +19,16 @@ class DisplayMediaExtension extends \Twig_Extension
     protected $mediaWithFormatExtractor;
 
     /**
-     * @param DisplayMediaManager      $displayMediaManager
-     * @param MediaRepositoryInterface $mediaRepository
-     * @param RequestStack             $requestStack
-     * @param MediaWithFormatExtractor $mediaWithFormatExtractor
+     * @param DisplayMediaManager               $displayMediaManager
+     * @param MediaRepositoryInterface          $mediaRepository
+     * @param RequestStack                      $requestStack
+     * @param MediaWithFormatExtractorInterface $mediaWithFormatExtractor
      */
     public function __construct(
         DisplayMediaManager $displayMediaManager,
         MediaRepositoryInterface $mediaRepository,
         RequestStack $requestStack,
-        MediaWithFormatExtractor $mediaWithFormatExtractor
+        MediaWithFormatExtractorInterface $mediaWithFormatExtractor
     ) {
         $this->displayMediaManager = $displayMediaManager;
         $this->mediaRepository = $mediaRepository;

@@ -4,10 +4,8 @@ namespace OpenOrchestra\Media\Helper;
 
 use OpenOrchestra\Media\Model\MediaInterface;
 
-class MediaWithFormatExtractor
+class MediaWithFormatExtractor implements MediaWithFormatExtractorInterface
 {
-    const SEPARATOR = '-format-';
-
     /**
      * Extract media id and media format from stored string
      *
