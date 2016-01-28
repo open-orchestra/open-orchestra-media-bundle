@@ -152,6 +152,20 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
     }
 
     /**
+     * Test getMediaFormatUrlFromString
+     *
+     * @param string $mediaId
+     *
+     * @dataProvider provideMediaId
+     */
+    public function testGetMediaFormatUrlFromString($mediaId)
+    {
+        $this->extension->getMediaFormatUrlFromString($mediaId);
+
+        Phake::verify($this->extractor, Phake::times(1))->extractInformation($mediaId);
+    }
+
+    /**
      * @param $mediaId
      * @param $methodReturn
      * @param $method
@@ -181,6 +195,20 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
         $result = $this->extension->getMediaAlt($mediaId);
 
         $this->assertSame($value, $result);
+    }
+
+    /**
+     * Test getMediaAltFromString
+     *
+     * @param string $mediaId
+     *
+     * @dataProvider provideMediaId
+     */
+    public function testGetMediaAltFromString($mediaId)
+    {
+        $this->extension->getMediaAltFromString($mediaId);
+
+        Phake::verify($this->extractor, Phake::times(1))->extractInformation($mediaId);
     }
 
     /**

@@ -18,7 +18,7 @@ class MediaWithFormatExtractor implements MediaWithFormatExtractorInterface
         $mediaInfo = explode(self::SEPARATOR, $mediaInfo);
 
         $extractedInfo = array('id' => $mediaInfo[0], 'format' => MediaInterface::MEDIA_ORIGINAL);
-        if (isset($mediaInfo[1])) {
+        if (isset($mediaInfo[1]) && $mediaInfo[1] != '') {
             $extractedInfo['format'] = $mediaInfo[1];
         }
 
