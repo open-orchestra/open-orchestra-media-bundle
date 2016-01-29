@@ -12,7 +12,11 @@
             <div data-u="slides" class="slides" style="width:{{ width }}px; height:{{ height }}px;">
                 {% for picture in pictures %}
                     <div>
-                        <img data-u="image" data-src2="{{ get_media_format_url(picture, 'original') }}" alt="{{ get_media_alt(picture) }}"/>
+                        <img
+                            data-u="image"
+                            data-src2="{{ get_media_format_url_from_string(picture) }}"
+                            alt="{{ get_media_alt_from_string(picture) }}"
+                        />
                     </div>
                 {% endfor %}
             </div>

@@ -58,7 +58,6 @@ class DisplayMediaStrategy extends AbstractStrategy
         }
 
         $parameters = array(
-            'imageFormat' => $block->getAttribute('imageFormat'),
             'picture' => $block->getAttribute('picture'),
             'linkUrl' => $linkUrl,
             'id' => $block->getId(),

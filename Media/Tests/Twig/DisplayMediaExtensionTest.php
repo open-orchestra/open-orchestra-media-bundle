@@ -24,6 +24,7 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
     protected $requestStack;
     protected $request;
     protected $language;
+    protected $extractor;
 
     /**
      * Set up the test
@@ -36,8 +37,14 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
         $this->displayMediaManager = Phake::mock('OpenOrchestra\Media\DisplayMedia\DisplayMediaManager');
         $this->mediaRepository = Phake::mock('OpenOrchestra\Media\Repository\MediaRepositoryInterface');
         $this->media = Phake::mock('OpenOrchestra\Media\Model\MediaInterface');
+        $this->extractor = Phake::mock('OpenOrchestra\Media\Helper\MediaWithFormatExtractorInterface');
 
-        $this->extension = new DisplayMediaExtension($this->displayMediaManager, $this->mediaRepository, $this->requestStack);
+        $this->extension = new DisplayMediaExtension(
+            $this->displayMediaManager,
+            $this->mediaRepository,
+            $this->requestStack,
+            $this->extractor
+        );
     }
 
     /**
@@ -53,7 +60,7 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
      */
     public function testFunctions()
     {
-        $this->assertCount(5, $this->extension->getFunctions());
+        $this->assertCount(7, $this->extension->getFunctions());
     }
 
     /**
@@ -145,6 +152,20 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
     }
 
     /**
+     * Test getMediaFormatUrlFromString
+     *
+     * @param string $mediaId
+     *
+     * @dataProvider provideMediaId
+     */
+    public function testGetMediaFormatUrlFromString($mediaId)
+    {
+        $this->extension->getMediaFormatUrlFromString($mediaId);
+
+        Phake::verify($this->extractor, Phake::times(1))->extractInformation($mediaId);
+    }
+
+    /**
      * @param $mediaId
      * @param $methodReturn
      * @param $method
@@ -174,6 +195,20 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
         $result = $this->extension->getMediaAlt($mediaId);
 
         $this->assertSame($value, $result);
+    }
+
+    /**
+     * Test getMediaAltFromString
+     *
+     * @param string $mediaId
+     *
+     * @dataProvider provideMediaId
+     */
+    public function testGetMediaAltFromString($mediaId)
+    {
+        $this->extension->getMediaAltFromString($mediaId);
+
+        Phake::verify($this->extractor, Phake::times(1))->extractInformation($mediaId);
     }
 
     /**
