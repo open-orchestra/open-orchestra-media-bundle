@@ -14,11 +14,11 @@
         "open-orchestra/open-orchestra-display-bundle": "*",
         "open-orchestra/open-orchestra-bbcode-bundle": "*",
         "open-orchestra/open-orchestra-mongo-libs": "*",
-        "doctrine/data-fixtures":"1.1.1",
+        "doctrine/data-fixtures": "1.1.1",
         "stof/doctrine-extensions-bundle": "1.2.1"
     },
     "require-dev": {
-        "open-orchestra/open-orchestra-base-bundle": "dev-master",
+        "open-orchestra/open-orchestra-base-bundle": "*",
         "psr/log": "1.0.0",
         "codeclimate/php-test-reporter": "dev-master",
         "symfony/validator": "2.7.0",
