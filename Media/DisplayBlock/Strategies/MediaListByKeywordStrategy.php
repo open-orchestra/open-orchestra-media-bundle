@@ -14,7 +14,7 @@ use OpenOrchestra\Media\Model\MediaInterface;
  */
 class MediaListByKeywordStrategy extends AbstractStrategy
 {
-    const MEDIA_LIST_BY_KEYWORD = 'media_list_by_keyword';
+    const NAME = 'media_list_by_keyword';
 
     protected $mediaRepository;
     protected $tagManager;
@@ -41,7 +41,7 @@ class MediaListByKeywordStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return self::MEDIA_LIST_BY_KEYWORD == $block->getComponent();
+        return self::NAME == $block->getComponent();
     }
 
     /**

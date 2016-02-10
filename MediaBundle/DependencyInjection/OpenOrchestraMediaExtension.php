@@ -52,10 +52,10 @@ class OpenOrchestraMediaExtension extends Extension
     protected function updateBlockParameter(ContainerBuilder $container)
     {
         $blockType = array(
-            GalleryStrategy::GALLERY,
-            SlideshowStrategy::SLIDESHOW,
-            MediaListByKeywordStrategy::MEDIA_LIST_BY_KEYWORD,
-            DisplayMediaStrategy::DISPLAY_MEDIA,
+            GalleryStrategy::NAME,
+            SlideshowStrategy::NAME,
+            MediaListByKeywordStrategy::NAME,
+            DisplayMediaStrategy::NAME,
         );
 
         $blocksAlreadySet = array();

@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class SlideshowStrategy extends AbstractStrategy
 {
-    const SLIDESHOW = 'slideshow';
+    const NAME = 'slideshow';
 
     protected $tagManager;
 
@@ -34,7 +34,7 @@ class SlideshowStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return self::SLIDESHOW == $block->getComponent();
+        return self::NAME == $block->getComponent();
     }
 
     /**
