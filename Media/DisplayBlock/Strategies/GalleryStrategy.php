@@ -15,7 +15,7 @@ use OpenOrchestra\Media\Model\MediaInterface;
  */
 class GalleryStrategy extends AbstractStrategy
 {
-    const GALLERY = 'gallery';
+    const NAME = 'gallery';
 
     protected $request;
     protected $template;
@@ -42,7 +42,7 @@ class GalleryStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return self::GALLERY == $block->getComponent();
+        return self::NAME == $block->getComponent();
     }
 
     /**

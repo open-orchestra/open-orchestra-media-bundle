@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class DisplayMediaStrategy extends AbstractStrategy
 {
-    const DISPLAY_MEDIA = "display_media";
+    const NAME = "display_media";
 
     protected $nodeRepository;
     protected $template;
@@ -36,7 +36,7 @@ class DisplayMediaStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return self::DISPLAY_MEDIA == $block->getComponent();
+        return self::NAME == $block->getComponent();
     }
 
     /**
