@@ -2,11 +2,9 @@
 
 namespace OpenOrchestra\MediaModelBundle\EventListener;
 
+use OpenOrchestra\BackofficeBundle\Model\DocumentGroupRoleInterface;
 use OpenOrchestra\BackofficeBundle\Model\GroupInterface;
 use OpenOrchestra\Media\Model\FolderInterface;
-use OpenOrchestra\Media\Model\MediaFolderGroupRoleInterface;
-use OpenOrchestra\MediaAdminBundle\Exceptions\MediaFolderGroupRoleNotFoundException;
-use OpenOrchestra\MediaModelBundle\Document\MediaFolderGroupRole;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
@@ -43,9 +41,9 @@ class AbstractMediaFolderGroupRoleListener
      */
     protected function getFolderAccessType(FolderInterface $folder)
     {
-        $accessType = MediaFolderGroupRoleInterface::ACCESS_INHERIT;
+        $accessType = DocumentGroupRoleInterface::ACCESS_INHERIT;
         if (null === $folder->getParent()) {
-            $accessType = MediaFolderGroupRoleInterface::ACCESS_GRANTED;
+            $accessType = DocumentGroupRoleInterface::ACCESS_GRANTED;
         }
 
         return $accessType;
@@ -57,20 +55,20 @@ class AbstractMediaFolderGroupRoleListener
      * @param string          $role
      * @param string          $accessType
      *
-     * @return MediaFolderGroupRoleInterface
-     * @throws MediaFolderGroupRoleNotFoundException
+     * @return DocumentGroupRoleInterface
      */
     protected function createMediaFolderGroupRole(FolderInterface $folder, GroupInterface $group, $role, $accessType)
     {
-        /** @var $mediaFolderGroupRole MediaFolderGroupRoleInterface */
+        /** @var $mediaFolderGroupRole DocumentGroupRoleInterface */
         $mediaFolderGroupRole = new $this->mediaFolderGroupRoleClass();
-        $mediaFolderGroupRole->setFolderId($folder->getId());
+        $mediaFolderGroupRole->setType('folder');
+        $mediaFolderGroupRole->setId($folder->getId());
         $mediaFolderGroupRole->setRole($role);
         $mediaFolderGroupRole->setAccessType($accessType);
-        $isGranted = (MediaFolderGroupRoleInterface::ACCESS_DENIED === $accessType) ? false : true;
-        if (MediaFolderGroupRoleInterface::ACCESS_INHERIT === $accessType) {
-            $parentFolderRole = $group->getMediaFolderRoleByMediaFolderAndRole($folder->getParent()->getId(), $role);
-            if ($parentFolderRole instanceof MediaFolderGroupRole) {
+        $isGranted = (DocumentGroupRoleInterface::ACCESS_DENIED === $accessType) ? false : true;
+        if (DocumentGroupRoleInterface::ACCESS_INHERIT === $accessType) {
+            $parentFolderRole = $group->getDocumentRoleByTypeAndIdAndRole('folder', $folder->getParent()->getId(), $role);
+            if ($parentFolderRole instanceof DocumentGroupRoleInterface) {
                 $isGranted = $parentFolderRole->isGranted();
             }
         }

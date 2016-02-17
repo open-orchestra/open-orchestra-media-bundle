@@ -3,9 +3,9 @@
 namespace OpenOrchestra\MediaModelBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\PreUpdateEventArgs;
+use OpenOrchestra\BackofficeBundle\Model\DocumentGroupRoleInterface;
 use OpenOrchestra\BackofficeBundle\Model\GroupInterface;
 use OpenOrchestra\Media\Model\FolderInterface;
-use OpenOrchestra\Media\Model\MediaFolderGroupRoleInterface;
 use OpenOrchestra\Media\Repository\FolderRepositoryInterface;
 use OpenOrchestra\MediaAdminBundle\Exceptions\MediaFolderGroupRoleNotFoundException;
 
@@ -34,7 +34,8 @@ class UpdateMediaFolderGroupRoleListener
         $document = $event->getDocument();
         $uow = $event->getDocumentManager()->getUnitOfWork();
         if (
-            $document instanceof MediaFolderGroupRoleInterface &&
+            $document instanceof DocumentGroupRoleInterface &&
+            'folder' === $document->getType() &&
             $event->hasChangedField("accessType")
         ) {
             $parentAssociation = $uow->getParentAssociation($document);
@@ -44,14 +45,14 @@ class UpdateMediaFolderGroupRoleListener
                 $uow->initializeObject($site);
                 /** @var $folderRepository FolderRepositoryInterface*/
                 $folderRepository = $event->getDocumentManager()->getRepository($this->folderClass);
-                $folders = $folderRepository->findByParentAndSite($document->getFolderId(), $site->getSiteId());
+                $folders = $folderRepository->findByParentAndSite($document->getId(), $site->getSiteId());
                 /** @var $folder FolderInterface */
                 foreach ($folders as $folder) {
                     $role = $document->getRole();
-                    $mediaFolderGroupRole = $group->getMediaFolderRoleByMediaFolderAndRole($folder->getId(), $role);
+                    $mediaFolderGroupRole = $group->getDocumentRoleByTypeAndIdAndRole('folder', $folder->getId(), $role);
                     if ($mediaFolderGroupRole === null) {
                         throw new MediaFolderGroupRoleNotFoundException($role, $folder->getName(), $group->getName());
-                    } else if (MediaFolderGroupRoleInterface::ACCESS_INHERIT === $mediaFolderGroupRole->getAccessType()) {
+                    } else if (DocumentGroupRoleInterface::ACCESS_INHERIT === $mediaFolderGroupRole->getAccessType()) {
                         $mediaFolderGroupRole->setGranted($document->isGranted());
                     }
                 }

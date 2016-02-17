@@ -55,7 +55,7 @@ class AddMediaFolderGroupRoleForGroupListenerTest extends AbstractMediaFolderGro
         Phake::when($this->folderRepository)->findBySiteId(Phake::anyParameters())->thenReturn($folders);
         $this->listener->prePersist($this->lifecycleEventArgs);
 
-        Phake::verify($this->group, Phake::times($count))->addMediaFolderRole(Phake::anyParameters());
+        Phake::verify($this->group, Phake::times($count))->addDocumentRole(Phake::anyParameters());
     }
 
     /**
