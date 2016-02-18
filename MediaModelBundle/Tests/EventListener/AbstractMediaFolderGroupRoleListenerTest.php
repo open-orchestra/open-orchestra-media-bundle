@@ -2,7 +2,7 @@
 namespace OpenOrchestra\MediaModelBundle\Tests\EventListener;
 
 use Phake;
-use OpenOrchestra\BackofficeBundle\Model\GroupInterface;
+use OpenOrchestra\Backoffice\Model\GroupInterface;
 use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\ModelInterface\Model\SiteInterface;
 
@@ -35,8 +35,8 @@ abstract class AbstractMediaFolderGroupRoleListenerTest extends AbstractBaseTest
      */
     protected function createMockGroup($siteId = 'FakeSiteId')
     {
-        $group = Phake::mock('OpenOrchestra\BackofficeBundle\Model\GroupInterface');
-        $parentMediaFolderGroupRole = Phake::mock('OpenOrchestra\BackofficeBundle\Model\ModelGroupRoleInterface');
+        $group = Phake::mock('OpenOrchestra\Backoffice\Model\GroupInterface');
+        $parentMediaFolderGroupRole = Phake::mock('OpenOrchestra\Backoffice\Model\ModelGroupRoleInterface');
         Phake::when($group)->getModelRoleByTypeAndIdAndRole(Phake::anyParameters())->thenReturn($parentMediaFolderGroupRole);
         Phake::when($group)->hasModelRoleByTypeAndIdAndRole(Phake::anyParameters())->thenReturn(false);
 

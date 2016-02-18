@@ -2,8 +2,8 @@
 
 namespace OpenOrchestra\MediaModelBundle\EventListener;
 
-use OpenOrchestra\BackofficeBundle\Model\ModelGroupRoleInterface;
-use OpenOrchestra\BackofficeBundle\Model\GroupInterface;
+use OpenOrchestra\Backoffice\Model\ModelGroupRoleInterface;
+use OpenOrchestra\Backoffice\Model\GroupInterface;
 use OpenOrchestra\Media\Model\FolderInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 

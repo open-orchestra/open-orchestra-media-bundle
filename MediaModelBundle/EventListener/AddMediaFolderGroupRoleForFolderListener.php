@@ -3,7 +3,7 @@
 namespace OpenOrchestra\MediaModelBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
-use OpenOrchestra\BackofficeBundle\Model\GroupInterface;
+use OpenOrchestra\Backoffice\Model\GroupInterface;
 use OpenOrchestra\Media\Model\FolderInterface;
 
 /**
