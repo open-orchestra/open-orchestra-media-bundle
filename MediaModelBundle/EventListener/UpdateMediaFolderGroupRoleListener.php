@@ -3,7 +3,7 @@
 namespace OpenOrchestra\MediaModelBundle\EventListener;
 
 use Doctrine\ODM\MongoDB\Event\PreUpdateEventArgs;
-use OpenOrchestra\BackofficeBundle\Model\DocumentGroupRoleInterface;
+use OpenOrchestra\BackofficeBundle\Model\ModelGroupRoleInterface;
 use OpenOrchestra\BackofficeBundle\Model\GroupInterface;
 use OpenOrchestra\Media\Model\FolderInterface;
 use OpenOrchestra\Media\Repository\FolderRepositoryInterface;
@@ -34,7 +34,7 @@ class UpdateMediaFolderGroupRoleListener
         $document = $event->getDocument();
         $uow = $event->getDocumentManager()->getUnitOfWork();
         if (
-            $document instanceof DocumentGroupRoleInterface &&
+            $document instanceof ModelGroupRoleInterface &&
             'folder' === $document->getType() &&
             $event->hasChangedField("accessType")
         ) {
@@ -49,10 +49,10 @@ class UpdateMediaFolderGroupRoleListener
                 /** @var $folder FolderInterface */
                 foreach ($folders as $folder) {
                     $role = $document->getRole();
-                    $mediaFolderGroupRole = $group->getDocumentRoleByTypeAndIdAndRole('folder', $folder->getId(), $role);
+                    $mediaFolderGroupRole = $group->getModelRoleByTypeAndIdAndRole('folder', $folder->getId(), $role);
                     if ($mediaFolderGroupRole === null) {
                         throw new MediaFolderGroupRoleNotFoundException($role, $folder->getName(), $group->getName());
-                    } else if (DocumentGroupRoleInterface::ACCESS_INHERIT === $mediaFolderGroupRole->getAccessType()) {
+                    } else if (ModelGroupRoleInterface::ACCESS_INHERIT === $mediaFolderGroupRole->getAccessType()) {
                         $mediaFolderGroupRole->setGranted($document->isGranted());
                     }
                 }

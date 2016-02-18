@@ -14,7 +14,7 @@ abstract class AbstractMediaFolderGroupRoleListenerTest extends AbstractBaseTest
     protected $lifecycleEventArgs;
     protected $container;
     protected $mediaFolderRoles = array("access_folder", "access_update_folder");
-    protected $mediaFolderGroupRoleClass = 'OpenOrchestra\GroupBundle\Document\DocumentGroupRole';
+    protected $mediaFolderGroupRoleClass = 'OpenOrchestra\GroupBundle\Document\ModelGroupRole';
 
     /**
      * setUp
@@ -36,9 +36,9 @@ abstract class AbstractMediaFolderGroupRoleListenerTest extends AbstractBaseTest
     protected function createMockGroup($siteId = 'FakeSiteId')
     {
         $group = Phake::mock('OpenOrchestra\BackofficeBundle\Model\GroupInterface');
-        $parentMediaFolderGroupRole = Phake::mock('OpenOrchestra\BackofficeBundle\Model\DocumentGroupRoleInterface');
-        Phake::when($group)->getDocumentRoleByTypeAndIdAndRole(Phake::anyParameters())->thenReturn($parentMediaFolderGroupRole);
-        Phake::when($group)->hasDocumentRoleByTypeAndIdAndRole(Phake::anyParameters())->thenReturn(false);
+        $parentMediaFolderGroupRole = Phake::mock('OpenOrchestra\BackofficeBundle\Model\ModelGroupRoleInterface');
+        Phake::when($group)->getModelRoleByTypeAndIdAndRole(Phake::anyParameters())->thenReturn($parentMediaFolderGroupRole);
+        Phake::when($group)->hasModelRoleByTypeAndIdAndRole(Phake::anyParameters())->thenReturn(false);
 
         $site = $this->createMockSite($siteId);
         Phake::when($group)->getSite()->thenReturn($site);

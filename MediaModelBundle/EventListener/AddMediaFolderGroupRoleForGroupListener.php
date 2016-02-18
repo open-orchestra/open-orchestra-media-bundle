@@ -25,7 +25,7 @@ class AddMediaFolderGroupRoleForGroupListener extends AbstractMediaFolderGroupRo
                 $accessType = $this->getFolderAccessType($folder);
                 foreach ($mediaFolderRoles as $role => $translation) {
                     $mediaFolderGroupRole = $this->createMediaFolderGroupRole($folder, $document, $role, $accessType);
-                    $document->addDocumentRole($mediaFolderGroupRole);
+                    $document->addModelRole($mediaFolderGroupRole);
                 }
             }
         }

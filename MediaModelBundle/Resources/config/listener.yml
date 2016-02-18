@@ -13,7 +13,7 @@ services:
     open_orchestra_media.listener.add_media_folder_group_role_for_group:
         class: %open_orchestra_media.listener.add_media_folder_group_role_for_group.class%
         arguments:
-            - %open_orchestra_group.document.document_group_role.class%
+            - %open_orchestra_group.document.model_group_role.class%
         calls:
             - [ setContainer, [ @service_container ] ]
         tags:
@@ -21,7 +21,7 @@ services:
     open_orchestra_media.listener.add_media_folder_group_role_for_folder:
         class: %open_orchestra_media.listener.add_media_folder_group_role_for_folder.class%
         arguments:
-            - %open_orchestra_group.document.document_group_role.class%
+            - %open_orchestra_group.document.model_group_role.class%
         calls:
             - [ setContainer, [ @service_container ] ]
         tags:
