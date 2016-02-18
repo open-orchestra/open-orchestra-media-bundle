@@ -11,6 +11,8 @@ use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
  */
 interface FolderInterface extends TimestampableInterface, BlameableInterface
 {
+    const GROUP_ROLE_TYPE = 'folder';
+
     /**
      * @return string
      */

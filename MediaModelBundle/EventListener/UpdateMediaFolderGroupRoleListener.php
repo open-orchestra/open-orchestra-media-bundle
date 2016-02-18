@@ -35,7 +35,7 @@ class UpdateMediaFolderGroupRoleListener
         $uow = $event->getDocumentManager()->getUnitOfWork();
         if (
             $document instanceof ModelGroupRoleInterface &&
-            'folder' === $document->getType() &&
+            FolderInterface::GROUP_ROLE_TYPE === $document->getType() &&
             $event->hasChangedField("accessType")
         ) {
             $parentAssociation = $uow->getParentAssociation($document);
@@ -49,7 +49,7 @@ class UpdateMediaFolderGroupRoleListener
                 /** @var $folder FolderInterface */
                 foreach ($folders as $folder) {
                     $role = $document->getRole();
-                    $mediaFolderGroupRole = $group->getModelRoleByTypeAndIdAndRole('folder', $folder->getId(), $role);
+                    $mediaFolderGroupRole = $group->getModelRoleByTypeAndIdAndRole(FolderInterface::GROUP_ROLE_TYPE, $folder->getId(), $role);
                     if ($mediaFolderGroupRole === null) {
                         throw new MediaFolderGroupRoleNotFoundException($role, $folder->getName(), $group->getName());
                     } else if (ModelGroupRoleInterface::ACCESS_INHERIT === $mediaFolderGroupRole->getAccessType()) {
