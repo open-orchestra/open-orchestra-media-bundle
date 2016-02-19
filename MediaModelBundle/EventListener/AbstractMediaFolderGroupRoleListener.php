@@ -67,7 +67,7 @@ class AbstractMediaFolderGroupRoleListener
         $mediaFolderGroupRole->setAccessType($accessType);
         $isGranted = (ModelGroupRoleInterface::ACCESS_DENIED === $accessType) ? false : true;
         if (ModelGroupRoleInterface::ACCESS_INHERIT === $accessType) {
-            $parentFolderRole = $group->getModelRoleByTypeAndIdAndRole(FolderInterface::GROUP_ROLE_TYPE, $folder->getParent()->getId(), $role);
+            $parentFolderRole = $group->getModelGroupRoleByTypeAndIdAndRole(FolderInterface::GROUP_ROLE_TYPE, $folder->getParent()->getId(), $role);
             if ($parentFolderRole instanceof ModelGroupRoleInterface) {
                 $isGranted = $parentFolderRole->isGranted();
             }

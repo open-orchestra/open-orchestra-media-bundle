@@ -70,7 +70,7 @@ class AddMediaFolderGroupRoleForFolderListenerTest extends AbstractMediaFolderGr
         $group1 = $this->createMockGroup("FakeSiteId1");
         $group2 = $this->createMockGroup("FakeSiteId2");
         $group3 = $this->createMockGroup("FakeSiteId3");
-        Phake::when($group3)->hasModelRoleByTypeAndIdAndRole(Phake::anyParameters())->thenReturn(false);
+        Phake::when($group3)->hasModelGroupRoleByTypeAndIdAndRole(Phake::anyParameters())->thenReturn(false);
 
         $sites = array(array("siteId" => "FakeSiteId1"), array("siteId" => "FakeSiteId2"));
 
