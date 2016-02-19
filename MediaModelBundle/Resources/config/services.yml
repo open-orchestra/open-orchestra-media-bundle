@@ -1,3 +1,2 @@
 parameters:
     open_orchestra_media.document.folder.class: OpenOrchestra\MediaModelBundle\Document\Folder
-    open_orchestra_media.document.media_folder_group_role.class: OpenOrchestra\MediaModelBundle\Document\MediaFolderGroupRole
