@@ -11,6 +11,9 @@ use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
  */
 interface FolderInterface extends TimestampableInterface, BlameableInterface
 {
+    const GROUP_ROLE_TYPE = 'folder';
+    const ROOT_PARENT_ID = '-';
+
     /**
      * @return string
      */
@@ -62,6 +65,13 @@ interface FolderInterface extends TimestampableInterface, BlameableInterface
      * @return Collection
      */
     public function getSites();
+
+    /**
+     * @param string $siteId
+     *
+     * @return bool
+     */
+    public function hasSite($siteId);
 
     /**
      * @param array $site

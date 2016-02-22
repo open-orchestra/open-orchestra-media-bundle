@@ -1,0 +1,2 @@
+parameters:
+    open_orchestra_media.document.folder.class: OpenOrchestra\MediaModelBundle\Document\Folder
