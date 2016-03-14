@@ -42,33 +42,74 @@ class DisplayMediaExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('display_media', array($this, 'displayMedia'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('media_preview', array($this, 'mediaPreview')),
-            new \Twig_SimpleFunction('get_media_format_url', array($this, 'getMediaFormatUrl')),
-            new \Twig_SimpleFunction('get_media_format_url_from_string', array($this, 'getMediaFormatUrlFromString')),
-            new \Twig_SimpleFunction('get_media_alt', array($this, 'getMediaAlt')),
-            new \Twig_SimpleFunction('get_media_alt_from_string', array($this, 'getMediaAltFromString')),
-            new \Twig_SimpleFunction('get_media_title', array($this, 'getMediaTitle')),
+            // Render a media or an alternative, using the display strategies
+            new \Twig_SimpleFunction(
+                'display_media',
+                array($this, 'displayMedia'),
+                array('is_safe' => array('html'))
+            ),
+            // Get the url of a media or an alternative
+            new \Twig_SimpleFunction(
+                'get_media_url',
+                array($this, 'getMediaUrl')
+            ),
+            // Get the title of a media
+            new \Twig_SimpleFunction(
+                'get_media_title',
+                array($this, 'getMediaTitle')
+            ),
+            // Get the alt of a media
+            new \Twig_SimpleFunction(
+                'get_media_alt',
+                array($this, 'getMediaAlt')
+            ),
+
+            // Get the url of a media or an alternative stored as 'id-format-format'
+            new \Twig_SimpleFunction(
+                'get_media_format_url_from_string',
+                array($this, 'getMediaFormatUrlFromString')
+            ),
+            // Get the alt of a media stored as 'id-format-format'
+            new \Twig_SimpleFunction(
+                'get_media_alt_from_string',
+                array($this, 'getMediaAltFromString')
+            ),
+
+            // DEPRECATED, NO MORE TO USE
+            new \Twig_SimpleFunction(
+                'media_preview',
+                array($this, 'mediaPreview'),
+                array('deprecated' => true)
+            ),
+            // DEPRECATED, NO MORE TO USE
+            new \Twig_SimpleFunction(
+                'get_media_format_url',
+                array($this, 'getMediaUrl'),
+                array('deprecated' => true)
+            ),
         );
     }
 
     /**
-     * @param String $mediaId
+     * @param string $mediaId
+     * @param string $format
      *
-     * @return String
+     * @return string
      */
-    public function displayMedia($mediaId)
+    public function displayMedia($mediaId, $format = '')
     {
         $media = $this->getMedia($mediaId);
 
         if ($media) {
-            return $this->displayMediaManager->displayMedia($media);
+            return $this->displayMediaManager->displayMedia($media, $format);
         }
 
         return '';
     }
 
     /**
+     * @deprecated will be removed in 1.2.0
+     *
      * @param String $mediaId
      *
      * @return String
@@ -85,12 +126,12 @@ class DisplayMediaExtension extends \Twig_Extension
     }
 
     /**
-     * @param String $mediaId
-     * @param String $format
+     * @param string $mediaId
+     * @param string $format
      *
-     * @return String
+     * @return string
      */
-    public function getMediaFormatUrl($mediaId, $format)
+    public function getMediaUrl($mediaId, $format)
     {
         $media = $this->getMedia($mediaId);
 
