@@ -151,7 +151,7 @@ class DisplayMediaExtension extends \Twig_Extension
     {
         $extractedInfo = $this->mediaWithFormatExtractor->extractInformation($mediaInfo);
 
-        return $this->getMediaFormatUrl($extractedInfo['id'], $extractedInfo['format']);
+        return $this->getMediaUrl($extractedInfo['id'], $extractedInfo['format']);
     }
 
     /**

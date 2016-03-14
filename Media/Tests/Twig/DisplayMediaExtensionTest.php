@@ -60,7 +60,7 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
      */
     public function testFunctions()
     {
-        $this->assertCount(7, $this->extension->getFunctions());
+        $this->assertCount(8, $this->extension->getFunctions());
     }
 
     /**
@@ -135,18 +135,18 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
     }
 
     /**
-     * Test getMediaFormatUrl
+     * Test getMediaUrl
      *
      * @param string $mediaId
      *
      * @dataProvider provideMediaId
      */
-    public function testGetMediaFormatUrl($mediaId)
+    public function testGetMediaUrl($mediaId)
     {
         $format = 'format';
         Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
 
-        $this->extension->getMediaFormatUrl($mediaId, $format);
+        $this->extension->getMediaUrl($mediaId, $format);
 
         Phake::verify($this->displayMediaManager, Phake::times(1))->getMediaFormatUrl($this->media, $format);
     }
@@ -174,7 +174,7 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
     {
         Phake::when($this->mediaRepository)->find(Phake::anyParameters())->thenReturn($this->media);
         Phake::when($this->displayMediaManager)->displayPreview($this->media)->thenReturn($methodReturn);
-        Phake::when($this->displayMediaManager)->displayMedia($this->media)->thenReturn($methodReturn);
+        Phake::when($this->displayMediaManager)->displayMedia($this->media, '')->thenReturn($methodReturn);
 
         $this->assertSame($methodReturn, $this->extension->$method($mediaId));
     }
