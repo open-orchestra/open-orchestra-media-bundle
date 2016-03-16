@@ -8,6 +8,5 @@ services:
             - @open_orchestra_media.display_media_manager
             - @open_orchestra_media.repository.media
             - @request_stack
-            - @open_orchestra_media.helper.media_with_format_extractor
         tags:
             - { name: twig.extension }
