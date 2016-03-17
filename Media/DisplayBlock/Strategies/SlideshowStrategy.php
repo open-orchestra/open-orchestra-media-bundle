@@ -74,7 +74,7 @@ class SlideshowStrategy extends AbstractStrategy
 
         if ($medias) {
             foreach ($medias as $media) {
-                $tags[] = $this->tagManager->formatMediaIdTag(ltrim($media, MediaInterface::MEDIA_PREFIX));
+                $tags[] = $this->tagManager->formatMediaIdTag(ltrim($media['id'], MediaInterface::MEDIA_PREFIX));
             }
         }
 

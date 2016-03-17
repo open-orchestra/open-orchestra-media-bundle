@@ -6,7 +6,6 @@ use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use OpenOrchestra\Media\Helper\MediaWithFormatExtractorInterface;
 
 /**
  * Class DisplayMediaExtension
@@ -16,24 +15,20 @@ class DisplayMediaExtension extends \Twig_Extension
     protected $displayMediaManager;
     protected $mediaRepository;
     protected $request;
-    protected $mediaWithFormatExtractor;
 
     /**
      * @param DisplayMediaManager               $displayMediaManager
      * @param MediaRepositoryInterface          $mediaRepository
      * @param RequestStack                      $requestStack
-     * @param MediaWithFormatExtractorInterface $mediaWithFormatExtractor
      */
     public function __construct(
         DisplayMediaManager $displayMediaManager,
         MediaRepositoryInterface $mediaRepository,
-        RequestStack $requestStack,
-        MediaWithFormatExtractorInterface $mediaWithFormatExtractor
+        RequestStack $requestStack
     ) {
         $this->displayMediaManager = $displayMediaManager;
         $this->mediaRepository = $mediaRepository;
         $this->request = $requestStack->getMasterRequest();
-        $this->mediaWithFormatExtractor = $mediaWithFormatExtractor;
     }
 
     /**
@@ -43,50 +38,22 @@ class DisplayMediaExtension extends \Twig_Extension
     {
         return array(
             // Render a media or an alternative, using the display strategies
-            new \Twig_SimpleFunction(
-                'display_media',
-                array($this, 'displayMedia'),
-                array('is_safe' => array('html'))
-            ),
+            new \Twig_SimpleFunction('display_media', array($this, 'displayMedia'), array('is_safe' => array('html'))),
+
             // Get the url of a media or an alternative
-            new \Twig_SimpleFunction(
-                'get_media_url',
-                array($this, 'getMediaUrl')
-            ),
+            new \Twig_SimpleFunction('get_media_url', array($this, 'getMediaUrl')),
+
             // Get the title of a media
-            new \Twig_SimpleFunction(
-                'get_media_title',
-                array($this, 'getMediaTitle')
-            ),
+            new \Twig_SimpleFunction('get_media_title', array($this, 'getMediaTitle')),
+
             // Get the alt of a media
-            new \Twig_SimpleFunction(
-                'get_media_alt',
-                array($this, 'getMediaAlt')
-            ),
-
-            // Get the url of a media or an alternative stored as 'id-format-format'
-            new \Twig_SimpleFunction(
-                'get_media_format_url_from_string',
-                array($this, 'getMediaFormatUrlFromString')
-            ),
-            // Get the alt of a media stored as 'id-format-format'
-            new \Twig_SimpleFunction(
-                'get_media_alt_from_string',
-                array($this, 'getMediaAltFromString')
-            ),
+            new \Twig_SimpleFunction('get_media_alt', array($this, 'getMediaAlt')),
 
             // DEPRECATED, NO MORE TO USE
-            new \Twig_SimpleFunction(
-                'media_preview',
-                array($this, 'mediaPreview'),
-                array('deprecated' => true)
-            ),
+            new \Twig_SimpleFunction('media_preview', array($this, 'mediaPreview'), array('deprecated' => true)),
+
             // DEPRECATED, NO MORE TO USE
-            new \Twig_SimpleFunction(
-                'get_media_format_url',
-                array($this, 'getMediaUrl'),
-                array('deprecated' => true)
-            ),
+            new \Twig_SimpleFunction('get_media_format_url', array($this, 'getMediaUrl'), array('deprecated' => true)),
         );
     }
 
@@ -143,18 +110,6 @@ class DisplayMediaExtension extends \Twig_Extension
     }
 
     /**
-     * @param string $mediaInfo
-     *
-     * @return string
-     */
-    public function getMediaFormatUrlFromString($mediaInfo)
-    {
-        $extractedInfo = $this->mediaWithFormatExtractor->extractInformation($mediaInfo);
-
-        return $this->getMediaUrl($extractedInfo['id'], $extractedInfo['format']);
-    }
-
-    /**
      * @param string $mediaId
      *
      * @return string
@@ -168,18 +123,6 @@ class DisplayMediaExtension extends \Twig_Extension
         }
 
         return '';
-    }
-
-    /**
-     * @param string $mediaInfo
-     *
-     * @return string
-     */
-    public function getMediaAltFromString($mediaInfo)
-    {
-        $extractedInfo = $this->mediaWithFormatExtractor->extractInformation($mediaInfo);
-
-        return $this->getMediaAlt($extractedInfo['id']);
     }
 
     /**

@@ -14,8 +14,8 @@
                     <div>
                         <img
                             data-u="image"
-                            data-src2="{{ get_media_format_url_from_string(picture) }}"
-                            alt="{{ get_media_alt_from_string(picture) }}"
+                            data-src2="{{ get_media_url(picture.id, picture.format) }}"
+                            alt="{{ get_media_alt(picture.id) }}"
                         />
                     </div>
                 {% endfor %}
