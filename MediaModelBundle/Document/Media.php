@@ -48,13 +48,20 @@ class Media implements MediaInterface
     protected $filesystemName;
 
     /**
+     * @var string $mediaType
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $mediaType;
+
+        /**
      * @var string $mimeType
      *
      * @ODM\Field(type="string")
      */
     protected $mimeType;
 
-    /**
+/**
      * @var MediaFolderInterface
      *
      * @ODM\ReferenceOne(targetDocument="OpenOrchestra\Media\Model\MediaFolderInterface", inversedBy="medias")
@@ -192,6 +199,22 @@ class Media implements MediaInterface
     /**
      * @return string
      */
+    public function getMediaType()
+    {
+        return $this->mediaType;
+    }
+
+    /**
+     * @param string $mediaType
+     */
+    public function setMediaType($mediaType)
+    {
+        $this->mediaType = $mediaType;
+    }
+
+        /**
+     * @return string
+     */
     public function getMimeType()
     {
         return $this->mimeType;
@@ -205,7 +228,7 @@ class Media implements MediaInterface
         $this->mimeType = $mimeType;
     }
 
-    /**
+/**
      * @return string
      */
     public function getThumbnail()
