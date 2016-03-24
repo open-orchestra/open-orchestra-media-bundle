@@ -1,6 +1,0 @@
-parameters:
-    open_orchestra_media.helper.media_with_format_extractor.class: OpenOrchestra\Media\Helper\MediaWithFormatExtractor
-
-services:
-    open_orchestra_media.helper.media_with_format_extractor:
-        class: %open_orchestra_media.helper.media_with_format_extractor.class%
