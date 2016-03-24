@@ -18,6 +18,14 @@ interface MediaRepositoryInterface
     public function findByFolderId($folderId);
 
     /**
+     * @param string $folderId
+     * @param string $mediaType
+     *
+     * @return Collection
+     */
+    public function findByFolderIdAndMediaType($folderId, $mediaType);
+
+    /**
      * @param string $keywords
      *
      * @return array

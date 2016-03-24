@@ -27,6 +27,22 @@ class MediaRepository extends DocumentRepository implements MediaRepositoryInter
     }
 
     /**
+     * @param string $folderId
+     * @param string $mediaType
+     *
+     * @return Collection
+     */
+    public function findByFolderIdAndMediaType($folderId, $mediaType)
+    {
+        $qb = $this->createQueryBuilder();
+
+        $qb->field('mediaFolder.id')->equals($folderId);
+        $qb->field('mediaType')->equals($mediaType);
+
+        return $qb->getQuery()->execute();
+    }
+
+/**
      * @param string $keywords
      *
      * @return array

@@ -66,6 +66,16 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface, Key
     /**
      * @return string
      */
+    public function getMediaType();
+
+    /**
+     * @param string $mediaType
+     */
+    public function setMediaType($mediaType);
+
+        /**
+     * @return string
+     */
     public function getMimeType();
 
     /**
@@ -73,7 +83,7 @@ interface MediaInterface extends TimestampableInterface, BlameableInterface, Key
      */
     public function setMimeType($mimeType);
 
-    /**
+/**
      * @return string
      */
     public function getThumbnail();
