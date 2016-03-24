@@ -54,7 +54,7 @@ class Media implements MediaInterface
      */
     protected $mediaType;
 
-        /**
+    /**
      * @var string $mimeType
      *
      * @ODM\Field(type="string")
