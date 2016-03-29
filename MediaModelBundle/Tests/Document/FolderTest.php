@@ -42,26 +42,6 @@ class FolderTest extends AbstractBaseTestCase
     }
 
     /**
-     * Test getSubFoldersBySiteId
-     *
-     * @param string $siteId
-     * @param int    $nbResult
-     *
-     * @dataProvider generateSiteId
-     */
-    public function testGetSubFoldersBySiteId($siteId, $nbResult)
-    {
-        Phake::when($this->folder1)->getSites()->thenReturn($this->sites1);
-        Phake::when($this->folder2)->getSites()->thenReturn($this->sites2);
-        Phake::when($this->folder3)->getSites()->thenReturn(array());
-
-        $result = $this->mediaFolder->getSubFoldersBySiteId($siteId);
-
-        $this->assertInstanceOf('Doctrine\Common\Collections\ArrayCollection', $result);
-        $this->assertCount($nbResult, $result);
-    }
-
-    /**
      * @return array
      */
     public function generateSiteId()

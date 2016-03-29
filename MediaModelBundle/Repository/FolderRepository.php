@@ -21,9 +21,7 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
         $qb = $this->createQueryBuilder();
         $qb->field('parent')->equals(null);
         if ($siteId) {
-            $where = "function() { return this.sites && this.sites.length == 0; }";
-            $qb->addOr($qb->expr()->field('sites.siteId')->equals($siteId));
-            $qb->addOr($qb->expr()->field('sites')->where($where));
+            $qb->field('siteId')->equals($siteId);
         }
 
         return $qb->getQuery()->execute();
@@ -66,9 +64,7 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
         if ($parentId) {
             $qb->field('parent.$id')->equals(new \MongoId($parentId));
         }
-        $where = "function() { return this.sites && this.sites.length == 0; }";
-        $qb->addOr($qb->expr()->field('sites.siteId')->equals($siteId));
-        $qb->addOr($qb->expr()->field('sites')->where($where));
+        $qb->field('siteId')->equals($siteId);
 
         return $qb->getQuery()->execute();
     }
