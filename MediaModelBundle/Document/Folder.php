@@ -66,7 +66,6 @@ abstract class Folder implements FolderInterface
     public function __construct()
     {
         $this->subFolders = new ArrayCollection();
-        $this->siteId = "";
     }
 
     /**
@@ -145,7 +144,7 @@ abstract class Folder implements FolderInterface
     /**
      * @param string $siteId
      */
-    public function addSiteId($siteId)
+    public function setSiteId($siteId)
     {
         $this->siteId = $siteId;
     }
