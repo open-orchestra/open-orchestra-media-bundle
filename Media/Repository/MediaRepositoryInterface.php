@@ -45,4 +45,13 @@ interface MediaRepositoryInterface
      * @return MediaInterface
      */
     public function findOneByName($name);
+
+    /**
+     * Return medias declaring $pattern as usageReference
+     *
+     * @param string $pattern
+     *
+     * @return MediaInterface
+     */
+    public function findByUsagePattern($pattern);
 }
