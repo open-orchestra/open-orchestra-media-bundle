@@ -18,6 +18,8 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
      */
     public function findAllRootFolder($siteId = null)
     {
+        @trigger_error('The '.__METHOD__.' method is deprecated since version 1.1.0 and will be removed in 1.2.0. Use the '.__CLASS__.'::findAllRootFolder method instead.', E_USER_DEPRECATED);
+
         $qb = $this->createQueryBuilder();
         $qb->field('parent')->equals(null);
         if ($siteId) {
@@ -34,7 +36,11 @@ class FolderRepository extends DocumentRepository implements FolderRepositoryInt
      */
     public function findAllRootFolderBySiteId($siteId)
     {
-        return $this->findAllRootFolder($siteId);
+        $qb = $this->createQueryBuilder();
+        $qb->field('parent')->equals(null);
+        $qb->field('siteId')->equals($siteId);
+
+        return $qb->getQuery()->execute();
     }
 
     /**
