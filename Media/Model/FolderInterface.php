@@ -45,13 +45,6 @@ interface FolderInterface extends TimestampableInterface, BlameableInterface
     public function getSubFolders();
 
     /**
-     * @param string $siteId
-     *
-     * @return Collection
-     */
-    public function getSubFoldersBySiteId($siteId);
-
-    /**
      * @param FolderInterface $subFolder
      */
     public function addSubFolder(FolderInterface $subFolder);
@@ -62,24 +55,12 @@ interface FolderInterface extends TimestampableInterface, BlameableInterface
     public function removeSubFolder(FolderInterface $subFolder);
 
     /**
-     * @return Collection
+     * @return string
      */
-    public function getSites();
+    public function getSiteId();
 
     /**
      * @param string $siteId
-     *
-     * @return bool
      */
-    public function hasSite($siteId);
-
-    /**
-     * @param array $site
-     */
-    public function addSite(array $site);
-
-    /**
-     * @param array $site
-     */
-    public function removeSite(array $site);
+    public function setSiteId($siteId);
 }

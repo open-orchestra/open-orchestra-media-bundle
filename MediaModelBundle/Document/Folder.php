@@ -54,11 +54,11 @@ abstract class Folder implements FolderInterface
     protected $subFolders;
 
     /**
-     * @var Array
+     * @var string
      *
-     * @ODM\Field(type="collection")
+     * @ODM\Field(type="string")
      */
-    protected $sites;
+    protected $siteId;
 
     /**
      * Constructor
@@ -66,7 +66,6 @@ abstract class Folder implements FolderInterface
     public function __construct()
     {
         $this->subFolders = new ArrayCollection();
-        $this->sites = array();
     }
 
     /**
@@ -119,24 +118,6 @@ abstract class Folder implements FolderInterface
     }
 
     /**
-     * @param string $siteId
-     *
-     * @return Collection
-     */
-    public function getSubFoldersBySiteId($siteId)
-    {
-        return $this->subFolders->filter(function(FolderInterface $folder) use ($siteId) {
-            foreach ($folder->getSites() as $folderSite) {
-                if ($folderSite['siteId'] === $siteId) {
-                    return true;
-                }
-            }
-
-            return count($folder->getSites()) === 0;
-        });
-    }
-
-    /**
      * @param FolderInterface $subFolder
      */
     public function addSubFolder(FolderInterface $subFolder)
@@ -153,48 +134,18 @@ abstract class Folder implements FolderInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return string
      */
-    public function getSites()
+    public function getSiteId()
     {
-        return $this->sites;
+        return $this->siteId;
     }
 
     /**
      * @param string $siteId
-     *
-     * @return bool
      */
-    public function hasSite($siteId)
+    public function setSiteId($siteId)
     {
-        foreach ($this->sites as $site) {
-            if (isset($site['siteId']) && $site['siteId'] === $siteId) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param array $site
-     */
-    public function addSite(array $site)
-    {
-        $this->sites[] = $site;
-    }
-
-    /**
-     * @param array $site
-     */
-    public function removeSite(array $site)
-    {
-        $newSites = array();
-        foreach ($this->sites as $associatedSite) {
-            if ($associatedSite['siteId'] !== $site['siteId']) {
-                $newSites[] = $associatedSite;
-            }
-        }
-        $this->sites = $newSites;
+        $this->siteId = $siteId;
     }
 }
