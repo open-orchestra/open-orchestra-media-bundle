@@ -317,7 +317,9 @@ class Media implements MediaInterface
      */
     public function addUsageReference($reference)
     {
-        $this->usageReference[] = $reference;
+        if (!in_array($reference, $this->usageReference)) {
+            $this->usageReference[] = $reference;
+        }
     }
 
     /**

@@ -65,4 +65,20 @@ class MediaRepository extends DocumentRepository implements MediaRepositoryInter
     {
         return $this->findOneBy(array('name' => $name));
     }
+
+    /**
+     * Return medias declaring $pattern as usageReference
+     *
+     * @param string $pattern
+     *
+     * @return MediaInterface
+     */
+    public function findByUsagePattern($pattern)
+    {
+        $qb = $this->createQueryBuilder();
+
+        $qb->field('usageReference')->in(array(new \MongoRegex('/^' . preg_quote($pattern) . '/')));
+
+        return $qb->getQuery()->execute();
+    }
 }
