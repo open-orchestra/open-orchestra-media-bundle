@@ -18,7 +18,7 @@ abstract class AbstractStrategy implements DisplayMediaInterface, ContainerAware
     use ContainerAwareTrait;
 
     protected $router;
-    protected $request;
+    protected $requestStack;
     protected $mediaDomain;
 
     /**
@@ -27,7 +27,7 @@ abstract class AbstractStrategy implements DisplayMediaInterface, ContainerAware
      */
     public function __construct(RequestStack $requestStack, $mediaDomain = "")
     {
-        $this->request = $requestStack->getMasterRequest();
+        $this->requestStack = $requestStack;
         $this->mediaDomain = $mediaDomain;
     }
 
@@ -61,11 +61,13 @@ abstract class AbstractStrategy implements DisplayMediaInterface, ContainerAware
      */
     public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
     {
+        $request = $this->requestStack->getMasterRequest();
+
         return $this->render(
             'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:thumbnail.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getThumbnail()),
-                'media_alt' => $media->getAlt($this->request->getLocale()),
+                'media_alt' => $media->getAlt($request->getLocale()),
                 'media_id' => $media->getId()
             )
         );
