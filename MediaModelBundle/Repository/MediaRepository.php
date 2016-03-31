@@ -77,7 +77,7 @@ class MediaRepository extends DocumentRepository implements MediaRepositoryInter
     {
         $qb = $this->createQueryBuilder();
 
-        $qb->field('usageReference')->in(array(new \MongoRegex('/^' . $pattern . '/')));
+        $qb->field('usageReference')->in(array(new \MongoRegex('/^' . preg_quote($pattern) . '/')));
 
         return $qb->getQuery()->execute();
     }
