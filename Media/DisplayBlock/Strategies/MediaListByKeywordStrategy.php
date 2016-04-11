@@ -7,7 +7,6 @@ use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Symfony\Component\HttpFoundation\Response;
 use OpenOrchestra\BaseBundle\Manager\TagManager;
-use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class MediaListByKeywordStrategy
@@ -102,7 +101,7 @@ class MediaListByKeywordStrategy extends AbstractStrategy
 
         if ($medias) {
             foreach ($medias as $media) {
-                $tags[] = $this->tagManager->formatMediaIdTag(ltrim($media->getId(), MediaInterface::MEDIA_PREFIX));
+                $tags[] = $this->tagManager->formatMediaIdTag($media->getId());
             }
         }
 

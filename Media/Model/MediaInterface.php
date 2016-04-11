@@ -15,7 +15,6 @@ use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
  */
 interface MediaInterface extends TimestampableInterface, BlameableInterface, KeywordableInterface, TranslatedValueContainerInterface
 {
-    const MEDIA_PREFIX = 'media-';
     const MEDIA_ORIGINAL = 'original';
 
     /**

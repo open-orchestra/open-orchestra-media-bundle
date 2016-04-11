@@ -157,10 +157,6 @@ class DisplayMediaExtension extends \Twig_Extension
      */
     protected function getMedia($mediaId)
     {
-        if (strpos($mediaId, MediaInterface::MEDIA_PREFIX) === 0) {
-            $mediaId = substr($mediaId, strlen(MediaInterface::MEDIA_PREFIX));
-        }
-
         $media = $this->mediaRepository->find($mediaId);
         return $media;
     }

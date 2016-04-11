@@ -4,7 +4,6 @@ namespace OpenOrchestra\Media\Tests\Twig;
 
 use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
-use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Twig\DisplayMediaExtension;
 
 /**
@@ -80,8 +79,7 @@ class DisplayMediaExtensionTest extends AbstractBaseTestCase
     public function provideMediaId()
     {
         return array(
-            array('mediaId'),
-            array(MediaInterface::MEDIA_PREFIX . 'mediaId')
+            array('mediaId')
         );
     }
 
