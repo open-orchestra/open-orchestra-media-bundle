@@ -4,7 +4,6 @@ namespace OpenOrchestra\Media\DisplayBlock\Strategies;
 
 use OpenOrchestra\BaseBundle\Manager\TagManager;
 use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
-use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -74,7 +73,7 @@ class SlideshowStrategy extends AbstractStrategy
 
         if ($medias) {
             foreach ($medias as $media) {
-                $tags[] = $this->tagManager->formatMediaIdTag(ltrim($media['id'], MediaInterface::MEDIA_PREFIX));
+                $tags[] = $this->tagManager->formatMediaIdTag($media['id']);
             }
         }
 
