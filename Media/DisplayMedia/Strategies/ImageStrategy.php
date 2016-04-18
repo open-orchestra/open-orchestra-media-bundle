@@ -30,7 +30,7 @@ class ImageStrategy extends AbstractStrategy
         $request = $this->requestStack->getMasterRequest();
 
         return $this->render(
-            'OpenOrchestraMediaBundle:BBcode/FullDisplay:image.html.twig',
+            'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:image.html.twig',
             array(
                 'media_url' => $this->getMediaFormatUrl($media, $format),
                 'media_alt' => $media->getAlt($request->getLocale())

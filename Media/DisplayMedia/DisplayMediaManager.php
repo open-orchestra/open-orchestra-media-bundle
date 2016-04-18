@@ -12,13 +12,16 @@ class DisplayMediaManager
 {
     protected $strategies = array();
     protected $router;
+    protected $defaultStrategy;
 
     /**
-     * @param RouterInterface $router
+     * @param RouterInterface       $router
+     * @param DisplayMediaInterface $defaultStrategy
      */
-    public function __construct(RouterInterface $router)
+    public function __construct(RouterInterface $router, DisplayMediaInterface $defaultStrategy)
     {
         $this->router = $router;
+        $this->defaultStrategy = $defaultStrategy;
     }
 
     /**
@@ -44,7 +47,7 @@ class DisplayMediaManager
             }
         }
 
-        return $media;
+        return $this->defaultStrategy->displayPreview($media);
     }
 
     /**
@@ -62,7 +65,7 @@ class DisplayMediaManager
             }
         }
 
-        return $media;
+        return $this->defaultStrategy->displayMedia($media, $format);
     }
 
     /**
@@ -80,7 +83,7 @@ class DisplayMediaManager
             }
         }
 
-        return $media;
+        return $this->defaultStrategy->displayMediaForWysiwyg($media, $format);
     }
 
     /**
@@ -98,6 +101,6 @@ class DisplayMediaManager
             }
         }
 
-        return $media;
+        return $this->defaultStrategy->getMediaFormatUrl($media, $format);
     }
 }
