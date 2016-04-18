@@ -30,7 +30,7 @@ class AudioStrategy extends AbstractStrategy
     public function displayMedia(MediaInterface $media, $format = '')
     {
         return $this->render(
-            'OpenOrchestraMediaBundle:BBcode/FullDisplay:audio.html.twig',
+            'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:audio.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getFilesystemName()),
                 'media_type' => $media->getMimeType()

@@ -5,12 +5,10 @@ namespace OpenOrchestra\Media\DisplayMedia\Strategies;
 use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
- * Class PdfStrategy
+ * Class DefaultStrategy
  */
-class PdfStrategy extends AbstractStrategy
+class DefaultStrategy extends AbstractStrategy
 {
-    const MIME_TYPE_PDF = 'application/pdf';
-
     /**
      * @param MediaInterface $media
      *
@@ -18,10 +16,10 @@ class PdfStrategy extends AbstractStrategy
      */
     public function support(MediaInterface $media)
     {
-        return self::MIME_TYPE_PDF == $media->getMimeType();
+        return true;
     }
 
-   /**
+    /**
      * @param MediaInterface $media
      * @param string         $format
      *
@@ -30,7 +28,7 @@ class PdfStrategy extends AbstractStrategy
     public function displayMedia(MediaInterface $media, $format = '')
     {
         return $this->render(
-            'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:pdf.html.twig',
+            'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:default.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getFilesystemName()),
                 'media_name' => $media->getName()
@@ -54,6 +52,6 @@ class PdfStrategy extends AbstractStrategy
      */
     public function getName()
     {
-        return 'pdf';
+        return 'default';
     }
 }

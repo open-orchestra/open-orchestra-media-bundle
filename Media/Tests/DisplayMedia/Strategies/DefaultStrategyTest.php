@@ -2,14 +2,14 @@
 
 namespace OpenOrchestra\Media\Tests\DisplayMedia\Strategies;
 
+use OpenOrchestra\Media\DisplayMedia\Strategies\DefaultStrategy;
 use Phake;
-use OpenOrchestra\Media\DisplayMedia\Strategies\PdfStrategy;
 use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
- * Class PdfStrategyTest
+ * Class DefaultStrategyTest
  */
-class PdfStrategyTest extends AbstractStrategyTest
+class DefaultStrategyTest extends AbstractStrategyTest
 {
     /**
      * Set up the test
@@ -18,7 +18,7 @@ class PdfStrategyTest extends AbstractStrategyTest
     {
         parent::setUp();
 
-        $this->strategy = new PdfStrategy($this->requestStack, '');
+        $this->strategy = new DefaultStrategy($this->requestStack);
         $this->strategy->setContainer($this->container);
         $this->strategy->setRouter($this->router);
     }
@@ -39,7 +39,7 @@ class PdfStrategyTest extends AbstractStrategyTest
         $this->strategy->displayMedia($this->media);
 
         Phake::verify($this->templating)->render(
-            'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:pdf.html.twig',
+            'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:default.html.twig',
             array(
                 'media_url' => $url,
                 'media_name' => $image
@@ -53,8 +53,8 @@ class PdfStrategyTest extends AbstractStrategyTest
     public function displayImage()
     {
         return array(
-            array('test1.pdf', '//' . $this->pathToFile . '/' . 'test1.pdf', 'test1'),
-            array('test2.pdf', '//' . $this->pathToFile . '/' . 'test2.pdf', 'test2'),
+            array('test1.txt', '//' . $this->pathToFile . '/' . 'test1.txt', 'test1'),
+            array('test2.txt', '//' . $this->pathToFile . '/' . 'test2.txt', 'test2'),
         );
     }
 
@@ -64,23 +64,10 @@ class PdfStrategyTest extends AbstractStrategyTest
     public function getMediaFormatUrl()
     {
         return array(
-            array('test1.pdf', MediaInterface::MEDIA_ORIGINAL, '//' . $this->pathToFile . '/test1.pdf'),
-            array('test1.pdf', 'max-width', '//' . $this->pathToFile . '/test1.pdf'),
-            array('test2.pdf', 'max-height', '//' . $this->pathToFile . '/test2.pdf'),
+            array('test1.text', MediaInterface::MEDIA_ORIGINAL, '//' . $this->pathToFile . '/test1.text'),
+            array('test1.text', 'max-width', '//' . $this->pathToFile . '/test1.text'),
+            array('test2.text', 'max-height', '//' . $this->pathToFile . '/test2.text'),
         );
-    }
-
-    /**
-     * @param string $mimeType
-     * @param bool $supported
-     *
-     * @dataProvider provideMimeTypes
-     */
-    public function testSupport($mimeType, $supported)
-    {
-        Phake::when($this->media)->getMimeType()->thenReturn($mimeType);
-
-        $this->assertSame($supported, $this->strategy->support($this->media));
     }
 
     /**
@@ -88,11 +75,11 @@ class PdfStrategyTest extends AbstractStrategyTest
      */
     public function provideMimeTypes()
     {
-        return array_merge(parent::provideMimeTypes(), array(
+        return array(
             array('application/pdf', true),
-            array('video/mpeg', false),
-            array('video/quicktime', false),
-        ));
+            array('video/mpeg', true),
+            array('video/quicktime', true),
+        );
     }
 
     /**
@@ -100,6 +87,6 @@ class PdfStrategyTest extends AbstractStrategyTest
      */
     public function testGetName()
     {
-        $this->assertSame('pdf', $this->strategy->getName());
+        $this->assertSame('default', $this->strategy->getName());
     }
 }

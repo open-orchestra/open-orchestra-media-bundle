@@ -4,12 +4,14 @@ parameters:
     open_orchestra_media.display_media.pdf.class: OpenOrchestra\Media\DisplayMedia\Strategies\PdfStrategy
     open_orchestra_media.display_media.video.class: OpenOrchestra\Media\DisplayMedia\Strategies\VideoStrategy
     open_orchestra_media.display_media.audio.class: OpenOrchestra\Media\DisplayMedia\Strategies\AudioStrategy
+    open_orchestra_media.display_media.default.class: OpenOrchestra\Media\DisplayMedia\Strategies\DefaultStrategy
 
 services:
     open_orchestra_media.display_media_manager:
         class: %open_orchestra_media.display_media_manager.class%
         arguments:
             - @router
+            - @open_orchestra_media.display_media.default
     open_orchestra_media.display_media.image:
         class: %open_orchestra_media.display_media.image.class%
         arguments:
@@ -39,6 +41,15 @@ services:
             - { name: open_orchestra_media.display_media.strategy }
     open_orchestra_media.display_media.audio:
         class: %open_orchestra_media.display_media.audio.class%
+        arguments:
+            - @request_stack
+            - %open_orchestra_media.media_domain%
+        calls:
+            - [ setContainer, [ @service_container ] ]
+        tags:
+            - { name: open_orchestra_media.display_media.strategy }
+    open_orchestra_media.display_media.default:
+        class: %open_orchestra_media.display_media.default.class%
         arguments:
             - @request_stack
             - %open_orchestra_media.media_domain%
