@@ -17,6 +17,7 @@
     "stof/doctrine-extensions-bundle": "1.2.1",
 
     "innocead/captcha-bundle": "dev-master",
+    "solution/mongo-odm-aggregation-bundle": "dev-master",
     "open-orchestra/open-orchestra-libs": "1.1.*@dev"
   },
   "require-dev": {
