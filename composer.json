@@ -18,7 +18,8 @@
 
     "innocead/captcha-bundle": "@dev",
     "solution/mongo-odm-aggregation-bundle": "@dev",
-    "solution/pipeline-builder": "@dev"
+    "solution/pipeline-builder": "@dev",
+    "open-orchestra/open-orchestra-libs": "@dev"
   },
   "require-dev": {
     "open-orchestra/open-orchestra-base-bundle": "1.1.*@dev",
