@@ -1,6 +1,6 @@
 {
   "name": "open-orchestra/open-orchestra-media-bundle",
-  "description": "A media bundle for the OpenOrchestra Project",
+  "description": "A media bundle for Open Orchestra",
   "license": "Apache-2.0",
   "authors": [
     {
@@ -17,8 +17,6 @@
     "stof/doctrine-extensions-bundle": "1.2.1",
 
     "innocead/captcha-bundle": "@dev",
-    "solution/mongo-odm-aggregation-bundle": "@dev",
-    "solution/pipeline-builder": "@dev",
     "open-orchestra/open-orchestra-libs": "@dev"
   },
   "require-dev": {
