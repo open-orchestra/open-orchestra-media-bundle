@@ -14,7 +14,8 @@
     "open-orchestra/open-orchestra-bbcode-bundle": "~1.1.0",
     "open-orchestra/open-orchestra-mongo-libs": "~1.1.0",
     "doctrine/data-fixtures": "1.1.1",
-    "stof/doctrine-extensions-bundle": "1.2.1"
+    "stof/doctrine-extensions-bundle": "1.2.1",
+    "innocead/captcha-bundle": "@dev"
   },
   "require-dev": {
     "open-orchestra/open-orchestra-base-bundle": "~1.1.0",
