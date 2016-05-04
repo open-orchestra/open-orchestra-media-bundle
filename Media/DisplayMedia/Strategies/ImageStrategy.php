@@ -22,6 +22,7 @@ class ImageStrategy extends AbstractStrategy
     /**
      * @param MediaInterface $media
      * @param string         $format
+     * @param string         $style
      *
      * @return String
      */
@@ -42,8 +43,9 @@ class ImageStrategy extends AbstractStrategy
     /**
      * @param MediaInterface $media
      *
-     *  @param MediaInterface $media
-     *  @param string         $format
+     * @param MediaInterface $media
+     * @param string         $format
+     * @param string         $style
      *
      * @return string
      */

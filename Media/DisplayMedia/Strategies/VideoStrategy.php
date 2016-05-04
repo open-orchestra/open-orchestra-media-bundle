@@ -24,6 +24,7 @@ class VideoStrategy extends AbstractStrategy
     /**
      * @param MediaInterface $media
      * @param string         $format
+     * @param string         $style
      *
      * @return String
      */

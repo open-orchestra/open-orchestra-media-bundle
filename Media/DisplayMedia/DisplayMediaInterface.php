@@ -34,6 +34,7 @@ interface DisplayMediaInterface
     /**
      * @param MediaInterface $media
      * @param string         $format
+     * @param string         $style
      *
      * @return string
      */
@@ -42,6 +43,7 @@ interface DisplayMediaInterface
     /**
      * @param MediaInterface $media
      * @param string         $format
+     * @param string         $style
      *
      * @return string
      */
