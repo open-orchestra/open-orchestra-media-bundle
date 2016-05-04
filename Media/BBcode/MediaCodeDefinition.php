@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace OpenOrchestra\Media\BBcode;
 
@@ -25,15 +25,31 @@ class MediaCodeDefinition extends AbstractMediaCodeDefinition
 
     /**
      * Get requested media format
-     * 
+     *
      * @param BBcodeElementNodeInterface $el
-     * 
+     *
      * @return string
      */
     protected function getFormat(BBcodeElementNodeInterface $el)
     {
         $options = $el->getAttribute();
+        $options = json_decode($options['media'], true);
 
-        return $options['media'];
+        return $options['format'];
+    }
+
+    /**
+     * Get requested media format
+     *
+     * @param BBcodeElementNodeInterface $el
+     *
+     * @return string
+     */
+    protected function getStyle(BBcodeElementNodeInterface $el)
+    {
+        $options = $el->getAttribute();
+        $options = json_decode($options['media'], true);
+
+        return array_key_exists('style', $options) ? $options['style'] : '';
     }
 }

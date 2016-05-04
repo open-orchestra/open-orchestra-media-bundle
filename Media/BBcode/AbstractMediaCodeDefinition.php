@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace OpenOrchestra\Media\BBcode;
 
@@ -71,10 +71,10 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
         if ($media) {
             if ($preview) {
 
-                return $this->displayMediaManager->displayMediaForWysiwyg($media, $this->getFormat($el));
+                return $this->displayMediaManager->displayMediaForWysiwyg($media, $this->getFormat($el), $this->getStyle($el));
             } else {
 
-                return $this->displayMediaManager->displayMedia($media, $this->getFormat($el));
+                return $this->displayMediaManager->displayMedia($media, $this->getFormat($el), $this->getStyle($el));
             }
         }
 
@@ -83,13 +83,25 @@ abstract class AbstractMediaCodeDefinition extends BBcodeDefinition
 
     /**
      * Get requested media format
-     * 
+     *
      * @param BBcodeElementNodeInterface $el
-     * 
+     *
      * @return string
      */
     protected function getFormat(BBcodeElementNodeInterface $el)
     {
         return MediaInterface::MEDIA_ORIGINAL;
+    }
+
+    /**
+     * Get requested media style
+     *
+     * @param BBcodeElementNodeInterface $el
+     *
+     * @return string
+     */
+    protected function getStyle(BBcodeElementNodeInterface $el)
+    {
+        return '';
     }
 }

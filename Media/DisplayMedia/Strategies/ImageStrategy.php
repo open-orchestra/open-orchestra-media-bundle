@@ -25,7 +25,7 @@ class ImageStrategy extends AbstractStrategy
      *
      * @return String
      */
-    public function displayMedia(MediaInterface $media, $format = '')
+    public function displayMedia(MediaInterface $media, $format = '', $style = '')
     {
         $request = $this->requestStack->getMasterRequest();
 
@@ -33,7 +33,8 @@ class ImageStrategy extends AbstractStrategy
             'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:image.html.twig',
             array(
                 'media_url' => $this->getMediaFormatUrl($media, $format),
-                'media_alt' => $media->getAlt($request->getLocale())
+                'media_alt' => $media->getAlt($request->getLocale()),
+                'style' => $style,
             )
         );
     }
@@ -46,7 +47,7 @@ class ImageStrategy extends AbstractStrategy
      *
      * @return string
      */
-    public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '', $style = '')
     {
         $request = $this->requestStack->getMasterRequest();
 
@@ -56,7 +57,8 @@ class ImageStrategy extends AbstractStrategy
                 'media_url' => $this->getMediaFormatUrl($media, $format),
                 'media_alt' => $media->getAlt($request->getLocale()),
                 'media_id' => $media->getId(),
-                'media_format' => $format
+                'media_format' => $format,
+                'style' => $style,
             )
         );
     }
