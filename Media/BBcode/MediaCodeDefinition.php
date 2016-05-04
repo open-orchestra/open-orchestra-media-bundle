@@ -39,7 +39,7 @@ class MediaCodeDefinition extends AbstractMediaCodeDefinition
     }
 
     /**
-     * Get requested media format
+     * Get requested media style
      *
      * @param BBcodeElementNodeInterface $el
      *

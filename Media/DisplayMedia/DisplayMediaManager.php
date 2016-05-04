@@ -53,6 +53,7 @@ class DisplayMediaManager
     /**
      * @param MediaInterface $media
      * @param string         $format
+     * @param string         $style
      *
      * @return string
      */
@@ -71,6 +72,7 @@ class DisplayMediaManager
     /**
      * @param MediaInterface $media
      * @param string         $format
+     * @param string         $style
      *
      * @return string
      */
