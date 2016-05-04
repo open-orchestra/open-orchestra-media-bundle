@@ -42,7 +42,8 @@ class DefaultStrategyTest extends AbstractStrategyTest
             'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:default.html.twig',
             array(
                 'media_url' => $url,
-                'media_name' => $image
+                'media_name' => $image,
+                'style' => '',
             )
         );
     }

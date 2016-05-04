@@ -44,7 +44,8 @@ class ImageStrategyTest extends AbstractStrategyTest
             'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:image.html.twig',
             array(
                 'media_url' => $url,
-                'media_alt' => $alt
+                'media_alt' => $alt,
+                'style' => '',
             )
         );
     }
@@ -84,7 +85,8 @@ class ImageStrategyTest extends AbstractStrategyTest
                 'media_url' => $url,
                 'media_alt' => $alt,
                 'media_id' => $id,
-                'media_format' => $format
+                'media_format' => $format,
+                'style' => '',
             )
         );
     }
