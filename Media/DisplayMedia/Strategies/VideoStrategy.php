@@ -27,13 +27,14 @@ class VideoStrategy extends AbstractStrategy
      *
      * @return String
      */
-    public function displayMedia(MediaInterface $media, $format = '')
+    public function displayMedia(MediaInterface $media, $format = '', $style = '')
     {
         return $this->render(
             'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:video.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getFilesystemName()),
-                'media_type' => $media->getMimeType()
+                'media_type' => $media->getMimeType(),
+                'style' => $style,
             )
         );
     }

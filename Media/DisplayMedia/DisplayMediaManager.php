@@ -56,16 +56,16 @@ class DisplayMediaManager
      *
      * @return string
      */
-    public function displayMedia(MediaInterface $media, $format = '')
+    public function displayMedia(MediaInterface $media, $format = '', $style = '')
     {
         /** @var DisplayMediaInterface $strategy */
         foreach ($this->strategies as $strategy) {
             if ($strategy->support($media)) {
-                return $strategy->displayMedia($media, $format);
+                return $strategy->displayMedia($media, $format, $style = '');
             }
         }
 
-        return $this->defaultStrategy->displayMedia($media, $format);
+        return $this->defaultStrategy->displayMedia($media, $format, $style = '');
     }
 
     /**
@@ -74,16 +74,16 @@ class DisplayMediaManager
      *
      * @return string
      */
-    public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '', $style = '')
     {
         /** @var DisplayMediaInterface $strategy */
         foreach ($this->strategies as $strategy) {
             if ($strategy->support($media)) {
-                return $strategy->displayMediaForWysiwyg($media, $format);
+                return $strategy->displayMediaForWysiwyg($media, $format, $style);
             }
         }
 
-        return $this->defaultStrategy->displayMediaForWysiwyg($media, $format);
+        return $this->defaultStrategy->displayMediaForWysiwyg($media, $format, $style);
     }
 
     /**

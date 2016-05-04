@@ -27,13 +27,14 @@ class AudioStrategy extends AbstractStrategy
      *
      * @return String
      */
-    public function displayMedia(MediaInterface $media, $format = '')
+    public function displayMedia(MediaInterface $media, $format = '', $style = '')
     {
         return $this->render(
             'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:audio.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getFilesystemName()),
-                'media_type' => $media->getMimeType()
+                'media_type' => $media->getMimeType(),
+                'style' => $style,
             )
         );
     }
@@ -46,11 +47,14 @@ class AudioStrategy extends AbstractStrategy
      *
      * @return string
      */
-    public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '', $style = '')
     {
         return $this->render(
             'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:audio.html.twig',
-            array('media_id' => $media->getId())
+            array(
+                'media_id' => $media->getId(),
+                'style' => $style,
+            )
         );
     }
 
