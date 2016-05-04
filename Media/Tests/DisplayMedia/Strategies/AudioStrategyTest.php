@@ -41,7 +41,8 @@ class AudioStrategyTest extends AbstractStrategyTest
             'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:audio.html.twig',
             array(
                 'media_url' => $url,
-                'media_type' => $mimeType
+                'media_type' => $mimeType,
+                'style' => '',
             )
         );
     }
@@ -75,7 +76,10 @@ class AudioStrategyTest extends AbstractStrategyTest
 
         Phake::verify($this->templating)->render(
             'OpenOrchestraMediaBundle:BBcode/WysiwygDisplay:audio.html.twig',
-            array('media_id' => $image)
+            array(
+                'media_id' => $image,
+                'style' => '',
+            )
         );
     }
 

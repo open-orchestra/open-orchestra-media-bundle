@@ -42,7 +42,8 @@ class PdfStrategyTest extends AbstractStrategyTest
             'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:pdf.html.twig',
             array(
                 'media_url' => $url,
-                'media_name' => $image
+                'media_name' => $image,
+                'style' => '',
             )
         );
     }

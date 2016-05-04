@@ -6,6 +6,7 @@ use OpenOrchestra\Media\BBcode\AbstractMediaCodeDefinition;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNodeInterface;
 use OpenOrchestra\Media\DisplayMedia\DisplayMediaManager;
+use OpenOrchestra\Media\Model\MediaInterface;
 
 /**
  * Class MediaCodeDefinition
@@ -35,7 +36,7 @@ class MediaCodeDefinition extends AbstractMediaCodeDefinition
         $options = $el->getAttribute();
         $options = json_decode($options['media'], true);
 
-        return $options['format'];
+        return is_array($options) && array_key_exists('format', $options) ? $options['format'] : MediaInterface::MEDIA_ORIGINAL;
     }
 
     /**
@@ -50,6 +51,6 @@ class MediaCodeDefinition extends AbstractMediaCodeDefinition
         $options = $el->getAttribute();
         $options = json_decode($options['media'], true);
 
-        return array_key_exists('style', $options) ? $options['style'] : '';
+        return is_array($options) && array_key_exists('style', $options) ? $options['style'] : '';
     }
 }

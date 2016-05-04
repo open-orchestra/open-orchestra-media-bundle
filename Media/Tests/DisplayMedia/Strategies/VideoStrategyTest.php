@@ -47,7 +47,8 @@ class VideoStrategyTest extends AbstractStrategyTest
             'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:video.html.twig',
             array(
                 'media_url' => $url,
-                'media_type' => $mimeType
+                'media_type' => $mimeType,
+                'style' => '',
             )
         );
     }
