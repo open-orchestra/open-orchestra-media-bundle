@@ -76,6 +76,7 @@ abstract class AbstractStrategyTest extends AbstractBaseTestCase
                 'media_url' => $url,
                 'media_alt' => $alt,
                 'media_id' => $id,
+                'style' => '',
             )
         );
     }

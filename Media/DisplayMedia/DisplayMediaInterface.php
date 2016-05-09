@@ -19,7 +19,7 @@ interface DisplayMediaInterface
 
     /**
      * Set the router
-     * 
+     *
      * @param RouterInterface $router
      */
     public function setRouter(RouterInterface $router);
@@ -34,18 +34,20 @@ interface DisplayMediaInterface
     /**
      * @param MediaInterface $media
      * @param string         $format
+     * @param string         $style
      *
      * @return string
      */
-    public function displayMedia(MediaInterface $media, $format);
+    public function displayMedia(MediaInterface $media, $format, $style = '');
 
     /**
      * @param MediaInterface $media
      * @param string         $format
+     * @param string         $style
      *
      * @return string
      */
-    public function displayMediaForWysiwyg(MediaInterface $media, $format = '');
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '', $style = '');
 
     /**
      * @param MediaInterface $media
