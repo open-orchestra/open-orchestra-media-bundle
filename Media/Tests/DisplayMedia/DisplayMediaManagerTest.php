@@ -96,8 +96,8 @@ class DisplayMediaManagerTest extends AbstractBaseTestCase
     public function testDisplayMedia()
     {
         $media = $this->manager->displayMedia($this->media);
-        Phake::verify($this->displayMediaStrategy1)->displayMedia($this->media, '');
-        Phake::verify($this->displayMediaStrategy2, Phake::never())->displayMedia($this->media, '');
+        Phake::verify($this->displayMediaStrategy1)->displayMedia($this->media, '', '');
+        Phake::verify($this->displayMediaStrategy2, Phake::never())->displayMedia($this->media, '', '');
         $this->assertInstanceOf('OpenOrchestra\Media\Model\MediaInterface', $media);
     }
 
@@ -108,9 +108,9 @@ class DisplayMediaManagerTest extends AbstractBaseTestCase
     {
         Phake::when($this->displayMediaStrategy1)->support($this->media)->thenReturn(false);
         $media = $this->manager->displayMedia($this->media);
-        Phake::verify($this->defaultStrategy)->displayMedia($this->media, '');
-        Phake::verify($this->displayMediaStrategy1, Phake::never())->displayMedia($this->media, '');
-        Phake::verify($this->displayMediaStrategy2, Phake::never())->displayMedia($this->media, '');
+        Phake::verify($this->defaultStrategy)->displayMedia($this->media, '', '');
+        Phake::verify($this->displayMediaStrategy1, Phake::never())->displayMedia($this->media, '', '');
+        Phake::verify($this->displayMediaStrategy2, Phake::never())->displayMedia($this->media, '', '');
         $this->assertInstanceOf('OpenOrchestra\Media\Model\MediaInterface', $media);
     }
 
@@ -121,8 +121,8 @@ class DisplayMediaManagerTest extends AbstractBaseTestCase
     public function testDisplayMediaForWysiwyg()
     {
         $media = $this->manager->displayMediaForWysiwyg($this->media);
-        Phake::verify($this->displayMediaStrategy1)->displayMediaForWysiwyg($this->media, '');
-        Phake::verify($this->displayMediaStrategy2, Phake::never())->displayMediaForWysiwyg($this->media, '');
+        Phake::verify($this->displayMediaStrategy1)->displayMediaForWysiwyg($this->media, '', '');
+        Phake::verify($this->displayMediaStrategy2, Phake::never())->displayMediaForWysiwyg($this->media, '', '');
         $this->assertInstanceOf('OpenOrchestra\Media\Model\MediaInterface', $media);
     }
 
@@ -133,9 +133,9 @@ class DisplayMediaManagerTest extends AbstractBaseTestCase
     {
         Phake::when($this->displayMediaStrategy1)->support($this->media)->thenReturn(false);
         $media = $this->manager->displayMediaForWysiwyg($this->media);
-        Phake::verify($this->defaultStrategy)->displayMediaForWysiwyg($this->media, '');
-        Phake::verify($this->displayMediaStrategy1, Phake::never())->displayMediaForWysiwyg($this->media, '');
-        Phake::verify($this->displayMediaStrategy2, Phake::never())->displayMediaForWysiwyg($this->media, '');
+        Phake::verify($this->defaultStrategy)->displayMediaForWysiwyg($this->media, '', '');
+        Phake::verify($this->displayMediaStrategy1, Phake::never())->displayMediaForWysiwyg($this->media, '', '');
+        Phake::verify($this->displayMediaStrategy2, Phake::never())->displayMediaForWysiwyg($this->media, '', '');
         $this->assertInstanceOf('OpenOrchestra\Media\Model\MediaInterface', $media);
     }
 

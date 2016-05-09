@@ -33,7 +33,7 @@ abstract class AbstractStrategy implements DisplayMediaInterface, ContainerAware
 
     /**
      * Set the router
-     * 
+     *
      * @param RouterInterface $router
      */
     public function setRouter(RouterInterface $router)
@@ -54,12 +54,13 @@ abstract class AbstractStrategy implements DisplayMediaInterface, ContainerAware
     /**
      * @param MediaInterface $media
      *
-     *  @param MediaInterface $media
-     *  @param string         $format
-     *  
+     * @param MediaInterface $media
+     * @param string         $format
+     * @param string         $style
+     *
      * @return string
      */
-    public function displayMediaForWysiwyg(MediaInterface $media, $format = '')
+    public function displayMediaForWysiwyg(MediaInterface $media, $format = '', $style = '')
     {
         $request = $this->requestStack->getMasterRequest();
 
@@ -68,17 +69,18 @@ abstract class AbstractStrategy implements DisplayMediaInterface, ContainerAware
             array(
                 'media_url' => $this->getFileUrl($media->getThumbnail()),
                 'media_alt' => $media->getAlt($request->getLocale()),
-                'media_id' => $media->getId()
+                'media_id' => $media->getId(),
+                'style' => $style
             )
         );
     }
 
     /**
      * Render the $template with $params
-     * 
+     *
      * @param string $template
      * @param array  $params
-     * 
+     *
      * @return string
      */
     protected function render($template, $params)
@@ -88,7 +90,7 @@ abstract class AbstractStrategy implements DisplayMediaInterface, ContainerAware
 
     /**
      * Return url to a file stored with the UploadedFileManager
-     * 
+     *
      * @param string storageKey
      *
      * @return string

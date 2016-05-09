@@ -39,7 +39,7 @@ abstract class AbstractMediaCodeDefinitionTest extends AbstractBaseTestCase
 
         $this->BBcodeElementNode = Phake::mock('OpenOrchestra\BBcodeBundle\ElementNode\BBcodeElementNode');
         Phake::when($this->BBcodeElementNode)->getChildren()->thenReturn(array(0 => $mediaIdNode));
-        Phake::when($this->BBcodeElementNode)->getAttribute()->thenReturn(array('media' => $this->format));
+        Phake::when($this->BBcodeElementNode)->getAttribute()->thenReturn(array('media' => '{"format":"'.$this->format.'"}'));
 
         $this->templating = Phake::mock('Symfony\Component\Templating\EngineInterface');
         Phake::when($this->templating)->render(Phake::anyParameters())->thenReturn($this->mediaNotFoundHtmlTag);
@@ -52,7 +52,7 @@ abstract class AbstractMediaCodeDefinitionTest extends AbstractBaseTestCase
 
     /**
      * @param BBcodeElementNodeInterface $el
-     * 
+     *
      * @dataProvider provideBBNodeWithBadMediaId
      */
     public function testGetHtmlWithBadMediaId(BBcodeElementNode $el)
@@ -84,7 +84,7 @@ abstract class AbstractMediaCodeDefinitionTest extends AbstractBaseTestCase
 
     /**
      * @param BBcodeElementNodeInterface $el
-     * 
+     *
      * @dataProvider provideBBNodeWithBadMediaId
      */
     public function testGetPreviewHtmlWithBadMediaId(BBcodeElementNode $el)
@@ -96,14 +96,14 @@ abstract class AbstractMediaCodeDefinitionTest extends AbstractBaseTestCase
 
     /**
      * @param string $expectedFormat
-     * 
+     *
      * @dataProvider provideFormat
      */
     public function testGetHtmlWithGoodMediaId($expectedFormat)
     {
         $html = $this->definition->getHtml($this->BBcodeElementNode);
 
-        Phake::verify($this->displayManager)->displayMedia($this->media, $expectedFormat);
+        Phake::verify($this->displayManager)->displayMedia($this->media, $expectedFormat, '');
     }
 
     /**
@@ -113,13 +113,13 @@ abstract class AbstractMediaCodeDefinitionTest extends AbstractBaseTestCase
 
     /**
      * @param string $expectedFormat
-     * 
+     *
      * @dataProvider provideFormat
      */
     public function testGetPreviewHtmlWithGoodMediaId($expectedFormat)
     {
         $html = $this->definition->getPreviewHtml($this->BBcodeElementNode);
 
-        Phake::verify($this->displayManager)->displayMediaForWysiwyg($this->media, $expectedFormat);
+        Phake::verify($this->displayManager)->displayMediaForWysiwyg($this->media, $expectedFormat, '');
     }
 }

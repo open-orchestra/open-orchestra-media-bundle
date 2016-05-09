@@ -22,16 +22,18 @@ class DefaultStrategy extends AbstractStrategy
     /**
      * @param MediaInterface $media
      * @param string         $format
+     * @param string         $style
      *
      * @return String
      */
-    public function displayMedia(MediaInterface $media, $format = '')
+    public function displayMedia(MediaInterface $media, $format = '', $style = '')
     {
         return $this->render(
             'OpenOrchestraMediaBundle:DisplayMedia/FullDisplay:default.html.twig',
             array(
                 'media_url' => $this->getFileUrl($media->getFilesystemName()),
-                'media_name' => $media->getName()
+                'media_name' => $media->getName(),
+                'style' => $style,
             )
         );
     }
