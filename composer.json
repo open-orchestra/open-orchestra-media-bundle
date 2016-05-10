@@ -11,15 +11,15 @@
     "minimum-stability": "dev",
     "require": {
         "ext-imagick": "*",
-        "open-orchestra/open-orchestra-model-interface": "~1.0.0",
-        "open-orchestra/open-orchestra-display-bundle": "~1.0.0",
-        "doctrine/data-fixtures":"1.1.1",
+        "open-orchestra/open-orchestra-model-interface": "1.0.x-dev",
+        "open-orchestra/open-orchestra-display-bundle": "1.0.x-dev",
+        "doctrine/data-fixtures": "1.1.1",
         "doctrine/mongodb-odm-bundle" : "3.0.1",
         "stof/doctrine-extensions-bundle": "1.2.1",
         "knplabs/knp-gaufrette-bundle": "v0.1.7"
     },
     "require-dev": {
-        "open-orchestra/open-orchestra-base-bundle": "~1.0.0",
+        "open-orchestra/open-orchestra-base-bundle": "1.0.x-dev",
         "psr/log": "1.0.0",
         "codeclimate/php-test-reporter": "dev-master",
         "symfony/validator": "2.7.0",
