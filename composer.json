@@ -8,33 +8,37 @@
       "homepage": "https://github.com/open-orchestra/open-orchestra-media-bundle/graphs/contributors"
     }
   ],
+
   "require": {
-    "open-orchestra/open-orchestra-model-interface": "1.2.*@dev",
-    "open-orchestra/open-orchestra-display-bundle": "1.2.*@dev",
+    "doctrine/data-fixtures": "~1.1.1",
+    "stof/doctrine-extensions-bundle": "~1.2.1",
     "open-orchestra/open-orchestra-bbcode-bundle": "1.2.*@dev",
+    "open-orchestra/open-orchestra-display-bundle": "1.2.*@dev",
+    "open-orchestra/open-orchestra-model-interface": "1.2.*@dev",
     "open-orchestra/open-orchestra-mongo-libs": "1.2.*@dev",
-    "doctrine/data-fixtures": "1.1.1",
-    "stof/doctrine-extensions-bundle": "1.2.1",
+
     "innocead/captcha-bundle": "@dev",
     "open-orchestra/open-orchestra-libs": "@dev"
   },
+
   "require-dev": {
-    "open-orchestra/open-orchestra-base-bundle": "1.2.*@dev",
-    "psr/log": "1.0.0",
-    "codeclimate/php-test-reporter": "dev-master",
-    "symfony/validator": "2.7.0",
-    "jmikola/geojson": "1.0.1",
-    "phpunit/phpunit" : "4.7.2",
-    "phake/phake": "2.1.0"
+    "phake/phake": "~2.1.0",
+    "phpunit/phpunit": "~4.8.0",
+
+    "codeclimate/php-test-reporter": "~0.3.2",
+    "open-orchestra/open-orchestra-base-bundle": "1.2.*@dev"
   },
+
   "extra": {
     "branch-alias": {
       "dev-master": "1.2.x-dev"
     }
   },
-  "config" : {
-    "bin-dir" : "bin"
+
+  "config": {
+    "bin-dir": "bin"
   },
+
   "autoload": {
     "psr-4": {
       "OpenOrchestra\\MediaModelBundle\\": "MediaModelBundle/",
