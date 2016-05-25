@@ -51,7 +51,12 @@ class MediaRepository extends DocumentRepository implements MediaRepositoryInter
     {
         $qb = $this->createQueryBuilder();
 
-        $qb->field('keywords.label')->in(explode(',', $keywords));
+        $keywords = explode(',', $keywords);
+        foreach($keywords as $key => $keyword) {
+            $keywords[$key] = new \MongoId($keyword);
+        }
+
+        $qb->field('keywords.$id')->in($keywords);
 
         return $qb->getQuery()->execute();
     }

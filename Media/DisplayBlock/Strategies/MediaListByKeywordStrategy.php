@@ -45,7 +45,7 @@ class MediaListByKeywordStrategy extends AbstractStrategy
 
     /**
      * Indicate if the block is public or private
-     * 
+     *
      * @return boolean
      */
     public function isPublic(ReadBlockInterface $block)
@@ -76,9 +76,9 @@ class MediaListByKeywordStrategy extends AbstractStrategy
 
     /**
      * Get medias to display
-     * 
+     *
      * @param array $keywords
-     * 
+     *
      * @return array
      */
     protected function getMediasByKeywords($keywords)
@@ -88,9 +88,9 @@ class MediaListByKeywordStrategy extends AbstractStrategy
 
     /**
      * Return block specific cache tags
-     * 
+     *
      * @param ReadBlockInterface $block
-     * 
+     *
      * @return array
      */
     public function getCacheTags(ReadBlockInterface $block)
