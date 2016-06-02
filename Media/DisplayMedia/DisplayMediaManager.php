@@ -62,11 +62,11 @@ class DisplayMediaManager
         /** @var DisplayMediaInterface $strategy */
         foreach ($this->strategies as $strategy) {
             if ($strategy->support($media)) {
-                return $strategy->displayMedia($media, $format, $style = '');
+                return $strategy->displayMedia($media, $format, $style);
             }
         }
 
-        return $this->defaultStrategy->displayMedia($media, $format, $style = '');
+        return $this->defaultStrategy->displayMedia($media, $format, $style);
     }
 
     /**
