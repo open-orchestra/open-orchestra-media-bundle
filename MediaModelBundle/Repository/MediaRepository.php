@@ -6,12 +6,17 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
+use OpenOrchestra\ModelBundle\Repository\RepositoryTrait\KeywordableTrait;
+use OpenOrchestra\ModelInterface\Repository\RepositoryTrait\KeywordableTraitInterface;
+use Doctrine\MongoDB\Query\Expr;
 
 /**
  * Class MediaRepository
  */
-class MediaRepository extends DocumentRepository implements MediaRepositoryInterface
+class MediaRepository extends DocumentRepository implements MediaRepositoryInterface, KeywordableTraitInterface
 {
+    use KeywordableTrait;
+
     /**
      * @param string $folderId
      *
@@ -50,8 +55,7 @@ class MediaRepository extends DocumentRepository implements MediaRepositoryInter
     public function findByKeywords($keywords)
     {
         $qb = $this->createQueryBuilder();
-
-        $qb->field('keywords.label')->in(explode(',', $keywords));
+        $qb->setQueryArray($this->transformConditionToMongoCondition($keywords));
 
         return $qb->getQuery()->execute();
     }
