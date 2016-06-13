@@ -8,7 +8,6 @@ use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use OpenOrchestra\ModelBundle\Repository\RepositoryTrait\KeywordableTrait;
 use OpenOrchestra\ModelInterface\Repository\RepositoryTrait\KeywordableTraitInterface;
-use Doctrine\MongoDB\Query\Expr;
 
 /**
  * Class MediaRepository
