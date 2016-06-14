@@ -48,12 +48,6 @@ class DisplayMediaExtension extends \Twig_Extension
 
             // Get the alt of a media
             new \Twig_SimpleFunction('get_media_alt', array($this, 'getMediaAlt')),
-
-            // DEPRECATED, NO MORE TO USE
-            new \Twig_SimpleFunction('media_preview', array($this, 'mediaPreview'), array('deprecated' => true)),
-
-            // DEPRECATED, NO MORE TO USE
-            new \Twig_SimpleFunction('get_media_format_url', array($this, 'getMediaUrl'), array('deprecated' => true)),
         );
     }
 
@@ -69,24 +63,6 @@ class DisplayMediaExtension extends \Twig_Extension
 
         if ($media) {
             return $this->displayMediaManager->displayMedia($media, $format);
-        }
-
-        return '';
-    }
-
-    /**
-     * @deprecated will be removed in 1.2.0
-     *
-     * @param String $mediaId
-     *
-     * @return String
-     */
-    public function mediaPreview($mediaId)
-    {
-        $media = $this->getMedia($mediaId);
-
-        if ($media) {
-            return $this->displayMediaManager->displayPreview($media);
         }
 
         return '';

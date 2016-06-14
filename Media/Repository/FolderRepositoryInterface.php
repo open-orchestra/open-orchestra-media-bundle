@@ -11,6 +11,8 @@ use OpenOrchestra\Media\Model\FolderInterface;
 interface FolderRepositoryInterface
 {
     /**
+     * @deprecated FindAllRootFolder is deprecated since version 1.1.0 and will be removed in 1.3.0. use findAllRootFolderBySiteId
+     *
      * @return Collection
      */
     public function findAllRootFolder();
