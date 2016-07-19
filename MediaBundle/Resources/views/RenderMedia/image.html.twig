@@ -1,0 +1,13 @@
+<img 
+    src="{{ media_url }}"
+    alt="{{ media_alt }}"
+    {% if id -%}
+        id="{{ id }}"
+    {%- endif -%}
+    {%- if class -%}
+        class="{{ class }}"
+    {%- endif %}
+    {%- if style -%}
+        style="{{ style }}"
+    {%- endif %}
+/>
