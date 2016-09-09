@@ -8,6 +8,7 @@ use OpenOrchestra\Media\Model\MediaInterface;
 use OpenOrchestra\Media\Repository\MediaRepositoryInterface;
 use OpenOrchestra\ModelBundle\Repository\RepositoryTrait\KeywordableTrait;
 use OpenOrchestra\ModelInterface\Repository\RepositoryTrait\KeywordableTraitInterface;
+use OpenOrchestra\ModelBundle\Repository\RepositoryTrait\UseTrackableTrait;
 
 /**
  * Class MediaRepository
@@ -15,6 +16,7 @@ use OpenOrchestra\ModelInterface\Repository\RepositoryTrait\KeywordableTraitInte
 class MediaRepository extends DocumentRepository implements MediaRepositoryInterface, KeywordableTraitInterface
 {
     use KeywordableTrait;
+    use UseTrackableTrait;
 
     /**
      * @param string $folderId
@@ -46,7 +48,7 @@ class MediaRepository extends DocumentRepository implements MediaRepositoryInter
         return $qb->getQuery()->execute();
     }
 
-/**
+    /**
      * @param string $keywords
      *
      * @return array
@@ -67,21 +69,5 @@ class MediaRepository extends DocumentRepository implements MediaRepositoryInter
     public function findOneByName($name)
     {
         return $this->findOneBy(array('name' => $name));
-    }
-
-    /**
-     * Return medias declaring $pattern as usageReference
-     *
-     * @param string $pattern
-     *
-     * @return MediaInterface
-     */
-    public function findByUsagePattern($pattern)
-    {
-        $qb = $this->createQueryBuilder();
-
-        $qb->field('usageReference')->in(array(new \MongoRegex('/^' . preg_quote($pattern) . '/')));
-
-        return $qb->getQuery()->execute();
     }
 }

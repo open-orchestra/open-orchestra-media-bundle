@@ -4,11 +4,12 @@ namespace OpenOrchestra\Media\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\Media\Model\MediaInterface;
+use OpenOrchestra\ModelInterface\Repository\RepositoryTrait\UseTrackableTraitInterface;
 
 /**
  * Interface MediaRepositoryInterface
  */
-interface MediaRepositoryInterface
+interface MediaRepositoryInterface extends UseTrackableTraitInterface
 {
     /**
      * @param string $folderId
@@ -45,13 +46,4 @@ interface MediaRepositoryInterface
      * @return MediaInterface
      */
     public function findOneByName($name);
-
-    /**
-     * Return medias declaring $pattern as usageReference
-     *
-     * @param string $pattern
-     *
-     * @return MediaInterface
-     */
-    public function findByUsagePattern($pattern);
 }
