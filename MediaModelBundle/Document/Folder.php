@@ -51,6 +51,13 @@ abstract class Folder implements FolderInterface
     protected $parent;
 
     /**
+     * @var string $path
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $path;
+
+    /**
      * @var ArrayCollection
      *
      * @ODM\ReferenceMany(targetDocument="OpenOrchestra\Media\Model\FolderInterface", mappedBy="parent")
@@ -114,6 +121,26 @@ abstract class Folder implements FolderInterface
     }
 
     /**
+     * Set path
+     *
+     * @param string $path
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string $path
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
      * @return Collection
      */
     public function getSubFolders()
@@ -151,13 +178,5 @@ abstract class Folder implements FolderInterface
     public function setSiteId($siteId)
     {
         $this->siteId = $siteId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPath()
-    {
-        return '';
     }
 }
