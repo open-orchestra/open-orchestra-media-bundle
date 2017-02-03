@@ -78,4 +78,65 @@ class FolderRepository extends AbstractAggregateRepository implements FolderRepo
 
         return $this->countDocumentAggregateQuery($qa) > 0;
     }
+
+    /**
+     * @param string $siteId
+     *
+     * @return array
+     */
+    public function findFolderTree($siteId)
+    {
+        $qa = $this->createAggregationQuery();
+        $qa->match(array('siteId' => $siteId));
+        $folders = $qa->getQuery()->aggregate()->toArray();
+
+        if (empty($folders)) {
+            return array();
+        }
+
+        $rootFolders = array_filter($folders, function($folder, $key) {
+            if (isset($folder['parent'])) {
+                return false;
+            }
+            return true;
+        }, ARRAY_FILTER_USE_BOTH);
+
+        $foldersToPlace = array_udiff($folders, $rootFolders, function($folder1, $folder2) {
+            if ($folder1 === $folder2) {
+                return 0;
+            }
+            return -1;
+        });
+
+        $tree = array();
+        foreach ($rootFolders as $rootFolder) {
+            $tree[] = array(
+                'folder'   => $rootFolder,
+                'children' => $this->getChildren($rootFolder, $foldersToPlace)
+            );
+        }
+
+        return $tree;
+    }
+
+    /**
+     * @param string $parentId
+     * @param array  $folders
+     *
+     * @return array
+     */
+    protected function getChildren($parent, array &$folders)
+    {
+        $children = array();
+        foreach ($folders as $key => $folder) {
+            if (isset($folder['parent']) && $parent['_id'] == $folder['parent']['$id']) {
+                unset($folders[$key]);
+                $children[] = array(
+                    'folder'   => $folder,
+                    'children' => $this->getChildren($folder, $folders));
+            }
+        }
+
+        return $children;
+    }
 }
