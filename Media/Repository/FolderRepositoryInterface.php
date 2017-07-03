@@ -23,9 +23,20 @@ interface FolderRepositoryInterface
      *
      * @throws \Exception
      *
+     * @deprecated
      * @return Collection
      */
     public function findByParentAndSite($parentId, $siteId);
+
+    /**
+     * @param string $path
+     * @param string $siteId
+     *
+     * @throws \Exception
+     *
+     * @return Collection
+     */
+    public function findByPathAndSite($path, $siteId);
 
     /**
      * @param string $siteId
