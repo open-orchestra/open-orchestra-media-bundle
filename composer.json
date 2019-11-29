@@ -17,10 +17,10 @@
   "require": {
     "php": "~5.6.0|~7.2.0",
     "stof/doctrine-extensions-bundle": "~1.2.1",
-    "open-orchestra/open-orchestra-bbcode-bundle": "self.version",
-    "open-orchestra/open-orchestra-display-bundle": "self.version",
-    "open-orchestra/open-orchestra-model-interface": "self.version",
-    "open-orchestra/open-orchestra-mongo-libs": "self.version"
+    "open-orchestra/open-orchestra-bbcode-bundle": "dev-test-7.2",
+    "open-orchestra/open-orchestra-display-bundle": "dev-test-7.2",
+    "open-orchestra/open-orchestra-model-interface": "dev-test-7.2",
+    "open-orchestra/open-orchestra-mongo-libs": "dev-test-7.2"
   },
 
   "require-dev": {
@@ -28,8 +28,8 @@
     "phake/phake": "~2.3.0",
     "codeclimate/php-test-reporter": "~0.3.2",
 
-    "open-orchestra/open-orchestra-libs": "self.version",
-    "open-orchestra/open-orchestra-base-bundle": "self.version"
+    "open-orchestra/open-orchestra-libs": "dev-test-7.2",
+    "open-orchestra/open-orchestra-base-bundle": "dev-test-7.2"
   },
 
   "config": {
